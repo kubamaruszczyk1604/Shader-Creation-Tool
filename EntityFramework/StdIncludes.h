@@ -1,6 +1,6 @@
 #pragma once
 #define WIN32_LEAN_AND_MEAN
-#define _KLM_CSHARP
+#define _KLM_CSHARP //C++ CODE IS CALLED BY C# MANAGED CODE
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
@@ -22,16 +22,25 @@
 
 #include "Stopwatch.h"
 
-
+//D3D11 HEADERS
 #include <d3d11.h>
 #include <D3DX11.h>
 #include <D3DX10.h>
 
-
+//D3D11 LIBRARIES
 #pragma comment (lib, "d3d11.lib")
 #pragma comment (lib, "d3dx11.lib")
 #pragma comment (lib, "d3dx11.lib")
 #pragma comment (lib, "d3dx10.lib")
+
+//OPENGL LIBRARIES
+#pragma comment(lib, "opengl32.lib")
+#pragma comment(lib, "glu32.lib")
+//Include GLEW  
+#include  <glew\include\glew.h>  
+//OPENGL HEADERS
+//#include <gl\GL.h>
+//#include <gl\GLU.h>
 
 
 

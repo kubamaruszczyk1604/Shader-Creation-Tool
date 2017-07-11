@@ -21,6 +21,7 @@ namespace KLM_FRAMEWORK
 
 		static bool Initialize(const int width, const int height, const HWND handle, GfxAPI gfxApi);
 		static void Render(ListOfEntities* listOfEntities);
+		static void Terminate();
 		static void Update(const float deltaTime, const float totalTime);
 		static void ClearScreen(const Colour& colour);
 		static void SwapBuffers();
@@ -28,6 +29,7 @@ namespace KLM_FRAMEWORK
 		static void SetFillMode(const FillMode mode);
 
 		static void SetActiveCamera(Camera* camera);
+	
 
 		static GfxAPI GetAPI() { return m_API; }
 	};

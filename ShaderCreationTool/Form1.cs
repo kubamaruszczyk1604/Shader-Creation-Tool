@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
+    
     public partial class MainWindow : Form
     {
         private Thread m_Thread;

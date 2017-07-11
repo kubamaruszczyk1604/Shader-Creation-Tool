@@ -15,6 +15,7 @@ Stopwatch ExternalControllClass::s_FrameTimer;
 
 void ExternalControllClass::Start(int width, int height, int handle)
 {
+	PRINTL("HANDLE IS: " + ToString(handle));
 	SceneManager::Initialize(width,height,(HWND)handle);
 	s_FrameTimer.Start();
 	s_GlobalTimer.Start();

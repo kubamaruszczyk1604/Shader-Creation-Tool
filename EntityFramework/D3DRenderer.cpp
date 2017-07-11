@@ -47,7 +47,6 @@ namespace KLM_FRAMEWORK
 	{
 		s_ScreenWidth = width;
 		s_ScreenHeight = height;
-
 		const UINT createDeviceFlags = 0;
 
 		const std::array<D3D_DRIVER_TYPE, 3> driverTypes =
@@ -106,7 +105,7 @@ namespace KLM_FRAMEWORK
 		if (FAILED(result))
 		{
 			std::cout << "Could not create device and swap chain" << std::endl;
-			//::MessageBox(nullptr, "Failed to create device and swapchain\nApp must now exit", "Device fail", MB_OK | MB_ICONEXCLAMATION);
+			::MessageBox(nullptr, "Failed to create device and swapchain\nApp must now exit", "Device fail", MB_OK | MB_ICONEXCLAMATION);
 			return false;
 		}
 
@@ -119,7 +118,7 @@ namespace KLM_FRAMEWORK
 
 		if (FAILED(result)) {
 			std::cout << "Could not create render target view" << std::endl;
-			//::MessageBox(nullptr, "Failed to create Render Target View\nApp must now exit", "Render Target view Fail", MB_ICONEXCLAMATION | MB_OK);
+			::MessageBox(nullptr, "Failed to create Render Target View\nApp must now exit", "Render Target view Fail", MB_ICONEXCLAMATION | MB_OK);
 			return false;
 		}
 

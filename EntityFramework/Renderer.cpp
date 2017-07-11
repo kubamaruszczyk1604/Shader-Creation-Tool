@@ -1,6 +1,9 @@
 #include "Renderer.h"
 #include  "D3DRenderer.h"
+#include "GLRenderer.h"
 #include "Entity.h"
+
+
 namespace KLM_FRAMEWORK
 {
 
@@ -15,35 +18,83 @@ namespace KLM_FRAMEWORK
 		{
 			result = DXRenderer::Initialize(width, height, handle);
 		}
+		else if (gfxApi == GfxAPI::GL)
+		{
+			result = GLRenderer::Initialize(width, height, handle);
+		}
 		return result; 
 
 	}
 	void Renderer::Render(ListOfEntities* listOfEntities)
 	{
+		GLRenderer::Render(nullptr);
 		for (int i = 0; i < listOfEntities->size(); ++i)
 		{
 			Entity* e = (*listOfEntities)[i].get();
-
-			DXRenderer::Render(e);
-			//PRINTL("Render ENTITY: " + e->GetName() + " is at position: " + ToString(e->GetTransform()->GetWorldPosition()));
+		
+			if (m_API == GfxAPI::D3D11)
+			{
+				DXRenderer::Render(e);
+			}
+			else if (m_API == GfxAPI::GL)
+			{
+				GLRenderer::Render(e);
+			}
 
 		}
 
 	}
 
+	void Renderer::Terminate()
+	{
+		if (m_API == GfxAPI::D3D11)
+		{
+			
+		}
+		else if (m_API == GfxAPI::GL)
+		{
+			GLRenderer::Terminate();
+		}
+	}
+
 	void Renderer::Update(const float deltaTime, const float totalTime)
 	{
-		DXRenderer::Update(deltaTime, totalTime);
+		if (m_API == GfxAPI::D3D11)
+		{
+			DXRenderer::Update(deltaTime, totalTime);
+		}
+		else if (m_API == GfxAPI::GL)
+		{
+			GLRenderer::Update(deltaTime, totalTime);
+		}
+		
 	}
 
 	void Renderer::ClearScreen(const Colour & colour)
 	{
-		DXRenderer::ClearScreen(colour);
+
+		if (m_API == GfxAPI::D3D11)
+		{
+			DXRenderer::ClearScreen(colour);
+		}
+		else if (m_API == GfxAPI::GL)
+		{
+			GLRenderer::ClearScreen(colour);
+		}
+		
 	}
 
 	void Renderer::SwapBuffers()
 	{
-		DXRenderer::SwapBuffers();
+		if (m_API == GfxAPI::D3D11)
+		{
+			DXRenderer::SwapBuffers();
+		}
+		else if (m_API == GfxAPI::GL)
+		{
+			GLRenderer::SwapBuffers();
+		}
+		
 	}
 
 	void Renderer::SetCullMode(const CullMode mode)
@@ -56,6 +107,15 @@ namespace KLM_FRAMEWORK
 	}
 	void Renderer::SetActiveCamera(Camera* camera)
 	{
-		DXRenderer::SetActiveCamera(camera);
+		if (m_API == GfxAPI::D3D11)
+		{
+			DXRenderer::SetActiveCamera(camera);
+		}
+		else if (m_API == GfxAPI::GL)
+		{
+			GLRenderer::SetActiveCamera(camera);
+		}
+
+		
 	}
 }
