@@ -1,7 +1,7 @@
 #include "ApplicationInterface.h"
 #include "Behaviours.h"
 
-int CppApplicationInterface::StartRenderer(int width, int height,int handle)
+int CppApplicationInterface::StartRenderer(int width, int height, System::IntPtr handle)
 {
 
 	/*WindowsApp::Create(1280, 720, "DX WINDOW ");

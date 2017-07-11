@@ -13,7 +13,7 @@ public:
 	ExternalControllClass() = delete;
 	ExternalControllClass(const ExternalControllClass&) = delete;
 	ExternalControllClass& operator=(const ExternalControllClass&) = delete;
-	static void Start(int width, int height, int handle);
+	static void Start(int width, int height, System::IntPtr handle);
 	static void UpdateApp();
 	static void Terminate();
 	static void ReloadScene();

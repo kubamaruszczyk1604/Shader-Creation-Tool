@@ -13,10 +13,10 @@ Stopwatch ExternalControllClass::s_GlobalTimer;
 Stopwatch ExternalControllClass::s_FrameTimer;
 
 
-void ExternalControllClass::Start(int width, int height, int handle)
+void ExternalControllClass::Start(int width, int height, System::IntPtr handle)
 {
-	PRINTL("HANDLE IS: " + ToString(handle));
-	SceneManager::Initialize(width,height,(HWND)handle);
+	//PRINTL("HANDLE IS: " + ToString(handle));
+	SceneManager::Initialize(width,height,static_cast<HWND>(handle.ToPointer()));
 	s_FrameTimer.Start();
 	s_GlobalTimer.Start();
 	PRINTL("GLOBAL TIMER START..");

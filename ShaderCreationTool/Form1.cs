@@ -36,7 +36,7 @@ namespace ShaderCreationTool
         private void Form1_Shown(object sender, EventArgs e)
         {
             IntPtr pointer = pictureBox1.Handle;
-            CppApplicationInterface.StartRenderer(pictureBox1.Width,pictureBox1.Height,(int)pointer);
+            CppApplicationInterface.StartRenderer(pictureBox1.Width,pictureBox1.Height,pointer);
             m_Running = true;
             m_Thread = new Thread(RefreshThreadMethod);
             m_Thread.Start();
