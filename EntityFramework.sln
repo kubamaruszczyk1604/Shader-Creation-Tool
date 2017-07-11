@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BasicEntityFramework", "EntityFramework\BasicEnitityFramework.vcxproj", "{564AD8CD-62EE-4C32-AF38-09970E58F2DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShaderCreationTool", "ShaderCreationTool\ShaderCreationTool.csproj", "{CA5CE853-A1AA-479C-B268-8E6864D1B877}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{564AD8CD-62EE-4C32-AF38-09970E58F2DE}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{564AD8CD-62EE-4C32-AF38-09970E58F2DE}.Debug|x64.ActiveCfg = Debug|x64
+		{564AD8CD-62EE-4C32-AF38-09970E58F2DE}.Debug|x64.Build.0 = Debug|x64
+		{564AD8CD-62EE-4C32-AF38-09970E58F2DE}.Debug|x86.ActiveCfg = Debug|Win32
+		{564AD8CD-62EE-4C32-AF38-09970E58F2DE}.Debug|x86.Build.0 = Debug|Win32
+		{564AD8CD-62EE-4C32-AF38-09970E58F2DE}.Release|Any CPU.ActiveCfg = Release|Win32
+		{564AD8CD-62EE-4C32-AF38-09970E58F2DE}.Release|x64.ActiveCfg = Release|x64
+		{564AD8CD-62EE-4C32-AF38-09970E58F2DE}.Release|x64.Build.0 = Release|x64
+		{564AD8CD-62EE-4C32-AF38-09970E58F2DE}.Release|x86.ActiveCfg = Release|Win32
+		{564AD8CD-62EE-4C32-AF38-09970E58F2DE}.Release|x86.Build.0 = Release|Win32
+		{CA5CE853-A1AA-479C-B268-8E6864D1B877}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA5CE853-A1AA-479C-B268-8E6864D1B877}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA5CE853-A1AA-479C-B268-8E6864D1B877}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CA5CE853-A1AA-479C-B268-8E6864D1B877}.Debug|x64.Build.0 = Debug|Any CPU
+		{CA5CE853-A1AA-479C-B268-8E6864D1B877}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CA5CE853-A1AA-479C-B268-8E6864D1B877}.Debug|x86.Build.0 = Debug|Any CPU
+		{CA5CE853-A1AA-479C-B268-8E6864D1B877}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA5CE853-A1AA-479C-B268-8E6864D1B877}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA5CE853-A1AA-479C-B268-8E6864D1B877}.Release|x64.ActiveCfg = Release|Any CPU
+		{CA5CE853-A1AA-479C-B268-8E6864D1B877}.Release|x64.Build.0 = Release|Any CPU
+		{CA5CE853-A1AA-479C-B268-8E6864D1B877}.Release|x86.ActiveCfg = Release|Any CPU
+		{CA5CE853-A1AA-479C-B268-8E6864D1B877}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
