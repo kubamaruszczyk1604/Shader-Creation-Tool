@@ -39,7 +39,7 @@ namespace ShaderCreationTool
         private void Form1_Shown(object sender, EventArgs e)
         {
 
-            StartRenderer(50);
+            StartRenderer(100);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -55,7 +55,9 @@ namespace ShaderCreationTool
             Bridge.StartRenderer(pictureBox1.Width, pictureBox1.Height, pointer);
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
 
-     
+        }
     }
 }
