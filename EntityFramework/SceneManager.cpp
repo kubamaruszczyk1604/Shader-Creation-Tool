@@ -27,7 +27,7 @@ namespace KLM_FRAMEWORK
 			m_upCurrentScene.get()->OnExit();
 		}
 		m_upCurrentScene = std::unique_ptr<Scene>(scene);
-		//m_upCurrentScene->OnStart();
+	//	m_upCurrentScene->OnStart();
 
 	}
 

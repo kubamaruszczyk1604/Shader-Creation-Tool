@@ -201,16 +201,16 @@
     <ClCompile Include="Spotlight.cpp">
       <Filter>Source Files\Lighting</Filter>
     </ClCompile>
-    <ClCompile Include="ExternalControllClass.cpp">
-      <Filter>Source Files\Application</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files\Application</Filter>
     </ClCompile>
     <ClCompile Include="GLRenderer.cpp">
       <Filter>Source Files\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="ApplicationInterface.cpp">
+    <ClCompile Include="Bridge.cpp">
+      <Filter>Source Files\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="ControlApp.cpp">
       <Filter>Source Files\Application</Filter>
     </ClCompile>
   </ItemGroup>
@@ -326,14 +326,14 @@
     <ClInclude Include="Behaviours.h">
       <Filter>Header Files\Application</Filter>
     </ClInclude>
-    <ClInclude Include="ExternalControllClass.h">
-      <Filter>Header Files\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="ApplicationInterface.h">
-      <Filter>Header Files\Application</Filter>
-    </ClInclude>
     <ClInclude Include="GLRenderer.h">
       <Filter>Header Files\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge.h">
+      <Filter>Header Files\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlApp.h">
+      <Filter>Header Files\Application</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

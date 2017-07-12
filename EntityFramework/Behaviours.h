@@ -1,6 +1,6 @@
 #pragma once
 #include "WindowsApp.h"
-#include "ExternalControllClass.h"
+#include "ControlApp.h"
 
 using namespace KLM_FRAMEWORK;
 

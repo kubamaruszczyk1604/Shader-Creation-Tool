@@ -50,6 +50,9 @@ namespace KLM_FRAMEWORK
 		// Create context 
 		if ((s_hGLRC = wglCreateContext(s_hDevCtx)) == NULL) return false;
 		
+        
+		wglMakeCurrent(s_hDevCtx, s_hGLRC);
+		
 		// set defaults
 		glEnable(GL_DEPTH_TEST);
 		glDepthFunc(GL_LEQUAL);
@@ -67,11 +70,7 @@ namespace KLM_FRAMEWORK
 
 	void GLRenderer::Update(const float deltaTime, const float totalTime)
 	{
-		if (!s_MakeCurrentCalled)
-		{
-			wglMakeCurrent(s_hDevCtx, s_hGLRC);
-			s_MakeCurrentCalled = true;
-		}
+		
 	}
 
 	void GLRenderer::Terminate()
