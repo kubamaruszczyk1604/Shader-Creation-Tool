@@ -2,6 +2,7 @@
 #include "Renderer.h"
 #include "D3D11VertexShader.h"
 #include "D3DFragmentShader.h"
+#include "GLShader.h"
 
 namespace KLM_FRAMEWORK
 {
@@ -157,6 +158,62 @@ namespace KLM_FRAMEWORK
 				}
 				m_ShadersMap.insert(std::pair<std::string, Shader*>(file + "|" + functionName, output));
 			}
+			else if (Renderer::GetAPI() == GfxAPI::GL)
+			{
+				if (type == ShaderType::VERTEX)
+				{
+					std::string log;
+					GLShader* shader = new GLShader(ShaderType::VERTEX);
+					if (shader == nullptr)
+					{
+						PRINTL("GL VERTEX SHADER FAILED TO CREATE: " + file);
+						return nullptr;
+					}
+					if (shader->LoadFromFile(file))
+					{
+						PRINTL("GL VERTEX SHADER FAILED TO LOAD FROM FILE: " + file);
+						delete shader;
+						return nullptr;
+					}
+					PRINTL("GL VERTEX SHADER LOADED: " + file);
+					if (!shader->Compile(log))
+					{
+						PRINTL("GL VERTEX SHADER COMPILATION FAILED: " + file + "\nERROR: " + log);
+						delete shader;
+						return nullptr;
+					}
+					PRINTL("GL VERTEX SHADER COMPILED: " + file + "\nSTATUS: " + log);
+					output = shader;
+				}
+
+				else if (type == ShaderType::FRAGMENT)
+				{
+					std::string log;
+					GLShader* shader = new GLShader(ShaderType::FRAGMENT);
+					if (shader == nullptr)
+					{
+						PRINTL("GL FRAGMENT SHADER FAILED TO CREATE: " + file);
+						return nullptr;
+					}
+					if (shader->LoadFromFile(file))
+					{
+						PRINTL("GL FRAGMENT SHADER FAILED TO LOAD FROM FILE: " + file);
+						delete shader;
+						return nullptr;
+					}
+					PRINTL("GL FRAGMENT SHADER LOADED: " + file);
+					if (!shader->Compile(log))
+					{
+						PRINTL("GL FRAGMENT SHADER COMPILATION FAILED: " + file + "\nERROR: " + log);
+						delete shader;
+						return nullptr;
+					}
+					PRINTL("GL FRAGMENT SHADER COMPILED: " + file + "\nSTATUS: " + log);
+					output = shader;
+				}
+				m_ShadersMap.insert(std::pair<std::string, Shader*>(file + "|" + functionName, output));
+			}
+
 		}
 		return output;
 	}
