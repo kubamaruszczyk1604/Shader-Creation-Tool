@@ -2,9 +2,7 @@
 #include "InputSystem.h"
 #include "EntityManager.h"
 #include "Renderer.h"
-
 #include "BehaviourManager.h"
-
 #include "GLRenderer.h"
 
 namespace KLM_FRAMEWORK
@@ -16,7 +14,7 @@ namespace KLM_FRAMEWORK
 		InputSystem::SetKeyboardCallback(SceneManager::OnKeyPressed);
 		InputSystem::SetMouseButtonCallback(SceneManager::OnMouseButtonUp, SceneManager::OnMouseButtonDown);
 		InputSystem::SetMouseMoveCallback(SceneManager::OnMouseMove);
-		Renderer::Initialize(width, height, handle,GfxAPI::D3D11);
+		Renderer::Initialize(width, height, handle,GfxAPI::GL);
 	}
 
 	void SceneManager::Load(Scene* scene)
@@ -28,13 +26,15 @@ namespace KLM_FRAMEWORK
 			BehaviourManager::TerminateAllBehaviours(list);
 			m_upCurrentScene.get()->OnExit();
 		}
-		m_upCurrentScene = std::unique_ptr<Scene>(scene);
-		m_upCurrentScene->OnStart();
+		//m_upCurrentScene = std::unique_ptr<Scene>(scene);
+		//m_upCurrentScene->OnStart();
 
 	}
 
 	void SceneManager::Update(const float deltaTime, const float totalTime)
 	{
+		GLRenderer::Render(nullptr);
+		GLRenderer::SwapBuffers();
 		if (m_upCurrentScene)
 		{
 			
@@ -53,8 +53,7 @@ namespace KLM_FRAMEWORK
 			m_upCurrentScene->PostUpdate();
 
 		}
-		//GLRenderer::Render(nullptr);
-		//GLRenderer::SwapBuffers();
+		
 	}
 
 	void SceneManager::ShutDown()

@@ -22,6 +22,19 @@
 
 #include "Stopwatch.h"
 
+
+//Include GLEW  
+#include  <glew.h>  
+//OPENGL HEADERS
+#include <gl\GL.h>
+#include <gl\GLU.h>
+//OPENGL LIBRARIES
+
+#pragma comment(lib, "glu32.lib")
+#pragma comment(lib, "glew32s.lib")
+#pragma comment(lib, "opengl32.lib")
+
+
 //D3D11 HEADERS
 #include <d3d11.h>
 #include <D3DX11.h>
@@ -33,14 +46,6 @@
 #pragma comment (lib, "d3dx11.lib")
 #pragma comment (lib, "d3dx10.lib")
 
-//OPENGL LIBRARIES
-#pragma comment(lib, "opengl32.lib")
-#pragma comment(lib, "glu32.lib")
-//Include GLEW  
-#include  <glew\include\glew.h>  
-//OPENGL HEADERS
-//#include <gl\GL.h>
-//#include <gl\GLU.h>
 
 
 

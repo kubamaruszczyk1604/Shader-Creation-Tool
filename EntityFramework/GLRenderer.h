@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include "StdIncludes.h"
 #include "Camera.h"
 #include "RendererModes.h"
@@ -15,6 +14,8 @@ namespace KLM_FRAMEWORK
 		static HWND	s_hWnd;
 		static HGLRC s_hGLRC;
 		static HDC s_hDevCtx;
+
+		static bool s_MakeCurrentCalled;
 
 
 		static bool KLMSetPixelFormat(HDC hdc);

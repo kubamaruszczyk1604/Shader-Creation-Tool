@@ -9,9 +9,12 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 
+
+using System.Runtime.InteropServices; 
+
 namespace ShaderCreationTool
 {
-    
+
     public partial class MainWindow : Form
     {
         private Thread m_Thread;
@@ -25,7 +28,9 @@ namespace ShaderCreationTool
        
         private void button1_Click(object sender, EventArgs e)
         {
-            CppApplicationInterface.ReloadScene();
+            pictureBox1.Invalidate();
+          
+           // CppApplicationInterface.ReloadScene();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -36,7 +41,7 @@ namespace ShaderCreationTool
         private void Form1_Shown(object sender, EventArgs e)
         {
             IntPtr pointer = pictureBox1.Handle;
-            CppApplicationInterface.StartRenderer(pictureBox1.Width,pictureBox1.Height,pointer);
+            CppApplicationInterface.StartRenderer(pictureBox1.Width, pictureBox1.Height, pointer);
             m_Running = true;
             m_Thread = new Thread(RefreshThreadMethod);
             m_Thread.Start();

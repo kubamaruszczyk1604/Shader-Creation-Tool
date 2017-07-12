@@ -211,7 +211,7 @@
       <Filter>Source Files\Application</Filter>
     </ClCompile>
     <ClCompile Include="GLRenderer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -333,7 +333,7 @@
       <Filter>Header Files\Application</Filter>
     </ClInclude>
     <ClInclude Include="GLRenderer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,10 @@ int CppApplicationInterface::StartRenderer(int width, int height, System::IntPtr
 
 	ExternalControllClass::Start(width, height, handle);
 	SceneManager::Load(new ExampleScene());
+	//while (true)
+	{
+		//ExternalControllClass::UpdateApp();
+	}
 	return 0;
 }
 

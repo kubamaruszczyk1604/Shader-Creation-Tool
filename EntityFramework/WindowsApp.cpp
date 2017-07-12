@@ -93,13 +93,9 @@ int WindowsApp::Run()
 		}
 		else
 		{
-
-			
-
 			SceneManager::Update(s_FrameTimer.ElapsedTime()* s_TimeScale, s_GlobalTimer.ElapsedTime() * s_TimeScale);
 			s_FrameTimer.Stop();
 			s_FrameTimer.Start();
-			//DXRenderer::SwapBuffers();
 		 
 		}
 
