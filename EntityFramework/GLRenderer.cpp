@@ -41,63 +41,41 @@ namespace KLM_FRAMEWORK
 
 	bool GLRenderer::Initialize(const int width, const int height, const HWND handle)
 	{
-		
-		PRINTL("GL SEES HANDLE: " + ToString((int)handle) );
 		s_hWnd = handle;
-		s_hDevCtx = GetDC(s_hWnd);
-		// if DC is null
-		if (s_hDevCtx == NULL)
-			return false;
+		if ((s_hDevCtx = GetDC(s_hWnd)) == NULL) return false;
 	
 		// set the pixel format
+		if (!KLMSetPixelFormat(s_hDevCtx)) return false;
 		
-		if (!KLMSetPixelFormat(s_hDevCtx))
-		{
-			return false;
-		}
-		// Create context and make it current
-		s_hGLRC = wglCreateContext(s_hDevCtx);
-		if (s_hGLRC == NULL)
-		{
-			return false;
-		}
-	
+		// Create context 
+		if ((s_hGLRC = wglCreateContext(s_hDevCtx)) == NULL) return false;
+		
 		// set defaults
 		glEnable(GL_DEPTH_TEST);
 		glDepthFunc(GL_LEQUAL);
-
-		// set view mode
 		glViewport(0, 0, width, height);
-
-		
-		// isrunning!
-		//s_IsRunning = true;
+		s_IsRunning = true;
 		return true;
 	}
 
 	void GLRenderer::Render(Entity * entity)
+	{
+		static float i = 0;
+		i += 0.01f;
+		ClearScreen(Colour(sin(i), 1, cos(i), 1));
+	}
+
+	void GLRenderer::Update(const float deltaTime, const float totalTime)
 	{
 		if (!s_MakeCurrentCalled)
 		{
 			wglMakeCurrent(s_hDevCtx, s_hGLRC);
 			s_MakeCurrentCalled = true;
 		}
-
-		static float i = 0;
-		i += 0.01f;
-		ClearScreen(Colour(sin(i), 1, cos(i), 1));
-	
-	}
-
-	void GLRenderer::Update(const float deltaTime, const float totalTime)
-	{
-		
-		
 	}
 
 	void GLRenderer::Terminate()
 	{
-		// shutdown GDI+
 		// release device context
 		ReleaseDC(s_hWnd, s_hDevCtx);
 		// default to no context

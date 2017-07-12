@@ -26,15 +26,14 @@ namespace KLM_FRAMEWORK
 			BehaviourManager::TerminateAllBehaviours(list);
 			m_upCurrentScene.get()->OnExit();
 		}
-		//m_upCurrentScene = std::unique_ptr<Scene>(scene);
+		m_upCurrentScene = std::unique_ptr<Scene>(scene);
 		//m_upCurrentScene->OnStart();
 
 	}
 
 	void SceneManager::Update(const float deltaTime, const float totalTime)
 	{
-		GLRenderer::Render(nullptr);
-		GLRenderer::SwapBuffers();
+	
 		if (m_upCurrentScene)
 		{
 			
@@ -46,7 +45,7 @@ namespace KLM_FRAMEWORK
 			//TODO: SYSTEMS ACT ON ENTITIES HERE
 			BehaviourManager::Update(list, deltaTime, totalTime);
 
-			Renderer::ClearScreen(Colour(0.5, 0.2, 0, 1));
+			//Renderer::ClearScreen(Colour(0.5, 0.2, 0, 1));
 			Renderer::Render(list);
 			Renderer::Update(deltaTime, totalTime);
 			Renderer::SwapBuffers();
