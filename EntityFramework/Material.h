@@ -35,8 +35,6 @@ namespace KLM_FRAMEWORK
 	class Material
 	{
 
-
-
 		const Texture* p_DiffMap;
 		const Texture* p_SpecMap;
 		const Texture* p_NormMap;

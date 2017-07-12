@@ -58,6 +58,7 @@ namespace KLM_FRAMEWORK
 		glDepthFunc(GL_LEQUAL);
 		glViewport(0, 0, width, height);
 		s_IsRunning = true;
+		glewInit();
 		return true;
 	}
 

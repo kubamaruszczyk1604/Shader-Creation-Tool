@@ -187,6 +187,7 @@
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</CompileAsManaged>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</CompileAsManaged>
     </ClCompile>
+    <ClCompile Include="GLShader.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="LightBase.cpp" />
     <ClCompile Include="main.cpp" />
@@ -225,6 +226,7 @@
     <ClInclude Include="EntityTypes.h" />
     <ClInclude Include="ControlApp.h" />
     <ClInclude Include="GLRenderer.h" />
+    <ClInclude Include="GLShader.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="KLM_Framework.h" />
     <ClInclude Include="LightBase.h" />

@@ -109,6 +109,12 @@
     <Filter Include="Source Files\Lighting">
       <UniqueIdentifier>{4f8d734f-a08d-4374-ad98-8320a6ab71bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Renderer\GL">
+      <UniqueIdentifier>{59070b34-9b92-4a2d-acb4-c707638cd02e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer\GL">
+      <UniqueIdentifier>{dec69c89-beac-4961-b7ce-f2f3b3d6a20f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Component.cpp">
@@ -204,14 +210,17 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files\Application</Filter>
     </ClCompile>
-    <ClCompile Include="GLRenderer.cpp">
-      <Filter>Source Files\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="Bridge.cpp">
       <Filter>Source Files\Application</Filter>
     </ClCompile>
     <ClCompile Include="ControlApp.cpp">
       <Filter>Source Files\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="GLRenderer.cpp">
+      <Filter>Source Files\Renderer\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="GLShader.cpp">
+      <Filter>Source Files\ShaderClasses\GL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -326,14 +335,17 @@
     <ClInclude Include="Behaviours.h">
       <Filter>Header Files\Application</Filter>
     </ClInclude>
-    <ClInclude Include="GLRenderer.h">
-      <Filter>Header Files\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="Bridge.h">
       <Filter>Header Files\Application</Filter>
     </ClInclude>
     <ClInclude Include="ControlApp.h">
       <Filter>Header Files\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="GLRenderer.h">
+      <Filter>Header Files\Renderer\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="GLShader.h">
+      <Filter>Header Files\ShaderClasses\GL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
