@@ -61,11 +61,16 @@ namespace KLM_FRAMEWORK
 			glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_INT, 0);
 		}
 	}
-	bool GLVBO::CreateIndexBuffer(unsigned * indices, int numIndices)
+	bool GLVBO::CreateIndexBuffer(unsigned * const indices, const unsigned numInidices)
 	{
+		if (numInidices < 1) return false;
+		for (int i = 0; i < numInidices; ++i)
+		{
+			m_Indices.push_back(indices[i]);
+		}
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ptr_VBO[1]);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, numIndices*sizeof(int), &indices[0], GL_STATIC_DRAW);
-		m_IndexCount = numIndices;
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, numInidices*sizeof(int), &indices[0], GL_STATIC_DRAW);
+		m_IndexCount = numInidices;
 		m_indicesPtr = (int*)indices;
 
 		return true;

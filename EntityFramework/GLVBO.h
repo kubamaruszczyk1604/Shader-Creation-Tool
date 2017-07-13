@@ -14,8 +14,8 @@ namespace KLM_FRAMEWORK
 		GLuint ptr_VAO;
 		int m_VertexCount;
 		int m_IndexCount;
-		int *m_indicesPtr;
-
+		int* m_indicesPtr;
+		std::vector<unsigned> m_Indices;
 	public:
 		GLVBO();
 		~GLVBO();
@@ -25,8 +25,8 @@ namespace KLM_FRAMEWORK
 
 		bool Create(Vertex* vertices, int numVertices);
 		void Draw(PrimitiveType primitiveType) const;
-		bool CreateIndexBuffer(unsigned* indices, int numIndices);
-
+		bool CreateIndexBuffer(unsigned * const indices, const unsigned numInidices);
+		const std::vector<unsigned> const& GetIndices()const { return m_Indices; };
 
 	};
 }

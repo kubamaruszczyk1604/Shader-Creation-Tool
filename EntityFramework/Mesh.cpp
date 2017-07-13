@@ -11,6 +11,10 @@ namespace KLM_FRAMEWORK
 		{
 			m_pVBO = new D3D11VBO();
 		}
+		else if (Renderer::GetAPI() == GfxAPI::GL)
+		{
+			m_pVBO = new GLVBO();
+		}
 	}
 
 	Mesh::~Mesh()

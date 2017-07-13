@@ -1,5 +1,6 @@
 #pragma once
 #include "D3DVBO.h"
+#include "GLVBO.h"
 
 namespace KLM_FRAMEWORK
 {
