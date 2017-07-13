@@ -3,6 +3,7 @@
 #include "D3D11VertexShader.h"
 #include "D3DFragmentShader.h"
 #include "GLShader.h"
+#include "GLShaderProgram.h"
 
 namespace KLM_FRAMEWORK
 {
