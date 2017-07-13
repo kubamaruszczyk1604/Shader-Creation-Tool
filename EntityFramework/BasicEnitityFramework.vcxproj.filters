@@ -226,7 +226,7 @@
       <Filter>Source Files\ShaderClasses\GL</Filter>
     </ClCompile>
     <ClCompile Include="GLVBO.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Renderer\GL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -357,7 +357,7 @@
       <Filter>Header Files\ShaderClasses\GL</Filter>
     </ClInclude>
     <ClInclude Include="GLVBO.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Renderer\GL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
