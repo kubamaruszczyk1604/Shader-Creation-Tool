@@ -44,7 +44,7 @@ namespace KLM_FRAMEWORK
 		glEnableVertexAttribArray(0); //position
 		glEnableVertexAttribArray(1); //normal
 		glEnableVertexAttribArray(2); //tangent
-		glEnableVertexAttribArray(2); //uv
+		glEnableVertexAttribArray(3); //uv
 
 		m_VertexCount = numVertices;
 		return true;

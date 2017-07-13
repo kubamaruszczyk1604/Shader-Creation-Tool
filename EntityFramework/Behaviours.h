@@ -61,9 +61,15 @@ public:
 		desc.DiffuseMap = PathList::TEXTURE_DIR + "logoP.png";
 		//	desc.SpecularMap = PathList::TEXTURE_DIR + "logo.bmp";
 		//desc.NormalMap = PathList::TEXTURE_DIR + "logo.bmp";
-		desc.DXShaderFile = PathList::SHADER_DIR + "Shader.hlsl";
+
+	/*	desc.DXShaderFile = PathList::SHADER_DIR + "Shader.hlsl";
 		desc.VertexShader = "VShader";
-		desc.FragmentShader = "fp_main";// "PSUIShader";
+		desc.FragmentShader = "fp_main";*/
+
+
+		desc.DXShaderFile = "";
+		desc.VertexShader = PathList::SHADER_DIR + "glVert.txt";
+		desc.FragmentShader = PathList::SHADER_DIR + "glFrag.txt";
 		desc.DiffuseWrapMode = TextureAddressMode::WRAP;
 
 		Material* testMat1 = ResourceManager::CreateMaterial(desc, "material1");
@@ -119,11 +125,11 @@ public:
 
 
 
-		Entity* bkgQuad = new Entity("test3");
+		/*Entity* bkgQuad = new Entity("test3");
 		bkgQuad->AddComponent(std::unique_ptr<ModelComponent>(mc3));
 		bkgQuad->GetTransform()->SetPosition(Vec3(0, 0, 50));
 		bkgQuad->GetTransform()->SetScale(Vec3(20, 20, 1));
-		AddEntity(bkgQuad);
+		AddEntity(bkgQuad);*/
 
 
 		parentQuad = new Entity("test1");
@@ -150,7 +156,8 @@ public:
 		/////////////////////////////////////////////  CAMERA ENTITY  ////////////////////////////////////////////
 
 		Camera* cam = new Camera(ProjectionType::PERSPECTIVE, 60.0f, 0.1f, 1000.0f);
-		DXRenderer::SetActiveCamera(cam);
+		
+		Renderer::SetActiveCamera(cam);
 		Entity* p_CameraEntity = new Entity("cameraEntity");
 		p_CameraEntity->AddComponent(std::unique_ptr<Camera>(cam));
 		p_CameraEntity->GetTransform()->SetPosition(Vec3(0, 0, -35));

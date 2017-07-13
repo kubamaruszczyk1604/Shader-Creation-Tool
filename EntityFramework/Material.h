@@ -2,7 +2,7 @@
 #include "StdIncludes.h"
 #include "Shader.h"
 #include "Texture.h"
-
+#include "GLShaderProgram.h"
 namespace KLM_FRAMEWORK
 {
 
@@ -34,7 +34,7 @@ namespace KLM_FRAMEWORK
 	//class ResourceManager;
 	class Material
 	{
-
+	private:
 		const Texture* p_DiffMap;
 		const Texture* p_SpecMap;
 		const Texture* p_NormMap;
@@ -49,9 +49,11 @@ namespace KLM_FRAMEWORK
 
 		Shader* m_pAdditionalPassShaderVS;
 		Shader* m_pAdditionalPassShaderPS;
+
+		GLShaderProgram* m_pGLShaderProgram{ nullptr };
 		bool m_MaterialOk;
 
-
+		
 	public:
 		Material(const Texture* const diffuseMap,
 			const Texture* const specularMap,
@@ -94,6 +96,8 @@ namespace KLM_FRAMEWORK
 		bool MaterialOk()const { return m_MaterialOk; }
 
 		void SetCurrentShaders();
+
+		GLuint GetShaderProgID() { return m_pGLShaderProgram->GetID(); }
 
 	};
 

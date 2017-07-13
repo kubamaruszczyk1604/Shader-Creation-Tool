@@ -1,0 +1,11 @@
+#version 330
+in vec3 colour;
+in vec2 UVs;
+in vec3 position;
+
+out vec4 FragColour;
+void main()
+{
+
+    FragColour = vec4(1,0,0, 1.0);
+}

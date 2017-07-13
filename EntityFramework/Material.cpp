@@ -23,10 +23,15 @@ namespace KLM_FRAMEWORK
 		m_PFragmentShader(std::move(fragmentShader)),
 		m_MaterialOk(true)
 	{
+		if (Renderer::GetAPI() == GfxAPI::GL)
+		{
+			m_pGLShaderProgram = new GLShaderProgram(static_cast<GLShader*>(vertexShader), static_cast<GLShader*>(fragmentShader));
+		}
 	}
 
 	Material::~Material()
 	{
+		delete m_pGLShaderProgram;
 	}
 
 	void Material::SetCurrentShaders()
@@ -43,6 +48,10 @@ namespace KLM_FRAMEWORK
 				vertexShader->SetAsCurrent();
 			    fragmentShader->SetAsCurrent();
 			}
+		}
+		else if (Renderer::GetAPI() == GfxAPI::GL)
+		{
+			m_pGLShaderProgram->SetAsCurrent();
 		}
 
 		

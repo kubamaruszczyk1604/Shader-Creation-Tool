@@ -101,9 +101,6 @@ namespace KLM_FRAMEWORK
 			Shader* m_PS_TempPtr =  
 				ResourceManager::CreateShader(ShaderType::FRAGMENT, desc.DXShaderFile, desc.FragmentShader);
 
-			//if (!m_VS_TempPtr->Compile()) return nullptr;
-			//if (!m_PS_TempPtr->Compile()) return nullptr;
-
 			if (m_VS_TempPtr == nullptr) return nullptr;
 			if (m_PS_TempPtr == nullptr) return nullptr;
 
@@ -163,27 +160,28 @@ namespace KLM_FRAMEWORK
 			{
 				if (type == ShaderType::VERTEX)
 				{
+
 					std::string log;
 					GLShader* shader = new GLShader(ShaderType::VERTEX);
 					if (shader == nullptr)
 					{
-						PRINTL("GL VERTEX SHADER FAILED TO CREATE: " + file);
+						PRINTL("GL VERTEX SHADER FAILED TO CREATE: " + functionName);
 						return nullptr;
 					}
-					if (shader->LoadFromFile(file))
+					if (!shader->LoadFromFile(functionName))
 					{
-						PRINTL("GL VERTEX SHADER FAILED TO LOAD FROM FILE: " + file);
+						PRINTL("GL VERTEX SHADER FAILED TO LOAD FROM FILE: " + functionName);
 						delete shader;
 						return nullptr;
 					}
-					PRINTL("GL VERTEX SHADER LOADED: " + file);
+					PRINTL("GL VERTEX SHADER LOADED: " + functionName);
 					if (!shader->Compile(log))
 					{
-						PRINTL("GL VERTEX SHADER COMPILATION FAILED: " + file + "\nERROR: " + log);
+						PRINTL("GL VERTEX SHADER COMPILATION FAILED: " + functionName + "\nERROR: " + log);
 						delete shader;
 						return nullptr;
 					}
-					PRINTL("GL VERTEX SHADER COMPILED: " + file + "\nSTATUS: " + log);
+					PRINTL("GL VERTEX SHADER COMPILED: " + functionName + "\nSTATUS: " + log);
 					output = shader;
 				}
 
@@ -193,23 +191,23 @@ namespace KLM_FRAMEWORK
 					GLShader* shader = new GLShader(ShaderType::FRAGMENT);
 					if (shader == nullptr)
 					{
-						PRINTL("GL FRAGMENT SHADER FAILED TO CREATE: " + file);
+						PRINTL("GL FRAGMENT SHADER FAILED TO CREATE: " + functionName);
 						return nullptr;
 					}
-					if (shader->LoadFromFile(file))
+					if (!shader->LoadFromFile(functionName))
 					{
-						PRINTL("GL FRAGMENT SHADER FAILED TO LOAD FROM FILE: " + file);
+						PRINTL("GL FRAGMENT SHADER FAILED TO LOAD FROM FILE: " + functionName);
 						delete shader;
 						return nullptr;
 					}
-					PRINTL("GL FRAGMENT SHADER LOADED: " + file);
+					PRINTL("GL FRAGMENT SHADER LOADED: " + functionName);
 					if (!shader->Compile(log))
 					{
-						PRINTL("GL FRAGMENT SHADER COMPILATION FAILED: " + file + "\nERROR: " + log);
+						PRINTL("GL FRAGMENT SHADER COMPILATION FAILED: " + functionName + "\nERROR: " + log);
 						delete shader;
 						return nullptr;
 					}
-					PRINTL("GL FRAGMENT SHADER COMPILED: " + file + "\nSTATUS: " + log);
+					PRINTL("GL FRAGMENT SHADER COMPILED: " + functionName + "\nSTATUS: " + log);
 					output = shader;
 				}
 				m_ShadersMap.insert(std::pair<std::string, Shader*>(file + "|" + functionName, output));

@@ -10,3 +10,4 @@
 #include "BehaviourComponent.h"
 #include "DirectionalLight.h"
 #include "Spotlight.h"
+#include "Renderer.h"

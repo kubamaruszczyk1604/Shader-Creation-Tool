@@ -15,9 +15,13 @@ namespace KLM_FRAMEWORK
 		static HGLRC s_hGLRC;
 		static HDC s_hDevCtx;
 
+		static Camera* s_CurrentCamera;
+
+		static int s_ScreenWidth;
+		static int s_ScreenHeight;
+
+
 		static bool s_MakeCurrentCalled;
-
-
 		static bool KLMSetPixelFormat(HDC hdc);
 
 	public:

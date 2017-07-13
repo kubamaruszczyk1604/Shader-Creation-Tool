@@ -7,7 +7,9 @@ namespace KLM_FRAMEWORK
 		p_VertexShader{vertexShader},
 		p_FragmentShader{fragmentShader}
 	{
+		Create();
 	}
+
 
 	GLShaderProgram::~GLShaderProgram()
 	{

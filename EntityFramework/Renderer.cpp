@@ -27,7 +27,7 @@ namespace KLM_FRAMEWORK
 	}
 	void Renderer::Render(ListOfEntities* listOfEntities)
 	{
-		GLRenderer::Render(nullptr);
+
 		for (int i = 0; i < listOfEntities->size(); ++i)
 		{
 			Entity* e = (*listOfEntities)[i].get();
@@ -40,7 +40,6 @@ namespace KLM_FRAMEWORK
 			{
 				GLRenderer::Render(e);
 			}
-
 		}
 
 	}
