@@ -1,6 +1,8 @@
 #include "GLRenderer.h"
 #include "ModelComponent.h"
 #include "Entity.h"
+#include "GLTexture.h"
+
 namespace KLM_FRAMEWORK
 {
 	bool GLRenderer::s_IsRunning{ false };
@@ -96,6 +98,34 @@ namespace KLM_FRAMEWORK
 		glUniform4fv(ambientID, 1, &material->GetAmbientColPtr()->r);
 		glUniform4fv(diffuseID, 1, &material->GetDiffuseColPtr()->r);
 		glUniform4fv(specularID, 1, &material->GetSpecularColPtr()->r);
+
+
+		//TExtures
+		const Texture* diffuseMapGen = material->GetDiffuseMap();
+		const Texture* specularMapGen = material->GetSpecularMap();
+		const Texture* normalMapGen = material->GetNormalMap();
+
+
+		if (diffuseMapGen)
+		{
+			const void* diffuse = material->GetDiffuseMap()->GetApiSpecificTexture();
+
+
+			GLTexture* diffuseMap = const_cast<GLTexture*>(static_cast<const GLTexture*>(diffuse));
+
+			GLuint samplerID = glGetUniformLocation(shaderProgID, "Texture0");
+			glUniform1i(samplerID, 0);
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, diffuseMap->GetID());
+		}
+		if (specularMapGen)
+		{
+		
+		}
+		if (normalMapGen)
+		{
+		
+		}
 
 
 		if (!s_CurrentCamera) return;

@@ -6,10 +6,11 @@ in vec3 position;
 uniform vec4 ambient;
 uniform vec4 diffuse;
 uniform vec4 specular;
+uniform sampler2D Texture0;
 
 out vec4 FragColour;
 void main()
 {
-
-    FragColour = ambient;
+    vec4 textureCol = texture2D(Texture0,UVs);
+    FragColour = ambient*textureCol + diffuse*textureCol*0.5f;
 }
