@@ -66,7 +66,11 @@ namespace KLM_FRAMEWORK
 		glEnable(GL_DEPTH_TEST);
 		glDepthFunc(GL_LEQUAL);
 		glCullFace(GL_FRONT_AND_BACK);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_MULTISAMPLE);
 		glViewport(0, 0, width, height);
+	
 		s_IsRunning = true;
 		glewInit();
 		return true;

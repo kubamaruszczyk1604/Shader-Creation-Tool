@@ -1,6 +1,6 @@
 #pragma once
 #define WIN32_LEAN_AND_MEAN
-//#define _KLM_CSHARP //C++ CODE IS CALLED BY C# MANAGED CODE
+#define _KLM_CSHARP //C++ CODE IS CALLED BY C# MANAGED CODE
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
