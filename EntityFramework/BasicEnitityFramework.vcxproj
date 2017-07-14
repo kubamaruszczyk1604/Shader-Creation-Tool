@@ -195,6 +195,7 @@
     </ClCompile>
     <ClCompile Include="GLShader.cpp" />
     <ClCompile Include="GLShaderProgram.cpp" />
+    <ClCompile Include="GLTexture.cpp" />
     <ClCompile Include="GLTextureLoader.cpp" />
     <ClCompile Include="GLVBO.cpp" />
     <ClCompile Include="InputSystem.cpp" />
@@ -237,6 +238,7 @@
     <ClInclude Include="GLRenderer.h" />
     <ClInclude Include="GLShader.h" />
     <ClInclude Include="GLShaderProgram.h" />
+    <ClInclude Include="GLTexture.h" />
     <ClInclude Include="GLTextureLoader.h" />
     <ClInclude Include="GLVBO.h" />
     <ClInclude Include="InputSystem.h" />

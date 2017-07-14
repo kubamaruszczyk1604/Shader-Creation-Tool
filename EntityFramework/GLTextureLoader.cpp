@@ -11,8 +11,10 @@ namespace KLM_FRAMEWORK
 
 	GLuint GLTextureLoader::LoadTexture(const std::string & path)
 	{
-		FREE_IMAGE_FORMAT texFormat = FreeImage_GetFileType(path.c_str(), 0);//Automatocally detects the format(from over 20 formats!)
+		FREE_IMAGE_FORMAT texFormat = FreeImage_GetFileType(path.c_str(), 0);
 		FIBITMAP* imagen = FreeImage_Load(texFormat, path.c_str());
+		if (!imagen) return -1;
+
 
 		FIBITMAP* temp = imagen;
 		imagen = FreeImage_ConvertTo32Bits(imagen);
@@ -26,7 +28,8 @@ namespace KLM_FRAMEWORK
 		char* pixeles = (char*)FreeImage_GetBits(imagen);
 		//FreeImage loads in BGR format, so you need to swap some bytes(Or use GL_BGR).
 
-		for (int j = 0; j<w*h; j++) {
+		for (int j = 0; j<w*h; j++) 
+		{
 			textura[j * 4 + 0] = pixeles[j * 4 + 2];
 			textura[j * 4 + 1] = pixeles[j * 4 + 1];
 			textura[j * 4 + 2] = pixeles[j * 4 + 0];
