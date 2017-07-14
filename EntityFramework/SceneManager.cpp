@@ -14,7 +14,7 @@ namespace KLM_FRAMEWORK
 		InputSystem::SetKeyboardCallback(SceneManager::OnKeyPressed);
 		InputSystem::SetMouseButtonCallback(SceneManager::OnMouseButtonUp, SceneManager::OnMouseButtonDown);
 		InputSystem::SetMouseMoveCallback(SceneManager::OnMouseMove);
-		Renderer::Initialize(width, height, handle,GfxAPI::GL);
+		Renderer::Initialize(width, height, handle,GfxAPI::D3D11);
 	}
 
 	void SceneManager::Load(Scene* scene)

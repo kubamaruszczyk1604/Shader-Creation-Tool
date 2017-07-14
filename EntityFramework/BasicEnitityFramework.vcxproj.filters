@@ -232,7 +232,7 @@
       <Filter>Source Files\Renderer\GL</Filter>
     </ClCompile>
     <ClCompile Include="GLTexture.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Renderer\GL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -369,7 +369,7 @@
       <Filter>Header Files\Renderer\GL</Filter>
     </ClInclude>
     <ClInclude Include="GLTexture.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Renderer\GL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

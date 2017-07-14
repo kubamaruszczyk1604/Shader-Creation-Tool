@@ -84,7 +84,7 @@ namespace KLM_FRAMEWORK
 		swDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;    // how swap chain is to be used
 		swDesc.OutputWindow = handle;                            // the window to be used
 		swDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;            // discard buffer that has been shown
-		swDesc.SampleDesc.Count = 4;                             // how many multisamples
+		swDesc.SampleDesc.Count = s_Samples;                     // how many multisamples
 		swDesc.Windowed = TRUE;                                  // windowed/full-screen mode
 		swDesc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;   // allow full-screen switching
 
