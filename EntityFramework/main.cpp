@@ -2,13 +2,13 @@
 #include "WindowsApp.h"
 #include "Behaviours.h"
 
-//struct AtExit
-//{
-//	~AtExit()
-//	{
-//		_CrtDumpMemoryLeaks();
-//	}
-//} doAtExit;
+struct AtExit
+{
+	~AtExit()
+	{
+		_CrtDumpMemoryLeaks();
+	}
+} doAtExit;
 
 
 int main()

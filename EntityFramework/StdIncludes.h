@@ -22,6 +22,12 @@
 #include <array>
 #include <conio.h>
 
+
+
+#include "FreeImage.h"
+#pragma comment(lib, "FreeImage.lib")
+
+
 #include "Stopwatch.h"
 
 

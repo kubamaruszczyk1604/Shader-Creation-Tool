@@ -228,6 +228,9 @@
     <ClCompile Include="GLVBO.cpp">
       <Filter>Source Files\Renderer\GL</Filter>
     </ClCompile>
+    <ClCompile Include="GLTextureLoader.cpp">
+      <Filter>Source Files\Renderer\GL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -357,6 +360,9 @@
       <Filter>Header Files\ShaderClasses\GL</Filter>
     </ClInclude>
     <ClInclude Include="GLVBO.h">
+      <Filter>Header Files\Renderer\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="GLTextureLoader.h">
       <Filter>Header Files\Renderer\GL</Filter>
     </ClInclude>
   </ItemGroup>

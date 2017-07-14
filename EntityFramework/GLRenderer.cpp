@@ -86,15 +86,16 @@ namespace KLM_FRAMEWORK
 
 		GLuint shaderProgID = material->GetShaderProgID();
 		material->SetCurrentShaders();
+
 		//Colours
-		/*GLuint ambientID = glGetUniformLocation(shaderProgID, "ambient");
+		GLuint ambientID = glGetUniformLocation(shaderProgID, "ambient");
 		GLuint diffuseID = glGetUniformLocation(shaderProgID, "diffuse");
 		GLuint specularID = glGetUniformLocation(shaderProgID, "specular");
 
 
 		glUniform4fv(ambientID, 1, &material->GetAmbientColPtr()->r);
 		glUniform4fv(diffuseID, 1, &material->GetDiffuseColPtr()->r);
-		glUniform4fv(specularID, 1, &material->GetSpecularColPtr()->r);*/
+		glUniform4fv(specularID, 1, &material->GetSpecularColPtr()->r);
 
 
 		if (!s_CurrentCamera) return;
