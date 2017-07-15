@@ -73,6 +73,7 @@ namespace KLM_FRAMEWORK
 	
 		s_IsRunning = true;
 		glewInit();
+		LightBase::InitializeLightSystem();
 		return true;
 	}
 
@@ -161,6 +162,13 @@ namespace KLM_FRAMEWORK
 		GLuint WORLD_ID = glGetUniformLocation(shaderProgID, "WORLD");
 		glm::mat4 world = entity->GetTransform()->GetWorldMat();
 		glUniformMatrix4fv(WORLD_ID, 1, GL_FALSE, &world[0][0]);
+
+
+		
+		GLuint WORLD_INVERSED_ID = glGetUniformLocation(shaderProgID, "WORLD_INVERSE");
+		glm::mat4 worldInverse = glm::transpose(glm::inverse(entity->GetTransform()->GetWorldMat()));
+		glUniformMatrix4fv(WORLD_INVERSED_ID, 1, GL_FALSE, &worldInverse[0][0]);
+
 		
         //Lighting
 		if (LightBase::IsRequestingUpdate())
@@ -189,11 +197,12 @@ namespace KLM_FRAMEWORK
 
 				//Specular
 				loc = glGetUniformLocation(shaderProgID, (baseStr + "specular").c_str());
-				glUniform4fv(loc, 1, &l.Specular.r);
+				Vec4 tmpSpc(0, 0, 0, 0);
+				glUniform4fv(loc, 1, &tmpSpc.r);
 
 				//Spot cutoff
 				loc = glGetUniformLocation(shaderProgID, (baseStr + "spot_cutoff").c_str());
-				glUniform1fv(loc, 1, &l.SpotCutoff);
+				glUniform1f(loc,l.SpotCutoff);
 
 				//Spot Direction
 				loc = glGetUniformLocation(shaderProgID, (baseStr + "spot_direction").c_str());
@@ -210,7 +219,7 @@ namespace KLM_FRAMEWORK
 				
 			}
 
-			LightBase::UpdateFinished();
+			
 		}
 
 
@@ -222,7 +231,7 @@ namespace KLM_FRAMEWORK
 
 	void GLRenderer::Update(const float deltaTime, const float totalTime)
 	{
-		
+		LightBase::UpdateFinished();
 	}
 
 	void GLRenderer::Terminate()

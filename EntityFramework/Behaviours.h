@@ -55,9 +55,9 @@ public:
 
 		////////////////////////////////////////////   MATERIALS //////////////////////////
 		MaterialDescription desc;
-		desc.AmbientCol = Colour(0.1, 0.9, 0.1, 1);
+		desc.AmbientCol = Colour(0.1, 0.1, 0.1, 1);
 		desc.DiffuseReflectivity = Colour(1, 1, 1, 1);
-		desc.SpecularReflectivity = Colour(1, 1, 1, 1);
+		desc.SpecularReflectivity = Colour(1, 1,1, 1);
 		desc.DiffuseMap = PathList::TEXTURE_DIR + "logoP.png";
 		//	desc.SpecularMap = PathList::TEXTURE_DIR + "logo.bmp";
 		//desc.NormalMap = PathList::TEXTURE_DIR + "logo.bmp";
@@ -79,7 +79,7 @@ public:
 		Material* testMat1 = ResourceManager::CreateMaterial(desc, "material1");
 
 		desc.DiffuseMap = PathList::TEXTURE_DIR + "bkg.bmp";
-		desc.AmbientCol = Colour(0.8, 0.1, 0.1, 1);
+		desc.AmbientCol = Colour(0.1, 0.1, 0.1, 1);
 		desc.SpecularReflectivity = Colour(0, 0, 0, 1);
 		Material* testMat2 = ResourceManager::CreateMaterial(desc, "material2");
 
@@ -169,7 +169,7 @@ public:
 		AddEntity(p_CameraEntity);
 
 
-		//m_pDirectionalLight = new DirectionalLight(Vec3(10., 0, -10.f), Colour(0, 0, 0, 1), Colour(0.5, 0.5, 1, 1), Colour(0.1, 0.1, 0.1, 1));
+		m_pDirectionalLight = new DirectionalLight(Vec3(10., 0, -10.f), Colour(0, 0, 0, 1), Colour(0.5, 0.5, 1, 1), Colour(0.1, 0.1, 0.1, 1));
 		m_pSpotLight = new Spotlight(
 			Vec3(0, 0, -20.0f),
 			Colour(0, 0, 0, 1),

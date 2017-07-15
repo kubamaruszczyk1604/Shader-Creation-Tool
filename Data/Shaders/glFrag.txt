@@ -1,7 +1,7 @@
 #version 330
 in vec3 worldPos;
 in vec2 UVs;
-in vec3 position;
+in vec4 position;
 in vec3 normal;
 
 uniform vec4 ambient;
@@ -59,9 +59,9 @@ vec3 pos,
 vec3 norm, 
 vec3 eye, 
 float shininess, 
-inout vec4 iambient, 
-inout vec4 idiffuse, 
-inout vec4 ispecular, 
+out vec4 iambient, 
+out vec4 idiffuse, 
+out vec4 ispecular, 
 int numL)
 {
 	//uint lgt_size = 0, //dummy = 0; //lgt.GetDimensions(lgt_size, dummy);
@@ -112,12 +112,12 @@ void main()
 	vec4 specularL = vec4(0, 0, 0, 0);
 	
 	
-	accumulate_lights(lights, worldPos, normalize(normal), vec3(0,0,-100), 0.1, ambientL, diffuseL, specularL, 20);
+	accumulate_lights(lights, worldPos, normalize(normal), vec3(0,0,-10), 0.1, ambientL, diffuseL, specularL, 20);
 	
     vec4 textureCol = texture2D(Texture0,UVs);
 	 result += ambient * textureCol;
      result += diffuseL* diffuse * textureCol;
-	 result += specularL* specular;
+	 result += specularL;//* specular;
 	
 	
     FragColour = result;// ambient*textureCol + diffuse*textureCol*0.5f;
