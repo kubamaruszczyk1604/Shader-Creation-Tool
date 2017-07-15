@@ -1,16 +1,124 @@
 #version 330
-in vec3 colour;
+in vec3 worldPos;
 in vec2 UVs;
 in vec3 position;
+in vec3 normal;
 
 uniform vec4 ambient;
 uniform vec4 diffuse;
 uniform vec4 specular;
 uniform sampler2D Texture0;
 
+
+
+struct Light
+{
+	bool enabled; // 
+	vec4 position; // w=0 dir, (0,0,-1,0) 
+	vec4 ambient; // (0,0,0,1) 
+	vec4 diffuse; // 0:(1,1,1,1), (0,0,0,0) 
+	vec4 specular; // 0:(1,1,1,1), (0,0,0,0) 
+	float spot_cutoff; // 180deg (dflt) xor [0,90]deg 
+	vec3 spot_direction; // (0,0,1) 
+	float spot_exponent; // [0,128] 
+	vec3 attenuation; // (c:1,l:0,q:0) 
+};
+
+uniform Light lights[20];
+
+//Light Calculation
+
+vec3 get_light_vector(Light lgt, vec3 pos)
+{
+  
+	return ((0.0 != lgt.position.w) ? (lgt.position.xyz - pos)
+		: (lgt.position.xyz)); 
+}
+
+float get_light_attenuation(Light lgt, float dist)
+{
+	float attenuation_at_lpos_infty = 1.0;
+	return ((0.0 != lgt.position.w) ? 1.0 / ((lgt.attenuation.x) +
+		(lgt.attenuation.y * dist) +
+		(lgt.attenuation.z * dist * dist)) : attenuation_at_lpos_infty);
+}
+
+vec4 lit(float NdotL, float NdotH, float m) 
+{
+ 
+  float ambient = 1.0;
+  float diffuse = max(NdotL, 0.0);
+  float specular = step(0.0, NdotL) * max(NdotH * m, 0.0);
+ 
+  return vec4(ambient, diffuse, specular, 1.0);
+}
+
+
+void accumulate_lights(Light lgt[20], 
+vec3 pos, 
+vec3 norm, 
+vec3 eye, 
+float shininess, 
+inout vec4 iambient, 
+inout vec4 idiffuse, 
+inout vec4 ispecular, 
+int numL)
+{
+	//uint lgt_size = 0, //dummy = 0; //lgt.GetDimensions(lgt_size, dummy);
+	for (int index = 0; index < numL; ++index)
+	{
+		
+		if (lgt[index].enabled)
+		{
+		
+		//iambient = float4(1, 1, 0, 1);
+			vec3 lvec = get_light_vector(lgt[index], pos);
+				float attenuation = get_light_attenuation(lgt[index], length(lvec));
+			lvec = normalize(lvec);
+			float NdotL = max(dot(norm, lvec), 0.0);
+			
+			
+			
+			if (0.0 < NdotL)
+			{
+				if (2 == lgt[index].position.w)
+				{
+					float cos_cur_angle = dot(-lvec, normalize(lgt[index].spot_direction));
+					float cos_outer_angle = clamp(cos(lgt[index].spot_cutoff),0,1);
+					float cos_inner_angle = clamp(cos((1.0 - (lgt[index].spot_exponent / 128.0)) * lgt[index].spot_cutoff),0,1);
+					attenuation *= clamp((cos_cur_angle - cos_outer_angle) / (cos_inner_angle - cos_outer_angle),0,1);
+				}
+				vec3 H = normalize(lvec - normalize(pos - eye));
+					float NdotH = max(dot(norm, H), 0.0);
+				float exponent = max(128.0 / max(0.0, min(128.0, shininess)), 0.0);
+				vec4 lit_result = lit(NdotL, NdotH, exponent);
+
+			    iambient += (attenuation * lgt[index].ambient * lit_result.x);
+				idiffuse += (attenuation * lgt[index].diffuse * lit_result.y);
+				ispecular += (attenuation * lgt[index].specular * lit_result.z);
+			}	
+		}
+	}
+}
+
+
 out vec4 FragColour;
 void main()
 {
+
+    vec4 result;
+	vec4 ambientL = vec4(0, 0, 0, 0);
+	vec4 diffuseL =vec4(0, 0, 0, 0);
+	vec4 specularL = vec4(0, 0, 0, 0);
+	
+	
+	accumulate_lights(lights, worldPos, normalize(normal), vec3(0,0,-10), 0.1, ambientL, diffuseL, specularL, 20);
+	
     vec4 textureCol = texture2D(Texture0,UVs);
+	 result += ambient * textureCol;
+     result += diffuseL* diffuse * textureCol;
+	 result += specularL* specular;
+	
+	
     FragColour = ambient*textureCol + diffuse*textureCol*0.5f;
 }

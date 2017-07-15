@@ -14,7 +14,7 @@ namespace KLM_FRAMEWORK
 		InputSystem::SetKeyboardCallback(SceneManager::OnKeyPressed);
 		InputSystem::SetMouseButtonCallback(SceneManager::OnMouseButtonUp, SceneManager::OnMouseButtonDown);
 		InputSystem::SetMouseMoveCallback(SceneManager::OnMouseMove);
-		Renderer::Initialize(width, height, handle,GfxAPI::D3D11);
+		Renderer::Initialize(width, height, handle,GfxAPI::GL);
 	}
 
 	void SceneManager::Load(Scene* scene)
@@ -43,7 +43,7 @@ namespace KLM_FRAMEWORK
 			//TODO: SYSTEMS ACT ON ENTITIES HERE
 			BehaviourManager::Update(list, deltaTime, totalTime);
 
-			Renderer::ClearScreen(Colour(0.5, 0.2, 0, 1));
+			Renderer::ClearScreen(Colour(0.1, 0.1, 0.1, 1));
 			Renderer::Render(list);
 			Renderer::Update(deltaTime, totalTime);
 			Renderer::SwapBuffers();
