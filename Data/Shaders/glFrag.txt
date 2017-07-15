@@ -47,8 +47,8 @@ vec4 lit(float NdotL, float NdotH, float m)
 {
  
   float ambient = 1.0;
-  float diffuse = max(NdotL, 0.0);
-  float specular = step(0.0, NdotL) * max(NdotH * m, 0.0);
+  float diffuse =  max(NdotL, 0.0);
+  float specular =  step(0.0, NdotL) * max(NdotH * m, 0.0);
  
   return vec4(ambient, diffuse, specular, 1.0);
 }
@@ -95,7 +95,7 @@ int numL)
 
 			    iambient += (attenuation * lgt[index].ambient * lit_result.x);
 				idiffuse += (attenuation * lgt[index].diffuse * lit_result.y);
-				ispecular += (attenuation * lgt[index].specular * lit_result.z);
+				ispecular += (attenuation * lgt[index].specular *lit_result.z);
 			}	
 		}
 	}
@@ -106,18 +106,18 @@ out vec4 FragColour;
 void main()
 {
 
-    vec4 result;
+    vec4 result= vec4(0, 0, 0, 0);
 	vec4 ambientL = vec4(0, 0, 0, 0);
 	vec4 diffuseL =vec4(0, 0, 0, 0);
 	vec4 specularL = vec4(0, 0, 0, 0);
 	
 	
-	accumulate_lights(lights, worldPos, normalize(normal), vec3(0,0,-10), 0.1, ambientL, diffuseL, specularL, 20);
+	accumulate_lights(lights, worldPos, normalize(normal), vec3(0,0,10), 0.1, ambientL, diffuseL, specularL, 20);
 	
     vec4 textureCol = texture2D(Texture0,UVs);
-	 result += ambient * textureCol;
-     result += diffuseL* diffuse * textureCol;
-	 result += specularL;//* specular;
+	result += ambient * textureCol;
+    result += diffuseL* diffuse * textureCol;
+	result += specularL * specular;
 	
 	
     FragColour = result;// ambient*textureCol + diffuse*textureCol*0.5f;

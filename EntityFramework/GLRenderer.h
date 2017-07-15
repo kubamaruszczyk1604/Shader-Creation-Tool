@@ -31,6 +31,8 @@ namespace KLM_FRAMEWORK
 
 		static bool Initialize(const int width, const int height, const HWND handle);
 		static void Render(Entity* entity);
+
+		static void RenderSCTool(Entity* entity);
 		static void Update(const float deltaTime, const float totalTime);
 		static void Terminate();
 		static void ClearScreen(const Colour& colour);

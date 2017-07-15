@@ -26,9 +26,9 @@ namespace ShaderCreationTool
        
         private void button1_Click(object sender, EventArgs e)
         {
-          
 
-            // CppApplicationInterface.ReloadScene();
+
+            Bridge.ReloadScene();
         }
 
         private void Form1_Load(object sender, EventArgs e)

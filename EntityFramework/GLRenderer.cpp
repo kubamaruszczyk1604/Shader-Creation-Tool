@@ -229,6 +229,10 @@ namespace KLM_FRAMEWORK
 	
 	}
 
+	void GLRenderer::RenderSCTool(Entity * entity)
+	{
+	}
+
 	void GLRenderer::Update(const float deltaTime, const float totalTime)
 	{
 		LightBase::UpdateFinished();
