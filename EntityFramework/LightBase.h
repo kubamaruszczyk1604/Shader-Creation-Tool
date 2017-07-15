@@ -51,6 +51,7 @@ namespace KLM_FRAMEWORK
 		static void InitializeLightSystem();
 		static bool IsRequestingUpdate();
 		static const ShaderLightInfoStruct* const GetLightInfo() { return m_LightInfo; }
+		static ShaderLightInfoStruct&  GetLightInfo(int index) { return m_LightInfo[index]; }
 		static void UpdateFinished();
 
 		LightBase(const LightBase&) = delete;

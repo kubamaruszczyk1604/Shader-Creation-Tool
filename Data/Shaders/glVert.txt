@@ -7,6 +7,7 @@ layout(location = 3) in vec2 uvs;
 
 uniform mat4 MVP;
 uniform mat4 WORLD;
+uniform vec3 CAMERA_POSITION;
 
 out vec3 worldPos;
 out vec2 UVs;

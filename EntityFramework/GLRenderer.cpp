@@ -162,6 +162,60 @@ namespace KLM_FRAMEWORK
 		glm::mat4 world = entity->GetTransform()->GetWorldMat();
 		glUniformMatrix4fv(WORLD_ID, 1, GL_FALSE, &world[0][0]);
 		
+        //Lighting
+		if (LightBase::IsRequestingUpdate())
+		{
+
+			for (int lIndex = 0; lIndex < LightBase::MAX_LIGHTS; ++lIndex)
+			{
+				const ShaderLightInfoStruct& l = LightBase::GetLightInfo(lIndex);
+
+				const std::string baseStr = "lights[" + ToString(lIndex) + "].";
+				//Enabled
+				GLuint loc = glGetUniformLocation(shaderProgID, (baseStr + "enabled").c_str());
+				glUniform1i(loc, l.Enabled);
+
+				//Position
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "position").c_str());
+				glUniform4fv(loc,1, &l.Position.x);
+
+				//Ambient
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "ambient").c_str());
+				glUniform4fv(loc, 1, &l.Ambient.r);
+
+				//Diffuse
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "diffuse").c_str());
+				glUniform4fv(loc, 1, &l.Diffuse.r);
+
+				//Specular
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "specular").c_str());
+				glUniform4fv(loc, 1, &l.Specular.r);
+
+				//Spot cutoff
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "spot_cutoff").c_str());
+				glUniform1fv(loc, 1, &l.SpotCutoff);
+
+				//Spot Direction
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "spot_direction").c_str());
+				glUniform3fv(loc, 1, &l.SpotDirection.x);
+
+				//Spot exponent
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "spot_exponent").c_str());
+				glUniform1fv(loc, 1, &l.SpotDecay);
+
+				//Spot Attenuation
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "attenuation").c_str());
+				glUniform3fv(loc, 1, &l.Attenuation.x);
+
+				
+			}
+
+			LightBase::UpdateFinished();
+		}
+
+
+
+
 		mc->GetMesh()->GetVBO()->Draw(PrimitiveType::TRIANGLES);
 	
 	}

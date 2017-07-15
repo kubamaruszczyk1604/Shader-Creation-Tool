@@ -112,7 +112,7 @@ void main()
 	vec4 specularL = vec4(0, 0, 0, 0);
 	
 	
-	accumulate_lights(lights, worldPos, normalize(normal), vec3(0,0,-10), 0.1, ambientL, diffuseL, specularL, 20);
+	accumulate_lights(lights, worldPos, normalize(normal), vec3(0,0,-100), 0.1, ambientL, diffuseL, specularL, 20);
 	
     vec4 textureCol = texture2D(Texture0,UVs);
 	 result += ambient * textureCol;
@@ -120,5 +120,5 @@ void main()
 	 result += specularL* specular;
 	
 	
-    FragColour = ambient*textureCol + diffuse*textureCol*0.5f;
+    FragColour = result;// ambient*textureCol + diffuse*textureCol*0.5f;
 }
