@@ -113,9 +113,9 @@ void accumulate_lights(StructuredBuffer<light> lgt, float3 pos, float3 norm, flo
 		}
 
 	}
-
-
 }
+
+
 float softInterval(float a, float b, float c, float d, float x)
 {
 	return smoothstep(a, b, x) - smoothstep(c, d, x);
