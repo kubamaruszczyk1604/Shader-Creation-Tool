@@ -18,55 +18,15 @@ namespace ShaderCreationTool
     public partial class MainWindow : Form
     {
 
-        private Point MouseDownLocation;
+        private Point m_MouseDownLocation;
+        private readonly Pen m_Pen = new Pen(Color.Red) { Width = 3 };
+
+        private bool m_PanelRedrawn = false;
 
         public MainWindow()
         {
             InitializeComponent();
-          
-        }
-
-        private void MoveControlMouseMove(Control control, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                control.Left = e.X + control.Left - MouseDownLocation.X;
-                control.Top = e.Y + control.Top - MouseDownLocation.Y;
-                control.Refresh();
-            }
-        }
-
-        private void MoveControlMouseCapture(Control control, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                MouseDownLocation = e.Location;
-            }
-        }
-
-        //Events
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-
-            Bridge.ReloadScene();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void Form1_Shown(object sender, EventArgs e)
-        {
-           // label1.Parent = pictureBox1;
-            StartRenderer(100);
-            
-        }
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Bridge.Terminate();
+            this.DoubleBuffered = true;
           
         }
 
@@ -77,9 +37,171 @@ namespace ShaderCreationTool
             Bridge.StartRenderer(pictureBox1.Width, pictureBox1.Height, pointer);
         }
 
+
+        // UTIL METHODS
+        public void DrawConnectionLine(Graphics g, Point a, Point b)
+        {
+           // Pen myPen = new Pen(Color.Red);
+           // myPen.Width = 2;
+            // Create array of points that define lines to draw.
+           
+
+
+            int arrowSize = 3;
+            Point[] points =
+             {
+                a,
+              //  new Point(marginleft, height + marginTop),
+                b,
+                // Arrow
+                //new Point(marginleft + width - arrowSize, marginTop + height - arrowSize),
+                //new Point(marginleft + width - arrowSize, marginTop + height + arrowSize),
+                //new Point(marginleft + width, marginTop + height)
+             };
+
+            g.DrawLines(m_Pen, points);
+
+         
+        }
+
+        public void DrawLShapeLine(System.Drawing.Graphics g, int intMarginLeft, int intMarginTop, int intWidth, int intHeight)
+        {
+            Pen myPen = new Pen(Color.Red);
+            myPen.Width = 2;
+            // Create array of points that define lines to draw.
+            int marginleft = intMarginLeft;
+            int marginTop = intMarginTop;
+            int width = intWidth;
+            int height = intHeight;
+            int arrowSize = 3;
+            Point[] points =
+             {
+                new Point(marginleft, marginTop),
+                new Point(marginleft, height + marginTop),
+                new Point(marginleft + width, marginTop + height),
+                // Arrow
+                new Point(marginleft + width - arrowSize, marginTop + height - arrowSize),
+                new Point(marginleft + width - arrowSize, marginTop + height + arrowSize),
+                new Point(marginleft + width, marginTop + height)
+             };
+
+            g.DrawLines(myPen, points);
+        }
+
+        private void MoveControlMouseMove(Control control, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                control.Left = e.X + control.Left - m_MouseDownLocation.X;
+                control.Top = e.Y + control.Top - m_MouseDownLocation.Y;
+
+                if (m_PanelRedrawn)
+                {
+                    m_PanelRedrawn = false;
+                }
+                EditAreaPanel.Update();
+                control.Update();
+                //pictureBox1.Update();
+            }
+            
+        }
+
+
+        private void MoveControlMouseCapture(Control control, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                m_MouseDownLocation = e.Location;
+            }
+        }
+
+        //**************************************  UI EVENTS  ***********************************************//
+
+
+        //  MAIN FORM
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Bridge.Terminate();
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainWindow_Shown(object sender, EventArgs e)
+        {
+            StartRenderer(100);
+            PreviewTextLabel.ForeColor = Color.White;
+            //EditAreaPanel.Do
+        }
+
+
+        // MAIN EDIT AREA PANEL
+
+        private void EditAreaPanel_Paint(object sender, PaintEventArgs e)
+        {
+            //Pen myPen;
+            //myPen = new Pen(System.Drawing.Color.Red);
+             Graphics formGraphics = e.Graphics;
+            //formGraphics.DrawLine(myPen, 0, 0, 200, 200);
+
+            // DrawLShapeLine(formGraphics, 50, 0, 300, 400);
+           DrawConnectionLine(formGraphics, new Point(0, 0), new Point(400, 100));
+            // myPen.Dispose();
+            //formGraphics.Dispose();
+            m_PanelRedrawn = true;
+        }
+
+        private void EditAreaPanel_Click(object sender, EventArgs e)
+        {
+            fileToolStripMenuItem.HideDropDown();
+        }
+
+
+        // PREVIEW AREA PANEL
+
+        private void PreviewAreaPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            Control control = (Control)sender;
+            MoveControlMouseCapture(control, e);
+        }
+
+
+        private void PreviewAreaPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            Control control = (Control)sender;
+            MoveControlMouseMove(control, e);
+        }
+
+        private void PreviewTextLabel_MouseDown(object sender, MouseEventArgs e)
+        {
+            PreviewAreaPanel_MouseDown(PreviewAreaPanel, e);
+        }
+
+        private void PreviewTextLabel_MouseMove(object sender, MouseEventArgs e)
+        {
+            PreviewAreaPanel_MouseMove(PreviewAreaPanel, e);
+        }
+
+
+
+
+
+
+
+        // TEMPORARY STUFF
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+
+            Bridge.ReloadScene();
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            
+
             //ColorDialog cd = new ColorDialog();
             //DialogResult result = cd.ShowDialog();
             //if (result == DialogResult.OK)
@@ -87,25 +209,16 @@ namespace ShaderCreationTool
             //    // Set form background to the selected color.
             //    this.BackColor = cd.Color;
             //}
+          
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            System.Drawing.Pen myPen;
-            myPen = new System.Drawing.Pen(System.Drawing.Color.Red);
-            System.Drawing.Graphics formGraphics = e.Graphics;
-            formGraphics.DrawLine(myPen, 0, 0, 200, 200);
-            myPen.Dispose();
-            formGraphics.Dispose();
-        }
-
-      
 
         private void button48_MouseMove(object sender, MouseEventArgs e)
         {
 
             Control control = (Control)sender;
             MoveControlMouseMove(control, e);
+
+         
         }
 
         private void button48_MouseDown(object sender, MouseEventArgs e)
@@ -114,36 +227,6 @@ namespace ShaderCreationTool
             MoveControlMouseCapture(control, e);
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void panel2_MouseDown(object sender, MouseEventArgs e)
-        {
-            Control control = (Control)sender;
-            MoveControlMouseCapture(control, e);
-        }
-
-        private void panel2_MouseMove(object sender, MouseEventArgs e)
-        {
-            Control control = (Control)sender;
-            MoveControlMouseMove(control, e);
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Click(object sender, EventArgs e)
-        {
-            fileToolStripMenuItem.HideDropDown();
-        }
+      
     }
 }
