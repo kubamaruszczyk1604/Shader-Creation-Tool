@@ -83,6 +83,7 @@
             // 
             // EditAreaPanel
             // 
+            this.EditAreaPanel.AutoScroll = true;
             this.EditAreaPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(30)))));
             this.EditAreaPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditAreaPanel.BackgroundImage")));
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -92,10 +93,11 @@
             this.EditAreaPanel.Controls.Add(this.button44);
             this.EditAreaPanel.Controls.Add(this.groupBox6);
             this.EditAreaPanel.Controls.Add(this.button48);
+            this.EditAreaPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EditAreaPanel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.EditAreaPanel.Location = new System.Drawing.Point(12, 39);
+            this.EditAreaPanel.Location = new System.Drawing.Point(0, 28);
             this.EditAreaPanel.Name = "EditAreaPanel";
-            this.EditAreaPanel.Size = new System.Drawing.Size(1284, 627);
+            this.EditAreaPanel.Size = new System.Drawing.Size(1308, 695);
             this.EditAreaPanel.TabIndex = 19;
             this.EditAreaPanel.Click += new System.EventHandler(this.EditAreaPanel_Click);
             this.EditAreaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.EditAreaPanel_Paint);

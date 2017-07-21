@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using System.Threading;
 using System.Windows.Forms;
 
 
-using System.Runtime.InteropServices; 
+using System.Runtime.InteropServices;
 
 namespace ShaderCreationTool
 {
@@ -19,7 +20,7 @@ namespace ShaderCreationTool
     {
 
         private Point m_MouseDownLocation;
-        private readonly Pen m_Pen = new Pen(Color.Red) { Width = 3 };
+        private readonly Pen m_Pen = new Pen(Color.Snow) { Width = 3 };
 
         private bool m_PanelRedrawn = false;
 
@@ -27,7 +28,7 @@ namespace ShaderCreationTool
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-          
+
         }
 
         private async void StartRenderer(int delayMs)
@@ -36,18 +37,14 @@ namespace ShaderCreationTool
             IntPtr pointer = pictureBox1.Handle;
             Bridge.StartRenderer(pictureBox1.Width, pictureBox1.Height, pointer);
         }
-
+        bool mov = false;
 
         // UTIL METHODS
         public void DrawConnectionLine(Graphics g, Point a, Point b)
         {
-            // Pen myPen = new Pen(Color.Red);
-            // myPen.Width = 2;
-            // Create array of points that define lines to draw.
-
             Point start = (a.X <= b.X) ? a : b;
-            Point end = (start.Equals(a)) ? b : a ;
-            int halfXDist = (end.X - start.X) / 2;
+            Point end = (start.Equals(a)) ? b : a;
+            int halfXDist = (int)(((float)end.X - (float)start.X) * 0.8f);
 
             Point mid1 = new Point(start.X + halfXDist, start.Y);
             Point mid2 = new Point(mid1.X, end.Y);
@@ -59,41 +56,56 @@ namespace ShaderCreationTool
                 mid1,
                 mid2,
                 end
-                //new Point(end.X, mid2.Y)
                 // Arrow
                 //new Point(marginleft + width - arrowSize, marginTop + height - arrowSize),
                 //new Point(marginleft + width - arrowSize, marginTop + height + arrowSize),
                 //new Point(marginleft + width, marginTop + height)
              };
+            if (mov)
+            {
+                EditAreaPanel.Invalidate(GetRegionByLine(a, mid1));
+                EditAreaPanel.Invalidate(GetRegionByLine(mid1, mid2));
+                EditAreaPanel.Invalidate(GetRegionByLine(mid2, end));
+                // EditAreaPanel.Invalidate(new Rectangle(start.X, start.Y - 20, mid1.X - start.X, 30), false);
 
+                mov = false;
+            }
             g.DrawLines(m_Pen, points);
 
-         
+
+        }
+        Region GetRegionByLine(Point a, Point b)
+        {
+            GraphicsPath gp = new GraphicsPath();
+            //  gp.AddPolygon(new Point[] {a, new Point(b.X, a.Y), b, new Point(a.X, b.Y)});
+            gp.AddPolygon(new Point[] { a, new Point(b.X, a.Y), b, new Point(a.X, b.Y) });
+            RectangleF rf = gp.GetBounds();
+            gp.Dispose();
+
+            rf.Inflate(15f, 15f);
+
+            return new Region(rf);
         }
 
- 
 
         private void MoveControlMouseMove(Control control, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                
+                mov = true;
                 control.Left = e.X + control.Left - m_MouseDownLocation.X;
                 control.Top = e.Y + control.Top - m_MouseDownLocation.Y;
 
-                if (m_PanelRedrawn)
-                {
-                    m_PanelRedrawn = false;
-                    
-                }
-                EditAreaPanel.Invalidate(false);
-           
-               
+
+                //   EditAreaPanel.Invalidate(false);
+
+
                 control.Update();
                 EditAreaPanel.Update();
+
                 //pictureBox1.Update();
             }
-            
+
         }
 
 
@@ -133,11 +145,11 @@ namespace ShaderCreationTool
         {
             //Pen myPen;
             //myPen = new Pen(System.Drawing.Color.Red);
-           Graphics formGraphics = e.Graphics;
+            Graphics formGraphics = e.Graphics;
 
-           Point start = new Point(button48.Left + button48.Width, button48.Top + button48.Height/2);
-           Point end = new Point(PreviewAreaPanel.Left, PreviewAreaPanel.Top + PreviewAreaPanel.Height / 2);
-           DrawConnectionLine(formGraphics, start,end);
+            Point start = new Point(button48.Left + button48.Width, button48.Top + button48.Height / 2);
+            Point end = new Point(PreviewAreaPanel.Left, PreviewAreaPanel.Top + PreviewAreaPanel.Height / 2);
+            DrawConnectionLine(formGraphics, start, end);
             m_PanelRedrawn = true;
         }
 
@@ -197,7 +209,7 @@ namespace ShaderCreationTool
             //    // Set form background to the selected color.
             //    this.BackColor = cd.Color;
             //}
-          
+
         }
 
         private void button48_MouseMove(object sender, MouseEventArgs e)
@@ -206,7 +218,7 @@ namespace ShaderCreationTool
             Control control = (Control)sender;
             MoveControlMouseMove(control, e);
 
-         
+
         }
 
         private void button48_MouseDown(object sender, MouseEventArgs e)
@@ -215,6 +227,6 @@ namespace ShaderCreationTool
             MoveControlMouseCapture(control, e);
         }
 
-      
+
     }
 }
