@@ -214,9 +214,9 @@
             this.button48.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button48.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button48.ForeColor = System.Drawing.SystemColors.Window;
-            this.button48.Location = new System.Drawing.Point(376, 283);
+            this.button48.Location = new System.Drawing.Point(338, 283);
             this.button48.Name = "button48";
-            this.button48.Size = new System.Drawing.Size(220, 154);
+            this.button48.Size = new System.Drawing.Size(258, 116);
             this.button48.TabIndex = 15;
             this.button48.Text = "Rendered Object";
             this.button48.UseVisualStyleBackColor = false;
