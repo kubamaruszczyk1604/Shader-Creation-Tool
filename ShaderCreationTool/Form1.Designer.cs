@@ -32,14 +32,15 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.PreviewAreaPanel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PreviewTextLabel = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.button29 = new System.Windows.Forms.Button();
             this.button30 = new System.Windows.Forms.Button();
             this.button31 = new System.Windows.Forms.Button();
             this.button48 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.PreviewAreaPanel = new System.Windows.Forms.Panel();
             this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,11 +50,10 @@
             this.gLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button2 = new System.Windows.Forms.Button();
             this.EditAreaPanel.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PreviewAreaPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox6.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,6 +99,41 @@
             this.EditAreaPanel.TabIndex = 19;
             this.EditAreaPanel.Click += new System.EventHandler(this.EditAreaPanel_Click);
             this.EditAreaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.EditAreaPanel_Paint);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(382, 135);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(132, 31);
+            this.button2.TabIndex = 27;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // PreviewAreaPanel
+            // 
+            this.PreviewAreaPanel.BackColor = System.Drawing.Color.Gray;
+            this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
+            this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
+            this.PreviewAreaPanel.Location = new System.Drawing.Point(811, 3);
+            this.PreviewAreaPanel.Name = "PreviewAreaPanel";
+            this.PreviewAreaPanel.Size = new System.Drawing.Size(466, 423);
+            this.PreviewAreaPanel.TabIndex = 26;
+            this.PreviewAreaPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PreviewAreaPanel_MouseDown);
+            this.PreviewAreaPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PreviewAreaPanel_MouseMove);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 19);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(460, 401);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.WaitOnLoad = true;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // PreviewTextLabel
             // 
@@ -186,32 +221,6 @@
             this.button48.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button48_MouseDown);
             this.button48.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button48_MouseMove);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Black;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 19);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(460, 401);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.WaitOnLoad = true;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // PreviewAreaPanel
-            // 
-            this.PreviewAreaPanel.BackColor = System.Drawing.Color.Gray;
-            this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
-            this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
-            this.PreviewAreaPanel.Location = new System.Drawing.Point(811, 3);
-            this.PreviewAreaPanel.Name = "PreviewAreaPanel";
-            this.PreviewAreaPanel.Size = new System.Drawing.Size(466, 423);
-            this.PreviewAreaPanel.TabIndex = 26;
-            this.PreviewAreaPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PreviewAreaPanel_MouseDown);
-            this.PreviewAreaPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PreviewAreaPanel_MouseMove);
-            // 
             // MainMenuStrip
             // 
             this.MainMenuStrip.BackColor = System.Drawing.Color.Gray;
@@ -245,7 +254,7 @@
             this.openToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.openToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // saveToolStripMenuItem
@@ -253,7 +262,7 @@
             this.saveToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // saveAsToolStripMenuItem
@@ -261,7 +270,7 @@
             this.saveAsToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.saveAsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.saveAsToolStripMenuItem.Text = "Save As";
             // 
             // exportToToolStripMenuItem
@@ -272,19 +281,19 @@
             this.hLSLToolStripMenuItem});
             this.exportToToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.exportToToolStripMenuItem.Name = "exportToToolStripMenuItem";
-            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exportToToolStripMenuItem.Text = "Export to..";
             // 
             // gLSLToolStripMenuItem
             // 
             this.gLSLToolStripMenuItem.Name = "gLSLToolStripMenuItem";
-            this.gLSLToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.gLSLToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
             this.gLSLToolStripMenuItem.Text = "GLSL";
             // 
             // hLSLToolStripMenuItem
             // 
             this.hLSLToolStripMenuItem.Name = "hLSLToolStripMenuItem";
-            this.hLSLToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.hLSLToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
             this.hLSLToolStripMenuItem.Text = "HLSL";
             // 
             // exitToolStripMenuItem
@@ -292,17 +301,8 @@
             this.exitToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.exitToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(382, 135);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(132, 31);
-            this.button2.TabIndex = 27;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -323,10 +323,10 @@
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.Shown += new System.EventHandler(this.MainWindow_Shown);
             this.EditAreaPanel.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PreviewAreaPanel.ResumeLayout(false);
             this.PreviewAreaPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox6.ResumeLayout(false);
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
             this.ResumeLayout(false);

@@ -41,18 +41,25 @@ namespace ShaderCreationTool
         // UTIL METHODS
         public void DrawConnectionLine(Graphics g, Point a, Point b)
         {
-           // Pen myPen = new Pen(Color.Red);
-           // myPen.Width = 2;
+            // Pen myPen = new Pen(Color.Red);
+            // myPen.Width = 2;
             // Create array of points that define lines to draw.
-           
 
+            Point start = (a.X <= b.X) ? a : b;
+            Point end = (start.Equals(a)) ? b : a ;
+            int halfXDist = (end.X - start.X) / 2;
+
+            Point mid1 = new Point(start.X + halfXDist, start.Y);
+            Point mid2 = new Point(mid1.X, end.Y);
 
             int arrowSize = 3;
             Point[] points =
              {
-                a,
-              //  new Point(marginleft, height + marginTop),
-                b,
+                start,
+                mid1,
+                mid2,
+                end
+                //new Point(end.X, mid2.Y)
                 // Arrow
                 //new Point(marginleft + width - arrowSize, marginTop + height - arrowSize),
                 //new Point(marginleft + width - arrowSize, marginTop + height + arrowSize),
@@ -64,43 +71,26 @@ namespace ShaderCreationTool
          
         }
 
-        public void DrawLShapeLine(System.Drawing.Graphics g, int intMarginLeft, int intMarginTop, int intWidth, int intHeight)
-        {
-            Pen myPen = new Pen(Color.Red);
-            myPen.Width = 2;
-            // Create array of points that define lines to draw.
-            int marginleft = intMarginLeft;
-            int marginTop = intMarginTop;
-            int width = intWidth;
-            int height = intHeight;
-            int arrowSize = 3;
-            Point[] points =
-             {
-                new Point(marginleft, marginTop),
-                new Point(marginleft, height + marginTop),
-                new Point(marginleft + width, marginTop + height),
-                // Arrow
-                new Point(marginleft + width - arrowSize, marginTop + height - arrowSize),
-                new Point(marginleft + width - arrowSize, marginTop + height + arrowSize),
-                new Point(marginleft + width, marginTop + height)
-             };
-
-            g.DrawLines(myPen, points);
-        }
+ 
 
         private void MoveControlMouseMove(Control control, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
+                
                 control.Left = e.X + control.Left - m_MouseDownLocation.X;
                 control.Top = e.Y + control.Top - m_MouseDownLocation.Y;
 
                 if (m_PanelRedrawn)
                 {
                     m_PanelRedrawn = false;
+                    
                 }
-                EditAreaPanel.Update();
+                EditAreaPanel.Invalidate(false);
+           
+               
                 control.Update();
+                EditAreaPanel.Update();
                 //pictureBox1.Update();
             }
             
@@ -143,13 +133,11 @@ namespace ShaderCreationTool
         {
             //Pen myPen;
             //myPen = new Pen(System.Drawing.Color.Red);
-             Graphics formGraphics = e.Graphics;
-            //formGraphics.DrawLine(myPen, 0, 0, 200, 200);
+           Graphics formGraphics = e.Graphics;
 
-            // DrawLShapeLine(formGraphics, 50, 0, 300, 400);
-           DrawConnectionLine(formGraphics, new Point(0, 0), new Point(400, 100));
-            // myPen.Dispose();
-            //formGraphics.Dispose();
+           Point start = new Point(button48.Left + button48.Width, button48.Top + button48.Height/2);
+           Point end = new Point(PreviewAreaPanel.Left, PreviewAreaPanel.Top + PreviewAreaPanel.Height / 2);
+           DrawConnectionLine(formGraphics, start,end);
             m_PanelRedrawn = true;
         }
 
