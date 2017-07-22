@@ -22,11 +22,13 @@ namespace ShaderCreationTool
         private Point m_MouseDownLocation;
         private readonly Pen m_Pen = new Pen(Color.White, 3);
 
+        ConnectionLine m_TestLine;
 
         public MainWindow()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
+            m_TestLine = new ConnectionLine(EditAreaPanel);
           //  this.Controls.SetChildIndex(EditAreaPanel, 0);
                 
         }
@@ -37,65 +39,16 @@ namespace ShaderCreationTool
             IntPtr pointer = pictureBox1.Handle;
             Bridge.StartRenderer(pictureBox1.Width, pictureBox1.Height, pointer);
         }
-        bool mov = false;
+      
 
         // UTIL METHODS
-        public void DrawConnectionLine(Graphics g, Point a, Point b)
-        {
-            Point start = (a.X <= b.X) ? a : b;
-            Point end = (start.Equals(a)) ? b : a;
-            int halfXDist = (int)(((float)end.X - (float)start.X) * 0.8f);
-
-            Point mid1 = new Point(start.X + halfXDist, start.Y);
-            Point mid2 = new Point(mid1.X, end.Y);
-
-            int arrowSize = 3;
-            Point[] points =
-             {
-                start,
-                mid1,
-                mid2,
-                end
-                // Arrow
-                //new Point(end.X- arrowSize, end.Y - arrowSize),
-                //new Point(end.X- arrowSize, end.Y + arrowSize),
-                //new Point(end.X, end.Y)
-             };
-            if (mov)
-            {
-              //  g.DrawRectangle(m_Pen,GetRectangleByLine(start, mid1));
-               EditAreaPanel.Invalidate(GetRectangleByLine(start, mid1));
-                if (mid1.Y < mid2.Y)
-                {
-                    //  g.DrawRectangle(m_Pen, GetRectangleByLine(mid1, mid2));
-                    EditAreaPanel.Invalidate(GetRectangleByLine(mid1, mid2));
-                }
-                else
-                {
-                    //   g.DrawRectangle(m_Pen, GetRectangleByLine(mid2, mid1));
-                    EditAreaPanel.Invalidate(GetRectangleByLine(mid2, mid1));
-                }
-                // g.DrawRectangle(m_Pen, GetRectangleByLine(mid2, end));
-                EditAreaPanel.Invalidate(GetRectangleByLine(mid2, end));
-                mov = false;
-            }
-            g.DrawLines(m_Pen, points);
-
-
-        }
-     
-
-        Rectangle GetRectangleByLine(Point p1, Point p2)
-        {
-            return new Rectangle(p1.X-20,p1.Y-20,
-                Math.Abs(p1.X-p2.X)+40, Math.Abs(p1.Y - p2.Y) + 40);
-        }
+        
 
         private void MoveControlMouseMove(Control control, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                mov = true;
+                m_TestLine.Invalidate();
                 control.Left = e.X + control.Left - m_MouseDownLocation.X;
                 control.Top = e.Y + control.Top - m_MouseDownLocation.Y;
                 control.Update();
@@ -146,7 +99,7 @@ namespace ShaderCreationTool
 
             Point start = new Point(button48.Left + button48.Width, button48.Top + button48.Height / 2);
             Point end = new Point(PreviewAreaPanel.Left, PreviewAreaPanel.Top + PreviewAreaPanel.Height / 2);
-            DrawConnectionLine(formGraphics, start, end);
+           m_TestLine.DrawConnectionLine(formGraphics, start, end);
 
         }
 

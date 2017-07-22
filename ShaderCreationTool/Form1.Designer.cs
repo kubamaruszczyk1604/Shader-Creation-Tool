@@ -33,6 +33,7 @@
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
+            this.button48 = new System.Windows.Forms.Button();
             this.PreviewAreaPanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PreviewTextLabel = new System.Windows.Forms.Label();
@@ -40,7 +41,6 @@
             this.button29 = new System.Windows.Forms.Button();
             this.button30 = new System.Windows.Forms.Button();
             this.button31 = new System.Windows.Forms.Button();
-            this.button48 = new System.Windows.Forms.Button();
             this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,12 +105,27 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(256, 92);
+            this.button2.Location = new System.Drawing.Point(14, 420);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(132, 31);
             this.button2.TabIndex = 27;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button48
+            // 
+            this.button48.BackColor = System.Drawing.Color.MidnightBlue;
+            this.button48.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button48.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button48.ForeColor = System.Drawing.SystemColors.Window;
+            this.button48.Location = new System.Drawing.Point(277, 325);
+            this.button48.Name = "button48";
+            this.button48.Size = new System.Drawing.Size(258, 116);
+            this.button48.TabIndex = 15;
+            this.button48.Text = "Rendered Object";
+            this.button48.UseVisualStyleBackColor = false;
+            this.button48.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button48_MouseDown);
+            this.button48.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button48_MouseMove);
             // 
             // PreviewAreaPanel
             // 
@@ -209,21 +224,6 @@
             this.button31.Text = "Add Material Property";
             this.button31.UseVisualStyleBackColor = false;
             // 
-            // button48
-            // 
-            this.button48.BackColor = System.Drawing.Color.MidnightBlue;
-            this.button48.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button48.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button48.ForeColor = System.Drawing.SystemColors.Window;
-            this.button48.Location = new System.Drawing.Point(277, 325);
-            this.button48.Name = "button48";
-            this.button48.Size = new System.Drawing.Size(258, 116);
-            this.button48.TabIndex = 15;
-            this.button48.Text = "Rendered Object";
-            this.button48.UseVisualStyleBackColor = false;
-            this.button48.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button48_MouseDown);
-            this.button48.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button48_MouseMove);
-            // 
             // MainMenuStrip
             // 
             this.MainMenuStrip.BackColor = System.Drawing.Color.Gray;
@@ -257,7 +257,7 @@
             this.openToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.openToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // saveToolStripMenuItem
@@ -265,7 +265,7 @@
             this.saveToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // saveAsToolStripMenuItem
@@ -273,7 +273,7 @@
             this.saveAsToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.saveAsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.saveAsToolStripMenuItem.Text = "Save As";
             // 
             // exportToToolStripMenuItem
@@ -284,7 +284,7 @@
             this.hLSLToolStripMenuItem});
             this.exportToToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.exportToToolStripMenuItem.Name = "exportToToolStripMenuItem";
-            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exportToToolStripMenuItem.Text = "Export to..";
             // 
             // gLSLToolStripMenuItem
@@ -304,7 +304,7 @@
             this.exitToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.exitToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // MainWindow
