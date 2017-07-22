@@ -20,14 +20,15 @@ namespace ShaderCreationTool
     {
 
         private Point m_MouseDownLocation;
-        private readonly Pen m_Pen = new Pen(Color.Snow) { Width = 3 };
+        private readonly Pen m_Pen = new Pen(Color.White, 3);
 
 
         public MainWindow()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-
+          //  this.Controls.SetChildIndex(EditAreaPanel, 0);
+                
         }
 
         private async void StartRenderer(int delayMs)

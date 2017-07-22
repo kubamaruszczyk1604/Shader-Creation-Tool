@@ -84,8 +84,9 @@
             // EditAreaPanel
             // 
             this.EditAreaPanel.AutoScroll = true;
-            this.EditAreaPanel.BackColor = System.Drawing.Color.Maroon;
+            this.EditAreaPanel.BackColor = System.Drawing.Color.Transparent;
             this.EditAreaPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditAreaPanel.BackgroundImage")));
+            this.EditAreaPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.EditAreaPanel.Controls.Add(this.button2);
             this.EditAreaPanel.Controls.Add(this.button48);
@@ -97,7 +98,7 @@
             this.EditAreaPanel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.EditAreaPanel.Location = new System.Drawing.Point(0, 28);
             this.EditAreaPanel.Name = "EditAreaPanel";
-            this.EditAreaPanel.Size = new System.Drawing.Size(1308, 695);
+            this.EditAreaPanel.Size = new System.Drawing.Size(1312, 703);
             this.EditAreaPanel.TabIndex = 19;
             this.EditAreaPanel.Click += new System.EventHandler(this.EditAreaPanel_Click);
             this.EditAreaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.EditAreaPanel_Paint);
@@ -231,7 +232,7 @@
             this.fileToolStripMenuItem});
             this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MainMenuStrip.Name = "MainMenuStrip";
-            this.MainMenuStrip.Size = new System.Drawing.Size(1308, 28);
+            this.MainMenuStrip.Size = new System.Drawing.Size(1312, 28);
             this.MainMenuStrip.TabIndex = 20;
             this.MainMenuStrip.Text = "menuStrip1";
             // 
@@ -256,7 +257,7 @@
             this.openToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.openToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // saveToolStripMenuItem
@@ -264,7 +265,7 @@
             this.saveToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // saveAsToolStripMenuItem
@@ -272,7 +273,7 @@
             this.saveAsToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.saveAsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.saveAsToolStripMenuItem.Text = "Save As";
             // 
             // exportToToolStripMenuItem
@@ -283,7 +284,7 @@
             this.hLSLToolStripMenuItem});
             this.exportToToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.exportToToolStripMenuItem.Name = "exportToToolStripMenuItem";
-            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.exportToToolStripMenuItem.Text = "Export to..";
             // 
             // gLSLToolStripMenuItem
@@ -303,7 +304,7 @@
             this.exitToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.exitToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // MainWindow
@@ -314,7 +315,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1308, 723);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(1312, 731);
             this.Controls.Add(this.EditAreaPanel);
             this.Controls.Add(this.MainMenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
