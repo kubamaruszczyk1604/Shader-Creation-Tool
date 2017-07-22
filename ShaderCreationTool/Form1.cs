@@ -19,20 +19,31 @@ namespace ShaderCreationTool
     public partial class MainWindow : Form
     {
 
-        private Point m_MouseDownLocation;
+
         ConnectionLine m_TestLine;
         ConnectionLine m_TestLine2;
-        MovableObject movableTestObject;
+
+        MovableObject m_MovableKey;
+        MovableObject m_MovableRenderObject;
+        MovableObject m_MovablePreviewPanel;
+
 
         public MainWindow()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
+
             m_TestLine = new ConnectionLine(EditAreaPanel);
             m_TestLine2 = new ConnectionLine(EditAreaPanel);
-            //  this.Controls.SetChildIndex(EditAreaPanel, 0);
-            movableTestObject = new MovableObject(button44);
-            movableTestObject.AddObjectMovedEventListener(UpdateOnMouseMove);
+
+            m_MovableKey = new MovableObject(button44);
+            m_MovableKey.AddObjectMovedEventListener(UpdateOnMouseMove);
+
+            m_MovableRenderObject = new MovableObject(button48);
+            m_MovableRenderObject.AddObjectMovedEventListener(UpdateOnMouseMove);
+
+            m_MovablePreviewPanel = new MovableObject(PreviewAreaPanel);
+            m_MovablePreviewPanel.AddObjectMovedEventListener(UpdateOnMouseMove);
         }
 
         private async void StartRenderer(int delayMs)
@@ -52,30 +63,6 @@ namespace ShaderCreationTool
         }
 
 
-        private void MoveControlMouseMove(Control control, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                
-
-
-                control.Left = e.X + control.Left - m_MouseDownLocation.X;
-                control.Top = e.Y + control.Top - m_MouseDownLocation.Y;
-                control.Update();
-
-                UpdateOnMouseMove();
-            }
-
-        }
-
-
-        private void MoveControlMouseCapture(Control control, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                m_MouseDownLocation = e.Location;
-            }
-        }
 
         //**************************************  UI EVENTS  ***********************************************//
 
@@ -95,7 +82,6 @@ namespace ShaderCreationTool
         {
             StartRenderer(100);
             PreviewTextLabel.ForeColor = Color.White;
-            //EditAreaPanel.Do
         }
 
 
@@ -117,31 +103,15 @@ namespace ShaderCreationTool
 
         // PREVIEW AREA PANEL
 
-        private void PreviewAreaPanel_MouseDown(object sender, MouseEventArgs e)
-        {
-            Control control = (Control)sender;
-            MoveControlMouseCapture(control, e);
-        }
-
-
-        private void PreviewAreaPanel_MouseMove(object sender, MouseEventArgs e)
-        {
-            Control control = (Control)sender;
-            MoveControlMouseMove(control, e);
-        }
-
         private void PreviewTextLabel_MouseDown(object sender, MouseEventArgs e)
         {
-            PreviewAreaPanel_MouseDown(PreviewAreaPanel, e);
+            m_MovablePreviewPanel.MoveControlMouseCapture(PreviewAreaPanel, e);
         }
 
         private void PreviewTextLabel_MouseMove(object sender, MouseEventArgs e)
         {
-            PreviewAreaPanel_MouseMove(PreviewAreaPanel, e);
+            m_MovablePreviewPanel.MoveControlMouseMove(PreviewAreaPanel, e);
         }
-
-
-
 
 
 
@@ -150,44 +120,23 @@ namespace ShaderCreationTool
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-
             Bridge.ReloadScene();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
-            //ColorDialog cd = new ColorDialog();
-            //DialogResult result = cd.ShowDialog();
-            //if (result == DialogResult.OK)
-            //{
-            //    // Set form background to the selected color.
-            //    this.BackColor = cd.Color;
-            //}
+            ColorDialog cd = new ColorDialog();
+            DialogResult result = cd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // Set form background to the selected color.
+                this.BackColor = cd.Color;
+            }
 
         }
 
-        private void button48_MouseMove(object sender, MouseEventArgs e)
-        {
 
-            Control control = (Control)sender;
-            MoveControlMouseMove(control, e);
-
-
-        }
-
-        private void button48_MouseDown(object sender, MouseEventArgs e)
-        {
-            Control control = (Control)sender;
-            MoveControlMouseCapture(control, e);
-        }
-
-        private void panel1Paint(object sender, PaintEventArgs e)
-        {
-            
-
-        }
 
         private void EditAreaPanel_Scroll(object sender, ScrollEventArgs e)
         {

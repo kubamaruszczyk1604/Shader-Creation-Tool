@@ -125,8 +125,6 @@
             this.button48.TabIndex = 15;
             this.button48.Text = "Rendered Object";
             this.button48.UseVisualStyleBackColor = false;
-            this.button48.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button48_MouseDown);
-            this.button48.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button48_MouseMove);
             // 
             // PreviewAreaPanel
             // 
@@ -137,8 +135,6 @@
             this.PreviewAreaPanel.Name = "PreviewAreaPanel";
             this.PreviewAreaPanel.Size = new System.Drawing.Size(466, 423);
             this.PreviewAreaPanel.TabIndex = 26;
-            this.PreviewAreaPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PreviewAreaPanel_MouseDown);
-            this.PreviewAreaPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PreviewAreaPanel_MouseMove);
             // 
             // pictureBox1
             // 

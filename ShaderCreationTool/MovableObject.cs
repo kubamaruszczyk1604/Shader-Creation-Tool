@@ -34,7 +34,7 @@ namespace ShaderCreationTool
             OnObjectMoved += method;
         }
 
-        private void MoveControlMouseMove(object sender, MouseEventArgs e)
+        public void MoveControlMouseMove(object sender, MouseEventArgs e)
         {
             Control control = (Control)sender;
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
@@ -49,7 +49,7 @@ namespace ShaderCreationTool
             }
         }
 
-        private void MoveControlMouseCapture(object sender, MouseEventArgs e)
+        public void MoveControlMouseCapture(object sender, MouseEventArgs e)
         {
             Control control = (Control)sender;
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
