@@ -10,7 +10,7 @@ namespace ShaderCreationTool
 {
     class ConnectionLine
     {
-        private readonly Pen m_Pen = new Pen(Color.White, 3);
+        private readonly Pen m_Pen = new Pen(Color.FromArgb(100,200,200,255), 5);
         private Control p_Control;
         private bool m_Invalidate;
 
@@ -26,7 +26,7 @@ namespace ShaderCreationTool
         {
             Point start = (a.X <= b.X) ? a : b;
             Point end = (start.Equals(a)) ? b : a;
-            int halfXDist = (int)(((float)end.X - (float)start.X) * 0.8f);
+            int halfXDist = (int)(((float)end.X - (float)start.X) * 0.85f);
 
             Point mid1 = new Point(start.X + halfXDist, start.Y);
             Point mid2 = new Point(mid1.X, end.Y);
@@ -63,7 +63,14 @@ namespace ShaderCreationTool
             }
             g.DrawLines(m_Pen, points);
 
+        }
 
+
+        public void DrawConnectionLine(Graphics g, Control control1, Control control2)
+        {
+            Point start = new Point(control1.Left + control1.Width, control1.Top + control1.Height / 2);
+            Point end = new Point(control2.Left, control2.Top + control2.Height / 2);
+            this.DrawConnectionLine(g, start, end);
         }
 
         public void Invalidate()
@@ -73,8 +80,8 @@ namespace ShaderCreationTool
 
         static public Rectangle GetRectangleByLine(Point p1, Point p2)
         {
-            return new Rectangle(p1.X - 20, p1.Y - 20,
-                Math.Abs(p1.X - p2.X) + 40, Math.Abs(p1.Y - p2.Y) + 40);
+            return new Rectangle(p1.X - 40, p1.Y - 40,
+                Math.Abs(p1.X - p2.X) + 60, Math.Abs(p1.Y - p2.Y) + 60);
         }
     
     }

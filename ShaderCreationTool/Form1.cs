@@ -20,17 +20,19 @@ namespace ShaderCreationTool
     {
 
         private Point m_MouseDownLocation;
-        private readonly Pen m_Pen = new Pen(Color.White, 3);
-
         ConnectionLine m_TestLine;
+        ConnectionLine m_TestLine2;
+        MovableObject movableTestObject;
 
         public MainWindow()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
             m_TestLine = new ConnectionLine(EditAreaPanel);
-          //  this.Controls.SetChildIndex(EditAreaPanel, 0);
-                
+            m_TestLine2 = new ConnectionLine(EditAreaPanel);
+            //  this.Controls.SetChildIndex(EditAreaPanel, 0);
+            movableTestObject = new MovableObject(button44);
+            movableTestObject.AddObjectMovedEventListener(UpdateOnMouseMove);
         }
 
         private async void StartRenderer(int delayMs)
@@ -42,18 +44,26 @@ namespace ShaderCreationTool
       
 
         // UTIL METHODS
-        
+        void UpdateOnMouseMove()
+        {
+            m_TestLine.Invalidate();
+            m_TestLine2.Invalidate();
+            EditAreaPanel.Update();
+        }
+
 
         private void MoveControlMouseMove(Control control, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                m_TestLine.Invalidate();
+                
+
+
                 control.Left = e.X + control.Left - m_MouseDownLocation.X;
                 control.Top = e.Y + control.Top - m_MouseDownLocation.Y;
                 control.Update();
-                EditAreaPanel.Update();
-               
+
+                UpdateOnMouseMove();
             }
 
         }
@@ -93,13 +103,9 @@ namespace ShaderCreationTool
 
         private void EditAreaPanel_Paint(object sender, PaintEventArgs e)
         {
-            //Pen myPen;
-            //myPen = new Pen(System.Drawing.Color.Red);
-            Graphics formGraphics = e.Graphics;
-
-            Point start = new Point(button48.Left + button48.Width, button48.Top + button48.Height / 2);
-            Point end = new Point(PreviewAreaPanel.Left, PreviewAreaPanel.Top + PreviewAreaPanel.Height / 2);
-           m_TestLine.DrawConnectionLine(formGraphics, start, end);
+           Graphics formGraphics = e.Graphics;
+           m_TestLine.DrawConnectionLine(formGraphics, button48, PreviewAreaPanel);
+          // m_TestLine2.DrawConnectionLine(formGraphics, button29.Location, PreviewAreaPanel.Location);
 
         }
 
@@ -182,5 +188,12 @@ namespace ShaderCreationTool
             
 
         }
+
+        private void EditAreaPanel_Scroll(object sender, ScrollEventArgs e)
+        {
+            EditAreaPanel.Invalidate(false);
+        }
+
+   
     }
 }

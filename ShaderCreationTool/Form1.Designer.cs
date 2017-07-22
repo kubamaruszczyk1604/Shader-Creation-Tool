@@ -100,12 +100,13 @@
             this.EditAreaPanel.Name = "EditAreaPanel";
             this.EditAreaPanel.Size = new System.Drawing.Size(1312, 703);
             this.EditAreaPanel.TabIndex = 19;
+            this.EditAreaPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.EditAreaPanel_Scroll);
             this.EditAreaPanel.Click += new System.EventHandler(this.EditAreaPanel_Click);
             this.EditAreaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.EditAreaPanel_Paint);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(14, 420);
+            this.button2.Location = new System.Drawing.Point(56, 481);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(132, 31);
             this.button2.TabIndex = 27;
@@ -118,7 +119,7 @@
             this.button48.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button48.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button48.ForeColor = System.Drawing.SystemColors.Window;
-            this.button48.Location = new System.Drawing.Point(277, 325);
+            this.button48.Location = new System.Drawing.Point(267, 183);
             this.button48.Name = "button48";
             this.button48.Size = new System.Drawing.Size(258, 116);
             this.button48.TabIndex = 15;
