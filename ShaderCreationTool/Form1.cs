@@ -63,18 +63,18 @@ namespace ShaderCreationTool
             if (mov)
             {
               //  g.DrawRectangle(m_Pen,GetRectangleByLine(start, mid1));
-                EditAreaPanel.Invalidate(GetRectangleByLine(start, mid1));
+               EditAreaPanel.Invalidate(GetRectangleByLine(start, mid1));
                 if (mid1.Y < mid2.Y)
                 {
-                  //  g.DrawRectangle(m_Pen, GetRectangleByLine(mid1, mid2));
+                    //  g.DrawRectangle(m_Pen, GetRectangleByLine(mid1, mid2));
                     EditAreaPanel.Invalidate(GetRectangleByLine(mid1, mid2));
                 }
                 else
                 {
-                 //   g.DrawRectangle(m_Pen, GetRectangleByLine(mid2, mid1));
+                    //   g.DrawRectangle(m_Pen, GetRectangleByLine(mid2, mid1));
                     EditAreaPanel.Invalidate(GetRectangleByLine(mid2, mid1));
                 }
-               // g.DrawRectangle(m_Pen, GetRectangleByLine(mid2, end));
+                // g.DrawRectangle(m_Pen, GetRectangleByLine(mid2, end));
                 EditAreaPanel.Invalidate(GetRectangleByLine(mid2, end));
                 mov = false;
             }
@@ -99,6 +99,7 @@ namespace ShaderCreationTool
                 control.Top = e.Y + control.Top - m_MouseDownLocation.Y;
                 control.Update();
                 EditAreaPanel.Update();
+               
             }
 
         }
@@ -145,7 +146,7 @@ namespace ShaderCreationTool
             Point start = new Point(button48.Left + button48.Width, button48.Top + button48.Height / 2);
             Point end = new Point(PreviewAreaPanel.Left, PreviewAreaPanel.Top + PreviewAreaPanel.Height / 2);
             DrawConnectionLine(formGraphics, start, end);
-            
+
         }
 
         private void EditAreaPanel_Click(object sender, EventArgs e)
@@ -222,6 +223,10 @@ namespace ShaderCreationTool
             MoveControlMouseCapture(control, e);
         }
 
+        private void panel1Paint(object sender, PaintEventArgs e)
+        {
+            
 
+        }
     }
 }

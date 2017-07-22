@@ -84,15 +84,15 @@
             // EditAreaPanel
             // 
             this.EditAreaPanel.AutoScroll = true;
-            this.EditAreaPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(30)))));
+            this.EditAreaPanel.BackColor = System.Drawing.Color.Maroon;
             this.EditAreaPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditAreaPanel.BackgroundImage")));
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.EditAreaPanel.Controls.Add(this.button2);
+            this.EditAreaPanel.Controls.Add(this.button48);
             this.EditAreaPanel.Controls.Add(this.PreviewAreaPanel);
             this.EditAreaPanel.Controls.Add(this.button1);
             this.EditAreaPanel.Controls.Add(this.button44);
             this.EditAreaPanel.Controls.Add(this.groupBox6);
-            this.EditAreaPanel.Controls.Add(this.button48);
             this.EditAreaPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EditAreaPanel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.EditAreaPanel.Location = new System.Drawing.Point(0, 28);
@@ -104,7 +104,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(382, 135);
+            this.button2.Location = new System.Drawing.Point(256, 92);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(132, 31);
             this.button2.TabIndex = 27;
@@ -214,7 +214,7 @@
             this.button48.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button48.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button48.ForeColor = System.Drawing.SystemColors.Window;
-            this.button48.Location = new System.Drawing.Point(338, 283);
+            this.button48.Location = new System.Drawing.Point(277, 325);
             this.button48.Name = "button48";
             this.button48.Size = new System.Drawing.Size(258, 116);
             this.button48.TabIndex = 15;
