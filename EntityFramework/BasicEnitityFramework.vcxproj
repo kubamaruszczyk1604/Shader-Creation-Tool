@@ -105,7 +105,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)FreeImg\Include;$(SolutionDir)GL;$(SolutionDir)GL\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)FreeImg\Include;$(SolutionDir)GL;$(SolutionDir)GL\glew\include;C:\Users\Kuba\Desktop\sct\ShaderCreationTool;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,7 +139,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)FreeImg\Include;$(SolutionDir)GL;$(SolutionDir)GL\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)FreeImg\Include;$(SolutionDir)GL;$(SolutionDir)GL\glew\include;C:\Users\Kuba\Desktop\sct\ShaderCreationTool;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -230,6 +230,7 @@
     <ClInclude Include="D3DRenderer.h" />
     <ClInclude Include="D3DTexture.h" />
     <ClInclude Include="D3DVBO.h" />
+    <ClInclude Include="DataWrappers.h" />
     <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />

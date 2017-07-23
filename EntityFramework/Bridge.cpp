@@ -1,6 +1,8 @@
 #include "Bridge.h"
 #include "Behaviours.h"
 
+
+
 int Bridge::StartRenderer(int width, int height, System::IntPtr handle)
 {
 

@@ -50,6 +50,7 @@
             this.gLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button3 = new System.Windows.Forms.Button();
             this.EditAreaPanel.SuspendLayout();
             this.PreviewAreaPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -88,6 +89,7 @@
             this.EditAreaPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditAreaPanel.BackgroundImage")));
             this.EditAreaPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.EditAreaPanel.Controls.Add(this.button3);
             this.EditAreaPanel.Controls.Add(this.button2);
             this.EditAreaPanel.Controls.Add(this.button48);
             this.EditAreaPanel.Controls.Add(this.PreviewAreaPanel);
@@ -304,6 +306,20 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Gray;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button3.Location = new System.Drawing.Point(267, 321);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(85, 57);
+            this.button3.TabIndex = 28;
+            this.button3.Text = "VECTOR";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
             // MainWindow
             // 
             this.AcceptButton = this.button1;
@@ -358,6 +374,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label PreviewTextLabel;
+        private System.Windows.Forms.Button button3;
     }
 }
 

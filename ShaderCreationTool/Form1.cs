@@ -19,15 +19,14 @@ namespace ShaderCreationTool
     public partial class MainWindow : Form
     {
 
-
         ConnectionLine m_TestLine;
         ConnectionLine m_TestLine2;
 
         MovableObject m_MovableKey;
         MovableObject m_MovableRenderObject;
         MovableObject m_MovablePreviewPanel;
-
-
+   
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -44,6 +43,9 @@ namespace ShaderCreationTool
 
             m_MovablePreviewPanel = new MovableObject(PreviewAreaPanel);
             m_MovablePreviewPanel.AddObjectMovedEventListener(UpdateOnMouseMove);
+
+            Bridge.TESTUJE = 100;
+           
         }
 
         private async void StartRenderer(int delayMs)
@@ -86,13 +88,11 @@ namespace ShaderCreationTool
 
 
         // MAIN EDIT AREA PANEL
-
         private void EditAreaPanel_Paint(object sender, PaintEventArgs e)
         {
            Graphics formGraphics = e.Graphics;
            m_TestLine.DrawConnectionLine(formGraphics, button48, PreviewAreaPanel);
           // m_TestLine2.DrawConnectionLine(formGraphics, button29.Location, PreviewAreaPanel.Location);
-
         }
 
         private void EditAreaPanel_Click(object sender, EventArgs e)
@@ -100,9 +100,7 @@ namespace ShaderCreationTool
             fileToolStripMenuItem.HideDropDown();
         }
 
-
         // PREVIEW AREA PANEL
-
         private void PreviewTextLabel_MouseDown(object sender, MouseEventArgs e)
         {
             m_MovablePreviewPanel.MoveControlMouseCapture(PreviewAreaPanel, e);
@@ -117,7 +115,6 @@ namespace ShaderCreationTool
 
 
         // TEMPORARY STUFF
-
         private void button1_Click(object sender, EventArgs e)
         {
             Bridge.ReloadScene();
@@ -125,7 +122,6 @@ namespace ShaderCreationTool
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
             ColorDialog cd = new ColorDialog();
             DialogResult result = cd.ShowDialog();
             if (result == DialogResult.OK)
@@ -133,10 +129,7 @@ namespace ShaderCreationTool
                 // Set form background to the selected color.
                 this.BackColor = cd.Color;
             }
-
         }
-
-
 
         private void EditAreaPanel_Scroll(object sender, ScrollEventArgs e)
         {

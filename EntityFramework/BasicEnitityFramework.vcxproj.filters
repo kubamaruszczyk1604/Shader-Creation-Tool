@@ -371,6 +371,9 @@
     <ClInclude Include="GLTexture.h">
       <Filter>Header Files\Renderer\GL</Filter>
     </ClInclude>
+    <ClInclude Include="DataWrappers.h">
+      <Filter>Header Files\Application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\Data\Shaders\shader.hlsl">
