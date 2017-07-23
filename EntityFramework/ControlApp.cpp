@@ -60,8 +60,8 @@ void ControlApp::ReloadScene()
 	s_ReloadRequest = true;
 }
 
-void ControlApp::SetShaderVectorVariable(System::String ^ name, ShaderVectorVariable ^ variable)
+void ControlApp::SetShaderVectorVariable(ShaderVectorVariable ^ variable)
 { 
-	GLRenderer::SetShaderVariable(name, variable);
+	GLRenderer::SetShaderVariable(variable);
 }
 

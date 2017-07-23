@@ -8,7 +8,8 @@
 
 namespace KLM_FRAMEWORK
 {
-	class GLRenderer
+
+    class GLRenderer
 	{
 	private:
 		static bool	s_IsRunning;
@@ -24,6 +25,7 @@ namespace KLM_FRAMEWORK
 		static bool KLMSetPixelFormat(HDC hdc);
 
 		static Vec4 VectorVariableTest;
+	
 
 	public:
 		GLRenderer() = delete;
@@ -41,7 +43,7 @@ namespace KLM_FRAMEWORK
 		static void SetCullMode(const CullMode mode);
 		static void SetFillMode(const FillMode mode);
 		static void SetActiveCamera(Camera* camera);
-		static void SetShaderVariable(System::String^ name,ShaderVectorVariable^ variable);
+		static void SetShaderVariable(ShaderVectorVariable^ variable);
 	};
 
 }

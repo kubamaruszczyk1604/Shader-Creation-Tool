@@ -282,7 +282,7 @@ namespace KLM_FRAMEWORK
 	}
 	
 
-	void GLRenderer::SetShaderVariable(System::String ^ name, ShaderVectorVariable ^ variable)
+	void GLRenderer::SetShaderVariable(ShaderVectorVariable ^ variable)
 	{
 		VectorVariableTest = DataConverter::ToColur(variable);
 	}

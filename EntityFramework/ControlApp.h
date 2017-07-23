@@ -23,6 +23,6 @@ public:
 	static void Run();
 	static void Terminate();
 	static void ReloadScene();
-	static void SetShaderVectorVariable(System::String^ name, ShaderVectorVariable^ variable);
+	static void SetShaderVectorVariable( ShaderVectorVariable^ variable);
 };
 
