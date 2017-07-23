@@ -2,6 +2,7 @@
 #include "InputSystem.h"
 #include "SceneManager.h"
 #include "Behaviours.h"
+#include "GLRenderer.h"
 
 using namespace KLM_FRAMEWORK;
 
@@ -57,5 +58,10 @@ void ControlApp::Terminate()
 void ControlApp::ReloadScene()
 {
 	s_ReloadRequest = true;
+}
+
+void ControlApp::SetShaderVectorVariable(System::String ^ name, ShaderVectorVariable ^ variable)
+{ 
+	GLRenderer::SetShaderVariable(name, variable);
 }
 

@@ -25,7 +25,8 @@ namespace ShaderCreationTool
         MovableObject m_MovableKey;
         MovableObject m_MovableRenderObject;
         MovableObject m_MovablePreviewPanel;
-   
+
+        ShaderVectorVariable m_Colour;
         
         public MainWindow()
         {
@@ -45,6 +46,8 @@ namespace ShaderCreationTool
             m_MovablePreviewPanel.AddObjectMovedEventListener(UpdateOnMouseMove);
 
             Bridge.TESTUJE = 100;
+            m_Colour = new ShaderVectorVariable(1, 0, 0, 1, "TestVariable");
+            Bridge.SetVariable(m_Colour);
            
         }
 
@@ -127,7 +130,13 @@ namespace ShaderCreationTool
             if (result == DialogResult.OK)
             {
                 // Set form background to the selected color.
-                this.BackColor = cd.Color;
+                //this.BackColor = cd.Color;
+                m_Colour.Set((float)(cd.Color.R) / 255.0f,
+                    (float)(cd.Color.G) / 255.0f,
+                    (float)(cd.Color.B) / 255.0f,
+                    (float)(cd.Color.A) / 255.0f
+                    );
+                Bridge.SetVariable(m_Colour);
             }
         }
 

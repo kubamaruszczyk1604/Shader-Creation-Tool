@@ -9,6 +9,7 @@ public:
 	static int StartRenderer(int width, int height, System::IntPtr handle);
 	static int Terminate();
 	static void ReloadScene();
+	static void SetVariable(ShaderVectorVariable^ variable);
 };
 
 

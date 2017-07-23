@@ -234,6 +234,9 @@
     <ClCompile Include="GLTexture.cpp">
       <Filter>Source Files\Renderer\GL</Filter>
     </ClCompile>
+    <ClCompile Include="DataWrappers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">

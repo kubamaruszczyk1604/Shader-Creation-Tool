@@ -17,6 +17,8 @@ namespace KLM_FRAMEWORK
 	bool GLRenderer::s_MakeCurrentCalled{ false };
 
 
+	Vec4 GLRenderer::VectorVariableTest{ Vec4(1.0f) };
+
 	bool GLRenderer::KLMSetPixelFormat(HDC hdc)
 	{
 		PIXELFORMATDESCRIPTOR pfd;
@@ -99,9 +101,11 @@ namespace KLM_FRAMEWORK
 		GLuint diffuseID = glGetUniformLocation(shaderProgID, "diffuse");
 		GLuint specularID = glGetUniformLocation(shaderProgID, "specular");
 
+		Vec4 mixed = *(material->GetDiffuseColPtr()) * VectorVariableTest;
 
 		glUniform4fv(ambientID, 1, &material->GetAmbientColPtr()->r);
-		glUniform4fv(diffuseID, 1, &material->GetDiffuseColPtr()->r);
+		//glUniform4fv(diffuseID, 1, &material->GetDiffuseColPtr()->r);
+		glUniform4fv(diffuseID, 1, &mixed.x);
 		glUniform4fv(specularID, 1, &material->GetSpecularColPtr()->r);
 
 
@@ -275,5 +279,11 @@ namespace KLM_FRAMEWORK
 	void GLRenderer::SetActiveCamera(Camera * camera)
 	{
 		s_CurrentCamera = camera;
+	}
+	
+
+	void GLRenderer::SetShaderVariable(System::String ^ name, ShaderVectorVariable ^ variable)
+	{
+		VectorVariableTest = DataConverter::ToColur(variable);
 	}
 }

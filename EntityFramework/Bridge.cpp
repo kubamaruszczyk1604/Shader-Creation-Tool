@@ -29,3 +29,8 @@ void Bridge::ReloadScene()
 {
 	ControlApp::ReloadScene();
 }
+
+void Bridge::SetVariable(ShaderVectorVariable ^ variable)
+{
+	ControlApp::SetShaderVectorVariable("Cos", variable);
+}

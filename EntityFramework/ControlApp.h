@@ -3,6 +3,8 @@
 #include "KLM_Framework.h"
 #include <Windows.h>
 
+#include "DataWrappers.h"
+
 class ControlApp
 {
 private:
@@ -21,5 +23,6 @@ public:
 	static void Run();
 	static void Terminate();
 	static void ReloadScene();
+	static void SetShaderVectorVariable(System::String^ name, ShaderVectorVariable^ variable);
 };
 

@@ -4,6 +4,7 @@
 #include "RendererModes.h"
 #include "LightBase.h"
 
+#include "DataWrappers.h"
 
 namespace KLM_FRAMEWORK
 {
@@ -19,10 +20,10 @@ namespace KLM_FRAMEWORK
 
 		static int s_ScreenWidth;
 		static int s_ScreenHeight;
-
-
 		static bool s_MakeCurrentCalled;
 		static bool KLMSetPixelFormat(HDC hdc);
+
+		static Vec4 VectorVariableTest;
 
 	public:
 		GLRenderer() = delete;
@@ -40,6 +41,7 @@ namespace KLM_FRAMEWORK
 		static void SetCullMode(const CullMode mode);
 		static void SetFillMode(const FillMode mode);
 		static void SetActiveCamera(Camera* camera);
+		static void SetShaderVariable(System::String^ name,ShaderVectorVariable^ variable);
 	};
 
 }

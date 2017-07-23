@@ -13,83 +13,15 @@ private:
 	System::String^ m_Name;
 
 public:
-	ShaderVectorVariable(ShaderVectorVariable^ data, System::String^ name)
-	{
-		m_Name = name;
-		m_Type = data->GetType();  
-		m_Size = data->GetSize();
-		m_Data = gcnew array<float>(m_Size);
-
-		for (int i = 0; i < m_Size; ++i)
-		{
-			m_Data[i] = data->GetElement(i);
-		}
-	}
-
-	ShaderVectorVariable(ShaderVariableType type,System::String^ name)
-	{
-		m_Name = name;
-		if (type == ShaderVariableType::Vector4)
-		{ 
-			m_Size = 4;
-			m_Type = ShaderVariableType::Vector4;
-		}
-		else if (type == ShaderVariableType::Vector3)
-		{
-			m_Size = 3;
-			m_Type = ShaderVariableType::Vector3;
-		}
-		else if (type == ShaderVariableType::Vector2)
-		{
-			m_Size = 2;
-			m_Type = ShaderVariableType::Vector2;
-		}
-		else if (type == ShaderVariableType::Single)
-		{
-			m_Type = ShaderVariableType::Single;
-			m_Size = 1;
-		}
-
-		m_Data = gcnew array<float>(m_Size);
-		
-	}
+	ShaderVectorVariable(ShaderVectorVariable^ data, System::String^ name);
+	ShaderVectorVariable(ShaderVariableType type, System::String^ name);
+	ShaderVectorVariable(float x, float y, float z, float w, System::String^ name);
+	ShaderVectorVariable(float x, float y, float z, System::String^ name);
+	ShaderVectorVariable(float x, float y, System::String^ name);
 
 
-	ShaderVectorVariable(float x, float y, float z, float w, System::String^ name)
-	{
-		m_Name = name;
-		m_Type = ShaderVariableType::Vector4;
-		m_Size = 4;
-		m_Data = gcnew array<float>(m_Size);
-		m_Data[0] = x; m_Data[1] = y; m_Data[2] = z; m_Data[3] = w;
-	}
+	ShaderVectorVariable(float x, System::String^ name);
 
-	ShaderVectorVariable(float x, float y, float z, System::String^ name)
-	{
-		m_Name = name;
-		m_Type = ShaderVariableType::Vector3;
-		m_Size = 3;
-		m_Data = gcnew array<float>(m_Size);
-		m_Data[0] = x; m_Data[1] = y; m_Data[2] = z;	
-	}
-
-	ShaderVectorVariable(float x, float y, System::String^ name)
-	{
-		m_Name = name;
-		m_Type = ShaderVariableType::Vector2;
-		m_Size = 2;
-		m_Data = gcnew array<float>(m_Size);
-		m_Data[0] = x; m_Data[1] = y;
-	}
-
-	ShaderVectorVariable(float x, System::String^ name)
-	{
-		m_Name = name;
-		m_Type = ShaderVariableType::Single;
-		m_Size = 1;
-		m_Data = gcnew array<float>(m_Size);
-		m_Data[0] = x;
-	}
 
 	int GetSize()
 	{
@@ -116,6 +48,21 @@ public:
 	    return m_Data[i];
 	}
 
+	void Set(float x, float y, float z, float w);
+	void Set(float x, float y, float z);
+	void Set(float x, float y);
+	void Set(float x);
+
+	void SetX(float x) { m_Data[0] = x; }
+	void SetY(float y) { m_Data[1] = y; }
+	void SetZ(float z) { m_Data[2] = z; }
+	void SetW(float w) { m_Data[3] = w; }
+
+	void SetR(float r) { m_Data[0] = r; }
+	void SetG(float g) { m_Data[1] = g; }
+	void SetB(float b) { m_Data[2] = b; }
+	void SetA(float a) { m_Data[3] = a; }
+
 	float GetX() { return m_Data[0];}
 	float GetY() { return m_Data[1]; }
 	float GetZ() { return m_Data[2]; }
@@ -131,6 +78,12 @@ public:
 class DataConverter
 {
 public:
+	static KLM_FRAMEWORK::Colour ToColur(ShaderVectorVariable^ floatArray)
+	{
+		return KLM_FRAMEWORK::Colour(floatArray->GetR(), floatArray->GetG(),
+			floatArray->GetB(), floatArray->GetA());
+	}
+
 	static KLM_FRAMEWORK::Vec4 ToVec4(ShaderVectorVariable^ floatArray)
 	{
 		return KLM_FRAMEWORK::Vec4(floatArray->GetX(), floatArray->GetY(),
