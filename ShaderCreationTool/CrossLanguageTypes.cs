@@ -3,6 +3,8 @@
 namespace ShaderCreationTool
 {
 #endif
+
+
 enum
 #if __cplusplus
 
@@ -15,6 +17,9 @@ enum
         Vector2,
         Single
     };
+
+
+
 #if CSharp
 }
 #endif

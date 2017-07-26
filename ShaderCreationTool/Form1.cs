@@ -9,25 +9,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
-
+using System.Reflection;
 
 using System.Runtime.InteropServices;
 
 namespace ShaderCreationTool
 {
-
+ 
     public partial class MainWindow : Form
     {
-
+         
         ConnectionLine m_TestLine;
         ConnectionLine m_TestLine2;
 
         MovableObject m_MovableKey;
         MovableObject m_MovableRenderObject;
         MovableObject m_MovablePreviewPanel;
+        MovableObject m_MovableMaterialWindow;
 
-        ShaderVectorVariable m_Colour;
-        
+        ShaderVectorVariable m_DiffuseColour;
+        ShaderVectorVariable m_AmbientColour;
+
+        Control exp;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -46,9 +50,17 @@ namespace ShaderCreationTool
             m_MovablePreviewPanel.AddObjectMovedEventListener(UpdateOnMouseMove);
 
             Bridge.TESTUJE = 100;
-            m_Colour = new ShaderVectorVariable(1, 0, 0, 1, "TestVariable");
-            Bridge.SetVariable(m_Colour);
-           
+
+            m_DiffuseColour = new ShaderVectorVariable(1, 1, 0, 1, "diffuse");
+            Bridge.SetVariable(m_DiffuseColour);
+
+            m_AmbientColour = new ShaderVectorVariable(0.1f,0.1f, 0.1f, 1, "ambient");
+            Bridge.SetVariable(m_AmbientColour);
+
+
+            
+
+          
         }
 
         private async void StartRenderer(int delayMs)
@@ -56,6 +68,7 @@ namespace ShaderCreationTool
             await Task.Delay(delayMs);
             IntPtr pointer = pictureBox1.Handle;
             Bridge.StartRenderer(pictureBox1.Width, pictureBox1.Height, pointer);
+            
         }
       
 
@@ -80,13 +93,21 @@ namespace ShaderCreationTool
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void MainWindow_Shown(object sender, EventArgs e)
         {
             StartRenderer(100);
             PreviewTextLabel.ForeColor = Color.White;
+
+            exp = SCTElement.CopyAsSCTElement(true);//ControlExtensions.CopyAsSCTElement(SCTElement, true);
+            exp.Visible = true;
+          
+            exp.Location = new Point(200,100);
+
+            m_MovableMaterialWindow = new MovableObject(exp);
+            m_MovableMaterialWindow.AddObjectMovedEventListener(UpdateOnMouseMove);
         }
 
 
@@ -101,6 +122,7 @@ namespace ShaderCreationTool
         private void EditAreaPanel_Click(object sender, EventArgs e)
         {
             fileToolStripMenuItem.HideDropDown();
+           
         }
 
         // PREVIEW AREA PANEL
@@ -120,7 +142,13 @@ namespace ShaderCreationTool
         // TEMPORARY STUFF
         private void button1_Click(object sender, EventArgs e)
         {
-            Bridge.ReloadScene();
+            //Bridge.ReloadScene();
+            List<CheckBox> buttons = ControlExtensions.GetAllChildreenControls<CheckBox>(exp).Cast<CheckBox>().ToList();
+
+            //foreach(CheckBox cb in buttons)
+            //{
+            //    cb.Checked = true;
+            //}
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -131,12 +159,12 @@ namespace ShaderCreationTool
             {
                 // Set form background to the selected color.
                 //this.BackColor = cd.Color;
-                m_Colour.Set((float)(cd.Color.R) / 255.0f,
+                m_DiffuseColour.Set((float)(cd.Color.R) / 255.0f,
                     (float)(cd.Color.G) / 255.0f,
                     (float)(cd.Color.B) / 255.0f,
                     (float)(cd.Color.A) / 255.0f
                     );
-                Bridge.SetVariable(m_Colour);
+             
             }
         }
 
@@ -144,7 +172,5 @@ namespace ShaderCreationTool
         {
             EditAreaPanel.Invalidate(false);
         }
-
-   
     }
 }

@@ -2,9 +2,12 @@
 #include "ModelComponent.h"
 #include "Entity.h"
 #include "GLTexture.h"
+#include <msclr\marshal_cppstd.h>
 
 namespace KLM_FRAMEWORK
 {
+	using namespace msclr::interop;
+
 	bool GLRenderer::s_IsRunning{ false };
 	HWND GLRenderer::s_hWnd{ 0 };
 	HGLRC GLRenderer::s_hGLRC{ nullptr };
@@ -50,6 +53,9 @@ namespace KLM_FRAMEWORK
 
 	bool GLRenderer::Initialize(const int width, const int height, const HWND handle)
 	{
+	
+
+
 		s_ScreenWidth = width;
 		s_ScreenHeight = height;
 		s_hWnd = handle;
@@ -101,11 +107,9 @@ namespace KLM_FRAMEWORK
 		GLuint diffuseID = glGetUniformLocation(shaderProgID, "diffuse");
 		GLuint specularID = glGetUniformLocation(shaderProgID, "specular");
 
-		Vec4 mixed = *(material->GetDiffuseColPtr()) * VectorVariableTest;
 
 		glUniform4fv(ambientID, 1, &material->GetAmbientColPtr()->r);
-		//glUniform4fv(diffuseID, 1, &material->GetDiffuseColPtr()->r);
-		glUniform4fv(diffuseID, 1, &mixed.x);
+		glUniform4fv(diffuseID, 1, &material->GetDiffuseColPtr()->r);
 		glUniform4fv(specularID, 1, &material->GetSpecularColPtr()->r);
 
 
@@ -158,7 +162,9 @@ namespace KLM_FRAMEWORK
 		Mat4 MVP = s_CurrentCamera->GetProjectionMatrix(s_ScreenWidth, s_ScreenHeight) * worldView;
 	
 
-		
+		/*String^ stringon = "MVP";
+		std::string standardString = marshal_as<std::string>(stringon);*/
+
 		//Matrices
 		GLuint MVP_ID = glGetUniformLocation(shaderProgID, "MVP");
 		glUniformMatrix4fv(MVP_ID, 1, GL_FALSE, &MVP[0][0]);
@@ -226,15 +232,151 @@ namespace KLM_FRAMEWORK
 			
 		}
 
-
-
-
 		mc->GetMesh()->GetVBO()->Draw(PrimitiveType::TRIANGLES);
 	
 	}
 
 	void GLRenderer::RenderSCTool(Entity * entity)
 	{
+	
+		Component* c = entity->GetComponentFirst(ComponentType::MODEL_COMPONENT);
+		if (!c) return;
+
+		ModelComponent* mc = static_cast<ModelComponent*>(c);
+		Material* material = const_cast<Material*>(mc->GetMaterial());
+		if (!material) return;
+
+		GLuint shaderProgID = material->GetShaderProgID();
+		material->SetCurrentShaders();
+
+		//Colours
+		GLuint specularID = glGetUniformLocation(shaderProgID, "specular");
+
+		glUniform4fv(specularID, 1, &material->GetSpecularColPtr()->r);
+
+		for (int i = 0; i < ShaderVariableContainer::GetSize(); ++i)
+		{
+			ShaderVectorVariable^ variable =  ShaderVariableContainer::GetShaderVectorVariable(i);
+
+		    String^ managedstr = variable->GetName();
+			std::string name = marshal_as<std::string>(managedstr);
+
+			if (variable->GetType() == ShaderVariableType::Vector4)
+			{
+				GLuint id = glGetUniformLocation(shaderProgID, name.c_str());
+				Vec4 vect = DataConverter::ToVec4(variable);
+				glUniform4fv(id, 1, &vect.x);
+			}
+		}
+
+		//TExtures
+		const Texture* diffuseMapGen = material->GetDiffuseMap();
+		const Texture* specularMapGen = material->GetSpecularMap();
+		const Texture* normalMapGen = material->GetNormalMap();
+
+
+		if (diffuseMapGen)
+		{
+			const void* diffuse = material->GetDiffuseMap()->GetApiSpecificTexture();
+
+
+			GLTexture* diffuseMap = const_cast<GLTexture*>(static_cast<const GLTexture*>(diffuse));
+
+			GLuint samplerID = glGetUniformLocation(shaderProgID, "Texture0");
+			glUniform1i(samplerID, 0);
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, diffuseMap->GetID());
+		}
+
+
+
+		if (!s_CurrentCamera) return;
+		if (!s_CurrentCamera->isActive()) return;
+
+
+		Mat4 worldView;
+		if (s_CurrentCamera->GetParent() == nullptr)
+		{
+			worldView = s_CurrentCamera->GetTransformMatrix() * entity->GetTransform()->GetWorldMat();
+		}
+		else
+		{
+			Entity* parent = s_CurrentCamera->GetParent();
+			worldView =
+				s_CurrentCamera->SetTransformMatrix(parent->GetTransform()->GetWorldMat())
+				* entity->GetTransform()->GetWorldMat();
+
+			//ubs.CameraPosition = (parent->GetTransform()->GetWorldMat()*glm::vec4(0, 0, 0, 1));
+		}
+		Mat4 MVP = s_CurrentCamera->GetProjectionMatrix(s_ScreenWidth, s_ScreenHeight) * worldView;
+
+
+		/*String^ stringon = "MVP";
+		std::string standardString = marshal_as<std::string>(stringon);*/
+
+		//Matrices
+		GLuint MVP_ID = glGetUniformLocation(shaderProgID, "MVP");
+		glUniformMatrix4fv(MVP_ID, 1, GL_FALSE, &MVP[0][0]);
+
+		GLuint WORLD_ID = glGetUniformLocation(shaderProgID, "WORLD");
+		glm::mat4 world = entity->GetTransform()->GetWorldMat();
+		glUniformMatrix4fv(WORLD_ID, 1, GL_FALSE, &world[0][0]);
+
+		GLuint WORLD_INVERSED_ID = glGetUniformLocation(shaderProgID, "WORLD_INVERSE");
+		glm::mat4 worldInverse = glm::transpose(glm::inverse(entity->GetTransform()->GetWorldMat()));
+		glUniformMatrix4fv(WORLD_INVERSED_ID, 1, GL_FALSE, &worldInverse[0][0]);
+
+
+		//Lighting
+		if (LightBase::IsRequestingUpdate())
+		{
+
+			for (int lIndex = 0; lIndex < LightBase::MAX_LIGHTS; ++lIndex)
+			{
+				const ShaderLightInfoStruct& l = LightBase::GetLightInfo(lIndex);
+
+				const std::string baseStr = "lights[" + ToString(lIndex) + "].";
+				//Enabled
+				GLuint loc = glGetUniformLocation(shaderProgID, (baseStr + "enabled").c_str());
+				glUniform1i(loc, l.Enabled);
+
+				//Position
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "position").c_str());
+				glUniform4fv(loc, 1, &l.Position.x);
+
+				//Ambient
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "ambient").c_str());
+				glUniform4fv(loc, 1, &l.Ambient.r);
+
+				//Diffuse
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "diffuse").c_str());
+				glUniform4fv(loc, 1, &l.Diffuse.r);
+
+				//Specular
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "specular").c_str());
+				Vec4 tmpSpc(0, 0, 0, 0);
+				glUniform4fv(loc, 1, &tmpSpc.r);
+
+				//Spot cutoff
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "spot_cutoff").c_str());
+				glUniform1f(loc, l.SpotCutoff);
+
+				//Spot Direction
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "spot_direction").c_str());
+				glUniform3fv(loc, 1, &l.SpotDirection.x);
+
+				//Spot exponent
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "spot_exponent").c_str());
+				glUniform1fv(loc, 1, &l.SpotDecay);
+
+				//Spot Attenuation
+				loc = glGetUniformLocation(shaderProgID, (baseStr + "attenuation").c_str());
+				glUniform3fv(loc, 1, &l.Attenuation.x);
+
+			}
+		}
+
+		mc->GetMesh()->GetVBO()->Draw(PrimitiveType::TRIANGLES);
 	}
 
 	void GLRenderer::Update(const float deltaTime, const float totalTime)
@@ -282,8 +424,20 @@ namespace KLM_FRAMEWORK
 	}
 	
 
-	void GLRenderer::SetShaderVariable(ShaderVectorVariable ^ variable)
+
+
+	
+
+	//////
+	ShaderVectorVariable^ ShaderVariableContainer::GetShaderVectorVariable(int index)
 	{
-		VectorVariableTest = DataConverter::ToColur(variable);
+		if (s_ShaderVaraiablesList.Count == 0) return nullptr;
+		//if (index >= s_ShaderVaraiablesList.Count - 1) return nullptr;
+		return s_ShaderVaraiablesList[index];
+	}
+
+	void ShaderVariableContainer::AddVariable(ShaderVectorVariable ^ variable)
+	{
+		s_ShaderVaraiablesList.Add(variable);
 	}
 }

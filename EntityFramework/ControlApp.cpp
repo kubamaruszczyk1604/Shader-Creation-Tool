@@ -62,6 +62,8 @@ void ControlApp::ReloadScene()
 
 void ControlApp::SetShaderVectorVariable(ShaderVectorVariable ^ variable)
 { 
-	GLRenderer::SetShaderVariable(variable);
+	//Tu zmiana bedzie
+	//GLRenderer::SetShaderVariable(variable);
+	ShaderVariableContainer::AddVariable(variable);
 }
 

@@ -235,7 +235,7 @@
       <Filter>Source Files\Renderer\GL</Filter>
     </ClCompile>
     <ClCompile Include="DataWrappers.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Application</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

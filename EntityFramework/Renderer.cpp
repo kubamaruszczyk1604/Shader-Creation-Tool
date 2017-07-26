@@ -38,7 +38,8 @@ namespace KLM_FRAMEWORK
 			}
 			else if (m_API == GfxAPI::GL)
 			{
-				GLRenderer::Render(e);
+				//GLRenderer::Render(e);
+				GLRenderer::RenderSCTool(e);
 			}
 		}
 

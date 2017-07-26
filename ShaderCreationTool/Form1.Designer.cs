@@ -32,7 +32,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.SCTElement = new System.Windows.Forms.Panel();
+            this.Label = new System.Windows.Forms.Label();
             this.button48 = new System.Windows.Forms.Button();
             this.PreviewAreaPanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -50,20 +51,28 @@
             this.gLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button3 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.EditAreaPanel.SuspendLayout();
+            this.SCTElement.SuspendLayout();
             this.PreviewAreaPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox6.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(28, 367);
+            this.button1.Location = new System.Drawing.Point(135, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(64, 32);
+            this.button1.Size = new System.Drawing.Size(131, 32);
             this.button1.TabIndex = 0;
             this.button1.Text = "LoadRenderer";
             this.button1.UseVisualStyleBackColor = true;
@@ -89,8 +98,7 @@
             this.EditAreaPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditAreaPanel.BackgroundImage")));
             this.EditAreaPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.EditAreaPanel.Controls.Add(this.button3);
-            this.EditAreaPanel.Controls.Add(this.button2);
+            this.EditAreaPanel.Controls.Add(this.SCTElement);
             this.EditAreaPanel.Controls.Add(this.button48);
             this.EditAreaPanel.Controls.Add(this.PreviewAreaPanel);
             this.EditAreaPanel.Controls.Add(this.button1);
@@ -106,14 +114,28 @@
             this.EditAreaPanel.Click += new System.EventHandler(this.EditAreaPanel_Click);
             this.EditAreaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.EditAreaPanel_Paint);
             // 
-            // button2
+            // SCTElement
             // 
-            this.button2.Location = new System.Drawing.Point(56, 481);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(132, 31);
-            this.button2.TabIndex = 27;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.SCTElement.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.SCTElement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SCTElement.Controls.Add(this.panel1);
+            this.SCTElement.Controls.Add(this.Label);
+            this.SCTElement.Enabled = false;
+            this.SCTElement.Location = new System.Drawing.Point(241, 384);
+            this.SCTElement.Name = "SCTElement";
+            this.SCTElement.Size = new System.Drawing.Size(163, 129);
+            this.SCTElement.TabIndex = 29;
+            this.SCTElement.Visible = false;
+            // 
+            // Label
+            // 
+            this.Label.AutoSize = true;
+            this.Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label.Location = new System.Drawing.Point(54, 6);
+            this.Label.Name = "Label";
+            this.Label.Size = new System.Drawing.Size(52, 15);
+            this.Label.TabIndex = 0;
+            this.Label.Text = "Material";
             // 
             // button48
             // 
@@ -121,7 +143,7 @@
             this.button48.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button48.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button48.ForeColor = System.Drawing.SystemColors.Window;
-            this.button48.Location = new System.Drawing.Point(267, 183);
+            this.button48.Location = new System.Drawing.Point(425, 241);
             this.button48.Name = "button48";
             this.button48.Size = new System.Drawing.Size(258, 116);
             this.button48.TabIndex = 15;
@@ -130,7 +152,7 @@
             // 
             // PreviewAreaPanel
             // 
-            this.PreviewAreaPanel.BackColor = System.Drawing.Color.Gray;
+            this.PreviewAreaPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
             this.PreviewAreaPanel.Location = new System.Drawing.Point(811, 3);
@@ -306,19 +328,73 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
-            // button3
+            // panel1
             // 
-            this.button3.BackColor = System.Drawing.Color.Gray;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(267, 321);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(85, 57);
-            this.button3.TabIndex = 28;
-            this.button3.Text = "VECTOR";
-            this.button3.UseVisualStyleBackColor = false;
+            this.panel1.BackColor = System.Drawing.Color.DimGray;
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Location = new System.Drawing.Point(-1, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(163, 104);
+            this.panel1.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel2.Controls.Add(this.checkBox3);
+            this.panel2.Controls.Add(this.checkBox2);
+            this.panel2.Controls.Add(this.radioButton1);
+            this.panel2.Controls.Add(this.checkBox1);
+            this.panel2.Location = new System.Drawing.Point(4, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(155, 96);
+            this.panel2.TabIndex = 0;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox3.ForeColor = System.Drawing.Color.BurlyWood;
+            this.checkBox3.Location = new System.Drawing.Point(3, 62);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(81, 20);
+            this.checkBox3.TabIndex = 7;
+            this.checkBox3.Text = "Specular";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox2.ForeColor = System.Drawing.Color.BurlyWood;
+            this.checkBox2.Location = new System.Drawing.Point(2, 39);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(68, 20);
+            this.checkBox2.TabIndex = 6;
+            this.checkBox2.Text = "Diffuse";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.BackColor = System.Drawing.Color.Transparent;
+            this.radioButton1.Location = new System.Drawing.Point(138, 40);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(14, 13);
+            this.radioButton1.TabIndex = 5;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.UseVisualStyleBackColor = false;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.ForeColor = System.Drawing.Color.BurlyWood;
+            this.checkBox1.Location = new System.Drawing.Point(3, 16);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(76, 20);
+            this.checkBox1.TabIndex = 4;
+            this.checkBox1.Text = "Ambient";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -340,12 +416,17 @@
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.Shown += new System.EventHandler(this.MainWindow_Shown);
             this.EditAreaPanel.ResumeLayout(false);
+            this.SCTElement.ResumeLayout(false);
+            this.SCTElement.PerformLayout();
             this.PreviewAreaPanel.ResumeLayout(false);
             this.PreviewAreaPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -372,9 +453,15 @@
         private System.Windows.Forms.ToolStripMenuItem gLSLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hLSLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label PreviewTextLabel;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Panel SCTElement;
+        private System.Windows.Forms.Label Label;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

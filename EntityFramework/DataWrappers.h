@@ -28,7 +28,7 @@ public:
 		return m_Size;
 	}
 
-	const System::String^ const GetName()
+	System::String^ GetName()
 	{
 		return m_Name;
 	}
