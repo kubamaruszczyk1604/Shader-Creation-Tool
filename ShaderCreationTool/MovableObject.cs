@@ -1,25 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
-    public delegate void ObjectMoved();
+    public delegate void ObjectMovedCallback();
     class MovableObject
     {
         private Control p_Control;
         private Point m_MouseDownLocation;
 
        
-        public ObjectMoved OnObjectMoved;
+        public ObjectMovedCallback OnObjectMoved;
 
         public MovableObject(Control control)
         {
@@ -30,7 +21,7 @@ namespace ShaderCreationTool
 
         }
 
-        public void AddObjectMovedEventListener(ObjectMoved method)
+        public void AddObjectMovedEventListener(ObjectMovedCallback method)
         {
             OnObjectMoved += method;
         }

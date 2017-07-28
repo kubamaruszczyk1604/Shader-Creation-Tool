@@ -24,18 +24,15 @@ namespace ShaderCreationTool
         static extern bool AllocConsole();
 
         ConnectionLine m_TestLine;
+        ConnectionLine m_TempLine;
 
-        Connector m_Connector;
 
         MovableObject m_MovableKey;
         MovableObject m_MovableRenderObject;
         MovableObject m_MovablePreviewPanel;
-        MovableObject m_MovableMaterialWindow;
 
         ShaderVectorVariable m_DiffuseColour;
         ShaderVectorVariable m_AmbientColour;
-
-        Control exp;
 
         SCTNode m_Node;
 
@@ -45,6 +42,7 @@ namespace ShaderCreationTool
             this.DoubleBuffered = true;
 
             m_TestLine = new ConnectionLine(EditAreaPanel);
+            m_TempLine = new ConnectionLine(EditAreaPanel);
 
             m_MovableKey = new MovableObject(button44);
             m_MovableKey.AddObjectMovedEventListener(UpdateOnObjectMoved);
@@ -80,14 +78,16 @@ namespace ShaderCreationTool
         private void UpdateOnObjectMoved()
         {
             m_TestLine.Invalidate();
+            m_TempLine.Invalidate();
             ConnectionManager.UpdateOnObjectMoved();
             EditAreaPanel.Update();
         }
 
      
-         private void OnConnectionBegin(Connector sender)
+        private void OnConnectionBegin(Connector sender)
         {
             SCTConsole.Instance.PrintLine("Connector called on click.");
+
         }
 
         //**************************************  UI EVENTS  ***********************************************//
@@ -110,14 +110,9 @@ namespace ShaderCreationTool
             StartRenderer(100);
             PreviewTextLabel.ForeColor = Color.White;
 
-            exp = SCTElement.CopyAsSCTElement(true);
-            exp.Visible = true;
-            exp.Location = new Point(300,100);
-
-            m_MovableMaterialWindow = new MovableObject(exp);
-            m_MovableMaterialWindow.AddObjectMovedEventListener(UpdateOnObjectMoved);
-
-            m_Node = new SCTNode(SCTElement, new Point(200, 300), UpdateOnObjectMoved);
+            m_Node = new SCTNode(SCTElement, new Point(200, 300));
+            m_Node.RegisterListener_OnMoved(UpdateOnObjectMoved);
+            m_Node.RegisterListener_OnBeginConnection(OnConnectionBegin);
 
         }
 
@@ -155,10 +150,10 @@ namespace ShaderCreationTool
         private void button1_Click(object sender, EventArgs e)
         {
             //Bridge.ReloadScene();
-            List<CheckBox> buttons = ControlExtensions.GetAllChildreenControls<CheckBox>(exp).Cast<CheckBox>().ToList();
+            //List<CheckBox> buttons = ControlExtensions.GetAllChildreenControls<CheckBox>(exp).Cast<CheckBox>().ToList();
 
-            m_Connector = new Connector(buttons[0]);
-            m_Connector.RegisterListener_BeginConnection(OnConnectionBegin);
+            //m_Connector = new Connector(buttons[0]);
+            //m_Connector.RegisterListener_BeginConnection(OnConnectionBegin);
 
             SCTConsole.Instance.Show();
             SCTConsole.Instance.PrintLine("Console shown test..");
