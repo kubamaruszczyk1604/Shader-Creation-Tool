@@ -53,10 +53,10 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.Material_In_Slot_Specular = new System.Windows.Forms.CheckBox();
+            this.Material_In_Slot_Diffuse = new System.Windows.Forms.CheckBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.Material_In_Slot_Ambient = new System.Windows.Forms.CheckBox();
             this.EditAreaPanel.SuspendLayout();
             this.SCTElement.SuspendLayout();
             this.PreviewAreaPanel.SuspendLayout();
@@ -340,38 +340,38 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel2.Controls.Add(this.checkBox3);
-            this.panel2.Controls.Add(this.checkBox2);
+            this.panel2.Controls.Add(this.Material_In_Slot_Specular);
+            this.panel2.Controls.Add(this.Material_In_Slot_Diffuse);
             this.panel2.Controls.Add(this.radioButton1);
-            this.panel2.Controls.Add(this.checkBox1);
+            this.panel2.Controls.Add(this.Material_In_Slot_Ambient);
             this.panel2.Location = new System.Drawing.Point(4, 4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(155, 96);
             this.panel2.TabIndex = 0;
             // 
-            // checkBox3
+            // Material_In_Slot_Specular
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox3.ForeColor = System.Drawing.Color.BurlyWood;
-            this.checkBox3.Location = new System.Drawing.Point(3, 62);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(81, 20);
-            this.checkBox3.TabIndex = 7;
-            this.checkBox3.Text = "Specular";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.Material_In_Slot_Specular.AutoSize = true;
+            this.Material_In_Slot_Specular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Material_In_Slot_Specular.ForeColor = System.Drawing.Color.BurlyWood;
+            this.Material_In_Slot_Specular.Location = new System.Drawing.Point(3, 62);
+            this.Material_In_Slot_Specular.Name = "Material_In_Slot_Specular";
+            this.Material_In_Slot_Specular.Size = new System.Drawing.Size(81, 20);
+            this.Material_In_Slot_Specular.TabIndex = 7;
+            this.Material_In_Slot_Specular.Text = "Specular";
+            this.Material_In_Slot_Specular.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // Material_In_Slot_Diffuse
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.ForeColor = System.Drawing.Color.BurlyWood;
-            this.checkBox2.Location = new System.Drawing.Point(2, 39);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(68, 20);
-            this.checkBox2.TabIndex = 6;
-            this.checkBox2.Text = "Diffuse";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.Material_In_Slot_Diffuse.AutoSize = true;
+            this.Material_In_Slot_Diffuse.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Material_In_Slot_Diffuse.ForeColor = System.Drawing.Color.BurlyWood;
+            this.Material_In_Slot_Diffuse.Location = new System.Drawing.Point(2, 39);
+            this.Material_In_Slot_Diffuse.Name = "Material_In_Slot_Diffuse";
+            this.Material_In_Slot_Diffuse.Size = new System.Drawing.Size(68, 20);
+            this.Material_In_Slot_Diffuse.TabIndex = 6;
+            this.Material_In_Slot_Diffuse.Text = "Diffuse";
+            this.Material_In_Slot_Diffuse.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
@@ -384,17 +384,17 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.UseVisualStyleBackColor = false;
             // 
-            // checkBox1
+            // Material_In_Slot_Ambient
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.ForeColor = System.Drawing.Color.BurlyWood;
-            this.checkBox1.Location = new System.Drawing.Point(3, 16);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(76, 20);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "Ambient";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.Material_In_Slot_Ambient.AutoSize = true;
+            this.Material_In_Slot_Ambient.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Material_In_Slot_Ambient.ForeColor = System.Drawing.Color.BurlyWood;
+            this.Material_In_Slot_Ambient.Location = new System.Drawing.Point(3, 16);
+            this.Material_In_Slot_Ambient.Name = "Material_In_Slot_Ambient";
+            this.Material_In_Slot_Ambient.Size = new System.Drawing.Size(76, 20);
+            this.Material_In_Slot_Ambient.TabIndex = 4;
+            this.Material_In_Slot_Ambient.Text = "Ambient";
+            this.Material_In_Slot_Ambient.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -458,10 +458,10 @@
         private System.Windows.Forms.Label Label;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox Material_In_Slot_Specular;
+        private System.Windows.Forms.CheckBox Material_In_Slot_Diffuse;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox Material_In_Slot_Ambient;
     }
 }
 

@@ -36,7 +36,7 @@ namespace ShaderCreationTool
         ShaderVectorVariable m_DiffuseColour;
         ShaderVectorVariable m_AmbientColour;
 
-        SCTConsole m_Console;
+       
 
         Control exp;
 
@@ -63,10 +63,8 @@ namespace ShaderCreationTool
             Bridge.SetVariable(m_DiffuseColour);
 
             m_AmbientColour = new ShaderVectorVariable(0.1f,0.1f, 0.1f, 1, "ambient");
-            Bridge.SetVariable(m_AmbientColour);
-
-            m_Console = new SCTConsole();
-            m_Console.Show();
+            Bridge.SetVariable(m_AmbientColour); 
+            SCTConsole.Instance.Show();
 
         }
 
@@ -81,14 +79,14 @@ namespace ShaderCreationTool
       
 
         // UTIL METHODS
-        void UpdateOnMouseMove()
+        private void UpdateOnMouseMove()
         {
             m_TestLine.Invalidate();
             m_TestLine2.Invalidate();
             EditAreaPanel.Update();
         }
 
-
+     
 
         //**************************************  UI EVENTS  ***********************************************//
 
@@ -101,7 +99,7 @@ namespace ShaderCreationTool
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            m_Console.PrintLine("Main Window Loaded...");
+            SCTConsole.Instance.PrintLine("Main Window Loaded...");
            
         }
 
@@ -161,9 +159,9 @@ namespace ShaderCreationTool
             //    cb.Checked = true;
             //}
 
-            m_Console.Show();
+            SCTConsole.Instance.Show();
             for(int i =0; i <10;++i)
-            m_Console.PrintLine("Console shown test..");
+            SCTConsole.Instance.PrintLine("Console shown test..");
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

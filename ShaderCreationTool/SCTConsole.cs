@@ -12,7 +12,9 @@ namespace ShaderCreationTool
 {
     public partial class SCTConsole : Form
     {
-        public SCTConsole()
+
+
+        private SCTConsole()
         {
             InitializeComponent();
             
@@ -38,5 +40,10 @@ namespace ShaderCreationTool
                 Hide();
             }
         }
+
+        static public SCTConsole Instance = new SCTConsole();
     }
+
+
+  
 }
