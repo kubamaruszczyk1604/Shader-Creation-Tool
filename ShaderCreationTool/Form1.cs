@@ -150,9 +150,9 @@ namespace ShaderCreationTool
         private void button1_Click(object sender, EventArgs e)
         {
             //Bridge.ReloadScene();
-            // List<CheckBox> buttons = ControlExtensions.GetAllChildreenControls<CheckBox>(exp).Cast<CheckBox>().ToList();
+            List<CheckBox> buttons = ControlExtensions.GetAllChildreenControls<CheckBox>(exp).Cast<CheckBox>().ToList();
 
-            // m_Connector = new Connector(buttons[0]);
+             m_Connector = new Connector(buttons[0]);
 
             //foreach (CheckBox cb in buttons)
             //{
@@ -160,7 +160,6 @@ namespace ShaderCreationTool
             //}
 
             SCTConsole.Instance.Show();
-            for(int i =0; i <10;++i)
             SCTConsole.Instance.PrintLine("Console shown test..");
         }
 
