@@ -14,20 +14,26 @@ namespace ShaderCreationTool
 {
     enum ConnectorType
     {
-        Input,
-        Output
+        Destination,
+        Source
     }
+
+    delegate void BeginConnectionCallback(Connector sender);
 
     class Connector
     {
         // PRIVATE
-        private static string s_InSlotSequenceID = "In_Slot";
-        private static string s_OutSlotSequenceID = "Out_Slot";
+        private const string s_InSlotSequenceID = "In_Slot";
+        private const string s_OutSlotSequenceID = "Out_Slot";
 
         private CheckBox m_Control;
         private ConnectorType m_ConnectorType;
         private bool m_ConnectedFlag;
-    
+
+
+        //private 
+
+        private BeginConnectionCallback m_BeginConnectionCallback;
 
 
         // PRIVATE (METHODS)
@@ -35,18 +41,20 @@ namespace ShaderCreationTool
         { 
             if (!m_ConnectedFlag)
             {
-   
+                if (m_BeginConnectionCallback != null)
+                {
+                    m_BeginConnectionCallback(this);
+                }
             }
         }
+        
+        /////////////////////////////////////////////////////////  PUBLIC  /////////////////////////////////////////////////
 
-
-        // PROPERTIES (PUBLIC)
+        // PROPERTIES
         public ConnectorType Type { get { return m_ConnectorType; } }
         public bool Connected { get { return m_ConnectedFlag; } }
-
-
-     
-        // PUBLIC
+        public Control WinFormControl { get { return m_Control; } }
+       
         public Connector(CheckBox control)
         {
             m_Control = control;
@@ -55,16 +63,23 @@ namespace ShaderCreationTool
 
             if (m_Control.Name.Contains(s_InSlotSequenceID))
             {
-                m_ConnectorType = ConnectorType.Input;
+                m_ConnectorType = ConnectorType.Destination;
             }
             else if (m_Control.Name.Contains(s_OutSlotSequenceID))
             {
-                m_ConnectorType = ConnectorType.Output;
+                m_ConnectorType = ConnectorType.Source;
             }
             else
             {
                 throw new Exception("Slot did not contain correct sequence ID.");
             }
+        }
+
+
+        public void RegisterListener_BeginConnection(BeginConnectionCallback method)
+        {
+            m_BeginConnectionCallback += method;
+
         }
 
 

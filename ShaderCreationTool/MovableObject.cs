@@ -12,12 +12,13 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
+    public delegate void ObjectMoved();
     class MovableObject
     {
         private Control p_Control;
         private Point m_MouseDownLocation;
 
-        public delegate void ObjectMoved();
+       
         public ObjectMoved OnObjectMoved;
 
         public MovableObject(Control control)
