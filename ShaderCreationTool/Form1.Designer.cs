@@ -152,7 +152,7 @@
             // 
             // PreviewAreaPanel
             // 
-            this.PreviewAreaPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.PreviewAreaPanel.BackColor = System.Drawing.Color.DimGray;
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
             this.PreviewAreaPanel.Location = new System.Drawing.Point(811, 3);

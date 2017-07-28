@@ -15,12 +15,18 @@ using System.Runtime.InteropServices;
 
 namespace ShaderCreationTool
 {
- 
+   
+
     public partial class MainWindow : Form
     {
-         
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
+
         ConnectionLine m_TestLine;
         ConnectionLine m_TestLine2;
+
+        Connector m_Connector;
 
         MovableObject m_MovableKey;
         MovableObject m_MovableRenderObject;
@@ -29,6 +35,8 @@ namespace ShaderCreationTool
 
         ShaderVectorVariable m_DiffuseColour;
         ShaderVectorVariable m_AmbientColour;
+
+        SCTConsole m_Console;
 
         Control exp;
 
@@ -57,14 +65,14 @@ namespace ShaderCreationTool
             m_AmbientColour = new ShaderVectorVariable(0.1f,0.1f, 0.1f, 1, "ambient");
             Bridge.SetVariable(m_AmbientColour);
 
+            m_Console = new SCTConsole();
+            m_Console.Show();
 
-            
-
-          
         }
 
         private async void StartRenderer(int delayMs)
         {
+            //AllocConsole();
             await Task.Delay(delayMs);
             IntPtr pointer = pictureBox1.Handle;
             Bridge.StartRenderer(pictureBox1.Width, pictureBox1.Height, pointer);
@@ -93,6 +101,7 @@ namespace ShaderCreationTool
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            m_Console.PrintLine("Main Window Loaded...");
            
         }
 
@@ -101,10 +110,10 @@ namespace ShaderCreationTool
             StartRenderer(100);
             PreviewTextLabel.ForeColor = Color.White;
 
-            exp = SCTElement.CopyAsSCTElement(true);//ControlExtensions.CopyAsSCTElement(SCTElement, true);
+            exp = SCTElement.CopyAsSCTElement(true);
             exp.Visible = true;
           
-            exp.Location = new Point(200,100);
+            exp.Location = new Point(300,100);
 
             m_MovableMaterialWindow = new MovableObject(exp);
             m_MovableMaterialWindow.AddObjectMovedEventListener(UpdateOnMouseMove);
@@ -143,12 +152,18 @@ namespace ShaderCreationTool
         private void button1_Click(object sender, EventArgs e)
         {
             //Bridge.ReloadScene();
-            List<CheckBox> buttons = ControlExtensions.GetAllChildreenControls<CheckBox>(exp).Cast<CheckBox>().ToList();
+            // List<CheckBox> buttons = ControlExtensions.GetAllChildreenControls<CheckBox>(exp).Cast<CheckBox>().ToList();
 
-            //foreach(CheckBox cb in buttons)
+            // m_Connector = new Connector(buttons[0]);
+
+            //foreach (CheckBox cb in buttons)
             //{
             //    cb.Checked = true;
             //}
+
+            m_Console.Show();
+            for(int i =0; i <10;++i)
+            m_Console.PrintLine("Console shown test..");
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -172,5 +187,8 @@ namespace ShaderCreationTool
         {
             EditAreaPanel.Invalidate(false);
         }
+       
     }
+
+   
 }
