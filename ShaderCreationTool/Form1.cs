@@ -36,8 +36,6 @@ namespace ShaderCreationTool
         ShaderVectorVariable m_DiffuseColour;
         ShaderVectorVariable m_AmbientColour;
 
-       
-
         Control exp;
 
         public MainWindow()
@@ -152,12 +150,7 @@ namespace ShaderCreationTool
             //Bridge.ReloadScene();
             List<CheckBox> buttons = ControlExtensions.GetAllChildreenControls<CheckBox>(exp).Cast<CheckBox>().ToList();
 
-             m_Connector = new Connector(buttons[0]);
-
-            //foreach (CheckBox cb in buttons)
-            //{
-            //    cb.Checked = true;
-            //}
+            m_Connector = new Connector(buttons[0]);
 
             SCTConsole.Instance.Show();
             SCTConsole.Instance.PrintLine("Console shown test..");

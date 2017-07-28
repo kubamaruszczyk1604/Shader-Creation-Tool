@@ -20,32 +20,38 @@ namespace ShaderCreationTool
 
     class Connector
     {
+        // PRIVATE
         private static string s_InSlotSequenceID = "In_Slot";
         private static string s_OutSlotSequenceID = "Out_Slot";
 
-        private Control m_Control;
+        private CheckBox m_Control;
         private ConnectorType m_ConnectorType;
-
-        public ConnectorType Type { get { return m_ConnectorType; } }
-
-        //TODO
+        private bool m_ConnectedFlag;
+    
 
 
+        // PRIVATE (METHODS)
         private void OnClick(object sender, EventArgs e)
-        {
-            if (m_Control is CheckBox)
+        { 
+            if (!m_ConnectedFlag)
             {
-                CheckBox cb = (CheckBox)m_Control;
-                cb.Checked = false;
+   
             }
         }
 
-        public Connector(Control control)
+
+        // PROPERTIES (PUBLIC)
+        public ConnectorType Type { get { return m_ConnectorType; } }
+        public bool Connected { get { return m_ConnectedFlag; } }
+
+
+     
+        // PUBLIC
+        public Connector(CheckBox control)
         {
             m_Control = control;
             m_Control.Click += OnClick;
-
-            if (!(m_Control is CheckBox)) throw new Exception("Connector must be injected with CheckBox Control type.");
+            m_ConnectedFlag = false;
 
             if (m_Control.Name.Contains(s_InSlotSequenceID))
             {
@@ -59,8 +65,6 @@ namespace ShaderCreationTool
             {
                 throw new Exception("Slot did not contain correct sequence ID.");
             }
-
-
         }
 
 

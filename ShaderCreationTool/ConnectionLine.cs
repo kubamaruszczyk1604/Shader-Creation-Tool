@@ -10,7 +10,7 @@ namespace ShaderCreationTool
 {
     class ConnectionLine
     {
-        private readonly Pen m_Pen = new Pen(Color.FromArgb(100,200,200,255), 5);
+        private readonly Pen m_Pen = new Pen(Color.FromArgb(100,100,100,255), 3);
         private Control p_Control;
         private bool m_Invalidate;
 
