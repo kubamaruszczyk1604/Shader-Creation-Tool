@@ -73,6 +73,40 @@ namespace ShaderCreationTool
             this.DrawConnectionLine(g, start, end);
         }
 
+        public void DrawConnectionLine(Graphics g, Control control1, Control control2, int ancestorCountC1, int ancestorCountC2)
+        {
+
+            Point C1TransformStack = new Point(0, 0);
+       
+
+            Control c1 = control1;
+            while(control1.Parent != null && ancestorCountC1 > 0)
+            {
+                c1 = c1.Parent;
+                C1TransformStack = new Point(c1.Location.X + C1TransformStack.X, c1.Location.Y + C1TransformStack.Y);
+                ancestorCountC1--;
+            }
+
+
+            Point C2TransformStack = new Point(0, 0);
+
+
+            Control c2 = control2;
+            while (control2.Parent != null && ancestorCountC2 > 0)
+            {
+                c2 = c2.Parent;
+                C2TransformStack = new Point(c2.Location.X + C2TransformStack.X, c2.Location.Y + C2TransformStack.Y);
+                ancestorCountC2--;
+            }
+
+
+
+            Point start = new Point(control1.Left + control1.Width + C1TransformStack.X,
+               C1TransformStack.Y + control1.Top + control1.Height / 2);
+            Point end = new Point(control2.Left + C2TransformStack.X,  C2TransformStack.Y + control2.Top + control2.Height / 2);
+            this.DrawConnectionLine(g, start, end);
+        }
+
         public void Invalidate()
         {
             m_Invalidate = true;

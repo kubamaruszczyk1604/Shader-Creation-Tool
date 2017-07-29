@@ -19,6 +19,8 @@ namespace ShaderCreationTool
         private List<Connector> m_DestinationConnectors;
 
 
+        //////////////////////////////////////////  PUBLIC  ///////////////////////////////////////////////
+        
         public SCTNode(Panel nodeTemplate, Point initAtLocation)
         {
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
@@ -34,7 +36,6 @@ namespace ShaderCreationTool
             for(int i = 0; i < boxes.Count;++i)
             {
                 Connector tempCon = new Connector(boxes[i]);
-                //m_Connector.RegisterListener_BeginConnection(OnConnectionBegin);
                 if (tempCon.Type == ConnectorType.Source)
                 {
                     m_SourceConnectors.Add(tempCon);
@@ -45,8 +46,6 @@ namespace ShaderCreationTool
                 }
             }
         }
-
-
 
         public void RegisterListener_OnMoved(ObjectMovedCallback onMovedCallback)
         {
@@ -64,5 +63,29 @@ namespace ShaderCreationTool
                 c.RegisterListener_BeginConnection(onBeginConnection);
             }
         }
+
+        public Connector GetConnector(ConnectorType type, int index)
+        {
+            if (type == ConnectorType.Source) return m_SourceConnectors[index];
+            else if (type == ConnectorType.Destination) return m_DestinationConnectors[index];
+            else return null;
+        }
+
+        public List<Connector> GetAllConnectors(ConnectorType type)
+        {
+            if (type == ConnectorType.Source) return m_SourceConnectors;
+            else if (type == ConnectorType.Destination) return m_DestinationConnectors;
+            else return null;
+        }
+
+        public List<Connector> GetAllConnectors()
+        {
+            List<Connector> outList = new List<Connector>();
+            outList.AddRange(m_SourceConnectors);
+            outList.AddRange(m_DestinationConnectors);
+            return outList;
+        }
+
+
     }
 }

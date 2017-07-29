@@ -48,7 +48,7 @@ namespace ShaderCreationTool
         public void Draw(Graphics g)
         {
             if (!m_ConnectedFlag) return;
-            m_Line.DrawConnectionLine(g, m_pSource.WinFormControl, m_pDestination.WinFormControl);
+            m_Line.DrawConnectionLine(g, m_pSource.WinFormControl, m_pDestination.WinFormControl,3,3);
         }
 
         public void UpdateOnObjectMoved()

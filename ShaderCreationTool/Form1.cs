@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -19,13 +20,15 @@ namespace ShaderCreationTool
 
     public partial class MainWindow : Form
     {
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool AllocConsole();
+        //[DllImport("kernel32.dll", SetLastError = true)]
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        //static extern bool AllocConsole();
 
         ConnectionLine m_TestLine;
         ConnectionLine m_TempLine;
 
+
+        
 
         MovableObject m_MovableKey;
         MovableObject m_MovableRenderObject;
@@ -34,7 +37,7 @@ namespace ShaderCreationTool
         ShaderVectorVariable m_DiffuseColour;
         ShaderVectorVariable m_AmbientColour;
 
-        SCTNode m_Node;
+        List<SCTNode> m_Nodes;
 
         public MainWindow()
         {
@@ -62,6 +65,8 @@ namespace ShaderCreationTool
             Bridge.SetVariable(m_AmbientColour); 
             SCTConsole.Instance.Show();
 
+
+            m_Nodes = new List<SCTNode>();
         }
 
         private async void StartRenderer(int delayMs)
@@ -110,10 +115,23 @@ namespace ShaderCreationTool
             StartRenderer(100);
             PreviewTextLabel.ForeColor = Color.White;
 
-            m_Node = new SCTNode(SCTElement, new Point(200, 300));
-            m_Node.RegisterListener_OnMoved(UpdateOnObjectMoved);
-            m_Node.RegisterListener_OnBeginConnection(OnConnectionBegin);
+            for (int i = 0; i < 2; ++i)
+            {
+                SCTNode temp = new SCTNode(SCTElement, new Point(200*i, 300));
+                temp.RegisterListener_OnMoved(UpdateOnObjectMoved);
+                temp.RegisterListener_OnBeginConnection(OnConnectionBegin);
+                m_Nodes.Add(temp);
+            }
 
+            Connection tempCon = new Connection(m_Nodes[0].GetAllConnectors(ConnectorType.Source)[0],
+                m_Nodes[1].GetAllConnectors(ConnectorType.Destination)[0],
+                EditAreaPanel
+                );
+
+            //Connection tempCon = new Connection(new Connector(In_Slotxx),new Connector(Out_Slotxxl),
+            //   EditAreaPanel
+            //   );
+            ConnectionManager.AddConnecion(tempCon);
         }
 
 
@@ -129,7 +147,6 @@ namespace ShaderCreationTool
         private void EditAreaPanel_Click(object sender, EventArgs e)
         {
             fileToolStripMenuItem.HideDropDown();
-           
         }
 
         // PREVIEW AREA PANEL
@@ -145,15 +162,11 @@ namespace ShaderCreationTool
 
 
 
-
         // TEMPORARY STUFF
         private void button1_Click(object sender, EventArgs e)
         {
             //Bridge.ReloadScene();
-            //List<CheckBox> buttons = ControlExtensions.GetAllChildreenControls<CheckBox>(exp).Cast<CheckBox>().ToList();
-
-            //m_Connector = new Connector(buttons[0]);
-            //m_Connector.RegisterListener_BeginConnection(OnConnectionBegin);
+          
 
             SCTConsole.Instance.Show();
             SCTConsole.Instance.PrintLine("Console shown test..");

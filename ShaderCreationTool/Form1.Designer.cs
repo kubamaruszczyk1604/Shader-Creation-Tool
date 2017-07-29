@@ -35,6 +35,7 @@
             this.SCTElement = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Material_Out_Slot = new System.Windows.Forms.CheckBox();
             this.Material_In_Slot_Specular = new System.Windows.Forms.CheckBox();
             this.Material_In_Slot_Diffuse = new System.Windows.Forms.CheckBox();
             this.Material_In_Slot_Ambient = new System.Windows.Forms.CheckBox();
@@ -56,7 +57,6 @@
             this.gLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Material_Out_Slot = new System.Windows.Forms.CheckBox();
             this.EditAreaPanel.SuspendLayout();
             this.SCTElement.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -84,7 +84,7 @@
             this.button44.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button44.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button44.Location = new System.Drawing.Point(9, 298);
+            this.button44.Location = new System.Drawing.Point(152, 41);
             this.button44.Name = "button44";
             this.button44.Size = new System.Drawing.Size(137, 28);
             this.button44.TabIndex = 14;
@@ -121,7 +121,7 @@
             this.SCTElement.Controls.Add(this.panel1);
             this.SCTElement.Controls.Add(this.Label);
             this.SCTElement.Enabled = false;
-            this.SCTElement.Location = new System.Drawing.Point(241, 384);
+            this.SCTElement.Location = new System.Drawing.Point(1114, 560);
             this.SCTElement.Name = "SCTElement";
             this.SCTElement.Size = new System.Drawing.Size(163, 129);
             this.SCTElement.TabIndex = 29;
@@ -147,6 +147,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(155, 96);
             this.panel2.TabIndex = 0;
+            // 
+            // Material_Out_Slot
+            // 
+            this.Material_Out_Slot.AutoSize = true;
+            this.Material_Out_Slot.Location = new System.Drawing.Point(137, 39);
+            this.Material_Out_Slot.Name = "Material_Out_Slot";
+            this.Material_Out_Slot.Size = new System.Drawing.Size(15, 14);
+            this.Material_Out_Slot.TabIndex = 8;
+            this.Material_Out_Slot.UseVisualStyleBackColor = true;
             // 
             // Material_In_Slot_Specular
             // 
@@ -384,16 +393,6 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // Material_Out_Slot
-            // 
-            this.Material_Out_Slot.AutoSize = true;
-            this.Material_Out_Slot.Location = new System.Drawing.Point(137, 39);
-            this.Material_Out_Slot.Name = "Material_Out_Slot";
-            this.Material_Out_Slot.Size = new System.Drawing.Size(41, 17);
-            this.Material_Out_Slot.TabIndex = 8;
-            this.Material_Out_Slot.Text = "out";
-            this.Material_Out_Slot.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
