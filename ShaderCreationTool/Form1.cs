@@ -124,7 +124,7 @@ namespace ShaderCreationTool
             }
 
             Connection tempCon = new Connection(m_Nodes[0].GetAllConnectors(ConnectorType.Source)[0],
-                m_Nodes[1].GetAllConnectors(ConnectorType.Destination)[0],
+                m_Nodes[1].GetAllConnectors(ConnectorType.Destination)[2],
                 EditAreaPanel
                 );
 
@@ -193,7 +193,11 @@ namespace ShaderCreationTool
         {
             EditAreaPanel.Invalidate(false);
         }
-       
+
+        private void mousedowntest(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 
    

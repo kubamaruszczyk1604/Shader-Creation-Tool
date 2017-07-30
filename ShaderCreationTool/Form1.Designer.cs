@@ -215,6 +215,7 @@
             this.button48.TabIndex = 15;
             this.button48.Text = "Rendered Object";
             this.button48.UseVisualStyleBackColor = false;
+            this.button48.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mousedowntest);
             // 
             // PreviewAreaPanel
             // 
