@@ -116,7 +116,7 @@
             // 
             // SCTElement
             // 
-            this.SCTElement.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.SCTElement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.SCTElement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SCTElement.Controls.Add(this.panel1);
             this.SCTElement.Controls.Add(this.Label);
@@ -219,7 +219,7 @@
             // 
             // PreviewAreaPanel
             // 
-            this.PreviewAreaPanel.BackColor = System.Drawing.Color.DimGray;
+            this.PreviewAreaPanel.BackColor = System.Drawing.Color.Gray;
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
             this.PreviewAreaPanel.Location = new System.Drawing.Point(811, 3);

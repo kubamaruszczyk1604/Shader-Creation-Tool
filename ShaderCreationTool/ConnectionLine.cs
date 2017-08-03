@@ -10,42 +10,57 @@ namespace ShaderCreationTool
 {
     class ConnectionLine
     {
-        private readonly Pen m_Pen = new Pen(Color.FromArgb(100,100,100,255), 3);
+        private readonly Pen m_Pen = new Pen(Color.FromArgb(130,200,200,205), 3);
         private Control p_Control;
         private bool m_Invalidate;
         private float m_Pan;
-        private Button m_RegulationButton;
-        private MovableObject m_RegulationButtonMover;
-        private Point m_OldRegulationPos;
-        private bool m_RegulationMoving;
+        private Button m_XRegulationButton;
+        private MovableObject m_XRegulationButtonMover;
+
+        private Button m_YRegulationButton;
+        private MovableObject m_YRegulationButtonMover;
+
+        // private Point m_OldRegulationPos;
+        private bool m_YMoving;
+        private int m_YPosition;
+        bool m_CapturedYPosition;
+
+
+        private bool m_XMoving;
         private float m_StartX;
         private float m_EndX;
 
 
-        private void OnObjectMoved()
-        {
-
-            
-            m_RegulationMoving = true;
+        private void OnXbuttonMoved()
+        {        
+            m_XMoving = true;
             m_Invalidate = true;
             p_Control.Update();
+   
+            float rangeX = Math.Abs(m_EndX - m_StartX);
+            float distanceX = m_XRegulationButton.Location.X + m_XRegulationButton.Width/2 - m_StartX;
 
-
-            // m_Pan += 0.01f;
-            // if (m_Pan > 0.85f) m_Pan = 0.85f;
-            float range = Math.Abs(m_EndX - m_StartX);
-
-            float distance = m_RegulationButton.Location.X + m_RegulationButton.Width/2 - m_StartX;
-
-            m_Pan = distance / range;
+            m_Pan = distanceX / rangeX;
           
-            SCTConsole.Instance.PrintLine("Pan range calculated: " + range.ToString());
+            SCTConsole.Instance.PrintLine("Pan range calculated: " + rangeX.ToString());
         }
 
-        void OnMouseUpOnRegulation(object sender, MouseEventArgs e)
+        private void OnYbuttonMoved()
         {
-            m_RegulationMoving = false;
-           
+            m_YMoving = true;
+            m_Invalidate = true;
+            p_Control.Update();
+            SCTConsole.Instance.PrintLine("Y range calculated: ");
+        }
+
+        void OnMouseUpXButton(object sender, MouseEventArgs e)
+        {
+            m_XMoving = false;
+        }
+
+        void OnMouseUpYButton(object sender, MouseEventArgs e)
+        {
+            m_YMoving = false;
         }
 
         ////////////////////////////////////////  PUBLIC  ///////////////////////////////////////////////
@@ -56,29 +71,42 @@ namespace ShaderCreationTool
             m_Invalidate = false;
             m_Pan = 0.55f;
             m_StartX = 0; m_EndX = 0;
-            m_RegulationButton = new Button();
-            p_Control.Controls.Add(m_RegulationButton);
-            m_RegulationButton.Size = new Size(10, 10);
-            m_RegulationButton.Location = new Point(-400, 300);
-            m_RegulationButton.BackColor = Color.FromArgb(100, 100, 100, 255);
-            m_RegulationButton.ForeColor = Color.FromArgb(255, 100, 100, 130);
-            m_RegulationButton.FlatStyle = FlatStyle.Flat;
-            m_RegulationButton.Parent = p_Control;
-            m_RegulationButton.MouseUp += OnMouseUpOnRegulation;
-            m_RegulationButtonMover = new MovableObject(m_RegulationButton);
-            m_RegulationButtonMover.AddObjectMovedEventListener(OnObjectMoved);
-            m_RegulationButtonMover.SetVerticalLock(true);
-            m_RegulationButtonMover.EnableMovementRestriction();
-            m_RegulationMoving = false;
+            m_XRegulationButton = new Button();
+            p_Control.Controls.Add(m_XRegulationButton);
+            m_XRegulationButton.Size = new Size(10, 10);
+            m_XRegulationButton.Location = new Point(-400, 300);
+            m_XRegulationButton.BackColor = Color.FromArgb(100, 100, 100, 255);
+            m_XRegulationButton.ForeColor = Color.FromArgb(255, 100, 100, 130);
+            m_XRegulationButton.FlatStyle = FlatStyle.Flat;
+            m_XRegulationButton.Parent = p_Control;
+            m_XRegulationButton.MouseUp += OnMouseUpXButton;
+            m_XRegulationButtonMover = new MovableObject(m_XRegulationButton);
+            m_XRegulationButtonMover.AddObjectMovedEventListener(OnXbuttonMoved);
+            m_XRegulationButtonMover.SetVerticalLock(true);
+            m_XRegulationButtonMover.EnableMovementRestriction();
+
+
+            m_YRegulationButton = new Button();
+            p_Control.Controls.Add(m_YRegulationButton);
+            m_YRegulationButton.Size = new Size(10, 10);
+            m_YRegulationButton.Location = new Point(-400, 300);
+            m_YRegulationButton.BackColor = Color.FromArgb(100, 100, 100, 255);
+            m_YRegulationButton.ForeColor = Color.FromArgb(255, 100, 100, 130);
+            m_YRegulationButton.FlatStyle = FlatStyle.Flat;
+            m_YRegulationButton.Parent = p_Control;
+            m_YRegulationButton.MouseUp += OnMouseUpYButton;
+            m_YRegulationButtonMover = new MovableObject(m_YRegulationButton);
+            m_YRegulationButtonMover.AddObjectMovedEventListener(OnYbuttonMoved);
+            m_YRegulationButtonMover.SetHorizontalLock(true);
+            //m_YRegulationButtonMover.EnableMovementRestriction();
+
+            m_XMoving = false;
+            m_YMoving = false;
+            m_CapturedYPosition = false;
+
         }
 
-        public void SetPan(float x)
-        {
-            if (x < 0.2f) x = 0.2f;
-            if (x > 0.9f) x = 0.9f;
 
-            m_Pan = x;
-        }
 
         public void DrawConnectionLine(Graphics g, Point a, Point b)
         {
@@ -103,17 +131,49 @@ namespace ShaderCreationTool
             m_StartX = start.X;
             m_EndX = end.X;
 
-            int halfXDist = (int)(((float)end.X - (float)start.X) * m_Pan);
 
-            Point mid1 = new Point(start.X + halfXDist, start.Y);
-            Point mid2 = new Point(mid1.X, end.Y);
-            m_RegulationButtonMover.SetMovementRestrictionPoints(start, end);
-            if (!m_RegulationMoving)
+            Point mid1;
+        
 
-            m_RegulationButton.Location = new Point(mid1.X - m_RegulationButton.Width / 2,
-                    mid1.Y - (mid1.Y - mid2.Y) / 2);
+            if(m_CapturedYPosition)
+            {
+                mid1 = new Point(start.X, m_YPosition);
+            }
+            else
+            {
+                mid1 = new Point(start.X, start.Y);
+            }
+
+            int halfXDist = (int)(((float)end.X - (float)mid1.X) * m_Pan);
+            Point mid2 = new Point(mid1.X + halfXDist, mid1.Y);
+            Point mid3 = new Point(mid2.X, end.Y);
 
 
+            if (!m_YMoving)
+            {
+                m_YRegulationButton.Location = new Point(mid1.X + (mid2.X - mid1.X) / 2 - m_XRegulationButton.Width / 2,
+                            mid1.Y - m_YRegulationButton.Width / 2);
+            }
+            else
+            {
+                mid1.Y = m_YRegulationButton.Location.Y;
+                mid2.Y = m_YRegulationButton.Location.Y;
+                m_CapturedYPosition = true;
+                m_YPosition = m_YRegulationButton.Location.Y;
+            }
+
+
+
+
+
+            m_XRegulationButtonMover.SetMovementRestrictionPoints(start, end);
+            if (!m_XMoving)
+            {
+                m_XRegulationButton.Location = new Point(mid2.X - m_XRegulationButton.Width / 2,
+                        mid2.Y - (mid2.Y - mid3.Y) / 2);
+            }
+
+           
             int arrowSize = 5;
             Point[] points =
              {
@@ -121,34 +181,36 @@ namespace ShaderCreationTool
                 start,
                 mid1,
                 mid2,
-                end,
-                // Arrow
-                new Point(end.X- arrowSize, end.Y - arrowSize),
-                new Point( end.X- arrowSize, end.Y + arrowSize),
-                new Point(end.X, end.Y)
+                mid3,
+                end
+                //// Arrow
+                //new Point(end.X- arrowSize, end.Y - arrowSize),
+                //new Point( end.X- arrowSize, end.Y + arrowSize),
+                //new Point(end.X, end.Y)
              };
             if (m_Invalidate)
             {
-                //  g.DrawRectangle(m_Pen,GetRectangleByLine(start, mid1));
-                p_Control.Invalidate(GetRectangleByLine(start, mid1));
-                if (mid1.Y < mid2.Y)
-                {
-                    //  g.DrawRectangle(m_Pen, GetRectangleByLine(mid1, mid2));
-                    p_Control.Invalidate(GetRectangleByLine(mid1, mid2));
-                }
-                else
-                {
-                    //   g.DrawRectangle(m_Pen, GetRectangleByLine(mid2, mid1));
-                    p_Control.Invalidate(GetRectangleByLine(mid2, mid1));
-                }
+                p_Control.Invalidate();
+               // g.DrawRectangle(m_Pen,GetRectangleByLine(start, mid1));
+            
+                //p_Control.Invalidate(GetRectangleByLine(start, mid1));
+                //if (mid1.Y < mid2.Y)
+                //{
+                //      g.DrawRectangle(m_Pen, GetRectangleByLine(mid1, mid2));
+                //    p_Control.Invalidate(GetRectangleByLine(mid1, mid2));
+                //}
+                //else
+                //{
+                //      g.DrawRectangle(m_Pen, GetRectangleByLine(mid2, mid1));
+                //    p_Control.Invalidate(GetRectangleByLine(mid2, mid1));
+                //}
                 // g.DrawRectangle(m_Pen, GetRectangleByLine(mid2, end));
-                p_Control.Invalidate(GetRectangleByLine(mid2, end));
+                //p_Control.Invalidate(GetRectangleByLine(mid2, end));
                 m_Invalidate = false;
             }
             g.DrawLines(m_Pen, points);
             g.DrawLine(m_Pen,a, aFixed);
             g.DrawLine(m_Pen, b, bFixed);
-            m_OldRegulationPos = m_RegulationButton.Location;
         }
 
 
@@ -173,9 +235,7 @@ namespace ShaderCreationTool
                 ancestorCountC1--;
             }
 
-
             Point C2TransformStack = new Point(0, 0);
-
 
             Control c2 = destinationControl;
             while (destinationControl.Parent != null && ancestorCountC2 > 0)
@@ -185,11 +245,11 @@ namespace ShaderCreationTool
                 ancestorCountC2--;
             }
 
-
             Point start = new Point(sourceControl.Left + sourceControl.Width + C1TransformStack.X,
                C1TransformStack.Y + sourceControl.Top + sourceControl.Height / 2);
             Point end = new Point(destinationControl.Left + C2TransformStack.X,  C2TransformStack.Y + destinationControl.Top + destinationControl.Height / 2);
             this.DrawConnectionLine(g, start, end);
+
         }
 
         public void Invalidate()
