@@ -56,12 +56,6 @@ namespace ShaderCreationTool
         {
             if (!m_ConnectedFlag) return;
             m_Line.DrawConnectionLine(g, m_pSource.WinFormControl, m_pDestination.WinFormControl,3,3);
-
-            if(m_ConnectedFlag)
-            {
-               // m_pSource.SetAsConnected();
-                //m_pDestination.SetAsConnected();
-            }
         }
 
         public void UpdateOnObjectMoved()

@@ -14,9 +14,19 @@ namespace ShaderCreationTool
         private Point m_LowestLimit;
         private Point m_HighestLimit;
         private bool m_RestrictionEnabled;
-        
-       
+
+        private static bool s_Locked = false;
         ////////////////////////////////////////  PUBLIC  /////////////////////////////////////////
+        public static void LockAllMovement()
+        {
+            s_Locked = true;
+        }
+
+        public static void UnlockAllMovement()
+        {
+            s_Locked = false;
+        }
+
 
         public ObjectMovedCallback OnObjectMoved;
 
@@ -41,6 +51,7 @@ namespace ShaderCreationTool
 
         public void MoveControlMouseMove(object sender, MouseEventArgs e)
         {
+            if (s_Locked) return;
             Control control = (Control)sender;
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
@@ -84,6 +95,7 @@ namespace ShaderCreationTool
 
         public void MoveControlMouseCapture(object sender, MouseEventArgs e)
         {
+            if (s_Locked) return;
             Control control = (Control)sender;
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {

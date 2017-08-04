@@ -43,7 +43,7 @@ namespace ShaderCreationTool
             this.DoubleBuffered = true;
 
             m_TestLine = new ConnectionLine(EditAreaPanel);
-            m_TempLine = new ConnectionLine(EditAreaPanel);
+           // m_TempLine = new ConnectionLine(EditAreaPanel);
 
             m_MovableKey = new MovableObject(button44);
             m_MovableKey.AddObjectMovedEventListener(UpdateOnObjectMoved);
@@ -72,8 +72,7 @@ namespace ShaderCreationTool
            // AllocConsole();
             await Task.Delay(delayMs);
             IntPtr pointer = pictureBox1.Handle;
-            Bridge.StartRenderer(pictureBox1.Width, pictureBox1.Height, pointer);
-            
+            Bridge.StartRenderer(pictureBox1.Width, pictureBox1.Height, pointer); 
         }
       
 
@@ -81,16 +80,23 @@ namespace ShaderCreationTool
         private void UpdateOnObjectMoved()
         {
             m_TestLine.Invalidate();
-            m_TempLine.Invalidate();
+            if(m_IsConnecting) m_TempLine.Invalidate();
             ConnectionManager.UpdateOnObjectMoved();
             EditAreaPanel.Update();
         }
 
-     
+
+        bool m_IsConnecting = false;
+        Point m_TempLineOrgin;
+
         private void OnConnectionBegin(Connector sender)
         {
-            SCTConsole.Instance.PrintLine("Connector on connection begin.");
-
+            if (m_IsConnecting) return;
+           SCTConsole.Instance.PrintLine("Connector on connection begin.");
+            m_TempLine = new ConnectionLine(EditAreaPanel);
+            m_TempLineOrgin = EditAreaPanel.PointToClient(System.Windows.Forms.Cursor.Position);
+           m_IsConnecting = true;
+            MovableObject.LockAllMovement();
         }
 
         private void OnConnectionBreak(Connector sender)
@@ -110,8 +116,7 @@ namespace ShaderCreationTool
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            SCTConsole.Instance.PrintLine("Main Window Loaded...");
-           
+            SCTConsole.Instance.PrintLine("Main Window Loaded...");        
         }
         
         private void MainWindow_Shown(object sender, EventArgs e)
@@ -131,10 +136,8 @@ namespace ShaderCreationTool
                 m_Nodes[1].GetAllConnectors(ConnectorType.Destination)[2],
                 EditAreaPanel
                 );
-
-            
-            ConnectionManager.AddConnecion(tempCon);
-            
+                   
+            ConnectionManager.AddConnecion(tempCon);   
         }
 
 
@@ -142,14 +145,22 @@ namespace ShaderCreationTool
         private void EditAreaPanel_Paint(object sender, PaintEventArgs e)
         {
            Graphics formGraphics = e.Graphics;
-            ConnectionManager.Draw(formGraphics);
+           ConnectionManager.Draw(formGraphics);
+
            m_TestLine.DrawConnectionLine(formGraphics, button48, PreviewAreaPanel);
-          
+
+            if (m_IsConnecting)
+            {
+               m_TempLine.DrawConnectionLine(formGraphics, 
+                   m_TempLineOrgin, 
+                   EditAreaPanel.PointToClient(System.Windows.Forms.Cursor.Position));
+            }
         }
 
         private void EditAreaPanel_Click(object sender, EventArgs e)
         {
             fileToolStripMenuItem.HideDropDown();
+
         }
 
         // PREVIEW AREA PANEL
@@ -163,14 +174,10 @@ namespace ShaderCreationTool
             m_MovablePreviewPanel.MoveControlMouseMove(PreviewAreaPanel, e);
         }
 
-
-
         // TEMPORARY STUFF
         private void button1_Click(object sender, EventArgs e)
         {
             //Bridge.ReloadScene();
-          
-
             SCTConsole.Instance.Show();
             SCTConsole.Instance.PrintLine("Console shown test..");
         }
@@ -187,8 +194,7 @@ namespace ShaderCreationTool
                     (float)(cd.Color.G) / 255.0f,
                     (float)(cd.Color.B) / 255.0f,
                     (float)(cd.Color.A) / 255.0f
-                    );
-             
+                    );  
             }
         }
 
@@ -204,10 +210,29 @@ namespace ShaderCreationTool
 
         private void button29_Click(object sender, EventArgs e)
         {
-            //if (tempCon == null) return;
-            //ConnectionManager.RemoveConnection(tempCon);
-            //tempCon.Dispose();
-            //tempCon = null;
+        }
+
+        private void EditAreaPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (m_IsConnecting)
+            {
+                UpdateOnObjectMoved();
+                EditAreaPanel.Invalidate(false);
+            }
+        }
+
+        private void EditAreaPanel_MouseClick(object sender, MouseEventArgs e)
+        {
+
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                if (!m_IsConnecting) return;
+                m_IsConnecting = false;
+                MovableObject.UnlockAllMovement();
+                if (m_TempLine == null) return;
+                m_TempLine.Dispose();
+                m_TempLine = null;
+            }
         }
     }
 
