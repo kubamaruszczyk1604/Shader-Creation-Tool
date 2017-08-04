@@ -6,7 +6,7 @@ namespace ShaderCreationTool
 {
     class ConnectionLine: IDisposable
     {
-        private readonly Pen m_Pen = new Pen(Color.FromArgb(130,200,200,205), 3);
+        private readonly Pen m_Pen = new Pen(Color.FromArgb(100,200,200,255), 3);
         private Control p_Control;
         private bool m_Invalidate;
         private float m_Pan;
@@ -16,7 +16,6 @@ namespace ShaderCreationTool
         private Button m_YRegulationButton;
         private MovableObject m_YRegulationButtonMover;
 
-        // private Point m_OldRegulationPos;
         private bool m_YMoving;
         private int m_YPosition;
         bool m_CapturedYPosition;
@@ -37,7 +36,6 @@ namespace ShaderCreationTool
             float distanceX = m_XRegulationButton.Location.X + m_XRegulationButton.Width/2 - m_StartX;
 
             m_Pan = distanceX / rangeX;
-          
             SCTConsole.Instance.PrintLine("Pan range calculated: " + rangeX.ToString());
         }
 
@@ -124,10 +122,6 @@ namespace ShaderCreationTool
             Point start = (aFixed.X <= bFixed.X) ? aFixed : bFixed;
             Point end = (start.Equals(aFixed)) ? bFixed : aFixed;
 
-            m_StartX = start.X;
-            m_EndX = end.X;
-
-
             Point mid1;
         
             if(m_CapturedYPosition)
@@ -142,6 +136,10 @@ namespace ShaderCreationTool
             int halfXDist = (int)(((float)end.X - (float)mid1.X) * m_Pan);
             Point mid2 = new Point(mid1.X + halfXDist, mid1.Y);
             Point mid3 = new Point(mid2.X, end.Y);
+
+
+            m_StartX = start.X;
+            m_EndX =  end.X;
 
             if (!m_YMoving)
             {
@@ -215,7 +213,6 @@ namespace ShaderCreationTool
         {
 
             Point C1TransformStack = new Point(0, 0);
-       
 
             Control c1 = sourceControl;
             while(sourceControl.Parent != null && ancestorCountC1 > 0)

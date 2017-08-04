@@ -20,9 +20,9 @@ namespace ShaderCreationTool
 
     public partial class MainWindow : Form
     {
-        //[DllImport("kernel32.dll", SetLastError = true)]
-        //[return: MarshalAs(UnmanagedType.Bool)]
-        //static extern bool AllocConsole();
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
 
         ConnectionLine m_TestLine;
         ConnectionLine m_TempLine;
@@ -69,7 +69,7 @@ namespace ShaderCreationTool
 
         private async void StartRenderer(int delayMs)
         {
-            //AllocConsole();
+           // AllocConsole();
             await Task.Delay(delayMs);
             IntPtr pointer = pictureBox1.Handle;
             Bridge.StartRenderer(pictureBox1.Width, pictureBox1.Height, pointer);
@@ -96,12 +96,7 @@ namespace ShaderCreationTool
         private void OnConnectionBreak(Connector sender)
         {
             SCTConsole.Instance.PrintLine("Connector on connection end");
-         
-     
            ConnectionManager.RemoveConnection(sender.ParentConnection);
-
-
-          
         }
 
         //**************************************  UI EVENTS  ***********************************************//
