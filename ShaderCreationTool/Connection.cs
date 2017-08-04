@@ -14,7 +14,7 @@ using System.Reflection;
 
 namespace ShaderCreationTool
 {
-    class Connection
+    class Connection: IDisposable
     {
         private Connector m_pSource;
         private Connector m_pDestination;
@@ -55,6 +55,11 @@ namespace ShaderCreationTool
         {
             if (!m_ConnectedFlag) return;
             m_Line.Invalidate();
+        }
+
+        public void Dispose()
+        {
+            m_Line.Dispose();
         }
        
 

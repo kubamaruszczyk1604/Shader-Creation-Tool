@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
-    class ConnectionLine
+    class ConnectionLine: IDisposable
     {
         private readonly Pen m_Pen = new Pen(Color.FromArgb(130,200,200,205), 3);
         private Control p_Control;
@@ -73,7 +69,7 @@ namespace ShaderCreationTool
             m_StartX = 0; m_EndX = 0;
             m_XRegulationButton = new Button();
             p_Control.Controls.Add(m_XRegulationButton);
-            m_XRegulationButton.Size = new Size(10, 10);
+            m_XRegulationButton.Size = new Size(15, 15);
             m_XRegulationButton.Location = new Point(-400, 300);
             m_XRegulationButton.BackColor = Color.FromArgb(100, 100, 100, 255);
             m_XRegulationButton.ForeColor = Color.FromArgb(255, 100, 100, 130);
@@ -88,7 +84,7 @@ namespace ShaderCreationTool
 
             m_YRegulationButton = new Button();
             p_Control.Controls.Add(m_YRegulationButton);
-            m_YRegulationButton.Size = new Size(10, 10);
+            m_YRegulationButton.Size = new Size(15, 15);
             m_YRegulationButton.Location = new Point(-400, 300);
             m_YRegulationButton.BackColor = Color.FromArgb(100, 100, 100, 255);
             m_YRegulationButton.ForeColor = Color.FromArgb(255, 100, 100, 130);
@@ -134,7 +130,6 @@ namespace ShaderCreationTool
 
             Point mid1;
         
-
             if(m_CapturedYPosition)
             {
                 mid1 = new Point(start.X, m_YPosition);
@@ -148,7 +143,6 @@ namespace ShaderCreationTool
             Point mid2 = new Point(mid1.X + halfXDist, mid1.Y);
             Point mid3 = new Point(mid2.X, end.Y);
 
-
             if (!m_YMoving)
             {
                 m_YRegulationButton.Location = new Point(mid1.X + (mid2.X - mid1.X) / 2 - m_XRegulationButton.Width / 2,
@@ -161,10 +155,6 @@ namespace ShaderCreationTool
                 m_CapturedYPosition = true;
                 m_YPosition = m_YRegulationButton.Location.Y;
             }
-
-
-
-
 
             m_XRegulationButtonMover.SetMovementRestrictionPoints(start, end);
             if (!m_XMoving)
@@ -257,11 +247,22 @@ namespace ShaderCreationTool
             m_Invalidate = true;
         }
 
+        public void Dispose()
+        {
+            p_Control.Controls.Remove(m_XRegulationButton);
+            p_Control.Controls.Remove(m_YRegulationButton);
+            p_Control.Invalidate();
+            p_Control.Update();
+            SCTConsole.Instance.PrintLine("Dispose called on line");
+        }
+
         static public Rectangle GetRectangleByLine(Point p1, Point p2)
         {
             return new Rectangle(p1.X - 60, p1.Y - 60,
                 Math.Abs(p1.X - p2.X) + 90, Math.Abs(p1.Y - p2.Y) + 90);
         }
+
+
     
     }
 }

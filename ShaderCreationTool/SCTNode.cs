@@ -46,12 +46,19 @@ namespace ShaderCreationTool
                 }
             }
         }
-
+        /// <summary>
+        /// Registered method is called when node is moved
+        /// </summary>
+        /// <param name="onMovedCallback"></param>
         public void RegisterListener_OnMoved(ObjectMovedCallback onMovedCallback)
         {
             m_Mover.AddObjectMovedEventListener(onMovedCallback);
         }
 
+        /// <summary>
+        /// Registered callback method will be called when any of nodes connectors reqiest connection 
+        /// </summary>
+        /// <param name="onBeginConnection"></param>
         public void RegisterListener_OnBeginConnection(BeginConnectionCallback onBeginConnection)
         {
             foreach(Connector c in m_SourceConnectors)

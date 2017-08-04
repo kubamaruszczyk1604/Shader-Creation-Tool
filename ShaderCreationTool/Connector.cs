@@ -22,17 +22,13 @@ namespace ShaderCreationTool
 
     class Connector
     {
-        // PRIVATE
+        // PRIVATE (MEMBERS)
         private const string s_InSlotSequenceID = "In_Slot";
         private const string s_OutSlotSequenceID = "Out_Slot";
 
         private CheckBox m_Control;
         private ConnectorType m_ConnectorType;
         private bool m_ConnectedFlag;
-
-
-        //private 
-
         private BeginConnectionCallback m_BeginConnectionCallback;
 
 
@@ -75,13 +71,19 @@ namespace ShaderCreationTool
             }
         }
 
-
+        
+         /// <summary>
+         /// Registered method will be called when this connector is not connected and is clicked on.
+         /// </summary>
+         /// <param name="method">Method to be registered</param>
         public void RegisterListener_BeginConnection(BeginConnectionCallback method)
         {
             m_BeginConnectionCallback += method;
 
         }
 
+
+      
 
     }
 }

@@ -109,7 +109,7 @@ namespace ShaderCreationTool
             SCTConsole.Instance.PrintLine("Main Window Loaded...");
            
         }
-
+        Connection tempCon;
         private void MainWindow_Shown(object sender, EventArgs e)
         {
             StartRenderer(100);
@@ -123,15 +123,14 @@ namespace ShaderCreationTool
                 m_Nodes.Add(temp);
             }
 
-            Connection tempCon = new Connection(m_Nodes[0].GetAllConnectors(ConnectorType.Source)[0],
+            tempCon = new Connection(m_Nodes[0].GetAllConnectors(ConnectorType.Source)[0],
                 m_Nodes[1].GetAllConnectors(ConnectorType.Destination)[2],
                 EditAreaPanel
                 );
 
-            //Connection tempCon = new Connection(new Connector(In_Slotxx),new Connector(Out_Slotxxl),
-            //   EditAreaPanel
-            //   );
+            
             ConnectionManager.AddConnecion(tempCon);
+            
         }
 
 
@@ -197,6 +196,13 @@ namespace ShaderCreationTool
         private void mousedowntest(object sender, MouseEventArgs e)
         {
 
+        }
+
+        private void button29_Click(object sender, EventArgs e)
+        {
+            ConnectionManager.RemoveConnection(tempCon);
+            tempCon.Dispose();
+            tempCon = null;
         }
     }
 

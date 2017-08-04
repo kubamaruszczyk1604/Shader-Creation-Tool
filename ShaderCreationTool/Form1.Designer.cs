@@ -285,6 +285,7 @@
             this.button29.TabIndex = 8;
             this.button29.Text = "Add Variable";
             this.button29.UseVisualStyleBackColor = false;
+            this.button29.Click += new System.EventHandler(this.button29_Click);
             // 
             // button30
             // 
