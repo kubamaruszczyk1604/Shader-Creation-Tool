@@ -42,7 +42,12 @@ namespace ShaderCreationTool
 
         static public void RemoveConnection(Connection connection)
         {
+            Control temp = connection.DrawOnControl;
+            connection.Disconnect();
+            connection.Dispose();
             s_ConnectionList.Remove(connection);
+            temp.Invalidate();
+            temp.Update();
         }
 
         static public Connection GetConnection(int index)

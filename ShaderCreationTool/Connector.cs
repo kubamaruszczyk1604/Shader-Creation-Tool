@@ -19,6 +19,7 @@ namespace ShaderCreationTool
     }
 
     delegate void BeginConnectionCallback(Connector sender);
+    delegate void BreakConnectionCallback(Connector sender);
 
     class Connector
     {
@@ -28,19 +29,31 @@ namespace ShaderCreationTool
 
         private CheckBox m_Control;
         private ConnectorType m_ConnectorType;
-        private bool m_ConnectedFlag;
         private BeginConnectionCallback m_BeginConnectionCallback;
+        private BreakConnectionCallback m_BreakConnectionCallback;
+        private Connection p_ParentConnection;
 
 
         // PRIVATE (METHODS)
         private void OnClick(object sender, EventArgs e)
         { 
-            if (!m_ConnectedFlag)
+            if (!Connected)
             {
+                m_Control.Checked = false;
                 if (m_BeginConnectionCallback != null)
                 {
                     m_BeginConnectionCallback(this);
                 }
+            }
+            else // then click means - disconnect
+            {
+                m_Control.Checked = true;
+                if (m_BreakConnectionCallback != null)
+                {
+                    m_BreakConnectionCallback(this);
+                }
+               // Disconnect();
+               
             }
         }
         
@@ -48,14 +61,15 @@ namespace ShaderCreationTool
 
         // PROPERTIES
         public ConnectorType Type { get { return m_ConnectorType; } }
-        public bool Connected { get { return m_ConnectedFlag; } }
+        public bool Connected { get { return (p_ParentConnection==null)?false:true; } }
         public Control WinFormControl { get { return m_Control; } }
+        public Connection ParentConnection { get { return p_ParentConnection; } }
        
         public Connector(CheckBox control)
         {
             m_Control = control;
             m_Control.Click += OnClick;
-            m_ConnectedFlag = false;
+            m_Control.Checked = false;
 
             if (m_Control.Name.Contains(s_InSlotSequenceID))
             {
@@ -76,14 +90,30 @@ namespace ShaderCreationTool
          /// Registered method will be called when this connector is not connected and is clicked on.
          /// </summary>
          /// <param name="method">Method to be registered</param>
-        public void RegisterListener_BeginConnection(BeginConnectionCallback method)
+        public void AddCallback_BeginConnectionRequest(BeginConnectionCallback method)
         {
             m_BeginConnectionCallback += method;
-
         }
 
+        public void AddCallback_BreakConnectionRequest(BreakConnectionCallback method)
+        {
+            m_BreakConnectionCallback += method;
+        }
 
-      
+        public void SetAsConnected(Connection connection)
+        {
+            p_ParentConnection = connection;
+            if (p_ParentConnection != null)
+            {
+                m_Control.Checked = true;
+            }
+        }      
+
+        public void Disconnect()
+        {
+            m_Control.Checked = false;
+            p_ParentConnection = null; 
+        }
 
     }
 }

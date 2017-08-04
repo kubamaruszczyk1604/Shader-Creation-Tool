@@ -28,8 +28,6 @@ namespace ShaderCreationTool
         ConnectionLine m_TempLine;
 
 
-        
-
         MovableObject m_MovableKey;
         MovableObject m_MovableRenderObject;
         MovableObject m_MovablePreviewPanel;
@@ -91,8 +89,19 @@ namespace ShaderCreationTool
      
         private void OnConnectionBegin(Connector sender)
         {
-            SCTConsole.Instance.PrintLine("Connector called on click.");
+            SCTConsole.Instance.PrintLine("Connector on connection begin.");
 
+        }
+
+        private void OnConnectionBreak(Connector sender)
+        {
+            SCTConsole.Instance.PrintLine("Connector on connection end");
+         
+     
+           ConnectionManager.RemoveConnection(sender.ParentConnection);
+
+
+          
         }
 
         //**************************************  UI EVENTS  ***********************************************//
@@ -109,7 +118,7 @@ namespace ShaderCreationTool
             SCTConsole.Instance.PrintLine("Main Window Loaded...");
            
         }
-        Connection tempCon;
+        
         private void MainWindow_Shown(object sender, EventArgs e)
         {
             StartRenderer(100);
@@ -117,13 +126,13 @@ namespace ShaderCreationTool
 
             for (int i = 0; i < 2; ++i)
             {
-                SCTNode temp = new SCTNode(SCTElement, new Point(200*i, 300));
-                temp.RegisterListener_OnMoved(UpdateOnObjectMoved);
+                SCTNode temp = new SCTNode(SCTElement, new Point(200*i, 300), UpdateOnObjectMoved);
                 temp.RegisterListener_OnBeginConnection(OnConnectionBegin);
+                temp.RegisterListener_OnBreakConnection(OnConnectionBreak);
                 m_Nodes.Add(temp);
             }
 
-            tempCon = new Connection(m_Nodes[0].GetAllConnectors(ConnectorType.Source)[0],
+           var tempCon = new Connection(m_Nodes[0].GetAllConnectors(ConnectorType.Source)[0],
                 m_Nodes[1].GetAllConnectors(ConnectorType.Destination)[2],
                 EditAreaPanel
                 );
@@ -200,9 +209,10 @@ namespace ShaderCreationTool
 
         private void button29_Click(object sender, EventArgs e)
         {
-            ConnectionManager.RemoveConnection(tempCon);
-            tempCon.Dispose();
-            tempCon = null;
+            //if (tempCon == null) return;
+            //ConnectionManager.RemoveConnection(tempCon);
+            //tempCon.Dispose();
+            //tempCon = null;
         }
     }
 

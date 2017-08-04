@@ -21,11 +21,11 @@ namespace ShaderCreationTool
 
         //////////////////////////////////////////  PUBLIC  ///////////////////////////////////////////////
         
-        public SCTNode(Panel nodeTemplate, Point initAtLocation)
+        public SCTNode(Panel nodeTemplate, Point location)
         {
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
             m_SctElement.Visible = true;
-            m_SctElement.Location = initAtLocation;
+            m_SctElement.Location = location;
 
             m_Mover = new MovableObject(m_SctElement);
             m_SourceConnectors = new List<Connector>();
@@ -46,6 +46,14 @@ namespace ShaderCreationTool
                 }
             }
         }
+
+        public SCTNode(Panel nodeTemplate, Point location, ObjectMovedCallback onObjectMoved):
+            this(nodeTemplate,location)
+        {
+            RegisterListener_OnMoved(onObjectMoved);
+        }
+
+
         /// <summary>
         /// Registered method is called when node is moved
         /// </summary>
@@ -63,13 +71,26 @@ namespace ShaderCreationTool
         {
             foreach(Connector c in m_SourceConnectors)
             {
-                c.RegisterListener_BeginConnection(onBeginConnection);
+                c.AddCallback_BeginConnectionRequest(onBeginConnection);
             }
             foreach (Connector c in m_DestinationConnectors)
             {
-                c.RegisterListener_BeginConnection(onBeginConnection);
+                c.AddCallback_BeginConnectionRequest(onBeginConnection);
             }
         }
+
+        public void RegisterListener_OnBreakConnection(BreakConnectionCallback onBreakConnection)
+        {
+            foreach (Connector c in m_SourceConnectors)
+            {
+                c.AddCallback_BreakConnectionRequest(onBreakConnection);
+            }
+            foreach (Connector c in m_DestinationConnectors)
+            {
+                c.AddCallback_BreakConnectionRequest(onBreakConnection);
+            }
+        }
+
 
         public Connector GetConnector(ConnectorType type, int index)
         {

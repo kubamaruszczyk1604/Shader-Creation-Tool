@@ -20,10 +20,12 @@ namespace ShaderCreationTool
         private Connector m_pDestination;
         private ConnectionLine m_Line;
         private bool m_ConnectedFlag;
+        private Control p_DrawOnControl;
 
         ////////////////////////////////////////////  PUBLIC  ////////////////////////////////////////////
 
         public bool IsConnected { get { return m_ConnectedFlag; } } 
+        public Control DrawOnControl { get { return p_DrawOnControl; } }
 
 
         public Connection(Connector a, Connector b, Control drawOn)
@@ -37,18 +39,29 @@ namespace ShaderCreationTool
             m_pSource = (a.Type == ConnectorType.Source) ? a : b;
             m_pDestination = (m_pSource.Type == a.Type) ? b : a;
             m_ConnectedFlag = true;
+            a.SetAsConnected(this);
+            b.SetAsConnected(this);
+            p_DrawOnControl = drawOn;
 
         }
 
         public void Disconnect()
         {
             m_ConnectedFlag = false;
+            m_pDestination.Disconnect();
+            m_pSource.Disconnect();
         }
 
         public void Draw(Graphics g)
         {
             if (!m_ConnectedFlag) return;
             m_Line.DrawConnectionLine(g, m_pSource.WinFormControl, m_pDestination.WinFormControl,3,3);
+
+            if(m_ConnectedFlag)
+            {
+               // m_pSource.SetAsConnected();
+                //m_pDestination.SetAsConnected();
+            }
         }
 
         public void UpdateOnObjectMoved()
