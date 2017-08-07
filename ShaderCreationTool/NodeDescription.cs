@@ -8,8 +8,19 @@ namespace ShaderCreationTool
 {
     class ShaderVariableDescription
     {
-        public string PName;
-        public ShaderVariableType PType;
+        private string m_Name;
+        private ShaderVariableType m_Type;
+
+        public ShaderVariableDescription(string name, ShaderVariableType type)
+        {
+            m_Name = name;
+            m_Type = type;
+        }
+
+        public string Name { get { return m_Name; } }
+        public ShaderVariableType Type { get { return m_Type; } }
+
+
     }
 
     class NodeDescription

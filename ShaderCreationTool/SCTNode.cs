@@ -10,10 +10,6 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
- 
-
-
-
 
     class SCTNode
     {
