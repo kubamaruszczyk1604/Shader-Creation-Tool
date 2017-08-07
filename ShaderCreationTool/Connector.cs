@@ -33,6 +33,8 @@ namespace ShaderCreationTool
         private BreakConnectionCallback m_BreakConnectionCallback;
         private Connection p_ParentConnection;
 
+        private ShaderVariableType m_VariableType;
+
         static private Connector s_PreviouslyClickedConnector;
 
         // PRIVATE (METHODS)
@@ -69,11 +71,12 @@ namespace ShaderCreationTool
         public Control WinFormControl { get { return m_Control; } }
         public Connection ParentConnection { get { return p_ParentConnection; } }
        
-        public Connector(CheckBox control)
+        public Connector(CheckBox control,ShaderVariableType variableType)
         {
             m_Control = control;
             m_Control.Click += OnClick;
             m_Control.Checked = false;
+            m_VariableType = variableType;
 
             if (m_Control.Name.Contains(s_InSlotSequenceID))
             {

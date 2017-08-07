@@ -35,7 +35,7 @@ namespace ShaderCreationTool
 
             for(int i = 0; i < boxes.Count;++i)
             {
-                Connector tempCon = new Connector(boxes[i]);
+                Connector tempCon = new Connector(boxes[i],ShaderVariableType.Vector4);
                 if (tempCon.Type == ConnectorType.Source)
                 {
                     m_SourceConnectors.Add(tempCon);

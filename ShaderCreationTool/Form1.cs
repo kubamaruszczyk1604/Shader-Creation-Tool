@@ -87,12 +87,7 @@ namespace ShaderCreationTool
         {
             if (m_IsConnecting)
             {
-
-                var tempCon = new Connection(Connector.GetPreviouslyClickedConnector(),
-                    sender,
-                     EditAreaPanel
-                     );
-
+                var tempCon = new Connection(Connector.GetPreviouslyClickedConnector(),sender,EditAreaPanel);
                 ConnectionManager.AddConnecion(tempCon);
                 CancelIsConnecting();
                 return;
@@ -137,12 +132,12 @@ namespace ShaderCreationTool
                 m_Nodes.Add(temp);
             }
 
-           var tempCon = new Connection(m_Nodes[0].GetAllConnectors(ConnectorType.Source)[0],
-                m_Nodes[1].GetAllConnectors(ConnectorType.Destination)[2],
-                EditAreaPanel
-                );
+           //var tempCon = new Connection(m_Nodes[0].GetAllConnectors(ConnectorType.Source)[0],
+           //     m_Nodes[1].GetAllConnectors(ConnectorType.Destination)[2],
+           //     EditAreaPanel
+           //     );
                    
-            ConnectionManager.AddConnecion(tempCon);   
+           // ConnectionManager.AddConnecion(tempCon);   
         }
 
 
@@ -244,10 +239,6 @@ namespace ShaderCreationTool
 
         }
 
-        private void button48_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 
 

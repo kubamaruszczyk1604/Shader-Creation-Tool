@@ -29,9 +29,6 @@ namespace ShaderCreationTool
         private float m_StartX;
         private float m_EndX;
 
-       
-
-
         private void OnXbuttonMoved()
         {        
             m_XMoving = true;
@@ -167,9 +164,7 @@ namespace ShaderCreationTool
                         mid2.Y - (mid2.Y - mid3.Y) / 2);
             }
 
-           
-          
-            Point[] points = { start, mid1,mid2,mid3,end };
+            Point[] points = { start, mid1, mid2, mid3, end };
 
             if (m_Invalidate)
             {
