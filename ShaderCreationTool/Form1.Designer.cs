@@ -121,9 +121,9 @@
             this.SCTElement.Controls.Add(this.panel1);
             this.SCTElement.Controls.Add(this.Label);
             this.SCTElement.Enabled = false;
-            this.SCTElement.Location = new System.Drawing.Point(1114, 560);
+            this.SCTElement.Location = new System.Drawing.Point(1071, 560);
             this.SCTElement.Name = "SCTElement";
-            this.SCTElement.Size = new System.Drawing.Size(163, 129);
+            this.SCTElement.Size = new System.Drawing.Size(206, 129);
             this.SCTElement.TabIndex = 29;
             this.SCTElement.Visible = false;
             // 
@@ -133,7 +133,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(-1, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(163, 104);
+            this.panel1.Size = new System.Drawing.Size(206, 104);
             this.panel1.TabIndex = 1;
             // 
             // panel2
@@ -145,16 +145,20 @@
             this.panel2.Controls.Add(this.Material_In_Slot_Ambient);
             this.panel2.Location = new System.Drawing.Point(4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(155, 96);
+            this.panel2.Size = new System.Drawing.Size(199, 96);
             this.panel2.TabIndex = 0;
             // 
             // Material_Out_Slot
             // 
             this.Material_Out_Slot.AutoSize = true;
-            this.Material_Out_Slot.Location = new System.Drawing.Point(137, 39);
+            this.Material_Out_Slot.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Material_Out_Slot.ForeColor = System.Drawing.Color.BurlyWood;
+            this.Material_Out_Slot.Location = new System.Drawing.Point(110, 39);
             this.Material_Out_Slot.Name = "Material_Out_Slot";
-            this.Material_Out_Slot.Size = new System.Drawing.Size(15, 14);
+            this.Material_Out_Slot.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.Material_Out_Slot.Size = new System.Drawing.Size(86, 20);
             this.Material_Out_Slot.TabIndex = 8;
+            this.Material_Out_Slot.Text = "OutColour";
             this.Material_Out_Slot.UseVisualStyleBackColor = true;
             // 
             // Material_In_Slot_Specular
@@ -197,7 +201,7 @@
             // 
             this.Label.AutoSize = true;
             this.Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label.Location = new System.Drawing.Point(54, 6);
+            this.Label.Location = new System.Drawing.Point(78, 6);
             this.Label.Name = "Label";
             this.Label.Size = new System.Drawing.Size(52, 15);
             this.Label.TabIndex = 0;

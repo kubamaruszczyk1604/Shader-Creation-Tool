@@ -17,6 +17,7 @@ namespace ShaderCreationTool
         private MovableObject m_Mover;
         private List<Connector> m_SourceConnectors;
         private List<Connector> m_DestinationConnectors;
+        private string m_Label = string.Empty;
 
 
         //////////////////////////////////////////  PUBLIC  ///////////////////////////////////////////////
@@ -90,7 +91,6 @@ namespace ShaderCreationTool
                 c.AddCallback_BreakConnectionRequest(onBreakConnection);
             }
         }
-
 
         public Connector GetConnector(ConnectorType type, int index)
         {
