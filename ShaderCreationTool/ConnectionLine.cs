@@ -7,6 +7,10 @@ namespace ShaderCreationTool
     class ConnectionLine: IDisposable
     {
         private readonly Pen m_Pen = new Pen(Color.FromArgb(100,200,200,255), 3);
+        private readonly Size c_ButtonSize = new Size(15, 15);
+        private readonly Color c_ButtonBackColour = Color.FromArgb(100, 100, 100, 255);
+        private readonly Color c_ButtonForeColour = Color.FromArgb(255, 100, 100, 130);
+
         private Control p_Control;
         private bool m_Invalidate;
         private float m_Pan;
@@ -24,6 +28,8 @@ namespace ShaderCreationTool
         private bool m_XMoving;
         private float m_StartX;
         private float m_EndX;
+
+       
 
 
         private void OnXbuttonMoved()
@@ -67,10 +73,10 @@ namespace ShaderCreationTool
             m_StartX = 0; m_EndX = 0;
             m_XRegulationButton = new Button();
             p_Control.Controls.Add(m_XRegulationButton);
-            m_XRegulationButton.Size = new Size(15, 15);
+            m_XRegulationButton.Size = c_ButtonSize;
             m_XRegulationButton.Location = new Point(-400, 300);
-            m_XRegulationButton.BackColor = Color.FromArgb(100, 100, 100, 255);
-            m_XRegulationButton.ForeColor = Color.FromArgb(255, 100, 100, 130);
+            m_XRegulationButton.BackColor = c_ButtonBackColour;
+            m_XRegulationButton.ForeColor = c_ButtonForeColour;
             m_XRegulationButton.FlatStyle = FlatStyle.Flat;
             m_XRegulationButton.Parent = p_Control;
             m_XRegulationButton.MouseUp += OnMouseUpXButton;
@@ -82,10 +88,10 @@ namespace ShaderCreationTool
 
             m_YRegulationButton = new Button();
             p_Control.Controls.Add(m_YRegulationButton);
-            m_YRegulationButton.Size = new Size(15, 15);
+            m_YRegulationButton.Size = c_ButtonSize;
             m_YRegulationButton.Location = new Point(-400, 300);
-            m_YRegulationButton.BackColor = Color.FromArgb(100, 100, 100, 255);
-            m_YRegulationButton.ForeColor = Color.FromArgb(255, 100, 100, 130);
+            m_YRegulationButton.BackColor = c_ButtonBackColour;
+            m_YRegulationButton.ForeColor = c_ButtonForeColour;
             m_YRegulationButton.FlatStyle = FlatStyle.Flat;
             m_YRegulationButton.Parent = p_Control;
             m_YRegulationButton.MouseUp += OnMouseUpYButton;
