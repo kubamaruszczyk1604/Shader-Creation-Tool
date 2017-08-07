@@ -33,6 +33,7 @@ namespace ShaderCreationTool
         private BreakConnectionCallback m_BreakConnectionCallback;
         private Connection p_ParentConnection;
 
+        static private Connector s_PreviouslyClickedConnector;
 
         // PRIVATE (METHODS)
         private void OnClick(object sender, EventArgs e)
@@ -41,9 +42,11 @@ namespace ShaderCreationTool
             {
                 m_Control.Checked = false;
                 if (m_BeginConnectionCallback != null)
-                {
+                { 
                     m_BeginConnectionCallback(this);
                 }
+
+
             }
             else // then click means - disconnect
             {
@@ -55,6 +58,7 @@ namespace ShaderCreationTool
                // Disconnect();
                
             }
+            s_PreviouslyClickedConnector = this;
         }
         
         /////////////////////////////////////////////////////////  PUBLIC  /////////////////////////////////////////////////
@@ -113,6 +117,11 @@ namespace ShaderCreationTool
         {
             m_Control.Checked = false;
             p_ParentConnection = null; 
+        }
+
+        static public Connector GetPreviouslyClickedConnector()
+        {
+            return s_PreviouslyClickedConnector;
         }
 
     }

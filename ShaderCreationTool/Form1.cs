@@ -43,7 +43,6 @@ namespace ShaderCreationTool
             this.DoubleBuffered = true;
 
             m_TestLine = new ConnectionLine(EditAreaPanel);
-           // m_TempLine = new ConnectionLine(EditAreaPanel);
 
             m_MovableKey = new MovableObject(button44);
             m_MovableKey.AddObjectMovedEventListener(UpdateOnObjectMoved);
@@ -91,10 +90,21 @@ namespace ShaderCreationTool
 
         private void OnConnectionBegin(Connector sender)
         {
-            if (m_IsConnecting) return;
+            if (m_IsConnecting)
+            {
+
+                var tempCon = new Connection(Connector.GetPreviouslyClickedConnector(),
+                    sender,
+                     EditAreaPanel
+                     );
+
+                ConnectionManager.AddConnecion(tempCon);
+                CancelIsConnecting();
+                return;
+            }
            SCTConsole.Instance.PrintLine("Connector on connection begin.");
-            m_TempLine = new ConnectionLine(EditAreaPanel);
-            m_TempLineOrgin = EditAreaPanel.PointToClient(System.Windows.Forms.Cursor.Position);
+           m_TempLine = new ConnectionLine(EditAreaPanel);
+           m_TempLineOrgin = EditAreaPanel.PointToClient(System.Windows.Forms.Cursor.Position);
            m_IsConnecting = true;
             MovableObject.LockAllMovement();
         }
@@ -223,18 +233,26 @@ namespace ShaderCreationTool
 
         private void EditAreaPanel_MouseClick(object sender, MouseEventArgs e)
         {
-
+            //canncel connection request
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 if (!m_IsConnecting) return;
-                m_IsConnecting = false;
-                MovableObject.UnlockAllMovement();
-                if (m_TempLine == null) return;
-                m_TempLine.Dispose();
-                m_TempLine = null;
+                CancelIsConnecting();
             }
+        }
+
+        private void CancelIsConnecting()
+        {
+            m_IsConnecting = false;
+            MovableObject.UnlockAllMovement();
+            if (m_TempLine == null) return;
+            m_TempLine.Dispose();
+            m_TempLine = null;
+
         }
     }
 
+
+ 
    
 }

@@ -16,6 +16,7 @@ namespace ShaderCreationTool
         private bool m_RestrictionEnabled;
 
         private static bool s_Locked = false;
+
         ////////////////////////////////////////  PUBLIC  /////////////////////////////////////////
         public static void LockAllMovement()
         {

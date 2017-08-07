@@ -162,38 +162,12 @@ namespace ShaderCreationTool
             }
 
            
-            int arrowSize = 5;
-            Point[] points =
-             {
+          
+            Point[] points = { start, mid1,mid2,mid3,end };
 
-                start,
-                mid1,
-                mid2,
-                mid3,
-                end
-                //// Arrow
-                //new Point(end.X- arrowSize, end.Y - arrowSize),
-                //new Point( end.X- arrowSize, end.Y + arrowSize),
-                //new Point(end.X, end.Y)
-             };
             if (m_Invalidate)
             {
                 p_Control.Invalidate();
-               // g.DrawRectangle(m_Pen,GetRectangleByLine(start, mid1));
-            
-                //p_Control.Invalidate(GetRectangleByLine(start, mid1));
-                //if (mid1.Y < mid2.Y)
-                //{
-                //      g.DrawRectangle(m_Pen, GetRectangleByLine(mid1, mid2));
-                //    p_Control.Invalidate(GetRectangleByLine(mid1, mid2));
-                //}
-                //else
-                //{
-                //      g.DrawRectangle(m_Pen, GetRectangleByLine(mid2, mid1));
-                //    p_Control.Invalidate(GetRectangleByLine(mid2, mid1));
-                //}
-                // g.DrawRectangle(m_Pen, GetRectangleByLine(mid2, end));
-                //p_Control.Invalidate(GetRectangleByLine(mid2, end));
                 m_Invalidate = false;
             }
             g.DrawLines(m_Pen, points);
@@ -236,10 +210,7 @@ namespace ShaderCreationTool
                C1TransformStack.Y + sourceControl.Top + sourceControl.Height / 2);
             Point end = new Point(destinationControl.Left + C2TransformStack.X,  C2TransformStack.Y + destinationControl.Top + destinationControl.Height / 2);
             this.DrawConnectionLine(g, start, end);
-            if(start.X == 0)
-            {
 
-            }
         }
 
         public void Invalidate()
@@ -251,7 +222,7 @@ namespace ShaderCreationTool
         {
             p_Control.Controls.Remove(m_XRegulationButton);
             p_Control.Controls.Remove(m_YRegulationButton);
-            p_Control.Invalidate();
+            p_Control.Invalidate(false);
             p_Control.Update();
             SCTConsole.Instance.PrintLine("Dispose called on line");
         }
