@@ -123,10 +123,22 @@ namespace ShaderCreationTool
         {
             StartRenderer(100);
             PreviewTextLabel.ForeColor = Color.White;
-            NodeDescription d = new NodeDescription();
 
-          
-            
+            ShaderVariableDescription inDesc1 = new ShaderVariableDescription("Kolor1", ShaderVariableType.Vector4, ConnectionDirection.In);
+            ShaderVariableDescription inDesc2 = new ShaderVariableDescription("Kolor2", ShaderVariableType.Vector4, ConnectionDirection.In);
+            ShaderVariableDescription inDesc3 = new ShaderVariableDescription("Kolor3", ShaderVariableType.Vector4, ConnectionDirection.In);
+
+            ShaderVariableDescription outDesc1 = new ShaderVariableDescription("Kolor4", ShaderVariableType.Vector4, ConnectionDirection.Out);
+
+
+
+            NodeDescription d = new NodeDescription();
+            d.AddInputVariable(inDesc1);
+            d.AddInputVariable(inDesc2);
+            d.AddInputVariable(inDesc3);
+            d.AddOutputVariable(outDesc1);
+
+
             for (int i = 0; i < 2; ++i)
             {
                 SCTNode temp = new SCTNode(MainPanel, new Point(200*i, 300), UpdateOnObjectMoved,d);

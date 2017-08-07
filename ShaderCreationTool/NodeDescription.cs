@@ -6,19 +6,23 @@ using System.Threading.Tasks;
 
 namespace ShaderCreationTool
 {
+   
     class ShaderVariableDescription
     {
         private string m_Name;
         private ShaderVariableType m_Type;
+        private ConnectionDirection m_ConnectionDirection;
 
-        public ShaderVariableDescription(string name, ShaderVariableType type)
+        public ShaderVariableDescription(string name, ShaderVariableType type, ConnectionDirection direction)
         {
             m_Name = name;
             m_Type = type;
+            m_ConnectionDirection = direction;
         }
 
         public string Name { get { return m_Name; } }
         public ShaderVariableType Type { get { return m_Type; } }
+        public ConnectionDirection ConnectionDirection { get { return m_ConnectionDirection; } }
 
 
     }

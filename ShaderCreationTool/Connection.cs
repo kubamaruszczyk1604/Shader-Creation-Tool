@@ -36,7 +36,7 @@ namespace ShaderCreationTool
             }
 
             m_Line = new ConnectionLine(drawOn);
-            m_pSource = (a.Type == ConnectorType.Source) ? a : b;
+            m_pSource = (a.Type == ConnectionDirection.Out) ? a : b;
             m_pDestination = (m_pSource.Type == a.Type) ? b : a;
             m_ConnectedFlag = true;
             a.SetAsConnected(this);

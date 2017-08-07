@@ -56,11 +56,11 @@ namespace ShaderCreationTool
             for (int i = 0; i < boxes.Count;++i)
             {
                 Connector tempCon = new Connector(boxes[i],ShaderVariableType.Vector4);
-                if (tempCon.Type == ConnectorType.Source)
+                if (tempCon.Type == ConnectionDirection.Out)
                 {
                     m_SourceConnectors.Add(tempCon);
                 }
-                else if (tempCon.Type == ConnectorType.Destination)
+                else if (tempCon.Type == ConnectionDirection.In)
                 {
                     m_DestinationConnectors.Add(tempCon);
                 }
@@ -114,17 +114,17 @@ namespace ShaderCreationTool
             }
         }
 
-        public Connector GetConnector(ConnectorType type, int index)
+        public Connector GetConnector(ConnectionDirection type, int index)
         {
-            if (type == ConnectorType.Source) return m_SourceConnectors[index];
-            else if (type == ConnectorType.Destination) return m_DestinationConnectors[index];
+            if (type == ConnectionDirection.Out) return m_SourceConnectors[index];
+            else if (type == ConnectionDirection.In) return m_DestinationConnectors[index];
             else return null;
         }
 
-        public List<Connector> GetAllConnectors(ConnectorType type)
+        public List<Connector> GetAllConnectors(ConnectionDirection type)
         {
-            if (type == ConnectorType.Source) return m_SourceConnectors;
-            else if (type == ConnectorType.Destination) return m_DestinationConnectors;
+            if (type == ConnectionDirection.Out) return m_SourceConnectors;
+            else if (type == ConnectionDirection.In) return m_DestinationConnectors;
             else return null;
         }
 

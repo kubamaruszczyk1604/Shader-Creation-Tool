@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
-    enum ConnectorType
+    enum ConnectionDirection
     {
-        Destination,
-        Source
+        In,
+        Out
     }
 
     delegate void BeginConnectionCallback(Connector sender);
@@ -28,7 +28,7 @@ namespace ShaderCreationTool
         public const string s_OutSlotSequenceID = "Out_Slot";
 
         private CheckBox m_Control;
-        private ConnectorType m_ConnectorType;
+        private ConnectionDirection m_ConnectorType;
         private BeginConnectionCallback m_BeginConnectionCallback;
         private BreakConnectionCallback m_BreakConnectionCallback;
         private Connection p_ParentConnection;
@@ -66,7 +66,7 @@ namespace ShaderCreationTool
         /////////////////////////////////////////////////////////  PUBLIC  /////////////////////////////////////////////////
 
         // PROPERTIES
-        public ConnectorType Type { get { return m_ConnectorType; } }
+        public ConnectionDirection Type { get { return m_ConnectorType; } }
         public bool Connected { get { return (p_ParentConnection==null)?false:true; } }
         public Control WinFormControl { get { return m_Control; } }
         public Connection ParentConnection { get { return p_ParentConnection; } }
@@ -80,11 +80,11 @@ namespace ShaderCreationTool
 
             if (m_Control.Name.Contains(s_InSlotSequenceID))
             {
-                m_ConnectorType = ConnectorType.Destination;
+                m_ConnectorType = ConnectionDirection.In;
             }
             else if (m_Control.Name.Contains(s_OutSlotSequenceID))
             {
-                m_ConnectorType = ConnectorType.Source;
+                m_ConnectorType = ConnectionDirection.Out;
             }
             else
             {
