@@ -236,7 +236,10 @@ namespace ShaderCreationTool
                C1TransformStack.Y + sourceControl.Top + sourceControl.Height / 2);
             Point end = new Point(destinationControl.Left + C2TransformStack.X,  C2TransformStack.Y + destinationControl.Top + destinationControl.Height / 2);
             this.DrawConnectionLine(g, start, end);
+            if(start.X == 0)
+            {
 
+            }
         }
 
         public void Invalidate()
