@@ -40,7 +40,6 @@
             this.Material_In_Slot_Diffuse = new System.Windows.Forms.CheckBox();
             this.Material_In_Slot_Ambient = new System.Windows.Forms.CheckBox();
             this.Label = new System.Windows.Forms.Label();
-            this.button48 = new System.Windows.Forms.Button();
             this.PreviewAreaPanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PreviewTextLabel = new System.Windows.Forms.Label();
@@ -99,7 +98,6 @@
             this.EditAreaPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.EditAreaPanel.Controls.Add(this.SCTElement);
-            this.EditAreaPanel.Controls.Add(this.button48);
             this.EditAreaPanel.Controls.Add(this.PreviewAreaPanel);
             this.EditAreaPanel.Controls.Add(this.button1);
             this.EditAreaPanel.Controls.Add(this.button44);
@@ -204,20 +202,6 @@
             this.Label.Size = new System.Drawing.Size(52, 15);
             this.Label.TabIndex = 0;
             this.Label.Text = "Material";
-            // 
-            // button48
-            // 
-            this.button48.BackColor = System.Drawing.Color.MidnightBlue;
-            this.button48.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button48.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button48.ForeColor = System.Drawing.SystemColors.Window;
-            this.button48.Location = new System.Drawing.Point(425, 241);
-            this.button48.Name = "button48";
-            this.button48.Size = new System.Drawing.Size(258, 116);
-            this.button48.TabIndex = 15;
-            this.button48.Text = "Rendered Object";
-            this.button48.UseVisualStyleBackColor = false;
-            this.button48.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mousedowntest);
             // 
             // PreviewAreaPanel
             // 
@@ -443,7 +427,6 @@
         private System.Windows.Forms.Button button29;
         private System.Windows.Forms.Button button30;
         private System.Windows.Forms.Button button31;
-        private System.Windows.Forms.Button button48;
         public System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel PreviewAreaPanel;
         private System.Windows.Forms.MenuStrip MainMenuStrip;

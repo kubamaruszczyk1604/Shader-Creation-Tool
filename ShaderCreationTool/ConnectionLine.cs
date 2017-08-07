@@ -235,8 +235,10 @@ namespace ShaderCreationTool
 
         static public Rectangle GetRectangleByLine(Point p1, Point p2)
         {
-            return new Rectangle(p1.X - 60, p1.Y - 60,
-                Math.Abs(p1.X - p2.X) + 90, Math.Abs(p1.Y - p2.Y) + 90);
+            const int marginA = 60;
+            const int marginB = 90;
+            return new Rectangle(p1.X - marginA, p1.Y - marginA,
+                Math.Abs(p1.X - p2.X) + marginB, Math.Abs(p1.Y - p2.Y) + marginB);
         }
 
 

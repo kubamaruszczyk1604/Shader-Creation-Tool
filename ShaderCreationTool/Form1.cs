@@ -24,12 +24,10 @@ namespace ShaderCreationTool
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
 
-        ConnectionLine m_TestLine;
         ConnectionLine m_TempLine;
 
 
         MovableObject m_MovableKey;
-        MovableObject m_MovableRenderObject;
         MovableObject m_MovablePreviewPanel;
 
         ShaderVectorVariable m_DiffuseColour;
@@ -42,13 +40,11 @@ namespace ShaderCreationTool
             InitializeComponent();
             this.DoubleBuffered = true;
 
-            m_TestLine = new ConnectionLine(EditAreaPanel);
+
 
             m_MovableKey = new MovableObject(button44);
             m_MovableKey.AddObjectMovedEventListener(UpdateOnObjectMoved);
 
-            m_MovableRenderObject = new MovableObject(button48);
-            m_MovableRenderObject.AddObjectMovedEventListener(UpdateOnObjectMoved);
 
             m_MovablePreviewPanel = new MovableObject(PreviewAreaPanel);
             m_MovablePreviewPanel.AddObjectMovedEventListener(UpdateOnObjectMoved);
@@ -78,7 +74,6 @@ namespace ShaderCreationTool
         // UTIL METHODS
         private void UpdateOnObjectMoved()
         {
-            m_TestLine.Invalidate();
             if(m_IsConnecting) m_TempLine.Invalidate();
             ConnectionManager.UpdateOnObjectMoved();
             EditAreaPanel.Update();
@@ -156,8 +151,6 @@ namespace ShaderCreationTool
         {
            Graphics formGraphics = e.Graphics;
            ConnectionManager.Draw(formGraphics);
-
-           m_TestLine.DrawConnectionLine(formGraphics, button48, PreviewAreaPanel);
 
             if (m_IsConnecting)
             {
@@ -248,6 +241,11 @@ namespace ShaderCreationTool
             if (m_TempLine == null) return;
             m_TempLine.Dispose();
             m_TempLine = null;
+
+        }
+
+        private void button48_Click(object sender, EventArgs e)
+        {
 
         }
     }
