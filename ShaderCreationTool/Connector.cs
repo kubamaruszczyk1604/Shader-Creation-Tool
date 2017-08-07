@@ -35,7 +35,6 @@ namespace ShaderCreationTool
 
         private ShaderVariableType m_VariableType;
         private string m_VariableName;
-
         static private Connector s_PreviouslyClickedConnector;
 
         // PRIVATE (METHODS)
@@ -67,7 +66,9 @@ namespace ShaderCreationTool
         /////////////////////////////////////////////////////////  PUBLIC  /////////////////////////////////////////////////
 
         // PROPERTIES
-        public ConnectionDirection Type { get { return m_ConnectorType; } }
+        public ConnectionDirection DirectionType { get { return m_ConnectorType; } }
+        public ShaderVariableType VariableType { get { return m_VariableType; } }
+        public string VariableName { get { return m_VariableName; } }
         public bool Connected { get { return (p_ParentConnection==null)?false:true; } }
         public Control WinFormControl { get { return m_Control; } }
         public Connection ParentConnection { get { return p_ParentConnection; } }

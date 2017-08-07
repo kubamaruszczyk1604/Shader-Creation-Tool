@@ -78,6 +78,7 @@ namespace ShaderCreationTool
             // ..this click was on targer connector - make new connecion
             if (m_IsConnecting)
             {
+                if (!Connection.CheckConnectionValidity(Connector.GetPreviouslyClickedConnector(), sender)) return;
                 var tempCon = new Connection(Connector.GetPreviouslyClickedConnector(), sender, EditAreaPanel);
                 ConnectionManager.AddConnecion(tempCon);
                 CancelIsConnecting();
