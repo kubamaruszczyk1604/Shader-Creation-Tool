@@ -34,6 +34,7 @@ namespace ShaderCreationTool
         private Connection p_ParentConnection;
 
         private ShaderVariableType m_VariableType;
+        private string m_VariableName;
 
         static private Connector s_PreviouslyClickedConnector;
 
@@ -77,6 +78,7 @@ namespace ShaderCreationTool
             m_Control.Click += OnClick;
             m_Control.Checked = false;
             m_VariableType = variableType;
+            m_VariableName = control.Text;
 
             if (m_Control.Name.Contains(s_InSlotSequenceID))
             {

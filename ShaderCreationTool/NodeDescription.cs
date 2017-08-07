@@ -32,12 +32,14 @@ namespace ShaderCreationTool
         private List<ShaderVariableDescription> m_InputVariables;
         private List<ShaderVariableDescription> m_OutputVariables;
         private string m_FunctionCode;
+        private string m_Name;
 
-        public NodeDescription()
+        public NodeDescription(string name)
         {
             m_InputVariables = new List<ShaderVariableDescription>();
             m_OutputVariables = new List<ShaderVariableDescription>();
             m_FunctionCode = string.Empty;
+            m_Name = name;
         }
 
         public void AddInputVariable(ShaderVariableDescription desc)
@@ -70,6 +72,10 @@ namespace ShaderCreationTool
         {
             return m_FunctionCode;
         }
+
+        public int InputCount { get { return m_InputVariables.Count; } }
+        public int OutputCount { get { return m_OutputVariables.Count; } }
+        public string Name { get { return m_Name; } }
 
     }
 }

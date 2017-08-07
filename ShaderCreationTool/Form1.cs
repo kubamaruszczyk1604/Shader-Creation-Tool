@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 
 namespace ShaderCreationTool
 {
-   
+
 
     public partial class MainWindow : Form
     {
@@ -24,41 +24,34 @@ namespace ShaderCreationTool
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
 
-        ConnectionLine m_TempLine;
+        private ConnectionLine m_TempLine;
+        private MovableObject m_MovableKey;
+        private MovableObject m_MovablePreviewPanel;
 
+        private ShaderVectorVariable m_DiffuseColour;
+        private ShaderVectorVariable m_AmbientColour;
 
-        MovableObject m_MovableKey;
-        MovableObject m_MovablePreviewPanel;
+        private List<SCTNode> m_Nodes;
 
-        ShaderVectorVariable m_DiffuseColour;
-        ShaderVectorVariable m_AmbientColour;
-
-        List<SCTNode> m_Nodes;
+        private bool m_IsConnecting;
+        private Point m_TempLineOrgin;
 
         public MainWindow()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-
-
+            m_IsConnecting = false;
 
             m_MovableKey = new MovableObject(button44);
             m_MovableKey.AddObjectMovedEventListener(UpdateOnObjectMoved);
-
-
             m_MovablePreviewPanel = new MovableObject(PreviewAreaPanel);
             m_MovablePreviewPanel.AddObjectMovedEventListener(UpdateOnObjectMoved);
 
-            Bridge.TESTUJE = 100;
-
             m_DiffuseColour = new ShaderVectorVariable(1, 1, 0, 1, "diffuse");
             Bridge.SetVariable(m_DiffuseColour);
-
-            m_AmbientColour = new ShaderVectorVariable(0.1f,0.1f, 0.1f, 1, "ambient");
-            Bridge.SetVariable(m_AmbientColour); 
+            m_AmbientColour = new ShaderVectorVariable(0.1f, 0.1f, 0.1f, 1, "ambient");
+            Bridge.SetVariable(m_AmbientColour);
             SCTConsole.Instance.Show();
-
-
             m_Nodes = new List<SCTNode>();
         }
 
@@ -67,42 +60,41 @@ namespace ShaderCreationTool
            // AllocConsole();
             await Task.Delay(delayMs);
             IntPtr pointer = pictureBox1.Handle;
-            Bridge.StartRenderer(pictureBox1.Width, pictureBox1.Height, pointer); 
+            Bridge.StartRenderer(pictureBox1.Width, pictureBox1.Height, pointer);
         }
-      
 
         // UTIL METHODS
         private void UpdateOnObjectMoved()
         {
-            if(m_IsConnecting) m_TempLine.Invalidate();
+            if (m_IsConnecting) m_TempLine.Invalidate();
             ConnectionManager.UpdateOnObjectMoved();
             EditAreaPanel.Update();
         }
 
-
-        bool m_IsConnecting = false;
-        Point m_TempLineOrgin;
-
+        // Method Called when "no connected" connector is clicked
         private void OnConnectionBegin(Connector sender)
         {
+            // If the program is in "connecting state" already:
+            // ..this click was on targer connector - make new connecion
             if (m_IsConnecting)
             {
-                var tempCon = new Connection(Connector.GetPreviouslyClickedConnector(),sender,EditAreaPanel);
+                var tempCon = new Connection(Connector.GetPreviouslyClickedConnector(), sender, EditAreaPanel);
                 ConnectionManager.AddConnecion(tempCon);
                 CancelIsConnecting();
                 return;
             }
-           SCTConsole.Instance.PrintLine("Connector on connection begin.");
-           m_TempLine = new ConnectionLine(EditAreaPanel);
-           m_TempLineOrgin = EditAreaPanel.PointToClient(System.Windows.Forms.Cursor.Position);
-           m_IsConnecting = true;
+            //Connection open request - first connector clicked
+            SCTConsole.Instance.PrintLine("Connector on connection begin.");
+            m_TempLine = new ConnectionLine(EditAreaPanel);
+            m_TempLineOrgin = EditAreaPanel.PointToClient(System.Windows.Forms.Cursor.Position);
+            m_IsConnecting = true;
             MovableObject.LockAllMovement();
         }
 
         private void OnConnectionBreak(Connector sender)
         {
             SCTConsole.Instance.PrintLine("Connector on connection end");
-           ConnectionManager.RemoveConnection(sender.ParentConnection);
+            ConnectionManager.RemoveConnection(sender.ParentConnection);
         }
 
         //**************************************  UI EVENTS  ***********************************************//
@@ -116,9 +108,9 @@ namespace ShaderCreationTool
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            SCTConsole.Instance.PrintLine("Main Window Loaded...");        
+            SCTConsole.Instance.PrintLine("Main Window Loaded...");
         }
-        
+
         private void MainWindow_Shown(object sender, EventArgs e)
         {
             StartRenderer(100);
@@ -129,44 +121,38 @@ namespace ShaderCreationTool
             ShaderVariableDescription inDesc3 = new ShaderVariableDescription("Kolor3", ShaderVariableType.Vector4, ConnectionDirection.In);
 
             ShaderVariableDescription outDesc1 = new ShaderVariableDescription("Kolor4", ShaderVariableType.Vector4, ConnectionDirection.Out);
+            ShaderVariableDescription outDesc2 = new ShaderVariableDescription("WYJSCIE", ShaderVariableType.Vector4, ConnectionDirection.Out);
 
 
-
-            NodeDescription d = new NodeDescription();
+            NodeDescription d = new NodeDescription("SUKA");
             d.AddInputVariable(inDesc1);
             d.AddInputVariable(inDesc2);
             d.AddInputVariable(inDesc3);
             d.AddOutputVariable(outDesc1);
-
+            d.AddOutputVariable(outDesc2);
 
             for (int i = 0; i < 2; ++i)
             {
-                SCTNode temp = new SCTNode(MainPanel, new Point(200*i, 300), UpdateOnObjectMoved,d);
+                SCTNode temp = new SCTNode(MainPanel, new Point(200 * i, 300), UpdateOnObjectMoved, d);
                 temp.RegisterListener_OnBeginConnection(OnConnectionBegin);
                 temp.RegisterListener_OnBreakConnection(OnConnectionBreak);
                 m_Nodes.Add(temp);
             }
 
-           //var tempCon = new Connection(m_Nodes[0].GetAllConnectors(ConnectorType.Source)[0],
-           //     m_Nodes[1].GetAllConnectors(ConnectorType.Destination)[2],
-           //     EditAreaPanel
-           //     );
-                   
-           // ConnectionManager.AddConnecion(tempCon);   
         }
 
 
         // MAIN EDIT AREA PANEL
         private void EditAreaPanel_Paint(object sender, PaintEventArgs e)
         {
-           Graphics formGraphics = e.Graphics;
-           ConnectionManager.Draw(formGraphics);
+            Graphics formGraphics = e.Graphics;
+            ConnectionManager.Draw(formGraphics);
 
             if (m_IsConnecting)
             {
-               m_TempLine.DrawConnectionLine(formGraphics, 
-                   m_TempLineOrgin, 
-                   EditAreaPanel.PointToClient(System.Windows.Forms.Cursor.Position));
+                m_TempLine.DrawConnectionLine(formGraphics,
+                    m_TempLineOrgin,
+                    EditAreaPanel.PointToClient(System.Windows.Forms.Cursor.Position));
             }
         }
 
@@ -207,7 +193,7 @@ namespace ShaderCreationTool
                     (float)(cd.Color.G) / 255.0f,
                     (float)(cd.Color.B) / 255.0f,
                     (float)(cd.Color.A) / 255.0f
-                    );  
+                    );
             }
         }
 
@@ -251,12 +237,11 @@ namespace ShaderCreationTool
             if (m_TempLine == null) return;
             m_TempLine.Dispose();
             m_TempLine = null;
-
         }
 
     }
 
 
- 
-   
+
+
 }

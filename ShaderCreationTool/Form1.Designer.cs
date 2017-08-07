@@ -131,7 +131,7 @@
             this.SCTElement.Controls.Add(this.panel1);
             this.SCTElement.Controls.Add(this.Label);
             this.SCTElement.Enabled = false;
-            this.SCTElement.Location = new System.Drawing.Point(587, 422);
+            this.SCTElement.Location = new System.Drawing.Point(1071, 463);
             this.SCTElement.Name = "SCTElement";
             this.SCTElement.Size = new System.Drawing.Size(206, 144);
             this.SCTElement.TabIndex = 29;
@@ -266,7 +266,7 @@
             this.groupBox6.Controls.Add(this.button31);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox6.Location = new System.Drawing.Point(3, 3);
+            this.groupBox6.Location = new System.Drawing.Point(661, 22);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(126, 241);
             this.groupBox6.TabIndex = 23;
@@ -403,7 +403,7 @@
             this.MainPanel.Controls.Add(this.MiddlePanel);
             this.MainPanel.Controls.Add(this.TitleLabel);
             this.MainPanel.Enabled = false;
-            this.MainPanel.Location = new System.Drawing.Point(305, 418);
+            this.MainPanel.Location = new System.Drawing.Point(845, 463);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(206, 144);
             this.MainPanel.TabIndex = 30;
@@ -430,15 +430,18 @@
             // 
             // Out_SlotX
             // 
+            this.Out_SlotX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Out_SlotX.AutoSize = true;
+            this.Out_SlotX.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Out_SlotX.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_SlotX.Location = new System.Drawing.Point(110, 16);
+            this.Out_SlotX.Location = new System.Drawing.Point(129, 16);
             this.Out_SlotX.Name = "Out_SlotX";
-            this.Out_SlotX.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Out_SlotX.Size = new System.Drawing.Size(86, 20);
+            this.Out_SlotX.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Out_SlotX.Size = new System.Drawing.Size(67, 20);
             this.Out_SlotX.TabIndex = 8;
-            this.Out_SlotX.Text = "OutColour";
+            this.Out_SlotX.Text = "OutCol";
+            this.Out_SlotX.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_SlotX.UseVisualStyleBackColor = true;
             // 
             // In_SlotX
