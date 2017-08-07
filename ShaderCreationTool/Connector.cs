@@ -24,8 +24,8 @@ namespace ShaderCreationTool
     class Connector
     {
         // PRIVATE (MEMBERS)
-        private const string s_InSlotSequenceID = "In_Slot";
-        private const string s_OutSlotSequenceID = "Out_Slot";
+        public const string s_InSlotSequenceID = "In_Slot";
+        public const string s_OutSlotSequenceID = "Out_Slot";
 
         private CheckBox m_Control;
         private ConnectorType m_ConnectorType;
@@ -47,7 +47,7 @@ namespace ShaderCreationTool
                 { 
                     m_BeginConnectionCallback(this);
                 }
-
+                s_PreviouslyClickedConnector = this;
 
             }
             else // then click means - disconnect
@@ -60,7 +60,7 @@ namespace ShaderCreationTool
                // Disconnect();
                
             }
-            s_PreviouslyClickedConnector = this;
+       
         }
         
         /////////////////////////////////////////////////////////  PUBLIC  /////////////////////////////////////////////////

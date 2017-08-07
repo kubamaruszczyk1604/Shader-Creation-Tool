@@ -10,7 +10,11 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
-   
+ 
+
+
+
+
     class SCTNode
     {
         private Panel m_SctElement;
@@ -22,7 +26,7 @@ namespace ShaderCreationTool
 
         //////////////////////////////////////////  PUBLIC  ///////////////////////////////////////////////
         
-        public SCTNode(Panel nodeTemplate, Point location)
+        public SCTNode(Panel nodeTemplate, Point location, NodeDescription description)
         {
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
             m_SctElement.Visible = true;
@@ -32,9 +36,28 @@ namespace ShaderCreationTool
             m_SourceConnectors = new List<Connector>();
             m_DestinationConnectors = new List<Connector>();
 
+
+
+
             List<CheckBox> boxes = ControlExtensions.GetAllChildreenControls<CheckBox>(m_SctElement).Cast<CheckBox>().ToList();
 
-            for(int i = 0; i < boxes.Count;++i)
+            CheckBox inBox;
+            CheckBox outBox;
+            for (int i = 0; i < boxes.Count; ++i)
+            {
+                if(boxes[i].Name.Contains(Connector.s_InSlotSequenceID))
+                {
+                    inBox = boxes[i];
+                }
+                else if (boxes[i].Name.Contains(Connector.s_OutSlotSequenceID))
+                {
+                    outBox = boxes[i];
+                }
+            }
+
+
+
+            for (int i = 0; i < boxes.Count;++i)
             {
                 Connector tempCon = new Connector(boxes[i],ShaderVariableType.Vector4);
                 if (tempCon.Type == ConnectorType.Source)
@@ -48,11 +71,14 @@ namespace ShaderCreationTool
             }
         }
 
-        public SCTNode(Panel nodeTemplate, Point location, ObjectMovedCallback onObjectMoved):
-            this(nodeTemplate,location)
+        public SCTNode(Panel nodeTemplate, Point location, ObjectMovedCallback onObjectMoved, NodeDescription description) :
+            this(nodeTemplate,location,description)
         {
             RegisterListener_OnMoved(onObjectMoved);
         }
+
+
+        
 
 
         /// <summary>

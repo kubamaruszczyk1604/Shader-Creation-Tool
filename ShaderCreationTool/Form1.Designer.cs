@@ -56,6 +56,12 @@
             this.gLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainPanel = new System.Windows.Forms.Panel();
+            this.MiddlePanel = new System.Windows.Forms.Panel();
+            this.InnerPanel = new System.Windows.Forms.Panel();
+            this.Out_SlotX = new System.Windows.Forms.CheckBox();
+            this.In_SlotX = new System.Windows.Forms.CheckBox();
+            this.TitleLabel = new System.Windows.Forms.Label();
             this.EditAreaPanel.SuspendLayout();
             this.SCTElement.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -64,6 +70,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox6.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
+            this.MainPanel.SuspendLayout();
+            this.MiddlePanel.SuspendLayout();
+            this.InnerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -97,6 +106,7 @@
             this.EditAreaPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditAreaPanel.BackgroundImage")));
             this.EditAreaPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.EditAreaPanel.Controls.Add(this.MainPanel);
             this.EditAreaPanel.Controls.Add(this.SCTElement);
             this.EditAreaPanel.Controls.Add(this.PreviewAreaPanel);
             this.EditAreaPanel.Controls.Add(this.button1);
@@ -121,9 +131,9 @@
             this.SCTElement.Controls.Add(this.panel1);
             this.SCTElement.Controls.Add(this.Label);
             this.SCTElement.Enabled = false;
-            this.SCTElement.Location = new System.Drawing.Point(1071, 560);
+            this.SCTElement.Location = new System.Drawing.Point(587, 422);
             this.SCTElement.Name = "SCTElement";
-            this.SCTElement.Size = new System.Drawing.Size(206, 129);
+            this.SCTElement.Size = new System.Drawing.Size(206, 144);
             this.SCTElement.TabIndex = 29;
             this.SCTElement.Visible = false;
             // 
@@ -133,7 +143,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(-1, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(206, 104);
+            this.panel1.Size = new System.Drawing.Size(206, 119);
             this.panel1.TabIndex = 1;
             // 
             // panel2
@@ -145,7 +155,7 @@
             this.panel2.Controls.Add(this.Material_In_Slot_Ambient);
             this.panel2.Location = new System.Drawing.Point(4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(199, 96);
+            this.panel2.Size = new System.Drawing.Size(199, 111);
             this.panel2.TabIndex = 0;
             // 
             // Material_Out_Slot
@@ -386,6 +396,73 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
+            // MainPanel
+            // 
+            this.MainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.MainPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MainPanel.Controls.Add(this.MiddlePanel);
+            this.MainPanel.Controls.Add(this.TitleLabel);
+            this.MainPanel.Enabled = false;
+            this.MainPanel.Location = new System.Drawing.Point(305, 418);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(206, 144);
+            this.MainPanel.TabIndex = 30;
+            this.MainPanel.Visible = false;
+            // 
+            // MiddlePanel
+            // 
+            this.MiddlePanel.BackColor = System.Drawing.Color.DimGray;
+            this.MiddlePanel.Controls.Add(this.InnerPanel);
+            this.MiddlePanel.Location = new System.Drawing.Point(-1, 24);
+            this.MiddlePanel.Name = "MiddlePanel";
+            this.MiddlePanel.Size = new System.Drawing.Size(206, 119);
+            this.MiddlePanel.TabIndex = 1;
+            // 
+            // InnerPanel
+            // 
+            this.InnerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.InnerPanel.Controls.Add(this.Out_SlotX);
+            this.InnerPanel.Controls.Add(this.In_SlotX);
+            this.InnerPanel.Location = new System.Drawing.Point(4, 4);
+            this.InnerPanel.Name = "InnerPanel";
+            this.InnerPanel.Size = new System.Drawing.Size(199, 111);
+            this.InnerPanel.TabIndex = 0;
+            // 
+            // Out_SlotX
+            // 
+            this.Out_SlotX.AutoSize = true;
+            this.Out_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Out_SlotX.ForeColor = System.Drawing.Color.BurlyWood;
+            this.Out_SlotX.Location = new System.Drawing.Point(110, 16);
+            this.Out_SlotX.Name = "Out_SlotX";
+            this.Out_SlotX.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.Out_SlotX.Size = new System.Drawing.Size(86, 20);
+            this.Out_SlotX.TabIndex = 8;
+            this.Out_SlotX.Text = "OutColour";
+            this.Out_SlotX.UseVisualStyleBackColor = true;
+            // 
+            // In_SlotX
+            // 
+            this.In_SlotX.AutoSize = true;
+            this.In_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.In_SlotX.ForeColor = System.Drawing.Color.BurlyWood;
+            this.In_SlotX.Location = new System.Drawing.Point(3, 16);
+            this.In_SlotX.Name = "In_SlotX";
+            this.In_SlotX.Size = new System.Drawing.Size(76, 20);
+            this.In_SlotX.TabIndex = 4;
+            this.In_SlotX.Text = "Ambient";
+            this.In_SlotX.UseVisualStyleBackColor = true;
+            // 
+            // TitleLabel
+            // 
+            this.TitleLabel.AutoSize = true;
+            this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitleLabel.Location = new System.Drawing.Point(77, 6);
+            this.TitleLabel.Name = "TitleLabel";
+            this.TitleLabel.Size = new System.Drawing.Size(52, 15);
+            this.TitleLabel.TabIndex = 0;
+            this.TitleLabel.Text = "Material";
+            // 
             // MainWindow
             // 
             this.AcceptButton = this.button1;
@@ -417,6 +494,11 @@
             this.groupBox6.ResumeLayout(false);
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
+            this.MainPanel.ResumeLayout(false);
+            this.MainPanel.PerformLayout();
+            this.MiddlePanel.ResumeLayout(false);
+            this.InnerPanel.ResumeLayout(false);
+            this.InnerPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -451,6 +533,12 @@
         private System.Windows.Forms.CheckBox Material_In_Slot_Diffuse;
         private System.Windows.Forms.CheckBox Material_In_Slot_Ambient;
         private System.Windows.Forms.CheckBox Material_Out_Slot;
+        private System.Windows.Forms.Panel MainPanel;
+        private System.Windows.Forms.Panel MiddlePanel;
+        private System.Windows.Forms.Panel InnerPanel;
+        private System.Windows.Forms.CheckBox Out_SlotX;
+        private System.Windows.Forms.CheckBox In_SlotX;
+        private System.Windows.Forms.Label TitleLabel;
     }
 }
 

@@ -123,10 +123,13 @@ namespace ShaderCreationTool
         {
             StartRenderer(100);
             PreviewTextLabel.ForeColor = Color.White;
+            NodeDescription d = new NodeDescription();
 
+          
+            
             for (int i = 0; i < 2; ++i)
             {
-                SCTNode temp = new SCTNode(SCTElement, new Point(200*i, 300), UpdateOnObjectMoved);
+                SCTNode temp = new SCTNode(MainPanel, new Point(200*i, 300), UpdateOnObjectMoved,d);
                 temp.RegisterListener_OnBeginConnection(OnConnectionBegin);
                 temp.RegisterListener_OnBreakConnection(OnConnectionBreak);
                 m_Nodes.Add(temp);
