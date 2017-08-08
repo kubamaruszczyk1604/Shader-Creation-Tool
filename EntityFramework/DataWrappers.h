@@ -75,6 +75,45 @@ public:
 
 };
 
+public ref class ShaderTextureVariable
+{
+private:
+	ShaderVariableType m_Type;
+	System::String^ m_Name;
+	System::String^ m_Path;
+
+public:
+	ShaderTextureVariable(System::String^ path, System::String^ name): 
+		m_Type{ShaderVariableType::Texture2D},
+		m_Path{path},
+		m_Name{name}{}
+
+	System::String^ GetName()
+	{
+		return m_Name;
+	}
+
+	void SetName(System::String^ name)
+	{
+		m_Name = name;
+	}
+
+	System::String^ GetPath()
+	{
+		return m_Path;
+	}
+
+	void SetPath(System::String^ path)
+	{
+		m_Path= path;
+	}
+
+	ShaderVariableType GetType()
+	{
+		return m_Type;
+	}
+};
+
 class DataConverter
 {
 public:

@@ -20,7 +20,7 @@ namespace KLM_FRAMEWORK
 		return nullptr;
 	}
 
-	Texture * ResourceManager::LoadTexture(const std::string & path, TextureAddressMode wrapMode)
+	Texture* ResourceManager::LoadTexture(const std::string & path, TextureAddressMode wrapMode)
 	{
 		if (path == "")
 		{

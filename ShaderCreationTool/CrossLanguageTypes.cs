@@ -15,7 +15,8 @@ enum
         Vector4,
         Vector3,
         Vector2,
-        Single
+        Single,
+        Texture2D
     };
 
 

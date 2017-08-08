@@ -33,6 +33,7 @@
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.closeButtonX = new System.Windows.Forms.Button();
             this.MiddlePanel = new System.Windows.Forms.Panel();
             this.InnerPanel = new System.Windows.Forms.Panel();
             this.Out_SlotX = new System.Windows.Forms.CheckBox();
@@ -62,7 +63,6 @@
             this.gLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeButtonX = new System.Windows.Forms.Button();
             this.EditAreaPanel.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.MiddlePanel.SuspendLayout();
@@ -139,6 +139,19 @@
             this.MainPanel.TabIndex = 30;
             this.MainPanel.Visible = false;
             // 
+            // closeButtonX
+            // 
+            this.closeButtonX.BackColor = System.Drawing.Color.Black;
+            this.closeButtonX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButtonX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButtonX.ForeColor = System.Drawing.Color.Transparent;
+            this.closeButtonX.Location = new System.Drawing.Point(182, 3);
+            this.closeButtonX.Name = "closeButtonX";
+            this.closeButtonX.Size = new System.Drawing.Size(18, 22);
+            this.closeButtonX.TabIndex = 2;
+            this.closeButtonX.Text = "X";
+            this.closeButtonX.UseVisualStyleBackColor = false;
+            // 
             // MiddlePanel
             // 
             this.MiddlePanel.BackColor = System.Drawing.Color.DimGray;
@@ -177,6 +190,8 @@
             // In_SlotX
             // 
             this.In_SlotX.AutoSize = true;
+            this.In_SlotX.BackColor = System.Drawing.Color.Transparent;
+            this.In_SlotX.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.In_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.In_SlotX.ForeColor = System.Drawing.Color.BurlyWood;
             this.In_SlotX.Location = new System.Drawing.Point(3, 16);
@@ -184,7 +199,7 @@
             this.In_SlotX.Size = new System.Drawing.Size(76, 20);
             this.In_SlotX.TabIndex = 4;
             this.In_SlotX.Text = "Ambient";
-            this.In_SlotX.UseVisualStyleBackColor = true;
+            this.In_SlotX.UseVisualStyleBackColor = false;
             // 
             // TitleLabel
             // 
@@ -467,19 +482,6 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // closeButtonX
-            // 
-            this.closeButtonX.BackColor = System.Drawing.Color.Black;
-            this.closeButtonX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButtonX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeButtonX.ForeColor = System.Drawing.Color.Transparent;
-            this.closeButtonX.Location = new System.Drawing.Point(182, 3);
-            this.closeButtonX.Name = "closeButtonX";
-            this.closeButtonX.Size = new System.Drawing.Size(18, 22);
-            this.closeButtonX.TabIndex = 2;
-            this.closeButtonX.Text = "X";
-            this.closeButtonX.UseVisualStyleBackColor = false;
             // 
             // MainWindow
             // 
