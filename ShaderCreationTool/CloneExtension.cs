@@ -76,9 +76,9 @@ namespace ShaderCreationTool
                     cb.Enabled = enableAllChildreen;
                     targetInstance.Controls.Add(cb);
                 }
-                else if (control is RadioButton)
+                else if (control is Button)
                 {
-                    RadioButton cb = ((RadioButton)control).CopyAsSCTElement(enableAllChildreen);
+                    Button cb = ((Button)control).CopyAsSCTElement(enableAllChildreen);
                     cb.Parent = targetInstance;
                     cb.Enabled = enableAllChildreen;
                     targetInstance.Controls.Add(cb);
