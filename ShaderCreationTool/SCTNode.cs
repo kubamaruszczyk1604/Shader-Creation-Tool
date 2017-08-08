@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
+    delegate void NodeCloseButtonCallback(SCTNode sender);
 
     class SCTNode
     {
@@ -18,6 +19,7 @@ namespace ShaderCreationTool
         private List<Connector> m_OutputConnectors;
         private List<Connector> m_InputConnectors;
         private string m_Label = string.Empty;
+        private NodeCloseButtonCallback p_CloseCallback;
 
 
         //////////////////////////////////////////  PUBLIC  ///////////////////////////////////////////////
@@ -98,7 +100,7 @@ namespace ShaderCreationTool
         public SCTNode(Panel nodeTemplate, Point location, ObjectMovedCallback onObjectMoved, NodeDescription description) :
             this(nodeTemplate,location,description)
         {
-            RegisterListener_OnMoved(onObjectMoved);
+            AddOnMovedCallback(onObjectMoved);
         }
 
 
@@ -106,7 +108,7 @@ namespace ShaderCreationTool
         /// Registered method will be called when node is moved
         /// </summary>
         /// <param name="onMovedCallback"></param>
-        public void RegisterListener_OnMoved(ObjectMovedCallback onMovedCallback)
+        public void AddOnMovedCallback(ObjectMovedCallback onMovedCallback)
         {
             m_Mover.AddObjectMovedEventListener(onMovedCallback);
         }
@@ -115,7 +117,7 @@ namespace ShaderCreationTool
         /// Registered callback method will be called when any of the node's connectors is clicked
         /// </summary>
         /// <param name="onBeginConnection"></param>
-        public void RegisterListener_OnBeginConnection(BeginConnectionCallback onBeginConnection)
+        public void AddOnBeginConnectionCallback(BeginConnectionCallback onBeginConnection)
         {
             foreach(Connector c in m_OutputConnectors)
             {
@@ -131,7 +133,7 @@ namespace ShaderCreationTool
         /// Registered method will be called when user clicks on one of the connected connectors
         /// </summary>
         /// <param name="onBreakConnection"></param>
-        public void RegisterListener_OnBreakConnection(BreakConnectionCallback onBreakConnection)
+        public void AddOnBreakConnectionCallback(BreakConnectionCallback onBreakConnection)
         {
             foreach (Connector c in m_OutputConnectors)
             {
@@ -141,6 +143,15 @@ namespace ShaderCreationTool
             {
                 c.AddCallback_BreakConnectionRequest(onBreakConnection);
             }
+        }
+
+        /// <summary>
+        /// Registered method will be called when close button of the node is clicked
+        /// </summary>
+        /// <param name="callback"></param>
+        public void AddOnCloseCallback(NodeCloseButtonCallback callback)
+        {
+            p_CloseCallback += callback;
         }
 
         public Connector GetConnector(ConnectionDirection type, int index)
@@ -169,8 +180,8 @@ namespace ShaderCreationTool
         ////////////////// UI EVENTS ////////////////
         private void CloseButton_Click(object sender, EventArgs e)
         {
-           
-            SCTConsole.Instance.PrintLine("Node Close request..");
+            if (p_CloseCallback != null) p_CloseCallback(this);
+       
         }
 
 

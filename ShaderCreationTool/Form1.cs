@@ -71,6 +71,8 @@ namespace ShaderCreationTool
             EditAreaPanel.Update();
         }
 
+        ////////////////////////////  CALLBACKS   /////////////////////////////
+
         // Method Called when "no connected" connector is clicked
         private void OnConnectionBegin(Connector sender)
         {
@@ -96,6 +98,11 @@ namespace ShaderCreationTool
         {
             SCTConsole.Instance.PrintLine("Connector on connection end");
             ConnectionManager.RemoveConnection(sender.ParentConnection);
+        }
+
+        private void OnNodeClose(SCTNode sender)
+        {
+            SCTConsole.Instance.PrintLine("Node Close request..");
         }
 
         //**************************************  UI EVENTS  ***********************************************//
@@ -136,9 +143,10 @@ namespace ShaderCreationTool
 
             for (int i = 0; i < 2; ++i)
             {
-                SCTNode temp = new SCTNode(MainPanel, new Point(200 * i, 300), UpdateOnObjectMoved, d);
-                temp.RegisterListener_OnBeginConnection(OnConnectionBegin);
-                temp.RegisterListener_OnBreakConnection(OnConnectionBreak);
+                SCTNode temp = new SCTNode(MainPanel, new Point(240 * i, 300), UpdateOnObjectMoved, d);
+                temp.AddOnBeginConnectionCallback(OnConnectionBegin);
+                temp.AddOnBreakConnectionCallback(OnConnectionBreak);
+                temp.AddOnCloseCallback(OnNodeClose);
                 m_Nodes.Add(temp);
             }
 
