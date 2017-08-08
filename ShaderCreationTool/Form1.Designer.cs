@@ -135,7 +135,7 @@
             this.MainPanel.Enabled = false;
             this.MainPanel.Location = new System.Drawing.Point(706, 531);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(205, 94);
+            this.MainPanel.Size = new System.Drawing.Size(230, 94);
             this.MainPanel.TabIndex = 30;
             this.MainPanel.Visible = false;
             // 
@@ -145,7 +145,7 @@
             this.closeButtonX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButtonX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButtonX.ForeColor = System.Drawing.Color.Transparent;
-            this.closeButtonX.Location = new System.Drawing.Point(182, 3);
+            this.closeButtonX.Location = new System.Drawing.Point(205, 3);
             this.closeButtonX.Name = "closeButtonX";
             this.closeButtonX.Size = new System.Drawing.Size(18, 22);
             this.closeButtonX.TabIndex = 2;
@@ -158,7 +158,7 @@
             this.MiddlePanel.Controls.Add(this.InnerPanel);
             this.MiddlePanel.Location = new System.Drawing.Point(-1, 31);
             this.MiddlePanel.Name = "MiddlePanel";
-            this.MiddlePanel.Size = new System.Drawing.Size(206, 63);
+            this.MiddlePanel.Size = new System.Drawing.Size(230, 63);
             this.MiddlePanel.TabIndex = 1;
             // 
             // InnerPanel
@@ -168,7 +168,7 @@
             this.InnerPanel.Controls.Add(this.In_SlotX);
             this.InnerPanel.Location = new System.Drawing.Point(4, 4);
             this.InnerPanel.Name = "InnerPanel";
-            this.InnerPanel.Size = new System.Drawing.Size(198, 55);
+            this.InnerPanel.Size = new System.Drawing.Size(223, 55);
             this.InnerPanel.TabIndex = 0;
             // 
             // Out_SlotX
@@ -178,7 +178,7 @@
             this.Out_SlotX.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Out_SlotX.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_SlotX.Location = new System.Drawing.Point(128, 16);
+            this.Out_SlotX.Location = new System.Drawing.Point(153, 16);
             this.Out_SlotX.Name = "Out_SlotX";
             this.Out_SlotX.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Out_SlotX.Size = new System.Drawing.Size(67, 20);
@@ -199,13 +199,14 @@
             this.In_SlotX.Size = new System.Drawing.Size(76, 20);
             this.In_SlotX.TabIndex = 4;
             this.In_SlotX.Text = "Ambient";
+            this.In_SlotX.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.In_SlotX.UseVisualStyleBackColor = false;
             // 
             // TitleLabel
             // 
             this.TitleLabel.AutoSize = true;
             this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleLabel.Location = new System.Drawing.Point(76, 6);
+            this.TitleLabel.Location = new System.Drawing.Point(92, 6);
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(52, 15);
             this.TitleLabel.TabIndex = 0;

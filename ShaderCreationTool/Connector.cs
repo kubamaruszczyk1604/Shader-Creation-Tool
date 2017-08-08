@@ -35,6 +35,8 @@ namespace ShaderCreationTool
 
         private ShaderVariableType m_VariableType;
         private string m_VariableName;
+        private SCTNode p_ParentNode;
+        private Color m_StandardColour;
         static private Connector s_PreviouslyClickedConnector;
 
         // PRIVATE (METHODS)
@@ -72,14 +74,17 @@ namespace ShaderCreationTool
         public bool Connected { get { return (p_ParentConnection==null)?false:true; } }
         public Control WinFormControl { get { return m_Control; } }
         public Connection ParentConnection { get { return p_ParentConnection; } }
+        public SCTNode ParentNode { get { return p_ParentNode; } }
        
-        public Connector(CheckBox control,ShaderVariableType variableType)
+        public Connector(CheckBox control,ShaderVariableType variableType,SCTNode parentNode)
         {
+            p_ParentNode = parentNode;
             m_Control = control;
             m_Control.Click += OnClick;
             m_Control.Checked = false;
             m_VariableType = variableType;
             m_VariableName = control.Text;
+            m_StandardColour = m_Control.ForeColor;
 
             if (m_Control.Name.Contains(s_InSlotSequenceID))
             {
@@ -123,6 +128,16 @@ namespace ShaderCreationTool
         {
             m_Control.Checked = false;
             p_ParentConnection = null; 
+        }
+
+        public void SetAsHighlighted()
+        {
+            m_Control.ForeColor = Color.White;
+        }
+
+        public void DisableHighlighted()
+        {
+            m_Control.ForeColor = m_StandardColour;
         }
 
         static public Connector GetPreviouslyClickedConnector()

@@ -32,6 +32,7 @@ namespace ShaderCreationTool
         private ShaderVectorVariable m_AmbientColour;
 
         private List<SCTNode> m_Nodes;
+        private List<Connector> m_HighlightedList;
 
         private bool m_IsConnecting;
         private Point m_TempLineOrgin;
@@ -53,6 +54,7 @@ namespace ShaderCreationTool
             Bridge.SetVariable(m_AmbientColour);
             SCTConsole.Instance.Show();
             m_Nodes = new List<SCTNode>();
+            m_HighlightedList = new List<Connector>();
         }
 
         private async void StartRenderer(int delayMs)
@@ -86,12 +88,33 @@ namespace ShaderCreationTool
                 CancelIsConnecting();
                 return;
             }
+
+
             //Connection open request - first connector clicked
             SCTConsole.Instance.PrintLine("Connector on connection begin.");
             m_TempLine = new ConnectionLine(EditAreaPanel);
             m_TempLineOrgin = EditAreaPanel.PointToClient(System.Windows.Forms.Cursor.Position);
             m_IsConnecting = true;
             MovableObject.LockAllMovement();
+
+
+            //Node Highlighting
+            List<Connector> allConnectors = new List<Connector>();
+            foreach(SCTNode n in m_Nodes)
+            {
+
+                ConnectionDirection dir =
+                    (sender.DirectionType == ConnectionDirection.In)?
+                    ConnectionDirection.Out:ConnectionDirection.In;
+                List<Connector> tempLCon = n.GetAllConnectors(dir);
+              
+                foreach(Connector c in tempLCon)
+                {
+                    if (c.ParentNode == sender.ParentNode) continue;
+                    m_HighlightedList.Add(c);
+                    c.SetAsHighlighted();
+                }
+            }
         }
 
         private void OnConnectionBreak(Connector sender)
@@ -183,7 +206,6 @@ namespace ShaderCreationTool
         private void EditAreaPanel_Click(object sender, EventArgs e)
         {
             fileToolStripMenuItem.HideDropDown();
-
         }
 
         // PREVIEW AREA PANEL
@@ -261,6 +283,11 @@ namespace ShaderCreationTool
             if (m_TempLine == null) return;
             m_TempLine.Dispose();
             m_TempLine = null;
+            foreach(Connector c in m_HighlightedList)
+            {
+                c.DisableHighlighted();
+            }
+            m_HighlightedList.Clear();
         }
     }
 

@@ -54,7 +54,7 @@ namespace ShaderCreationTool
             boxes.Clear();
 
             //Adjust size
-            const int connectorYOffset = 20;
+            const int connectorYOffset = 23;
             int biggestVarCount = (description.InputCount > description.OutputCount) ?
                              description.InputCount : description.OutputCount;
 
@@ -68,12 +68,14 @@ namespace ShaderCreationTool
             //Create connectors
             m_OutputConnectors = new List<Connector>();
             m_InputConnectors = new List<Connector>();
-            for (int i = 0; i < description.InputCount;++i)
+            for (int i = 0; i < description.InputCount; ++i)
             {
-                CheckBox cd = (i==0)? inBox : inBox.CopyAsSCTElement(true);
+                CheckBox cd = (i == 0) ? inBox : inBox.CopyAsSCTElement(true);
                 cd.Location = new Point(cd.Location.X, cd.Location.Y + connectorYOffset * i);
+               // cd.Text = "[" + description.GetInVariableDescription(i).Type.ToString() + "]\n";
                 cd.Text = description.GetInVariableDescription(i).Name;
-                Connector tempCon = new Connector(cd, description.GetInVariableDescription(i).Type);
+                
+                Connector tempCon = new Connector(cd, description.GetInVariableDescription(i).Type,this);
                 m_InputConnectors.Add(tempCon);
             }
 
@@ -82,7 +84,7 @@ namespace ShaderCreationTool
                 CheckBox cd = (i == 0) ? outBox : outBox.CopyAsSCTElement(true);
                 cd.Location = new Point(cd.Location.X, cd.Location.Y + connectorYOffset * i);
                 cd.Text = description.GetOutVariableDescription(i).Name;
-                Connector tempCon = new Connector(cd, description.GetOutVariableDescription(i).Type);
+                Connector tempCon = new Connector(cd, description.GetOutVariableDescription(i).Type,this);
                 m_OutputConnectors.Add(tempCon);
             }
 
