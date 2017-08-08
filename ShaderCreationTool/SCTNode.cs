@@ -24,16 +24,18 @@ namespace ShaderCreationTool
         
         public SCTNode(Panel nodeTemplate, Point location, NodeDescription description)
         {
+            //Copy template (make local instance)
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
             m_SctElement.Visible = true;
             m_SctElement.Location = location;
 
+            //Make object movable
             m_Mover = new MovableObject(m_SctElement);
-            m_OutputConnectors = new List<Connector>();
-            m_InputConnectors = new List<Connector>();
-
+          
+            //Find template tick boxes
             List<CheckBox> boxes = ControlExtensions.GetAllChildreenControls<CheckBox>(m_SctElement).Cast<CheckBox>().ToList();
 
+            // Find input and output template boxes
             CheckBox inBox = null;
             CheckBox outBox = null;
             for (int i = 0; i < boxes.Count; ++i)
@@ -47,8 +49,8 @@ namespace ShaderCreationTool
                     outBox = boxes[i];
                 }
             }
-
             boxes.Clear();
+
             //Adjust size
             const int connectorYOffset = 20;
             int biggestVarCount = (description.InputCount > description.OutputCount) ?
@@ -61,8 +63,10 @@ namespace ShaderCreationTool
                 p.Size = new Size(p.Size.Width, p.Size.Height + connectorYOffset * (biggestVarCount-1));
             }
 
-           
-            for(int i = 0; i < description.InputCount;++i)
+            //Create connectors
+            m_OutputConnectors = new List<Connector>();
+            m_InputConnectors = new List<Connector>();
+            for (int i = 0; i < description.InputCount;++i)
             {
                 CheckBox cd = (i==0)? inBox : inBox.CopyAsSCTElement(true);
                 cd.Location = new Point(cd.Location.X, cd.Location.Y + connectorYOffset * i);
@@ -81,7 +85,7 @@ namespace ShaderCreationTool
             }
 
 
-
+            // Set node title
             List<Label> labels = ControlExtensions.GetAllChildreenControls<Label>(m_SctElement).Cast<Label>().ToList();
             labels[0].Text = description.Name;
 
@@ -155,6 +159,14 @@ namespace ShaderCreationTool
             outList.AddRange(m_OutputConnectors);
             outList.AddRange(m_InputConnectors);
             return outList;
+        }
+
+
+        ////////////////// UI EVENTS ////////////////
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+           
+            SCTConsole.Instance.PrintLine("Node Close request..");
         }
 
 
