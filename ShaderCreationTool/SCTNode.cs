@@ -177,6 +177,13 @@ namespace ShaderCreationTool
         }
         public void Dispose()
         {
+            List<Connector> connectors = GetAllConnectors();
+            foreach(Connector c in connectors)
+            {
+                if (!c.Connected) continue;
+                if (!ConnectionManager.ContainsConncetion(c.ParentConnection)) continue;
+                ConnectionManager.RemoveConnection(c.ParentConnection);
+            }
             m_SctElement.Parent.Controls.Remove(m_SctElement);
         }
 
