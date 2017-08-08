@@ -35,6 +35,11 @@ namespace ShaderCreationTool
                 return false;
             }
 
+            if(a.ParentNode == b.ParentNode)
+            {
+                return false;
+            }
+
             return true;
         }
 

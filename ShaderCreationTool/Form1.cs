@@ -111,6 +111,8 @@ namespace ShaderCreationTool
                 foreach(Connector c in tempLCon)
                 {
                     if (c.ParentNode == sender.ParentNode) continue;
+                    if (c.VariableType != sender.VariableType) continue;
+                    if (c.Connected) continue;
                     m_HighlightedList.Add(c);
                     c.SetAsHighlighted();
                 }
