@@ -30,6 +30,8 @@ namespace ShaderCreationTool
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
             m_SctElement.Visible = true;
             m_SctElement.Location = location;
+            m_SctElement.MouseDown += Panel_MouseDown;
+
 
             //Make object movable
             m_Mover = new MovableObject(m_SctElement);
@@ -194,6 +196,11 @@ namespace ShaderCreationTool
         {
             if (p_CloseCallback != null) p_CloseCallback(this);
        
+        }
+
+        private void Panel_MouseDown(object sender, MouseEventArgs e)
+        {
+            m_SctElement.BringToFront();
         }
 
 

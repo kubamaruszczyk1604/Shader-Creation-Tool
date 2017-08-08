@@ -6,9 +6,9 @@ namespace ShaderCreationTool
 {
     class ConnectionLine: IDisposable
     {
-        private readonly Pen m_Pen = new Pen(Color.FromArgb(100,200,200,255), 3);
-        private readonly Size c_ButtonSize = new Size(15, 15);
-        private readonly Color c_ButtonBackColour = Color.FromArgb(100, 100, 100, 255);
+        private readonly Pen m_Pen = new Pen(Color.FromArgb(100,255,155,155), 3);
+        private readonly Size c_ButtonSize = new Size(13, 13);
+        private readonly Color c_ButtonBackColour = Color.FromArgb(100, 255, 155, 155);
         private readonly Color c_ButtonForeColour = Color.FromArgb(255, 100, 100, 130);
 
         private Control p_Control;

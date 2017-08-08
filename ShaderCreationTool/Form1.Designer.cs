@@ -79,7 +79,7 @@
             // button1
             // 
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(135, 3);
+            this.button1.Location = new System.Drawing.Point(158, 92);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 32);
             this.button1.TabIndex = 0;
@@ -127,7 +127,7 @@
             // 
             // MainPanel
             // 
-            this.MainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.MainPanel.BackColor = System.Drawing.Color.Maroon;
             this.MainPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MainPanel.Controls.Add(this.closeButtonX);
             this.MainPanel.Controls.Add(this.MiddlePanel);
@@ -145,9 +145,9 @@
             this.closeButtonX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButtonX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButtonX.ForeColor = System.Drawing.Color.Transparent;
-            this.closeButtonX.Location = new System.Drawing.Point(205, 3);
+            this.closeButtonX.Location = new System.Drawing.Point(203, 6);
             this.closeButtonX.Name = "closeButtonX";
-            this.closeButtonX.Size = new System.Drawing.Size(18, 22);
+            this.closeButtonX.Size = new System.Drawing.Size(22, 22);
             this.closeButtonX.TabIndex = 2;
             this.closeButtonX.Text = "X";
             this.closeButtonX.UseVisualStyleBackColor = false;
@@ -178,7 +178,7 @@
             this.Out_SlotX.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Out_SlotX.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_SlotX.Location = new System.Drawing.Point(147, 16);
+            this.Out_SlotX.Location = new System.Drawing.Point(153, 16);
             this.Out_SlotX.Name = "Out_SlotX";
             this.Out_SlotX.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Out_SlotX.Size = new System.Drawing.Size(73, 20);
@@ -194,7 +194,7 @@
             this.In_SlotX.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.In_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.In_SlotX.ForeColor = System.Drawing.Color.BurlyWood;
-            this.In_SlotX.Location = new System.Drawing.Point(3, 16);
+            this.In_SlotX.Location = new System.Drawing.Point(-1, 16);
             this.In_SlotX.Name = "In_SlotX";
             this.In_SlotX.Size = new System.Drawing.Size(83, 20);
             this.In_SlotX.TabIndex = 4;
@@ -205,16 +205,16 @@
             // TitleLabel
             // 
             this.TitleLabel.AutoSize = true;
-            this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleLabel.Location = new System.Drawing.Point(80, 6);
+            this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitleLabel.Location = new System.Drawing.Point(82, 7);
             this.TitleLabel.Name = "TitleLabel";
-            this.TitleLabel.Size = new System.Drawing.Size(64, 16);
+            this.TitleLabel.Size = new System.Drawing.Size(68, 18);
             this.TitleLabel.TabIndex = 0;
             this.TitleLabel.Text = "Material";
             // 
             // SCTElement
             // 
-            this.SCTElement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.SCTElement.BackColor = System.Drawing.Color.Maroon;
             this.SCTElement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SCTElement.Controls.Add(this.panel1);
             this.SCTElement.Controls.Add(this.Label);
@@ -307,7 +307,7 @@
             // 
             // PreviewAreaPanel
             // 
-            this.PreviewAreaPanel.BackColor = System.Drawing.Color.Gray;
+            this.PreviewAreaPanel.BackColor = System.Drawing.Color.DimGray;
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
             this.PreviewAreaPanel.Location = new System.Drawing.Point(811, 3);
@@ -354,7 +354,7 @@
             this.groupBox6.Controls.Add(this.button31);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox6.Location = new System.Drawing.Point(661, 22);
+            this.groupBox6.Location = new System.Drawing.Point(3, 3);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(126, 241);
             this.groupBox6.TabIndex = 23;
@@ -556,11 +556,11 @@
         private System.Windows.Forms.CheckBox Material_Out_Slot;
         private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.Panel MiddlePanel;
-        private System.Windows.Forms.Panel InnerPanel;
         private System.Windows.Forms.CheckBox Out_SlotX;
         private System.Windows.Forms.CheckBox In_SlotX;
         private System.Windows.Forms.Label TitleLabel;
         private System.Windows.Forms.Button closeButtonX;
+        private System.Windows.Forms.Panel InnerPanel;
     }
 }
 

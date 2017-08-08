@@ -24,7 +24,7 @@ namespace ShaderCreationTool
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
 
-        private ConnectionLine m_TempLine;
+        private SimpleZLine m_TempLine;
         private MovableObject m_MovableKey;
         private MovableObject m_MovablePreviewPanel;
 
@@ -107,7 +107,7 @@ namespace ShaderCreationTool
 
             //Connection open request - first connector clicked
             SCTConsole.Instance.PrintLine("Connector on connection begin.");
-            m_TempLine = new ConnectionLine(EditAreaPanel);
+            m_TempLine = new SimpleZLine(EditAreaPanel);
             m_TempLineOrgin = EditAreaPanel.PointToClient(System.Windows.Forms.Cursor.Position);
             m_IsConnecting = true;
             MovableObject.LockAllMovement();
@@ -303,7 +303,9 @@ namespace ShaderCreationTool
             m_IsConnecting = false;
             MovableObject.UnlockAllMovement();
             if (m_TempLine == null) return;
-            m_TempLine.Dispose();
+            m_TempLine.Invalidate();
+            EditAreaPanel.Invalidate(false);
+            EditAreaPanel.Update();
             m_TempLine = null;
             EditAreaPanel.Cursor = System.Windows.Forms.Cursors.Default;
             SetCursorRecursive(EditAreaPanel.Controls, Cursors.Default);
