@@ -241,7 +241,6 @@ namespace ShaderCreationTool
             m_TempLine.Dispose();
             m_TempLine = null;
         }
-
     }
 
 

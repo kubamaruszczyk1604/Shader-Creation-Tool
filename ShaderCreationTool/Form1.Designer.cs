@@ -131,9 +131,9 @@
             this.MainPanel.Controls.Add(this.MiddlePanel);
             this.MainPanel.Controls.Add(this.TitleLabel);
             this.MainPanel.Enabled = false;
-            this.MainPanel.Location = new System.Drawing.Point(845, 463);
+            this.MainPanel.Location = new System.Drawing.Point(706, 531);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(206, 144);
+            this.MainPanel.Size = new System.Drawing.Size(205, 88);
             this.MainPanel.TabIndex = 30;
             this.MainPanel.Visible = false;
             // 
@@ -143,7 +143,7 @@
             this.MiddlePanel.Controls.Add(this.InnerPanel);
             this.MiddlePanel.Location = new System.Drawing.Point(-1, 24);
             this.MiddlePanel.Name = "MiddlePanel";
-            this.MiddlePanel.Size = new System.Drawing.Size(206, 119);
+            this.MiddlePanel.Size = new System.Drawing.Size(206, 63);
             this.MiddlePanel.TabIndex = 1;
             // 
             // InnerPanel
@@ -153,7 +153,7 @@
             this.InnerPanel.Controls.Add(this.In_SlotX);
             this.InnerPanel.Location = new System.Drawing.Point(4, 4);
             this.InnerPanel.Name = "InnerPanel";
-            this.InnerPanel.Size = new System.Drawing.Size(199, 111);
+            this.InnerPanel.Size = new System.Drawing.Size(198, 55);
             this.InnerPanel.TabIndex = 0;
             // 
             // Out_SlotX
@@ -163,7 +163,7 @@
             this.Out_SlotX.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Out_SlotX.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_SlotX.Location = new System.Drawing.Point(129, 16);
+            this.Out_SlotX.Location = new System.Drawing.Point(128, 16);
             this.Out_SlotX.Name = "Out_SlotX";
             this.Out_SlotX.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Out_SlotX.Size = new System.Drawing.Size(67, 20);
@@ -188,7 +188,7 @@
             // 
             this.TitleLabel.AutoSize = true;
             this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleLabel.Location = new System.Drawing.Point(77, 6);
+            this.TitleLabel.Location = new System.Drawing.Point(76, 6);
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(52, 15);
             this.TitleLabel.TabIndex = 0;

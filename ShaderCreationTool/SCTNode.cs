@@ -49,11 +49,23 @@ namespace ShaderCreationTool
             }
 
             boxes.Clear();
+            //Adjust size
+            const int connectorYOffset = 20;
+            int biggestVarCount = (description.InputCount > description.OutputCount) ?
+                             description.InputCount : description.OutputCount;
 
+            List<Panel> panels = ControlExtensions.GetAllChildreenControls<Panel>(m_SctElement).Cast<Panel>().ToList();
+            panels.Add(m_SctElement);
+            foreach (Panel p in panels)
+            {
+                p.Size = new Size(p.Size.Width, p.Size.Height + connectorYOffset * (biggestVarCount-1));
+            }
+
+           
             for(int i = 0; i < description.InputCount;++i)
             {
                 CheckBox cd = (i==0)? inBox : inBox.CopyAsSCTElement(true);
-                cd.Location = new Point(cd.Location.X, cd.Location.Y + 20*i);
+                cd.Location = new Point(cd.Location.X, cd.Location.Y + connectorYOffset * i);
                 cd.Text = description.GetInVariableDescription(i).Name;
                 Connector tempCon = new Connector(cd, description.GetInVariableDescription(i).Type);
                 m_InputConnectors.Add(tempCon);
@@ -62,11 +74,13 @@ namespace ShaderCreationTool
             for (int i = 0; i < description.OutputCount; ++i)
             {
                 CheckBox cd = (i == 0) ? outBox : outBox.CopyAsSCTElement(true);
-                cd.Location = new Point(cd.Location.X, cd.Location.Y + 20 * i);
+                cd.Location = new Point(cd.Location.X, cd.Location.Y + connectorYOffset * i);
                 cd.Text = description.GetOutVariableDescription(i).Name;
                 Connector tempCon = new Connector(cd, description.GetOutVariableDescription(i).Type);
                 m_OutputConnectors.Add(tempCon);
             }
+
+
 
             List<Label> labels = ControlExtensions.GetAllChildreenControls<Label>(m_SctElement).Cast<Label>().ToList();
             labels[0].Text = description.Name;
