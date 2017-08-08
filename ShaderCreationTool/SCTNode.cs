@@ -89,6 +89,10 @@ namespace ShaderCreationTool
             List<Label> labels = ControlExtensions.GetAllChildreenControls<Label>(m_SctElement).Cast<Label>().ToList();
             labels[0].Text = description.Name;
 
+            //Close Button click setup
+            List<Button> buttons = ControlExtensions.GetAllChildreenControls<Button>(m_SctElement).Cast<Button>().ToList();
+            buttons[0].Click += CloseButton_Click;
+
         }
 
         public SCTNode(Panel nodeTemplate, Point location, ObjectMovedCallback onObjectMoved, NodeDescription description) :
