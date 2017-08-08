@@ -120,6 +120,7 @@ namespace ShaderCreationTool
             ShaderVariableDescription inDesc1 = new ShaderVariableDescription("Kolor1", ShaderVariableType.Vector4, ConnectionDirection.In);
             ShaderVariableDescription inDesc2 = new ShaderVariableDescription("Kolor2", ShaderVariableType.Vector4, ConnectionDirection.In);
             ShaderVariableDescription inDesc3 = new ShaderVariableDescription("Kolor3", ShaderVariableType.Vector4, ConnectionDirection.In);
+            ShaderVariableDescription inDesc4 = new ShaderVariableDescription("Kolorfff", ShaderVariableType.Vector4, ConnectionDirection.In);
 
             ShaderVariableDescription outDesc1 = new ShaderVariableDescription("Kolor4", ShaderVariableType.Vector4, ConnectionDirection.Out);
             ShaderVariableDescription outDesc2 = new ShaderVariableDescription("WYJSCIE", ShaderVariableType.Vector4, ConnectionDirection.Out);
@@ -128,6 +129,7 @@ namespace ShaderCreationTool
             NodeDescription d = new NodeDescription("SUKA");
             d.AddInputVariable(inDesc1);
             d.AddInputVariable(inDesc2);
+            d.AddInputVariable(inDesc3);
             d.AddInputVariable(inDesc3);
             d.AddOutputVariable(outDesc1);
             d.AddOutputVariable(outDesc2);

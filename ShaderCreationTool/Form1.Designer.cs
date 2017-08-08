@@ -32,6 +32,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
+            this.MainPanel = new System.Windows.Forms.Panel();
+            this.MiddlePanel = new System.Windows.Forms.Panel();
+            this.InnerPanel = new System.Windows.Forms.Panel();
+            this.Out_SlotX = new System.Windows.Forms.CheckBox();
+            this.In_SlotX = new System.Windows.Forms.CheckBox();
+            this.TitleLabel = new System.Windows.Forms.Label();
             this.SCTElement = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -56,13 +62,10 @@
             this.gLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MainPanel = new System.Windows.Forms.Panel();
-            this.MiddlePanel = new System.Windows.Forms.Panel();
-            this.InnerPanel = new System.Windows.Forms.Panel();
-            this.Out_SlotX = new System.Windows.Forms.CheckBox();
-            this.In_SlotX = new System.Windows.Forms.CheckBox();
-            this.TitleLabel = new System.Windows.Forms.Label();
             this.EditAreaPanel.SuspendLayout();
+            this.MainPanel.SuspendLayout();
+            this.MiddlePanel.SuspendLayout();
+            this.InnerPanel.SuspendLayout();
             this.SCTElement.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -70,9 +73,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox6.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
-            this.MainPanel.SuspendLayout();
-            this.MiddlePanel.SuspendLayout();
-            this.InnerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -123,6 +123,76 @@
             this.EditAreaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.EditAreaPanel_Paint);
             this.EditAreaPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EditAreaPanel_MouseClick);
             this.EditAreaPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.EditAreaPanel_MouseMove);
+            // 
+            // MainPanel
+            // 
+            this.MainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.MainPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MainPanel.Controls.Add(this.MiddlePanel);
+            this.MainPanel.Controls.Add(this.TitleLabel);
+            this.MainPanel.Enabled = false;
+            this.MainPanel.Location = new System.Drawing.Point(845, 463);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(206, 144);
+            this.MainPanel.TabIndex = 30;
+            this.MainPanel.Visible = false;
+            // 
+            // MiddlePanel
+            // 
+            this.MiddlePanel.BackColor = System.Drawing.Color.DimGray;
+            this.MiddlePanel.Controls.Add(this.InnerPanel);
+            this.MiddlePanel.Location = new System.Drawing.Point(-1, 24);
+            this.MiddlePanel.Name = "MiddlePanel";
+            this.MiddlePanel.Size = new System.Drawing.Size(206, 119);
+            this.MiddlePanel.TabIndex = 1;
+            // 
+            // InnerPanel
+            // 
+            this.InnerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.InnerPanel.Controls.Add(this.Out_SlotX);
+            this.InnerPanel.Controls.Add(this.In_SlotX);
+            this.InnerPanel.Location = new System.Drawing.Point(4, 4);
+            this.InnerPanel.Name = "InnerPanel";
+            this.InnerPanel.Size = new System.Drawing.Size(199, 111);
+            this.InnerPanel.TabIndex = 0;
+            // 
+            // Out_SlotX
+            // 
+            this.Out_SlotX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Out_SlotX.AutoSize = true;
+            this.Out_SlotX.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Out_SlotX.ForeColor = System.Drawing.Color.BurlyWood;
+            this.Out_SlotX.Location = new System.Drawing.Point(129, 16);
+            this.Out_SlotX.Name = "Out_SlotX";
+            this.Out_SlotX.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Out_SlotX.Size = new System.Drawing.Size(67, 20);
+            this.Out_SlotX.TabIndex = 8;
+            this.Out_SlotX.Text = "OutCol";
+            this.Out_SlotX.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_SlotX.UseVisualStyleBackColor = true;
+            // 
+            // In_SlotX
+            // 
+            this.In_SlotX.AutoSize = true;
+            this.In_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.In_SlotX.ForeColor = System.Drawing.Color.BurlyWood;
+            this.In_SlotX.Location = new System.Drawing.Point(3, 16);
+            this.In_SlotX.Name = "In_SlotX";
+            this.In_SlotX.Size = new System.Drawing.Size(76, 20);
+            this.In_SlotX.TabIndex = 4;
+            this.In_SlotX.Text = "Ambient";
+            this.In_SlotX.UseVisualStyleBackColor = true;
+            // 
+            // TitleLabel
+            // 
+            this.TitleLabel.AutoSize = true;
+            this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitleLabel.Location = new System.Drawing.Point(77, 6);
+            this.TitleLabel.Name = "TitleLabel";
+            this.TitleLabel.Size = new System.Drawing.Size(52, 15);
+            this.TitleLabel.TabIndex = 0;
+            this.TitleLabel.Text = "Material";
             // 
             // SCTElement
             // 
@@ -396,76 +466,6 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
-            // MainPanel
-            // 
-            this.MainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.MainPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MainPanel.Controls.Add(this.MiddlePanel);
-            this.MainPanel.Controls.Add(this.TitleLabel);
-            this.MainPanel.Enabled = false;
-            this.MainPanel.Location = new System.Drawing.Point(845, 463);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(206, 144);
-            this.MainPanel.TabIndex = 30;
-            this.MainPanel.Visible = false;
-            // 
-            // MiddlePanel
-            // 
-            this.MiddlePanel.BackColor = System.Drawing.Color.DimGray;
-            this.MiddlePanel.Controls.Add(this.InnerPanel);
-            this.MiddlePanel.Location = new System.Drawing.Point(-1, 24);
-            this.MiddlePanel.Name = "MiddlePanel";
-            this.MiddlePanel.Size = new System.Drawing.Size(206, 119);
-            this.MiddlePanel.TabIndex = 1;
-            // 
-            // InnerPanel
-            // 
-            this.InnerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.InnerPanel.Controls.Add(this.Out_SlotX);
-            this.InnerPanel.Controls.Add(this.In_SlotX);
-            this.InnerPanel.Location = new System.Drawing.Point(4, 4);
-            this.InnerPanel.Name = "InnerPanel";
-            this.InnerPanel.Size = new System.Drawing.Size(199, 111);
-            this.InnerPanel.TabIndex = 0;
-            // 
-            // Out_SlotX
-            // 
-            this.Out_SlotX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Out_SlotX.AutoSize = true;
-            this.Out_SlotX.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Out_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Out_SlotX.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_SlotX.Location = new System.Drawing.Point(129, 16);
-            this.Out_SlotX.Name = "Out_SlotX";
-            this.Out_SlotX.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Out_SlotX.Size = new System.Drawing.Size(67, 20);
-            this.Out_SlotX.TabIndex = 8;
-            this.Out_SlotX.Text = "OutCol";
-            this.Out_SlotX.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Out_SlotX.UseVisualStyleBackColor = true;
-            // 
-            // In_SlotX
-            // 
-            this.In_SlotX.AutoSize = true;
-            this.In_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.In_SlotX.ForeColor = System.Drawing.Color.BurlyWood;
-            this.In_SlotX.Location = new System.Drawing.Point(3, 16);
-            this.In_SlotX.Name = "In_SlotX";
-            this.In_SlotX.Size = new System.Drawing.Size(76, 20);
-            this.In_SlotX.TabIndex = 4;
-            this.In_SlotX.Text = "Ambient";
-            this.In_SlotX.UseVisualStyleBackColor = true;
-            // 
-            // TitleLabel
-            // 
-            this.TitleLabel.AutoSize = true;
-            this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleLabel.Location = new System.Drawing.Point(77, 6);
-            this.TitleLabel.Name = "TitleLabel";
-            this.TitleLabel.Size = new System.Drawing.Size(52, 15);
-            this.TitleLabel.TabIndex = 0;
-            this.TitleLabel.Text = "Material";
-            // 
             // MainWindow
             // 
             this.AcceptButton = this.button1;
@@ -486,6 +486,11 @@
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.Shown += new System.EventHandler(this.MainWindow_Shown);
             this.EditAreaPanel.ResumeLayout(false);
+            this.MainPanel.ResumeLayout(false);
+            this.MainPanel.PerformLayout();
+            this.MiddlePanel.ResumeLayout(false);
+            this.InnerPanel.ResumeLayout(false);
+            this.InnerPanel.PerformLayout();
             this.SCTElement.ResumeLayout(false);
             this.SCTElement.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -497,11 +502,6 @@
             this.groupBox6.ResumeLayout(false);
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
-            this.MainPanel.ResumeLayout(false);
-            this.MainPanel.PerformLayout();
-            this.MiddlePanel.ResumeLayout(false);
-            this.InnerPanel.ResumeLayout(false);
-            this.InnerPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
