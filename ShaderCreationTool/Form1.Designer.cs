@@ -176,12 +176,12 @@
             this.Out_SlotX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Out_SlotX.AutoSize = true;
             this.Out_SlotX.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Out_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Out_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Out_SlotX.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_SlotX.Location = new System.Drawing.Point(153, 16);
+            this.Out_SlotX.Location = new System.Drawing.Point(147, 16);
             this.Out_SlotX.Name = "Out_SlotX";
             this.Out_SlotX.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Out_SlotX.Size = new System.Drawing.Size(67, 20);
+            this.Out_SlotX.Size = new System.Drawing.Size(73, 20);
             this.Out_SlotX.TabIndex = 8;
             this.Out_SlotX.Text = "OutCol";
             this.Out_SlotX.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -192,11 +192,11 @@
             this.In_SlotX.AutoSize = true;
             this.In_SlotX.BackColor = System.Drawing.Color.Transparent;
             this.In_SlotX.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.In_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.In_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.In_SlotX.ForeColor = System.Drawing.Color.BurlyWood;
             this.In_SlotX.Location = new System.Drawing.Point(3, 16);
             this.In_SlotX.Name = "In_SlotX";
-            this.In_SlotX.Size = new System.Drawing.Size(76, 20);
+            this.In_SlotX.Size = new System.Drawing.Size(83, 20);
             this.In_SlotX.TabIndex = 4;
             this.In_SlotX.Text = "Ambient";
             this.In_SlotX.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -205,10 +205,10 @@
             // TitleLabel
             // 
             this.TitleLabel.AutoSize = true;
-            this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleLabel.Location = new System.Drawing.Point(92, 6);
+            this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitleLabel.Location = new System.Drawing.Point(80, 6);
             this.TitleLabel.Name = "TitleLabel";
-            this.TitleLabel.Size = new System.Drawing.Size(52, 15);
+            this.TitleLabel.Size = new System.Drawing.Size(64, 16);
             this.TitleLabel.TabIndex = 0;
             this.TitleLabel.Text = "Material";
             // 

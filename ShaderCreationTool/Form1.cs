@@ -73,6 +73,21 @@ namespace ShaderCreationTool
             EditAreaPanel.Update();
         }
 
+        void SetCursorRecursive(IEnumerable theControls,Cursor cursor)
+        {
+            foreach (Control control in theControls)
+            {
+                if (control.HasChildren)
+                {
+                    SetCursorRecursive(control.Controls, cursor);
+                }
+                else
+                {
+                    control.Cursor = cursor;
+                }
+            }
+        }
+
         ////////////////////////////  CALLBACKS   /////////////////////////////
 
         // Method Called when "no connected" connector is clicked
@@ -97,6 +112,9 @@ namespace ShaderCreationTool
             m_IsConnecting = true;
             MovableObject.LockAllMovement();
 
+            //Cursor Change
+            EditAreaPanel.Cursor = System.Windows.Forms.Cursors.Hand;
+            SetCursorRecursive(EditAreaPanel.Controls,Cursors.Hand);
 
             //Node Highlighting
             List<Connector> allConnectors = new List<Connector>();
@@ -107,14 +125,16 @@ namespace ShaderCreationTool
                     (sender.DirectionType == ConnectionDirection.In)?
                     ConnectionDirection.Out:ConnectionDirection.In;
                 List<Connector> tempLCon = n.GetAllConnectors(dir);
-              
+
+                m_HighlightedList.Add(sender);
+                sender.SetBackHighlighted();
                 foreach(Connector c in tempLCon)
                 {
                     if (c.ParentNode == sender.ParentNode) continue;
                     if (c.VariableType != sender.VariableType) continue;
                     if (c.Connected) continue;
                     m_HighlightedList.Add(c);
-                    c.SetAsHighlighted();
+                    c.SetBackHighlighted();
                 }
             }
         }
@@ -285,9 +305,11 @@ namespace ShaderCreationTool
             if (m_TempLine == null) return;
             m_TempLine.Dispose();
             m_TempLine = null;
-            foreach(Connector c in m_HighlightedList)
+            EditAreaPanel.Cursor = System.Windows.Forms.Cursors.Default;
+            SetCursorRecursive(EditAreaPanel.Controls, Cursors.Default);
+            foreach (Connector c in m_HighlightedList)
             {
-                c.DisableHighlighted();
+                c.DisableBackHighlighted();
             }
             m_HighlightedList.Clear();
         }

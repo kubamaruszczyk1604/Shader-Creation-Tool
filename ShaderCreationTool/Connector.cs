@@ -48,6 +48,7 @@ namespace ShaderCreationTool
                 if (m_BeginConnectionCallback != null)
                 { 
                     m_BeginConnectionCallback(this);
+                
                 }
                 s_PreviouslyClickedConnector = this;
 
@@ -130,13 +131,17 @@ namespace ShaderCreationTool
             p_ParentConnection = null; 
         }
 
-        public void SetAsHighlighted()
+     
+
+        public void SetBackHighlighted()
         {
+            m_Control.BackColor = Color.Coral;
             m_Control.ForeColor = Color.White;
         }
 
-        public void DisableHighlighted()
+        public void DisableBackHighlighted()
         {
+            m_Control.BackColor = Color.Transparent;
             m_Control.ForeColor = m_StandardColour;
         }
 
