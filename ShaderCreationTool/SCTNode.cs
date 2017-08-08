@@ -12,7 +12,7 @@ namespace ShaderCreationTool
 {
     delegate void NodeCloseButtonCallback(SCTNode sender);
 
-    class SCTNode
+    class SCTNode : IDisposable
     {
         private Panel m_SctElement;
         private MovableObject m_Mover;
@@ -175,7 +175,10 @@ namespace ShaderCreationTool
             outList.AddRange(m_InputConnectors);
             return outList;
         }
-
+        public void Dispose()
+        {
+            m_SctElement.Parent.Controls.Remove(m_SctElement);
+        }
 
         ////////////////// UI EVENTS ////////////////
         private void CloseButton_Click(object sender, EventArgs e)

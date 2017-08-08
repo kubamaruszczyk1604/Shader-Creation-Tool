@@ -109,6 +109,8 @@ namespace ShaderCreationTool
             if (dialogResult == DialogResult.Yes)
             {
                 SCTConsole.Instance.PrintLine("Node Close request.. Confirmed");
+                m_Nodes.Remove(sender);
+                sender.Dispose();
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -158,7 +160,7 @@ namespace ShaderCreationTool
                 temp.AddOnBeginConnectionCallback(OnConnectionBegin);
                 temp.AddOnBreakConnectionCallback(OnConnectionBreak);
                 temp.AddOnCloseCallback(OnNodeClose);
-                m_Nodes.Add(temp);
+               m_Nodes.Add(temp);
             }
 
         }
