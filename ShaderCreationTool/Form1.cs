@@ -103,6 +103,17 @@ namespace ShaderCreationTool
         private void OnNodeClose(SCTNode sender)
         {
             SCTConsole.Instance.PrintLine("Node Close request..");
+            DialogResult dialogResult =
+                MessageBox.Show("Are you sure that you want do delete this node ?", 
+                "Confirm node delete", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                SCTConsole.Instance.PrintLine("Node Close request.. Confirmed");
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                SCTConsole.Instance.PrintLine("Node Close request.. Aborted");
+            }
         }
 
         //**************************************  UI EVENTS  ***********************************************//
