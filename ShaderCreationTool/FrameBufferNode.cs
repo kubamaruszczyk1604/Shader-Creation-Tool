@@ -11,15 +11,16 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
-    class FrameBufferNode
+
+
+    class FrameBufferNode: SCTNode
     {
         private Panel m_SctElement;
         private MovableObject m_Mover;
         private List<Connector> m_InputConnectors;
         private string m_Label = string.Empty;
-        private NodeCloseButtonCallback p_CloseCallback;
 
-        public FrameBufferNode(Panel windowControl, Point location)
+        public FrameBufferNode(Panel windowControl)
         {
             //Copy template (make local instance)
             m_SctElement = windowControl;
@@ -39,7 +40,7 @@ namespace ShaderCreationTool
                 if (boxes[i].Name.Contains(Connector.s_InSlotSequenceID))
                 {
                     CheckBox tempBox = boxes[i];
-                    ShaderVariableType varType;
+                    ShaderVariableType varType = ShaderVariableType.Single;
                     if (tempBox.Name.Contains("Colour"))
                     {
                         varType = ShaderVariableType.Vector4;
@@ -48,9 +49,14 @@ namespace ShaderCreationTool
                     {
                         varType = ShaderVariableType.Single;
                     }
+                    else
+                    {
+                        SCTConsole.Instance.PrintLine("WRONG SEQUENCE IN CHECKBOX NAME: FRAME BUFFER NODE\n");
+                        throw new Exception("WRONG SEQUENCE");
+                    }
 
-                   // Connector tempCon = new Connector(tempBox, var, this);
-                   // m_InputConnectors.Add(tempCon);
+                    Connector tempCon = new Connector(tempBox, varType, this);
+                    m_InputConnectors.Add(tempCon);
                 }
                 else
                 {
@@ -61,5 +67,42 @@ namespace ShaderCreationTool
 
         }
 
+        public void AddOnMovedCallback(ObjectMovedCallback onMovedCallback)
+        {
+            m_Mover.AddObjectMovedEventListener(onMovedCallback);
+        }
+
+        public void AddOnBeginConnectionCallback(BeginConnectionCallback onBeginConnection)
+        {
+            foreach (Connector c in m_InputConnectors)
+            {
+                c.AddCallback_BeginConnectionRequest(onBeginConnection);
+            }
+        }
+
+        public void AddOnBreakConnectionCallback(BreakConnectionCallback onBreakConnection)
+        {
+            foreach (Connector c in m_InputConnectors)
+            {
+                c.AddCallback_BreakConnectionRequest(onBreakConnection);
+            }
+        }
+
+        public Connector GetConnector(ConnectionDirection type, int index)
+        {
+            if (type == ConnectionDirection.Out) return null;
+            else if (type == ConnectionDirection.In) return m_InputConnectors[index];
+            else return null;
+        }
+
+        public List<Connector> GetAllConnectors(ConnectionDirection type)
+        {
+            if (type == ConnectionDirection.Out) return null;
+            return m_InputConnectors;
+        }
+        public List<Connector> GetAllConnectors()
+        {
+            return m_InputConnectors;
+        }
     }
 }

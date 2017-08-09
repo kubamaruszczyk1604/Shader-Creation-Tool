@@ -32,6 +32,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
+            this.FrameBufferWindow = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.In_Slot_Depth = new System.Windows.Forms.CheckBox();
+            this.In_Slot_Colour = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.FunctionNodeWindow = new System.Windows.Forms.Panel();
             this.closeButtonX = new System.Windows.Forms.Button();
             this.MiddlePanel = new System.Windows.Forms.Panel();
@@ -55,13 +61,10 @@
             this.gLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.FrameBufferWindow = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.In_Slot_Colour = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.In_Slot_Depth = new System.Windows.Forms.CheckBox();
             this.EditAreaPanel.SuspendLayout();
+            this.FrameBufferWindow.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.FunctionNodeWindow.SuspendLayout();
             this.MiddlePanel.SuspendLayout();
             this.InnerPanel.SuspendLayout();
@@ -69,9 +72,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox6.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
-            this.FrameBufferWindow.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -124,6 +124,76 @@
             this.EditAreaPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EditAreaPanel_MouseClick);
             this.EditAreaPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.EditAreaPanel_MouseMove);
             // 
+            // FrameBufferWindow
+            // 
+            this.FrameBufferWindow.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.FrameBufferWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FrameBufferWindow.Controls.Add(this.panel4);
+            this.FrameBufferWindow.Controls.Add(this.label1);
+            this.FrameBufferWindow.Location = new System.Drawing.Point(814, 443);
+            this.FrameBufferWindow.Name = "FrameBufferWindow";
+            this.FrameBufferWindow.Size = new System.Drawing.Size(230, 103);
+            this.FrameBufferWindow.TabIndex = 31;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel4.Controls.Add(this.panel5);
+            this.panel4.Location = new System.Drawing.Point(-1, 22);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(230, 80);
+            this.panel4.TabIndex = 1;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.panel5.Controls.Add(this.In_Slot_Depth);
+            this.panel5.Controls.Add(this.In_Slot_Colour);
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(224, 74);
+            this.panel5.TabIndex = 0;
+            // 
+            // In_Slot_Depth
+            // 
+            this.In_Slot_Depth.AutoSize = true;
+            this.In_Slot_Depth.BackColor = System.Drawing.Color.Transparent;
+            this.In_Slot_Depth.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.In_Slot_Depth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.In_Slot_Depth.ForeColor = System.Drawing.Color.BurlyWood;
+            this.In_Slot_Depth.Location = new System.Drawing.Point(4, 39);
+            this.In_Slot_Depth.Name = "In_Slot_Depth";
+            this.In_Slot_Depth.Size = new System.Drawing.Size(137, 20);
+            this.In_Slot_Depth.TabIndex = 5;
+            this.In_Slot_Depth.Text = "Fragment Depth";
+            this.In_Slot_Depth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.In_Slot_Depth.UseVisualStyleBackColor = false;
+            // 
+            // In_Slot_Colour
+            // 
+            this.In_Slot_Colour.AutoSize = true;
+            this.In_Slot_Colour.BackColor = System.Drawing.Color.Transparent;
+            this.In_Slot_Colour.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.In_Slot_Colour.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.In_Slot_Colour.ForeColor = System.Drawing.Color.BurlyWood;
+            this.In_Slot_Colour.Location = new System.Drawing.Point(0, 13);
+            this.In_Slot_Colour.Name = "In_Slot_Colour";
+            this.In_Slot_Colour.Size = new System.Drawing.Size(141, 20);
+            this.In_Slot_Colour.TabIndex = 4;
+            this.In_Slot_Colour.Text = "Fragment Colour";
+            this.In_Slot_Colour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.In_Slot_Colour.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(53, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(136, 18);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "FRAME BUFFER";
+            // 
             // FunctionNodeWindow
             // 
             this.FunctionNodeWindow.BackColor = System.Drawing.Color.Maroon;
@@ -132,7 +202,7 @@
             this.FunctionNodeWindow.Controls.Add(this.MiddlePanel);
             this.FunctionNodeWindow.Controls.Add(this.TitleLabel);
             this.FunctionNodeWindow.Enabled = false;
-            this.FunctionNodeWindow.Location = new System.Drawing.Point(706, 531);
+            this.FunctionNodeWindow.Location = new System.Drawing.Point(3, 620);
             this.FunctionNodeWindow.Name = "FunctionNodeWindow";
             this.FunctionNodeWindow.Size = new System.Drawing.Size(230, 76);
             this.FunctionNodeWindow.TabIndex = 30;
@@ -391,76 +461,6 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
-            // FrameBufferWindow
-            // 
-            this.FrameBufferWindow.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this.FrameBufferWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FrameBufferWindow.Controls.Add(this.panel4);
-            this.FrameBufferWindow.Controls.Add(this.label1);
-            this.FrameBufferWindow.Location = new System.Drawing.Point(575, 388);
-            this.FrameBufferWindow.Name = "FrameBufferWindow";
-            this.FrameBufferWindow.Size = new System.Drawing.Size(230, 103);
-            this.FrameBufferWindow.TabIndex = 31;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Location = new System.Drawing.Point(-1, 22);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(230, 80);
-            this.panel4.TabIndex = 1;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.panel5.Controls.Add(this.In_Slot_Depth);
-            this.panel5.Controls.Add(this.In_Slot_Colour);
-            this.panel5.Location = new System.Drawing.Point(3, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(224, 74);
-            this.panel5.TabIndex = 0;
-            // 
-            // In_Slot_Colour
-            // 
-            this.In_Slot_Colour.AutoSize = true;
-            this.In_Slot_Colour.BackColor = System.Drawing.Color.Transparent;
-            this.In_Slot_Colour.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.In_Slot_Colour.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.In_Slot_Colour.ForeColor = System.Drawing.Color.BurlyWood;
-            this.In_Slot_Colour.Location = new System.Drawing.Point(0, 13);
-            this.In_Slot_Colour.Name = "In_Slot_Colour";
-            this.In_Slot_Colour.Size = new System.Drawing.Size(141, 20);
-            this.In_Slot_Colour.TabIndex = 4;
-            this.In_Slot_Colour.Text = "Fragment Colour";
-            this.In_Slot_Colour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.In_Slot_Colour.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(53, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 18);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "FRAME BUFFER";
-            // 
-            // In_Slot_Depth
-            // 
-            this.In_Slot_Depth.AutoSize = true;
-            this.In_Slot_Depth.BackColor = System.Drawing.Color.Transparent;
-            this.In_Slot_Depth.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.In_Slot_Depth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.In_Slot_Depth.ForeColor = System.Drawing.Color.BurlyWood;
-            this.In_Slot_Depth.Location = new System.Drawing.Point(4, 39);
-            this.In_Slot_Depth.Name = "In_Slot_Depth";
-            this.In_Slot_Depth.Size = new System.Drawing.Size(137, 20);
-            this.In_Slot_Depth.TabIndex = 5;
-            this.In_Slot_Depth.Text = "Fragment Depth";
-            this.In_Slot_Depth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.In_Slot_Depth.UseVisualStyleBackColor = false;
-            // 
             // MainWindow
             // 
             this.AcceptButton = this.button1;
@@ -481,6 +481,11 @@
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.Shown += new System.EventHandler(this.MainWindow_Shown);
             this.EditAreaPanel.ResumeLayout(false);
+            this.FrameBufferWindow.ResumeLayout(false);
+            this.FrameBufferWindow.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.FunctionNodeWindow.ResumeLayout(false);
             this.FunctionNodeWindow.PerformLayout();
             this.MiddlePanel.ResumeLayout(false);
@@ -492,11 +497,6 @@
             this.groupBox6.ResumeLayout(false);
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
-            this.FrameBufferWindow.ResumeLayout(false);
-            this.FrameBufferWindow.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
