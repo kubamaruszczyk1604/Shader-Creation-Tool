@@ -104,6 +104,8 @@ namespace ShaderCreationTool
             // Set node title
             List<Label> labels = ControlExtensions.GetAllChildreenControls<Label>(m_SctElement).Cast<Label>().ToList();
             labels[0].Text = description.Name;
+            labels[0].MouseDown += TitleLabel_MouseDown;
+            labels[0].MouseMove += TitleLabel_MouseMove;
 
             //Close Button click setup
             List<Button> buttons = ControlExtensions.GetAllChildreenControls<Button>(m_SctElement).Cast<Button>().ToList();
@@ -211,6 +213,17 @@ namespace ShaderCreationTool
         private void Panel_MouseDown(object sender, MouseEventArgs e)
         {
             m_SctElement.BringToFront();
+        }
+
+
+        private void TitleLabel_MouseDown(object sender, MouseEventArgs e)
+        {
+            m_Mover.MoveControlMouseCapture(m_SctElement, e);
+        }
+
+        private void TitleLabel_MouseMove(object sender, MouseEventArgs e)
+        {
+            m_Mover.MoveControlMouseMove(m_SctElement, e);
         }
 
 

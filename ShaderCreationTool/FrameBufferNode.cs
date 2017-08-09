@@ -29,6 +29,12 @@ namespace ShaderCreationTool
             //Make object movable
             m_Mover = new MovableObject(m_SctElement);
 
+
+            // Set events to allow "click and drag" through the label
+            List<Label> labels = ControlExtensions.GetAllChildreenControls<Label>(m_SctElement).Cast<Label>().ToList();
+            labels[0].MouseDown += TitleLabel_MouseDown;
+            labels[0].MouseMove += TitleLabel_MouseMove;
+
             //Find all tick boxes
             List<CheckBox> boxes = ControlExtensions.GetAllChildreenControls<CheckBox>(m_SctElement).Cast<CheckBox>().ToList();
 
@@ -103,6 +109,18 @@ namespace ShaderCreationTool
         public List<Connector> GetAllConnectors()
         {
             return m_InputConnectors;
+        }
+
+        ///////////////////////////  UI EVENTS  ///////////////////////////////
+
+        private void TitleLabel_MouseDown(object sender, MouseEventArgs e)
+        {
+            m_Mover.MoveControlMouseCapture(m_SctElement, e);
+        }
+
+        private void TitleLabel_MouseMove(object sender, MouseEventArgs e)
+        {
+            m_Mover.MoveControlMouseMove(m_SctElement, e);
         }
     }
 }
