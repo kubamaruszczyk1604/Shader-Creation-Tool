@@ -111,7 +111,14 @@ namespace ShaderCreationTool
         {
             if (m_IsConnecting) m_TempLine.Invalidate();
             ConnectionManager.UpdateOnObjectMoved();
+            BringStaticObjectsToFront();
             EditAreaPanel.Update();
+        }
+
+        private void BringStaticObjectsToFront()
+        {
+            AddGroupBox.BringToFront();
+            PreviewAreaPanel.BringToFront();
         }
 
         void SetCursorRecursive(IEnumerable theControls,Cursor cursor)

@@ -48,7 +48,7 @@
             this.PreviewAreaPanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PreviewTextLabel = new System.Windows.Forms.Label();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.AddGroupBox = new System.Windows.Forms.GroupBox();
             this.button29 = new System.Windows.Forms.Button();
             this.button30 = new System.Windows.Forms.Button();
             this.button31 = new System.Windows.Forms.Button();
@@ -70,7 +70,7 @@
             this.InnerPanel.SuspendLayout();
             this.PreviewAreaPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox6.SuspendLayout();
+            this.AddGroupBox.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,7 +111,7 @@
             this.EditAreaPanel.Controls.Add(this.PreviewAreaPanel);
             this.EditAreaPanel.Controls.Add(this.button1);
             this.EditAreaPanel.Controls.Add(this.button44);
-            this.EditAreaPanel.Controls.Add(this.groupBox6);
+            this.EditAreaPanel.Controls.Add(this.AddGroupBox);
             this.EditAreaPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EditAreaPanel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.EditAreaPanel.Location = new System.Drawing.Point(0, 28);
@@ -323,20 +323,20 @@
             this.PreviewTextLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PreviewTextLabel_MouseDown);
             this.PreviewTextLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PreviewTextLabel_MouseMove);
             // 
-            // groupBox6
+            // AddGroupBox
             // 
-            this.groupBox6.BackColor = System.Drawing.Color.Gray;
-            this.groupBox6.Controls.Add(this.button29);
-            this.groupBox6.Controls.Add(this.button30);
-            this.groupBox6.Controls.Add(this.button31);
-            this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox6.Location = new System.Drawing.Point(3, 3);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(126, 241);
-            this.groupBox6.TabIndex = 23;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "ADD";
+            this.AddGroupBox.BackColor = System.Drawing.Color.Gray;
+            this.AddGroupBox.Controls.Add(this.button29);
+            this.AddGroupBox.Controls.Add(this.button30);
+            this.AddGroupBox.Controls.Add(this.button31);
+            this.AddGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddGroupBox.ForeColor = System.Drawing.SystemColors.Control;
+            this.AddGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.AddGroupBox.Name = "AddGroupBox";
+            this.AddGroupBox.Size = new System.Drawing.Size(126, 241);
+            this.AddGroupBox.TabIndex = 23;
+            this.AddGroupBox.TabStop = false;
+            this.AddGroupBox.Text = "ADD";
             // 
             // button29
             // 
@@ -494,7 +494,7 @@
             this.PreviewAreaPanel.ResumeLayout(false);
             this.PreviewAreaPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox6.ResumeLayout(false);
+            this.AddGroupBox.ResumeLayout(false);
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -507,7 +507,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button44;
         private System.Windows.Forms.Panel EditAreaPanel;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox AddGroupBox;
         private System.Windows.Forms.Button button29;
         private System.Windows.Forms.Button button30;
         private System.Windows.Forms.Button button31;
