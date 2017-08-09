@@ -161,7 +161,7 @@
             this.In_Slot_Depth.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.In_Slot_Depth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.In_Slot_Depth.ForeColor = System.Drawing.Color.BurlyWood;
-            this.In_Slot_Depth.Location = new System.Drawing.Point(4, 39);
+            this.In_Slot_Depth.Location = new System.Drawing.Point(0, 39);
             this.In_Slot_Depth.Name = "In_Slot_Depth";
             this.In_Slot_Depth.Size = new System.Drawing.Size(137, 20);
             this.In_Slot_Depth.TabIndex = 5;

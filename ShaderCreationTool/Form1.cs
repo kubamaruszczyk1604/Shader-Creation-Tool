@@ -31,8 +31,8 @@ namespace ShaderCreationTool
         private ShaderVectorVariable m_DiffuseColour;
         private ShaderVectorVariable m_AmbientColour;
 
-        private List<SCTFunctionNode> m_Nodes;
-        private List<Connector> m_HighlightedList;
+        private List<SCTNode> m_Nodes;
+        private List<Connector> m_HighlightedConnectorList;
 
         private bool m_IsConnecting;
         private Point m_TempLineOrgin;
@@ -53,8 +53,9 @@ namespace ShaderCreationTool
             m_AmbientColour = new ShaderVectorVariable(0.1f, 0.1f, 0.1f, 1, "ambient");
             Bridge.SetVariable(m_AmbientColour);
             SCTConsole.Instance.Show();
-            m_Nodes = new List<SCTFunctionNode>();
-            m_HighlightedList = new List<Connector>();
+            m_Nodes = new List<SCTNode>();
+            CreateAndSetupFrameNode(m_Nodes);
+            m_HighlightedConnectorList = new List<Connector>();
         }
 
         private async void StartRenderer(int delayMs)
@@ -65,16 +66,25 @@ namespace ShaderCreationTool
             Bridge.StartRenderer(pictureBox1.Width, pictureBox1.Height, pointer);
         }
 
+        private void CreateAndSetupFrameNode(List<SCTNode> nodes)
+        {
+            FrameBufferNode fbn = new FrameBufferNode(FrameBufferWindow);
+            fbn.AddOnBeginConnectionCallback(OnConnectionBegin);
+            fbn.AddOnBreakConnectionCallback(OnConnectionBreak);
+            fbn.AddOnMovedCallback(UpdateOnObjectMoved);
+            nodes.Add(fbn);
+        }
+
         private async void AddExampleNodes()
         {
-
+            await Task.Delay(1);
             ShaderVariableDescription inDesc1 = new ShaderVariableDescription("Kolor1", ShaderVariableType.Vector4, ConnectionDirection.In);
             ShaderVariableDescription inDesc2 = new ShaderVariableDescription("Kolor2", ShaderVariableType.Vector4, ConnectionDirection.In);
             ShaderVariableDescription inDesc3 = new ShaderVariableDescription("Kolor3", ShaderVariableType.Vector4, ConnectionDirection.In);
             ShaderVariableDescription inDesc4 = new ShaderVariableDescription("Kolorfff", ShaderVariableType.Vector4, ConnectionDirection.In);
 
             ShaderVariableDescription outDesc1 = new ShaderVariableDescription("Kolor4", ShaderVariableType.Vector4, ConnectionDirection.Out);
-            ShaderVariableDescription outDesc2 = new ShaderVariableDescription("WYJSCIE", ShaderVariableType.Vector4, ConnectionDirection.Out);
+            ShaderVariableDescription outDesc2 = new ShaderVariableDescription("WYJSCIE", ShaderVariableType.Single, ConnectionDirection.Out);
 
 
             NodeDescription d = new NodeDescription("SUKA");
@@ -135,7 +145,6 @@ namespace ShaderCreationTool
                 return;
             }
 
-
             //Connection open request - first connector clicked
             SCTConsole.Instance.PrintLine("Connector on connection begin.");
             m_TempLine = new SimpleZLine(EditAreaPanel);
@@ -149,22 +158,27 @@ namespace ShaderCreationTool
 
             //Node Highlighting
             List<Connector> allConnectors = new List<Connector>();
-            foreach(SCTFunctionNode n in m_Nodes)
+            foreach(SCTNode n in m_Nodes)
             {
 
                 ConnectionDirection dir =
                     (sender.DirectionType == ConnectionDirection.In)?
                     ConnectionDirection.Out:ConnectionDirection.In;
                 List<Connector> tempLCon = n.GetAllConnectors(dir);
+                if (tempLCon == null) continue;
 
-                m_HighlightedList.Add(sender);
+                m_HighlightedConnectorList.Add(sender);
                 sender.SetBackHighlighted();
                 foreach(Connector c in tempLCon)
                 {
+                    if(c == null)
+                    {
+                        SCTConsole.Instance.PrintLine("JEB");
+                    }
                     if (c.ParentNode == sender.ParentNode) continue;
                     if (c.VariableType != sender.VariableType) continue;
                     if (c.Connected) continue;
-                    m_HighlightedList.Add(c);
+                    m_HighlightedConnectorList.Add(c);
                     c.SetBackHighlighted();
                 }
             }
@@ -211,11 +225,8 @@ namespace ShaderCreationTool
         private void MainWindow_Shown(object sender, EventArgs e)
         {
             StartRenderer(50);
-            PreviewTextLabel.ForeColor = Color.White;
-
-           
+            PreviewTextLabel.ForeColor = Color.White;  
         }
-
 
         // MAIN EDIT AREA PANEL
         private void EditAreaPanel_Paint(object sender, PaintEventArgs e)
@@ -315,11 +326,11 @@ namespace ShaderCreationTool
             m_TempLine = null;
             EditAreaPanel.Cursor = System.Windows.Forms.Cursors.Default;
             SetCursorRecursive(EditAreaPanel.Controls, Cursors.Default);
-            foreach (Connector c in m_HighlightedList)
+            foreach (Connector c in m_HighlightedConnectorList)
             {
                 c.DisableBackHighlighted();
             }
-            m_HighlightedList.Clear();
+            m_HighlightedConnectorList.Clear();
         }
 
         private void button44_Click(object sender, EventArgs e)
