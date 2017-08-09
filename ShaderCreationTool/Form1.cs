@@ -31,7 +31,7 @@ namespace ShaderCreationTool
         private ShaderVectorVariable m_DiffuseColour;
         private ShaderVectorVariable m_AmbientColour;
 
-        private List<SCTNode> m_Nodes;
+        private List<SCTFunctionNode> m_Nodes;
         private List<Connector> m_HighlightedList;
 
         private bool m_IsConnecting;
@@ -53,7 +53,7 @@ namespace ShaderCreationTool
             m_AmbientColour = new ShaderVectorVariable(0.1f, 0.1f, 0.1f, 1, "ambient");
             Bridge.SetVariable(m_AmbientColour);
             SCTConsole.Instance.Show();
-            m_Nodes = new List<SCTNode>();
+            m_Nodes = new List<SCTFunctionNode>();
             m_HighlightedList = new List<Connector>();
         }
 
@@ -87,7 +87,7 @@ namespace ShaderCreationTool
 
             for (int i = 0; i < 2; ++i)
             {
-                SCTNode temp = new SCTNode(MainPanel, new Point(240 * i, 300), UpdateOnObjectMoved, d);
+                SCTFunctionNode temp = new SCTFunctionNode(FunctionNodeWindow, new Point(240 * i, 300), UpdateOnObjectMoved, d);
                 temp.AddOnBeginConnectionCallback(OnConnectionBegin);
                 temp.AddOnBreakConnectionCallback(OnConnectionBreak);
                 temp.AddOnCloseCallback(OnNodeClose);
@@ -149,7 +149,7 @@ namespace ShaderCreationTool
 
             //Node Highlighting
             List<Connector> allConnectors = new List<Connector>();
-            foreach(SCTNode n in m_Nodes)
+            foreach(SCTFunctionNode n in m_Nodes)
             {
 
                 ConnectionDirection dir =
@@ -176,7 +176,7 @@ namespace ShaderCreationTool
             ConnectionManager.RemoveConnection(sender.ParentConnection);
         }
 
-        private void OnNodeClose(SCTNode sender)
+        private void OnNodeClose(SCTFunctionNode sender)
         {
             SCTConsole.Instance.PrintLine("Node Close request..");
             DialogResult dialogResult =

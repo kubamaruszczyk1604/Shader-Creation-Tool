@@ -60,6 +60,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrameBufferNode.cs" />
     <Compile Include="NodeDescription.cs" />
     <Compile Include="SCTConsole.cs">
       <SubType>Form</SubType>

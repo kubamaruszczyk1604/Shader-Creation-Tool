@@ -35,7 +35,7 @@ namespace ShaderCreationTool
 
         private ShaderVariableType m_VariableType;
         private string m_VariableName;
-        private SCTNode p_ParentNode;
+        private SCTFunctionNode p_ParentNode;
         private Color m_StandardColour;
         static private Connector s_PreviouslyClickedConnector;
 
@@ -75,9 +75,9 @@ namespace ShaderCreationTool
         public bool Connected { get { return (p_ParentConnection==null)?false:true; } }
         public Control WinFormControl { get { return m_Control; } }
         public Connection ParentConnection { get { return p_ParentConnection; } }
-        public SCTNode ParentNode { get { return p_ParentNode; } }
+        public SCTFunctionNode ParentNode { get { return p_ParentNode; } }
        
-        public Connector(CheckBox control,ShaderVariableType variableType,SCTNode parentNode)
+        public Connector(CheckBox control,ShaderVariableType variableType,SCTFunctionNode parentNode)
         {
             p_ParentNode = parentNode;
             m_Control = control;

@@ -32,7 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
-            this.MainPanel = new System.Windows.Forms.Panel();
+            this.FunctionNodeWindow = new System.Windows.Forms.Panel();
             this.closeButtonX = new System.Windows.Forms.Button();
             this.MiddlePanel = new System.Windows.Forms.Panel();
             this.InnerPanel = new System.Windows.Forms.Panel();
@@ -58,11 +58,11 @@
             this.FrameBufferWindow = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.In_Slot_Colour = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.In_Slot_Depth = new System.Windows.Forms.CheckBox();
             this.EditAreaPanel.SuspendLayout();
-            this.MainPanel.SuspendLayout();
+            this.FunctionNodeWindow.SuspendLayout();
             this.MiddlePanel.SuspendLayout();
             this.InnerPanel.SuspendLayout();
             this.PreviewAreaPanel.SuspendLayout();
@@ -107,7 +107,7 @@
             this.EditAreaPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.EditAreaPanel.Controls.Add(this.FrameBufferWindow);
-            this.EditAreaPanel.Controls.Add(this.MainPanel);
+            this.EditAreaPanel.Controls.Add(this.FunctionNodeWindow);
             this.EditAreaPanel.Controls.Add(this.PreviewAreaPanel);
             this.EditAreaPanel.Controls.Add(this.button1);
             this.EditAreaPanel.Controls.Add(this.button44);
@@ -124,19 +124,19 @@
             this.EditAreaPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EditAreaPanel_MouseClick);
             this.EditAreaPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.EditAreaPanel_MouseMove);
             // 
-            // MainPanel
+            // FunctionNodeWindow
             // 
-            this.MainPanel.BackColor = System.Drawing.Color.Maroon;
-            this.MainPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MainPanel.Controls.Add(this.closeButtonX);
-            this.MainPanel.Controls.Add(this.MiddlePanel);
-            this.MainPanel.Controls.Add(this.TitleLabel);
-            this.MainPanel.Enabled = false;
-            this.MainPanel.Location = new System.Drawing.Point(706, 531);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(230, 76);
-            this.MainPanel.TabIndex = 30;
-            this.MainPanel.Visible = false;
+            this.FunctionNodeWindow.BackColor = System.Drawing.Color.Maroon;
+            this.FunctionNodeWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FunctionNodeWindow.Controls.Add(this.closeButtonX);
+            this.FunctionNodeWindow.Controls.Add(this.MiddlePanel);
+            this.FunctionNodeWindow.Controls.Add(this.TitleLabel);
+            this.FunctionNodeWindow.Enabled = false;
+            this.FunctionNodeWindow.Location = new System.Drawing.Point(706, 531);
+            this.FunctionNodeWindow.Name = "FunctionNodeWindow";
+            this.FunctionNodeWindow.Size = new System.Drawing.Size(230, 76);
+            this.FunctionNodeWindow.TabIndex = 30;
+            this.FunctionNodeWindow.Visible = false;
             // 
             // closeButtonX
             // 
@@ -397,7 +397,7 @@
             this.FrameBufferWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.FrameBufferWindow.Controls.Add(this.panel4);
             this.FrameBufferWindow.Controls.Add(this.label1);
-            this.FrameBufferWindow.Location = new System.Drawing.Point(546, 334);
+            this.FrameBufferWindow.Location = new System.Drawing.Point(575, 388);
             this.FrameBufferWindow.Name = "FrameBufferWindow";
             this.FrameBufferWindow.Size = new System.Drawing.Size(230, 103);
             this.FrameBufferWindow.TabIndex = 31;
@@ -414,27 +414,27 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.panel5.Controls.Add(this.checkBox1);
-            this.panel5.Controls.Add(this.checkBox2);
+            this.panel5.Controls.Add(this.In_Slot_Depth);
+            this.panel5.Controls.Add(this.In_Slot_Colour);
             this.panel5.Location = new System.Drawing.Point(3, 3);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(224, 74);
             this.panel5.TabIndex = 0;
             // 
-            // checkBox2
+            // In_Slot_Colour
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.BackColor = System.Drawing.Color.Transparent;
-            this.checkBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.ForeColor = System.Drawing.Color.BurlyWood;
-            this.checkBox2.Location = new System.Drawing.Point(0, 13);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(141, 20);
-            this.checkBox2.TabIndex = 4;
-            this.checkBox2.Text = "Fragment Colour";
-            this.checkBox2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox2.UseVisualStyleBackColor = false;
+            this.In_Slot_Colour.AutoSize = true;
+            this.In_Slot_Colour.BackColor = System.Drawing.Color.Transparent;
+            this.In_Slot_Colour.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.In_Slot_Colour.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.In_Slot_Colour.ForeColor = System.Drawing.Color.BurlyWood;
+            this.In_Slot_Colour.Location = new System.Drawing.Point(0, 13);
+            this.In_Slot_Colour.Name = "In_Slot_Colour";
+            this.In_Slot_Colour.Size = new System.Drawing.Size(141, 20);
+            this.In_Slot_Colour.TabIndex = 4;
+            this.In_Slot_Colour.Text = "Fragment Colour";
+            this.In_Slot_Colour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.In_Slot_Colour.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
@@ -446,20 +446,20 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "FRAME BUFFER";
             // 
-            // checkBox1
+            // In_Slot_Depth
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.BackColor = System.Drawing.Color.Transparent;
-            this.checkBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.ForeColor = System.Drawing.Color.BurlyWood;
-            this.checkBox1.Location = new System.Drawing.Point(0, 39);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(137, 20);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "Fragment Depth";
-            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox1.UseVisualStyleBackColor = false;
+            this.In_Slot_Depth.AutoSize = true;
+            this.In_Slot_Depth.BackColor = System.Drawing.Color.Transparent;
+            this.In_Slot_Depth.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.In_Slot_Depth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.In_Slot_Depth.ForeColor = System.Drawing.Color.BurlyWood;
+            this.In_Slot_Depth.Location = new System.Drawing.Point(4, 39);
+            this.In_Slot_Depth.Name = "In_Slot_Depth";
+            this.In_Slot_Depth.Size = new System.Drawing.Size(137, 20);
+            this.In_Slot_Depth.TabIndex = 5;
+            this.In_Slot_Depth.Text = "Fragment Depth";
+            this.In_Slot_Depth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.In_Slot_Depth.UseVisualStyleBackColor = false;
             // 
             // MainWindow
             // 
@@ -481,8 +481,8 @@
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.Shown += new System.EventHandler(this.MainWindow_Shown);
             this.EditAreaPanel.ResumeLayout(false);
-            this.MainPanel.ResumeLayout(false);
-            this.MainPanel.PerformLayout();
+            this.FunctionNodeWindow.ResumeLayout(false);
+            this.FunctionNodeWindow.PerformLayout();
             this.MiddlePanel.ResumeLayout(false);
             this.InnerPanel.ResumeLayout(false);
             this.InnerPanel.PerformLayout();
@@ -523,7 +523,7 @@
         private System.Windows.Forms.ToolStripMenuItem hLSLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Label PreviewTextLabel;
-        private System.Windows.Forms.Panel MainPanel;
+        private System.Windows.Forms.Panel FunctionNodeWindow;
         private System.Windows.Forms.Panel MiddlePanel;
         private System.Windows.Forms.CheckBox Out_SlotX;
         private System.Windows.Forms.CheckBox In_SlotX;
@@ -533,8 +533,8 @@
         private System.Windows.Forms.Panel FrameBufferWindow;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox In_Slot_Depth;
+        private System.Windows.Forms.CheckBox In_Slot_Colour;
         private System.Windows.Forms.Label label1;
     }
 }

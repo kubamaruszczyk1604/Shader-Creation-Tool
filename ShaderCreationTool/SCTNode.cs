@@ -10,9 +10,19 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
-    delegate void NodeCloseButtonCallback(SCTNode sender);
+    delegate void NodeCloseButtonCallback(SCTFunctionNode sender);
 
-    class SCTNode : IDisposable
+    interface SCTNode
+    {
+        void AddOnMovedCallback(ObjectMovedCallback onMovedCallback);
+        void AddOnBeginConnectionCallback(BeginConnectionCallback onBeginConnection);
+        void AddOnBreakConnectionCallback(BreakConnectionCallback onBreakConnection);
+        Connector GetConnector(ConnectionDirection type, int index);
+        List<Connector> GetAllConnectors(ConnectionDirection type);
+        List<Connector> GetAllConnectors();
+    }
+
+    class SCTFunctionNode : IDisposable,SCTNode
     {
         private Panel m_SctElement;
         private MovableObject m_Mover;
@@ -24,7 +34,7 @@ namespace ShaderCreationTool
 
         //////////////////////////////////////////  PUBLIC  ///////////////////////////////////////////////
         
-        public SCTNode(Panel nodeTemplate, Point location, NodeDescription description)
+        public SCTFunctionNode(Panel nodeTemplate, Point location, NodeDescription description)
         {
             //Copy template (make local instance)
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
@@ -101,7 +111,7 @@ namespace ShaderCreationTool
 
         }
 
-        public SCTNode(Panel nodeTemplate, Point location, ObjectMovedCallback onObjectMoved, NodeDescription description) :
+        public SCTFunctionNode(Panel nodeTemplate, Point location, ObjectMovedCallback onObjectMoved, NodeDescription description) :
             this(nodeTemplate,location,description)
         {
             AddOnMovedCallback(onObjectMoved);
