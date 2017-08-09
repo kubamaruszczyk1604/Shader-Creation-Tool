@@ -39,14 +39,6 @@
             this.Out_SlotX = new System.Windows.Forms.CheckBox();
             this.In_SlotX = new System.Windows.Forms.CheckBox();
             this.TitleLabel = new System.Windows.Forms.Label();
-            this.SCTElement = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.Material_Out_Slot = new System.Windows.Forms.CheckBox();
-            this.Material_In_Slot_Specular = new System.Windows.Forms.CheckBox();
-            this.Material_In_Slot_Diffuse = new System.Windows.Forms.CheckBox();
-            this.Material_In_Slot_Ambient = new System.Windows.Forms.CheckBox();
-            this.Label = new System.Windows.Forms.Label();
             this.PreviewAreaPanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PreviewTextLabel = new System.Windows.Forms.Label();
@@ -63,17 +55,23 @@
             this.gLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FrameBufferWindow = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.EditAreaPanel.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this.MiddlePanel.SuspendLayout();
             this.InnerPanel.SuspendLayout();
-            this.SCTElement.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.PreviewAreaPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox6.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
+            this.FrameBufferWindow.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -108,8 +106,8 @@
             this.EditAreaPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditAreaPanel.BackgroundImage")));
             this.EditAreaPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.EditAreaPanel.Controls.Add(this.FrameBufferWindow);
             this.EditAreaPanel.Controls.Add(this.MainPanel);
-            this.EditAreaPanel.Controls.Add(this.SCTElement);
             this.EditAreaPanel.Controls.Add(this.PreviewAreaPanel);
             this.EditAreaPanel.Controls.Add(this.button1);
             this.EditAreaPanel.Controls.Add(this.button44);
@@ -128,7 +126,7 @@
             // 
             // MainPanel
             // 
-            this.MainPanel.BackColor = System.Drawing.Color.Black;
+            this.MainPanel.BackColor = System.Drawing.Color.Maroon;
             this.MainPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MainPanel.Controls.Add(this.closeButtonX);
             this.MainPanel.Controls.Add(this.MiddlePanel);
@@ -146,7 +144,7 @@
             this.closeButtonX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButtonX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButtonX.ForeColor = System.Drawing.Color.Transparent;
-            this.closeButtonX.Location = new System.Drawing.Point(207, 0);
+            this.closeButtonX.Location = new System.Drawing.Point(207, -1);
             this.closeButtonX.Name = "closeButtonX";
             this.closeButtonX.Size = new System.Drawing.Size(22, 22);
             this.closeButtonX.TabIndex = 2;
@@ -207,104 +205,12 @@
             // 
             this.TitleLabel.AutoSize = true;
             this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleLabel.Location = new System.Drawing.Point(83, 4);
+            this.TitleLabel.Location = new System.Drawing.Point(80, 4);
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(68, 18);
             this.TitleLabel.TabIndex = 0;
             this.TitleLabel.Text = "Material";
-            // 
-            // SCTElement
-            // 
-            this.SCTElement.BackColor = System.Drawing.Color.Maroon;
-            this.SCTElement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SCTElement.Controls.Add(this.panel1);
-            this.SCTElement.Controls.Add(this.Label);
-            this.SCTElement.Enabled = false;
-            this.SCTElement.Location = new System.Drawing.Point(1071, 463);
-            this.SCTElement.Name = "SCTElement";
-            this.SCTElement.Size = new System.Drawing.Size(206, 144);
-            this.SCTElement.TabIndex = 29;
-            this.SCTElement.Visible = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.DimGray;
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(-1, 24);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(206, 119);
-            this.panel1.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel2.Controls.Add(this.Material_Out_Slot);
-            this.panel2.Controls.Add(this.Material_In_Slot_Specular);
-            this.panel2.Controls.Add(this.Material_In_Slot_Diffuse);
-            this.panel2.Controls.Add(this.Material_In_Slot_Ambient);
-            this.panel2.Location = new System.Drawing.Point(4, 4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(199, 111);
-            this.panel2.TabIndex = 0;
-            // 
-            // Material_Out_Slot
-            // 
-            this.Material_Out_Slot.AutoSize = true;
-            this.Material_Out_Slot.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Material_Out_Slot.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Material_Out_Slot.Location = new System.Drawing.Point(110, 39);
-            this.Material_Out_Slot.Name = "Material_Out_Slot";
-            this.Material_Out_Slot.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Material_Out_Slot.Size = new System.Drawing.Size(86, 20);
-            this.Material_Out_Slot.TabIndex = 8;
-            this.Material_Out_Slot.Text = "OutColour";
-            this.Material_Out_Slot.UseVisualStyleBackColor = true;
-            // 
-            // Material_In_Slot_Specular
-            // 
-            this.Material_In_Slot_Specular.AutoSize = true;
-            this.Material_In_Slot_Specular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Material_In_Slot_Specular.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Material_In_Slot_Specular.Location = new System.Drawing.Point(3, 62);
-            this.Material_In_Slot_Specular.Name = "Material_In_Slot_Specular";
-            this.Material_In_Slot_Specular.Size = new System.Drawing.Size(81, 20);
-            this.Material_In_Slot_Specular.TabIndex = 7;
-            this.Material_In_Slot_Specular.Text = "Specular";
-            this.Material_In_Slot_Specular.UseVisualStyleBackColor = true;
-            // 
-            // Material_In_Slot_Diffuse
-            // 
-            this.Material_In_Slot_Diffuse.AutoSize = true;
-            this.Material_In_Slot_Diffuse.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Material_In_Slot_Diffuse.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Material_In_Slot_Diffuse.Location = new System.Drawing.Point(2, 39);
-            this.Material_In_Slot_Diffuse.Name = "Material_In_Slot_Diffuse";
-            this.Material_In_Slot_Diffuse.Size = new System.Drawing.Size(68, 20);
-            this.Material_In_Slot_Diffuse.TabIndex = 6;
-            this.Material_In_Slot_Diffuse.Text = "Diffuse";
-            this.Material_In_Slot_Diffuse.UseVisualStyleBackColor = true;
-            // 
-            // Material_In_Slot_Ambient
-            // 
-            this.Material_In_Slot_Ambient.AutoSize = true;
-            this.Material_In_Slot_Ambient.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Material_In_Slot_Ambient.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Material_In_Slot_Ambient.Location = new System.Drawing.Point(3, 16);
-            this.Material_In_Slot_Ambient.Name = "Material_In_Slot_Ambient";
-            this.Material_In_Slot_Ambient.Size = new System.Drawing.Size(76, 20);
-            this.Material_In_Slot_Ambient.TabIndex = 4;
-            this.Material_In_Slot_Ambient.Text = "Ambient";
-            this.Material_In_Slot_Ambient.UseVisualStyleBackColor = true;
-            // 
-            // Label
-            // 
-            this.Label.AutoSize = true;
-            this.Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label.Location = new System.Drawing.Point(78, 6);
-            this.Label.Name = "Label";
-            this.Label.Size = new System.Drawing.Size(52, 15);
-            this.Label.TabIndex = 0;
-            this.Label.Text = "Material";
+            this.TitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PreviewAreaPanel
             // 
@@ -485,6 +391,76 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
+            // FrameBufferWindow
+            // 
+            this.FrameBufferWindow.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.FrameBufferWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FrameBufferWindow.Controls.Add(this.panel4);
+            this.FrameBufferWindow.Controls.Add(this.label1);
+            this.FrameBufferWindow.Location = new System.Drawing.Point(546, 334);
+            this.FrameBufferWindow.Name = "FrameBufferWindow";
+            this.FrameBufferWindow.Size = new System.Drawing.Size(230, 103);
+            this.FrameBufferWindow.TabIndex = 31;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel4.Controls.Add(this.panel5);
+            this.panel4.Location = new System.Drawing.Point(-1, 22);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(230, 80);
+            this.panel4.TabIndex = 1;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.panel5.Controls.Add(this.checkBox1);
+            this.panel5.Controls.Add(this.checkBox2);
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(224, 74);
+            this.panel5.TabIndex = 0;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox2.ForeColor = System.Drawing.Color.BurlyWood;
+            this.checkBox2.Location = new System.Drawing.Point(0, 13);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(141, 20);
+            this.checkBox2.TabIndex = 4;
+            this.checkBox2.Text = "Fragment Colour";
+            this.checkBox2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox2.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(53, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(136, 18);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "FRAME BUFFER";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.ForeColor = System.Drawing.Color.BurlyWood;
+            this.checkBox1.Location = new System.Drawing.Point(0, 39);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(137, 20);
+            this.checkBox1.TabIndex = 5;
+            this.checkBox1.Text = "Fragment Depth";
+            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox1.UseVisualStyleBackColor = false;
+            // 
             // MainWindow
             // 
             this.AcceptButton = this.button1;
@@ -510,17 +486,17 @@
             this.MiddlePanel.ResumeLayout(false);
             this.InnerPanel.ResumeLayout(false);
             this.InnerPanel.PerformLayout();
-            this.SCTElement.ResumeLayout(false);
-            this.SCTElement.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.PreviewAreaPanel.ResumeLayout(false);
             this.PreviewAreaPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
+            this.FrameBufferWindow.ResumeLayout(false);
+            this.FrameBufferWindow.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -547,14 +523,6 @@
         private System.Windows.Forms.ToolStripMenuItem hLSLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Label PreviewTextLabel;
-        private System.Windows.Forms.Panel SCTElement;
-        private System.Windows.Forms.Label Label;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.CheckBox Material_In_Slot_Specular;
-        private System.Windows.Forms.CheckBox Material_In_Slot_Diffuse;
-        private System.Windows.Forms.CheckBox Material_In_Slot_Ambient;
-        private System.Windows.Forms.CheckBox Material_Out_Slot;
         private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.Panel MiddlePanel;
         private System.Windows.Forms.CheckBox Out_SlotX;
@@ -562,6 +530,12 @@
         private System.Windows.Forms.Label TitleLabel;
         private System.Windows.Forms.Button closeButtonX;
         private System.Windows.Forms.Panel InnerPanel;
+        private System.Windows.Forms.Panel FrameBufferWindow;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Label label1;
     }
 }
 
