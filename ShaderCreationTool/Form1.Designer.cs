@@ -99,6 +99,7 @@
             this.button44.TabIndex = 14;
             this.button44.Text = "Select Mesh";
             this.button44.UseVisualStyleBackColor = false;
+            this.button44.Click += new System.EventHandler(this.button44_Click);
             // 
             // EditAreaPanel
             // 
@@ -127,7 +128,7 @@
             // 
             // MainPanel
             // 
-            this.MainPanel.BackColor = System.Drawing.Color.Maroon;
+            this.MainPanel.BackColor = System.Drawing.Color.Black;
             this.MainPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MainPanel.Controls.Add(this.closeButtonX);
             this.MainPanel.Controls.Add(this.MiddlePanel);
@@ -135,7 +136,7 @@
             this.MainPanel.Enabled = false;
             this.MainPanel.Location = new System.Drawing.Point(706, 531);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(230, 94);
+            this.MainPanel.Size = new System.Drawing.Size(230, 76);
             this.MainPanel.TabIndex = 30;
             this.MainPanel.Visible = false;
             // 
@@ -145,7 +146,7 @@
             this.closeButtonX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButtonX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButtonX.ForeColor = System.Drawing.Color.Transparent;
-            this.closeButtonX.Location = new System.Drawing.Point(203, 6);
+            this.closeButtonX.Location = new System.Drawing.Point(207, 0);
             this.closeButtonX.Name = "closeButtonX";
             this.closeButtonX.Size = new System.Drawing.Size(22, 22);
             this.closeButtonX.TabIndex = 2;
@@ -154,21 +155,21 @@
             // 
             // MiddlePanel
             // 
-            this.MiddlePanel.BackColor = System.Drawing.Color.DimGray;
+            this.MiddlePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.MiddlePanel.Controls.Add(this.InnerPanel);
-            this.MiddlePanel.Location = new System.Drawing.Point(-1, 31);
+            this.MiddlePanel.Location = new System.Drawing.Point(-1, 22);
             this.MiddlePanel.Name = "MiddlePanel";
-            this.MiddlePanel.Size = new System.Drawing.Size(230, 63);
+            this.MiddlePanel.Size = new System.Drawing.Size(230, 55);
             this.MiddlePanel.TabIndex = 1;
             // 
             // InnerPanel
             // 
-            this.InnerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.InnerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.InnerPanel.Controls.Add(this.Out_SlotX);
             this.InnerPanel.Controls.Add(this.In_SlotX);
-            this.InnerPanel.Location = new System.Drawing.Point(4, 4);
+            this.InnerPanel.Location = new System.Drawing.Point(3, 3);
             this.InnerPanel.Name = "InnerPanel";
-            this.InnerPanel.Size = new System.Drawing.Size(223, 55);
+            this.InnerPanel.Size = new System.Drawing.Size(224, 48);
             this.InnerPanel.TabIndex = 0;
             // 
             // Out_SlotX
@@ -178,7 +179,7 @@
             this.Out_SlotX.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_SlotX.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Out_SlotX.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_SlotX.Location = new System.Drawing.Point(153, 16);
+            this.Out_SlotX.Location = new System.Drawing.Point(154, 16);
             this.Out_SlotX.Name = "Out_SlotX";
             this.Out_SlotX.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Out_SlotX.Size = new System.Drawing.Size(73, 20);
@@ -206,7 +207,7 @@
             // 
             this.TitleLabel.AutoSize = true;
             this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleLabel.Location = new System.Drawing.Point(82, 7);
+            this.TitleLabel.Location = new System.Drawing.Point(83, 4);
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(68, 18);
             this.TitleLabel.TabIndex = 0;
@@ -354,7 +355,7 @@
             this.groupBox6.Controls.Add(this.button31);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox6.Location = new System.Drawing.Point(3, 119);
+            this.groupBox6.Location = new System.Drawing.Point(3, 3);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(126, 241);
             this.groupBox6.TabIndex = 23;
