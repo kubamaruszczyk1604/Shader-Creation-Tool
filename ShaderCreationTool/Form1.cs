@@ -197,7 +197,7 @@ namespace ShaderCreationTool
             ConnectionManager.RemoveConnection(sender.ParentConnection);
         }
 
-        private void OnNodeClose(SCTFunctionNode sender)
+        private void OnNodeClose(SCTNode sender)
         {
             SCTConsole.Instance.PrintLine("Node Close request..");
             DialogResult dialogResult =
@@ -207,7 +207,11 @@ namespace ShaderCreationTool
             {
                 SCTConsole.Instance.PrintLine("Node Close request.. Confirmed");
                 m_Nodes.Remove(sender);
-                sender.Dispose();
+                if (sender is IDisposable)
+                {
+                    IDisposable tmp = (IDisposable)sender;
+                    tmp.Dispose();
+                }
             }
             else if (dialogResult == DialogResult.No)
             {

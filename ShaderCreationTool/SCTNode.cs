@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
-    delegate void NodeCloseButtonCallback(SCTFunctionNode sender);
+    delegate void NodeCloseButtonCallback(SCTNode sender);
 
     interface SCTNode
     {
