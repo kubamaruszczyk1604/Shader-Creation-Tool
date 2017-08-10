@@ -97,7 +97,11 @@ namespace ShaderCreationTool
                 {
                     Panel p = (Panel)control;
                     p.Click += AnyPanel_Click;
-                    if (p.Name.Contains("ColInd")) m_ColourPanel = p;
+                    if (p.Name.Contains("ColInd"))
+                    {
+                        m_ColourPanel = p;
+                        m_ColourPanel.Click += ColourPanel_Click;
+                    }
 
                 }
                 else if (control is Label)
@@ -128,7 +132,7 @@ namespace ShaderCreationTool
             ShowNode(10);
             m_ShaderVariable = new ShaderVectorVariable(0, 0, 0, 1,m_Name);
             Bridge.SetVariable(m_ShaderVariable);
-            RefreshShaderVariable();
+            SetShaderVariableFromNumeric();
         }
 
         ////////////////////////  ADD CALLBACK METHODS ///////////////
@@ -236,6 +240,24 @@ namespace ShaderCreationTool
         }
 
 
+
+        private void ColourPanel_Click(object sender, EventArgs e)
+        {
+
+            ColorDialog cd = new ColorDialog();
+            DialogResult result = cd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+               
+                m_Numeric[0].Value = (decimal) ((float)(cd.Color.R) / 255.0f);
+                m_Numeric[1].Value = (decimal)((float)(cd.Color.G) / 255.0f);
+                m_Numeric[2].Value = (decimal)((float)(cd.Color.B) / 255.0f);
+                m_Numeric[3].Value = (decimal)((float)(cd.Color.A) / 255.0f);
+                SetShaderVariableFromNumeric();
+
+            }
+           
+        }
         //////////////////// VARIABLE NAME HANDLING  ////////////////////
         private void TextBox_LostFocus(object sender, EventArgs e)
         {
@@ -300,24 +322,24 @@ namespace ShaderCreationTool
             m_Name = newText;
             m_ShaderVariable.SetName(m_Name);
             SCTConsole.Instance.PrintLine("TEXT CHANGED to: " + newText);
-            RefreshShaderVariable();
+            SetShaderVariableFromNumeric();
         }
 
         //////////////////// NUMERIC COMPONENTS HANDLING  ////////////////////
         private void Numeric_LostFocus(object sender, EventArgs e)
         {
-            RefreshShaderVariable();
+            SetShaderVariableFromNumeric();
 
         }
         private void Numeric_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
             {
-                RefreshShaderVariable();
+                SetShaderVariableFromNumeric();
             }
         }
 
-        private void RefreshShaderVariable()
+        private void SetShaderVariableFromNumeric()
         {
             m_ShaderVariable.Set((float)m_Numeric[0].Value, (float)m_Numeric[1].Value,
                 (float)m_Numeric[2].Value,(float)m_Numeric[3].Value);
