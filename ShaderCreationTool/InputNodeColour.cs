@@ -211,7 +211,12 @@ namespace ShaderCreationTool
         private void CloseButton_Click(object sender, EventArgs e)
         {
 
-            if (p_CloseCallback != null) p_CloseCallback(this);
+            if (p_CloseCallback != null)
+            {
+                ResetNumeric();
+                SetShaderVariableFromNumeric();
+                p_CloseCallback(this);
+            }
 
         }
 
@@ -318,8 +323,10 @@ namespace ShaderCreationTool
                 }
                 return;
             }
-
+            ResetNumeric();
+            SetShaderVariableFromNumeric();
             m_Name = newText;
+
             m_ShaderVariable.SetName(m_Name);
             SCTConsole.Instance.PrintLine("TEXT CHANGED to: " + newText);
             SetShaderVariableFromNumeric();
@@ -350,6 +357,14 @@ namespace ShaderCreationTool
                 (int)(((m_Numeric[0].Value>1)?1:m_Numeric[0].Value)*255),
                (int)(((m_Numeric[1].Value > 1) ? 1 : m_Numeric[1].Value) * 255), 
                 (int)(((m_Numeric[3].Value > 1) ? 1 : m_Numeric[2].Value) * 255));
+        }
+
+        private void ResetNumeric()
+        {
+            m_Numeric[0].Value = 0;
+            m_Numeric[1].Value = 0;
+            m_Numeric[2].Value = 0;
+            m_Numeric[3].Value = 1;
         }
 
     }
