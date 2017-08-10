@@ -256,6 +256,7 @@ namespace ShaderCreationTool
         private void EditAreaPanel_Click(object sender, EventArgs e)
         {
             fileToolStripMenuItem.HideDropDown();
+            EditAreaPanel.Focus();
         }
 
         // PREVIEW AREA PANEL

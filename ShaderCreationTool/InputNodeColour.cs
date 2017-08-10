@@ -17,6 +17,8 @@ namespace ShaderCreationTool
         private List<Connector> m_OutputConnectors;
         private string m_Label = string.Empty;
         private NodeCloseButtonCallback p_CloseCallback;
+        private TextBox m_NameTextbox;
+        private string m_Name; 
 
         public InputNodeColour(Panel nodeTemplate, Point location)
         {
@@ -30,10 +32,8 @@ namespace ShaderCreationTool
             //Make object movable
             m_Mover = new MovableObject(m_SctElement);
 
-            //Find template tick boxes
-            List<CheckBox> boxes = ControlExtensions.GetAllChildreenControls<CheckBox>(m_SctElement).Cast<CheckBox>().ToList();
-
             //Create connectors
+            List<CheckBox> boxes = ControlExtensions.GetAllChildreenControls<CheckBox>(m_SctElement).Cast<CheckBox>().ToList();
             m_OutputConnectors = new List<Connector>();
             for (int i = 0; i < boxes.Count; ++i)
             {
@@ -43,16 +43,34 @@ namespace ShaderCreationTool
                     CheckBox cd = boxes[i];
                     Connector tempCon = new Connector(cd, ShaderVariableType.Vector4, this);
                     m_OutputConnectors.Add(tempCon);
-
                 }
                 else
                 {
                     SCTConsole.Instance.PrintLine("Checkbox name seqence error in Input Colour Node");
                 }
             }
-            
 
-            // Set node title
+            //SetUp text box events
+            List<TextBox> textBoxes = ControlExtensions.GetAllChildreenControls<TextBox>(m_SctElement).Cast<TextBox>().ToList();
+            if(textBoxes.Count == 0)
+            {
+                SCTConsole.Instance.PrintLine("ERROR: No Texboxes in Input Colour Node");
+                throw new Exception("ERROR: No Texboxes in Input Colour Node");
+            }
+            else
+            {
+                textBoxes[0].LostFocus += TextBoxLostFocus_TextChanged;
+                textBoxes[0].KeyPress += TextBox_KeyPress;
+                m_NameTextbox = textBoxes[0];
+            }
+
+            List<Panel> panels = ControlExtensions.GetAllChildreenControls<Panel>(m_SctElement).Cast<Panel>().ToList();
+            foreach(Panel p in panels)
+            {
+                p.Click += AnyPanel_Click;
+            }
+
+            // Set node title on click events
             List<Label> labels = ControlExtensions.GetAllChildreenControls<Label>(m_SctElement).Cast<Label>().ToList();
             foreach (Label l in labels)
             {
@@ -134,9 +152,17 @@ namespace ShaderCreationTool
 
         }
 
+        private void AnyPanel_Click(object sender, EventArgs e)
+        {
+
+            ((Control)sender).Focus();
+
+        }
+
         private void Panel_MouseDown(object sender, MouseEventArgs e)
         {
             m_SctElement.BringToFront();
+            m_SctElement.Focus();
         }
 
 
@@ -148,6 +174,25 @@ namespace ShaderCreationTool
         private void TitleLabel_MouseMove(object sender, MouseEventArgs e)
         {
             m_Mover.MoveControlMouseMove(m_SctElement, e);
+        }
+
+        private void TextBoxLostFocus_TextChanged(object sender, EventArgs e)
+        {
+            TextChanged(((TextBox)sender).Text);
+        }
+
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if(e.KeyChar == 13)
+            {
+                TextChanged(((TextBox)sender).Text);
+            }
+        }
+
+        private void TextChanged(string newText)
+        {
+            SCTConsole.Instance.PrintLine("TEXT CHANGED to: " + newText);
         }
     }
 }
