@@ -355,7 +355,7 @@ namespace ShaderCreationTool
 
         private void button29_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 2; ++i)
+            for (int i = 0; i < 1; ++i)
             {
                 InputNodeColour temp = new InputNodeColour(ColourInputWindow, new Point(240 * i, 300));
                 temp.AddOnMovedCallback(UpdateOnObjectMoved);

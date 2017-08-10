@@ -85,10 +85,10 @@ namespace ShaderCreationTool
                 }
                 else if (control is NumericUpDown)
                 {
-                    NumericUpDown numeric = ((NumericUpDown)control).CopyAsSCTElement(enableAllChildreen);
-                    numeric.Parent = targetInstance;
-                    numeric.Enabled = enableAllChildreen;
-                    targetInstance.Controls.Add(numeric);
+                    NumericUpDown n = ((NumericUpDown)control).CopyAsSCTElement(enableAllChildreen);
+                    n.Parent = targetInstance;
+                    n.Enabled = enableAllChildreen;
+                    targetInstance.Controls.Add(n);
                 }
                 else if (control is TextBox)
                 {
@@ -111,6 +111,7 @@ namespace ShaderCreationTool
             List<Control> outputList = new List<Control>();
             foreach (Control child in control.Controls)
             {
+                if (child.Name.Equals("")) continue;
                 if(child is T)
                 {
                     outputList.Add(child);

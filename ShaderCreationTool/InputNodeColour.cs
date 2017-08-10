@@ -37,59 +37,87 @@ namespace ShaderCreationTool
             //Make object movable
             m_Mover = new MovableObject(m_SctElement);
 
-            //Create connectors
-            List<CheckBox> boxes = ControlExtensions.GetAllChildreenControls<CheckBox>(m_SctElement).Cast<CheckBox>().ToList();
             m_OutputConnectors = new List<Connector>();
-            for (int i = 0; i < boxes.Count; ++i)
+            int tbCounter = 0;
+            List<Control> allControlls = ControlExtensions.GetAllChildreenControls<Control>(m_SctElement).Cast<Control>().ToList();
+            SCTConsole.Instance.PrintLine("TYCH CONTROLSOW JEST: " + allControlls.Count.ToString());
+            //allControlls.Add(m_SctElement);
+            foreach(Control control in allControlls)
             {
-                if (boxes[i].Name.Contains(Connector.s_OutSlotSequenceID))
+                if (control.Name.Equals("")) continue;
+
+                if (control is CheckBox)
+                {
+                    CheckBox checkBox = (CheckBox)control;
+                    if (checkBox.Name.Contains(Connector.s_OutSlotSequenceID))
+                    {                     
+                        Connector tempCon = new Connector(checkBox, ShaderVariableType.Vector4, this);
+                        m_OutputConnectors.Add(tempCon);
+                    }
+                    else
+                    {
+                        SCTConsole.Instance.PrintLine("Checkbox name seqence error in Input Colour Node");
+                    }
+                }
+
+
+                else if (control is NumericUpDown)
+                {
+
+                   
+                    NumericUpDown textBox = (NumericUpDown)control;
+                    SCTConsole.Instance.PrintLine("DOWN NAme is:" + textBox.Name);
+                    // textBox.LostFocus += TextBoxLostFocus_TextChanged;
+                    // textBox.KeyPress += TextBox_KeyPress;
+                    //  m_NameTextbox = textBox;
+                    tbCounter++;
+
+                }
+                else if (control is TextBox)
                 {
                    
-                    CheckBox cd = boxes[i];
-                    Connector tempCon = new Connector(cd, ShaderVariableType.Vector4, this);
-                    m_OutputConnectors.Add(tempCon);
+                    TextBox textBox = (TextBox)control;
+                    SCTConsole.Instance.PrintLine("NAme is:" + textBox.Name);
+                    textBox.LostFocus += TextBoxLostFocus_TextChanged;
+                    textBox.KeyPress += TextBox_KeyPress;
+                    m_NameTextbox = textBox;
+                    tbCounter++;
+
                 }
-                else
+                else if (control is Panel)
                 {
-                    SCTConsole.Instance.PrintLine("Checkbox name seqence error in Input Colour Node");
+                    Panel p = (Panel)control;
+                    p.Click += AnyPanel_Click;
+                
+                }
+                else if (control is Label)
+                {
+                    SCTConsole.Instance.PrintLine("boom");
+                    Label l = (Label)control;
+                    if (l.Name.Contains("Title"))
+                    {
+                        l.MouseDown += TitleLabel_MouseDown;
+                        l.MouseMove += TitleLabel_MouseMove;
+                    }
+
+                }
+
+                else if (control is Button)
+                {
+                    Button button = (Button)control;
+                    button.Click += CloseButton_Click;
+
                 }
             }
 
-            //SetUp text box events
-            List<TextBox> textBoxes = ControlExtensions.GetAllChildreenControls<TextBox>(m_SctElement).Cast<TextBox>().ToList();
-            if(textBoxes.Count == 0)
+
+
+            if (tbCounter == 0)
             {
                 SCTConsole.Instance.PrintLine("ERROR: No Texboxes in Input Colour Node");
                 throw new Exception("ERROR: No Texboxes in Input Colour Node");
             }
-            else
-            {
-                textBoxes[0].LostFocus += TextBoxLostFocus_TextChanged;
-                textBoxes[0].KeyPress += TextBox_KeyPress;
-                m_NameTextbox = textBoxes[0];
-            }
 
-            List<Panel> panels = ControlExtensions.GetAllChildreenControls<Panel>(m_SctElement).Cast<Panel>().ToList();
-            foreach(Panel p in panels)
-            {
-                p.Click += AnyPanel_Click;
-            }
-
-            // Set node title on click events
-            List<Label> labels = ControlExtensions.GetAllChildreenControls<Label>(m_SctElement).Cast<Label>().ToList();
-            foreach (Label l in labels)
-            {
-                if (l.Name.Contains("Title"))
-                {
-                    l.MouseDown += TitleLabel_MouseDown;
-                    l.MouseMove += TitleLabel_MouseMove;
-                    break;
-                }
-            }
-
-            //Close Button click setup
-            List<Button> buttons = ControlExtensions.GetAllChildreenControls<Button>(m_SctElement).Cast<Button>().ToList();
-            buttons[0].Click += CloseButton_Click;
 
             m_Name = "SCT_UNIFORM_ColourIn_" + s_Counter.ToString();
             s_Counter++;
@@ -249,7 +277,7 @@ namespace ShaderCreationTool
                 {
                     m_NameTextbox.Text = m_Name;
                     m_NameTextbox.Invalidate();
-                    p_ErrorCallback("Invalid Input: Symbols other than '_' are not allowed!", this);
+                    p_ErrorCallback("Invalid Input: Symbols other than underscore ('_') are not allowed!", this);
                 }
                 return;
             }

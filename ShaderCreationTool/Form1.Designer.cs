@@ -38,6 +38,7 @@
             this.labelNameVec4 = new System.Windows.Forms.Label();
             this.textBox_Float4 = new System.Windows.Forms.TextBox();
             this.float4_Inner_Panel = new System.Windows.Forms.Panel();
+            this.numericUpDownY4 = new System.Windows.Forms.NumericUpDown();
             this.labelA4 = new System.Windows.Forms.Label();
             this.numericUpDownA4 = new System.Windows.Forms.NumericUpDown();
             this.labelY4 = new System.Windows.Forms.Label();
@@ -92,11 +93,11 @@
             this.gLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.numericUpDownY4 = new System.Windows.Forms.NumericUpDown();
             this.EditAreaPanel.SuspendLayout();
             this.Float4InputWindow.SuspendLayout();
             this.panel3.SuspendLayout();
             this.float4_Inner_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownA4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZ4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX4)).BeginInit();
@@ -117,7 +118,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.AddGroupBox.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY4)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -245,6 +245,30 @@
             this.float4_Inner_Panel.Size = new System.Drawing.Size(173, 129);
             this.float4_Inner_Panel.TabIndex = 0;
             // 
+            // numericUpDownY4
+            // 
+            this.numericUpDownY4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.numericUpDownY4.DecimalPlaces = 2;
+            this.numericUpDownY4.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDownY4.Location = new System.Drawing.Point(92, 23);
+            this.numericUpDownY4.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.numericUpDownY4.Minimum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownY4.Name = "numericUpDownY4";
+            this.numericUpDownY4.Size = new System.Drawing.Size(73, 20);
+            this.numericUpDownY4.TabIndex = 17;
+            // 
             // labelA4
             // 
             this.labelA4.AutoSize = true;
@@ -311,7 +335,7 @@
             0,
             0,
             131072});
-            this.numericUpDownZ4.Location = new System.Drawing.Point(3, 63);
+            this.numericUpDownZ4.Location = new System.Drawing.Point(6, 64);
             this.numericUpDownZ4.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -440,7 +464,7 @@
             // textBox_Name_col
             // 
             this.textBox_Name_col.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_Name_col.Location = new System.Drawing.Point(12, 28);
+            this.textBox_Name_col.Location = new System.Drawing.Point(9, 30);
             this.textBox_Name_col.Name = "textBox_Name_col";
             this.textBox_Name_col.Size = new System.Drawing.Size(159, 20);
             this.textBox_Name_col.TabIndex = 1;
@@ -947,30 +971,6 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
-            // numericUpDownY4
-            // 
-            this.numericUpDownY4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.numericUpDownY4.DecimalPlaces = 2;
-            this.numericUpDownY4.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.numericUpDownY4.Location = new System.Drawing.Point(92, 23);
-            this.numericUpDownY4.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.numericUpDownY4.Minimum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDownY4.Name = "numericUpDownY4";
-            this.numericUpDownY4.Size = new System.Drawing.Size(73, 20);
-            this.numericUpDownY4.TabIndex = 17;
-            // 
             // MainWindow
             // 
             this.AcceptButton = this.button1;
@@ -997,6 +997,7 @@
             this.panel3.PerformLayout();
             this.float4_Inner_Panel.ResumeLayout(false);
             this.float4_Inner_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownA4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZ4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX4)).EndInit();
@@ -1026,7 +1027,6 @@
             this.AddGroupBox.ResumeLayout(false);
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
