@@ -40,7 +40,7 @@
             this.float4_Inner_Panel = new System.Windows.Forms.Panel();
             this.numericUpDownY4 = new System.Windows.Forms.NumericUpDown();
             this.labelA4 = new System.Windows.Forms.Label();
-            this.numericUpDownA4 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownW4 = new System.Windows.Forms.NumericUpDown();
             this.labelY4 = new System.Windows.Forms.Label();
             this.labelZ4 = new System.Windows.Forms.Label();
             this.numericUpDownZ4 = new System.Windows.Forms.NumericUpDown();
@@ -98,7 +98,7 @@
             this.panel3.SuspendLayout();
             this.float4_Inner_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownA4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownW4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZ4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX4)).BeginInit();
             this.ColourInputWindow.SuspendLayout();
@@ -233,7 +233,7 @@
             this.float4_Inner_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.float4_Inner_Panel.Controls.Add(this.numericUpDownY4);
             this.float4_Inner_Panel.Controls.Add(this.labelA4);
-            this.float4_Inner_Panel.Controls.Add(this.numericUpDownA4);
+            this.float4_Inner_Panel.Controls.Add(this.numericUpDownW4);
             this.float4_Inner_Panel.Controls.Add(this.labelY4);
             this.float4_Inner_Panel.Controls.Add(this.labelZ4);
             this.float4_Inner_Panel.Controls.Add(this.numericUpDownZ4);
@@ -280,29 +280,29 @@
             this.labelA4.TabIndex = 16;
             this.labelA4.Text = "W";
             // 
-            // numericUpDownA4
+            // numericUpDownW4
             // 
-            this.numericUpDownA4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.numericUpDownA4.DecimalPlaces = 2;
-            this.numericUpDownA4.Increment = new decimal(new int[] {
+            this.numericUpDownW4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.numericUpDownW4.DecimalPlaces = 2;
+            this.numericUpDownW4.Increment = new decimal(new int[] {
             1,
             0,
             0,
             131072});
-            this.numericUpDownA4.Location = new System.Drawing.Point(92, 63);
-            this.numericUpDownA4.Maximum = new decimal(new int[] {
+            this.numericUpDownW4.Location = new System.Drawing.Point(92, 63);
+            this.numericUpDownW4.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
-            this.numericUpDownA4.Minimum = new decimal(new int[] {
+            this.numericUpDownW4.Minimum = new decimal(new int[] {
             10000000,
             0,
             0,
             -2147483648});
-            this.numericUpDownA4.Name = "numericUpDownA4";
-            this.numericUpDownA4.Size = new System.Drawing.Size(73, 20);
-            this.numericUpDownA4.TabIndex = 15;
+            this.numericUpDownW4.Name = "numericUpDownW4";
+            this.numericUpDownW4.Size = new System.Drawing.Size(73, 20);
+            this.numericUpDownW4.TabIndex = 15;
             // 
             // labelY4
             // 
@@ -1003,7 +1003,7 @@
             this.float4_Inner_Panel.ResumeLayout(false);
             this.float4_Inner_Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownA4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownW4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZ4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX4)).EndInit();
             this.ColourInputWindow.ResumeLayout(false);
@@ -1094,7 +1094,7 @@
         private System.Windows.Forms.TextBox textBox_Float4;
         private System.Windows.Forms.Panel float4_Inner_Panel;
         private System.Windows.Forms.Label labelA4;
-        private System.Windows.Forms.NumericUpDown numericUpDownA4;
+        private System.Windows.Forms.NumericUpDown numericUpDownW4;
         private System.Windows.Forms.Label labelY4;
         private System.Windows.Forms.Label labelZ4;
         private System.Windows.Forms.NumericUpDown numericUpDownZ4;

@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="FrameBufferNode.cs" />
     <Compile Include="InputNodeColour.cs" />
+    <Compile Include="InputNodeVector4.cs" />
     <Compile Include="NodeDescription.cs" />
     <Compile Include="SCTConsole.cs">
       <SubType>Form</SubType>
