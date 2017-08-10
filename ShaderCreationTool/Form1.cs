@@ -219,6 +219,11 @@ namespace ShaderCreationTool
             }
         }
 
+        private void OnInputError(string errorDescription,SCTNode sender)
+        {
+            MessageBox.Show(errorDescription, "Invalid input",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
         //**************************************  UI EVENTS  ***********************************************//
 
 
@@ -357,6 +362,7 @@ namespace ShaderCreationTool
                 temp.AddOnBeginConnectionCallback(OnConnectionBegin);
                 temp.AddOnBreakConnectionCallback(OnConnectionBreak);
                 temp.AddOnCloseCallback(OnNodeClose);
+                temp.AddInputErrorCallback(OnInputError);
                 m_Nodes.Add(temp);
             }
         }

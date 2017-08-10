@@ -20,6 +20,7 @@ namespace ShaderCreationTool
         private List<Connector> m_OutputConnectors;
         private string m_Label = string.Empty;
         private NodeCloseButtonCallback p_CloseCallback;
+        private NodeInputError p_ErrorCallback;
         private TextBox m_NameTextbox;
         private string m_Name; 
 
@@ -93,7 +94,7 @@ namespace ShaderCreationTool
 
         }
 
-
+        ////////////////////////  ADD CALLBACK METHODS ///////////////
 
         public void AddOnMovedCallback(ObjectMovedCallback onMovedCallback)
         {
@@ -121,11 +122,20 @@ namespace ShaderCreationTool
             p_CloseCallback += callback;
         }
 
+        public void AddInputErrorCallback(NodeInputError callback)
+        {
+            p_ErrorCallback += callback;
+        }
+
         public Connector GetConnector(ConnectionDirection type, int index)
         {
             if (type == ConnectionDirection.Out) return m_OutputConnectors[index];
             else return null;
         }
+
+
+
+        //////////////////// PUBLIC UTIL METHODS /////////////////////////
 
         public List<Connector> GetAllConnectors(ConnectionDirection type)
         {
@@ -198,17 +208,46 @@ namespace ShaderCreationTool
         private void TextChanged(string newText)
         {
             if (m_Name == newText) return;
+         
+            // Check for white characters error
             if(newText.Contains(" "))
             {
                 // error - spaces
                 SCTConsole.Instance.PrintLine("Error: White spaces not allowed in varable name!");
+                m_NameTextbox.Text = m_Name; // use old name
+                m_NameTextbox.Invalidate();
+                if (p_ErrorCallback != null)
+                {
+                    p_ErrorCallback("Invalid Input: White Spaces not allowed!", this);    
+                }
                 return;
             }
+
+            if (newText == string.Empty)
+            {
+                
+                SCTConsole.Instance.PrintLine("Error: Variable name must contain characters!");
+                if (m_Name == string.Empty) { m_Name = "Variable_Number"; }
+                m_NameTextbox.Text = m_Name;
+                m_NameTextbox.Invalidate();
+                if (p_ErrorCallback != null)
+                {
+                    p_ErrorCallback("Invalid Input: Empty varaiable names are not allowed!", this);
+                }
+                return;
+            }
+
             var regexItem = new Regex("^[a-zA-Z0-9_]*$");
             if (!regexItem.IsMatch(newText))
             {
                 // error - illegal signs
                 SCTConsole.Instance.PrintLine("Error: Symbols not allowed in varable name!");
+                if (p_ErrorCallback != null)
+                {
+                    m_NameTextbox.Text = m_Name;
+                    m_NameTextbox.Invalidate();
+                    p_ErrorCallback("Invalid Input: Symbols other than '_' are not allowed!", this);
+                }
                 return;
             }
 
