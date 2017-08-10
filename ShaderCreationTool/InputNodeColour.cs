@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 
@@ -27,10 +28,9 @@ namespace ShaderCreationTool
 
         public InputNodeColour(Panel nodeTemplate, Point location)
         {
-            
+          
             //Copy template (make local instance)
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
-            m_SctElement.Visible = true;
             m_SctElement.Location = location;
             m_SctElement.MouseDown += Panel_MouseDown;
 
@@ -59,29 +59,26 @@ namespace ShaderCreationTool
                         SCTConsole.Instance.PrintLine("Checkbox name seqence error in Input Colour Node");
                     }
                 }
-
-
                 else if (control is NumericUpDown)
                 {
-
-                   
                     NumericUpDown textBox = (NumericUpDown)control;
                     SCTConsole.Instance.PrintLine("DOWN NAme is:" + textBox.Name);
+
                     // textBox.LostFocus += TextBoxLostFocus_TextChanged;
                     // textBox.KeyPress += TextBox_KeyPress;
                     //  m_NameTextbox = textBox;
-                    tbCounter++;
 
                 }
                 else if (control is TextBox)
-                {
-                   
+                { 
                     TextBox textBox = (TextBox)control;
                     SCTConsole.Instance.PrintLine("NAme is:" + textBox.Name);
                     textBox.LostFocus += TextBoxLostFocus_TextChanged;
                     textBox.KeyPress += TextBox_KeyPress;
                     m_NameTextbox = textBox;
                     tbCounter++;
+                    m_Name = "SCT_UNIFORM_ColourIn_" + s_Counter.ToString();
+                    m_NameTextbox.Text = m_Name;
 
                 }
                 else if (control is Panel)
@@ -92,16 +89,14 @@ namespace ShaderCreationTool
                 }
                 else if (control is Label)
                 {
-                    SCTConsole.Instance.PrintLine("boom");
+                   
                     Label l = (Label)control;
                     if (l.Name.Contains("Title"))
                     {
                         l.MouseDown += TitleLabel_MouseDown;
                         l.MouseMove += TitleLabel_MouseMove;
                     }
-
                 }
-
                 else if (control is Button)
                 {
                     Button button = (Button)control;
@@ -117,12 +112,9 @@ namespace ShaderCreationTool
                 SCTConsole.Instance.PrintLine("ERROR: No Texboxes in Input Colour Node");
                 throw new Exception("ERROR: No Texboxes in Input Colour Node");
             }
-
-
-            m_Name = "SCT_UNIFORM_ColourIn_" + s_Counter.ToString();
+        
             s_Counter++;
-            m_NameTextbox.Text = m_Name;
-            m_NameTextbox.Refresh();
+            ShowNode(10);
         }
 
         ////////////////////////  ADD CALLBACK METHODS ///////////////
@@ -188,6 +180,13 @@ namespace ShaderCreationTool
                 ConnectionManager.RemoveConnection(c.ParentConnection);
             }
             m_SctElement.Parent.Controls.Remove(m_SctElement);
+        }
+
+        ////// UTIL FOR ASYNC
+        private async void ShowNode(int delay)
+        {
+            await Task.Delay(delay);
+            m_SctElement.Visible = true;
         }
 
         ////////////////// UI EVENTS ////////////////

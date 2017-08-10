@@ -421,7 +421,7 @@
             this.ColourInputWindow.Controls.Add(this.panel2);
             this.ColourInputWindow.Controls.Add(this.label_Title_col);
             this.ColourInputWindow.Enabled = false;
-            this.ColourInputWindow.Location = new System.Drawing.Point(439, 467);
+            this.ColourInputWindow.Location = new System.Drawing.Point(464, 165);
             this.ColourInputWindow.Name = "ColourInputWindow";
             this.ColourInputWindow.Size = new System.Drawing.Size(178, 229);
             this.ColourInputWindow.TabIndex = 31;
