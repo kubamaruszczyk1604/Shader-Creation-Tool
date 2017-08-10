@@ -83,6 +83,13 @@ namespace ShaderCreationTool
                     cb.Enabled = enableAllChildreen;
                     targetInstance.Controls.Add(cb);
                 }
+                else if (control is NumericUpDown)
+                {
+                    NumericUpDown cb = ((NumericUpDown)control).CopyAsSCTElement(enableAllChildreen);
+                    cb.Parent = targetInstance;
+                    cb.Enabled = enableAllChildreen;
+                    targetInstance.Controls.Add(cb);
+                }
             }
             targetInstance.Enabled = enableAllChildreen;
             return targetInstance;

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
-    class InputNodeColour: SCTNode
+    class InputNodeColour: SCTNode, IDisposable
     {
         private Panel m_SctElement;
         private MovableObject m_Mover;
@@ -114,6 +114,17 @@ namespace ShaderCreationTool
             return m_OutputConnectors;
         }
 
+        public void Dispose()
+        {
+            List<Connector> connectors = GetAllConnectors();
+            foreach (Connector c in connectors)
+            {
+                if (!c.Connected) continue;
+                if (!ConnectionManager.ContainsConncetion(c.ParentConnection)) continue;
+                ConnectionManager.RemoveConnection(c.ParentConnection);
+            }
+            m_SctElement.Parent.Controls.Remove(m_SctElement);
+        }
 
         ////////////////// UI EVENTS ////////////////
         private void CloseButton_Click(object sender, EventArgs e)

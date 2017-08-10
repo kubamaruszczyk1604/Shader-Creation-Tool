@@ -179,10 +179,12 @@
             this.Float4InputWindow.Controls.Add(this.button2);
             this.Float4InputWindow.Controls.Add(this.panel3);
             this.Float4InputWindow.Controls.Add(this.label_Title_Vec4);
+            this.Float4InputWindow.Enabled = false;
             this.Float4InputWindow.Location = new System.Drawing.Point(239, 473);
             this.Float4InputWindow.Name = "Float4InputWindow";
             this.Float4InputWindow.Size = new System.Drawing.Size(178, 229);
             this.Float4InputWindow.TabIndex = 32;
+            this.Float4InputWindow.Visible = false;
             // 
             // button2
             // 
@@ -394,10 +396,12 @@
             this.ColourInputWindow.Controls.Add(this.closeButton);
             this.ColourInputWindow.Controls.Add(this.panel2);
             this.ColourInputWindow.Controls.Add(this.label_Title_col);
+            this.ColourInputWindow.Enabled = false;
             this.ColourInputWindow.Location = new System.Drawing.Point(439, 467);
             this.ColourInputWindow.Name = "ColourInputWindow";
             this.ColourInputWindow.Size = new System.Drawing.Size(178, 229);
             this.ColourInputWindow.TabIndex = 31;
+            this.ColourInputWindow.Visible = false;
             // 
             // closeButton
             // 

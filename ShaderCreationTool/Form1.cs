@@ -303,9 +303,7 @@ namespace ShaderCreationTool
 
         }
 
-        private void button29_Click(object sender, EventArgs e)
-        {
-        }
+      
 
         private void EditAreaPanel_MouseMove(object sender, MouseEventArgs e)
         {
@@ -347,6 +345,19 @@ namespace ShaderCreationTool
         private void button44_Click(object sender, EventArgs e)
         {
             AddExampleNodes();
+        }
+
+        private void button29_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 2; ++i)
+            {
+                InputNodeColour temp = new InputNodeColour(ColourInputWindow, new Point(240 * i, 300));
+                temp.AddOnMovedCallback(UpdateOnObjectMoved);
+                temp.AddOnBeginConnectionCallback(OnConnectionBegin);
+                temp.AddOnBreakConnectionCallback(OnConnectionBreak);
+                temp.AddOnCloseCallback(OnNodeClose);
+                m_Nodes.Add(temp);
+            }
         }
     }
 
