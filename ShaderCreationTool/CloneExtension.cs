@@ -78,17 +78,24 @@ namespace ShaderCreationTool
                 }
                 else if (control is Button)
                 {
-                    Button cb = ((Button)control).CopyAsSCTElement(enableAllChildreen);
-                    cb.Parent = targetInstance;
-                    cb.Enabled = enableAllChildreen;
-                    targetInstance.Controls.Add(cb);
+                    Button btn = ((Button)control).CopyAsSCTElement(enableAllChildreen);
+                    btn.Parent = targetInstance;
+                    btn.Enabled = enableAllChildreen;
+                    targetInstance.Controls.Add(btn);
                 }
                 else if (control is NumericUpDown)
                 {
-                    NumericUpDown cb = ((NumericUpDown)control).CopyAsSCTElement(enableAllChildreen);
-                    cb.Parent = targetInstance;
-                    cb.Enabled = enableAllChildreen;
-                    targetInstance.Controls.Add(cb);
+                    NumericUpDown numeric = ((NumericUpDown)control).CopyAsSCTElement(enableAllChildreen);
+                    numeric.Parent = targetInstance;
+                    numeric.Enabled = enableAllChildreen;
+                    targetInstance.Controls.Add(numeric);
+                }
+                else if (control is TextBox)
+                {
+                    TextBox txtBox = ((TextBox)control).CopyAsSCTElement(enableAllChildreen);
+                    txtBox.Parent = targetInstance;
+                    txtBox.Enabled = enableAllChildreen;
+                    targetInstance.Controls.Add(txtBox);
                 }
             }
             targetInstance.Enabled = enableAllChildreen;
