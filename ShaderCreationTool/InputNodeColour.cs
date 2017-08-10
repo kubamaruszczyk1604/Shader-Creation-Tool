@@ -71,7 +71,14 @@ namespace ShaderCreationTool
                     num.Validated += Numeric_LostFocus;
                     num.KeyPress += Numeric_KeyPress;
 
+                    // Slot sorting
+                    int index = -1;
+                    if (num.Name.Contains("Red")) index = 0;
+                    else if (num.Name.Contains("Green")) index = 1;
+                    else if (num.Name.Contains("Blue")) index = 2;
+                    else if (num.Name.Contains("Alpha")) index = 3;
 
+                    m_Numeric[index] = num;
                 }
                 else if (control is TextBox)
                 {
@@ -119,7 +126,7 @@ namespace ShaderCreationTool
             ShowNode(10);
             m_ShaderVariable = new ShaderVectorVariable(0, 0, 0, 1,m_Name);
             Bridge.SetVariable(m_ShaderVariable);
-
+            RefreshShaderVariable();
         }
 
         ////////////////////////  ADD CALLBACK METHODS ///////////////
@@ -291,38 +298,28 @@ namespace ShaderCreationTool
             m_Name = newText;
             m_ShaderVariable.SetName(m_Name);
             SCTConsole.Instance.PrintLine("TEXT CHANGED to: " + newText);
+            RefreshShaderVariable();
         }
 
         //////////////////// NUMERIC COMPONENTS HANDLING  ////////////////////
         private void Numeric_LostFocus(object sender, EventArgs e)
         {
-            ProcessOnNumericEvent(sender);
+            RefreshShaderVariable();
 
         }
         private void Numeric_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
             {
-                ProcessOnNumericEvent(sender);
+                RefreshShaderVariable();
             }
         }
 
-        private void ProcessOnNumericEvent(object sender)
+        private void RefreshShaderVariable()
         {
-            NumericUpDown num = (NumericUpDown)sender;
-            int index = -1;
-            if (num.Name.Contains("Red")) index = 0;
-            else if (num.Name.Contains("Green")) index = 1;
-            else if (num.Name.Contains("Blue")) index = 2;
-            else if (num.Name.Contains("Alpha")) index = 3;
-            else index = -1;
+            m_ShaderVariable.Set((float)m_Numeric[0].Value, (float)m_Numeric[1].Value,
+                (float)m_Numeric[2].Value,(float)m_Numeric[3].Value);
+        }
 
-            NumericChanged(index, (float)num.Value);
-        }
-        private void NumericChanged(int instanceIndex, float newVal)
-        {
-            SCTConsole.Instance.PrintLine("numeric: " + instanceIndex.ToString() + " changed to: " + newVal.ToString());
-            m_ShaderVariable.SetAtIndex(instanceIndex, newVal);
-        }
     }
 }
