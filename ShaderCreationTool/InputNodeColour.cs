@@ -22,16 +22,17 @@ namespace ShaderCreationTool
         private NodeCloseButtonCallback p_CloseCallback;
         private NodeInputError p_ErrorCallback;
         private TextBox m_NameTextbox;
-        private string m_Name; 
+        private string m_Name;
+        private static int s_Counter = 0;
 
         public InputNodeColour(Panel nodeTemplate, Point location)
         {
+            
             //Copy template (make local instance)
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
             m_SctElement.Visible = true;
             m_SctElement.Location = location;
             m_SctElement.MouseDown += Panel_MouseDown;
-
 
             //Make object movable
             m_Mover = new MovableObject(m_SctElement);
@@ -90,8 +91,10 @@ namespace ShaderCreationTool
             List<Button> buttons = ControlExtensions.GetAllChildreenControls<Button>(m_SctElement).Cast<Button>().ToList();
             buttons[0].Click += CloseButton_Click;
 
-            m_Name = string.Empty;
-
+            m_Name = "SCT_UNIFORM_ColourIn_" + s_Counter.ToString();
+            s_Counter++;
+            m_NameTextbox.Text = m_Name;
+            m_NameTextbox.Refresh();
         }
 
         ////////////////////////  ADD CALLBACK METHODS ///////////////
@@ -223,11 +226,10 @@ namespace ShaderCreationTool
                 return;
             }
 
+            //Check for empty string error
             if (newText == string.Empty)
-            {
-                
+            {     
                 SCTConsole.Instance.PrintLine("Error: Variable name must contain characters!");
-                if (m_Name == string.Empty) { m_Name = "Variable_Number"; }
                 m_NameTextbox.Text = m_Name;
                 m_NameTextbox.Invalidate();
                 if (p_ErrorCallback != null)
@@ -237,6 +239,7 @@ namespace ShaderCreationTool
                 return;
             }
 
+            // Check for illegal symbols error
             var regexItem = new Regex("^[a-zA-Z0-9_]*$");
             if (!regexItem.IsMatch(newText))
             {
