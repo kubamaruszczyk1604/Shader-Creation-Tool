@@ -50,7 +50,7 @@
             this.label_Title_Vec4 = new System.Windows.Forms.Label();
             this.ColourInputWindow = new System.Windows.Forms.Panel();
             this.closeButton = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelRes = new System.Windows.Forms.Panel();
             this.labelNameCol = new System.Windows.Forms.Label();
             this.textBox_Name_col = new System.Windows.Forms.TextBox();
             this.col_Inner_Panel = new System.Windows.Forms.Panel();
@@ -93,6 +93,7 @@
             this.gLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelColInd = new System.Windows.Forms.Panel();
             this.EditAreaPanel.SuspendLayout();
             this.Float4InputWindow.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -102,7 +103,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZ4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX4)).BeginInit();
             this.ColourInputWindow.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panelRes.SuspendLayout();
             this.col_Inner_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Alpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Green)).BeginInit();
@@ -418,12 +419,12 @@
             this.ColourInputWindow.BackColor = System.Drawing.Color.Black;
             this.ColourInputWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ColourInputWindow.Controls.Add(this.closeButton);
-            this.ColourInputWindow.Controls.Add(this.panel2);
+            this.ColourInputWindow.Controls.Add(this.panelRes);
             this.ColourInputWindow.Controls.Add(this.label_Title_col);
             this.ColourInputWindow.Enabled = false;
             this.ColourInputWindow.Location = new System.Drawing.Point(464, 165);
             this.ColourInputWindow.Name = "ColourInputWindow";
-            this.ColourInputWindow.Size = new System.Drawing.Size(178, 229);
+            this.ColourInputWindow.Size = new System.Drawing.Size(178, 240);
             this.ColourInputWindow.TabIndex = 31;
             this.ColourInputWindow.Visible = false;
             // 
@@ -440,16 +441,17 @@
             this.closeButton.Text = "X";
             this.closeButton.UseVisualStyleBackColor = false;
             // 
-            // panel2
+            // panelRes
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel2.Controls.Add(this.labelNameCol);
-            this.panel2.Controls.Add(this.textBox_Name_col);
-            this.panel2.Controls.Add(this.col_Inner_Panel);
-            this.panel2.Location = new System.Drawing.Point(-1, 26);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(179, 201);
-            this.panel2.TabIndex = 1;
+            this.panelRes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panelRes.Controls.Add(this.panelColInd);
+            this.panelRes.Controls.Add(this.labelNameCol);
+            this.panelRes.Controls.Add(this.textBox_Name_col);
+            this.panelRes.Controls.Add(this.col_Inner_Panel);
+            this.panelRes.Location = new System.Drawing.Point(-1, 26);
+            this.panelRes.Name = "panelRes";
+            this.panelRes.Size = new System.Drawing.Size(179, 212);
+            this.panelRes.TabIndex = 1;
             // 
             // labelNameCol
             // 
@@ -490,7 +492,7 @@
             // 
             this.labelAlpha.AutoSize = true;
             this.labelAlpha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAlpha.ForeColor = System.Drawing.Color.White;
+            this.labelAlpha.ForeColor = System.Drawing.Color.Coral;
             this.labelAlpha.Location = new System.Drawing.Point(92, 47);
             this.labelAlpha.Name = "labelAlpha";
             this.labelAlpha.Size = new System.Drawing.Size(39, 13);
@@ -525,7 +527,7 @@
             // 
             this.labelGreen.AutoSize = true;
             this.labelGreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGreen.ForeColor = System.Drawing.Color.Lime;
+            this.labelGreen.ForeColor = System.Drawing.Color.Coral;
             this.labelGreen.Location = new System.Drawing.Point(92, 7);
             this.labelGreen.Name = "labelGreen";
             this.labelGreen.Size = new System.Drawing.Size(41, 13);
@@ -555,7 +557,7 @@
             // 
             this.labelBlue.AutoSize = true;
             this.labelBlue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBlue.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.labelBlue.ForeColor = System.Drawing.Color.Coral;
             this.labelBlue.Location = new System.Drawing.Point(3, 47);
             this.labelBlue.Name = "labelBlue";
             this.labelBlue.Size = new System.Drawing.Size(32, 13);
@@ -585,7 +587,7 @@
             // 
             this.labelRed.AutoSize = true;
             this.labelRed.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRed.ForeColor = System.Drawing.Color.OrangeRed;
+            this.labelRed.ForeColor = System.Drawing.Color.Coral;
             this.labelRed.Location = new System.Drawing.Point(3, 7);
             this.labelRed.Name = "labelRed";
             this.labelRed.Size = new System.Drawing.Size(30, 13);
@@ -976,6 +978,14 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
+            // panelColInd
+            // 
+            this.panelColInd.BackColor = System.Drawing.Color.Black;
+            this.panelColInd.Location = new System.Drawing.Point(0, 188);
+            this.panelColInd.Name = "panelColInd";
+            this.panelColInd.Size = new System.Drawing.Size(181, 18);
+            this.panelColInd.TabIndex = 3;
+            // 
             // MainWindow
             // 
             this.AcceptButton = this.button1;
@@ -1008,8 +1018,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX4)).EndInit();
             this.ColourInputWindow.ResumeLayout(false);
             this.ColourInputWindow.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panelRes.ResumeLayout(false);
+            this.panelRes.PerformLayout();
             this.col_Inner_Panel.ResumeLayout(false);
             this.col_Inner_Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Alpha)).EndInit();
@@ -1072,7 +1082,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel ColourInputWindow;
         private System.Windows.Forms.Button closeButton;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelRes;
         private System.Windows.Forms.Panel col_Inner_Panel;
         private System.Windows.Forms.CheckBox Out_Slot_col;
         private System.Windows.Forms.Label label_Title_col;
@@ -1103,6 +1113,7 @@
         private System.Windows.Forms.CheckBox Out_Slot_vec4;
         private System.Windows.Forms.Label label_Title_Vec4;
         private System.Windows.Forms.NumericUpDown numericUpDownY4;
+        private System.Windows.Forms.Panel panelColInd;
     }
 }
 

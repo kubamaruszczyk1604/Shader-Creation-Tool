@@ -24,6 +24,7 @@ namespace ShaderCreationTool
         private NodeInputError p_ErrorCallback;
         private TextBox m_NameTextbox;
         private NumericUpDown[] m_Numeric = new NumericUpDown[4];
+        private Panel m_ColourPanel;
         private string m_Name;
       
         ShaderVectorVariable m_ShaderVariable;
@@ -96,6 +97,7 @@ namespace ShaderCreationTool
                 {
                     Panel p = (Panel)control;
                     p.Click += AnyPanel_Click;
+                    if (p.Name.Contains("ColInd")) m_ColourPanel = p;
 
                 }
                 else if (control is Label)
@@ -319,6 +321,13 @@ namespace ShaderCreationTool
         {
             m_ShaderVariable.Set((float)m_Numeric[0].Value, (float)m_Numeric[1].Value,
                 (float)m_Numeric[2].Value,(float)m_Numeric[3].Value);
+
+            
+            m_ColourPanel.BackColor = Color.FromArgb(
+                255,
+                (int)(((m_Numeric[0].Value>1)?1:m_Numeric[0].Value)*255),
+               (int)(((m_Numeric[1].Value > 1) ? 1 : m_Numeric[1].Value) * 255), 
+                (int)(((m_Numeric[3].Value > 1) ? 1 : m_Numeric[2].Value) * 255));
         }
 
     }
