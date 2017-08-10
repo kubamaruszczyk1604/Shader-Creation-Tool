@@ -10,17 +10,7 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
-    delegate void NodeCloseButtonCallback(SCTNode sender);
-
-    interface SCTNode
-    {
-        void AddOnMovedCallback(ObjectMovedCallback onMovedCallback);
-        void AddOnBeginConnectionCallback(BeginConnectionCallback onBeginConnection);
-        void AddOnBreakConnectionCallback(BreakConnectionCallback onBreakConnection);
-        Connector GetConnector(ConnectionDirection type, int index);
-        List<Connector> GetAllConnectors(ConnectionDirection type);
-        List<Connector> GetAllConnectors();
-    }
+ 
 
     class SCTFunctionNode : IDisposable,SCTNode
     {

@@ -11,6 +11,8 @@ using System.Text.RegularExpressions;
 
 namespace ShaderCreationTool
 {
+ 
+
     class InputNodeColour: SCTNode, IDisposable
     {
         private Panel m_SctElement;
