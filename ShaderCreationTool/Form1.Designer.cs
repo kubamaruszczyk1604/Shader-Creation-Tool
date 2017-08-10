@@ -81,8 +81,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PreviewTextLabel = new System.Windows.Forms.Label();
             this.AddGroupBox = new System.Windows.Forms.GroupBox();
-            this.button29 = new System.Windows.Forms.Button();
-            this.button30 = new System.Windows.Forms.Button();
+            this.AddVariableButton = new System.Windows.Forms.Button();
+            this.AddNodeButton = new System.Windows.Forms.Button();
             this.button31 = new System.Windows.Forms.Button();
             this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -124,7 +124,7 @@
             // button1
             // 
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(158, 92);
+            this.button1.Location = new System.Drawing.Point(278, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 32);
             this.button1.TabIndex = 0;
@@ -138,13 +138,12 @@
             this.button44.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button44.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button44.Location = new System.Drawing.Point(152, 41);
+            this.button44.Location = new System.Drawing.Point(135, 3);
             this.button44.Name = "button44";
             this.button44.Size = new System.Drawing.Size(137, 28);
             this.button44.TabIndex = 14;
             this.button44.Text = "Select Mesh";
             this.button44.UseVisualStyleBackColor = false;
-            this.button44.Click += new System.EventHandler(this.button44_Click);
             // 
             // EditAreaPanel
             // 
@@ -843,8 +842,8 @@
             // AddGroupBox
             // 
             this.AddGroupBox.BackColor = System.Drawing.Color.Gray;
-            this.AddGroupBox.Controls.Add(this.button29);
-            this.AddGroupBox.Controls.Add(this.button30);
+            this.AddGroupBox.Controls.Add(this.AddVariableButton);
+            this.AddGroupBox.Controls.Add(this.AddNodeButton);
             this.AddGroupBox.Controls.Add(this.button31);
             this.AddGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddGroupBox.ForeColor = System.Drawing.SystemColors.Control;
@@ -855,32 +854,33 @@
             this.AddGroupBox.TabStop = false;
             this.AddGroupBox.Text = "ADD";
             // 
-            // button29
+            // AddVariableButton
             // 
-            this.button29.BackColor = System.Drawing.Color.Brown;
-            this.button29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button29.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button29.Location = new System.Drawing.Point(6, 19);
-            this.button29.Name = "button29";
-            this.button29.Size = new System.Drawing.Size(105, 64);
-            this.button29.TabIndex = 8;
-            this.button29.Text = "Add Variable";
-            this.button29.UseVisualStyleBackColor = false;
-            this.button29.Click += new System.EventHandler(this.button29_Click);
+            this.AddVariableButton.BackColor = System.Drawing.Color.Brown;
+            this.AddVariableButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddVariableButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddVariableButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.AddVariableButton.Location = new System.Drawing.Point(6, 19);
+            this.AddVariableButton.Name = "AddVariableButton";
+            this.AddVariableButton.Size = new System.Drawing.Size(105, 64);
+            this.AddVariableButton.TabIndex = 8;
+            this.AddVariableButton.Text = "Add Variable";
+            this.AddVariableButton.UseVisualStyleBackColor = false;
+            this.AddVariableButton.Click += new System.EventHandler(this.AddVariableButton_Click);
             // 
-            // button30
+            // AddNodeButton
             // 
-            this.button30.BackColor = System.Drawing.Color.Brown;
-            this.button30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button30.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button30.Location = new System.Drawing.Point(6, 89);
-            this.button30.Name = "button30";
-            this.button30.Size = new System.Drawing.Size(105, 65);
-            this.button30.TabIndex = 9;
-            this.button30.Text = "Add Resource";
-            this.button30.UseVisualStyleBackColor = false;
+            this.AddNodeButton.BackColor = System.Drawing.Color.Brown;
+            this.AddNodeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddNodeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddNodeButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.AddNodeButton.Location = new System.Drawing.Point(6, 89);
+            this.AddNodeButton.Name = "AddNodeButton";
+            this.AddNodeButton.Size = new System.Drawing.Size(105, 65);
+            this.AddNodeButton.TabIndex = 9;
+            this.AddNodeButton.Text = "Add Node";
+            this.AddNodeButton.UseVisualStyleBackColor = false;
+            this.AddNodeButton.Click += new System.EventHandler(this.AddNodeButton_Click);
             // 
             // button31
             // 
@@ -1053,8 +1053,8 @@
         private System.Windows.Forms.Button button44;
         private System.Windows.Forms.Panel EditAreaPanel;
         private System.Windows.Forms.GroupBox AddGroupBox;
-        private System.Windows.Forms.Button button29;
-        private System.Windows.Forms.Button button30;
+        private System.Windows.Forms.Button AddVariableButton;
+        private System.Windows.Forms.Button AddNodeButton;
         private System.Windows.Forms.Button button31;
         public System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel PreviewAreaPanel;

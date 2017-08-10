@@ -348,12 +348,9 @@ namespace ShaderCreationTool
             m_HighlightedConnectorList.Clear();
         }
 
-        private void button44_Click(object sender, EventArgs e)
-        {
-            AddExampleNodes();
-        }
+ 
 
-        private void button29_Click(object sender, EventArgs e)
+        private void AddVariableButton_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < 1; ++i)
             {
@@ -365,6 +362,11 @@ namespace ShaderCreationTool
                 temp.AddInputErrorCallback(OnInputError);
                 m_Nodes.Add(temp);
             }
+        }
+
+        private void AddNodeButton_Click(object sender, EventArgs e)
+        {
+            AddExampleNodes();
         }
     }
 
