@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace ShaderCreationTool
 {
@@ -85,6 +86,8 @@ namespace ShaderCreationTool
             //Close Button click setup
             List<Button> buttons = ControlExtensions.GetAllChildreenControls<Button>(m_SctElement).Cast<Button>().ToList();
             buttons[0].Click += CloseButton_Click;
+
+            m_Name = string.Empty;
 
         }
 
@@ -192,6 +195,22 @@ namespace ShaderCreationTool
 
         private void TextChanged(string newText)
         {
+            if (m_Name == newText) return;
+            if(newText.Contains(" "))
+            {
+                // error - spaces
+                SCTConsole.Instance.PrintLine("Error: White spaces not allowed in varable name!");
+                return;
+            }
+            var regexItem = new Regex("^[a-zA-Z0-9_]*$");
+            if (!regexItem.IsMatch(newText))
+            {
+                // error - illegal signs
+                SCTConsole.Instance.PrintLine("Error: Symbols not allowed in varable name!");
+                return;
+            }
+
+            m_Name = newText;
             SCTConsole.Instance.PrintLine("TEXT CHANGED to: " + newText);
         }
     }
