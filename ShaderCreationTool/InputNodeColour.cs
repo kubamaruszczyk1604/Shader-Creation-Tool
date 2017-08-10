@@ -12,9 +12,9 @@ using System.Text.RegularExpressions;
 
 namespace ShaderCreationTool
 {
- 
 
-    class InputNodeColour: SCTNode, IDisposable
+
+    class InputNodeColour : SCTNode, IDisposable
     {
         private Panel m_SctElement;
         private MovableObject m_Mover;
@@ -24,11 +24,11 @@ namespace ShaderCreationTool
         private NodeInputError p_ErrorCallback;
         private TextBox m_NameTextbox;
         private string m_Name;
-        private static int s_Counter = 0;
+        private static int s_InstanceCounter = 0;
 
         public InputNodeColour(Panel nodeTemplate, Point location)
         {
-          
+
             //Copy template (make local instance)
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
             m_SctElement.Location = location;
@@ -42,7 +42,7 @@ namespace ShaderCreationTool
             List<Control> allControlls = ControlExtensions.GetAllChildreenControls<Control>(m_SctElement).Cast<Control>().ToList();
             SCTConsole.Instance.PrintLine("TYCH CONTROLSOW JEST: " + allControlls.Count.ToString());
             //allControlls.Add(m_SctElement);
-            foreach(Control control in allControlls)
+            foreach (Control control in allControlls)
             {
                 if (control.Name.Equals("")) continue;
 
@@ -50,7 +50,7 @@ namespace ShaderCreationTool
                 {
                     CheckBox checkBox = (CheckBox)control;
                     if (checkBox.Name.Contains(Connector.s_OutSlotSequenceID))
-                    {                     
+                    {
                         Connector tempCon = new Connector(checkBox, ShaderVariableType.Vector4, this);
                         m_OutputConnectors.Add(tempCon);
                     }
@@ -61,23 +61,20 @@ namespace ShaderCreationTool
                 }
                 else if (control is NumericUpDown)
                 {
-                    NumericUpDown textBox = (NumericUpDown)control;
-                    SCTConsole.Instance.PrintLine("DOWN NAme is:" + textBox.Name);
-
-                    // textBox.LostFocus += TextBoxLostFocus_TextChanged;
-                    // textBox.KeyPress += TextBox_KeyPress;
-                    //  m_NameTextbox = textBox;
-
+                    NumericUpDown num = (NumericUpDown)control;
+                    SCTConsole.Instance.PrintLine("Name is:" + num.Name);
+                    num.Validated += Numeric_LostFocus;
+                    num.KeyPress += Numeric_KeyPress;
                 }
                 else if (control is TextBox)
-                { 
+                {
                     TextBox textBox = (TextBox)control;
                     SCTConsole.Instance.PrintLine("NAme is:" + textBox.Name);
-                    textBox.LostFocus += TextBoxLostFocus_TextChanged;
+                    textBox.Validated += TextBox_LostFocus;
                     textBox.KeyPress += TextBox_KeyPress;
                     m_NameTextbox = textBox;
                     tbCounter++;
-                    m_Name = "SCT_UNIFORM_ColourIn_" + s_Counter.ToString();
+                    m_Name = "SCT_UNIFORM_ColourIn_" + s_InstanceCounter.ToString();
                     m_NameTextbox.Text = m_Name;
 
                 }
@@ -85,11 +82,11 @@ namespace ShaderCreationTool
                 {
                     Panel p = (Panel)control;
                     p.Click += AnyPanel_Click;
-                
+
                 }
                 else if (control is Label)
                 {
-                   
+
                     Label l = (Label)control;
                     if (l.Name.Contains("Title"))
                     {
@@ -105,15 +102,13 @@ namespace ShaderCreationTool
                 }
             }
 
-
-
             if (tbCounter == 0)
             {
                 SCTConsole.Instance.PrintLine("ERROR: No Texboxes in Input Colour Node");
                 throw new Exception("ERROR: No Texboxes in Input Colour Node");
             }
-        
-            s_Counter++;
+
+            s_InstanceCounter++;
             ShowNode(10);
         }
 
@@ -139,7 +134,7 @@ namespace ShaderCreationTool
                 c.AddCallback_BreakConnectionRequest(onBreakConnection);
             }
         }
-    
+
         public void AddOnCloseCallback(NodeCloseButtonCallback callback)
         {
             p_CloseCallback += callback;
@@ -221,7 +216,9 @@ namespace ShaderCreationTool
             m_Mover.MoveControlMouseMove(m_SctElement, e);
         }
 
-        private void TextBoxLostFocus_TextChanged(object sender, EventArgs e)
+
+        //////////////////// VARIABLE NAME HANDLING  ////////////////////
+        private void TextBox_LostFocus(object sender, EventArgs e)
         {
             TextChanged(((TextBox)sender).Text);
         }
@@ -229,7 +226,7 @@ namespace ShaderCreationTool
         private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
 
-            if(e.KeyChar == 13)
+            if (e.KeyChar == 13)
             {
                 TextChanged(((TextBox)sender).Text);
             }
@@ -238,9 +235,9 @@ namespace ShaderCreationTool
         private void TextChanged(string newText)
         {
             if (m_Name == newText) return;
-         
+
             // Check for white characters error
-            if(newText.Contains(" "))
+            if (newText.Contains(" "))
             {
                 // error - spaces
                 SCTConsole.Instance.PrintLine("Error: White spaces not allowed in varable name!");
@@ -248,14 +245,14 @@ namespace ShaderCreationTool
                 m_NameTextbox.Invalidate();
                 if (p_ErrorCallback != null)
                 {
-                    p_ErrorCallback("Invalid Input: White Spaces not allowed!", this);    
+                    p_ErrorCallback("Invalid Input: White Spaces not allowed!", this);
                 }
                 return;
             }
 
             //Check for empty string error
             if (newText == string.Empty)
-            {     
+            {
                 SCTConsole.Instance.PrintLine("Error: Variable name must contain characters!");
                 m_NameTextbox.Text = m_Name;
                 m_NameTextbox.Invalidate();
@@ -283,6 +280,37 @@ namespace ShaderCreationTool
 
             m_Name = newText;
             SCTConsole.Instance.PrintLine("TEXT CHANGED to: " + newText);
+        }
+
+        //////////////////// NUMERIC COMPONENTS HANDLING  ////////////////////
+        private void Numeric_LostFocus(object sender, EventArgs e)
+        {
+            ProcessOnNumericEvent(sender);
+
+        }
+        private void Numeric_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                ProcessOnNumericEvent(sender);
+            }
+        }
+
+        private void ProcessOnNumericEvent(object sender)
+        {
+            NumericUpDown num = (NumericUpDown)sender;
+            int index = -1;
+            if (num.Name.Contains("Red")) index = 0;
+            else if (num.Name.Contains("Green")) index = 1;
+            else if (num.Name.Contains("Blue")) index = 2;
+            else if (num.Name.Contains("Alpha")) index = 3;
+            else index = -1;
+
+            NumericChanged(index, (float)num.Value);
+        }
+        private void NumericChanged(int instanceIndex, float newVal)
+        {
+            SCTConsole.Instance.PrintLine("numeric: " + instanceIndex.ToString() + " changed to: " + newVal.ToString());
         }
     }
 }
