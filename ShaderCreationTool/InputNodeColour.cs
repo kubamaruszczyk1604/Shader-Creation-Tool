@@ -23,8 +23,13 @@ namespace ShaderCreationTool
         private NodeCloseButtonCallback p_CloseCallback;
         private NodeInputError p_ErrorCallback;
         private TextBox m_NameTextbox;
+        private NumericUpDown[] m_Numeric = new NumericUpDown[4];
         private string m_Name;
+      
+        ShaderVectorVariable m_ShaderVariable;
+       
         private static int s_InstanceCounter = 0;
+
 
         public InputNodeColour(Panel nodeTemplate, Point location)
         {
@@ -65,6 +70,8 @@ namespace ShaderCreationTool
                     SCTConsole.Instance.PrintLine("Name is:" + num.Name);
                     num.Validated += Numeric_LostFocus;
                     num.KeyPress += Numeric_KeyPress;
+
+
                 }
                 else if (control is TextBox)
                 {
@@ -110,6 +117,9 @@ namespace ShaderCreationTool
 
             s_InstanceCounter++;
             ShowNode(10);
+            m_ShaderVariable = new ShaderVectorVariable(0, 0, 0, 1,m_Name);
+            Bridge.SetVariable(m_ShaderVariable);
+
         }
 
         ////////////////////////  ADD CALLBACK METHODS ///////////////
@@ -279,6 +289,7 @@ namespace ShaderCreationTool
             }
 
             m_Name = newText;
+            m_ShaderVariable.SetName(m_Name);
             SCTConsole.Instance.PrintLine("TEXT CHANGED to: " + newText);
         }
 
@@ -311,6 +322,7 @@ namespace ShaderCreationTool
         private void NumericChanged(int instanceIndex, float newVal)
         {
             SCTConsole.Instance.PrintLine("numeric: " + instanceIndex.ToString() + " changed to: " + newVal.ToString());
+            m_ShaderVariable.SetAtIndex(instanceIndex, newVal);
         }
     }
 }

@@ -515,6 +515,11 @@
             this.numericUpDown_Alpha.Name = "numericUpDown_Alpha";
             this.numericUpDown_Alpha.Size = new System.Drawing.Size(73, 20);
             this.numericUpDown_Alpha.TabIndex = 15;
+            this.numericUpDown_Alpha.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // labelGreen
             // 

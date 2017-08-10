@@ -73,6 +73,11 @@ public:
 	float GetB() { return m_Data[2]; }
 	float GetA() { return m_Data[3]; }
 
+	void SetAtIndex(int index, float value)
+	{
+		m_Data[index] = value;
+	}
+
 };
 
 public ref class ShaderTextureVariable

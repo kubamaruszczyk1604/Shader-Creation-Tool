@@ -28,8 +28,8 @@ namespace ShaderCreationTool
         private MovableObject m_MovableKey;
         private MovableObject m_MovablePreviewPanel;
 
-        private ShaderVectorVariable m_DiffuseColour;
-        private ShaderVectorVariable m_AmbientColour;
+      //  private ShaderVectorVariable m_DiffuseColour;
+        //private ShaderVectorVariable m_AmbientColour;
 
         private List<SCTNode> m_Nodes;
         private List<Connector> m_HighlightedConnectorList;
@@ -48,10 +48,10 @@ namespace ShaderCreationTool
             m_MovablePreviewPanel = new MovableObject(PreviewAreaPanel);
             m_MovablePreviewPanel.AddObjectMovedEventListener(UpdateOnObjectMoved);
 
-            m_DiffuseColour = new ShaderVectorVariable(1, 1, 0, 1, "diffuse");
-            Bridge.SetVariable(m_DiffuseColour);
-            m_AmbientColour = new ShaderVectorVariable(0.1f, 0.1f, 0.1f, 1, "ambient");
-            Bridge.SetVariable(m_AmbientColour);
+           // m_DiffuseColour = new ShaderVectorVariable(1, 1, 0, 1, "diffuse");
+            //Bridge.SetVariable(m_DiffuseColour);
+           // m_AmbientColour = new ShaderVectorVariable(0.1f, 0.1f, 0.1f, 1, "ambient");
+           // Bridge.SetVariable(m_AmbientColour);
             SCTConsole.Instance.Show();
             m_Nodes = new List<SCTNode>();
             CreateAndSetupFrameNode(m_Nodes);
@@ -291,11 +291,11 @@ namespace ShaderCreationTool
             {
                 // Set form background to the selected color.
                 //this.BackColor = cd.Color;
-                m_DiffuseColour.Set((float)(cd.Color.R) / 255.0f,
-                    (float)(cd.Color.G) / 255.0f,
-                    (float)(cd.Color.B) / 255.0f,
-                    (float)(cd.Color.A) / 255.0f
-                    );
+                //m_DiffuseColour.Set((float)(cd.Color.R) / 255.0f,
+                //    (float)(cd.Color.G) / 255.0f,
+                //    (float)(cd.Color.B) / 255.0f,
+                //    (float)(cd.Color.A) / 255.0f
+                //    );
             }
         }
 
