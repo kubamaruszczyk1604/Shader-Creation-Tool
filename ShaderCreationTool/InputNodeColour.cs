@@ -53,6 +53,7 @@ namespace ShaderCreationTool
                 if (control.Name.Equals("")) continue;
 
                 control.Click += AnyElement_Click;
+               // control.BackColor = Color.FromArgb(255, 100, 100, 100);
                 if (control is CheckBox)
                 {
                     CheckBox checkBox = (CheckBox)control;
