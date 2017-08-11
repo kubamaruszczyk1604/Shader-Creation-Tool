@@ -52,6 +52,7 @@ namespace ShaderCreationTool
             {
                 if (control.Name.Equals("")) continue;
 
+                control.Click += AnyElement_Click;
                 if (control is CheckBox)
                 {
                     CheckBox checkBox = (CheckBox)control;
@@ -96,7 +97,7 @@ namespace ShaderCreationTool
                 else if (control is Panel)
                 {
                     Panel p = (Panel)control;
-                    p.Click += AnyPanel_Click;
+                    
                     if (p.Name.Contains("ColInd"))
                     {
                         m_ColourPanel = p;
@@ -220,10 +221,11 @@ namespace ShaderCreationTool
 
         }
 
-        private void AnyPanel_Click(object sender, EventArgs e)
+        private void AnyElement_Click(object sender, EventArgs e)
         {
 
             ((Control)sender).Focus();
+            m_SctElement.BringToFront();
 
         }
 
