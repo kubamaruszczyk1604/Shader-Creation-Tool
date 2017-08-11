@@ -354,7 +354,7 @@ namespace ShaderCreationTool
         {
             for (int i = 0; i < 1; ++i)
             {
-                InputNodeColour temp = new InputNodeColour(ColourInputWindow, new Point(240 * i, 300));
+                InputNodeVector temp = new InputNodeVector(Float3InputWindow, new Point(240 * i, 300));
                 temp.AddOnMovedCallback(UpdateOnObjectMoved);
                 temp.AddOnBeginConnectionCallback(OnConnectionBegin);
                 temp.AddOnBreakConnectionCallback(OnConnectionBreak);

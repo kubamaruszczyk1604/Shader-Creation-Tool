@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 
 namespace ShaderCreationTool
 {
-    class InputNodeVector4 :SCTNode, IDisposable
+    class InputNodeVector :SCTNode, IDisposable
     {
 
         private Panel m_SctElement;
@@ -24,15 +24,16 @@ namespace ShaderCreationTool
         private TextBox m_NameTextbox;
         private NumericUpDown[] m_Numeric = new NumericUpDown[4];
         private string m_Name;
+        private int m_ConnectorCount;
 
         ShaderVectorVariable m_ShaderVariable;
 
         private static int s_InstanceCounter = 0;
 
 
-        public InputNodeVector4(Panel nodeTemplate, Point location)
+        public InputNodeVector(Panel nodeTemplate, Point location)
         {
-
+            m_ConnectorCount = 0;
             //Copy template (make local instance)
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
             m_SctElement.Location = location;
@@ -71,10 +72,14 @@ namespace ShaderCreationTool
 
                     // Slot sorting
                     int index = -1;
-                    if (num.Name.Contains("X4")) index = 0;
-                    else if (num.Name.Contains("Y4")) index = 1;
-                    else if (num.Name.Contains("Z4")) index = 2;
-                    else if (num.Name.Contains("W4")) index = 3;
+                    if (num.Name.Contains("X"))
+                    { index = 0; m_ConnectorCount++; }
+                    else if (num.Name.Contains("Y"))
+                    { index = 1; m_ConnectorCount++; }
+                    else if (num.Name.Contains("Z"))
+                    { index = 2; m_ConnectorCount++; }
+                    else if (num.Name.Contains("W"))
+                    { index = 3; m_ConnectorCount++; }
 
                     m_Numeric[index] = num;
                 }
@@ -203,7 +208,12 @@ namespace ShaderCreationTool
         private void CloseButton_Click(object sender, EventArgs e)
         {
 
-            if (p_CloseCallback != null) p_CloseCallback(this);
+            if (p_CloseCallback != null)
+            {
+                ResetNumeric();
+                RefreshShaderVariable();
+                p_CloseCallback(this);
+            }
 
         }
 
@@ -315,8 +325,19 @@ namespace ShaderCreationTool
 
         private void RefreshShaderVariable()
         {
-            m_ShaderVariable.Set((float)m_Numeric[0].Value, (float)m_Numeric[1].Value,
-                (float)m_Numeric[2].Value, (float)m_Numeric[3].Value);
+            for(int i = 0; i < m_ConnectorCount;++i)
+            {
+                m_ShaderVariable.SetAtIndex(i, (float)m_Numeric[i].Value);
+            }
+        }
+
+
+        private void ResetNumeric()
+        {
+            for (int i = 0; i < m_ConnectorCount; ++i)
+            {
+                m_Numeric[i].Value = 0;
+            }
         }
     }
 }

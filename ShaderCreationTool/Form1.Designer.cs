@@ -33,7 +33,7 @@
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
             this.Float4InputWindow = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.closeButton_Float4 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelNameVec4 = new System.Windows.Forms.Label();
             this.textBox_Float4 = new System.Windows.Forms.TextBox();
@@ -94,6 +94,20 @@
             this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelColInd = new System.Windows.Forms.Panel();
+            this.Float3InputWindow = new System.Windows.Forms.Panel();
+            this.closeButton_Flpat3 = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox_Float3 = new System.Windows.Forms.TextBox();
+            this.float3_Inner_Panel = new System.Windows.Forms.Panel();
+            this.numericUpDownY3 = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDownZ3 = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.numericUpDownX3 = new System.Windows.Forms.NumericUpDown();
+            this.Out_Slot_vec3 = new System.Windows.Forms.CheckBox();
+            this.label_Title_Vec3 = new System.Windows.Forms.Label();
             this.EditAreaPanel.SuspendLayout();
             this.Float4InputWindow.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -119,6 +133,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.AddGroupBox.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
+            this.Float3InputWindow.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.float3_Inner_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZ3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX3)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -152,6 +172,7 @@
             this.EditAreaPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditAreaPanel.BackgroundImage")));
             this.EditAreaPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.EditAreaPanel.Controls.Add(this.Float3InputWindow);
             this.EditAreaPanel.Controls.Add(this.Float4InputWindow);
             this.EditAreaPanel.Controls.Add(this.ColourInputWindow);
             this.EditAreaPanel.Controls.Add(this.FrameBufferWindow);
@@ -176,28 +197,28 @@
             // 
             this.Float4InputWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
             this.Float4InputWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Float4InputWindow.Controls.Add(this.button2);
+            this.Float4InputWindow.Controls.Add(this.closeButton_Float4);
             this.Float4InputWindow.Controls.Add(this.panel3);
             this.Float4InputWindow.Controls.Add(this.label_Title_Vec4);
             this.Float4InputWindow.Enabled = false;
-            this.Float4InputWindow.Location = new System.Drawing.Point(239, 473);
+            this.Float4InputWindow.Location = new System.Drawing.Point(443, 53);
             this.Float4InputWindow.Name = "Float4InputWindow";
             this.Float4InputWindow.Size = new System.Drawing.Size(178, 229);
             this.Float4InputWindow.TabIndex = 32;
             this.Float4InputWindow.Visible = false;
             // 
-            // button2
+            // closeButton_Float4
             // 
-            this.button2.BackColor = System.Drawing.Color.Black;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.Transparent;
-            this.button2.Location = new System.Drawing.Point(151, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(22, 22);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "X";
-            this.button2.UseVisualStyleBackColor = false;
+            this.closeButton_Float4.BackColor = System.Drawing.Color.Black;
+            this.closeButton_Float4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButton_Float4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButton_Float4.ForeColor = System.Drawing.Color.Transparent;
+            this.closeButton_Float4.Location = new System.Drawing.Point(151, 3);
+            this.closeButton_Float4.Name = "closeButton_Float4";
+            this.closeButton_Float4.Size = new System.Drawing.Size(22, 22);
+            this.closeButton_Float4.TabIndex = 2;
+            this.closeButton_Float4.Text = "X";
+            this.closeButton_Float4.UseVisualStyleBackColor = false;
             // 
             // panel3
             // 
@@ -421,7 +442,7 @@
             this.ColourInputWindow.Controls.Add(this.panelRes);
             this.ColourInputWindow.Controls.Add(this.label_Title_col);
             this.ColourInputWindow.Enabled = false;
-            this.ColourInputWindow.Location = new System.Drawing.Point(464, 165);
+            this.ColourInputWindow.Location = new System.Drawing.Point(627, 53);
             this.ColourInputWindow.Name = "ColourInputWindow";
             this.ColourInputWindow.Size = new System.Drawing.Size(178, 240);
             this.ColourInputWindow.TabIndex = 31;
@@ -986,6 +1007,210 @@
             this.panelColInd.Size = new System.Drawing.Size(181, 18);
             this.panelColInd.TabIndex = 3;
             // 
+            // Float3InputWindow
+            // 
+            this.Float3InputWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
+            this.Float3InputWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Float3InputWindow.Controls.Add(this.closeButton_Flpat3);
+            this.Float3InputWindow.Controls.Add(this.panel2);
+            this.Float3InputWindow.Controls.Add(this.label_Title_Vec3);
+            this.Float3InputWindow.Enabled = false;
+            this.Float3InputWindow.Location = new System.Drawing.Point(249, 53);
+            this.Float3InputWindow.Name = "Float3InputWindow";
+            this.Float3InputWindow.Size = new System.Drawing.Size(178, 209);
+            this.Float3InputWindow.TabIndex = 33;
+            this.Float3InputWindow.Visible = false;
+            // 
+            // closeButton_Flpat3
+            // 
+            this.closeButton_Flpat3.BackColor = System.Drawing.Color.Black;
+            this.closeButton_Flpat3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButton_Flpat3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButton_Flpat3.ForeColor = System.Drawing.Color.Transparent;
+            this.closeButton_Flpat3.Location = new System.Drawing.Point(151, 3);
+            this.closeButton_Flpat3.Name = "closeButton_Flpat3";
+            this.closeButton_Flpat3.Size = new System.Drawing.Size(22, 22);
+            this.closeButton_Flpat3.TabIndex = 2;
+            this.closeButton_Flpat3.Text = "X";
+            this.closeButton_Flpat3.UseVisualStyleBackColor = false;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.textBox_Float3);
+            this.panel2.Controls.Add(this.float3_Inner_Panel);
+            this.panel2.Location = new System.Drawing.Point(-1, 26);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(179, 182);
+            this.panel2.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(9, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Name";
+            // 
+            // textBox_Float3
+            // 
+            this.textBox_Float3.BackColor = System.Drawing.Color.LightGray;
+            this.textBox_Float3.Location = new System.Drawing.Point(12, 28);
+            this.textBox_Float3.Name = "textBox_Float3";
+            this.textBox_Float3.Size = new System.Drawing.Size(159, 20);
+            this.textBox_Float3.TabIndex = 1;
+            // 
+            // float3_Inner_Panel
+            // 
+            this.float3_Inner_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.float3_Inner_Panel.Controls.Add(this.numericUpDownY3);
+            this.float3_Inner_Panel.Controls.Add(this.label4);
+            this.float3_Inner_Panel.Controls.Add(this.label5);
+            this.float3_Inner_Panel.Controls.Add(this.numericUpDownZ3);
+            this.float3_Inner_Panel.Controls.Add(this.label6);
+            this.float3_Inner_Panel.Controls.Add(this.numericUpDownX3);
+            this.float3_Inner_Panel.Controls.Add(this.Out_Slot_vec3);
+            this.float3_Inner_Panel.Location = new System.Drawing.Point(6, 56);
+            this.float3_Inner_Panel.Name = "float3_Inner_Panel";
+            this.float3_Inner_Panel.Size = new System.Drawing.Size(173, 110);
+            this.float3_Inner_Panel.TabIndex = 0;
+            // 
+            // numericUpDownY3
+            // 
+            this.numericUpDownY3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.numericUpDownY3.DecimalPlaces = 2;
+            this.numericUpDownY3.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDownY3.Location = new System.Drawing.Point(92, 23);
+            this.numericUpDownY3.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.numericUpDownY3.Minimum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownY3.Name = "numericUpDownY3";
+            this.numericUpDownY3.Size = new System.Drawing.Size(73, 20);
+            this.numericUpDownY3.TabIndex = 17;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Coral;
+            this.label4.Location = new System.Drawing.Point(92, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(15, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Y";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Coral;
+            this.label5.Location = new System.Drawing.Point(3, 51);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(15, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Z";
+            // 
+            // numericUpDownZ3
+            // 
+            this.numericUpDownZ3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.numericUpDownZ3.DecimalPlaces = 2;
+            this.numericUpDownZ3.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDownZ3.Location = new System.Drawing.Point(3, 67);
+            this.numericUpDownZ3.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.numericUpDownZ3.Minimum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownZ3.Name = "numericUpDownZ3";
+            this.numericUpDownZ3.Size = new System.Drawing.Size(73, 20);
+            this.numericUpDownZ3.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Coral;
+            this.label6.Location = new System.Drawing.Point(3, 7);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(15, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "X";
+            // 
+            // numericUpDownX3
+            // 
+            this.numericUpDownX3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.numericUpDownX3.DecimalPlaces = 2;
+            this.numericUpDownX3.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDownX3.Location = new System.Drawing.Point(3, 23);
+            this.numericUpDownX3.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.numericUpDownX3.Minimum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownX3.Name = "numericUpDownX3";
+            this.numericUpDownX3.Size = new System.Drawing.Size(73, 20);
+            this.numericUpDownX3.TabIndex = 9;
+            // 
+            // Out_Slot_vec3
+            // 
+            this.Out_Slot_vec3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Out_Slot_vec3.AutoSize = true;
+            this.Out_Slot_vec3.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_vec3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Out_Slot_vec3.ForeColor = System.Drawing.Color.BurlyWood;
+            this.Out_Slot_vec3.Location = new System.Drawing.Point(95, 74);
+            this.Out_Slot_vec3.Name = "Out_Slot_vec3";
+            this.Out_Slot_vec3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Out_Slot_vec3.Size = new System.Drawing.Size(73, 20);
+            this.Out_Slot_vec3.TabIndex = 8;
+            this.Out_Slot_vec3.Text = "OutCol";
+            this.Out_Slot_vec3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_vec3.UseVisualStyleBackColor = true;
+            // 
+            // label_Title_Vec3
+            // 
+            this.label_Title_Vec3.AutoSize = true;
+            this.label_Title_Vec3.BackColor = System.Drawing.Color.Transparent;
+            this.label_Title_Vec3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title_Vec3.Location = new System.Drawing.Point(57, -1);
+            this.label_Title_Vec3.Name = "label_Title_Vec3";
+            this.label_Title_Vec3.Size = new System.Drawing.Size(55, 18);
+            this.label_Title_Vec3.TabIndex = 0;
+            this.label_Title_Vec3.Text = "Float3";
+            this.label_Title_Vec3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainWindow
             // 
             this.AcceptButton = this.button1;
@@ -1042,6 +1267,15 @@
             this.AddGroupBox.ResumeLayout(false);
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
+            this.Float3InputWindow.ResumeLayout(false);
+            this.Float3InputWindow.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.float3_Inner_Panel.ResumeLayout(false);
+            this.float3_Inner_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZ3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1098,7 +1332,7 @@
         private System.Windows.Forms.TextBox textBox_Name_col;
         private System.Windows.Forms.Label labelNameCol;
         private System.Windows.Forms.Panel Float4InputWindow;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button closeButton_Float4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label labelNameVec4;
         private System.Windows.Forms.TextBox textBox_Float4;
@@ -1114,6 +1348,20 @@
         private System.Windows.Forms.Label label_Title_Vec4;
         private System.Windows.Forms.NumericUpDown numericUpDownY4;
         private System.Windows.Forms.Panel panelColInd;
+        private System.Windows.Forms.Panel Float3InputWindow;
+        private System.Windows.Forms.Button closeButton_Flpat3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox_Float3;
+        private System.Windows.Forms.Panel float3_Inner_Panel;
+        private System.Windows.Forms.NumericUpDown numericUpDownY3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown numericUpDownZ3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown numericUpDownX3;
+        private System.Windows.Forms.CheckBox Out_Slot_vec3;
+        private System.Windows.Forms.Label label_Title_Vec3;
     }
 }
 
