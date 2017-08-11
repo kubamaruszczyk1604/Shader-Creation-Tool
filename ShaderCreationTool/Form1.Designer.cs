@@ -95,19 +95,31 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelColInd = new System.Windows.Forms.Panel();
             this.Float3InputWindow = new System.Windows.Forms.Panel();
-            this.closeButton_Flpat3 = new System.Windows.Forms.Button();
+            this.closeButton_Float3 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelNameVec3 = new System.Windows.Forms.Label();
             this.textBox_Float3 = new System.Windows.Forms.TextBox();
             this.float3_Inner_Panel = new System.Windows.Forms.Panel();
             this.numericUpDownY3 = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelY3 = new System.Windows.Forms.Label();
+            this.labelZ3 = new System.Windows.Forms.Label();
             this.numericUpDownZ3 = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelX3 = new System.Windows.Forms.Label();
             this.numericUpDownX3 = new System.Windows.Forms.NumericUpDown();
             this.Out_Slot_vec3 = new System.Windows.Forms.CheckBox();
             this.label_Title_Vec3 = new System.Windows.Forms.Label();
+            this.Float2InputWindow = new System.Windows.Forms.Panel();
+            this.closeButton_Float2 = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.labelNameVec2 = new System.Windows.Forms.Label();
+            this.textBox_Float2 = new System.Windows.Forms.TextBox();
+            this.float2_Inner_Panel = new System.Windows.Forms.Panel();
+            this.numericUpDownY2 = new System.Windows.Forms.NumericUpDown();
+            this.labelY2 = new System.Windows.Forms.Label();
+            this.labelX2 = new System.Windows.Forms.Label();
+            this.numericUpDownX2 = new System.Windows.Forms.NumericUpDown();
+            this.Out_Slot_vec2 = new System.Windows.Forms.CheckBox();
+            this.label_Title_Vec2 = new System.Windows.Forms.Label();
             this.EditAreaPanel.SuspendLayout();
             this.Float4InputWindow.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -139,6 +151,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZ3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX3)).BeginInit();
+            this.Float2InputWindow.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.float2_Inner_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX2)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -172,6 +189,7 @@
             this.EditAreaPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditAreaPanel.BackgroundImage")));
             this.EditAreaPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.EditAreaPanel.Controls.Add(this.Float2InputWindow);
             this.EditAreaPanel.Controls.Add(this.Float3InputWindow);
             this.EditAreaPanel.Controls.Add(this.Float4InputWindow);
             this.EditAreaPanel.Controls.Add(this.ColourInputWindow);
@@ -654,7 +672,7 @@
             this.label_Title_col.AutoSize = true;
             this.label_Title_col.BackColor = System.Drawing.Color.Black;
             this.label_Title_col.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title_col.Location = new System.Drawing.Point(63, 5);
+            this.label_Title_col.Location = new System.Drawing.Point(61, 5);
             this.label_Title_col.Name = "label_Title_col";
             this.label_Title_col.Size = new System.Drawing.Size(59, 18);
             this.label_Title_col.TabIndex = 0;
@@ -1011,33 +1029,33 @@
             // 
             this.Float3InputWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
             this.Float3InputWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Float3InputWindow.Controls.Add(this.closeButton_Flpat3);
+            this.Float3InputWindow.Controls.Add(this.closeButton_Float3);
             this.Float3InputWindow.Controls.Add(this.panel2);
             this.Float3InputWindow.Controls.Add(this.label_Title_Vec3);
             this.Float3InputWindow.Enabled = false;
-            this.Float3InputWindow.Location = new System.Drawing.Point(249, 53);
+            this.Float3InputWindow.Location = new System.Drawing.Point(259, 56);
             this.Float3InputWindow.Name = "Float3InputWindow";
             this.Float3InputWindow.Size = new System.Drawing.Size(178, 209);
             this.Float3InputWindow.TabIndex = 33;
             this.Float3InputWindow.Visible = false;
             // 
-            // closeButton_Flpat3
+            // closeButton_Float3
             // 
-            this.closeButton_Flpat3.BackColor = System.Drawing.Color.Black;
-            this.closeButton_Flpat3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton_Flpat3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeButton_Flpat3.ForeColor = System.Drawing.Color.Transparent;
-            this.closeButton_Flpat3.Location = new System.Drawing.Point(151, 3);
-            this.closeButton_Flpat3.Name = "closeButton_Flpat3";
-            this.closeButton_Flpat3.Size = new System.Drawing.Size(22, 22);
-            this.closeButton_Flpat3.TabIndex = 2;
-            this.closeButton_Flpat3.Text = "X";
-            this.closeButton_Flpat3.UseVisualStyleBackColor = false;
+            this.closeButton_Float3.BackColor = System.Drawing.Color.Black;
+            this.closeButton_Float3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButton_Float3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButton_Float3.ForeColor = System.Drawing.Color.Transparent;
+            this.closeButton_Float3.Location = new System.Drawing.Point(151, 3);
+            this.closeButton_Float3.Name = "closeButton_Float3";
+            this.closeButton_Float3.Size = new System.Drawing.Size(22, 22);
+            this.closeButton_Float3.TabIndex = 2;
+            this.closeButton_Float3.Text = "X";
+            this.closeButton_Float3.UseVisualStyleBackColor = false;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.labelNameVec3);
             this.panel2.Controls.Add(this.textBox_Float3);
             this.panel2.Controls.Add(this.float3_Inner_Panel);
             this.panel2.Location = new System.Drawing.Point(-1, 26);
@@ -1045,15 +1063,15 @@
             this.panel2.Size = new System.Drawing.Size(179, 182);
             this.panel2.TabIndex = 1;
             // 
-            // label2
+            // labelNameVec3
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Name";
+            this.labelNameVec3.AutoSize = true;
+            this.labelNameVec3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNameVec3.Location = new System.Drawing.Point(9, 12);
+            this.labelNameVec3.Name = "labelNameVec3";
+            this.labelNameVec3.Size = new System.Drawing.Size(39, 13);
+            this.labelNameVec3.TabIndex = 2;
+            this.labelNameVec3.Text = "Name";
             // 
             // textBox_Float3
             // 
@@ -1067,10 +1085,10 @@
             // 
             this.float3_Inner_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.float3_Inner_Panel.Controls.Add(this.numericUpDownY3);
-            this.float3_Inner_Panel.Controls.Add(this.label4);
-            this.float3_Inner_Panel.Controls.Add(this.label5);
+            this.float3_Inner_Panel.Controls.Add(this.labelY3);
+            this.float3_Inner_Panel.Controls.Add(this.labelZ3);
             this.float3_Inner_Panel.Controls.Add(this.numericUpDownZ3);
-            this.float3_Inner_Panel.Controls.Add(this.label6);
+            this.float3_Inner_Panel.Controls.Add(this.labelX3);
             this.float3_Inner_Panel.Controls.Add(this.numericUpDownX3);
             this.float3_Inner_Panel.Controls.Add(this.Out_Slot_vec3);
             this.float3_Inner_Panel.Location = new System.Drawing.Point(6, 56);
@@ -1102,27 +1120,27 @@
             this.numericUpDownY3.Size = new System.Drawing.Size(73, 20);
             this.numericUpDownY3.TabIndex = 17;
             // 
-            // label4
+            // labelY3
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Coral;
-            this.label4.Location = new System.Drawing.Point(92, 7);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(15, 13);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Y";
+            this.labelY3.AutoSize = true;
+            this.labelY3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelY3.ForeColor = System.Drawing.Color.Coral;
+            this.labelY3.Location = new System.Drawing.Point(92, 7);
+            this.labelY3.Name = "labelY3";
+            this.labelY3.Size = new System.Drawing.Size(15, 13);
+            this.labelY3.TabIndex = 14;
+            this.labelY3.Text = "Y";
             // 
-            // label5
+            // labelZ3
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Coral;
-            this.label5.Location = new System.Drawing.Point(3, 51);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(15, 13);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Z";
+            this.labelZ3.AutoSize = true;
+            this.labelZ3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelZ3.ForeColor = System.Drawing.Color.Coral;
+            this.labelZ3.Location = new System.Drawing.Point(3, 51);
+            this.labelZ3.Name = "labelZ3";
+            this.labelZ3.Size = new System.Drawing.Size(15, 13);
+            this.labelZ3.TabIndex = 12;
+            this.labelZ3.Text = "Z";
             // 
             // numericUpDownZ3
             // 
@@ -1148,16 +1166,16 @@
             this.numericUpDownZ3.Size = new System.Drawing.Size(73, 20);
             this.numericUpDownZ3.TabIndex = 11;
             // 
-            // label6
+            // labelX3
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Coral;
-            this.label6.Location = new System.Drawing.Point(3, 7);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(15, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "X";
+            this.labelX3.AutoSize = true;
+            this.labelX3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX3.ForeColor = System.Drawing.Color.Coral;
+            this.labelX3.Location = new System.Drawing.Point(3, 7);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(15, 13);
+            this.labelX3.TabIndex = 10;
+            this.labelX3.Text = "X";
             // 
             // numericUpDownX3
             // 
@@ -1204,12 +1222,179 @@
             this.label_Title_Vec3.AutoSize = true;
             this.label_Title_Vec3.BackColor = System.Drawing.Color.Transparent;
             this.label_Title_Vec3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title_Vec3.Location = new System.Drawing.Point(57, -1);
+            this.label_Title_Vec3.Location = new System.Drawing.Point(57, 5);
             this.label_Title_Vec3.Name = "label_Title_Vec3";
             this.label_Title_Vec3.Size = new System.Drawing.Size(55, 18);
             this.label_Title_Vec3.TabIndex = 0;
             this.label_Title_Vec3.Text = "Float3";
             this.label_Title_Vec3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Float2InputWindow
+            // 
+            this.Float2InputWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
+            this.Float2InputWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Float2InputWindow.Controls.Add(this.closeButton_Float2);
+            this.Float2InputWindow.Controls.Add(this.panel6);
+            this.Float2InputWindow.Controls.Add(this.label_Title_Vec2);
+            this.Float2InputWindow.Enabled = false;
+            this.Float2InputWindow.Location = new System.Drawing.Point(623, 299);
+            this.Float2InputWindow.Name = "Float2InputWindow";
+            this.Float2InputWindow.Size = new System.Drawing.Size(178, 195);
+            this.Float2InputWindow.TabIndex = 34;
+            this.Float2InputWindow.Visible = false;
+            // 
+            // closeButton_Float2
+            // 
+            this.closeButton_Float2.BackColor = System.Drawing.Color.Black;
+            this.closeButton_Float2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButton_Float2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButton_Float2.ForeColor = System.Drawing.Color.Transparent;
+            this.closeButton_Float2.Location = new System.Drawing.Point(151, 3);
+            this.closeButton_Float2.Name = "closeButton_Float2";
+            this.closeButton_Float2.Size = new System.Drawing.Size(22, 22);
+            this.closeButton_Float2.TabIndex = 2;
+            this.closeButton_Float2.Text = "X";
+            this.closeButton_Float2.UseVisualStyleBackColor = false;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel6.Controls.Add(this.labelNameVec2);
+            this.panel6.Controls.Add(this.textBox_Float2);
+            this.panel6.Controls.Add(this.float2_Inner_Panel);
+            this.panel6.Location = new System.Drawing.Point(-1, 26);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(179, 167);
+            this.panel6.TabIndex = 1;
+            // 
+            // labelNameVec2
+            // 
+            this.labelNameVec2.AutoSize = true;
+            this.labelNameVec2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNameVec2.Location = new System.Drawing.Point(9, 12);
+            this.labelNameVec2.Name = "labelNameVec2";
+            this.labelNameVec2.Size = new System.Drawing.Size(39, 13);
+            this.labelNameVec2.TabIndex = 2;
+            this.labelNameVec2.Text = "Name";
+            // 
+            // textBox_Float2
+            // 
+            this.textBox_Float2.BackColor = System.Drawing.Color.LightGray;
+            this.textBox_Float2.Location = new System.Drawing.Point(12, 28);
+            this.textBox_Float2.Name = "textBox_Float2";
+            this.textBox_Float2.Size = new System.Drawing.Size(159, 20);
+            this.textBox_Float2.TabIndex = 1;
+            // 
+            // float2_Inner_Panel
+            // 
+            this.float2_Inner_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.float2_Inner_Panel.Controls.Add(this.numericUpDownY2);
+            this.float2_Inner_Panel.Controls.Add(this.labelY2);
+            this.float2_Inner_Panel.Controls.Add(this.labelX2);
+            this.float2_Inner_Panel.Controls.Add(this.numericUpDownX2);
+            this.float2_Inner_Panel.Controls.Add(this.Out_Slot_vec2);
+            this.float2_Inner_Panel.Location = new System.Drawing.Point(6, 56);
+            this.float2_Inner_Panel.Name = "float2_Inner_Panel";
+            this.float2_Inner_Panel.Size = new System.Drawing.Size(173, 93);
+            this.float2_Inner_Panel.TabIndex = 0;
+            // 
+            // numericUpDownY2
+            // 
+            this.numericUpDownY2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.numericUpDownY2.DecimalPlaces = 2;
+            this.numericUpDownY2.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDownY2.Location = new System.Drawing.Point(92, 23);
+            this.numericUpDownY2.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.numericUpDownY2.Minimum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownY2.Name = "numericUpDownY2";
+            this.numericUpDownY2.Size = new System.Drawing.Size(73, 20);
+            this.numericUpDownY2.TabIndex = 17;
+            // 
+            // labelY2
+            // 
+            this.labelY2.AutoSize = true;
+            this.labelY2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelY2.ForeColor = System.Drawing.Color.Coral;
+            this.labelY2.Location = new System.Drawing.Point(92, 7);
+            this.labelY2.Name = "labelY2";
+            this.labelY2.Size = new System.Drawing.Size(15, 13);
+            this.labelY2.TabIndex = 14;
+            this.labelY2.Text = "Y";
+            // 
+            // labelX2
+            // 
+            this.labelX2.AutoSize = true;
+            this.labelX2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX2.ForeColor = System.Drawing.Color.Coral;
+            this.labelX2.Location = new System.Drawing.Point(3, 7);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(15, 13);
+            this.labelX2.TabIndex = 10;
+            this.labelX2.Text = "X";
+            // 
+            // numericUpDownX2
+            // 
+            this.numericUpDownX2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.numericUpDownX2.DecimalPlaces = 2;
+            this.numericUpDownX2.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDownX2.Location = new System.Drawing.Point(3, 23);
+            this.numericUpDownX2.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.numericUpDownX2.Minimum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownX2.Name = "numericUpDownX2";
+            this.numericUpDownX2.Size = new System.Drawing.Size(73, 20);
+            this.numericUpDownX2.TabIndex = 9;
+            // 
+            // Out_Slot_vec2
+            // 
+            this.Out_Slot_vec2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Out_Slot_vec2.AutoSize = true;
+            this.Out_Slot_vec2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_vec2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Out_Slot_vec2.ForeColor = System.Drawing.Color.BurlyWood;
+            this.Out_Slot_vec2.Location = new System.Drawing.Point(92, 64);
+            this.Out_Slot_vec2.Name = "Out_Slot_vec2";
+            this.Out_Slot_vec2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Out_Slot_vec2.Size = new System.Drawing.Size(73, 20);
+            this.Out_Slot_vec2.TabIndex = 8;
+            this.Out_Slot_vec2.Text = "OutCol";
+            this.Out_Slot_vec2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_vec2.UseVisualStyleBackColor = true;
+            // 
+            // label_Title_Vec2
+            // 
+            this.label_Title_Vec2.AutoSize = true;
+            this.label_Title_Vec2.BackColor = System.Drawing.Color.Transparent;
+            this.label_Title_Vec2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title_Vec2.Location = new System.Drawing.Point(57, 5);
+            this.label_Title_Vec2.Name = "label_Title_Vec2";
+            this.label_Title_Vec2.Size = new System.Drawing.Size(55, 18);
+            this.label_Title_Vec2.TabIndex = 0;
+            this.label_Title_Vec2.Text = "Float2";
+            this.label_Title_Vec2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainWindow
             // 
@@ -1276,6 +1461,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZ3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX3)).EndInit();
+            this.Float2InputWindow.ResumeLayout(false);
+            this.Float2InputWindow.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.float2_Inner_Panel.ResumeLayout(false);
+            this.float2_Inner_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1349,19 +1542,31 @@
         private System.Windows.Forms.NumericUpDown numericUpDownY4;
         private System.Windows.Forms.Panel panelColInd;
         private System.Windows.Forms.Panel Float3InputWindow;
-        private System.Windows.Forms.Button closeButton_Flpat3;
+        private System.Windows.Forms.Button closeButton_Float3;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelNameVec3;
         private System.Windows.Forms.TextBox textBox_Float3;
         private System.Windows.Forms.Panel float3_Inner_Panel;
         private System.Windows.Forms.NumericUpDown numericUpDownY3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelY3;
+        private System.Windows.Forms.Label labelZ3;
         private System.Windows.Forms.NumericUpDown numericUpDownZ3;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelX3;
         private System.Windows.Forms.NumericUpDown numericUpDownX3;
         private System.Windows.Forms.CheckBox Out_Slot_vec3;
         private System.Windows.Forms.Label label_Title_Vec3;
+        private System.Windows.Forms.Panel Float2InputWindow;
+        private System.Windows.Forms.Button closeButton_Float2;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label labelNameVec2;
+        private System.Windows.Forms.TextBox textBox_Float2;
+        private System.Windows.Forms.Panel float2_Inner_Panel;
+        private System.Windows.Forms.NumericUpDown numericUpDownY2;
+        private System.Windows.Forms.Label labelY2;
+        private System.Windows.Forms.Label labelX2;
+        private System.Windows.Forms.NumericUpDown numericUpDownX2;
+        private System.Windows.Forms.CheckBox Out_Slot_vec2;
+        private System.Windows.Forms.Label label_Title_Vec2;
     }
 }
 
