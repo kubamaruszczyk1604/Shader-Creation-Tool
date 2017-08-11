@@ -32,7 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.TransparentNodePanel = new System.Windows.Forms.Panel();
             this.FloatInputWindow = new System.Windows.Forms.Panel();
             this.closeButton_Float = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -204,7 +204,7 @@
             this.EditAreaPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditAreaPanel.BackgroundImage")));
             this.EditAreaPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.EditAreaPanel.Controls.Add(this.panel1);
+            this.EditAreaPanel.Controls.Add(this.TransparentNodePanel);
             this.EditAreaPanel.Controls.Add(this.FloatInputWindow);
             this.EditAreaPanel.Controls.Add(this.Float2InputWindow);
             this.EditAreaPanel.Controls.Add(this.Float3InputWindow);
@@ -228,15 +228,16 @@
             this.EditAreaPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EditAreaPanel_MouseClick);
             this.EditAreaPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.EditAreaPanel_MouseMove);
             // 
-            // panel1
+            // TransparentNodePanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(180, 325);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(192, 240);
-            this.panel1.TabIndex = 36;
+            this.TransparentNodePanel.BackColor = System.Drawing.Color.Transparent;
+            this.TransparentNodePanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TransparentNodePanel.BackgroundImage")));
+            this.TransparentNodePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.TransparentNodePanel.Location = new System.Drawing.Point(180, 325);
+            this.TransparentNodePanel.Name = "TransparentNodePanel";
+            this.TransparentNodePanel.Size = new System.Drawing.Size(192, 240);
+            this.TransparentNodePanel.TabIndex = 36;
+            this.TransparentNodePanel.Visible = false;
             // 
             // FloatInputWindow
             // 
@@ -1741,7 +1742,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDownX1;
         private System.Windows.Forms.CheckBox Out_Slot_float;
         private System.Windows.Forms.Label label_Title_float;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel TransparentNodePanel;
     }
 }
 

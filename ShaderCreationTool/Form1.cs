@@ -56,6 +56,8 @@ namespace ShaderCreationTool
             m_Nodes = new List<SCTNode>();
             CreateAndSetupFrameNode(m_Nodes);
             m_HighlightedConnectorList = new List<Connector>();
+            NodeInstantiator.SetupInstantiator(TransparentNodePanel);
+            NodeInstantiator.AddOnObjectMovedCallback(UpdateOnObjectMoved);
         }
 
         private async void StartRenderer(int delayMs)
@@ -273,6 +275,7 @@ namespace ShaderCreationTool
         private void PreviewTextLabel_MouseMove(object sender, MouseEventArgs e)
         {
             m_MovablePreviewPanel.MoveControlMouseMove(PreviewAreaPanel, e);
+       
         }
 
         // TEMPORARY STUFF
@@ -318,6 +321,7 @@ namespace ShaderCreationTool
                 UpdateOnObjectMoved();
                 EditAreaPanel.Invalidate(false);
             }
+            NodeInstantiator.Update(sender, e);
         }
 
         private void EditAreaPanel_MouseClick(object sender, MouseEventArgs e)
@@ -362,6 +366,8 @@ namespace ShaderCreationTool
                 temp.AddInputErrorCallback(OnInputError);
                 m_Nodes.Add(temp);
             }
+
+            NodeInstantiator.StartPlacing();
         }
 
         private void AddNodeButton_Click(object sender, EventArgs e)

@@ -64,6 +64,7 @@
     <Compile Include="InputNodeColour.cs" />
     <Compile Include="InputNodeVector.cs" />
     <Compile Include="NodeDescription.cs" />
+    <Compile Include="NodeInstantiator.cs" />
     <Compile Include="SCTConsole.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -16,6 +16,8 @@ namespace ShaderCreationTool
         private bool m_RestrictionEnabled;
 
         private static bool s_Locked = false;
+        private Point m_LastPosition;
+        private bool m_AutoFollow;
 
         ////////////////////////////////////////  PUBLIC  /////////////////////////////////////////
         public static void LockAllMovement()
@@ -28,6 +30,7 @@ namespace ShaderCreationTool
             s_Locked = false;
         }
 
+        public Point Postion { get { return m_LastPosition; } }
 
         public ObjectMovedCallback OnObjectMoved;
 
@@ -43,6 +46,9 @@ namespace ShaderCreationTool
 
             m_LowestLimit = new Point(0, 0);
             m_HighestLimit = new Point(500, 500);
+
+            m_LastPosition = p_Control.Location;
+            m_AutoFollow = false;
         }
 
         public void AddObjectMovedEventListener(ObjectMovedCallback method)
@@ -53,6 +59,7 @@ namespace ShaderCreationTool
         public void MoveControlMouseMove(object sender, MouseEventArgs e)
         {
             if (s_Locked) return;
+         
             Control control = (Control)sender;
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
@@ -89,8 +96,11 @@ namespace ShaderCreationTool
                 control.Update(); 
                 if(OnObjectMoved != null)
                 {
+                    m_LastPosition = control.Location;
                     OnObjectMoved();
+                   
                 }
+
             }
         }
 
@@ -129,6 +139,16 @@ namespace ShaderCreationTool
         {
             m_LowestLimit = lowestLimit;
             m_HighestLimit = highestLimit;
+        }
+
+        public void EnableAutoFollow()
+        {
+            m_AutoFollow = true;
+        }
+
+        public void DisableAutoFollow()
+        {
+            m_AutoFollow = false;
         }
     }
 }
