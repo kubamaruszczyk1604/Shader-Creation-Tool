@@ -38,7 +38,7 @@ namespace ShaderCreationTool
         private Point m_TempLineOrgin;
 
         //private OnWndProcUpdate m_OnWndProcUpdate;
-        private void Update()
+        private void MainUpdate()
         {
             //canncel connection request
             if (MouseButtons == MouseButtons.Right)
@@ -84,7 +84,7 @@ namespace ShaderCreationTool
             NodeInstantiator.SetupInstantiator(TransparentNodePanel);
             NodeInstantiator.AddOnObjectMovedCallback(UpdateOnObjectMoved);
             NodeInstantiator.AddOnPlaceListener(OnPlaceNode);
-            Bridge.AddWndProcUpdateCallback(Update);
+            Bridge.AddWndProcUpdateCallback(MainUpdate);
             Bridge.AddWndProcMessageCallback(OnMessage);
         }
 
@@ -125,7 +125,7 @@ namespace ShaderCreationTool
             d.AddOutputVariable(outDesc1);
             d.AddOutputVariable(outDesc2);
 
-            for (int i = 0; i < 2; ++i)
+            for (int i = 0; i < 1; ++i)
             {
                 SCTFunctionNode temp = new SCTFunctionNode(FunctionNodeWindow, new Point(240 * i, 300), UpdateOnObjectMoved, d);
                 temp.AddOnBeginConnectionCallback(OnConnectionBegin);
