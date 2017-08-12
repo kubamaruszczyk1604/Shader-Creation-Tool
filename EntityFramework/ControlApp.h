@@ -5,7 +5,8 @@
 
 #include "DataWrappers.h"
 
-using WndLoopCallback = void(*)();
+using WndUpdateLoopCallback = void(*)();
+using WndMessageLoopCallback = void(*)(SUINT message, SUINT wParam, SUINT lParam);
 
 class ControlApp
 {
@@ -15,7 +16,8 @@ private:
 	static Stopwatch s_GlobalTimer;
 	static Stopwatch s_FrameTimer;
 	static float s_TimeScale;
-	static WndLoopCallback s_LoopCallback;
+	static WndUpdateLoopCallback s_UpdateLoopCallback;
+	static WndMessageLoopCallback s_MessageLoopCallback;
 	
 
 public:
@@ -27,6 +29,7 @@ public:
 	static void Terminate();
 	static void ReloadScene();
 	static void SetShaderVectorVariable( ShaderVectorVariable^ variable);
-	static void SetLoopCallback(WndLoopCallback callback);
+	static void SetUpdateCallback(WndUpdateLoopCallback callback);
+	static void SetMessageCallback(WndMessageLoopCallback callback);
 };
 

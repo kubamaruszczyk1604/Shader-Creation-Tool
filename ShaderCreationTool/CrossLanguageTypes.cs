@@ -1,12 +1,20 @@
-#if CSharp
 
-namespace ShaderCreationTool
-{
+//#if CSharp
+//using System.Windows.Forms;
+//namespace ShaderCreationTool
+//{
+//#endif
+
+#if __cplusplus
+ using SUINT = System::UInt64;
+#else 
+using SUINT = System.UInt64;
 #endif
 
 
 enum
 #if __cplusplus
+ 
 
         class
 #endif
@@ -20,7 +28,8 @@ enum
     };
 
 public delegate void OnWndProcUpdate();
+public delegate void OnWndProcMessage(SUINT message, SUINT wParam, SUINT lParam);
 
-#if CSharp
-}
-#endif
+//#if CSharp
+//}
+//#endif

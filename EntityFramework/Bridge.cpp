@@ -4,7 +4,12 @@
 
 void _UpdateCallbackMethod()
 { 
-	Bridge::CallDelegate();
+	Bridge::CallUpdateDelegate();
+}
+
+void _MessageCallbackMethod(SUINT message, SUINT wParam, SUINT lParam)
+{
+	Bridge::CallMessageDelegate(message, wParam, lParam);
 }
 
 
@@ -17,7 +22,8 @@ int Bridge::StartRenderer(int width, int height, System::IntPtr handle)
 	return appState;*/
 
 	ControlApp::Create(width, height, handle);
-	ControlApp::SetLoopCallback(_UpdateCallbackMethod);
+	ControlApp::SetUpdateCallback(_UpdateCallbackMethod);
+	ControlApp::SetMessageCallback(_MessageCallbackMethod);
 	SceneManager::Load(new ExampleScene());
 	ControlApp::Run();
 
@@ -42,12 +48,24 @@ void Bridge::SetVariable(ShaderVectorVariable ^ variable)
 	ControlApp::SetShaderVectorVariable(variable);
 }
 
-void Bridge::AddWndProcCallback(OnWndProcUpdate ^ dlg)
+void Bridge::AddWndProcUpdateCallback(OnWndProcUpdate ^ dlg)
 {
-	s_dlg += dlg;
+	s_OnProcUpdateDelegate += dlg;
 }
 
-void Bridge::CallDelegate()
+void Bridge::AddWndProcMessageCallback(OnWndProcMessage ^ dlg)
 {
-	s_dlg();
+	s_OnMessageDelegate += dlg;
+}
+
+void Bridge::CallUpdateDelegate()
+{
+	if(s_OnProcUpdateDelegate)
+	s_OnProcUpdateDelegate();
+}
+
+void Bridge::CallMessageDelegate(SUINT message, SUINT wParam, SUINT lParam)
+{
+	if(s_OnMessageDelegate)
+	s_OnMessageDelegate(message, wParam, lParam);
 }

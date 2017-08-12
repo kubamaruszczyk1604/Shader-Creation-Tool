@@ -40,9 +40,14 @@ namespace ShaderCreationTool
         //private OnWndProcUpdate m_OnWndProcUpdate;
         private void Update()
         {
-           // SCTConsole.Instance.PrintLine("Refresh call from C++");
+            // SCTConsole.Instance.PrintLine("Refresh call from C++");
         }
-
+        static int i = 0;
+        private void OnMessage(ulong message, ulong wParam, ulong lParam)
+        {
+            i++;
+            SCTConsole.Instance.PrintLine("Refresh call from C++ " + i.ToString() );
+        }
         public MainWindow()
         {
             InitializeComponent();
@@ -64,7 +69,8 @@ namespace ShaderCreationTool
             m_HighlightedConnectorList = new List<Connector>();
             NodeInstantiator.SetupInstantiator(TransparentNodePanel);
             NodeInstantiator.AddOnObjectMovedCallback(UpdateOnObjectMoved);
-            Bridge.AddWndProcCallback(Update);
+            Bridge.AddWndProcUpdateCallback(Update);
+            Bridge.AddWndProcMessageCallback(OnMessage);
         }
 
         private async void StartRenderer(int delayMs)

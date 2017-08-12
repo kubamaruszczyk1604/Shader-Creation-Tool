@@ -13,7 +13,8 @@ float ControlApp::s_TimeScale{ 1.0f };
 Stopwatch ControlApp::s_GlobalTimer;
 Stopwatch ControlApp::s_FrameTimer;
 
-WndLoopCallback ControlApp::s_LoopCallback{ nullptr };
+WndUpdateLoopCallback ControlApp::s_UpdateLoopCallback{ nullptr };
+WndMessageLoopCallback ControlApp::s_MessageLoopCallback{ nullptr };
 
 
 void ControlApp::Create(int width, int height, System::IntPtr handle)
@@ -34,13 +35,22 @@ void ControlApp::Run()
 	  //Handle input from system
 		if (PeekMessage(&msg, NULL, NULL, NULL, PM_REMOVE))
 		{
+			
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		if (s_LoopCallback)
+		else
 		{
-			s_LoopCallback();
+			if (s_MessageLoopCallback)
+			{
+				s_MessageLoopCallback(msg.message, msg.wParam, msg.lParam);
+			}
 		}
+		if (s_UpdateLoopCallback)
+		{
+			s_UpdateLoopCallback();
+		}
+		
 		SceneManager::Update(s_FrameTimer.ElapsedTime()* s_TimeScale, s_GlobalTimer.ElapsedTime() * s_TimeScale);
 		s_FrameTimer.Stop();
 		if (s_ReloadRequest)
@@ -72,8 +82,13 @@ void ControlApp::SetShaderVectorVariable(ShaderVectorVariable ^ variable)
 	ShaderVariableContainer::AddVariable(variable);
 }
 
-void ControlApp::SetLoopCallback(WndLoopCallback callback)
+void ControlApp::SetUpdateCallback(WndUpdateLoopCallback callback)
 {
-	s_LoopCallback = callback;
+	s_UpdateLoopCallback = callback;
+}
+
+void ControlApp::SetMessageCallback(WndMessageLoopCallback callback)
+{
+	s_MessageLoopCallback = callback;
 }
 
