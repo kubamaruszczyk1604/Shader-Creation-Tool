@@ -117,7 +117,7 @@ namespace ShaderCreationTool
             ShaderVariableDescription outDesc2 = new ShaderVariableDescription("WYJSCIE", ShaderVariableType.Single, ConnectionDirection.Out);
 
 
-            NodeDescription d = new NodeDescription("SUKA");
+            NodeDescription d = new NodeDescription("test of lngh");
             d.AddInputVariable(inDesc1);
             d.AddInputVariable(inDesc2);
             d.AddInputVariable(inDesc3);

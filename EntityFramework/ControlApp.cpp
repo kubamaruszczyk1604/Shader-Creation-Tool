@@ -34,8 +34,7 @@ void ControlApp::Run()
 	{
 	  //Handle input from system
 		if (PeekMessage(&msg, NULL, NULL, NULL, PM_REMOVE))
-		{
-			
+		{	
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 			if (s_MessageLoopCallback)

@@ -114,7 +114,7 @@
             this.InnerPanel = new System.Windows.Forms.Panel();
             this.Out_SlotX = new System.Windows.Forms.CheckBox();
             this.In_SlotX = new System.Windows.Forms.CheckBox();
-            this.TitleLabel = new System.Windows.Forms.Label();
+            this.TitleLabel_FunctionNode = new System.Windows.Forms.Label();
             this.PreviewAreaPanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PreviewTextLabel = new System.Windows.Forms.Label();
@@ -1289,7 +1289,7 @@
             this.FunctionNodeWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.FunctionNodeWindow.Controls.Add(this.closeButtonX);
             this.FunctionNodeWindow.Controls.Add(this.MiddlePanel);
-            this.FunctionNodeWindow.Controls.Add(this.TitleLabel);
+            this.FunctionNodeWindow.Controls.Add(this.TitleLabel_FunctionNode);
             this.FunctionNodeWindow.Enabled = false;
             this.FunctionNodeWindow.Location = new System.Drawing.Point(219, 941);
             this.FunctionNodeWindow.Name = "FunctionNodeWindow";
@@ -1360,16 +1360,16 @@
             this.In_SlotX.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.In_SlotX.UseVisualStyleBackColor = false;
             // 
-            // TitleLabel
+            // TitleLabel_FunctionNode
             // 
-            this.TitleLabel.AutoSize = true;
-            this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleLabel.Location = new System.Drawing.Point(80, 4);
-            this.TitleLabel.Name = "TitleLabel";
-            this.TitleLabel.Size = new System.Drawing.Size(68, 18);
-            this.TitleLabel.TabIndex = 0;
-            this.TitleLabel.Text = "Material";
-            this.TitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TitleLabel_FunctionNode.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.TitleLabel_FunctionNode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitleLabel_FunctionNode.Location = new System.Drawing.Point(27, 4);
+            this.TitleLabel_FunctionNode.Name = "TitleLabel_FunctionNode";
+            this.TitleLabel_FunctionNode.Size = new System.Drawing.Size(170, 18);
+            this.TitleLabel_FunctionNode.TabIndex = 0;
+            this.TitleLabel_FunctionNode.Text = "abcdefghijklmnoooop";
+            this.TitleLabel_FunctionNode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PreviewAreaPanel
             // 
@@ -1620,7 +1620,6 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.FunctionNodeWindow.ResumeLayout(false);
-            this.FunctionNodeWindow.PerformLayout();
             this.MiddlePanel.ResumeLayout(false);
             this.InnerPanel.ResumeLayout(false);
             this.InnerPanel.PerformLayout();
@@ -1659,7 +1658,7 @@
         private System.Windows.Forms.Panel MiddlePanel;
         private System.Windows.Forms.CheckBox Out_SlotX;
         private System.Windows.Forms.CheckBox In_SlotX;
-        private System.Windows.Forms.Label TitleLabel;
+        private System.Windows.Forms.Label TitleLabel_FunctionNode;
         private System.Windows.Forms.Button closeButtonX;
         private System.Windows.Forms.Panel InnerPanel;
         private System.Windows.Forms.Panel FrameBufferWindow;
