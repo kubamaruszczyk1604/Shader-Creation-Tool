@@ -61,13 +61,19 @@ namespace ShaderCreationTool
             }
         }
 
+        static public void CancelInstantiate()
+        {
+            s_Panel.Visible = false;
+            s_PlacingFlag = false;
+        }
+
         static private void OnMoved()
         {
             s_Panel.SendToBack();
             if(s_MovedCallback != null) s_MovedCallback();
         }
        
- 
+      
 
         
     }

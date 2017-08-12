@@ -40,7 +40,15 @@ namespace ShaderCreationTool
         //private OnWndProcUpdate m_OnWndProcUpdate;
         private void Update()
         {
-            // SCTConsole.Instance.PrintLine("Refresh call from C++");
+            //canncel connection request
+            if (MouseButtons == MouseButtons.Right)
+            {
+                OnMouseRightDown();
+            }
+            if(MouseButtons == MouseButtons.Left)
+            {
+                OnMouseLeftDown();
+            }
         }
         static int i = 0;
         private void OnMessage(ulong message, ulong wParam, ulong lParam)
@@ -48,6 +56,11 @@ namespace ShaderCreationTool
             i++;
             SCTConsole.Instance.PrintLine("Refresh call from C++ " + i.ToString() );
             NodeInstantiator.Update(EditAreaPanel);
+            if (m_IsConnecting)
+            {
+                UpdateOnObjectMoved();
+                EditAreaPanel.Invalidate(false);
+            }
         }
         public MainWindow()
         {
@@ -261,6 +274,19 @@ namespace ShaderCreationTool
             PreviewTextLabel.ForeColor = Color.White;  
         }
 
+        // MAIN FORM - UPDATE GENERATED
+
+        private void OnMouseRightDown()
+        {
+            CancelIsConnecting();
+            CancelNewNode();
+        }
+
+        private void OnMouseLeftDown()
+        {
+
+        }
+
         // MAIN EDIT AREA PANEL
         private void EditAreaPanel_Paint(object sender, PaintEventArgs e)
         {
@@ -281,6 +307,7 @@ namespace ShaderCreationTool
             EditAreaPanel.Focus();
         }
 
+
         // PREVIEW AREA PANEL
         private void PreviewTextLabel_MouseDown(object sender, MouseEventArgs e)
         {
@@ -290,72 +317,14 @@ namespace ShaderCreationTool
         private void PreviewTextLabel_MouseMove(object sender, MouseEventArgs e)
         {
             m_MovablePreviewPanel.MoveControlMouseMove(PreviewAreaPanel, e);
-       
         }
-
-        // TEMPORARY STUFF
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //Bridge.ReloadScene();
-            SCTConsole.Instance.Show();
-            SCTConsole.Instance.PrintLine("Console shown test..");
-        }
-
- 
 
         private void EditAreaPanel_Scroll(object sender, ScrollEventArgs e)
         {
             EditAreaPanel.Invalidate(false);
         }
 
-        private void mousedowntest(object sender, MouseEventArgs e)
-        {
-
-        }
-
-      
-
-        private void EditAreaPanel_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (m_IsConnecting)
-            {
-                UpdateOnObjectMoved();
-                EditAreaPanel.Invalidate(false);
-            }
-          
-        }
-
-        private void EditAreaPanel_MouseClick(object sender, MouseEventArgs e)
-        {
-            //canncel connection request
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                if (!m_IsConnecting) return;
-                CancelIsConnecting();
-            }
-        }
-
-        private void CancelIsConnecting()
-        {
-            m_IsConnecting = false;
-            MovableObject.UnlockAllMovement();
-            LockableNodes.UnlockButtons();
-            if (m_TempLine == null) return;
-            m_TempLine.Invalidate();
-            EditAreaPanel.Invalidate(false);
-            EditAreaPanel.Update();
-            m_TempLine = null;
-            EditAreaPanel.Cursor = System.Windows.Forms.Cursors.Default;
-            SetCursorRecursive(EditAreaPanel.Controls, Cursors.Default);
-            foreach (Connector c in m_HighlightedConnectorList)
-            {
-                c.DisableBackHighlighted();
-            }
-            m_HighlightedConnectorList.Clear();
-        }
-
- 
-
+        // BUTTONS 
         private void AddVariableButton_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < 1; ++i)
@@ -379,6 +348,47 @@ namespace ShaderCreationTool
         {
             AddExampleNodes();
         }
+
+        // TEMPORARY STUFF
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //Bridge.ReloadScene();
+            SCTConsole.Instance.Show();
+            SCTConsole.Instance.PrintLine("Console shown test..");
+        }
+
+
+
+        // USED METHODS
+        private void CancelIsConnecting()
+        {
+            if (!m_IsConnecting) return;
+            m_IsConnecting = false;
+            MovableObject.UnlockAllMovement();
+            LockableNodes.UnlockButtons();
+            if (m_TempLine == null) return;
+            m_TempLine.Invalidate();
+            EditAreaPanel.Invalidate(false);
+            EditAreaPanel.Update();
+            m_TempLine = null;
+            EditAreaPanel.Cursor = System.Windows.Forms.Cursors.Default;
+            SetCursorRecursive(EditAreaPanel.Controls, Cursors.Default);
+            foreach (Connector c in m_HighlightedConnectorList)
+            {
+                c.DisableBackHighlighted();
+            }
+            m_HighlightedConnectorList.Clear();
+        }
+
+        private void CancelNewNode()
+        {
+            NodeInstantiator.CancelInstantiate();
+            MovableObject.UnlockAllMovement();
+            LockableNodes.UnlockButtons();
+            Connector.UnlockAllConnectors();
+        }
+
+      
     }
 
 
