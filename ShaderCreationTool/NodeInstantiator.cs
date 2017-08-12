@@ -79,7 +79,7 @@ namespace ShaderCreationTool
 
         static public void CaptureLeftMousePress()
         {
-            s_LeftPressed = true;
+           if(s_PlacingFlag) s_LeftPressed = true;
         }
 
         static public void CancelInstantiate()

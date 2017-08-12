@@ -188,7 +188,7 @@ namespace ShaderCreationTool
             m_TempLineOrgin = EditAreaPanel.PointToClient(System.Windows.Forms.Cursor.Position);
             m_IsConnecting = true;
             MovableObject.LockAllMovement();
-            SCTFunctionNode.LockButtons();
+            LockableNodes.LockButtons();
 
             //Cursor Change
             EditAreaPanel.Cursor = System.Windows.Forms.Cursors.Hand;

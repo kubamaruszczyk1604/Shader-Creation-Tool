@@ -38,13 +38,14 @@ void ControlApp::Run()
 			
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
-		}
-		else
-		{
 			if (s_MessageLoopCallback)
 			{
 				s_MessageLoopCallback(msg.message, msg.wParam, msg.lParam);
 			}
+		}
+		else
+		{
+			
 		}
 		if (s_UpdateLoopCallback)
 		{
