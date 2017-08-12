@@ -23,42 +23,63 @@ namespace ShaderCreationTool
         private static OnPlaceNodeCanceledCallback s_OnCanceled;
         private static ObjectMovedCallback s_MovedCallback;
         private static bool s_PlacingFlag;
+        private static bool s_LeftPressed;
+
 
         static public void SetupInstantiator(Panel drawPanel)
         {
             s_Panel = drawPanel;
             s_Panel.SendToBack();
             s_PlacingFlag = false;
+            s_LeftPressed = false;
         }
 
 
         static public void AddOnObjectMovedCallback(ObjectMovedCallback callback)
         {
-           s_MovedCallback += callback;
+            s_MovedCallback += callback;
         }
 
         static public void AddOnPlaceListener(OnPlaceNodeCallback callback)
         {
             s_OnPlaceCallback += callback;
         }
+
         static public void AddOnCancelListener(OnPlaceNodeCanceledCallback callback)
         {
             s_OnCanceled += callback;
         }
+
         static public void StartPlacing()
         {
             s_Panel.Visible = true;
             s_PlacingFlag = true;
         }
+
         static public void Update(Panel mainPanel)
         {
-            if(s_PlacingFlag)
+            if (s_PlacingFlag)
             {
-                s_Panel.Location = mainPanel.PointToClient( 
-                    new Point(System.Windows.Forms.Cursor.Position.X-s_Panel.Size.Width/2,
-                    System.Windows.Forms.Cursor.Position.Y));
+                s_Panel.Location = mainPanel.PointToClient(
+                    new Point(Cursor.Position.X - s_Panel.Size.Width / 2,Cursor.Position.Y));
                 OnMoved();
+                if (s_LeftPressed)
+                {
+                    s_PlacingFlag = false;
+                    s_Panel.Visible = false;
+                    if(s_OnPlaceCallback != null)
+                    {
+                        s_OnPlaceCallback(s_Panel.Location);
+                    }
+
+                }
             }
+            s_LeftPressed = false;
+        }
+
+        static public void CaptureLeftMousePress()
+        {
+            s_LeftPressed = true;
         }
 
         static public void CancelInstantiate()
@@ -70,11 +91,11 @@ namespace ShaderCreationTool
         static private void OnMoved()
         {
             s_Panel.SendToBack();
-            if(s_MovedCallback != null) s_MovedCallback();
+            if (s_MovedCallback != null) s_MovedCallback();
         }
-       
-      
 
-        
+
+
+
     }
 }

@@ -83,6 +83,7 @@ namespace ShaderCreationTool
             m_HighlightedConnectorList = new List<Connector>();
             NodeInstantiator.SetupInstantiator(TransparentNodePanel);
             NodeInstantiator.AddOnObjectMovedCallback(UpdateOnObjectMoved);
+            NodeInstantiator.AddOnPlaceListener(OnPlaceNode);
             Bridge.AddWndProcUpdateCallback(Update);
             Bridge.AddWndProcMessageCallback(OnMessage);
         }
@@ -197,7 +198,6 @@ namespace ShaderCreationTool
             List<Connector> allConnectors = new List<Connector>();
             foreach(ISCTNode n in m_Nodes)
             {
-
                 ConnectionDirection dir =
                     (sender.DirectionType == ConnectionDirection.In)?
                     ConnectionDirection.Out:ConnectionDirection.In;
@@ -254,6 +254,24 @@ namespace ShaderCreationTool
             MessageBox.Show(errorDescription, "Invalid input",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
+        private void OnPlaceNode(Point location)
+        {
+            SCTConsole.Instance.PrintLine("OnPlaceNode()");
+            MovableObject.UnlockAllMovement();
+            LockableNodes.UnlockButtons();
+            Connector.UnlockAllConnectors();
+
+            for (int i = 0; i < 1; ++i)
+            {
+                InputNodeColour temp = new InputNodeColour(ColourInputWindow, location);
+                temp.AddOnMovedCallback(UpdateOnObjectMoved);
+                temp.AddOnBeginConnectionCallback(OnConnectionBegin);
+                temp.AddOnBreakConnectionCallback(OnConnectionBreak);
+                temp.AddOnCloseCallback(OnNodeClose);
+                temp.AddInputErrorCallback(OnInputError);
+                m_Nodes.Add(temp);
+            }
+        }
         //**************************************  UI EVENTS  ***********************************************//
 
 
@@ -284,7 +302,7 @@ namespace ShaderCreationTool
 
         private void OnMouseLeftDown()
         {
-
+            NodeInstantiator.CaptureLeftMousePress();
         }
 
         // MAIN EDIT AREA PANEL
@@ -327,16 +345,6 @@ namespace ShaderCreationTool
         // BUTTONS 
         private void AddVariableButton_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 1; ++i)
-            {
-                InputNodeColour temp = new InputNodeColour(ColourInputWindow, new Point(240 * i, 300));
-                temp.AddOnMovedCallback(UpdateOnObjectMoved);
-                temp.AddOnBeginConnectionCallback(OnConnectionBegin);
-                temp.AddOnBreakConnectionCallback(OnConnectionBreak);
-                temp.AddOnCloseCallback(OnNodeClose);
-                temp.AddInputErrorCallback(OnInputError);
-                m_Nodes.Add(temp);
-            }
 
             NodeInstantiator.StartPlacing();
             MovableObject.LockAllMovement();
