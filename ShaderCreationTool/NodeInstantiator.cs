@@ -34,7 +34,7 @@ namespace ShaderCreationTool
 
         static public void AddOnObjectMovedCallback(ObjectMovedCallback callback)
         {
-            s_MovedCallback += callback;
+           s_MovedCallback += callback;
         }
 
         static public void AddOnPlaceListener(OnPlaceNodeCallback callback)
@@ -51,11 +51,14 @@ namespace ShaderCreationTool
             s_PlacingFlag = true;
 
         }
-        static public void Update(object sender, MouseEventArgs e)
+        static public void Update(Panel mainPanel)
         {
             if(s_PlacingFlag)
             {
-                s_Panel.Location = new Point(e.Location.X,e.Location.Y+40);
+                s_Panel.Location = mainPanel.PointToClient( 
+                    new Point(System.Windows.Forms.Cursor.Position.X,
+                    System.Windows.Forms.Cursor.Position.Y));
+                    //new Point(e.Location.X,e.Location.Y+40);
                 OnMoved();
             }
         }
@@ -63,7 +66,7 @@ namespace ShaderCreationTool
         static private void OnMoved()
         {
             s_Panel.SendToBack();
-            s_MovedCallback();
+            if(s_MovedCallback != null) s_MovedCallback();
         }
        
  

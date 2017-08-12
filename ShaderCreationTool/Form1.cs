@@ -47,6 +47,7 @@ namespace ShaderCreationTool
         {
             i++;
             SCTConsole.Instance.PrintLine("Refresh call from C++ " + i.ToString() );
+            NodeInstantiator.Update(EditAreaPanel);
         }
         public MainWindow()
         {
@@ -334,7 +335,7 @@ namespace ShaderCreationTool
                 UpdateOnObjectMoved();
                 EditAreaPanel.Invalidate(false);
             }
-            NodeInstantiator.Update(sender, e);
+          
         }
 
         private void EditAreaPanel_MouseClick(object sender, MouseEventArgs e)
