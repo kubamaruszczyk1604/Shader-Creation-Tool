@@ -26,6 +26,8 @@ namespace ShaderCreationTool
         private string m_Name;
         private int m_ConnectorCount;
 
+        private static bool s_ButtonsLocked = false;
+
         ShaderVectorVariable m_ShaderVariable;
 
         private static int s_InstanceCounter = 0;
@@ -132,6 +134,17 @@ namespace ShaderCreationTool
             RefreshShaderVariable();
         }
 
+
+
+        static public void LockButtons()
+        {
+            s_ButtonsLocked = true;
+        }
+
+        static public void UnlockButtons()
+        {
+            s_ButtonsLocked = false;
+        }
         ////////////////////////  ADD CALLBACK METHODS ///////////////
 
         public void AddOnMovedCallback(ObjectMovedCallback onMovedCallback)
@@ -157,6 +170,7 @@ namespace ShaderCreationTool
 
         public void AddOnCloseCallback(NodeCloseButtonCallback callback)
         {
+         
             p_CloseCallback += callback;
         }
 
@@ -204,10 +218,11 @@ namespace ShaderCreationTool
             m_SctElement.Visible = true;
         }
 
+
         ////////////////// UI EVENTS ////////////////
         private void CloseButton_Click(object sender, EventArgs e)
         {
-
+            if (s_ButtonsLocked) return;
             if (p_CloseCallback != null)
             {
                 ResetNumeric();

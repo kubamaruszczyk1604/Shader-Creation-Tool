@@ -26,9 +26,8 @@ namespace ShaderCreationTool
         private NumericUpDown[] m_Numeric = new NumericUpDown[4];
         private Panel m_ColourPanel;
         private string m_Name;
-      
         ShaderVectorVariable m_ShaderVariable;
-       
+        private static bool s_ButtonsLocked = false;
         private static int s_InstanceCounter = 0;
 
 
@@ -46,7 +45,7 @@ namespace ShaderCreationTool
             m_OutputConnectors = new List<Connector>();
             int tbCounter = 0;
             List<Control> allControlls = ControlExtensions.GetAllChildreenControls<Control>(m_SctElement).Cast<Control>().ToList();
-            SCTConsole.Instance.PrintLine("TYCH CONTROLSOW JEST: " + allControlls.Count.ToString());
+            //SCTConsole.Instance.PrintLine("TYCH CONTROLSOW JEST: " + allControlls.Count.ToString());
             //allControlls.Add(m_SctElement);
             foreach (Control control in allControlls)
             {
@@ -136,7 +135,15 @@ namespace ShaderCreationTool
             Bridge.SetVariable(m_ShaderVariable);
             SetShaderVariableFromNumeric();
         }
+        static public void LockButtons()
+        {
+            s_ButtonsLocked = true;
+        }
 
+        static public void UnlockButtons()
+        {
+            s_ButtonsLocked = false;
+        }
         ////////////////////////  ADD CALLBACK METHODS ///////////////
 
         public void AddOnMovedCallback(ObjectMovedCallback onMovedCallback)
@@ -212,7 +219,7 @@ namespace ShaderCreationTool
         ////////////////// UI EVENTS ////////////////
         private void CloseButton_Click(object sender, EventArgs e)
         {
-
+            if (s_ButtonsLocked) return;
             if (p_CloseCallback != null)
             {
                 ResetNumeric();

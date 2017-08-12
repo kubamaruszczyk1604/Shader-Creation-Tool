@@ -29,11 +29,15 @@ namespace ShaderCreationTool
        static public void LockButtons()
         {
             SCTFunctionNode.LockButtons();
+            InputNodeColour.LockButtons();
+            InputNodeVector.LockButtons();
         }
 
         static public void UnlockButtons()
         {
             SCTFunctionNode.UnlockButtons();
+            InputNodeColour.UnlockButtons();
+            InputNodeVector.UnlockButtons();
         }
     }
 }
