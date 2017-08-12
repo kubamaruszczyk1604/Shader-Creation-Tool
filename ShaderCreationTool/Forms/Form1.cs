@@ -53,8 +53,8 @@ namespace ShaderCreationTool
         static int i = 0;
         private void OnMessage(ulong message, ulong wParam, ulong lParam)
         {
-            i++;
-            SCTConsole.Instance.PrintLine("Refresh call from C++ " + i.ToString() );
+           // i++;
+            //SCTConsole.Instance.PrintLine("Refresh call from C++ " + i.ToString() );
             NodeInstantiator.Update(EditAreaPanel);
             if (m_IsConnecting)
             {
@@ -354,7 +354,14 @@ namespace ShaderCreationTool
 
         private void AddNodeButton_Click(object sender, EventArgs e)
         {
-            AddExampleNodes();
+            
+            var r = new Forms.SelectNodeForm();
+            r.ShowDialog();
+            if (r.DialogResult == DialogResult.OK)
+            {
+                SCTConsole.Instance.PrintLine("Selection: " + r.Selection.ToString());
+                AddExampleNodes();
+            }
         }
 
         // TEMPORARY STUFF

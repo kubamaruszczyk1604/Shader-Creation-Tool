@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\SelectNodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectNodeForm.Designer.cs">
+      <DependentUpon>SelectNodeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Nodes\CloneExtension.cs" />
     <Compile Include="Connections\Connection.cs" />
     <Compile Include="Lines\ConnectionLine.cs" />
@@ -79,6 +85,9 @@
     <Compile Include="Lines\SimpleZLine.cs" />
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectNodeForm.resx">
+      <DependentUpon>SelectNodeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SCTConsole.resx">
       <DependentUpon>SCTConsole.cs</DependentUpon>
