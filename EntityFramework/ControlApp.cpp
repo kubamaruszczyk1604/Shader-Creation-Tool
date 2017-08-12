@@ -13,6 +13,8 @@ float ControlApp::s_TimeScale{ 1.0f };
 Stopwatch ControlApp::s_GlobalTimer;
 Stopwatch ControlApp::s_FrameTimer;
 
+WndLoopCallback ControlApp::s_LoopCallback{ nullptr };
+
 
 void ControlApp::Create(int width, int height, System::IntPtr handle)
 {
@@ -35,7 +37,10 @@ void ControlApp::Run()
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-
+		if (s_LoopCallback)
+		{
+			s_LoopCallback();
+		}
 		SceneManager::Update(s_FrameTimer.ElapsedTime()* s_TimeScale, s_GlobalTimer.ElapsedTime() * s_TimeScale);
 		s_FrameTimer.Stop();
 		if (s_ReloadRequest)
@@ -65,5 +70,10 @@ void ControlApp::SetShaderVectorVariable(ShaderVectorVariable ^ variable)
 	//Tu zmiana bedzie
 	//GLRenderer::SetShaderVariable(variable);
 	ShaderVariableContainer::AddVariable(variable);
+}
+
+void ControlApp::SetLoopCallback(WndLoopCallback callback)
+{
+	s_LoopCallback = callback;
 }
 

@@ -37,6 +37,12 @@ namespace ShaderCreationTool
         private bool m_IsConnecting;
         private Point m_TempLineOrgin;
 
+        //private OnWndProcUpdate m_OnWndProcUpdate;
+        private void Update()
+        {
+           // SCTConsole.Instance.PrintLine("Refresh call from C++");
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -58,6 +64,7 @@ namespace ShaderCreationTool
             m_HighlightedConnectorList = new List<Connector>();
             NodeInstantiator.SetupInstantiator(TransparentNodePanel);
             NodeInstantiator.AddOnObjectMovedCallback(UpdateOnObjectMoved);
+            Bridge.AddWndProcCallback(Update);
         }
 
         private async void StartRenderer(int delayMs)

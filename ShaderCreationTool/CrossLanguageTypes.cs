@@ -19,7 +19,7 @@ enum
         Texture2D
     };
 
-
+public delegate void OnWndProcUpdate();
 
 #if CSharp
 }

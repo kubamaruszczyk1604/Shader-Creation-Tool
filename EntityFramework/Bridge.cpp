@@ -2,6 +2,11 @@
 #include "Behaviours.h"
 
 
+void _UpdateCallbackMethod()
+{ 
+	Bridge::CallDelegate();
+}
+
 
 int Bridge::StartRenderer(int width, int height, System::IntPtr handle)
 {
@@ -12,8 +17,10 @@ int Bridge::StartRenderer(int width, int height, System::IntPtr handle)
 	return appState;*/
 
 	ControlApp::Create(width, height, handle);
+	ControlApp::SetLoopCallback(_UpdateCallbackMethod);
 	SceneManager::Load(new ExampleScene());
 	ControlApp::Run();
+
 	return 0;
 }
 
@@ -33,4 +40,14 @@ void Bridge::ReloadScene()
 void Bridge::SetVariable(ShaderVectorVariable ^ variable)
 {
 	ControlApp::SetShaderVectorVariable(variable);
+}
+
+void Bridge::AddWndProcCallback(OnWndProcUpdate ^ dlg)
+{
+	s_dlg += dlg;
+}
+
+void Bridge::CallDelegate()
+{
+	s_dlg();
 }
