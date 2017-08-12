@@ -230,7 +230,7 @@
             this.TransparentNodePanel.BackColor = System.Drawing.Color.Transparent;
             this.TransparentNodePanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TransparentNodePanel.BackgroundImage")));
             this.TransparentNodePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.TransparentNodePanel.Location = new System.Drawing.Point(180, 325);
+            this.TransparentNodePanel.Location = new System.Drawing.Point(607, 66);
             this.TransparentNodePanel.Name = "TransparentNodePanel";
             this.TransparentNodePanel.Size = new System.Drawing.Size(192, 240);
             this.TransparentNodePanel.TabIndex = 36;
@@ -244,7 +244,7 @@
             this.FloatInputWindow.Controls.Add(this.panel7);
             this.FloatInputWindow.Controls.Add(this.label_Title_float);
             this.FloatInputWindow.Enabled = false;
-            this.FloatInputWindow.Location = new System.Drawing.Point(425, 298);
+            this.FloatInputWindow.Location = new System.Drawing.Point(1176, 828);
             this.FloatInputWindow.Name = "FloatInputWindow";
             this.FloatInputWindow.Size = new System.Drawing.Size(178, 195);
             this.FloatInputWindow.TabIndex = 35;
@@ -374,7 +374,7 @@
             this.Float2InputWindow.Controls.Add(this.panel6);
             this.Float2InputWindow.Controls.Add(this.label_Title_Vec2);
             this.Float2InputWindow.Enabled = false;
-            this.Float2InputWindow.Location = new System.Drawing.Point(623, 299);
+            this.Float2InputWindow.Location = new System.Drawing.Point(996, 827);
             this.Float2InputWindow.Name = "Float2InputWindow";
             this.Float2InputWindow.Size = new System.Drawing.Size(178, 195);
             this.Float2InputWindow.TabIndex = 34;
@@ -541,7 +541,7 @@
             this.Float3InputWindow.Controls.Add(this.panel2);
             this.Float3InputWindow.Controls.Add(this.label_Title_Vec3);
             this.Float3InputWindow.Enabled = false;
-            this.Float3InputWindow.Location = new System.Drawing.Point(259, 56);
+            this.Float3InputWindow.Location = new System.Drawing.Point(816, 812);
             this.Float3InputWindow.Name = "Float3InputWindow";
             this.Float3InputWindow.Size = new System.Drawing.Size(178, 209);
             this.Float3InputWindow.TabIndex = 33;
@@ -745,7 +745,7 @@
             this.Float4InputWindow.Controls.Add(this.panel3);
             this.Float4InputWindow.Controls.Add(this.label_Title_Vec4);
             this.Float4InputWindow.Enabled = false;
-            this.Float4InputWindow.Location = new System.Drawing.Point(443, 53);
+            this.Float4InputWindow.Location = new System.Drawing.Point(635, 794);
             this.Float4InputWindow.Name = "Float4InputWindow";
             this.Float4InputWindow.Size = new System.Drawing.Size(178, 229);
             this.Float4InputWindow.TabIndex = 32;
@@ -986,7 +986,7 @@
             this.ColourInputWindow.Controls.Add(this.panelRes);
             this.ColourInputWindow.Controls.Add(this.label_Title_col);
             this.ColourInputWindow.Enabled = false;
-            this.ColourInputWindow.Location = new System.Drawing.Point(627, 53);
+            this.ColourInputWindow.Location = new System.Drawing.Point(455, 783);
             this.ColourInputWindow.Name = "ColourInputWindow";
             this.ColourInputWindow.Size = new System.Drawing.Size(178, 240);
             this.ColourInputWindow.TabIndex = 31;
@@ -1291,7 +1291,7 @@
             this.FunctionNodeWindow.Controls.Add(this.MiddlePanel);
             this.FunctionNodeWindow.Controls.Add(this.TitleLabel);
             this.FunctionNodeWindow.Enabled = false;
-            this.FunctionNodeWindow.Location = new System.Drawing.Point(3, 620);
+            this.FunctionNodeWindow.Location = new System.Drawing.Point(219, 941);
             this.FunctionNodeWindow.Name = "FunctionNodeWindow";
             this.FunctionNodeWindow.Size = new System.Drawing.Size(230, 76);
             this.FunctionNodeWindow.TabIndex = 30;
