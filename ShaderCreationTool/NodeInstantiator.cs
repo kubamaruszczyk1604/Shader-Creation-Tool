@@ -49,16 +49,14 @@ namespace ShaderCreationTool
         {
             s_Panel.Visible = true;
             s_PlacingFlag = true;
-
         }
         static public void Update(Panel mainPanel)
         {
             if(s_PlacingFlag)
             {
                 s_Panel.Location = mainPanel.PointToClient( 
-                    new Point(System.Windows.Forms.Cursor.Position.X,
+                    new Point(System.Windows.Forms.Cursor.Position.X-s_Panel.Size.Width/2,
                     System.Windows.Forms.Cursor.Position.Y));
-                    //new Point(e.Location.X,e.Location.Y+40);
                 OnMoved();
             }
         }

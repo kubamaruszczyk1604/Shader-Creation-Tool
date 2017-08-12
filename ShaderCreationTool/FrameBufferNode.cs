@@ -13,7 +13,7 @@ namespace ShaderCreationTool
 {
 
 
-    class FrameBufferNode: SCTNode
+    class FrameBufferNode: ISCTNode
     {
         private Panel m_SctElement;
         private MovableObject m_Mover;

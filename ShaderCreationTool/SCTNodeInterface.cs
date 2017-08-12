@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
-    delegate void NodeCloseButtonCallback(SCTNode sender);
-    delegate void NodeInputError(string errorDescription, SCTNode sender);
+    delegate void NodeCloseButtonCallback(ISCTNode sender);
+    delegate void NodeInputError(string errorDescription, ISCTNode sender);
 
-    interface SCTNode
+    interface ISCTNode
     {
         void AddOnMovedCallback(ObjectMovedCallback onMovedCallback);
         void AddOnBeginConnectionCallback(BeginConnectionCallback onBeginConnection);
@@ -21,5 +21,19 @@ namespace ShaderCreationTool
         Connector GetConnector(ConnectionDirection type, int index);
         List<Connector> GetAllConnectors(ConnectionDirection type);
         List<Connector> GetAllConnectors();
+
+    }
+
+    class LockableNodes
+    {
+       static public void LockButtons()
+        {
+            SCTFunctionNode.LockButtons();
+        }
+
+        static public void UnlockButtons()
+        {
+            SCTFunctionNode.UnlockButtons();
+        }
     }
 }

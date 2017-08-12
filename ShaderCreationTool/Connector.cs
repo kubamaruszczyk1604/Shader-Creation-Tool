@@ -35,16 +35,19 @@ namespace ShaderCreationTool
 
         private ShaderVariableType m_VariableType;
         private string m_VariableName;
-        private SCTNode p_ParentNode;
+        private ISCTNode p_ParentNode;
         private Color m_StandardColour;
         static private Connector s_PreviouslyClickedConnector;
+        static private bool m_AllConnectorsLocked = false;
 
         // PRIVATE (METHODS)
         private void OnClick(object sender, EventArgs e)
-        { 
+        {
+          
             if (!Connected)
             {
                 m_Control.Checked = false;
+                if (m_AllConnectorsLocked) return;
                 if (m_BeginConnectionCallback != null)
                 { 
                     m_BeginConnectionCallback(this);
@@ -56,6 +59,7 @@ namespace ShaderCreationTool
             else // then click means - disconnect
             {
                 m_Control.Checked = true;
+                if (m_AllConnectorsLocked) return;
                 if (m_BreakConnectionCallback != null)
                 {
                     m_BreakConnectionCallback(this);
@@ -75,9 +79,9 @@ namespace ShaderCreationTool
         public bool Connected { get { return (p_ParentConnection==null)?false:true; } }
         public Control WinFormControl { get { return m_Control; } }
         public Connection ParentConnection { get { return p_ParentConnection; } }
-        public SCTNode ParentNode { get { return p_ParentNode; } }
+        public ISCTNode ParentNode { get { return p_ParentNode; } }
        
-        public Connector(CheckBox control,ShaderVariableType variableType,SCTNode parentNode)
+        public Connector(CheckBox control,ShaderVariableType variableType,ISCTNode parentNode)
         {
             p_ParentNode = parentNode;
             m_Control = control;
@@ -148,6 +152,16 @@ namespace ShaderCreationTool
         static public Connector GetPreviouslyClickedConnector()
         {
             return s_PreviouslyClickedConnector;
+        }
+
+        public static void LockAllConnectors()
+        {
+            m_AllConnectorsLocked = true;
+        }
+
+        public static void UnlockAllConnectors()
+        {
+            m_AllConnectorsLocked = false;
         }
 
     }

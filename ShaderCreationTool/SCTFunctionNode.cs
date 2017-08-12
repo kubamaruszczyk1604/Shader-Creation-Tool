@@ -12,7 +12,7 @@ namespace ShaderCreationTool
 {
  
 
-    class SCTFunctionNode : IDisposable,SCTNode
+    class SCTFunctionNode : IDisposable,ISCTNode
     {
         private Panel m_SctElement;
         private MovableObject m_Mover;
@@ -20,6 +20,7 @@ namespace ShaderCreationTool
         private List<Connector> m_InputConnectors;
         private string m_Label = string.Empty;
         private NodeCloseButtonCallback p_CloseCallback;
+        private static bool s_ButtonsLocked = false;
 
 
         //////////////////////////////////////////  PUBLIC  ///////////////////////////////////////////////
@@ -193,9 +194,20 @@ namespace ShaderCreationTool
             m_SctElement.Parent.Controls.Remove(m_SctElement);
         }
 
+
+        static public void LockButtons()
+        {
+            s_ButtonsLocked = true;
+        }
+
+        static public void UnlockButtons()
+        {
+            s_ButtonsLocked = false;
+        }
         ////////////////// UI EVENTS ////////////////
         private void CloseButton_Click(object sender, EventArgs e)
         {
+            if (s_ButtonsLocked) return;
             if (p_CloseCallback != null) p_CloseCallback(this);
        
         }

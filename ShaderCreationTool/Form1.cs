@@ -31,7 +31,7 @@ namespace ShaderCreationTool
       //  private ShaderVectorVariable m_DiffuseColour;
         //private ShaderVectorVariable m_AmbientColour;
 
-        private List<SCTNode> m_Nodes;
+        private List<ISCTNode> m_Nodes;
         private List<Connector> m_HighlightedConnectorList;
 
         private bool m_IsConnecting;
@@ -65,7 +65,7 @@ namespace ShaderCreationTool
            // m_AmbientColour = new ShaderVectorVariable(0.1f, 0.1f, 0.1f, 1, "ambient");
            // Bridge.SetVariable(m_AmbientColour);
             SCTConsole.Instance.Show();
-            m_Nodes = new List<SCTNode>();
+            m_Nodes = new List<ISCTNode>();
             CreateAndSetupFrameNode(m_Nodes);
             m_HighlightedConnectorList = new List<Connector>();
             NodeInstantiator.SetupInstantiator(TransparentNodePanel);
@@ -82,7 +82,7 @@ namespace ShaderCreationTool
             Bridge.StartRenderer(pictureBox1.Width, pictureBox1.Height, pointer);
         }
 
-        private void CreateAndSetupFrameNode(List<SCTNode> nodes)
+        private void CreateAndSetupFrameNode(List<ISCTNode> nodes)
         {
             FrameBufferNode fbn = new FrameBufferNode(FrameBufferWindow);
             fbn.AddOnBeginConnectionCallback(OnConnectionBegin);
@@ -174,6 +174,7 @@ namespace ShaderCreationTool
             m_TempLineOrgin = EditAreaPanel.PointToClient(System.Windows.Forms.Cursor.Position);
             m_IsConnecting = true;
             MovableObject.LockAllMovement();
+            SCTFunctionNode.LockButtons();
 
             //Cursor Change
             EditAreaPanel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -181,7 +182,7 @@ namespace ShaderCreationTool
 
             //Node Highlighting
             List<Connector> allConnectors = new List<Connector>();
-            foreach(SCTNode n in m_Nodes)
+            foreach(ISCTNode n in m_Nodes)
             {
 
                 ConnectionDirection dir =
@@ -213,7 +214,7 @@ namespace ShaderCreationTool
             ConnectionManager.RemoveConnection(sender.ParentConnection);
         }
 
-        private void OnNodeClose(SCTNode sender)
+        private void OnNodeClose(ISCTNode sender)
         {
             SCTConsole.Instance.PrintLine("Node Close request..");
             DialogResult dialogResult =
@@ -235,7 +236,7 @@ namespace ShaderCreationTool
             }
         }
 
-        private void OnInputError(string errorDescription,SCTNode sender)
+        private void OnInputError(string errorDescription,ISCTNode sender)
         {
             MessageBox.Show(errorDescription, "Invalid input",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
@@ -300,21 +301,7 @@ namespace ShaderCreationTool
             SCTConsole.Instance.PrintLine("Console shown test..");
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            ColorDialog cd = new ColorDialog();
-            DialogResult result = cd.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                // Set form background to the selected color.
-                //this.BackColor = cd.Color;
-                //m_DiffuseColour.Set((float)(cd.Color.R) / 255.0f,
-                //    (float)(cd.Color.G) / 255.0f,
-                //    (float)(cd.Color.B) / 255.0f,
-                //    (float)(cd.Color.A) / 255.0f
-                //    );
-            }
-        }
+ 
 
         private void EditAreaPanel_Scroll(object sender, ScrollEventArgs e)
         {
@@ -352,6 +339,7 @@ namespace ShaderCreationTool
         {
             m_IsConnecting = false;
             MovableObject.UnlockAllMovement();
+            LockableNodes.UnlockButtons();
             if (m_TempLine == null) return;
             m_TempLine.Invalidate();
             EditAreaPanel.Invalidate(false);
@@ -382,6 +370,9 @@ namespace ShaderCreationTool
             }
 
             NodeInstantiator.StartPlacing();
+            MovableObject.LockAllMovement();
+            LockableNodes.LockButtons();
+            Connector.LockAllConnectors();
         }
 
         private void AddNodeButton_Click(object sender, EventArgs e)
