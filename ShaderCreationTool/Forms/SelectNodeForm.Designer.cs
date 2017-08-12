@@ -1,4 +1,4 @@
-﻿namespace ShaderCreationTool.Forms
+﻿namespace ShaderCreationTool
 {
     partial class SelectNodeForm
     {
@@ -63,7 +63,7 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Dialog;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Gray;
+            this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(374, 305);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBox1);

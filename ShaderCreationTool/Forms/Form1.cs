@@ -117,7 +117,7 @@ namespace ShaderCreationTool
             ShaderVariableDescription outDesc2 = new ShaderVariableDescription("WYJSCIE", ShaderVariableType.Single, ConnectionDirection.Out);
 
 
-            NodeDescription d = new NodeDescription("test of lngh");
+            FunctionNodeDescription d = new FunctionNodeDescription("test of lngh");
             d.AddInputVariable(inDesc1);
             d.AddInputVariable(inDesc2);
             d.AddInputVariable(inDesc3);
@@ -354,8 +354,8 @@ namespace ShaderCreationTool
 
         private void AddNodeButton_Click(object sender, EventArgs e)
         {
-            
-            var r = new Forms.SelectNodeForm();
+           
+            var r = new SelectNodeForm();
             r.ShowDialog();
             if (r.DialogResult == DialogResult.OK)
             {

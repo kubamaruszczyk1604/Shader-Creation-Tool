@@ -9,6 +9,7 @@
  using SUINT = System::UInt64;
 #else 
 using SUINT = System.UInt64;
+public
 #endif
 
 
@@ -17,6 +18,7 @@ enum
  
 
         class
+   
 #endif
         ShaderVariableType
     {

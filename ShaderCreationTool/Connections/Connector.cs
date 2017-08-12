@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
-    enum ConnectionDirection
+    public enum ConnectionDirection
     {
         In,
         Out

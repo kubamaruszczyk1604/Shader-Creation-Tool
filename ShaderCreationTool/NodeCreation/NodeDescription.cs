@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ShaderCreationTool
 {
    
-    class ShaderVariableDescription
+    public class ShaderVariableDescription
     {
         private string m_Name;
         private ShaderVariableType m_Type;
@@ -27,14 +27,14 @@ namespace ShaderCreationTool
 
     }
 
-    class NodeDescription
+    public class FunctionNodeDescription
     {
         private List<ShaderVariableDescription> m_InputVariables;
         private List<ShaderVariableDescription> m_OutputVariables;
         private string m_FunctionCode;
         private string m_Name;
 
-        public NodeDescription(string name)
+        public FunctionNodeDescription(string name)
         {
             m_InputVariables = new List<ShaderVariableDescription>();
             m_OutputVariables = new List<ShaderVariableDescription>();

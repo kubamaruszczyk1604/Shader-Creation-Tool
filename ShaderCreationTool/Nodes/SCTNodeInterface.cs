@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
+    public enum NodeType { Input, Funtion, Target }
+
     delegate void NodeCloseButtonCallback(ISCTNode sender);
     delegate void NodeInputError(string errorDescription, ISCTNode sender);
 

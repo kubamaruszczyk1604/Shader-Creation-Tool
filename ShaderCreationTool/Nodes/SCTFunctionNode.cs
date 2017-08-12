@@ -25,7 +25,7 @@ namespace ShaderCreationTool
 
         //////////////////////////////////////////  PUBLIC  ///////////////////////////////////////////////
         
-        public SCTFunctionNode(Panel nodeTemplate, Point location, NodeDescription description)
+        public SCTFunctionNode(Panel nodeTemplate, Point location, FunctionNodeDescription description)
         {
             //Copy template (make local instance)
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
@@ -104,7 +104,7 @@ namespace ShaderCreationTool
 
         }
 
-        public SCTFunctionNode(Panel nodeTemplate, Point location, ObjectMovedCallback onObjectMoved, NodeDescription description) :
+        public SCTFunctionNode(Panel nodeTemplate, Point location, ObjectMovedCallback onObjectMoved, FunctionNodeDescription description) :
             this(nodeTemplate,location,description)
         {
             AddOnMovedCallback(onObjectMoved);
