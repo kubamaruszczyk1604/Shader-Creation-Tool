@@ -16,6 +16,14 @@ namespace ShaderCreationTool
         private static bool s_LeftPressed;
 
 
+        static private void OnMoved()
+        {
+            s_Panel.SendToBack();
+            if (s_MovedCallback != null) s_MovedCallback();
+        }
+
+        /////////////////////////////////// PUBLIC ////////////////////////////////////
+
         static public void SetupInstantiator(Panel drawPanel)
         {
             s_Panel = drawPanel;
@@ -23,7 +31,6 @@ namespace ShaderCreationTool
             s_PlacingFlag = false;
             s_LeftPressed = false;
         }
-
 
         static public void AddOnObjectMovedCallback(ObjectMovedCallback callback)
         {
@@ -61,7 +68,6 @@ namespace ShaderCreationTool
                     {
                         s_OnPlaceCallback(s_Panel.Location);
                     }
-
                 }
             }
             s_LeftPressed = false;
@@ -78,11 +84,7 @@ namespace ShaderCreationTool
             s_PlacingFlag = false;
         }
 
-        static private void OnMoved()
-        {
-            s_Panel.SendToBack();
-            if (s_MovedCallback != null) s_MovedCallback();
-        }
+        
 
 
 
