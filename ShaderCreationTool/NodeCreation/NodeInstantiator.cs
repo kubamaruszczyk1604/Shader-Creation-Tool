@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
-    delegate void OnPlaceNodeCallback(Point location);
+    delegate void OnPlaceNodeCallback(Point location, NodeType nodeType);
     delegate void OnPlaceNodeCanceledCallback(Point location);
     class NodeInstantiator
     {
@@ -14,6 +14,7 @@ namespace ShaderCreationTool
         private static ObjectMovedCallback s_MovedCallback;
         private static bool s_PlacingFlag;
         private static bool s_LeftPressed;
+        private static NodeType s_NodeType;
 
 
         static private void OnMoved()
@@ -47,10 +48,11 @@ namespace ShaderCreationTool
             s_OnCanceled += callback;
         }
 
-        static public void StartPlacing()
+        static public void StartPlacing(NodeType nodeType)
         {
             s_Panel.Visible = true;
             s_PlacingFlag = true;
+            s_NodeType = nodeType;
         }
 
         static public void Update(Panel mainPanel)
@@ -66,7 +68,7 @@ namespace ShaderCreationTool
                     s_Panel.Visible = false;
                     if(s_OnPlaceCallback != null)
                     {
-                        s_OnPlaceCallback(s_Panel.Location);
+                        s_OnPlaceCallback(s_Panel.Location,s_NodeType);
                     }
                 }
             }

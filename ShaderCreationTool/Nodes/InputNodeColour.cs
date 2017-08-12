@@ -14,7 +14,7 @@ namespace ShaderCreationTool
 {
 
 
-    class InputNodeColour : ISCTNode, IDisposable
+    class InputNodeColour : ISCTNode,IInputNode, IDisposable
     {
         private Panel m_SctElement;
         private MovableObject m_Mover;

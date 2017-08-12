@@ -10,7 +10,17 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
-    public enum NodeType { Input, Funtion, Target }
+    public enum NodeType
+    {
+        Input_Float = 0,
+        Input_Float2 = 1,
+        Input_Float3 = 2,
+        Input_Float4 = 3,
+        Input_Colour = 4,
+        Input_Texture2D = 5,
+        Funtion = 6,
+        Target = 7
+    }
 
     delegate void NodeCloseButtonCallback(ISCTNode sender);
     delegate void NodeInputError(string errorDescription, ISCTNode sender);
@@ -23,12 +33,17 @@ namespace ShaderCreationTool
         Connector GetConnector(ConnectionDirection type, int index);
         List<Connector> GetAllConnectors(ConnectionDirection type);
         List<Connector> GetAllConnectors();
+    }
 
+    interface IInputNode
+    {
+       void AddOnCloseCallback(NodeCloseButtonCallback callback);
+       void AddInputErrorCallback(NodeInputError callback);
     }
 
     class LockableNodes
     {
-       static public void LockButtons()
+        static public void LockButtons()
         {
             SCTFunctionNode.LockButtons();
             InputNodeColour.LockButtons();

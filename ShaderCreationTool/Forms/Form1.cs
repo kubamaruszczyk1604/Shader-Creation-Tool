@@ -254,23 +254,54 @@ namespace ShaderCreationTool
             MessageBox.Show(errorDescription, "Invalid input",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        private void OnPlaceNode(Point location)
+        private void OnPlaceNode(Point location, NodeType type)
         {
             SCTConsole.Instance.PrintLine("OnPlaceNode()");
             MovableObject.UnlockAllMovement();
             LockableNodes.UnlockButtons();
             Connector.UnlockAllConnectors();
 
-            for (int i = 0; i < 1; ++i)
+
+            ISCTNode temp = null;
+            if (type == NodeType.Input_Float)
             {
-                InputNodeColour temp = new InputNodeColour(ColourInputWindow, location);
-                temp.AddOnMovedCallback(UpdateOnObjectMoved);
-                temp.AddOnBeginConnectionCallback(OnConnectionBegin);
-                temp.AddOnBreakConnectionCallback(OnConnectionBreak);
-                temp.AddOnCloseCallback(OnNodeClose);
-                temp.AddInputErrorCallback(OnInputError);
-                m_Nodes.Add(temp);
+                temp  =  new InputNodeVector(FloatInputWindow, location);
             }
+            else if(type == NodeType.Input_Float2)
+            {
+                temp = new InputNodeVector(Float2InputWindow, location);
+            }
+            else if (type == NodeType.Input_Float3)
+            {
+                temp = new InputNodeVector(Float3InputWindow, location);
+            }
+            else if (type == NodeType.Input_Float4)
+            {
+                temp = new InputNodeVector(Float4InputWindow, location);
+            }
+            else if (type == NodeType.Input_Colour)
+            {
+                temp = new InputNodeColour(ColourInputWindow, location);
+            }
+            else
+            {
+                MessageBox.Show(type.ToString() + " NOT IMPLEMENTED");
+                return;
+            }
+
+
+            (temp).AddOnMovedCallback(UpdateOnObjectMoved);
+            (temp).AddOnBeginConnectionCallback(OnConnectionBegin);
+            temp.AddOnBreakConnectionCallback(OnConnectionBreak);
+
+            if (temp is IInputNode)
+            {
+                IInputNode inpN = (IInputNode)temp;
+                inpN.AddOnCloseCallback(OnNodeClose);
+                inpN.AddInputErrorCallback(OnInputError);
+            }
+            m_Nodes.Add(temp);
+           
         }
         //**************************************  UI EVENTS  ***********************************************//
 
@@ -345,11 +376,18 @@ namespace ShaderCreationTool
         // BUTTONS 
         private void AddVariableButton_Click(object sender, EventArgs e)
         {
-
-            NodeInstantiator.StartPlacing();
-            MovableObject.LockAllMovement();
-            LockableNodes.LockButtons();
-            Connector.LockAllConnectors();
+            var form = new SelectNodeForm();
+            form.ShowDialog();
+            if (form.DialogResult == DialogResult.OK)
+            {
+                SCTConsole.Instance.PrintLine("Selection: " + form.RequestedNodeType.ToString());
+                {
+                    NodeInstantiator.StartPlacing(form.RequestedNodeType);
+                    MovableObject.LockAllMovement();
+                    LockableNodes.LockButtons();
+                    Connector.LockAllConnectors();
+                }
+            }
         }
 
         private void AddNodeButton_Click(object sender, EventArgs e)
@@ -359,7 +397,7 @@ namespace ShaderCreationTool
             r.ShowDialog();
             if (r.DialogResult == DialogResult.OK)
             {
-                SCTConsole.Instance.PrintLine("Selection: " + r.Selection.ToString());
+                SCTConsole.Instance.PrintLine("Selection: " + r.RequestedNodeType.ToString());
                 AddExampleNodes();
             }
         }
