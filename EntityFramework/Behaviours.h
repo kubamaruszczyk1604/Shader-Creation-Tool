@@ -55,10 +55,10 @@ public:
 
 		////////////////////////////////////////////   MATERIALS //////////////////////////
 		MaterialDescription desc;
-		desc.AmbientCol = Colour(0.1, 0.1, 0.1, 1);
-		desc.DiffuseReflectivity = Colour(1, 1, 1, 1);
-		desc.SpecularReflectivity = Colour(1, 1,1, 1);
-		desc.DiffuseMap = PathList::TEXTURE_DIR + "logoP.png";
+		//desc.AmbientCol = Colour(0.1, 0.1, 0.1, 1);
+		//desc.DiffuseReflectivity = Colour(1, 1, 1, 1);
+		//desc.SpecularReflectivity = Colour(1, 1,1, 1);
+		//desc.DiffuseMap = PathList::TEXTURE_DIR + "logoP.png";
 		//	desc.SpecularMap = PathList::TEXTURE_DIR + "logo.bmp";
 		//desc.NormalMap = PathList::TEXTURE_DIR + "logo.bmp";
 
@@ -78,9 +78,9 @@ public:
 
 		Material* testMat1 = ResourceManager::CreateMaterial(desc, "material1");
 
-		desc.DiffuseMap = PathList::TEXTURE_DIR + "bkg.bmp";
-		desc.AmbientCol = Colour(0.1, 0.1, 0.1, 1);
-		desc.SpecularReflectivity = Colour(0, 0, 0, 1);
+		///desc.DiffuseMap = PathList::TEXTURE_DIR + "bkg.bmp";
+		//desc.AmbientCol = Colour(0.1, 0.1, 0.1, 1);
+		//desc.SpecularReflectivity = Colour(0, 0, 0, 1);
 		Material* testMat2 = ResourceManager::CreateMaterial(desc, "material2");
 
 

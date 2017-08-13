@@ -50,7 +50,7 @@ void Bridge::SetVariable(ShaderVectorVariable ^ variable)
 
 void Bridge::SetVariable(ShaderTextureVariable ^ variable)
 {
-	throw gcnew System::NotImplementedException();
+	ControlApp::SetShaderTextureVarable(variable);
 }
 
 void Bridge::AddWndProcUpdateCallback(OnWndProcUpdate ^ dlg)

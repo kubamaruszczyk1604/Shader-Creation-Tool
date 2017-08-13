@@ -250,10 +250,6 @@ namespace KLM_FRAMEWORK
 		GLuint shaderProgID = material->GetShaderProgID();
 		material->SetCurrentShaders();
 
-		//Colours
-		GLuint specularID = glGetUniformLocation(shaderProgID, "specular");
-
-		glUniform4fv(specularID, 1, &material->GetSpecularColPtr()->r);
 
 		for (int i = 0; i < ShaderVariableContainer::GetSize_VectorVariables(); ++i)
 		{
@@ -270,24 +266,6 @@ namespace KLM_FRAMEWORK
 			}
 		}
 
-		//TExtures
-		const Texture* diffuseMapGen = material->GetDiffuseMap();
-		const Texture* specularMapGen = material->GetSpecularMap();
-		const Texture* normalMapGen = material->GetNormalMap();
-
-
-	/*	if (diffuseMapGen)
-		{
-			const void* diffuse = material->GetDiffuseMap()->GetApiSpecificTexture();
-
-
-			GLTexture* diffuseMap = const_cast<GLTexture*>(static_cast<const GLTexture*>(diffuse));
-
-			GLuint samplerID = glGetUniformLocation(shaderProgID, "Texture0");
-			glUniform1i(samplerID, 0);
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, diffuseMap->GetID());
-		}*/
 
 		for (int i = 0; i < ShaderVariableContainer::GetSize_TextureVariables(); ++i)
 		{
@@ -323,8 +301,6 @@ namespace KLM_FRAMEWORK
 		Mat4 MVP = s_CurrentCamera->GetProjectionMatrix(s_ScreenWidth, s_ScreenHeight) * worldView;
 
 
-		/*String^ stringon = "MVP";
-		std::string standardString = marshal_as<std::string>(stringon);*/
 
 		//Matrices
 		GLuint MVP_ID = glGetUniformLocation(shaderProgID, "MVP");
