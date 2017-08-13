@@ -186,6 +186,8 @@ namespace ShaderCreationTool
             outList.AddRange(m_InputConnectors);
             return outList;
         }
+
+
         public void Dispose()
         {
             List<Connector> connectors = GetAllConnectors();

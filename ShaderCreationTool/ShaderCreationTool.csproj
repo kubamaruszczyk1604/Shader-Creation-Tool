@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="Nodes\FrameBufferNode.cs" />
     <Compile Include="Nodes\InputNodeColour.cs" />
+    <Compile Include="Nodes\InputNodeTexture2D.cs" />
     <Compile Include="Nodes\InputNodeVector.cs" />
     <Compile Include="NodeCreation\NodeDescription.cs" />
     <Compile Include="NodeCreation\NodeInstantiator.cs" />

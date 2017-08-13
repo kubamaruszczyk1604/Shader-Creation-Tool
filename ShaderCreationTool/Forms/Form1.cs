@@ -283,10 +283,15 @@ namespace ShaderCreationTool
             {
                 temp = new InputNodeColour(ColourInputWindow, location);
             }
+            else if(type == NodeType.Input_Texture2D)
+            {
+                temp = new InputNodeTexture2D(Texture2DInputWindow, location);
+            }
             else
             {
                 MessageBox.Show(type.ToString() + " NOT IMPLEMENTED");
                 return;
+
             }
 
 
@@ -441,8 +446,6 @@ namespace ShaderCreationTool
             LockableNodes.UnlockButtons();
             Connector.UnlockAllConnectors();
         }
-
-      
     }
 
 
