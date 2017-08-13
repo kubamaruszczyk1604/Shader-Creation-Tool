@@ -2,7 +2,7 @@
 #include "StdIncludes.h"
 #include "CrossLanguageTypes.cs"
 #include <msclr\marshal_cppstd.h>
-
+#include "Texture.h"
 public ref class ShaderVectorVariable
 {
 
@@ -90,38 +90,20 @@ private:
 //	Texture* test;
 
 public:
-	ShaderTextureVariable(System::String^ path, System::String^ name): 
-		m_Type{ShaderVariableType::Texture2D},
-		m_Path{path},
-		m_Name{name}
-	{
-		
-	}
+	ShaderTextureVariable(System::String^ path, System::String^ name);
+	
 
-	System::String^ GetName()
-	{
-		return m_Name;
-	}
+	System::String^ GetName() {return m_Name;}
 
-	void SetName(System::String^ name)
-	{
-		m_Name = name;
-	}
+	void SetName(System::String^ name) {m_Name = name;}
 
-	System::String^ GetPath()
-	{
-		return m_Path;
-	}
+	System::String^ GetPath() {return m_Path;}
 
-	void SetPath(System::String^ path)
-	{
-		m_Path= path;
-	}
+	void SetPath(System::String^ path);
 
-	ShaderVariableType GetType()
-	{
-		return m_Type;
-	}
+	ShaderVariableType GetType() {return m_Type;}
+	
+	System::IntPtr GetTexturePtr() { return m_pTexture; }
 };
 
 class DataConverter
@@ -171,6 +153,11 @@ public:
 	static int ToInteger(ShaderVectorVariable^ floatArray)
 	{
 		return floatArray->GetX();
+	}
+
+	static KLM_FRAMEWORK::Texture* ToTexture(ShaderTextureVariable^ textureVar)
+	{
+		return (Texture*)(textureVar->GetTexturePtr().ToPointer());
 	}
 
 };

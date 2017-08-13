@@ -1,4 +1,5 @@
 #include "DataWrappers.h"
+#include "ResourceManagerWrapper.h"
 
 ShaderVectorVariable::ShaderVectorVariable(ShaderVectorVariable ^ data, System::String ^ name)
 {
@@ -103,4 +104,22 @@ void ShaderVectorVariable::Set(float x, float y)
 void ShaderVectorVariable::Set(float x)
 {
 	m_Data[0] = x;
+}
+
+
+
+
+/////////////////////////////////////////  SHADER TEXXTURE VARIABLE  //////////////////////////////////////////
+ShaderTextureVariable::ShaderTextureVariable(System::String ^ path, System::String ^ name) :
+	m_Type{ ShaderVariableType::Texture2D },
+	m_Path{ path },
+	m_Name{ name }
+{
+	m_pTexture = ResourceManagerWrapper::LoadTexture(path);
+}
+
+void ShaderTextureVariable::SetPath(System::String ^ path)
+{
+	m_Path = path;
+	m_pTexture = ResourceManagerWrapper::LoadTexture(path);
 }
