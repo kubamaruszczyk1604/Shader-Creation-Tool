@@ -3,6 +3,7 @@
 #include "SceneManager.h"
 #include "Behaviours.h"
 #include "GLRenderer.h"
+#include "ShaderVariableContainer.h"
 
 using namespace KLM_FRAMEWORK;
 

@@ -53,6 +53,8 @@ namespace KLM_FRAMEWORK
 		return output;
 	}
 
+
+
 	void ResourceManager::ReleaseAllResources()
 	{
 		for (auto it = m_MeshesMap.begin(); it != m_MeshesMap.end(); ++it)

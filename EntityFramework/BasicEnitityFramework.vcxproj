@@ -258,6 +258,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="D3D11Shader.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShaderVariableContainer.h" />
     <ClInclude Include="Spotlight.h" />
     <ClInclude Include="StdIncludes.h" />
     <ClInclude Include="Stopwatch.h" />

@@ -377,6 +377,9 @@
     <ClInclude Include="DataWrappers.h">
       <Filter>Header Files\Application</Filter>
     </ClInclude>
+    <ClInclude Include="ShaderVariableContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\Data\Shaders\shader.hlsl">

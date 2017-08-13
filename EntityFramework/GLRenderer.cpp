@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "GLTexture.h"
 #include <msclr\marshal_cppstd.h>
+#include "ShaderVariableContainer.h"
 
 namespace KLM_FRAMEWORK
 {
