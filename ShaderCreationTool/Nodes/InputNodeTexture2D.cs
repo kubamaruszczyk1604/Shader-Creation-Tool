@@ -19,7 +19,7 @@ namespace ShaderCreationTool
         private MovableObject m_Mover;
         private List<Connector> m_OutputConnectors;
         private List<Connector> m_InputConnectors;
-        private string m_Label = string.Empty;
+        private string m_ImgPath = string.Empty;
         private NodeCloseButtonCallback p_CloseCallback;
         private NodeInputError p_ErrorCallback;
         private TextBox m_NameTextbox;
@@ -29,6 +29,9 @@ namespace ShaderCreationTool
         ShaderVectorVariable m_ShaderVariable;
         private static bool s_ButtonsLocked = false;
         private static int s_InstanceCounter = 0;
+
+        //Remember last choice of path for user convenience
+        private static string s_LastTexturePath = string.Empty;
 
 
         public InputNodeTexture2D(Panel nodeTemplate, Point location)
@@ -266,7 +269,8 @@ namespace ShaderCreationTool
 
         private void ImagePanel_Click(object sender, EventArgs e)
         {
-            ImagePreviewForm cd = new ImagePreviewForm(m_ImagePanel.BackgroundImage,m_Name);
+            string pathStr = (m_ImgPath == string.Empty) ? "-- no file selected yet --" : m_ImgPath;
+            ImagePreviewForm cd = new ImagePreviewForm(m_ImagePanel.BackgroundImage,m_Name,pathStr);
             DialogResult result = cd.ShowDialog();
             if (result == DialogResult.OK)
             {     
@@ -280,7 +284,14 @@ namespace ShaderCreationTool
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Image Files(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG";
-            ofd.InitialDirectory = @"C:\";
+            if (s_LastTexturePath == string.Empty)
+            {
+                ofd.InitialDirectory = @"C:\";
+            }
+            else
+            {
+                ofd.InitialDirectory = s_LastTexturePath;
+            }
             DialogResult result = ofd.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -289,6 +300,8 @@ namespace ShaderCreationTool
                 {
                     m_ImagePanel.BackgroundImage = Image.FromFile(ofd.FileName);
                     m_FileTextbox.Text = ofd.FileName;
+                    m_ImgPath = ofd.FileName;
+                    s_LastTexturePath = ofd.FileName;
                 }
                 catch(Exception ex)
                 {

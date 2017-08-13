@@ -13,11 +13,12 @@ namespace ShaderCreationTool
     public partial class ImagePreviewForm : Form
     {
 
-        public ImagePreviewForm(Image image, string varName)
+        public ImagePreviewForm(Image image, string varName, string path)
         {
             InitializeComponent();
             pictureBox1.Image = image;
             this.Text += ":  " + varName;
+            label_fileName.Text = path;
         }
 
         private void ImagePreviewForm_Load(object sender, EventArgs e)

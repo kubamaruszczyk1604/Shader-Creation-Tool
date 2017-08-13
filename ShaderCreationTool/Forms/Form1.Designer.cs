@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.button1 = new System.Windows.Forms.Button();
             this.button44 = new System.Windows.Forms.Button();
@@ -143,6 +144,8 @@
             this.panel_Image = new System.Windows.Forms.Panel();
             this.fn_Label_Texture2D = new System.Windows.Forms.Label();
             this.textBox_File_Textue2D = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label_Preview = new System.Windows.Forms.Label();
             this.EditAreaPanel.SuspendLayout();
             this.FloatInputWindow.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -186,6 +189,8 @@
             this.Texture2DInputWindow.SuspendLayout();
             this.panel9.SuspendLayout();
             this.texture2D_Inner_Panel.SuspendLayout();
+            this.panel_Image.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -260,7 +265,7 @@
             this.FloatInputWindow.Controls.Add(this.panel7);
             this.FloatInputWindow.Controls.Add(this.label_Title_float);
             this.FloatInputWindow.Enabled = false;
-            this.FloatInputWindow.Location = new System.Drawing.Point(1176, 828);
+            this.FloatInputWindow.Location = new System.Drawing.Point(1149, 1235);
             this.FloatInputWindow.Name = "FloatInputWindow";
             this.FloatInputWindow.Size = new System.Drawing.Size(178, 195);
             this.FloatInputWindow.TabIndex = 35;
@@ -294,6 +299,7 @@
             // 
             this.labelNamefloat.AutoSize = true;
             this.labelNamefloat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNamefloat.ForeColor = System.Drawing.Color.White;
             this.labelNamefloat.Location = new System.Drawing.Point(9, 12);
             this.labelNamefloat.Name = "labelNamefloat";
             this.labelNamefloat.Size = new System.Drawing.Size(39, 13);
@@ -375,6 +381,7 @@
             this.label_Title_float.AutoSize = true;
             this.label_Title_float.BackColor = System.Drawing.Color.Transparent;
             this.label_Title_float.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title_float.ForeColor = System.Drawing.Color.White;
             this.label_Title_float.Location = new System.Drawing.Point(66, 5);
             this.label_Title_float.Name = "label_Title_float";
             this.label_Title_float.Size = new System.Drawing.Size(46, 18);
@@ -390,7 +397,7 @@
             this.Float2InputWindow.Controls.Add(this.panel6);
             this.Float2InputWindow.Controls.Add(this.label_Title_Vec2);
             this.Float2InputWindow.Enabled = false;
-            this.Float2InputWindow.Location = new System.Drawing.Point(996, 827);
+            this.Float2InputWindow.Location = new System.Drawing.Point(964, 1235);
             this.Float2InputWindow.Name = "Float2InputWindow";
             this.Float2InputWindow.Size = new System.Drawing.Size(178, 195);
             this.Float2InputWindow.TabIndex = 34;
@@ -424,6 +431,7 @@
             // 
             this.labelNameVec2.AutoSize = true;
             this.labelNameVec2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNameVec2.ForeColor = System.Drawing.Color.White;
             this.labelNameVec2.Location = new System.Drawing.Point(9, 12);
             this.labelNameVec2.Name = "labelNameVec2";
             this.labelNameVec2.Size = new System.Drawing.Size(39, 13);
@@ -542,6 +550,7 @@
             this.label_Title_Vec2.AutoSize = true;
             this.label_Title_Vec2.BackColor = System.Drawing.Color.Transparent;
             this.label_Title_Vec2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title_Vec2.ForeColor = System.Drawing.Color.White;
             this.label_Title_Vec2.Location = new System.Drawing.Point(57, 5);
             this.label_Title_Vec2.Name = "label_Title_Vec2";
             this.label_Title_Vec2.Size = new System.Drawing.Size(55, 18);
@@ -557,7 +566,7 @@
             this.Float3InputWindow.Controls.Add(this.panel2);
             this.Float3InputWindow.Controls.Add(this.label_Title_Vec3);
             this.Float3InputWindow.Enabled = false;
-            this.Float3InputWindow.Location = new System.Drawing.Point(816, 812);
+            this.Float3InputWindow.Location = new System.Drawing.Point(780, 1234);
             this.Float3InputWindow.Name = "Float3InputWindow";
             this.Float3InputWindow.Size = new System.Drawing.Size(178, 209);
             this.Float3InputWindow.TabIndex = 33;
@@ -591,6 +600,7 @@
             // 
             this.labelNameVec3.AutoSize = true;
             this.labelNameVec3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNameVec3.ForeColor = System.Drawing.Color.White;
             this.labelNameVec3.Location = new System.Drawing.Point(9, 12);
             this.labelNameVec3.Name = "labelNameVec3";
             this.labelNameVec3.Size = new System.Drawing.Size(39, 13);
@@ -746,6 +756,7 @@
             this.label_Title_Vec3.AutoSize = true;
             this.label_Title_Vec3.BackColor = System.Drawing.Color.Transparent;
             this.label_Title_Vec3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title_Vec3.ForeColor = System.Drawing.Color.White;
             this.label_Title_Vec3.Location = new System.Drawing.Point(57, 5);
             this.label_Title_Vec3.Name = "label_Title_Vec3";
             this.label_Title_Vec3.Size = new System.Drawing.Size(55, 18);
@@ -761,7 +772,7 @@
             this.Float4InputWindow.Controls.Add(this.panel3);
             this.Float4InputWindow.Controls.Add(this.label_Title_Vec4);
             this.Float4InputWindow.Enabled = false;
-            this.Float4InputWindow.Location = new System.Drawing.Point(635, 794);
+            this.Float4InputWindow.Location = new System.Drawing.Point(600, 1234);
             this.Float4InputWindow.Name = "Float4InputWindow";
             this.Float4InputWindow.Size = new System.Drawing.Size(178, 229);
             this.Float4InputWindow.TabIndex = 32;
@@ -795,6 +806,7 @@
             // 
             this.labelNameVec4.AutoSize = true;
             this.labelNameVec4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNameVec4.ForeColor = System.Drawing.Color.White;
             this.labelNameVec4.Location = new System.Drawing.Point(9, 12);
             this.labelNameVec4.Name = "labelNameVec4";
             this.labelNameVec4.Size = new System.Drawing.Size(39, 13);
@@ -987,6 +999,7 @@
             this.label_Title_Vec4.AutoSize = true;
             this.label_Title_Vec4.BackColor = System.Drawing.Color.Transparent;
             this.label_Title_Vec4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title_Vec4.ForeColor = System.Drawing.Color.White;
             this.label_Title_Vec4.Location = new System.Drawing.Point(63, 5);
             this.label_Title_Vec4.Name = "label_Title_Vec4";
             this.label_Title_Vec4.Size = new System.Drawing.Size(55, 18);
@@ -1002,7 +1015,7 @@
             this.ColourInputWindow.Controls.Add(this.panelRes);
             this.ColourInputWindow.Controls.Add(this.label_Title_col);
             this.ColourInputWindow.Enabled = false;
-            this.ColourInputWindow.Location = new System.Drawing.Point(455, 779);
+            this.ColourInputWindow.Location = new System.Drawing.Point(416, 1254);
             this.ColourInputWindow.Name = "ColourInputWindow";
             this.ColourInputWindow.Size = new System.Drawing.Size(178, 240);
             this.ColourInputWindow.TabIndex = 31;
@@ -1045,6 +1058,7 @@
             // 
             this.labelNameCol.AutoSize = true;
             this.labelNameCol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNameCol.ForeColor = System.Drawing.Color.White;
             this.labelNameCol.Location = new System.Drawing.Point(9, 12);
             this.labelNameCol.Name = "labelNameCol";
             this.labelNameCol.Size = new System.Drawing.Size(39, 13);
@@ -1222,6 +1236,7 @@
             this.label_Title_col.AutoSize = true;
             this.label_Title_col.BackColor = System.Drawing.Color.Black;
             this.label_Title_col.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title_col.ForeColor = System.Drawing.Color.White;
             this.label_Title_col.Location = new System.Drawing.Point(61, 5);
             this.label_Title_col.Name = "label_Title_col";
             this.label_Title_col.Size = new System.Drawing.Size(59, 18);
@@ -1307,7 +1322,7 @@
             this.FunctionNodeWindow.Controls.Add(this.MiddlePanel);
             this.FunctionNodeWindow.Controls.Add(this.TitleLabel_FunctionNode);
             this.FunctionNodeWindow.Enabled = false;
-            this.FunctionNodeWindow.Location = new System.Drawing.Point(219, 941);
+            this.FunctionNodeWindow.Location = new System.Drawing.Point(1053, 1153);
             this.FunctionNodeWindow.Name = "FunctionNodeWindow";
             this.FunctionNodeWindow.Size = new System.Drawing.Size(230, 76);
             this.FunctionNodeWindow.TabIndex = 30;
@@ -1380,6 +1395,7 @@
             // 
             this.TitleLabel_FunctionNode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.TitleLabel_FunctionNode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitleLabel_FunctionNode.ForeColor = System.Drawing.Color.White;
             this.TitleLabel_FunctionNode.Location = new System.Drawing.Point(27, 4);
             this.TitleLabel_FunctionNode.Name = "TitleLabel_FunctionNode";
             this.TitleLabel_FunctionNode.Size = new System.Drawing.Size(170, 18);
@@ -1574,9 +1590,9 @@
             this.Texture2DInputWindow.Controls.Add(this.panel9);
             this.Texture2DInputWindow.Controls.Add(this.label_Texture_Title);
             this.Texture2DInputWindow.Enabled = false;
-            this.Texture2DInputWindow.Location = new System.Drawing.Point(281, 380);
+            this.Texture2DInputWindow.Location = new System.Drawing.Point(40, 1150);
             this.Texture2DInputWindow.Name = "Texture2DInputWindow";
-            this.Texture2DInputWindow.Size = new System.Drawing.Size(178, 270);
+            this.Texture2DInputWindow.Size = new System.Drawing.Size(206, 293);
             this.Texture2DInputWindow.TabIndex = 32;
             this.Texture2DInputWindow.Visible = false;
             // 
@@ -1586,7 +1602,7 @@
             this.closeButton_Texture2D.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton_Texture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButton_Texture2D.ForeColor = System.Drawing.Color.Transparent;
-            this.closeButton_Texture2D.Location = new System.Drawing.Point(151, 3);
+            this.closeButton_Texture2D.Location = new System.Drawing.Point(180, 3);
             this.closeButton_Texture2D.Name = "closeButton_Texture2D";
             this.closeButton_Texture2D.Size = new System.Drawing.Size(22, 22);
             this.closeButton_Texture2D.TabIndex = 2;
@@ -1601,13 +1617,14 @@
             this.panel9.Controls.Add(this.texture2D_Inner_Panel);
             this.panel9.Location = new System.Drawing.Point(-1, 26);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(179, 243);
+            this.panel9.Size = new System.Drawing.Size(206, 266);
             this.panel9.TabIndex = 1;
             // 
             // labelNameTexture2D
             // 
             this.labelNameTexture2D.AutoSize = true;
             this.labelNameTexture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNameTexture2D.ForeColor = System.Drawing.Color.White;
             this.labelNameTexture2D.Location = new System.Drawing.Point(9, 6);
             this.labelNameTexture2D.Name = "labelNameTexture2D";
             this.labelNameTexture2D.Size = new System.Drawing.Size(39, 13);
@@ -1619,7 +1636,7 @@
             this.textBox_Name_Texture2D.BackColor = System.Drawing.Color.LightGray;
             this.textBox_Name_Texture2D.Location = new System.Drawing.Point(9, 22);
             this.textBox_Name_Texture2D.Name = "textBox_Name_Texture2D";
-            this.textBox_Name_Texture2D.Size = new System.Drawing.Size(159, 20);
+            this.textBox_Name_Texture2D.Size = new System.Drawing.Size(187, 20);
             this.textBox_Name_Texture2D.TabIndex = 1;
             this.textBox_Name_Texture2D.Text = ".";
             // 
@@ -1633,7 +1650,7 @@
             this.texture2D_Inner_Panel.Controls.Add(this.Out_Slot_Texture2D);
             this.texture2D_Inner_Panel.Location = new System.Drawing.Point(3, 48);
             this.texture2D_Inner_Panel.Name = "texture2D_Inner_Panel";
-            this.texture2D_Inner_Panel.Size = new System.Drawing.Size(171, 189);
+            this.texture2D_Inner_Panel.Size = new System.Drawing.Size(199, 205);
             this.texture2D_Inner_Panel.TabIndex = 0;
             // 
             // Out_Slot_Texture2D
@@ -1643,7 +1660,7 @@
             this.Out_Slot_Texture2D.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_Slot_Texture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Out_Slot_Texture2D.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_Slot_Texture2D.Location = new System.Drawing.Point(99, 166);
+            this.Out_Slot_Texture2D.Location = new System.Drawing.Point(126, 175);
             this.Out_Slot_Texture2D.Name = "Out_Slot_Texture2D";
             this.Out_Slot_Texture2D.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Out_Slot_Texture2D.Size = new System.Drawing.Size(73, 20);
@@ -1657,7 +1674,8 @@
             this.label_Texture_Title.AutoSize = true;
             this.label_Texture_Title.BackColor = System.Drawing.Color.Transparent;
             this.label_Texture_Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Texture_Title.Location = new System.Drawing.Point(42, 5);
+            this.label_Texture_Title.ForeColor = System.Drawing.Color.White;
+            this.label_Texture_Title.Location = new System.Drawing.Point(57, 4);
             this.label_Texture_Title.Name = "label_Texture_Title";
             this.label_Texture_Title.Size = new System.Drawing.Size(85, 18);
             this.label_Texture_Title.TabIndex = 0;
@@ -1671,7 +1689,7 @@
             this.In_Slot_UVs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.In_Slot_UVs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.In_Slot_UVs.ForeColor = System.Drawing.Color.BurlyWood;
-            this.In_Slot_UVs.Location = new System.Drawing.Point(0, 166);
+            this.In_Slot_UVs.Location = new System.Drawing.Point(3, 175);
             this.In_Slot_UVs.Name = "In_Slot_UVs";
             this.In_Slot_UVs.Size = new System.Drawing.Size(93, 20);
             this.In_Slot_UVs.TabIndex = 9;
@@ -1684,34 +1702,53 @@
             this.panel_Image.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel_Image.BackgroundImage")));
             this.panel_Image.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel_Image.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel_Image.Location = new System.Drawing.Point(6, 45);
+            this.panel_Image.Controls.Add(this.label_Preview);
+            this.panel_Image.Location = new System.Drawing.Point(3, 52);
             this.panel_Image.Name = "panel_Image";
-            this.panel_Image.Size = new System.Drawing.Size(159, 115);
+            this.panel_Image.Size = new System.Drawing.Size(193, 120);
             this.panel_Image.TabIndex = 10;
             // 
             // fn_Label_Texture2D
             // 
             this.fn_Label_Texture2D.AutoSize = true;
-            this.fn_Label_Texture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fn_Label_Texture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fn_Label_Texture2D.ForeColor = System.Drawing.Color.White;
-            this.fn_Label_Texture2D.Location = new System.Drawing.Point(6, 3);
+            this.fn_Label_Texture2D.Location = new System.Drawing.Point(2, 14);
             this.fn_Label_Texture2D.Name = "fn_Label_Texture2D";
-            this.fn_Label_Texture2D.Size = new System.Drawing.Size(31, 13);
+            this.fn_Label_Texture2D.Size = new System.Drawing.Size(26, 13);
             this.fn_Label_Texture2D.TabIndex = 11;
             this.fn_Label_Texture2D.Text = "File:";
             // 
             // textBox_File_Textue2D
             // 
-            this.textBox_File_Textue2D.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox_File_Textue2D.BackColor = System.Drawing.Color.Black;
+            this.textBox_File_Textue2D.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox_File_Textue2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_File_Textue2D.ForeColor = System.Drawing.Color.White;
-            this.textBox_File_Textue2D.Location = new System.Drawing.Point(7, 19);
+            this.textBox_File_Textue2D.Location = new System.Drawing.Point(31, 11);
             this.textBox_File_Textue2D.Name = "textBox_File_Textue2D";
             this.textBox_File_Textue2D.ReadOnly = true;
-            this.textBox_File_Textue2D.Size = new System.Drawing.Size(158, 20);
+            this.textBox_File_Textue2D.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.textBox_File_Textue2D.Size = new System.Drawing.Size(164, 20);
             this.textBox_File_Textue2D.TabIndex = 12;
-            this.textBox_File_Textue2D.Text = "- double click to select file -";
+            this.textBox_File_Textue2D.Text = "-double click here to select file-";
             this.textBox_File_Textue2D.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox_File_Textue2D.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox_File_Textue2D_MouseDoubleClick);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // label_Preview
+            // 
+            this.label_Preview.AutoSize = true;
+            this.label_Preview.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Preview.ForeColor = System.Drawing.Color.White;
+            this.label_Preview.Location = new System.Drawing.Point(63, -2);
+            this.label_Preview.Name = "label_Preview";
+            this.label_Preview.Size = new System.Drawing.Size(57, 15);
+            this.label_Preview.TabIndex = 13;
+            this.label_Preview.Text = "Preview";
             // 
             // MainWindow
             // 
@@ -1798,6 +1835,9 @@
             this.panel9.PerformLayout();
             this.texture2D_Inner_Panel.ResumeLayout(false);
             this.texture2D_Inner_Panel.PerformLayout();
+            this.panel_Image.ResumeLayout(false);
+            this.panel_Image.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1919,6 +1959,8 @@
         private System.Windows.Forms.TextBox textBox_File_Textue2D;
         private System.Windows.Forms.Label fn_Label_Texture2D;
         private System.Windows.Forms.Panel panel_Image;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label label_Preview;
     }
 }
 
