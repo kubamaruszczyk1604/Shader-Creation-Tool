@@ -48,6 +48,14 @@ namespace ShaderCreationTool
             int tbCounter = 0;
             List<Control> allControlls = ControlExtensions.GetAllChildreenControls<Control>(m_SctElement).Cast<Control>().ToList();
             //allControlls.Add(m_SctElement);
+
+            ShaderVariableType varType = ShaderVariableType.Single;
+
+            if (m_SctElement.Name.Contains("4")) varType = ShaderVariableType.Vector4;
+            else if (m_SctElement.Name.Contains("3")) varType = ShaderVariableType.Vector3;
+            else if (m_SctElement.Name.Contains("2")) varType = ShaderVariableType.Vector2;
+            else varType = ShaderVariableType.Single;
+
             foreach (Control control in allControlls)
             {
                 if (control.Name.Equals("")) continue;
@@ -57,7 +65,8 @@ namespace ShaderCreationTool
                     CheckBox checkBox = (CheckBox)control;
                     if (checkBox.Name.Contains(Connector.s_OutSlotSequenceID))
                     {
-                        Connector tempCon = new Connector(checkBox, ShaderVariableType.Vector4, this);
+                        //////////////////////////// TU JEST TEN BLAD ------->>>>>>>>>>
+                        Connector tempCon = new Connector(checkBox, varType, this);
                         m_OutputConnectors.Add(tempCon);
                     }
                     else
