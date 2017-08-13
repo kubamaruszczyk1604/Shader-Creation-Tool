@@ -91,31 +91,45 @@ public:
 		float fbDist = 0.01f;
 
 		//front
-		m_pQuadMesh->AddVertex(Vertex(-size, size, -fbDist, 0, 0, -1, 0, 0));
+		/*m_pQuadMesh->AddVertex(Vertex(-size, size, -fbDist, 0, 0, -1, 0, 0));
 		m_pQuadMesh->AddVertex(Vertex(-size, -size, -fbDist, 0, 0, -1, 0, 1));
 		m_pQuadMesh->AddVertex(Vertex(size, -size, -fbDist, 0, 0, -1, 1, 1));
-		m_pQuadMesh->AddVertex(Vertex(size, size, -fbDist, 0, 0, -1, 1, 0));
+		m_pQuadMesh->AddVertex(Vertex(size, size, -fbDist, 0, 0, -1, 1, 0));*/
 
-		//back
-		m_pQuadMesh->AddVertex(Vertex(-size, size, fbDist, 0, 0, 1, 0, 0));
-		m_pQuadMesh->AddVertex(Vertex(-size, -size, fbDist, 0, 0, 1, 0, 1));
-		m_pQuadMesh->AddVertex(Vertex(size, -size, fbDist, 0, 0, 1, 1, 1));
-		m_pQuadMesh->AddVertex(Vertex(size, size, fbDist, 0, 0, 1, 1, 0));
+		m_pQuadMesh->AddVertex(Vertex(-size, -size, -fbDist, 0, 0, -1, 0, 0));
+		m_pQuadMesh->AddVertex(Vertex(size, -size, -fbDist, 0, 0, -1, 1, 0));
+		m_pQuadMesh->AddVertex(Vertex(size, size, -fbDist, 0, 0, -1, 1, 1));
+		m_pQuadMesh->AddVertex(Vertex(-size, size, -fbDist, 0, 0, -1, 0, 1));
+
+
+
+		////back
+		//m_pQuadMesh->AddVertex(Vertex(-size, size, fbDist, 0, 0, 1, 0, 0));
+		//m_pQuadMesh->AddVertex(Vertex(-size, -size, fbDist, 0, 0, 1, 0, 1));
+		//m_pQuadMesh->AddVertex(Vertex(size, -size, fbDist, 0, 0, 1, 1, 1));
+		//m_pQuadMesh->AddVertex(Vertex(size, size, fbDist, 0, 0, 1, 1, 0));
 
 		std::vector<unsigned> indices;
-		indices.push_back(0);
+		/*indices.push_back(0);
 		indices.push_back(3);
 		indices.push_back(2);
 		indices.push_back(0);
 		indices.push_back(2);
-		indices.push_back(1);
+		indices.push_back(1);*/
 
-		indices.push_back(4);
+		indices.push_back(0);
+		indices.push_back(1);
+		indices.push_back(2);
+		indices.push_back(0);
+		indices.push_back(2);
+		indices.push_back(3);
+
+		/*indices.push_back(4);
 		indices.push_back(7);
 		indices.push_back(6);
 		indices.push_back(4);
 		indices.push_back(6);
-		indices.push_back(5);
+		indices.push_back(5);*/
 
 		m_pQuadMesh->CreateVertexBuffer(indices);
 
@@ -169,7 +183,7 @@ public:
 		AddEntity(p_CameraEntity);
 
 
-		m_pDirectionalLight = new DirectionalLight(Vec3(10., 0, -10.f), Colour(0, 0, 0, 1), Colour(0.5, 0.5, 1, 1), Colour(0.1, 0.1, 0.1, 1));
+		//m_pDirectionalLight = new DirectionalLight(Vec3(10., 0, -10.f), Colour(0, 0, 0, 1), Colour(0.5, 0.5, 1, 1), Colour(0.1, 0.1, 0.1, 1));
 		m_pSpotLight = new Spotlight(
 			Vec3(0, 0, -20.0f),
 			Colour(0, 0, 0, 1),

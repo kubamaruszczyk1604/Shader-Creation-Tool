@@ -414,8 +414,7 @@ namespace ShaderCreationTool
             //Bridge.ReloadScene();
             SCTConsole.Instance.Show();
             SCTConsole.Instance.PrintLine("Console shown test..");
-            ShaderTextureVariable tw = new ShaderTextureVariable(@"C:\Zapas\abc.jpg", "Texture0");
-            Bridge.SetVariable(tw);
+   
         }
 
 

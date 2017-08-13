@@ -14,6 +14,7 @@ namespace ShaderCreationTool
 {
     class InputNodeTexture2D : ISCTNode, IInputNode, IDisposable
     {
+        private const string s_PlainTexturePath = "../Assets/Textures/bkg.bmp";
 
         private Panel m_SctElement;
         private MovableObject m_Mover;
@@ -26,7 +27,7 @@ namespace ShaderCreationTool
         private TextBox m_FileTextbox;
         private Panel m_ImagePanel;
         private string m_Name;
-        ShaderVectorVariable m_ShaderVariable;
+        ShaderTextureVariable m_ShaderVariable;
         private static bool s_ButtonsLocked = false;
         private static int s_InstanceCounter = 0;
 
@@ -124,7 +125,7 @@ namespace ShaderCreationTool
             s_InstanceCounter++;
             ShowNode(1);
 
-            m_ShaderVariable = new ShaderVectorVariable(0, 0, 0, 1, m_Name);
+            m_ShaderVariable = new ShaderTextureVariable(s_PlainTexturePath, m_Name);
             Bridge.SetVariable(m_ShaderVariable);
         }
 
@@ -303,6 +304,7 @@ namespace ShaderCreationTool
                     m_ImgPath = ofd.FileName;
                     s_LastTexturePath = ofd.FileName;
                     this.TextureChanged(m_ImgPath);
+                    m_ShaderVariable.SetPath(m_ImgPath);
                 }
                 catch(Exception ex)
                 {

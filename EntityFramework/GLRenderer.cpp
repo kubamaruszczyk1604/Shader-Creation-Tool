@@ -270,14 +270,20 @@ namespace KLM_FRAMEWORK
 		for (int i = 0; i < ShaderVariableContainer::GetSize_TextureVariables(); ++i)
 		{
 			const std::string name = marshal_as<std::string>(ShaderVariableContainer::GetShaderTextureVariable(i)->GetName());
+			
 			Texture* t = DataConverter::ToTexture(ShaderVariableContainer::GetShaderTextureVariable(i));
 			const void* vpoint = t->GetApiSpecificTexture();
 			GLTexture* texture = const_cast<GLTexture*>(static_cast<const GLTexture*>(vpoint));
 
 			GLuint samplerID = glGetUniformLocation(shaderProgID,name.c_str());
-			glUniform1i(samplerID, 0);
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, texture->GetID());
+
+			//DEBUG("Disp Name: " + name + "  Location" + ToString((int)samplerID));
+			if (samplerID != -1)
+			{
+				glUniform1i(samplerID, 0);
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, texture->GetID());
+			}
 		}
 
 		if (!s_CurrentCamera) return;
