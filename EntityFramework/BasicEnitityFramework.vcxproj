@@ -208,6 +208,7 @@
     <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="ResourceManagerWrapper.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="D3D11Shader.cpp" />
@@ -255,6 +256,7 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RendererModes.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="ResourceManagerWrapper.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="D3D11Shader.h" />

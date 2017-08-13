@@ -240,6 +240,9 @@
     <ClCompile Include="ShaderVariableContainer.cpp">
       <Filter>Source Files\Application</Filter>
     </ClCompile>
+    <ClCompile Include="ResourceManagerWrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -382,6 +385,9 @@
     </ClInclude>
     <ClInclude Include="ShaderVariableContainer.h">
       <Filter>Header Files\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManagerWrapper.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

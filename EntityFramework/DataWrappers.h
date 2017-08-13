@@ -1,7 +1,7 @@
 #pragma once
 #include "StdIncludes.h"
 #include "CrossLanguageTypes.cs"
-
+#include <msclr\marshal_cppstd.h>
 
 public ref class ShaderVectorVariable
 {
@@ -79,19 +79,24 @@ public:
 	}
 
 };
-
+using namespace KLM_FRAMEWORK;
 public ref class ShaderTextureVariable
 {
 private:
 	ShaderVariableType m_Type;
 	System::String^ m_Name;
 	System::String^ m_Path;
+	System::IntPtr m_pTexture;
+//	Texture* test;
 
 public:
 	ShaderTextureVariable(System::String^ path, System::String^ name): 
 		m_Type{ShaderVariableType::Texture2D},
 		m_Path{path},
-		m_Name{name}{}
+		m_Name{name}
+	{
+		
+	}
 
 	System::String^ GetName()
 	{
