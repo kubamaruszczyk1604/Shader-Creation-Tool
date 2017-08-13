@@ -280,8 +280,9 @@ namespace KLM_FRAMEWORK
 			//DEBUG("Disp Name: " + name + "  Location" + ToString((int)samplerID));
 			if (samplerID != -1 && texture)
 			{
-				glUniform1i(samplerID, 0);
-				glActiveTexture(GL_TEXTURE0);
+				glUniform1i(samplerID, i);
+				/*if(i == 0) */glActiveTexture(GL_TEXTURE0 + i);
+				/*if(i == 1)*/ glActiveTexture(GL_TEXTURE1);
 				glBindTexture(GL_TEXTURE_2D, texture->GetID());
 			}
 		}

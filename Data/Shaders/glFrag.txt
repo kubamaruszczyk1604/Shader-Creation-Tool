@@ -8,6 +8,7 @@ uniform vec4 ambient;
 uniform vec4 diffuse;
 uniform vec4 specular;
 uniform sampler2D Texture0;
+uniform sampler2D Texture1;
 
 
 
@@ -115,8 +116,9 @@ void main()
 	accumulate_lights(lights, worldPos, normalize(normal), vec3(0,0,10), 0.1, ambientL, diffuseL, specularL, 20);
 	
     vec4 textureCol = texture2D(Texture0,UVs);
-	result += ambient * textureCol;
-    result += diffuseL* diffuse * textureCol;
+	vec4 textureCol2 = texture2D(Texture1,UVs);
+	result += ambient * (textureCol*textureCol2);
+    result += diffuseL* diffuse * textureCol*textureCol2;
 	result += specularL * specular;
 	
 	
