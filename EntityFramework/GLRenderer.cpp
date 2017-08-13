@@ -278,7 +278,7 @@ namespace KLM_FRAMEWORK
 			GLuint samplerID = glGetUniformLocation(shaderProgID,name.c_str());
 
 			//DEBUG("Disp Name: " + name + "  Location" + ToString((int)samplerID));
-			if (samplerID != -1)
+			if (samplerID != -1 && texture)
 			{
 				glUniform1i(samplerID, 0);
 				glActiveTexture(GL_TEXTURE0);
