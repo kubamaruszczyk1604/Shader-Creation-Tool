@@ -276,7 +276,7 @@ namespace KLM_FRAMEWORK
 		const Texture* normalMapGen = material->GetNormalMap();
 
 
-		if (diffuseMapGen)
+	/*	if (diffuseMapGen)
 		{
 			const void* diffuse = material->GetDiffuseMap()->GetApiSpecificTexture();
 
@@ -287,9 +287,20 @@ namespace KLM_FRAMEWORK
 			glUniform1i(samplerID, 0);
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, diffuseMap->GetID());
+		}*/
+
+		for (int i = 0; i < ShaderVariableContainer::GetSize_TextureVariables(); ++i)
+		{
+			const std::string name = marshal_as<std::string>(ShaderVariableContainer::GetShaderTextureVariable(i)->GetName());
+			Texture* t = DataConverter::ToTexture(ShaderVariableContainer::GetShaderTextureVariable(i));
+			const void* vpoint = t->GetApiSpecificTexture();
+			GLTexture* texture = const_cast<GLTexture*>(static_cast<const GLTexture*>(vpoint));
+
+			GLuint samplerID = glGetUniformLocation(shaderProgID,name.c_str());
+			glUniform1i(samplerID, 0);
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, texture->GetID());
 		}
-
-
 
 		if (!s_CurrentCamera) return;
 		if (!s_CurrentCamera->isActive()) return;

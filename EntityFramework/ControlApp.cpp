@@ -83,6 +83,11 @@ void ControlApp::SetShaderVectorVariable(ShaderVectorVariable ^ variable)
 	ShaderVariableContainer::AddVectorVariable(variable);
 }
 
+void ControlApp::SetShaderTextureVarable(ShaderTextureVariable ^ variable)
+{
+	ShaderVariableContainer::AddTextureVariable(variable);
+}
+
 void ControlApp::SetUpdateCallback(WndUpdateLoopCallback callback)
 {
 	s_UpdateLoopCallback = callback;

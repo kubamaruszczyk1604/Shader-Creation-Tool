@@ -20,7 +20,7 @@ namespace KLM_FRAMEWORK
 		static ShaderVectorVariable^ GetShaderVectorVariable(int index);
 
 		static int GetSize_TextureVariables() { return s_TextureVariablesList.Count; }
-		static void AddTeextureVariable(ShaderTextureVariable^ variable);
+		static void AddTextureVariable(ShaderTextureVariable^ variable);
 		static ShaderTextureVariable^ GetShaderTextureVariable(int index);
 
 	};

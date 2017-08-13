@@ -29,6 +29,7 @@ public:
 	static void Terminate();
 	static void ReloadScene();
 	static void SetShaderVectorVariable( ShaderVectorVariable^ variable);
+	static void SetShaderTextureVarable(ShaderTextureVariable^ variable);
 	static void SetUpdateCallback(WndUpdateLoopCallback callback);
 	static void SetMessageCallback(WndMessageLoopCallback callback);
 };

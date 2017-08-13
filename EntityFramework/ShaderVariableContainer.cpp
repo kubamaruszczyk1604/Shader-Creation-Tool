@@ -11,7 +11,7 @@ namespace KLM_FRAMEWORK
 		return s_ShaderVariablesList[index];
 	}
 
-	void ShaderVariableContainer::AddTeextureVariable(ShaderTextureVariable ^ variable)
+	void ShaderVariableContainer::AddTextureVariable(ShaderTextureVariable ^ variable)
 	{
 		s_TextureVariablesList.Add(variable);
 	}
