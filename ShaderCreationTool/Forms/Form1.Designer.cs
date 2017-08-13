@@ -140,6 +140,9 @@
             this.Out_Slot_Texture2D = new System.Windows.Forms.CheckBox();
             this.label_Texture_title = new System.Windows.Forms.Label();
             this.In_Slot_UVs = new System.Windows.Forms.CheckBox();
+            this.panel_Image = new System.Windows.Forms.Panel();
+            this.fn_Label_Texture2D = new System.Windows.Forms.Label();
+            this.textBox_file_Textue2D = new System.Windows.Forms.TextBox();
             this.EditAreaPanel.SuspendLayout();
             this.FloatInputWindow.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -1565,7 +1568,7 @@
             // 
             // Texture2DInputWindow
             // 
-            this.Texture2DInputWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.Texture2DInputWindow.BackColor = System.Drawing.Color.Black;
             this.Texture2DInputWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Texture2DInputWindow.Controls.Add(this.closeButton_Texture2D);
             this.Texture2DInputWindow.Controls.Add(this.panel9);
@@ -1573,7 +1576,7 @@
             this.Texture2DInputWindow.Enabled = false;
             this.Texture2DInputWindow.Location = new System.Drawing.Point(281, 380);
             this.Texture2DInputWindow.Name = "Texture2DInputWindow";
-            this.Texture2DInputWindow.Size = new System.Drawing.Size(178, 240);
+            this.Texture2DInputWindow.Size = new System.Drawing.Size(178, 270);
             this.Texture2DInputWindow.TabIndex = 32;
             this.Texture2DInputWindow.Visible = false;
             // 
@@ -1598,14 +1601,14 @@
             this.panel9.Controls.Add(this.texture2D_Inner_Panel);
             this.panel9.Location = new System.Drawing.Point(-1, 26);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(179, 212);
+            this.panel9.Size = new System.Drawing.Size(179, 243);
             this.panel9.TabIndex = 1;
             // 
             // labelNameTexture2D
             // 
             this.labelNameTexture2D.AutoSize = true;
             this.labelNameTexture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNameTexture2D.Location = new System.Drawing.Point(9, 12);
+            this.labelNameTexture2D.Location = new System.Drawing.Point(9, 6);
             this.labelNameTexture2D.Name = "labelNameTexture2D";
             this.labelNameTexture2D.Size = new System.Drawing.Size(39, 13);
             this.labelNameTexture2D.TabIndex = 2;
@@ -1614,7 +1617,7 @@
             // textBox_Name_Texture2D
             // 
             this.textBox_Name_Texture2D.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_Name_Texture2D.Location = new System.Drawing.Point(9, 30);
+            this.textBox_Name_Texture2D.Location = new System.Drawing.Point(9, 22);
             this.textBox_Name_Texture2D.Name = "textBox_Name_Texture2D";
             this.textBox_Name_Texture2D.Size = new System.Drawing.Size(159, 20);
             this.textBox_Name_Texture2D.TabIndex = 1;
@@ -1622,11 +1625,14 @@
             // texture2D_Inner_Panel
             // 
             this.texture2D_Inner_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.texture2D_Inner_Panel.Controls.Add(this.textBox_file_Textue2D);
+            this.texture2D_Inner_Panel.Controls.Add(this.fn_Label_Texture2D);
+            this.texture2D_Inner_Panel.Controls.Add(this.panel_Image);
             this.texture2D_Inner_Panel.Controls.Add(this.In_Slot_UVs);
             this.texture2D_Inner_Panel.Controls.Add(this.Out_Slot_Texture2D);
-            this.texture2D_Inner_Panel.Location = new System.Drawing.Point(0, 56);
+            this.texture2D_Inner_Panel.Location = new System.Drawing.Point(3, 48);
             this.texture2D_Inner_Panel.Name = "texture2D_Inner_Panel";
-            this.texture2D_Inner_Panel.Size = new System.Drawing.Size(179, 153);
+            this.texture2D_Inner_Panel.Size = new System.Drawing.Size(171, 189);
             this.texture2D_Inner_Panel.TabIndex = 0;
             // 
             // Out_Slot_Texture2D
@@ -1636,7 +1642,7 @@
             this.Out_Slot_Texture2D.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_Slot_Texture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Out_Slot_Texture2D.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_Slot_Texture2D.Location = new System.Drawing.Point(101, 130);
+            this.Out_Slot_Texture2D.Location = new System.Drawing.Point(99, 166);
             this.Out_Slot_Texture2D.Name = "Out_Slot_Texture2D";
             this.Out_Slot_Texture2D.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Out_Slot_Texture2D.Size = new System.Drawing.Size(73, 20);
@@ -1664,13 +1670,45 @@
             this.In_Slot_UVs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.In_Slot_UVs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.In_Slot_UVs.ForeColor = System.Drawing.Color.BurlyWood;
-            this.In_Slot_UVs.Location = new System.Drawing.Point(0, 6);
+            this.In_Slot_UVs.Location = new System.Drawing.Point(0, 166);
             this.In_Slot_UVs.Name = "In_Slot_UVs";
             this.In_Slot_UVs.Size = new System.Drawing.Size(93, 20);
             this.In_Slot_UVs.TabIndex = 9;
             this.In_Slot_UVs.Text = "Texcoord";
             this.In_Slot_UVs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.In_Slot_UVs.UseVisualStyleBackColor = false;
+            // 
+            // panel_Image
+            // 
+            this.panel_Image.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel_Image.BackgroundImage")));
+            this.panel_Image.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel_Image.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel_Image.Location = new System.Drawing.Point(6, 45);
+            this.panel_Image.Name = "panel_Image";
+            this.panel_Image.Size = new System.Drawing.Size(159, 115);
+            this.panel_Image.TabIndex = 10;
+            // 
+            // fn_Label_Texture2D
+            // 
+            this.fn_Label_Texture2D.AutoSize = true;
+            this.fn_Label_Texture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fn_Label_Texture2D.ForeColor = System.Drawing.Color.White;
+            this.fn_Label_Texture2D.Location = new System.Drawing.Point(6, 3);
+            this.fn_Label_Texture2D.Name = "fn_Label_Texture2D";
+            this.fn_Label_Texture2D.Size = new System.Drawing.Size(31, 13);
+            this.fn_Label_Texture2D.TabIndex = 11;
+            this.fn_Label_Texture2D.Text = "File:";
+            // 
+            // textBox_file_Textue2D
+            // 
+            this.textBox_file_Textue2D.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox_file_Textue2D.ForeColor = System.Drawing.Color.White;
+            this.textBox_file_Textue2D.Location = new System.Drawing.Point(7, 19);
+            this.textBox_file_Textue2D.Name = "textBox_file_Textue2D";
+            this.textBox_file_Textue2D.Size = new System.Drawing.Size(158, 20);
+            this.textBox_file_Textue2D.TabIndex = 12;
+            this.textBox_file_Textue2D.Text = "- double click to select file -";
+            this.textBox_file_Textue2D.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // MainWindow
             // 
@@ -1875,6 +1913,9 @@
         private System.Windows.Forms.CheckBox In_Slot_UVs;
         private System.Windows.Forms.CheckBox Out_Slot_Texture2D;
         private System.Windows.Forms.Label label_Texture_title;
+        private System.Windows.Forms.TextBox textBox_file_Textue2D;
+        private System.Windows.Forms.Label fn_Label_Texture2D;
+        private System.Windows.Forms.Panel panel_Image;
     }
 }
 
