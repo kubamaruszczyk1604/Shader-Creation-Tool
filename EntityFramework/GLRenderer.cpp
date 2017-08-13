@@ -255,7 +255,7 @@ namespace KLM_FRAMEWORK
 
 		glUniform4fv(specularID, 1, &material->GetSpecularColPtr()->r);
 
-		for (int i = 0; i < ShaderVariableContainer::GetSize(); ++i)
+		for (int i = 0; i < ShaderVariableContainer::GetSize_VectorVariables(); ++i)
 		{
 			ShaderVectorVariable^ variable =  ShaderVariableContainer::GetShaderVectorVariable(i);
 
@@ -427,18 +427,5 @@ namespace KLM_FRAMEWORK
 
 
 
-	
 
-	//////
-	ShaderVectorVariable^ ShaderVariableContainer::GetShaderVectorVariable(int index)
-	{
-		if (s_ShaderVaraiablesList.Count == 0) return nullptr;
-		//if (index >= s_ShaderVaraiablesList.Count - 1) return nullptr;
-		return s_ShaderVaraiablesList[index];
-	}
-
-	void ShaderVariableContainer::AddVariable(ShaderVectorVariable ^ variable)
-	{
-		s_ShaderVaraiablesList.Add(variable);
-	}
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "StdIncludes.h"
 #include "DataWrappers.h"
+#include "ResourceManager.h"
 
 namespace KLM_FRAMEWORK
 {
@@ -11,10 +12,10 @@ namespace KLM_FRAMEWORK
 	{
 	private:
 		static List<ShaderVectorVariable^> s_ShaderVaraiablesList;
-
+	
 	public:
-		static int GetSize() { return s_ShaderVaraiablesList.Count; }
-		static void AddVariable(ShaderVectorVariable^ variable);
+		static int GetSize_VectorVariables() { return s_ShaderVaraiablesList.Count; }
+		static void AddVectorVariable(ShaderVectorVariable^ variable);
 		static ShaderVectorVariable^ GetShaderVectorVariable(int index);
 
 	};

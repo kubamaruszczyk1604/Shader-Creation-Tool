@@ -212,6 +212,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="D3D11Shader.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShaderVariableContainer.cpp" />
     <ClCompile Include="Spotlight.cpp" />
     <ClCompile Include="StdIncludes.cpp" />
     <ClCompile Include="Stopwatch.cpp" />

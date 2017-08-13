@@ -237,6 +237,9 @@
     <ClCompile Include="DataWrappers.cpp">
       <Filter>Source Files\Application</Filter>
     </ClCompile>
+    <ClCompile Include="ShaderVariableContainer.cpp">
+      <Filter>Source Files\Application</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -378,7 +381,7 @@
       <Filter>Header Files\Application</Filter>
     </ClInclude>
     <ClInclude Include="ShaderVariableContainer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Application</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

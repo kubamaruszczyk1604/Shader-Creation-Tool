@@ -80,7 +80,7 @@ void ControlApp::SetShaderVectorVariable(ShaderVectorVariable ^ variable)
 { 
 	//Tu zmiana bedzie
 	//GLRenderer::SetShaderVariable(variable);
-	ShaderVariableContainer::AddVariable(variable);
+	ShaderVariableContainer::AddVectorVariable(variable);
 }
 
 void ControlApp::SetUpdateCallback(WndUpdateLoopCallback callback)
