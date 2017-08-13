@@ -94,7 +94,7 @@ namespace ShaderCreationTool
                     if (p.Name.Contains("Image"))
                     {
                         m_ImagePanel = p;
-                        m_ImagePanel.Click += ImagePanel_Click;
+                        m_ImagePanel.DoubleClick += ImagePanel_Click;
                     }
                 }
                 else if (control is Label)
@@ -266,8 +266,7 @@ namespace ShaderCreationTool
 
         private void ImagePanel_Click(object sender, EventArgs e)
         {
-
-            ColorDialog cd = new ColorDialog();
+            ImagePreviewForm cd = new ImagePreviewForm(m_ImagePanel.BackgroundImage,m_Name);
             DialogResult result = cd.ShowDialog();
             if (result == DialogResult.OK)
             {     

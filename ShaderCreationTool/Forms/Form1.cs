@@ -446,6 +446,11 @@ namespace ShaderCreationTool
             LockableNodes.UnlockButtons();
             Connector.UnlockAllConnectors();
         }
+
+        private void textBox_File_Textue2D_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 
 

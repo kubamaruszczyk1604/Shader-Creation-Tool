@@ -1711,6 +1711,7 @@
             this.textBox_File_Textue2D.TabIndex = 12;
             this.textBox_File_Textue2D.Text = "- double click to select file -";
             this.textBox_File_Textue2D.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_File_Textue2D.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox_File_Textue2D_MouseDoubleClick);
             // 
             // MainWindow
             // 
