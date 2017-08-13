@@ -302,6 +302,7 @@ namespace ShaderCreationTool
                     m_FileTextbox.Text = ofd.FileName;
                     m_ImgPath = ofd.FileName;
                     s_LastTexturePath = ofd.FileName;
+                    this.TextureChanged(m_ImgPath);
                 }
                 catch(Exception ex)
                 {
@@ -312,6 +313,12 @@ namespace ShaderCreationTool
             ofd.Dispose();
         }
 
+        ///////////////////   TEXTURE FILE CHANGED //////////////////////
+
+        private void TextureChanged(string fileName)
+        {
+            SCTConsole.Instance.PrintLine("Texture change detected!\n New file:" + fileName);
+        } 
 
         //////////////////// VARIABLE NAME HANDLING  ////////////////////
         private void TextBox_LostFocus(object sender, EventArgs e)
