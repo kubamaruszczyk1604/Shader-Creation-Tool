@@ -48,6 +48,11 @@ void Bridge::SetVariable(ShaderVectorVariable ^ variable)
 	ControlApp::SetShaderVectorVariable(variable);
 }
 
+void Bridge::SetVariable(ShaderTextureVariable ^ variable)
+{
+	throw gcnew System::NotImplementedException();
+}
+
 void Bridge::AddWndProcUpdateCallback(OnWndProcUpdate ^ dlg)
 {
 	s_OnProcUpdateDelegate += dlg;

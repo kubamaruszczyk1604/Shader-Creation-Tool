@@ -14,6 +14,7 @@ public:
 	static int Terminate();
 	static void ReloadScene();
 	static void SetVariable(ShaderVectorVariable^ variable);
+	static void SetVariable(ShaderTextureVariable^ variable);
 	static void AddWndProcUpdateCallback(OnWndProcUpdate^ dlg);
 	static void AddWndProcMessageCallback(OnWndProcMessage^ dlg);
 
