@@ -11,12 +11,17 @@ namespace KLM_FRAMEWORK
 	public ref class ShaderVariableContainer
 	{
 	private:
-		static List<ShaderVectorVariable^> s_ShaderVaraiablesList;
+		static List<ShaderVectorVariable^> s_ShaderVariablesList;
+		static List<ShaderTextureVariable^> s_TextureVariablesList;
 	
 	public:
-		static int GetSize_VectorVariables() { return s_ShaderVaraiablesList.Count; }
+		static int GetSize_VectorVariables() { return s_ShaderVariablesList.Count; }
 		static void AddVectorVariable(ShaderVectorVariable^ variable);
 		static ShaderVectorVariable^ GetShaderVectorVariable(int index);
+
+		static int GetSize_TextureVariables() { return s_TextureVariablesList.Count; }
+		static void AddTeextureVariable(ShaderTextureVariable^ variable);
+		static ShaderTextureVariable^ GetShaderTextureVariable(int index);
 
 	};
 }
