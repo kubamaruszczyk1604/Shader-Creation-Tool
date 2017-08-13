@@ -76,7 +76,7 @@
             this.Name = "SelectNodeForm";
             this.Opacity = 0.95D;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Node";
             this.TopMost = true;
             this.ResumeLayout(false);
