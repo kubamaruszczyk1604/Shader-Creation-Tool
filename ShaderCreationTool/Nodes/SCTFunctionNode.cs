@@ -66,6 +66,7 @@ namespace ShaderCreationTool
             foreach (Panel p in panels)
             {
                 p.Size = new Size(p.Size.Width, p.Size.Height + connectorYOffset * (biggestVarCount-1));
+                p.Click += AnyElement_Click;
             }
 
             //Create connectors
@@ -77,7 +78,7 @@ namespace ShaderCreationTool
                 cd.Location = new Point(cd.Location.X, cd.Location.Y + connectorYOffset * i);
                // cd.Text = "[" + description.GetInVariableDescription(i).Type.ToString() + "]\n";
                 cd.Text = description.GetInVariableDescription(i).Name;
-                
+                cd.Click += AnyElement_Click;
                 Connector tempCon = new Connector(cd, description.GetInVariableDescription(i).Type,this);
                 m_InputConnectors.Add(tempCon);
             }
@@ -87,6 +88,7 @@ namespace ShaderCreationTool
                 CheckBox cd = (i == 0) ? outBox : outBox.CopyAsSCTElement(true);
                 cd.Location = new Point(cd.Location.X, cd.Location.Y + connectorYOffset * i);
                 cd.Text = description.GetOutVariableDescription(i).Name;
+                cd.Click += AnyElement_Click;
                 Connector tempCon = new Connector(cd, description.GetOutVariableDescription(i).Type,this);
                 m_OutputConnectors.Add(tempCon);
             }
@@ -97,11 +99,13 @@ namespace ShaderCreationTool
             labels[0].Text = description.Name;
             labels[0].MouseDown += TitleLabel_MouseDown;
             labels[0].MouseMove += TitleLabel_MouseMove;
+            labels[0].Click += AnyElement_Click;
 
             //Close Button click setup
             List<Button> buttons = ControlExtensions.GetAllChildreenControls<Button>(m_SctElement).Cast<Button>().ToList();
             buttons[0].Click += CloseButton_Click;
 
+            m_SctElement.Update();
         }
 
         public SCTFunctionNode(Panel nodeTemplate, Point location, ObjectMovedCallback onObjectMoved, FunctionNodeDescription description) :
@@ -210,6 +214,14 @@ namespace ShaderCreationTool
             if (s_ButtonsLocked) return;
             if (p_CloseCallback != null) p_CloseCallback(this);
        
+        }
+
+        private void AnyElement_Click(object sender, EventArgs e)
+        {
+            m_SctElement.SuspendLayout();
+            m_SctElement.BringToFront();
+            ((Control)sender).Focus();
+            m_SctElement.Update();
         }
 
         private void Panel_MouseDown(object sender, MouseEventArgs e)

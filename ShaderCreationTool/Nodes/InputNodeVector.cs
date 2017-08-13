@@ -137,7 +137,7 @@ namespace ShaderCreationTool
             }
 
             s_InstanceCounter++;
-            ShowNode(10);
+            ShowNode(1);
             m_ShaderVariable = new ShaderVectorVariable(0, 0, 0, 1, m_Name);
             Bridge.SetVariable(m_ShaderVariable);
             RefreshShaderVariable();
@@ -218,6 +218,11 @@ namespace ShaderCreationTool
                 ConnectionManager.RemoveConnection(c.ParentConnection);
             }
             m_SctElement.Parent.Controls.Remove(m_SctElement);
+            //new code
+            foreach (Control c in m_SctElement.Controls)
+            {
+                c.Dispose();
+            }
         }
 
         ////// UTIL FOR ASYNC
@@ -225,6 +230,7 @@ namespace ShaderCreationTool
         {
             await Task.Delay(delay);
             m_SctElement.Visible = true;
+            m_SctElement.Update();
         }
 
 
@@ -246,6 +252,7 @@ namespace ShaderCreationTool
 
             ((Control)sender).Focus();
             m_SctElement.BringToFront();
+            m_SctElement.Update();
         }
 
         private void Panel_MouseDown(object sender, MouseEventArgs e)

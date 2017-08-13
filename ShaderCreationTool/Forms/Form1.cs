@@ -388,6 +388,7 @@ namespace ShaderCreationTool
                     Connector.LockAllConnectors();
                 }
             }
+            form.Dispose();
         }
 
         private void AddNodeButton_Click(object sender, EventArgs e)

@@ -38,6 +38,7 @@ namespace ShaderCreationTool
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
             m_SctElement.Location = location;
             m_SctElement.MouseDown += Panel_MouseDown;
+   
 
             //Make object movable
             m_Mover = new MovableObject(m_SctElement);
@@ -130,10 +131,12 @@ namespace ShaderCreationTool
             }
 
             s_InstanceCounter++;
-            ShowNode(10);
+            ShowNode(1);
+           
             m_ShaderVariable = new ShaderVectorVariable(0, 0, 0, 1,m_Name);
             Bridge.SetVariable(m_ShaderVariable);
             SetShaderVariableFromNumeric();
+            
         }
         static public void LockButtons()
         {
@@ -206,7 +209,13 @@ namespace ShaderCreationTool
                 if (!ConnectionManager.ContainsConncetion(c.ParentConnection)) continue;
                 ConnectionManager.RemoveConnection(c.ParentConnection);
             }
+
             m_SctElement.Parent.Controls.Remove(m_SctElement);
+            //new code
+            foreach(Control c in m_SctElement.Controls)
+            {
+                c.Dispose();
+            }
         }
 
         ////// UTIL FOR ASYNC
@@ -214,6 +223,7 @@ namespace ShaderCreationTool
         {
             await Task.Delay(delay);
             m_SctElement.Visible = true;
+            m_SctElement.Update();
         }
 
         ////////////////// UI EVENTS ////////////////
@@ -231,10 +241,10 @@ namespace ShaderCreationTool
 
         private void AnyElement_Click(object sender, EventArgs e)
         {
-
-            ((Control)sender).Focus();
+            m_SctElement.SuspendLayout();
             m_SctElement.BringToFront();
-
+            ((Control)sender).Focus();
+            m_SctElement.Update();
         }
 
         private void Panel_MouseDown(object sender, MouseEventArgs e)

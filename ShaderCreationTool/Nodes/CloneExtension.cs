@@ -52,7 +52,7 @@ namespace ShaderCreationTool
                         propInfo.SetValue(targetInstance, propInfo.GetValue(sourceInstance, null), null);
                 }
             }
-
+          
             foreach (Control control in sourceInstance.Controls)
             {
                 if (control is Label)
