@@ -18,7 +18,7 @@ namespace ShaderCreationTool
         Out
     }
 
-    delegate void BeginConnectionCallback(Connector sender);
+    delegate bool BeginConnectionCallback(Connector sender);
     delegate void BreakConnectionCallback(Connector sender);
 
     class Connector
@@ -54,9 +54,12 @@ namespace ShaderCreationTool
                 if (m_AllConnectorsLocked) return;
                 if (m_BeginConnectionCallback != null)
                 { 
-                    m_BeginConnectionCallback(this);
+                   if( m_BeginConnectionCallback(this))
+                    {
+                        s_PreviouslyClickedConnector = this;
+                    }
                 }
-                s_PreviouslyClickedConnector = this;
+               
 
             }
             else // then click means - disconnect

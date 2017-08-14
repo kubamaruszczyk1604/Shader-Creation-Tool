@@ -50,11 +50,10 @@ namespace ShaderCreationTool
                 OnMouseLeftDown();
             }
         }
-        static int i = 0;
+
         private void OnMessage(ulong message, ulong wParam, ulong lParam)
         {
-           // i++;
-            //SCTConsole.Instance.PrintLine("Refresh call from C++ " + i.ToString() );
+           
             NodeInstantiator.Update(EditAreaPanel);
             if (m_IsConnecting)
             {
@@ -168,21 +167,22 @@ namespace ShaderCreationTool
 
         ////////////////////////////  CALLBACKS   /////////////////////////////
 
-        // Method Called when "no connected" connector is clicked
-        private void OnConnectionBegin(Connector sender)
+        // Method Called when "not connected" connector is clicked
+        private bool OnConnectionBegin(Connector sender)
         {
             // If the program is in "connecting state" already:
             // ..this click was on targer connector - make new connecion
             if (m_IsConnecting)
             {
-                if (!Connection.CheckConnectionValidity(Connector.GetPreviouslyClickedConnector(), sender)) return;
+                if (!Connection.CheckConnectionValidity(Connector.GetPreviouslyClickedConnector(), sender)) return false;
                 var tempCon = new Connection(Connector.GetPreviouslyClickedConnector(), sender, EditAreaPanel);
                 ConnectionManager.AddConnecion(tempCon);
                 CancelIsConnecting();
-                return;
+                return false;
             }
 
             //Connection open request - first connector clicked
+            
             SCTConsole.Instance.PrintLine("Connector on connection begin.");
             m_TempLine = new SimpleZLine(EditAreaPanel);
             m_TempLineOrgin = EditAreaPanel.PointToClient(System.Windows.Forms.Cursor.Position);
@@ -219,6 +219,7 @@ namespace ShaderCreationTool
                     c.SetBackHighlighted();
                 }
             }
+            return true;
         }
 
         private void OnConnectionBreak(Connector sender)
