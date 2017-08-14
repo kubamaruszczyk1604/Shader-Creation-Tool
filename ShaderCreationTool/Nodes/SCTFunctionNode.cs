@@ -194,7 +194,6 @@ namespace ShaderCreationTool
             return outList;
         }
 
-
         public void Dispose()
         {
             List<Connector> connectors = GetAllConnectors();
@@ -207,7 +206,6 @@ namespace ShaderCreationTool
             m_SctElement.Parent.Controls.Remove(m_SctElement);
         }
 
-
         static public void LockButtons()
         {
             s_ButtonsLocked = true;
@@ -217,6 +215,7 @@ namespace ShaderCreationTool
         {
             s_ButtonsLocked = false;
         }
+
         ////////////////// UI EVENTS ////////////////
         private void CloseButton_Click(object sender, EventArgs e)
         {
@@ -248,7 +247,6 @@ namespace ShaderCreationTool
         {
             m_Mover.MoveControlMouseMove(m_SctElement, e);
         }
-
 
     }
 }

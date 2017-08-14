@@ -66,10 +66,8 @@ namespace ShaderCreationTool
                 {
                     m_BreakConnectionCallback(this);
                 }
-               // Disconnect();
-               
+               // Disconnect();       
             }
-       
         }
         
         /////////////////////////////////////////////////////////  PUBLIC  /////////////////////////////////////////////////
@@ -138,8 +136,6 @@ namespace ShaderCreationTool
             m_Control.Checked = false;
             p_ParentConnection = null; 
         }
-
-     
 
         public void SetBackHighlighted()
         {
