@@ -61,7 +61,7 @@ namespace ShaderCreationTool
                         throw new Exception("WRONG SEQUENCE");
                     }
 
-                    Connector tempCon = new Connector(tempBox, varType, this);
+                    Connector tempCon = new Connector(tempBox, varType, this,"IN_" + i.ToString());
                     m_InputConnectors.Add(tempCon);
                 }
                 else

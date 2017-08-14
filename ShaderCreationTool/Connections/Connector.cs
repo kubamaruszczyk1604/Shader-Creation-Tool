@@ -37,13 +37,15 @@ namespace ShaderCreationTool
         private string m_VariableName;
         private ISCTNode p_ParentNode;
         private Color m_StandardColour;
+        private string m_LocalID;
         static private Connector s_PreviouslyClickedConnector;
         static private bool m_AllConnectorsLocked = false;
 
         // PRIVATE (METHODS)
         private void OnClick(object sender, EventArgs e)
         {
-          
+
+            SCTConsole.Instance.PrintLine("Connector with local ID: " + this.LocalID);
             if (!Connected)
             {
                 m_Control.Checked = false;
@@ -80,9 +82,11 @@ namespace ShaderCreationTool
         public Control WinFormControl { get { return m_Control; } }
         public Connection ParentConnection { get { return p_ParentConnection; } }
         public ISCTNode ParentNode { get { return p_ParentNode; } }
+        public string LocalID { get { return m_LocalID; } }
        
-        public Connector(CheckBox control,ShaderVariableType variableType,ISCTNode parentNode)
+        public Connector(CheckBox control,ShaderVariableType variableType,ISCTNode parentNode, string localID)
         {
+            m_LocalID = localID;
             p_ParentNode = parentNode;
             m_Control = control;
             m_Control.Click += OnClick;

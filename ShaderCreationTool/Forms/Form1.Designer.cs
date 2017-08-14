@@ -33,6 +33,19 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
+            this.Texture2DInputWindow = new System.Windows.Forms.Panel();
+            this.closeButton_Texture2D = new System.Windows.Forms.Button();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.labelNameTexture2D = new System.Windows.Forms.Label();
+            this.textBox_Name_Texture2D = new System.Windows.Forms.TextBox();
+            this.texture2D_Inner_Panel = new System.Windows.Forms.Panel();
+            this.textBox_File_Textue2D = new System.Windows.Forms.TextBox();
+            this.fn_Label_Texture2D = new System.Windows.Forms.Label();
+            this.panel_Image = new System.Windows.Forms.Panel();
+            this.label_Preview = new System.Windows.Forms.Label();
+            this.In_Slot_UVs = new System.Windows.Forms.CheckBox();
+            this.Out_Slot_Texture2D = new System.Windows.Forms.CheckBox();
+            this.label_Texture_Title = new System.Windows.Forms.Label();
             this.TransparentNodePanel = new System.Windows.Forms.Panel();
             this.FloatInputWindow = new System.Windows.Forms.Panel();
             this.closeButton_Float = new System.Windows.Forms.Button();
@@ -132,21 +145,12 @@
             this.gLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Texture2DInputWindow = new System.Windows.Forms.Panel();
-            this.closeButton_Texture2D = new System.Windows.Forms.Button();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.labelNameTexture2D = new System.Windows.Forms.Label();
-            this.textBox_Name_Texture2D = new System.Windows.Forms.TextBox();
-            this.texture2D_Inner_Panel = new System.Windows.Forms.Panel();
-            this.Out_Slot_Texture2D = new System.Windows.Forms.CheckBox();
-            this.label_Texture_Title = new System.Windows.Forms.Label();
-            this.In_Slot_UVs = new System.Windows.Forms.CheckBox();
-            this.panel_Image = new System.Windows.Forms.Panel();
-            this.fn_Label_Texture2D = new System.Windows.Forms.Label();
-            this.textBox_File_Textue2D = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label_Preview = new System.Windows.Forms.Label();
             this.EditAreaPanel.SuspendLayout();
+            this.Texture2DInputWindow.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.texture2D_Inner_Panel.SuspendLayout();
+            this.panel_Image.SuspendLayout();
             this.FloatInputWindow.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -186,10 +190,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.AddGroupBox.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
-            this.Texture2DInputWindow.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.texture2D_Inner_Panel.SuspendLayout();
-            this.panel_Image.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -245,6 +245,170 @@
             this.EditAreaPanel.TabIndex = 19;
             this.EditAreaPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.EditAreaPanel_Scroll);
             this.EditAreaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.EditAreaPanel_Paint);
+            // 
+            // Texture2DInputWindow
+            // 
+            this.Texture2DInputWindow.BackColor = System.Drawing.Color.Black;
+            this.Texture2DInputWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Texture2DInputWindow.Controls.Add(this.closeButton_Texture2D);
+            this.Texture2DInputWindow.Controls.Add(this.panel9);
+            this.Texture2DInputWindow.Controls.Add(this.label_Texture_Title);
+            this.Texture2DInputWindow.Enabled = false;
+            this.Texture2DInputWindow.Location = new System.Drawing.Point(40, 1150);
+            this.Texture2DInputWindow.Name = "Texture2DInputWindow";
+            this.Texture2DInputWindow.Size = new System.Drawing.Size(206, 293);
+            this.Texture2DInputWindow.TabIndex = 32;
+            this.Texture2DInputWindow.Visible = false;
+            // 
+            // closeButton_Texture2D
+            // 
+            this.closeButton_Texture2D.BackColor = System.Drawing.Color.Black;
+            this.closeButton_Texture2D.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButton_Texture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButton_Texture2D.ForeColor = System.Drawing.Color.Transparent;
+            this.closeButton_Texture2D.Location = new System.Drawing.Point(180, 3);
+            this.closeButton_Texture2D.Name = "closeButton_Texture2D";
+            this.closeButton_Texture2D.Size = new System.Drawing.Size(22, 22);
+            this.closeButton_Texture2D.TabIndex = 2;
+            this.closeButton_Texture2D.Text = "X";
+            this.closeButton_Texture2D.UseVisualStyleBackColor = false;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel9.Controls.Add(this.labelNameTexture2D);
+            this.panel9.Controls.Add(this.textBox_Name_Texture2D);
+            this.panel9.Controls.Add(this.texture2D_Inner_Panel);
+            this.panel9.Location = new System.Drawing.Point(-1, 26);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(206, 266);
+            this.panel9.TabIndex = 1;
+            // 
+            // labelNameTexture2D
+            // 
+            this.labelNameTexture2D.AutoSize = true;
+            this.labelNameTexture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNameTexture2D.ForeColor = System.Drawing.Color.White;
+            this.labelNameTexture2D.Location = new System.Drawing.Point(9, 6);
+            this.labelNameTexture2D.Name = "labelNameTexture2D";
+            this.labelNameTexture2D.Size = new System.Drawing.Size(39, 13);
+            this.labelNameTexture2D.TabIndex = 2;
+            this.labelNameTexture2D.Text = "Name";
+            // 
+            // textBox_Name_Texture2D
+            // 
+            this.textBox_Name_Texture2D.BackColor = System.Drawing.Color.LightGray;
+            this.textBox_Name_Texture2D.Location = new System.Drawing.Point(9, 22);
+            this.textBox_Name_Texture2D.Name = "textBox_Name_Texture2D";
+            this.textBox_Name_Texture2D.Size = new System.Drawing.Size(187, 20);
+            this.textBox_Name_Texture2D.TabIndex = 1;
+            this.textBox_Name_Texture2D.Text = ".";
+            // 
+            // texture2D_Inner_Panel
+            // 
+            this.texture2D_Inner_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.texture2D_Inner_Panel.Controls.Add(this.textBox_File_Textue2D);
+            this.texture2D_Inner_Panel.Controls.Add(this.fn_Label_Texture2D);
+            this.texture2D_Inner_Panel.Controls.Add(this.panel_Image);
+            this.texture2D_Inner_Panel.Controls.Add(this.In_Slot_UVs);
+            this.texture2D_Inner_Panel.Controls.Add(this.Out_Slot_Texture2D);
+            this.texture2D_Inner_Panel.Location = new System.Drawing.Point(3, 48);
+            this.texture2D_Inner_Panel.Name = "texture2D_Inner_Panel";
+            this.texture2D_Inner_Panel.Size = new System.Drawing.Size(199, 205);
+            this.texture2D_Inner_Panel.TabIndex = 0;
+            // 
+            // textBox_File_Textue2D
+            // 
+            this.textBox_File_Textue2D.BackColor = System.Drawing.Color.Black;
+            this.textBox_File_Textue2D.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox_File_Textue2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_File_Textue2D.ForeColor = System.Drawing.Color.White;
+            this.textBox_File_Textue2D.Location = new System.Drawing.Point(31, 11);
+            this.textBox_File_Textue2D.Name = "textBox_File_Textue2D";
+            this.textBox_File_Textue2D.ReadOnly = true;
+            this.textBox_File_Textue2D.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.textBox_File_Textue2D.Size = new System.Drawing.Size(164, 20);
+            this.textBox_File_Textue2D.TabIndex = 12;
+            this.textBox_File_Textue2D.Text = "-double click here to select file-";
+            this.textBox_File_Textue2D.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_File_Textue2D.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox_File_Textue2D_MouseDoubleClick);
+            // 
+            // fn_Label_Texture2D
+            // 
+            this.fn_Label_Texture2D.AutoSize = true;
+            this.fn_Label_Texture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fn_Label_Texture2D.ForeColor = System.Drawing.Color.White;
+            this.fn_Label_Texture2D.Location = new System.Drawing.Point(2, 14);
+            this.fn_Label_Texture2D.Name = "fn_Label_Texture2D";
+            this.fn_Label_Texture2D.Size = new System.Drawing.Size(26, 13);
+            this.fn_Label_Texture2D.TabIndex = 11;
+            this.fn_Label_Texture2D.Text = "File:";
+            // 
+            // panel_Image
+            // 
+            this.panel_Image.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel_Image.BackgroundImage")));
+            this.panel_Image.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel_Image.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel_Image.Controls.Add(this.label_Preview);
+            this.panel_Image.Location = new System.Drawing.Point(3, 52);
+            this.panel_Image.Name = "panel_Image";
+            this.panel_Image.Size = new System.Drawing.Size(193, 120);
+            this.panel_Image.TabIndex = 10;
+            // 
+            // label_Preview
+            // 
+            this.label_Preview.AutoSize = true;
+            this.label_Preview.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Preview.ForeColor = System.Drawing.Color.White;
+            this.label_Preview.Location = new System.Drawing.Point(63, -2);
+            this.label_Preview.Name = "label_Preview";
+            this.label_Preview.Size = new System.Drawing.Size(57, 15);
+            this.label_Preview.TabIndex = 13;
+            this.label_Preview.Text = "Preview";
+            // 
+            // In_Slot_UVs
+            // 
+            this.In_Slot_UVs.AutoSize = true;
+            this.In_Slot_UVs.BackColor = System.Drawing.Color.Transparent;
+            this.In_Slot_UVs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.In_Slot_UVs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.In_Slot_UVs.ForeColor = System.Drawing.Color.BurlyWood;
+            this.In_Slot_UVs.Location = new System.Drawing.Point(3, 175);
+            this.In_Slot_UVs.Name = "In_Slot_UVs";
+            this.In_Slot_UVs.Size = new System.Drawing.Size(93, 20);
+            this.In_Slot_UVs.TabIndex = 9;
+            this.In_Slot_UVs.Text = "Texcoord";
+            this.In_Slot_UVs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.In_Slot_UVs.UseVisualStyleBackColor = false;
+            // 
+            // Out_Slot_Texture2D
+            // 
+            this.Out_Slot_Texture2D.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Out_Slot_Texture2D.AutoSize = true;
+            this.Out_Slot_Texture2D.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_Texture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Out_Slot_Texture2D.ForeColor = System.Drawing.Color.BurlyWood;
+            this.Out_Slot_Texture2D.Location = new System.Drawing.Point(126, 175);
+            this.Out_Slot_Texture2D.Name = "Out_Slot_Texture2D";
+            this.Out_Slot_Texture2D.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Out_Slot_Texture2D.Size = new System.Drawing.Size(73, 20);
+            this.Out_Slot_Texture2D.TabIndex = 8;
+            this.Out_Slot_Texture2D.Text = "OutCol";
+            this.Out_Slot_Texture2D.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_Texture2D.UseVisualStyleBackColor = true;
+            // 
+            // label_Texture_Title
+            // 
+            this.label_Texture_Title.AutoSize = true;
+            this.label_Texture_Title.BackColor = System.Drawing.Color.Transparent;
+            this.label_Texture_Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Texture_Title.ForeColor = System.Drawing.Color.White;
+            this.label_Texture_Title.Location = new System.Drawing.Point(57, 4);
+            this.label_Texture_Title.Name = "label_Texture_Title";
+            this.label_Texture_Title.Size = new System.Drawing.Size(85, 18);
+            this.label_Texture_Title.TabIndex = 0;
+            this.label_Texture_Title.Text = "Texture2D";
+            this.label_Texture_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TransparentNodePanel
             // 
@@ -1501,7 +1665,7 @@
             // 
             // MainMenuStrip
             // 
-            this.MainMenuStrip.BackColor = System.Drawing.Color.Gray;
+            this.MainMenuStrip.BackColor = System.Drawing.Color.DimGray;
             this.MainMenuStrip.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
@@ -1514,7 +1678,7 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.AutoToolTip = true;
-            this.fileToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
+            this.fileToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
@@ -1532,7 +1696,7 @@
             this.openToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.openToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // saveToolStripMenuItem
@@ -1540,7 +1704,7 @@
             this.saveToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // saveAsToolStripMenuItem
@@ -1548,7 +1712,7 @@
             this.saveAsToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.saveAsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.saveAsToolStripMenuItem.Text = "Save As";
             // 
             // exportToToolStripMenuItem
@@ -1559,7 +1723,7 @@
             this.hLSLToolStripMenuItem});
             this.exportToToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.exportToToolStripMenuItem.Name = "exportToToolStripMenuItem";
-            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.exportToToolStripMenuItem.Text = "Export to..";
             // 
             // gLSLToolStripMenuItem
@@ -1579,176 +1743,12 @@
             this.exitToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.exitToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // Texture2DInputWindow
-            // 
-            this.Texture2DInputWindow.BackColor = System.Drawing.Color.Black;
-            this.Texture2DInputWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Texture2DInputWindow.Controls.Add(this.closeButton_Texture2D);
-            this.Texture2DInputWindow.Controls.Add(this.panel9);
-            this.Texture2DInputWindow.Controls.Add(this.label_Texture_Title);
-            this.Texture2DInputWindow.Enabled = false;
-            this.Texture2DInputWindow.Location = new System.Drawing.Point(40, 1150);
-            this.Texture2DInputWindow.Name = "Texture2DInputWindow";
-            this.Texture2DInputWindow.Size = new System.Drawing.Size(206, 293);
-            this.Texture2DInputWindow.TabIndex = 32;
-            this.Texture2DInputWindow.Visible = false;
-            // 
-            // closeButton_Texture2D
-            // 
-            this.closeButton_Texture2D.BackColor = System.Drawing.Color.Black;
-            this.closeButton_Texture2D.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton_Texture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeButton_Texture2D.ForeColor = System.Drawing.Color.Transparent;
-            this.closeButton_Texture2D.Location = new System.Drawing.Point(180, 3);
-            this.closeButton_Texture2D.Name = "closeButton_Texture2D";
-            this.closeButton_Texture2D.Size = new System.Drawing.Size(22, 22);
-            this.closeButton_Texture2D.TabIndex = 2;
-            this.closeButton_Texture2D.Text = "X";
-            this.closeButton_Texture2D.UseVisualStyleBackColor = false;
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel9.Controls.Add(this.labelNameTexture2D);
-            this.panel9.Controls.Add(this.textBox_Name_Texture2D);
-            this.panel9.Controls.Add(this.texture2D_Inner_Panel);
-            this.panel9.Location = new System.Drawing.Point(-1, 26);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(206, 266);
-            this.panel9.TabIndex = 1;
-            // 
-            // labelNameTexture2D
-            // 
-            this.labelNameTexture2D.AutoSize = true;
-            this.labelNameTexture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNameTexture2D.ForeColor = System.Drawing.Color.White;
-            this.labelNameTexture2D.Location = new System.Drawing.Point(9, 6);
-            this.labelNameTexture2D.Name = "labelNameTexture2D";
-            this.labelNameTexture2D.Size = new System.Drawing.Size(39, 13);
-            this.labelNameTexture2D.TabIndex = 2;
-            this.labelNameTexture2D.Text = "Name";
-            // 
-            // textBox_Name_Texture2D
-            // 
-            this.textBox_Name_Texture2D.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_Name_Texture2D.Location = new System.Drawing.Point(9, 22);
-            this.textBox_Name_Texture2D.Name = "textBox_Name_Texture2D";
-            this.textBox_Name_Texture2D.Size = new System.Drawing.Size(187, 20);
-            this.textBox_Name_Texture2D.TabIndex = 1;
-            this.textBox_Name_Texture2D.Text = ".";
-            // 
-            // texture2D_Inner_Panel
-            // 
-            this.texture2D_Inner_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.texture2D_Inner_Panel.Controls.Add(this.textBox_File_Textue2D);
-            this.texture2D_Inner_Panel.Controls.Add(this.fn_Label_Texture2D);
-            this.texture2D_Inner_Panel.Controls.Add(this.panel_Image);
-            this.texture2D_Inner_Panel.Controls.Add(this.In_Slot_UVs);
-            this.texture2D_Inner_Panel.Controls.Add(this.Out_Slot_Texture2D);
-            this.texture2D_Inner_Panel.Location = new System.Drawing.Point(3, 48);
-            this.texture2D_Inner_Panel.Name = "texture2D_Inner_Panel";
-            this.texture2D_Inner_Panel.Size = new System.Drawing.Size(199, 205);
-            this.texture2D_Inner_Panel.TabIndex = 0;
-            // 
-            // Out_Slot_Texture2D
-            // 
-            this.Out_Slot_Texture2D.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Out_Slot_Texture2D.AutoSize = true;
-            this.Out_Slot_Texture2D.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Out_Slot_Texture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Out_Slot_Texture2D.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_Slot_Texture2D.Location = new System.Drawing.Point(126, 175);
-            this.Out_Slot_Texture2D.Name = "Out_Slot_Texture2D";
-            this.Out_Slot_Texture2D.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Out_Slot_Texture2D.Size = new System.Drawing.Size(73, 20);
-            this.Out_Slot_Texture2D.TabIndex = 8;
-            this.Out_Slot_Texture2D.Text = "OutCol";
-            this.Out_Slot_Texture2D.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Out_Slot_Texture2D.UseVisualStyleBackColor = true;
-            // 
-            // label_Texture_Title
-            // 
-            this.label_Texture_Title.AutoSize = true;
-            this.label_Texture_Title.BackColor = System.Drawing.Color.Transparent;
-            this.label_Texture_Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Texture_Title.ForeColor = System.Drawing.Color.White;
-            this.label_Texture_Title.Location = new System.Drawing.Point(57, 4);
-            this.label_Texture_Title.Name = "label_Texture_Title";
-            this.label_Texture_Title.Size = new System.Drawing.Size(85, 18);
-            this.label_Texture_Title.TabIndex = 0;
-            this.label_Texture_Title.Text = "Texture2D";
-            this.label_Texture_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // In_Slot_UVs
-            // 
-            this.In_Slot_UVs.AutoSize = true;
-            this.In_Slot_UVs.BackColor = System.Drawing.Color.Transparent;
-            this.In_Slot_UVs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.In_Slot_UVs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.In_Slot_UVs.ForeColor = System.Drawing.Color.BurlyWood;
-            this.In_Slot_UVs.Location = new System.Drawing.Point(3, 175);
-            this.In_Slot_UVs.Name = "In_Slot_UVs";
-            this.In_Slot_UVs.Size = new System.Drawing.Size(93, 20);
-            this.In_Slot_UVs.TabIndex = 9;
-            this.In_Slot_UVs.Text = "Texcoord";
-            this.In_Slot_UVs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.In_Slot_UVs.UseVisualStyleBackColor = false;
-            // 
-            // panel_Image
-            // 
-            this.panel_Image.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel_Image.BackgroundImage")));
-            this.panel_Image.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel_Image.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel_Image.Controls.Add(this.label_Preview);
-            this.panel_Image.Location = new System.Drawing.Point(3, 52);
-            this.panel_Image.Name = "panel_Image";
-            this.panel_Image.Size = new System.Drawing.Size(193, 120);
-            this.panel_Image.TabIndex = 10;
-            // 
-            // fn_Label_Texture2D
-            // 
-            this.fn_Label_Texture2D.AutoSize = true;
-            this.fn_Label_Texture2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fn_Label_Texture2D.ForeColor = System.Drawing.Color.White;
-            this.fn_Label_Texture2D.Location = new System.Drawing.Point(2, 14);
-            this.fn_Label_Texture2D.Name = "fn_Label_Texture2D";
-            this.fn_Label_Texture2D.Size = new System.Drawing.Size(26, 13);
-            this.fn_Label_Texture2D.TabIndex = 11;
-            this.fn_Label_Texture2D.Text = "File:";
-            // 
-            // textBox_File_Textue2D
-            // 
-            this.textBox_File_Textue2D.BackColor = System.Drawing.Color.Black;
-            this.textBox_File_Textue2D.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox_File_Textue2D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_File_Textue2D.ForeColor = System.Drawing.Color.White;
-            this.textBox_File_Textue2D.Location = new System.Drawing.Point(31, 11);
-            this.textBox_File_Textue2D.Name = "textBox_File_Textue2D";
-            this.textBox_File_Textue2D.ReadOnly = true;
-            this.textBox_File_Textue2D.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.textBox_File_Textue2D.Size = new System.Drawing.Size(164, 20);
-            this.textBox_File_Textue2D.TabIndex = 12;
-            this.textBox_File_Textue2D.Text = "-double click here to select file-";
-            this.textBox_File_Textue2D.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_File_Textue2D.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox_File_Textue2D_MouseDoubleClick);
             // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // label_Preview
-            // 
-            this.label_Preview.AutoSize = true;
-            this.label_Preview.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Preview.ForeColor = System.Drawing.Color.White;
-            this.label_Preview.Location = new System.Drawing.Point(63, -2);
-            this.label_Preview.Name = "label_Preview";
-            this.label_Preview.Size = new System.Drawing.Size(57, 15);
-            this.label_Preview.TabIndex = 13;
-            this.label_Preview.Text = "Preview";
             // 
             // MainWindow
             // 
@@ -1770,6 +1770,14 @@
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.Shown += new System.EventHandler(this.MainWindow_Shown);
             this.EditAreaPanel.ResumeLayout(false);
+            this.Texture2DInputWindow.ResumeLayout(false);
+            this.Texture2DInputWindow.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.texture2D_Inner_Panel.ResumeLayout(false);
+            this.texture2D_Inner_Panel.PerformLayout();
+            this.panel_Image.ResumeLayout(false);
+            this.panel_Image.PerformLayout();
             this.FloatInputWindow.ResumeLayout(false);
             this.FloatInputWindow.PerformLayout();
             this.panel7.ResumeLayout(false);
@@ -1829,14 +1837,6 @@
             this.AddGroupBox.ResumeLayout(false);
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
-            this.Texture2DInputWindow.ResumeLayout(false);
-            this.Texture2DInputWindow.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
-            this.texture2D_Inner_Panel.ResumeLayout(false);
-            this.texture2D_Inner_Panel.PerformLayout();
-            this.panel_Image.ResumeLayout(false);
-            this.panel_Image.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

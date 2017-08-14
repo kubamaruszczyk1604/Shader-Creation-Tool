@@ -68,7 +68,8 @@ namespace ShaderCreationTool
                 p.Size = new Size(p.Size.Width, p.Size.Height + connectorYOffset * (biggestVarCount-1));
                 p.Click += AnyElement_Click;
             }
-
+            int inConnectorCounter = 0;
+            int outConnectorCounter = 0;
             //Create connectors
             m_OutputConnectors = new List<Connector>();
             m_InputConnectors = new List<Connector>();
@@ -79,8 +80,9 @@ namespace ShaderCreationTool
                // cd.Text = "[" + description.GetInVariableDescription(i).Type.ToString() + "]\n";
                 cd.Text = description.GetInVariableDescription(i).Name;
                 cd.Click += AnyElement_Click;
-                Connector tempCon = new Connector(cd, description.GetInVariableDescription(i).Type,this);
+                Connector tempCon = new Connector(cd, description.GetInVariableDescription(i).Type,this, "IN_" + inConnectorCounter.ToString());
                 m_InputConnectors.Add(tempCon);
+                inConnectorCounter++;
             }
 
             for (int i = 0; i < description.OutputCount; ++i)
@@ -89,8 +91,9 @@ namespace ShaderCreationTool
                 cd.Location = new Point(cd.Location.X, cd.Location.Y + connectorYOffset * i);
                 cd.Text = description.GetOutVariableDescription(i).Name;
                 cd.Click += AnyElement_Click;
-                Connector tempCon = new Connector(cd, description.GetOutVariableDescription(i).Type,this);
+                Connector tempCon = new Connector(cd, description.GetOutVariableDescription(i).Type,this, "OUT_" + outConnectorCounter.ToString());
                 m_OutputConnectors.Add(tempCon);
+                outConnectorCounter++;
             }
 
 

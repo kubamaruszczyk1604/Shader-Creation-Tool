@@ -49,7 +49,8 @@ namespace ShaderCreationTool
             m_OutputConnectors = new List<Connector>();
             m_InputConnectors = new List<Connector>();
             int tbCounter = 0;
-
+            int inConnectorCounter = 0;
+            int outConnectorCounter = 0;
             List<Control> allControlls = ControlExtensions.GetAllChildreenControls<Control>(m_SctElement).Cast<Control>().ToList();
             foreach (Control control in allControlls)
             {
@@ -62,13 +63,15 @@ namespace ShaderCreationTool
                     CheckBox checkBox = (CheckBox)control;
                     if (checkBox.Name.Contains(Connector.s_OutSlotSequenceID))
                     {
-                        Connector tempCon = new Connector(checkBox, ShaderVariableType.Vector4, this);
+                        Connector tempCon = new Connector(checkBox, ShaderVariableType.Vector4, this,"OUT_" + outConnectorCounter.ToString());
                         m_OutputConnectors.Add(tempCon);
+                        outConnectorCounter++;
                     }
                     else if (checkBox.Name.Contains(Connector.s_InSlotSequenceID))
                     {
-                        Connector tempCon = new Connector(checkBox, ShaderVariableType.Vector2, this);
+                        Connector tempCon = new Connector(checkBox, ShaderVariableType.Vector2, this,"IN_" + inConnectorCounter.ToString());
                         m_InputConnectors.Add(tempCon);
+                        inConnectorCounter++;
                     }
                 }
 

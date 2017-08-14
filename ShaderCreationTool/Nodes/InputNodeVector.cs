@@ -14,6 +14,7 @@ namespace ShaderCreationTool
 {
     class InputNodeVector :ISCTNode, IDisposable,IInputNode
     {
+        // Things to save: Position, Dimensions, Name, Values
 
         private Panel m_SctElement;
         private MovableObject m_Mover;
@@ -29,12 +30,12 @@ namespace ShaderCreationTool
         private static bool s_ButtonsLocked = false;
 
         ShaderVectorVariable m_ShaderVariable;
-
         private static int s_InstanceCounter = 0;
 
 
         public InputNodeVector(Panel nodeTemplate, Point location)
         {
+
             m_ConnectorCount = 0;
             //Copy template (make local instance)
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
@@ -56,6 +57,7 @@ namespace ShaderCreationTool
             else if (m_SctElement.Name.Contains("2")) varType = ShaderVariableType.Vector2;
             else varType = ShaderVariableType.Single;
 
+            int connectorCounter = 0;
             foreach (Control control in allControlls)
             {
                 if (control.Name.Equals("")) continue;
@@ -66,8 +68,9 @@ namespace ShaderCreationTool
                     if (checkBox.Name.Contains(Connector.s_OutSlotSequenceID))
                     {
                         //////////////////////////// TU JEST TEN BLAD ------->>>>>>>>>>
-                        Connector tempCon = new Connector(checkBox, varType, this);
+                        Connector tempCon = new Connector(checkBox, varType, this, "OUT_" + connectorCounter.ToString());
                         m_OutputConnectors.Add(tempCon);
+                        connectorCounter++;
                     }
                     else
                     {
