@@ -25,6 +25,8 @@ namespace ShaderCreationTool
 
         //////////////////////////////////////////  PUBLIC  ///////////////////////////////////////////////
         
+        public NodeType GetNodeType() { return NodeType.Funtion; }
+
         public SCTFunctionNode(Panel nodeTemplate, Point location, FunctionNodeDescription description)
         {
             //Copy template (make local instance)

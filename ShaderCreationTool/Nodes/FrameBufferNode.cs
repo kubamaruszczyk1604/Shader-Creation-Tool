@@ -20,6 +20,8 @@ namespace ShaderCreationTool
         private List<Connector> m_InputConnectors;
         private string m_Label = string.Empty;
 
+        public NodeType GetNodeType() { return NodeType.Target; }
+
         public FrameBufferNode(Panel windowControl)
         {
             //Copy template (make local instance)

@@ -30,6 +30,7 @@ namespace ShaderCreationTool
         private static bool s_ButtonsLocked = false;
         private static int s_InstanceCounter = 0;
 
+        public NodeType GetNodeType() { return NodeType.Input_Colour; }
 
         public InputNodeColour(Panel nodeTemplate, Point location)
         {

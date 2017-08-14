@@ -34,6 +34,7 @@ namespace ShaderCreationTool
         //Remember last choice of path for user convenience
         private static string s_LastTexturePath = string.Empty;
 
+        public NodeType GetNodeType() { return NodeType.Input_Texture2D; }
 
         public InputNodeTexture2D(Panel nodeTemplate, Point location)
         {

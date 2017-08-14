@@ -33,6 +33,7 @@ namespace ShaderCreationTool
         Connector GetConnector(ConnectionDirection type, int index);
         List<Connector> GetAllConnectors(ConnectionDirection type);
         List<Connector> GetAllConnectors();
+        NodeType GetNodeType();
     }
 
     interface IInputNode

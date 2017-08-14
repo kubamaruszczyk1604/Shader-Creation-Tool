@@ -26,12 +26,14 @@ namespace ShaderCreationTool
         private NumericUpDown[] m_Numeric = new NumericUpDown[4];
         private string m_Name;
         private int m_ConnectorCount;
-
+        private NodeType m_NodeType;
         private static bool s_ButtonsLocked = false;
 
         ShaderVectorVariable m_ShaderVariable;
         private static int s_InstanceCounter = 0;
 
+
+        public NodeType GetNodeType() { return m_NodeType; }
 
         public InputNodeVector(Panel nodeTemplate, Point location)
         {
@@ -50,12 +52,16 @@ namespace ShaderCreationTool
             List<Control> allControlls = ControlExtensions.GetAllChildreenControls<Control>(m_SctElement).Cast<Control>().ToList();
             //allControlls.Add(m_SctElement);
 
-            ShaderVariableType varType = ShaderVariableType.Single;
+            var varType = ShaderVariableType.Single;
 
-            if (m_SctElement.Name.Contains("4")) varType = ShaderVariableType.Vector4;
-            else if (m_SctElement.Name.Contains("3")) varType = ShaderVariableType.Vector3;
-            else if (m_SctElement.Name.Contains("2")) varType = ShaderVariableType.Vector2;
-            else varType = ShaderVariableType.Single;
+            if (m_SctElement.Name.Contains("4"))
+            { varType = ShaderVariableType.Vector4; m_NodeType = NodeType.Input_Float4; }
+            else if (m_SctElement.Name.Contains("3"))
+            { varType = ShaderVariableType.Vector3; m_NodeType = NodeType.Input_Float3; }
+            else if (m_SctElement.Name.Contains("2"))
+            { varType = ShaderVariableType.Vector2; m_NodeType = NodeType.Input_Float2; }
+            else
+            { varType = ShaderVariableType.Single; m_NodeType = NodeType.Input_Float; }
 
             int connectorCounter = 0;
             foreach (Control control in allControlls)
