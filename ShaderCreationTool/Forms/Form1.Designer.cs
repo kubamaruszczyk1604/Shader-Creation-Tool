@@ -216,6 +216,7 @@
             this.button44.TabIndex = 14;
             this.button44.Text = "Select Mesh";
             this.button44.UseVisualStyleBackColor = false;
+            this.button44.Click += new System.EventHandler(this.button44_Click);
             // 
             // EditAreaPanel
             // 
@@ -1662,6 +1663,7 @@
             this.button31.TabIndex = 10;
             this.button31.Text = "Add Material Property";
             this.button31.UseVisualStyleBackColor = false;
+            this.button31.Click += new System.EventHandler(this.button31_Click);
             // 
             // MainMenuStrip
             // 
@@ -1696,7 +1698,7 @@
             this.openToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.openToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // saveToolStripMenuItem
@@ -1704,7 +1706,7 @@
             this.saveToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // saveAsToolStripMenuItem
@@ -1712,7 +1714,7 @@
             this.saveAsToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.saveAsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.saveAsToolStripMenuItem.Text = "Save As";
             // 
             // exportToToolStripMenuItem
@@ -1723,7 +1725,7 @@
             this.hLSLToolStripMenuItem});
             this.exportToToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.exportToToolStripMenuItem.Name = "exportToToolStripMenuItem";
-            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exportToToolStripMenuItem.Text = "Export to..";
             // 
             // gLSLToolStripMenuItem
@@ -1743,7 +1745,7 @@
             this.exitToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.exitToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // errorProvider1

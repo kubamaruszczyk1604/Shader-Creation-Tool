@@ -452,6 +452,22 @@ namespace ShaderCreationTool
         {
 
         }
+
+        private void button44_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < ConnectionManager.ConnectionCount; ++i)
+            {
+                ConnectionManager.GetConnection(i).TestKillLine();
+            }
+        }
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < ConnectionManager.ConnectionCount; ++i)
+            {
+                ConnectionManager.GetConnection(i).TestRebuiltLine();
+            }
+        }
     }
 
 

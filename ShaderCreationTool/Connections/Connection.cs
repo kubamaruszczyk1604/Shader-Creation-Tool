@@ -74,18 +74,38 @@ namespace ShaderCreationTool
         public void Draw(Graphics g)
         {
             if (!m_ConnectedFlag) return;
-            m_Line.DrawConnectionLine(g, m_pSource.WinFormControl, m_pDestination.WinFormControl,3,3);
+          if(m_Line != null)
+                m_Line.DrawConnectionLine(g, m_pSource.WinFormControl, m_pDestination.WinFormControl,3,3);
         }
 
         public void UpdateOnObjectMoved()
         {
             if (!m_ConnectedFlag) return;
-            m_Line.Invalidate();
+            if (m_Line != null) m_Line.Invalidate();
         }
 
         public void Dispose()
         {
             m_Line.Dispose();
+        }
+
+        private Point x;
+        private Point y;
+
+        public void TestKillLine()
+        {
+            m_Line.GetConfig(out x, out y);
+            m_Line.Invalidate();
+            m_Line.Dispose();
+            
+            m_Line = null;
+        }
+
+        public void TestRebuiltLine()
+        {
+            m_Line = new ConnectionLine(DrawOnControl);
+            m_Line.ApplyConfig(x, y);
+            m_Line.Invalidate();
         }
        
 

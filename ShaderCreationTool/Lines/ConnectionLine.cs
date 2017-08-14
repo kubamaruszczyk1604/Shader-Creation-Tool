@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ShaderCreationTool
 {
@@ -103,6 +104,31 @@ namespace ShaderCreationTool
 
         }
 
+
+        public void Save(StreamWriter writer)
+        {
+
+        } 
+
+        public void ApplyConfig(Point x, Point y)
+        {
+         
+            m_XRegulationButton.Location = x;
+            OnXbuttonMoved();
+            m_YRegulationButton.Location = y;
+            OnYbuttonMoved();
+            m_XMoving = false;
+            m_YMoving = false;
+           // m_CapturedYPosition = false;
+        }
+
+        public void GetConfig(out Point x, out Point y)
+        {
+            x = new Point( m_XRegulationButton.Location.X- m_XRegulationButton.Size.Width/2,
+                         m_XRegulationButton.Location.Y);
+            y = new Point (m_YRegulationButton.Location.X, m_YRegulationButton.Location.Y+
+                m_YRegulationButton.Size.Height/2);
+        }
 
 
         public void DrawConnectionLine(Graphics g, Point a, Point b)
