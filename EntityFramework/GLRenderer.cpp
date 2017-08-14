@@ -281,8 +281,7 @@ namespace KLM_FRAMEWORK
 			if (samplerID != -1 && texture)
 			{
 				glUniform1i(samplerID, i);
-				/*if(i == 0) */glActiveTexture(GL_TEXTURE0 + i);
-				/*if(i == 1)*/ //glActiveTexture(GL_TEXTURE1);
+				glActiveTexture(GL_TEXTURE0 + i);
 				glBindTexture(GL_TEXTURE_2D, texture->GetID());
 			}
 		}

@@ -53,7 +53,8 @@ namespace ShaderCreationTool
 
         private void OnMessage(ulong message, ulong wParam, ulong lParam)
         {
-           
+            label_ConnectionCount.Text = ConnectionManager.ConnectionCount.ToString();
+            label_NodeCount.Text = m_Nodes.Count.ToString();
             NodeInstantiator.Update(EditAreaPanel);
             if (m_IsConnecting)
             {
