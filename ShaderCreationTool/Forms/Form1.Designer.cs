@@ -151,6 +151,10 @@
             this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addVariableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uniformVariableNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.functionNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditAreaPanel.SuspendLayout();
             this.Texture2DInputWindow.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -202,7 +206,7 @@
             // button1
             // 
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(135, 1);
+            this.button1.Location = new System.Drawing.Point(416, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 32);
             this.button1.TabIndex = 0;
@@ -252,6 +256,7 @@
             this.EditAreaPanel.Size = new System.Drawing.Size(1312, 703);
             this.EditAreaPanel.TabIndex = 19;
             this.EditAreaPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.EditAreaPanel_Scroll);
+            this.EditAreaPanel.Click += new System.EventHandler(this.EditAreaPanel_Click);
             this.EditAreaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.EditAreaPanel_Paint);
             // 
             // Texture2DInputWindow
@@ -339,7 +344,6 @@
             this.textBox_File_Textue2D.TabIndex = 12;
             this.textBox_File_Textue2D.Text = "-double click here to select file-";
             this.textBox_File_Textue2D.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_File_Textue2D.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox_File_Textue2D_MouseDoubleClick);
             // 
             // fn_Label_Texture2D
             // 
@@ -1740,7 +1744,8 @@
             this.MainMenuStrip.BackColor = System.Drawing.Color.DimGray;
             this.MainMenuStrip.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.editToolStripMenuItem});
             this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MainMenuStrip.Name = "MainMenuStrip";
             this.MainMenuStrip.Size = new System.Drawing.Size(1312, 28);
@@ -1757,8 +1762,8 @@
             this.saveAsToolStripMenuItem,
             this.exportToToolStripMenuItem,
             this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.fileToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.LightGray;
+            this.fileToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
@@ -1817,10 +1822,48 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addVariableToolStripMenuItem});
+            this.editToolStripMenuItem.ForeColor = System.Drawing.Color.LightGray;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(47, 24);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // addVariableToolStripMenuItem
+            // 
+            this.addVariableToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
+            this.addVariableToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.uniformVariableNodeToolStripMenuItem,
+            this.functionNodeToolStripMenuItem});
+            this.addVariableToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.addVariableToolStripMenuItem.Name = "addVariableToolStripMenuItem";
+            this.addVariableToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.addVariableToolStripMenuItem.Text = "Add";
+            // 
+            // uniformVariableNodeToolStripMenuItem
+            // 
+            this.uniformVariableNodeToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
+            this.uniformVariableNodeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.uniformVariableNodeToolStripMenuItem.Name = "uniformVariableNodeToolStripMenuItem";
+            this.uniformVariableNodeToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
+            this.uniformVariableNodeToolStripMenuItem.Text = "Uniform Variable Node";
+            this.uniformVariableNodeToolStripMenuItem.Click += new System.EventHandler(this.AddUniformVariable_MenuItem_Click);
+            // 
+            // functionNodeToolStripMenuItem
+            // 
+            this.functionNodeToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
+            this.functionNodeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.functionNodeToolStripMenuItem.Name = "functionNodeToolStripMenuItem";
+            this.functionNodeToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
+            this.functionNodeToolStripMenuItem.Text = "Function Node";
             // 
             // MainWindow
             // 
@@ -2040,6 +2083,10 @@
         private System.Windows.Forms.Label label_ConnectionCount;
         private System.Windows.Forms.Label label_NodeCount;
         private System.Windows.Forms.Label captionConnections;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addVariableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uniformVariableNodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem functionNodeToolStripMenuItem;
     }
 }
 

@@ -28,16 +28,12 @@ namespace ShaderCreationTool
         private MovableObject m_MovableKey;
         private MovableObject m_MovablePreviewPanel;
 
-      //  private ShaderVectorVariable m_DiffuseColour;
-        //private ShaderVectorVariable m_AmbientColour;
-
         private List<ISCTNode> m_Nodes;
         private List<Connector> m_HighlightedConnectorList;
 
         private bool m_IsConnecting;
         private Point m_TempLineOrgin;
 
-        //private OnWndProcUpdate m_OnWndProcUpdate;
         private void MainUpdate()
         {
             //canncel connection request
@@ -62,6 +58,7 @@ namespace ShaderCreationTool
                 EditAreaPanel.Invalidate(false);
             }
         }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -73,10 +70,7 @@ namespace ShaderCreationTool
             m_MovablePreviewPanel = new MovableObject(PreviewAreaPanel);
             m_MovablePreviewPanel.AddObjectMovedEventListener(UpdateOnObjectMoved);
 
-           // m_DiffuseColour = new ShaderVectorVariable(1, 1, 0, 1, "diffuse");
-            //Bridge.SetVariable(m_DiffuseColour);
-           // m_AmbientColour = new ShaderVectorVariable(0.1f, 0.1f, 0.1f, 1, "ambient");
-           // Bridge.SetVariable(m_AmbientColour);
+         
             SCTConsole.Instance.Show();
             m_Nodes = new List<ISCTNode>();
             CreateAndSetupFrameNode(m_Nodes);
@@ -136,7 +130,55 @@ namespace ShaderCreationTool
 
         }
 
-        // UTIL METHODS
+
+        // USED METHODS
+
+        private void Start_AddVariableNode()
+        {
+            var form = new SelectNodeForm();
+            form.ShowDialog();
+            if (form.DialogResult == DialogResult.OK)
+            {
+                SCTConsole.Instance.PrintLine("Selection: " + form.RequestedNodeType.ToString());
+                {
+                    NodeInstantiator.StartPlacing(form.RequestedNodeType);
+                    MovableObject.LockAllMovement();
+                    LockableNodes.LockButtons();
+                    Connector.LockAllConnectors();
+                }
+            }
+            form.Dispose();
+        }
+
+
+        private void CancelIsConnecting()
+        {
+            if (!m_IsConnecting) return;
+            m_IsConnecting = false;
+            MovableObject.UnlockAllMovement();
+            LockableNodes.UnlockButtons();
+            if (m_TempLine == null) return;
+            m_TempLine.Invalidate();
+            EditAreaPanel.Invalidate(false);
+            EditAreaPanel.Update();
+            m_TempLine = null;
+            EditAreaPanel.Cursor = System.Windows.Forms.Cursors.Default;
+            SetCursorRecursive(EditAreaPanel.Controls, Cursors.Default);
+            foreach (Connector c in m_HighlightedConnectorList)
+            {
+                c.DisableBackHighlighted();
+            }
+            m_HighlightedConnectorList.Clear();
+        }
+
+        private void CancelNewNode()
+        {
+            NodeInstantiator.CancelInstantiate();
+            MovableObject.UnlockAllMovement();
+            LockableNodes.UnlockButtons();
+            Connector.UnlockAllConnectors();
+        }
+
         private void UpdateOnObjectMoved()
         {
             if (m_IsConnecting) m_TempLine.Invalidate();
@@ -151,20 +193,6 @@ namespace ShaderCreationTool
             PreviewAreaPanel.BringToFront();
         }
 
-        void SetCursorRecursive(IEnumerable theControls,Cursor cursor)
-        {
-            foreach (Control control in theControls)
-            {
-                if (control.HasChildren)
-                {
-                    SetCursorRecursive(control.Controls, cursor);
-                }
-                else
-                {
-                    control.Cursor = cursor;
-                }
-            }
-        }
 
         ////////////////////////////  CALLBACKS   /////////////////////////////
 
@@ -310,6 +338,8 @@ namespace ShaderCreationTool
             m_Nodes.Add(temp);
            
         }
+
+
         //**************************************  UI EVENTS  ***********************************************//
 
 
@@ -357,12 +387,12 @@ namespace ShaderCreationTool
             }
         }
 
+        
         private void EditAreaPanel_Click(object sender, EventArgs e)
         {
             fileToolStripMenuItem.HideDropDown();
             EditAreaPanel.Focus();
         }
-
 
         // PREVIEW AREA PANEL
         private void PreviewTextLabel_MouseDown(object sender, MouseEventArgs e)
@@ -383,19 +413,7 @@ namespace ShaderCreationTool
         // BUTTONS 
         private void AddVariableButton_Click(object sender, EventArgs e)
         {
-            var form = new SelectNodeForm();
-            form.ShowDialog();
-            if (form.DialogResult == DialogResult.OK)
-            {
-                SCTConsole.Instance.PrintLine("Selection: " + form.RequestedNodeType.ToString());
-                {
-                    NodeInstantiator.StartPlacing(form.RequestedNodeType);
-                    MovableObject.LockAllMovement();
-                    LockableNodes.LockButtons();
-                    Connector.LockAllConnectors();
-                }
-            }
-            form.Dispose();
+            Start_AddVariableNode();
         }
 
         private void AddNodeButton_Click(object sender, EventArgs e)
@@ -410,6 +428,7 @@ namespace ShaderCreationTool
             }
         }
 
+
         // TEMPORARY STUFF
         private void button1_Click(object sender, EventArgs e)
         {
@@ -419,41 +438,6 @@ namespace ShaderCreationTool
    
         }
 
-
-
-        // USED METHODS
-        private void CancelIsConnecting()
-        {
-            if (!m_IsConnecting) return;
-            m_IsConnecting = false;
-            MovableObject.UnlockAllMovement();
-            LockableNodes.UnlockButtons();
-            if (m_TempLine == null) return;
-            m_TempLine.Invalidate();
-            EditAreaPanel.Invalidate(false);
-            EditAreaPanel.Update();
-            m_TempLine = null;
-            EditAreaPanel.Cursor = System.Windows.Forms.Cursors.Default;
-            SetCursorRecursive(EditAreaPanel.Controls, Cursors.Default);
-            foreach (Connector c in m_HighlightedConnectorList)
-            {
-                c.DisableBackHighlighted();
-            }
-            m_HighlightedConnectorList.Clear();
-        }
-
-        private void CancelNewNode()
-        {
-            NodeInstantiator.CancelInstantiate();
-            MovableObject.UnlockAllMovement();
-            LockableNodes.UnlockButtons();
-            Connector.UnlockAllConnectors();
-        }
-
-        private void textBox_File_Textue2D_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
-        }
 
         private void button44_Click(object sender, EventArgs e)
         {
@@ -470,6 +454,41 @@ namespace ShaderCreationTool
                 ConnectionManager.GetConnection(i).TestRebuiltLine();
             }
         }
+
+        ////////////////////////////////  MENU ITEMS ///////////////////
+        private void AddUniformVariable_MenuItem_Click(object sender, EventArgs e)
+        {
+            Start_AddVariableNode();
+        }
+
+
+
+
+
+
+
+        /////////////////////////////// UTIL  ////////////////////////
+        void SetCursorRecursive(IEnumerable theControls, Cursor cursor)
+        {
+            foreach (Control control in theControls)
+            {
+                if (control.HasChildren)
+                {
+                    SetCursorRecursive(control.Controls, cursor);
+                }
+                else
+                {
+                    control.Cursor = cursor;
+                }
+            }
+        }
+
+        private void ExitMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+     
     }
 
 
