@@ -47,7 +47,8 @@ namespace ShaderCreationTool
     {
         static public string CreateID(NodeType type, int counter)
         {
-            string str = type.ToString() + "_" + DateTime.Now.ToString("yy_MM_dd_HH_mm_ss_") + counter;
+            string str = "SCT_NODE_" + 
+                type.ToString() + DateTime.Now.ToString("_yy_MM_dd_HH_mm_ss_") + counter;
             return str;
         }
     }
