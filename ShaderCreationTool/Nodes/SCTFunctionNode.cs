@@ -21,14 +21,16 @@ namespace ShaderCreationTool
         private string m_Label = string.Empty;
         private NodeCloseButtonCallback p_CloseCallback;
         private static bool s_ButtonsLocked = false;
-
+        private FunctionNodeDescription m_FunctionNodeDescription;
 
         //////////////////////////////////////////  PUBLIC  ///////////////////////////////////////////////
         
         public NodeType GetNodeType() { return NodeType.Funtion; }
+        public FunctionNodeDescription NodeDescription { get { return m_FunctionNodeDescription; } }
 
         public SCTFunctionNode(Panel nodeTemplate, Point location, FunctionNodeDescription description)
         {
+            m_FunctionNodeDescription = description;
             //Copy template (make local instance)
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
             m_SctElement.Visible = true;
