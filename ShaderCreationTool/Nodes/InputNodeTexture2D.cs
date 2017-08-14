@@ -28,6 +28,7 @@ namespace ShaderCreationTool
         private Panel m_ImagePanel;
         private string m_Name;
         ShaderTextureVariable m_ShaderVariable;
+        private string m_UniqueID;
         private static bool s_ButtonsLocked = false;
         private static int s_InstanceCounter = 0;
 
@@ -35,10 +36,11 @@ namespace ShaderCreationTool
         private static string s_LastTexturePath = string.Empty;
 
         public NodeType GetNodeType() { return NodeType.Input_Texture2D; }
+        public string GetNodeID() { return m_UniqueID; }
 
         public InputNodeTexture2D(Panel nodeTemplate, Point location)
         {
-
+            m_UniqueID = NodeIDCreator.CreateID(GetNodeType(), s_InstanceCounter);
             //Copy template (make local instance)
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
             m_SctElement.Location = location;

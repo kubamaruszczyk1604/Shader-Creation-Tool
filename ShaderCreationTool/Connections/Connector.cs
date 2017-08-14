@@ -46,6 +46,8 @@ namespace ShaderCreationTool
         {
 
             SCTConsole.Instance.PrintLine("Connector with local ID: " + this.LocalID);
+            SCTConsole.Instance.PrintLine("PARENT ID: " + p_ParentNode.GetNodeID());
+
             if (!Connected)
             {
                 m_Control.Checked = false;
@@ -53,7 +55,6 @@ namespace ShaderCreationTool
                 if (m_BeginConnectionCallback != null)
                 { 
                     m_BeginConnectionCallback(this);
-                
                 }
                 s_PreviouslyClickedConnector = this;
 

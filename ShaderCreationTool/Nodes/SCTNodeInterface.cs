@@ -34,12 +34,22 @@ namespace ShaderCreationTool
         List<Connector> GetAllConnectors(ConnectionDirection type);
         List<Connector> GetAllConnectors();
         NodeType GetNodeType();
+        string GetNodeID();
     }
 
     interface IInputNode
     {
        void AddOnCloseCallback(NodeCloseButtonCallback callback);
        void AddInputErrorCallback(NodeInputError callback);
+    }
+
+    class NodeIDCreator
+    {
+        static public string CreateID(NodeType type, int counter)
+        {
+            string str = type.ToString() + "_" + DateTime.Now.ToString("yy_MM_dd_HH_mm_ss_") + counter;
+            return str;
+        }
     }
 
     class LockableNodes

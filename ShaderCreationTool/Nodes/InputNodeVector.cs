@@ -28,12 +28,13 @@ namespace ShaderCreationTool
         private int m_ConnectorCount;
         private NodeType m_NodeType;
         private static bool s_ButtonsLocked = false;
-
         ShaderVectorVariable m_ShaderVariable;
+        private string m_UniqueID;
         private static int s_InstanceCounter = 0;
 
 
         public NodeType GetNodeType() { return m_NodeType; }
+        public string GetNodeID() { return m_UniqueID; }
 
         public InputNodeVector(Panel nodeTemplate, Point location)
         {
@@ -62,6 +63,8 @@ namespace ShaderCreationTool
             { varType = ShaderVariableType.Vector2; m_NodeType = NodeType.Input_Float2; }
             else
             { varType = ShaderVariableType.Single; m_NodeType = NodeType.Input_Float; }
+
+            m_UniqueID = NodeIDCreator.CreateID(GetNodeType(), s_InstanceCounter);
 
             int connectorCounter = 0;
             foreach (Control control in allControlls)

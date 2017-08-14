@@ -19,8 +19,10 @@ namespace ShaderCreationTool
         private MovableObject m_Mover;
         private List<Connector> m_InputConnectors;
         private string m_Label = string.Empty;
+        private string m_UniqueID = "FRAME_BUFFER";
 
         public NodeType GetNodeType() { return NodeType.Target; }
+        public string GetNodeID() { return m_UniqueID; }
 
         public FrameBufferNode(Panel windowControl)
         {

@@ -27,14 +27,16 @@ namespace ShaderCreationTool
         private Panel m_ColourPanel;
         private string m_Name;
         ShaderVectorVariable m_ShaderVariable;
+        private string m_UniqueID;
         private static bool s_ButtonsLocked = false;
         private static int s_InstanceCounter = 0;
 
         public NodeType GetNodeType() { return NodeType.Input_Colour; }
+        public string GetNodeID() { return m_UniqueID; }
 
         public InputNodeColour(Panel nodeTemplate, Point location)
         {
-
+            m_UniqueID = NodeIDCreator.CreateID(GetNodeType(), s_InstanceCounter);
             //Copy template (make local instance)
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
             m_SctElement.Location = location;

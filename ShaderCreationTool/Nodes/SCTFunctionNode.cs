@@ -22,14 +22,19 @@ namespace ShaderCreationTool
         private NodeCloseButtonCallback p_CloseCallback;
         private static bool s_ButtonsLocked = false;
         private FunctionNodeDescription m_FunctionNodeDescription;
+        private string m_UniqueID;
+
+        private static int s_InstanceCounter = 0;
 
         //////////////////////////////////////////  PUBLIC  ///////////////////////////////////////////////
-        
+
         public NodeType GetNodeType() { return NodeType.Funtion; }
+        public string GetNodeID() { return m_UniqueID; }
         public FunctionNodeDescription NodeDescription { get { return m_FunctionNodeDescription; } }
 
         public SCTFunctionNode(Panel nodeTemplate, Point location, FunctionNodeDescription description)
         {
+            m_UniqueID = NodeIDCreator.CreateID(GetNodeType(), s_InstanceCounter);
             m_FunctionNodeDescription = description;
             //Copy template (make local instance)
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
@@ -111,7 +116,7 @@ namespace ShaderCreationTool
             //Close Button click setup
             List<Button> buttons = ControlExtensions.GetAllChildreenControls<Button>(m_SctElement).Cast<Button>().ToList();
             buttons[0].Click += CloseButton_Click;
-
+            s_InstanceCounter++;
             m_SctElement.Update();
         }
 
