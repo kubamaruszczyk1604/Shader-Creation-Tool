@@ -275,6 +275,12 @@ namespace ShaderCreationTool
         {
 
             ColorDialog cd = new ColorDialog();
+            cd.Color = Color.FromArgb(
+                (int)(m_Numeric[3].Value * 255),
+                (int)(m_Numeric[0].Value * 255),
+                (int)(m_Numeric[1].Value * 255),
+                (int)(m_Numeric[2].Value * 255));
+
             DialogResult result = cd.ShowDialog();
             if (result == DialogResult.OK)
             {
