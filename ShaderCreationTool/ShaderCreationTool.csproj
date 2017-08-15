@@ -84,6 +84,7 @@
     <Compile Include="Forms\SCTConsole.Designer.cs">
       <DependentUpon>SCTConsole.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReaderXML.cs" />
     <Compile Include="Util\MovableObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
