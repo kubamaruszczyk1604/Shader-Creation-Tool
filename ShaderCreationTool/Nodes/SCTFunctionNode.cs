@@ -31,6 +31,7 @@ namespace ShaderCreationTool
         public NodeType GetNodeType() { return NodeType.Funtion; }
         public string GetNodeID() { return m_UniqueID; }
         public FunctionNodeDescription NodeDescription { get { return m_FunctionNodeDescription; } }
+        public string FunctionCodeString { get { return m_FunctionNodeDescription.GetFunctionString(); } }
 
         public SCTFunctionNode(Panel nodeTemplate, Point location, FunctionNodeDescription description)
         {
