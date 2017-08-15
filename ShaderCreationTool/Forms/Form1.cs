@@ -129,7 +129,21 @@ namespace ShaderCreationTool
             }
 
         }
+        private async void AddExampleNodeFromFile(string path)
+        {
 
+            List<FunctionNodeDescription> d;
+            string status;
+            ReaderXML.ReadInDescriptions(path, out d, out status);
+           
+            SCTFunctionNode temp = new SCTFunctionNode(FunctionNodeWindow, new Point(240 , 300), UpdateOnObjectMoved, d[0]);
+                temp.AddOnBeginConnectionCallback(OnConnectionBegin);
+                temp.AddOnBreakConnectionCallback(OnConnectionBreak);
+                temp.AddOnCloseCallback(OnNodeClose);
+                m_Nodes.Add(temp);
+            
+
+        }
 
         // USED METHODS
 
@@ -424,7 +438,8 @@ namespace ShaderCreationTool
             if (r.DialogResult == DialogResult.OK)
             {
                 SCTConsole.Instance.PrintLine("Selection: " + r.RequestedNodeType.ToString());
-                AddExampleNodes();
+                // AddExampleNodes();
+                AddExampleNodeFromFile(@"c:\nodes\nodes.txt");
             }
         }
 
