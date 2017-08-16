@@ -33,6 +33,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
+            this.StatsGroupBox = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_ConnectionCount = new System.Windows.Forms.Label();
             this.label_NodeCount = new System.Windows.Forms.Label();
@@ -154,8 +155,8 @@
             this.uniformVariableNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.StatsGroupBox = new System.Windows.Forms.GroupBox();
             this.EditAreaPanel.SuspendLayout();
+            this.StatsGroupBox.SuspendLayout();
             this.panel1.SuspendLayout();
             this.Texture2DInputWindow.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -201,7 +202,6 @@
             this.AddGroupBox.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.StatsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -259,6 +259,19 @@
             this.EditAreaPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.EditAreaPanel_Scroll);
             this.EditAreaPanel.Click += new System.EventHandler(this.EditAreaPanel_Click);
             this.EditAreaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.EditAreaPanel_Paint);
+            // 
+            // StatsGroupBox
+            // 
+            this.StatsGroupBox.BackColor = System.Drawing.Color.Gray;
+            this.StatsGroupBox.Controls.Add(this.panel1);
+            this.StatsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatsGroupBox.ForeColor = System.Drawing.SystemColors.Control;
+            this.StatsGroupBox.Location = new System.Drawing.Point(3, 178);
+            this.StatsGroupBox.Name = "StatsGroupBox";
+            this.StatsGroupBox.Size = new System.Drawing.Size(147, 93);
+            this.StatsGroupBox.TabIndex = 24;
+            this.StatsGroupBox.TabStop = false;
+            this.StatsGroupBox.Text = "Stats";
             // 
             // panel1
             // 
@@ -1645,6 +1658,7 @@
             // 
             // PreviewAreaPanel
             // 
+            this.PreviewAreaPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PreviewAreaPanel.BackColor = System.Drawing.Color.DimGray;
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
@@ -1693,7 +1707,7 @@
             this.AddGroupBox.ForeColor = System.Drawing.SystemColors.Control;
             this.AddGroupBox.Location = new System.Drawing.Point(3, 7);
             this.AddGroupBox.Name = "AddGroupBox";
-            this.AddGroupBox.Size = new System.Drawing.Size(136, 175);
+            this.AddGroupBox.Size = new System.Drawing.Size(136, 165);
             this.AddGroupBox.TabIndex = 23;
             this.AddGroupBox.TabStop = false;
             this.AddGroupBox.Text = "ADD";
@@ -1828,7 +1842,7 @@
             this.functionNodeToolStripMenuItem});
             this.addVariableToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.addVariableToolStripMenuItem.Name = "addVariableToolStripMenuItem";
-            this.addVariableToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.addVariableToolStripMenuItem.Size = new System.Drawing.Size(106, 24);
             this.addVariableToolStripMenuItem.Text = "Add";
             // 
             // uniformVariableNodeToolStripMenuItem
@@ -1853,19 +1867,6 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // StatsGroupBox
-            // 
-            this.StatsGroupBox.BackColor = System.Drawing.Color.Gray;
-            this.StatsGroupBox.Controls.Add(this.panel1);
-            this.StatsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatsGroupBox.ForeColor = System.Drawing.SystemColors.Control;
-            this.StatsGroupBox.Location = new System.Drawing.Point(3, 188);
-            this.StatsGroupBox.Name = "StatsGroupBox";
-            this.StatsGroupBox.Size = new System.Drawing.Size(147, 93);
-            this.StatsGroupBox.TabIndex = 24;
-            this.StatsGroupBox.TabStop = false;
-            this.StatsGroupBox.Text = "Stats";
-            // 
             // MainWindow
             // 
             this.AcceptButton = this.button1;
@@ -1882,10 +1883,12 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
             this.Text = "Shader Creator Prototype, MSc Dissertation, University of Hull, 2017";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.Shown += new System.EventHandler(this.MainWindow_Shown);
             this.EditAreaPanel.ResumeLayout(false);
+            this.StatsGroupBox.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.Texture2DInputWindow.ResumeLayout(false);
@@ -1956,7 +1959,6 @@
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.StatsGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
