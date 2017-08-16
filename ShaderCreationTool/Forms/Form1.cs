@@ -470,11 +470,10 @@ namespace ShaderCreationTool
             Start_AddVariableNode();
         }
 
-        private void FunctionNodeMenu_Click(object sender, EventArgs e)
+        private void FunctionNodeMenuItem_Click(object sender, EventArgs e)
         {
             Start_AddFunctionNode();
         }
-
         private void ExitMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -499,8 +498,15 @@ namespace ShaderCreationTool
             }
         }
 
-     
+ 
 
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if( MouseButtons == MouseButtons.Left)
+            SCTConsole.Instance.PrintLine("Is pressed now!");
+        }
+
+       
     }
 
 

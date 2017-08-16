@@ -140,7 +140,6 @@
             this.AddGroupBox = new System.Windows.Forms.GroupBox();
             this.AddVariableButton = new System.Windows.Forms.Button();
             this.AddNodeButton = new System.Windows.Forms.Button();
-            this.button31 = new System.Windows.Forms.Button();
             this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -155,6 +154,7 @@
             this.uniformVariableNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.StatsGroupBox = new System.Windows.Forms.GroupBox();
             this.EditAreaPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.Texture2DInputWindow.SuspendLayout();
@@ -201,12 +201,13 @@
             this.AddGroupBox.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.StatsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(416, 5);
+            this.button1.Location = new System.Drawing.Point(533, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 32);
             this.button1.TabIndex = 0;
@@ -220,7 +221,7 @@
             this.button44.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button44.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button44.Location = new System.Drawing.Point(272, 5);
+            this.button44.Location = new System.Drawing.Point(671, 7);
             this.button44.Name = "button44";
             this.button44.Size = new System.Drawing.Size(137, 28);
             this.button44.TabIndex = 14;
@@ -235,7 +236,7 @@
             this.EditAreaPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditAreaPanel.BackgroundImage")));
             this.EditAreaPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.EditAreaPanel.Controls.Add(this.panel1);
+            this.EditAreaPanel.Controls.Add(this.StatsGroupBox);
             this.EditAreaPanel.Controls.Add(this.Texture2DInputWindow);
             this.EditAreaPanel.Controls.Add(this.TransparentNodePanel);
             this.EditAreaPanel.Controls.Add(this.FloatInputWindow);
@@ -261,14 +262,14 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel1.BackColor = System.Drawing.Color.Black;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label_ConnectionCount);
             this.panel1.Controls.Add(this.label_NodeCount);
             this.panel1.Controls.Add(this.captionConnections);
             this.panel1.Controls.Add(this.captionTotalNodes);
-            this.panel1.Location = new System.Drawing.Point(9, 263);
+            this.panel1.Location = new System.Drawing.Point(6, 19);
             this.panel1.Name = "panel1";
             this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.panel1.Size = new System.Drawing.Size(131, 59);
@@ -1664,6 +1665,7 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.WaitOnLoad = true;
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // PreviewTextLabel
             // 
@@ -1687,12 +1689,11 @@
             this.AddGroupBox.BackColor = System.Drawing.Color.Gray;
             this.AddGroupBox.Controls.Add(this.AddVariableButton);
             this.AddGroupBox.Controls.Add(this.AddNodeButton);
-            this.AddGroupBox.Controls.Add(this.button31);
             this.AddGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddGroupBox.ForeColor = System.Drawing.SystemColors.Control;
-            this.AddGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.AddGroupBox.Location = new System.Drawing.Point(3, 7);
             this.AddGroupBox.Name = "AddGroupBox";
-            this.AddGroupBox.Size = new System.Drawing.Size(126, 241);
+            this.AddGroupBox.Size = new System.Drawing.Size(136, 175);
             this.AddGroupBox.TabIndex = 23;
             this.AddGroupBox.TabStop = false;
             this.AddGroupBox.Text = "ADD";
@@ -1705,7 +1706,7 @@
             this.AddVariableButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.AddVariableButton.Location = new System.Drawing.Point(6, 19);
             this.AddVariableButton.Name = "AddVariableButton";
-            this.AddVariableButton.Size = new System.Drawing.Size(105, 64);
+            this.AddVariableButton.Size = new System.Drawing.Size(112, 64);
             this.AddVariableButton.TabIndex = 8;
             this.AddVariableButton.Text = "Add Variable";
             this.AddVariableButton.UseVisualStyleBackColor = false;
@@ -1719,25 +1720,11 @@
             this.AddNodeButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.AddNodeButton.Location = new System.Drawing.Point(6, 89);
             this.AddNodeButton.Name = "AddNodeButton";
-            this.AddNodeButton.Size = new System.Drawing.Size(105, 65);
+            this.AddNodeButton.Size = new System.Drawing.Size(112, 65);
             this.AddNodeButton.TabIndex = 9;
             this.AddNodeButton.Text = "Add Node";
             this.AddNodeButton.UseVisualStyleBackColor = false;
             this.AddNodeButton.Click += new System.EventHandler(this.AddNodeButton_Click);
-            // 
-            // button31
-            // 
-            this.button31.BackColor = System.Drawing.Color.Brown;
-            this.button31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button31.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button31.Location = new System.Drawing.Point(6, 162);
-            this.button31.Name = "button31";
-            this.button31.Size = new System.Drawing.Size(105, 67);
-            this.button31.TabIndex = 10;
-            this.button31.Text = "Add Material Property";
-            this.button31.UseVisualStyleBackColor = false;
-            this.button31.Click += new System.EventHandler(this.button31_Click);
             // 
             // MainMenuStrip
             // 
@@ -1841,7 +1828,7 @@
             this.functionNodeToolStripMenuItem});
             this.addVariableToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.addVariableToolStripMenuItem.Name = "addVariableToolStripMenuItem";
-            this.addVariableToolStripMenuItem.Size = new System.Drawing.Size(106, 24);
+            this.addVariableToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.addVariableToolStripMenuItem.Text = "Add";
             // 
             // uniformVariableNodeToolStripMenuItem
@@ -1860,10 +1847,24 @@
             this.functionNodeToolStripMenuItem.Name = "functionNodeToolStripMenuItem";
             this.functionNodeToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.functionNodeToolStripMenuItem.Text = "Function Node";
+            this.functionNodeToolStripMenuItem.Click += new System.EventHandler(this.FunctionNodeMenuItem_Click);
             // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
+            // 
+            // StatsGroupBox
+            // 
+            this.StatsGroupBox.BackColor = System.Drawing.Color.Gray;
+            this.StatsGroupBox.Controls.Add(this.panel1);
+            this.StatsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatsGroupBox.ForeColor = System.Drawing.SystemColors.Control;
+            this.StatsGroupBox.Location = new System.Drawing.Point(3, 188);
+            this.StatsGroupBox.Name = "StatsGroupBox";
+            this.StatsGroupBox.Size = new System.Drawing.Size(147, 93);
+            this.StatsGroupBox.TabIndex = 24;
+            this.StatsGroupBox.TabStop = false;
+            this.StatsGroupBox.Text = "Stats";
             // 
             // MainWindow
             // 
@@ -1955,6 +1956,7 @@
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.StatsGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1968,7 +1970,6 @@
         private System.Windows.Forms.GroupBox AddGroupBox;
         private System.Windows.Forms.Button AddVariableButton;
         private System.Windows.Forms.Button AddNodeButton;
-        private System.Windows.Forms.Button button31;
         public System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel PreviewAreaPanel;
         private System.Windows.Forms.MenuStrip MainMenuStrip;
@@ -2087,6 +2088,7 @@
         private System.Windows.Forms.ToolStripMenuItem addVariableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uniformVariableNodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem functionNodeToolStripMenuItem;
+        private System.Windows.Forms.GroupBox StatsGroupBox;
     }
 }
 
