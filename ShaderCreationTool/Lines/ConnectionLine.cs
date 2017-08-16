@@ -155,7 +155,7 @@ namespace ShaderCreationTool
         
             if(m_CapturedYPosition)
             {
-                mid1 = new Point(start.X, m_YPosition);
+                mid1 = new Point(start.X, start.Y + m_YPosition);
             }
             else
             {
@@ -180,7 +180,7 @@ namespace ShaderCreationTool
                 mid1.Y = m_YRegulationButton.Location.Y;
                 mid2.Y = m_YRegulationButton.Location.Y;
                 m_CapturedYPosition = true;
-                m_YPosition = m_YRegulationButton.Location.Y;
+                m_YPosition = m_YRegulationButton.Location.Y-start.Y;
             }
 
             m_XRegulationButtonMover.SetMovementRestrictionPoints(start, end);

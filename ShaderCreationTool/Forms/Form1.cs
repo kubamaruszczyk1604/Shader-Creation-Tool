@@ -435,15 +435,6 @@ namespace ShaderCreationTool
         private void AddNodeButton_Click(object sender, EventArgs e)
         {
             Start_AddFunctionNode();
-           
-            //var r = new SelectNodeForm();
-            //r.ShowDialog();
-            //if (r.DialogResult == DialogResult.OK)
-            //{
-            //    SCTConsole.Instance.PrintLine("Selection: " + r.RequestedInputNodeType.ToString());
-            //    // AddExampleNodes();
-            //    AddExampleNodeFromFile(NODES_PATH);
-            //}
         }
 
 

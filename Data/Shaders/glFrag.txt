@@ -53,7 +53,10 @@ vec4 lit(float NdotL, float NdotH, float m)
  
   return vec4(ambient, diffuse, specular, 1.0);
 }
-
+void Multiply(in vec4 Colour1,in vec4 Colour2, out vec4 FinalColour)
+{
+  FinalColour = Colour1 * Colour2;
+}
 
 void accumulate_lights(Light lgt[20], 
 vec3 pos, 
