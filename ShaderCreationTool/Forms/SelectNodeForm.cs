@@ -27,6 +27,7 @@ namespace ShaderCreationTool
         private NodeType m_ReturnedNodeType;
         private FunctionNodeDescription m_FuntionNodeDescription;
         private bool m_InputNodes;
+        private bool m_ReadingOK;
 
         public int Selection { get; set; }
         public NodeType RequestedInputNodeType { get { return m_ReturnedNodeType; } }
@@ -43,35 +44,53 @@ namespace ShaderCreationTool
             m_InputNodes = true;
             InitializeComponent();
             listBox1.DataSource = m_Items;
-        }
 
-        private void ItemSelectedInputNodes(object sender, EventArgs e)
-        {
-            Selection = ((ListBox)sender).SelectedIndex;
-
-            m_ReturnedNodeType = (NodeType)Selection;
-            this.DialogResult = DialogResult.OK;
         }
 
 
         // Read set of options from XML external file (use path)
         public SelectNodeForm(string listPath)
         {
-            m_Items = new List<string>();
-            m_Items.Add("Test1");
-            m_Items.Add("Test2");
-            m_Items.Add("Test3");
-            m_ReturnedNodeType = NodeType.Funtion;
             InitializeComponent();
-            m_InputNodes = false;
-            listBox1.DataSource = m_Items;
+            if (FunctionNodeConfigMgr.ReadNodesFromFile(listPath))
+            {
+                m_Items = FunctionNodeConfigMgr.NodeList;
+                m_ReturnedNodeType = NodeType.Funtion;
+                m_InputNodes = false;
+                listBox1.DataSource = m_Items;
+                m_ReadingOK = true;
+               
+            }
+            else
+            {
+                m_ReadingOK = false;
+                this.DialogResult = DialogResult.Abort;
+            }
+
+           
         }
 
-       
+
+        private void ItemSelectedInputNodes(object sender, EventArgs e)
+        {
+          
+            Selection = ((ListBox)sender).SelectedIndex;
+            m_ReturnedNodeType = (NodeType)Selection;
+            this.DialogResult = DialogResult.OK;
+         
+        }
+
 
         private void ItemSelectedFuntionNodes(object sender, EventArgs e)
         {
-
+            if (!m_ReadingOK)
+            {
+                this.DialogResult = DialogResult.Abort;
+                return;
+            }
+            Selection = ((ListBox)sender).SelectedIndex;
+            m_FuntionNodeDescription = FunctionNodeConfigMgr.GetFunctionNodeDescription(Selection);
+            this.DialogResult = DialogResult.OK;
         }
 
 
@@ -107,6 +126,16 @@ namespace ShaderCreationTool
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void SelectNodeForm_Shown(object sender, EventArgs e)
+        {
+            if (!m_ReadingOK && !m_InputNodes)
+            {
+                //this.Hide();
+                MessageBox.Show("Error While reading XML FILE:" + FunctionNodeConfigMgr.LastStatus, "XML ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
         }
     }
 }

@@ -65,6 +65,11 @@ namespace ShaderCreationTool
         static public List<string> NodeList { get { return s_TitlesList; } }
 
         static public string LastStatus { get { return s_Status; } }
+
+        static public FunctionNodeDescription GetFunctionNodeDescription(int index)
+        {
+            return s_DescriptionList[index];
+        }
         
     }
 }

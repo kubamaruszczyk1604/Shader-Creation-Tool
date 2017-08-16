@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entities>
+  <!--Shader Creation Tool - node config scripting file.-->
+  <Node Name="Multiply">
+  
+    <Input_Variables>
+      <Variable Name="Moja" Var_Type="Float4">
+      </Variable>
+    </Input_Variables>
+	<Input_Variables>
+      <Variable Name="Sucz" Var_Type="Float4">
+      </Variable>
+    </Input_Variables>
+	
+
+	
+    <Output_Variables>
+      <Variable Name="FinalColour" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>
+	
+	
+	
+	
+   <Code>
+   void Multiply(in Colour1,in Colour2, out FinalColour)
+   {
+    FinalColour = Colour1 * Colour2;
+   }
+   </Code>
+   
+   
+  </Node>
+ 
+   <Node Name="Add">
+  
+    <Input_Variables>
+      <Variable Name="Colour1" Var_Type="Float">
+      </Variable>
+    </Input_Variables>
+	<Input_Variables>
+      <Variable Name="Colour2" Var_Type="Float2">
+      </Variable>
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="FinalColour" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>
+	
+   <Code>
+   void Add(in Colour1,in Colour2, out FinalColour)
+   {
+    FinalColour = Colour1 + Colour2;
+   }
+   </Code>
+   
+  </Node>
+  
+</Entities>

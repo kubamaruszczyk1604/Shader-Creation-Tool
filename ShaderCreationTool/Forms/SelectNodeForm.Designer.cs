@@ -81,6 +81,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Node";
             this.TopMost = true;
+            this.Shown += new System.EventHandler(this.SelectNodeForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

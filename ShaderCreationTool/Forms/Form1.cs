@@ -167,6 +167,24 @@ namespace ShaderCreationTool
         }
 
 
+        private void Start_AddFunctionNode()
+        {
+            var form = new SelectNodeForm(NODES_PATH);
+            form.ShowDialog();
+            if (form.DialogResult == DialogResult.OK)
+            {
+                SCTConsole.Instance.PrintLine("Selection: " + form.RequestedFunctionNodeDescription.Name);
+                {
+                    //NodeInstantiator.StartPlacing(form.RequestedFunctionNodeDescription);
+                    //MovableObject.LockAllMovement();
+                    //LockableNodes.LockButtons();
+                    //Connector.LockAllConnectors();
+                }
+            }
+            form.Dispose();
+        }
+
+
         private void CancelIsConnecting()
         {
             if (!m_IsConnecting) return;
@@ -410,15 +428,16 @@ namespace ShaderCreationTool
 
         private void AddNodeButton_Click(object sender, EventArgs e)
         {
+            Start_AddFunctionNode();
            
-            var r = new SelectNodeForm();
-            r.ShowDialog();
-            if (r.DialogResult == DialogResult.OK)
-            {
-                SCTConsole.Instance.PrintLine("Selection: " + r.RequestedInputNodeType.ToString());
-                // AddExampleNodes();
-                AddExampleNodeFromFile(NODES_PATH);
-            }
+            //var r = new SelectNodeForm();
+            //r.ShowDialog();
+            //if (r.DialogResult == DialogResult.OK)
+            //{
+            //    SCTConsole.Instance.PrintLine("Selection: " + r.RequestedInputNodeType.ToString());
+            //    // AddExampleNodes();
+            //    AddExampleNodeFromFile(NODES_PATH);
+            //}
         }
 
 
