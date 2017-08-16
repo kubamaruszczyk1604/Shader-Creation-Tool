@@ -15,6 +15,7 @@ namespace ShaderCreationTool
         private static bool s_PlacingFlag;
         private static bool s_LeftPressed;
         private static NodeType s_NodeType;
+        private static FunctionNodeDescription s_NodeDescription;
 
 
         static private void OnMoved()
@@ -24,6 +25,8 @@ namespace ShaderCreationTool
         }
 
         /////////////////////////////////// PUBLIC ////////////////////////////////////
+
+  
 
         static public void SetupInstantiator(Panel drawPanel)
         {
@@ -55,6 +58,14 @@ namespace ShaderCreationTool
             s_NodeType = nodeType;
         }
 
+        static public void StartPlacing(FunctionNodeDescription desc)
+        {
+            s_Panel.Visible = true;
+            s_PlacingFlag = true;
+            s_NodeType = NodeType.Funtion;
+            s_NodeDescription = desc;
+        }
+
         static public void Update(Panel mainPanel)
         {
             if (s_PlacingFlag)
@@ -69,6 +80,7 @@ namespace ShaderCreationTool
                     if(s_OnPlaceCallback != null)
                     {
                         s_OnPlaceCallback(s_Panel.Location,s_NodeType);
+                        s_NodeDescription = null; //reset node desc
                     }
                 }
             }
@@ -86,7 +98,10 @@ namespace ShaderCreationTool
             s_PlacingFlag = false;
         }
 
-        
+        static public FunctionNodeDescription FunctionDescriptionStruct
+        {
+            get { return s_NodeDescription; }
+        }
 
 
 

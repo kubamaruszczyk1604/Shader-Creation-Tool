@@ -35,11 +35,11 @@
    <Node Name="Add">
   
     <Input_Variables>
-      <Variable Name="Colour1" Var_Type="Float">
+      <Variable Name="Colour1" Var_Type="Float4">
       </Variable>
     </Input_Variables>
 	<Input_Variables>
-      <Variable Name="Colour2" Var_Type="Float2">
+      <Variable Name="Colour2" Var_Type="Float4">
       </Variable>
     </Input_Variables>
 	

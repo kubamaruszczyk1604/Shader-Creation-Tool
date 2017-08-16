@@ -175,10 +175,10 @@ namespace ShaderCreationTool
             {
                 SCTConsole.Instance.PrintLine("Selection: " + form.RequestedFunctionNodeDescription.Name);
                 {
-                    //NodeInstantiator.StartPlacing(form.RequestedFunctionNodeDescription);
-                    //MovableObject.LockAllMovement();
-                    //LockableNodes.LockButtons();
-                    //Connector.LockAllConnectors();
+                    NodeInstantiator.StartPlacing(form.RequestedFunctionNodeDescription);
+                    MovableObject.LockAllMovement();
+                    LockableNodes.LockButtons();
+                    Connector.LockAllConnectors();
                 }
             }
             form.Dispose();
@@ -333,6 +333,7 @@ namespace ShaderCreationTool
                 case NodeType.Input_Float4:{ temp = new InputNodeVector(Float4InputWindow, location); break; }
                 case NodeType.Input_Colour: { temp = new InputNodeColour(ColourInputWindow, location); break; }
                 case NodeType.Input_Texture2D: { temp = new InputNodeTexture2D(Texture2DInputWindow, location); break; }
+                case NodeType.Funtion: { temp = new SCTFunctionNode(FunctionNodeWindow, location, NodeInstantiator.FunctionDescriptionStruct); break; }
                 default:{ MessageBox.Show(type.ToString() + " NOT IMPLEMENTED"); return; }
             }
 
@@ -345,6 +346,11 @@ namespace ShaderCreationTool
                 IInputNode inpN = (IInputNode)temp;
                 inpN.AddOnCloseCallback(OnNodeClose);
                 inpN.AddInputErrorCallback(OnInputError);
+            }
+            else if (temp is SCTFunctionNode)
+            {
+                SCTFunctionNode inpN = (SCTFunctionNode)temp;
+                inpN.AddOnCloseCallback(OnNodeClose);
             }
             m_Nodes.Add(temp);   
         }
