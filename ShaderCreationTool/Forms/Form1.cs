@@ -479,8 +479,15 @@ namespace ShaderCreationTool
             Start_AddVariableNode();
         }
 
+        private void FunctionNodeMenu_Click(object sender, EventArgs e)
+        {
+            Start_AddFunctionNode();
+        }
 
-
+        private void ExitMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
 
 
@@ -501,12 +508,8 @@ namespace ShaderCreationTool
             }
         }
 
-        private void ExitMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
      
+
     }
 
 

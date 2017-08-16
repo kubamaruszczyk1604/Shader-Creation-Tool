@@ -33,6 +33,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label_ConnectionCount = new System.Windows.Forms.Label();
+            this.label_NodeCount = new System.Windows.Forms.Label();
+            this.captionConnections = new System.Windows.Forms.Label();
+            this.captionTotalNodes = new System.Windows.Forms.Label();
             this.Texture2DInputWindow = new System.Windows.Forms.Panel();
             this.closeButton_Texture2D = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -136,11 +141,6 @@
             this.AddVariableButton = new System.Windows.Forms.Button();
             this.AddNodeButton = new System.Windows.Forms.Button();
             this.button31 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label_ConnectionCount = new System.Windows.Forms.Label();
-            this.label_NodeCount = new System.Windows.Forms.Label();
-            this.captionConnections = new System.Windows.Forms.Label();
-            this.captionTotalNodes = new System.Windows.Forms.Label();
             this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,12 +150,13 @@
             this.gLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addVariableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uniformVariableNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.EditAreaPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.Texture2DInputWindow.SuspendLayout();
             this.panel9.SuspendLayout();
             this.texture2D_Inner_Panel.SuspendLayout();
@@ -198,7 +199,6 @@
             this.PreviewAreaPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.AddGroupBox.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -258,6 +258,69 @@
             this.EditAreaPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.EditAreaPanel_Scroll);
             this.EditAreaPanel.Click += new System.EventHandler(this.EditAreaPanel_Click);
             this.EditAreaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.EditAreaPanel_Paint);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label_ConnectionCount);
+            this.panel1.Controls.Add(this.label_NodeCount);
+            this.panel1.Controls.Add(this.captionConnections);
+            this.panel1.Controls.Add(this.captionTotalNodes);
+            this.panel1.Location = new System.Drawing.Point(1186, 1425);
+            this.panel1.Name = "panel1";
+            this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.panel1.Size = new System.Drawing.Size(131, 59);
+            this.panel1.TabIndex = 37;
+            // 
+            // label_ConnectionCount
+            // 
+            this.label_ConnectionCount.AutoSize = true;
+            this.label_ConnectionCount.BackColor = System.Drawing.Color.Transparent;
+            this.label_ConnectionCount.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_ConnectionCount.ForeColor = System.Drawing.Color.Lime;
+            this.label_ConnectionCount.Location = new System.Drawing.Point(106, 34);
+            this.label_ConnectionCount.Name = "label_ConnectionCount";
+            this.label_ConnectionCount.Size = new System.Drawing.Size(15, 14);
+            this.label_ConnectionCount.TabIndex = 24;
+            this.label_ConnectionCount.Text = "0";
+            // 
+            // label_NodeCount
+            // 
+            this.label_NodeCount.AutoSize = true;
+            this.label_NodeCount.BackColor = System.Drawing.Color.Transparent;
+            this.label_NodeCount.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_NodeCount.ForeColor = System.Drawing.Color.Lime;
+            this.label_NodeCount.Location = new System.Drawing.Point(106, 7);
+            this.label_NodeCount.Name = "label_NodeCount";
+            this.label_NodeCount.Size = new System.Drawing.Size(15, 14);
+            this.label_NodeCount.TabIndex = 23;
+            this.label_NodeCount.Text = "0";
+            // 
+            // captionConnections
+            // 
+            this.captionConnections.AutoSize = true;
+            this.captionConnections.BackColor = System.Drawing.Color.Transparent;
+            this.captionConnections.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.captionConnections.ForeColor = System.Drawing.Color.Lime;
+            this.captionConnections.Location = new System.Drawing.Point(6, 34);
+            this.captionConnections.Name = "captionConnections";
+            this.captionConnections.Size = new System.Drawing.Size(92, 14);
+            this.captionConnections.TabIndex = 22;
+            this.captionConnections.Text = "Connections:";
+            // 
+            // captionTotalNodes
+            // 
+            this.captionTotalNodes.AutoSize = true;
+            this.captionTotalNodes.BackColor = System.Drawing.Color.Transparent;
+            this.captionTotalNodes.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.captionTotalNodes.ForeColor = System.Drawing.Color.Lime;
+            this.captionTotalNodes.Location = new System.Drawing.Point(6, 10);
+            this.captionTotalNodes.Name = "captionTotalNodes";
+            this.captionTotalNodes.Size = new System.Drawing.Size(50, 14);
+            this.captionTotalNodes.TabIndex = 21;
+            this.captionTotalNodes.Text = "Nodes:";
             // 
             // Texture2DInputWindow
             // 
@@ -1676,69 +1739,6 @@
             this.button31.UseVisualStyleBackColor = false;
             this.button31.Click += new System.EventHandler(this.button31_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label_ConnectionCount);
-            this.panel1.Controls.Add(this.label_NodeCount);
-            this.panel1.Controls.Add(this.captionConnections);
-            this.panel1.Controls.Add(this.captionTotalNodes);
-            this.panel1.Location = new System.Drawing.Point(1167, 630);
-            this.panel1.Name = "panel1";
-            this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.panel1.Size = new System.Drawing.Size(131, 59);
-            this.panel1.TabIndex = 37;
-            // 
-            // label_ConnectionCount
-            // 
-            this.label_ConnectionCount.AutoSize = true;
-            this.label_ConnectionCount.BackColor = System.Drawing.Color.Transparent;
-            this.label_ConnectionCount.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_ConnectionCount.ForeColor = System.Drawing.Color.Lime;
-            this.label_ConnectionCount.Location = new System.Drawing.Point(106, 34);
-            this.label_ConnectionCount.Name = "label_ConnectionCount";
-            this.label_ConnectionCount.Size = new System.Drawing.Size(15, 14);
-            this.label_ConnectionCount.TabIndex = 24;
-            this.label_ConnectionCount.Text = "0";
-            // 
-            // label_NodeCount
-            // 
-            this.label_NodeCount.AutoSize = true;
-            this.label_NodeCount.BackColor = System.Drawing.Color.Transparent;
-            this.label_NodeCount.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_NodeCount.ForeColor = System.Drawing.Color.Lime;
-            this.label_NodeCount.Location = new System.Drawing.Point(106, 7);
-            this.label_NodeCount.Name = "label_NodeCount";
-            this.label_NodeCount.Size = new System.Drawing.Size(15, 14);
-            this.label_NodeCount.TabIndex = 23;
-            this.label_NodeCount.Text = "0";
-            // 
-            // captionConnections
-            // 
-            this.captionConnections.AutoSize = true;
-            this.captionConnections.BackColor = System.Drawing.Color.Transparent;
-            this.captionConnections.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.captionConnections.ForeColor = System.Drawing.Color.Lime;
-            this.captionConnections.Location = new System.Drawing.Point(6, 34);
-            this.captionConnections.Name = "captionConnections";
-            this.captionConnections.Size = new System.Drawing.Size(92, 14);
-            this.captionConnections.TabIndex = 22;
-            this.captionConnections.Text = "Connections:";
-            // 
-            // captionTotalNodes
-            // 
-            this.captionTotalNodes.AutoSize = true;
-            this.captionTotalNodes.BackColor = System.Drawing.Color.Transparent;
-            this.captionTotalNodes.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.captionTotalNodes.ForeColor = System.Drawing.Color.Lime;
-            this.captionTotalNodes.Location = new System.Drawing.Point(6, 10);
-            this.captionTotalNodes.Name = "captionTotalNodes";
-            this.captionTotalNodes.Size = new System.Drawing.Size(50, 14);
-            this.captionTotalNodes.TabIndex = 21;
-            this.captionTotalNodes.Text = "Nodes:";
-            // 
             // MainMenuStrip
             // 
             this.MainMenuStrip.BackColor = System.Drawing.Color.DimGray;
@@ -1773,7 +1773,7 @@
             this.openToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.openToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // saveToolStripMenuItem
@@ -1781,7 +1781,7 @@
             this.saveToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // saveAsToolStripMenuItem
@@ -1789,7 +1789,7 @@
             this.saveAsToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.saveAsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.saveAsToolStripMenuItem.Text = "Save As";
             // 
             // exportToToolStripMenuItem
@@ -1800,7 +1800,7 @@
             this.hLSLToolStripMenuItem});
             this.exportToToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.exportToToolStripMenuItem.Name = "exportToToolStripMenuItem";
-            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exportToToolStripMenuItem.Text = "Export to..";
             // 
             // gLSLToolStripMenuItem
@@ -1820,13 +1820,9 @@
             this.exitToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.exitToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
             // 
             // editToolStripMenuItem
             // 
@@ -1864,6 +1860,11 @@
             this.functionNodeToolStripMenuItem.Name = "functionNodeToolStripMenuItem";
             this.functionNodeToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.functionNodeToolStripMenuItem.Text = "Function Node";
+            this.functionNodeToolStripMenuItem.Click += new System.EventHandler(this.FunctionNodeMenu_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // MainWindow
             // 
@@ -1885,6 +1886,8 @@
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.Shown += new System.EventHandler(this.MainWindow_Shown);
             this.EditAreaPanel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.Texture2DInputWindow.ResumeLayout(false);
             this.Texture2DInputWindow.PerformLayout();
             this.panel9.ResumeLayout(false);
@@ -1950,8 +1953,6 @@
             this.PreviewAreaPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.AddGroupBox.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
