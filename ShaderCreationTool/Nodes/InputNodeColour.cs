@@ -49,8 +49,6 @@ namespace ShaderCreationTool
             m_OutputConnectors = new List<Connector>();
             int tbCounter = 0;
             List<Control> allControlls = ControlExtensions.GetAllChildreenControls<Control>(m_SctElement).Cast<Control>().ToList();
-            //SCTConsole.Instance.PrintLine("TYCH CONTROLSOW JEST: " + allControlls.Count.ToString());
-            //allControlls.Add(m_SctElement);
             int connectorCounter = 0;
             foreach (Control control in allControlls)
             {

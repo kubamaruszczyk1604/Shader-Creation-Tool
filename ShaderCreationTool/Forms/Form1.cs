@@ -304,43 +304,20 @@ namespace ShaderCreationTool
             MovableObject.UnlockAllMovement();
             LockableNodes.UnlockButtons();
             Connector.UnlockAllConnectors();
-
-
             ISCTNode temp = null;
-            if (type == NodeType.Input_Float)
+            switch (type)
             {
-                temp  =  new InputNodeVector(FloatInputWindow, location);
-            }
-            else if(type == NodeType.Input_Float2)
-            {
-                temp = new InputNodeVector(Float2InputWindow, location);
-            }
-            else if (type == NodeType.Input_Float3)
-            {
-                temp = new InputNodeVector(Float3InputWindow, location);
-            }
-            else if (type == NodeType.Input_Float4)
-            {
-                temp = new InputNodeVector(Float4InputWindow, location);
-            }
-            else if (type == NodeType.Input_Colour)
-            {
-                temp = new InputNodeColour(ColourInputWindow, location);
-            }
-            else if(type == NodeType.Input_Texture2D)
-            {
-                temp = new InputNodeTexture2D(Texture2DInputWindow, location);
-            }
-            else
-            {
-                MessageBox.Show(type.ToString() + " NOT IMPLEMENTED");
-                return;
-
+                case NodeType.Input_Float: { temp = new InputNodeVector(FloatInputWindow, location); break; }
+                case NodeType.Input_Float2: { temp = new InputNodeVector(Float2InputWindow, location); break; } 
+                case NodeType.Input_Float3: { temp = new InputNodeVector(Float3InputWindow, location); break; }
+                case NodeType.Input_Float4:{ temp = new InputNodeVector(Float4InputWindow, location); break; }
+                case NodeType.Input_Colour: { temp = new InputNodeColour(ColourInputWindow, location); break; }
+                case NodeType.Input_Texture2D: { temp = new InputNodeTexture2D(Texture2DInputWindow, location); break; }
+                default:{ MessageBox.Show(type.ToString() + " NOT IMPLEMENTED"); return; }
             }
 
-
-            (temp).AddOnMovedCallback(UpdateOnObjectMoved);
-            (temp).AddOnBeginConnectionCallback(OnConnectionBegin);
+            temp.AddOnMovedCallback(UpdateOnObjectMoved);
+            temp.AddOnBeginConnectionCallback(OnConnectionBegin);
             temp.AddOnBreakConnectionCallback(OnConnectionBreak);
 
             if (temp is IInputNode)
@@ -349,8 +326,7 @@ namespace ShaderCreationTool
                 inpN.AddOnCloseCallback(OnNodeClose);
                 inpN.AddInputErrorCallback(OnInputError);
             }
-            m_Nodes.Add(temp);
-           
+            m_Nodes.Add(temp);   
         }
 
 
