@@ -24,6 +24,8 @@ namespace ShaderCreationTool
         //[return: MarshalAs(UnmanagedType.Bool)]
         //static extern bool AllocConsole();
 
+        private const string NODES_PATH = @"..\Data\StdNodes\nodes.txt";
+
         private SimpleZLine m_TempLine;
         private MovableObject m_MovableKey;
         private MovableObject m_MovablePreviewPanel;
@@ -153,9 +155,9 @@ namespace ShaderCreationTool
             form.ShowDialog();
             if (form.DialogResult == DialogResult.OK)
             {
-                SCTConsole.Instance.PrintLine("Selection: " + form.RequestedNodeType.ToString());
+                SCTConsole.Instance.PrintLine("Selection: " + form.RequestedInputNodeType.ToString());
                 {
-                    NodeInstantiator.StartPlacing(form.RequestedNodeType);
+                    NodeInstantiator.StartPlacing(form.RequestedInputNodeType);
                     MovableObject.LockAllMovement();
                     LockableNodes.LockButtons();
                     Connector.LockAllConnectors();
@@ -413,9 +415,9 @@ namespace ShaderCreationTool
             r.ShowDialog();
             if (r.DialogResult == DialogResult.OK)
             {
-                SCTConsole.Instance.PrintLine("Selection: " + r.RequestedNodeType.ToString());
+                SCTConsole.Instance.PrintLine("Selection: " + r.RequestedInputNodeType.ToString());
                 // AddExampleNodes();
-                AddExampleNodeFromFile(@"c:\nodes\nodes.txt");
+                AddExampleNodeFromFile(NODES_PATH);
             }
         }
 

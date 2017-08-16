@@ -29,9 +29,9 @@ namespace ShaderCreationTool
         private bool m_InputNodes;
 
         public int Selection { get; set; }
-        public NodeType RequestedNodeType { get { return m_ReturnedNodeType; } }
+        public NodeType RequestedInputNodeType { get { return m_ReturnedNodeType; } }
 
-        public FunctionNodeDescription ObtainedFunctionNodeDescription
+        public FunctionNodeDescription RequestedFunctionNodeDescription
         {
             get { return m_FuntionNodeDescription; }
         }
@@ -104,10 +104,9 @@ namespace ShaderCreationTool
             }
         }
 
-       
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-        
-
-
+        }
     }
 }

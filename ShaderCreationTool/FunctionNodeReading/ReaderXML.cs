@@ -2,6 +2,7 @@
 using System.IO;
 using System.Xml;
 using System.Text.RegularExpressions;
+using System;
 
 namespace ShaderCreationTool
 {
@@ -19,17 +20,24 @@ namespace ShaderCreationTool
         {
             outputList = new List<FunctionNodeDescription>();
             status = string.Empty;
+            XmlNodeList nodes;
+            try
+            {
+                string xmlContent = File.ReadAllText(path);
 
-            string xmlContent = File.ReadAllText(path);
+                XmlDocument XdOC = new XmlDocument();
+                XdOC.LoadXml(xmlContent);
 
-            XmlDocument XdOC = new XmlDocument();
-            XdOC.LoadXml(xmlContent);
+                XmlElement document = XdOC.DocumentElement;
 
-            XmlElement document = XdOC.DocumentElement;
-
-            //All Nodes - ~First one is a comment rest are entities
-            XmlNodeList nodes = document.ChildNodes;
-
+                //All Nodes - ~First one is a comment rest are entities
+                nodes = document.ChildNodes;
+            }
+            catch(Exception e)
+            {
+                status += e.Message;
+                return false;
+            }
 
 
             foreach (XmlNode node in nodes)

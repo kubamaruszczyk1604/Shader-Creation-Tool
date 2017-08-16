@@ -61,6 +61,7 @@
     <Compile Include="Forms\SelectNodeForm.Designer.cs">
       <DependentUpon>SelectNodeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FunctionNodeConfigMgr.cs" />
     <Compile Include="Nodes\CloneExtension.cs" />
     <Compile Include="Connections\Connection.cs" />
     <Compile Include="Lines\ConnectionLine.cs" />
@@ -85,7 +86,7 @@
     <Compile Include="Forms\SCTConsole.Designer.cs">
       <DependentUpon>SCTConsole.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReaderXML.cs" />
+    <Compile Include="FunctionNodeReading\ReaderXML.cs" />
     <Compile Include="Util\MovableObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
