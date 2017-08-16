@@ -20,9 +20,9 @@ namespace ShaderCreationTool
 
     public partial class MainWindow : Form
     {
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool AllocConsole();
+        //[DllImport("kernel32.dll", SetLastError = true)]
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        //static extern bool AllocConsole();
 
         private SimpleZLine m_TempLine;
         private MovableObject m_MovableKey;
