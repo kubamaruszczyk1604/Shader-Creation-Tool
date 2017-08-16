@@ -261,14 +261,14 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.panel1.BackColor = System.Drawing.Color.Black;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label_ConnectionCount);
             this.panel1.Controls.Add(this.label_NodeCount);
             this.panel1.Controls.Add(this.captionConnections);
             this.panel1.Controls.Add(this.captionTotalNodes);
-            this.panel1.Location = new System.Drawing.Point(1186, 1425);
+            this.panel1.Location = new System.Drawing.Point(9, 263);
             this.panel1.Name = "panel1";
             this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.panel1.Size = new System.Drawing.Size(131, 59);
@@ -1841,7 +1841,7 @@
             this.functionNodeToolStripMenuItem});
             this.addVariableToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.addVariableToolStripMenuItem.Name = "addVariableToolStripMenuItem";
-            this.addVariableToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.addVariableToolStripMenuItem.Size = new System.Drawing.Size(106, 24);
             this.addVariableToolStripMenuItem.Text = "Add";
             // 
             // uniformVariableNodeToolStripMenuItem
@@ -1860,7 +1860,6 @@
             this.functionNodeToolStripMenuItem.Name = "functionNodeToolStripMenuItem";
             this.functionNodeToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
             this.functionNodeToolStripMenuItem.Text = "Function Node";
-            this.functionNodeToolStripMenuItem.Click += new System.EventHandler(this.FunctionNodeMenu_Click);
             // 
             // errorProvider1
             // 
