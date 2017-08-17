@@ -18,10 +18,7 @@ namespace ShaderCreationTool
 {
     class ZoomController
     {
-        
-
-        private Button s_ZoomInButton;
-        private Button s_ZoomOutButton;
+       
         private bool zoomInIn;
         private bool zoomOutIn;
         public ZoomController(Button zoomIn, Button zoomOut)
@@ -40,8 +37,8 @@ namespace ShaderCreationTool
 
         public void RegisterLeftClick()
         {
-            if (zoomInIn) Bridge.Zoom(0.1f);
-            if (zoomOutIn) Bridge.Zoom(-0.1f);
+            if (zoomInIn) Bridge.Zoom(0.3f);
+            if (zoomOutIn) Bridge.Zoom(-0.3f);
         }
 
         private void ZoomInButton_Click(object sender, EventArgs e)

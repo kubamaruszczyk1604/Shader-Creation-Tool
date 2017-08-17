@@ -376,7 +376,7 @@ namespace ShaderCreationTool
 
         private void MainWindow_Shown(object sender, EventArgs e)
         {
-            StartRenderer(50);
+            StartRenderer(100);
             PreviewTextLabel.ForeColor = Color.White;  
         }
 
