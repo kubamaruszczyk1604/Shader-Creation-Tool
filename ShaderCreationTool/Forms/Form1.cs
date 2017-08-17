@@ -501,14 +501,31 @@ namespace ShaderCreationTool
                 }
             }
         }
+        private double DegreeToRadian(double angle)
+        {
+            return Math.PI * angle / 180.0;
+        }
+        private double RadianToDegree(double angle)
+        {
+            return angle * (180.0 / Math.PI);
+        }
 
- 
 
+        int lastMouseX = 0;
+        int lastMouseY = 0;
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if( MouseButtons == MouseButtons.Left)
-            SCTConsole.Instance.PrintDebugLine("Is pressed now!");
-         
+           
+            if (MouseButtons == MouseButtons.Left)
+            {
+                SCTConsole.Instance.PrintDebugLine("Is pressed now!");
+                int amountX = lastMouseX - e.X;
+                int amountY = lastMouseY - e.Y;
+                Bridge.RotateObject((float)DegreeToRadian(amountY), (float)DegreeToRadian(amountX), 0);
+             
+            }
+            lastMouseX = e.X;
+            lastMouseY = e.Y;
         }
 
         private void StatsGroupBox_Enter(object sender, EventArgs e)
@@ -518,7 +535,7 @@ namespace ShaderCreationTool
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Bridge.RotateObject(1, 0, 0);
+           
            // Bridge.ReloadScene();
         }
     }
