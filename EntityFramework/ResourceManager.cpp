@@ -12,7 +12,7 @@ namespace KLM_FRAMEWORK
 	std::unordered_map<std::string, Material*> ResourceManager::m_MaterialsMap;
 	std::unordered_map<std::string, Shader*> ResourceManager::m_ShadersMap;
 	std::string ResourceManager::s_LastCompileLogMessage = "";
-
+	bool ResourceManager::s_LastVertexOk{ false };
 
 
 	Mesh * ResourceManager::LoadMesh(const std::string & path)

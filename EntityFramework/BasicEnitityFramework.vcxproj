@@ -173,6 +173,7 @@
   <ItemGroup>
     <ClCompile Include="BehaviourComponent.cpp" />
     <ClCompile Include="BehaviourManager.cpp" />
+    <ClCompile Include="Behaviours.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="D3D11VertexShader.cpp" />

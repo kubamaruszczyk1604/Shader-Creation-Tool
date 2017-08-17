@@ -18,6 +18,9 @@ public:
 	static void AddWndProcUpdateCallback(OnWndProcUpdate^ dlg);
 	static void AddWndProcMessageCallback(OnWndProcMessage^ dlg);
 	static System::String^ GetLastCompilerMessage();
+	static void ClearLastCompilerMessage();
+
+
 
 	// used only on C++ side
 	static void CallUpdateDelegate();

@@ -155,6 +155,7 @@
             this.uniformVariableNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.button2 = new System.Windows.Forms.Button();
             this.EditAreaPanel.SuspendLayout();
             this.StatsGroupBox.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -236,6 +237,7 @@
             this.EditAreaPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditAreaPanel.BackgroundImage")));
             this.EditAreaPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.EditAreaPanel.Controls.Add(this.button2);
             this.EditAreaPanel.Controls.Add(this.StatsGroupBox);
             this.EditAreaPanel.Controls.Add(this.Texture2DInputWindow);
             this.EditAreaPanel.Controls.Add(this.TransparentNodePanel);
@@ -272,6 +274,7 @@
             this.StatsGroupBox.TabIndex = 24;
             this.StatsGroupBox.TabStop = false;
             this.StatsGroupBox.Text = "Stats";
+            this.StatsGroupBox.Enter += new System.EventHandler(this.StatsGroupBox_Enter);
             // 
             // panel1
             // 
@@ -1662,7 +1665,7 @@
             this.PreviewAreaPanel.BackColor = System.Drawing.Color.DimGray;
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
-            this.PreviewAreaPanel.Location = new System.Drawing.Point(811, 3);
+            this.PreviewAreaPanel.Location = new System.Drawing.Point(830, 3);
             this.PreviewAreaPanel.Name = "PreviewAreaPanel";
             this.PreviewAreaPanel.Size = new System.Drawing.Size(466, 423);
             this.PreviewAreaPanel.TabIndex = 26;
@@ -1866,6 +1869,16 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(266, 22);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(170, 40);
+            this.button2.TabIndex = 37;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainWindow
             // 
@@ -2091,6 +2104,7 @@
         private System.Windows.Forms.ToolStripMenuItem uniformVariableNodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem functionNodeToolStripMenuItem;
         private System.Windows.Forms.GroupBox StatsGroupBox;
+        private System.Windows.Forms.Button button2;
     }
 }
 

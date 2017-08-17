@@ -31,6 +31,7 @@ namespace KLM_FRAMEWORK
 		static std::unordered_map<std::string, Mesh*> m_MeshesMap;
 		static std::unordered_map<std::string, Material*> m_MaterialsMap;
 		static std::string s_LastCompileLogMessage;
+		static bool s_LastVertexOk;
 	};
 
 

@@ -445,6 +445,7 @@ namespace ShaderCreationTool
         {
             //Bridge.ReloadScene();
             SCTConsole.Instance.PrintLine(Bridge.GetLastCompilerMessage());
+            Bridge.ClearLastCompilerMessage();
            // SCTConsole.Instance.Show();
            // SCTConsole.Instance.PrintLine("Console shown test..");
    
@@ -510,7 +511,15 @@ namespace ShaderCreationTool
          
         }
 
-       
+        private void StatsGroupBox_Enter(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Bridge.ReloadScene();
+        }
     }
 
 

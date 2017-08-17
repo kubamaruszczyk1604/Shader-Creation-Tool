@@ -68,6 +68,11 @@ System::String ^ Bridge::GetLastCompilerMessage()
 	return ResourceManagerWrapper::GetLastCompileMessage();
 }
 
+void Bridge::ClearLastCompilerMessage()
+{
+	ResourceManagerWrapper::ClearCompilerMessages();
+}
+
 void Bridge::CallUpdateDelegate()
 {
 	if(s_OnProcUpdateDelegate)
