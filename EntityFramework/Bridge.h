@@ -20,7 +20,7 @@ public:
 	static System::String^ GetLastCompilerMessage();
 	static void ClearLastCompilerMessage();
 	static void RotateObject(float x, float y, float z);
-
+	static void Zoom(float amount);
 
 
 	// used only on C++ side

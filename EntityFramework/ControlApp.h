@@ -35,5 +35,6 @@ public:
 	static void SetMessageCallback(WndMessageLoopCallback callback);
 
 	static void RotateObject(float x, float y, float z);
+	static void Zoom(float amount);
 };
 

@@ -43,8 +43,8 @@ private:
 	Entity* parentQuad{ nullptr };
 	Spotlight* m_pSpotLight{ nullptr };
 	DirectionalLight* m_pDirectionalLight{ nullptr };
-	static Entity* m_pMainEntity;
-	
+	static Entity* s_pMainObjectEntity;
+	static Entity* s_CameraEntity;
 
 public:
 	~ExampleScene() {}
@@ -55,6 +55,7 @@ public:
 	void OnExit();
 	void PostUpdate();
 	void RotateObject(float x, float y, float z);
+	void Zoom(float amount);
 
 	//InputCallbacks
 	void OnKeyPressed(const int key, const KeyState state);

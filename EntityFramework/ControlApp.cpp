@@ -106,3 +106,9 @@ void ControlApp::RotateObject(float x, float y, float z)
 	scene->RotateObject(x, y, z);
 }
 
+void ControlApp::Zoom(float amount)
+{
+	ExampleScene* scene = static_cast<ExampleScene*>(s_CurrentScene);
+	scene->Zoom(amount);
+}
+

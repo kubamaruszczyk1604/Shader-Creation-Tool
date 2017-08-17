@@ -33,7 +33,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
             this.StatsGroupBox = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_ConnectionCount = new System.Windows.Forms.Label();
@@ -156,6 +155,8 @@
             this.uniformVariableNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ZoomInButton = new System.Windows.Forms.Button();
+            this.ZoomOutButton = new System.Windows.Forms.Button();
             this.EditAreaPanel.SuspendLayout();
             this.StatsGroupBox.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -237,7 +238,6 @@
             this.EditAreaPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditAreaPanel.BackgroundImage")));
             this.EditAreaPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.EditAreaPanel.Controls.Add(this.button2);
             this.EditAreaPanel.Controls.Add(this.StatsGroupBox);
             this.EditAreaPanel.Controls.Add(this.Texture2DInputWindow);
             this.EditAreaPanel.Controls.Add(this.TransparentNodePanel);
@@ -261,16 +261,6 @@
             this.EditAreaPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.EditAreaPanel_Scroll);
             this.EditAreaPanel.Click += new System.EventHandler(this.EditAreaPanel_Click);
             this.EditAreaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.EditAreaPanel_Paint);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(266, 22);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(170, 40);
-            this.button2.TabIndex = 37;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // StatsGroupBox
             // 
@@ -1673,6 +1663,8 @@
             // 
             this.PreviewAreaPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PreviewAreaPanel.BackColor = System.Drawing.Color.DimGray;
+            this.PreviewAreaPanel.Controls.Add(this.ZoomInButton);
+            this.PreviewAreaPanel.Controls.Add(this.ZoomOutButton);
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
             this.PreviewAreaPanel.Location = new System.Drawing.Point(849, 3);
@@ -1879,6 +1871,34 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
+            // 
+            // ZoomInButton
+            // 
+            this.ZoomInButton.BackColor = System.Drawing.Color.Maroon;
+            this.ZoomInButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ZoomInButton.BackgroundImage")));
+            this.ZoomInButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ZoomInButton.Font = new System.Drawing.Font("Bernard MT Condensed", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ZoomInButton.ForeColor = System.Drawing.Color.White;
+            this.ZoomInButton.Location = new System.Drawing.Point(408, 35);
+            this.ZoomInButton.Name = "ZoomInButton";
+            this.ZoomInButton.Size = new System.Drawing.Size(31, 24);
+            this.ZoomInButton.TabIndex = 26;
+            this.ZoomInButton.UseVisualStyleBackColor = false;
+            this.ZoomInButton.Click += new System.EventHandler(this.ZoomInButton_Click);
+            // 
+            // ZoomOutButton
+            // 
+            this.ZoomOutButton.BackColor = System.Drawing.Color.Maroon;
+            this.ZoomOutButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ZoomOutButton.BackgroundImage")));
+            this.ZoomOutButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ZoomOutButton.Font = new System.Drawing.Font("Bernard MT Condensed", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ZoomOutButton.ForeColor = System.Drawing.Color.White;
+            this.ZoomOutButton.Location = new System.Drawing.Point(408, 63);
+            this.ZoomOutButton.Name = "ZoomOutButton";
+            this.ZoomOutButton.Size = new System.Drawing.Size(31, 23);
+            this.ZoomOutButton.TabIndex = 27;
+            this.ZoomOutButton.UseVisualStyleBackColor = false;
+            this.ZoomOutButton.Click += new System.EventHandler(this.ZoomOutButton_Click);
             // 
             // MainWindow
             // 
@@ -2104,7 +2124,8 @@
         private System.Windows.Forms.ToolStripMenuItem uniformVariableNodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem functionNodeToolStripMenuItem;
         private System.Windows.Forms.GroupBox StatsGroupBox;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button ZoomInButton;
+        private System.Windows.Forms.Button ZoomOutButton;
     }
 }
 

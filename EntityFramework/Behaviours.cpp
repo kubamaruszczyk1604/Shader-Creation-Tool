@@ -1,5 +1,7 @@
 #include "Behaviours.h"
-Entity* ExampleScene::m_pMainEntity{ nullptr };
+Entity* ExampleScene::s_pMainObjectEntity{ nullptr };
+Entity* ExampleScene::s_CameraEntity{ nullptr };
+
 void ExampleScene::OnStart()
 {
 	PRINTL("OnStart()");
@@ -75,7 +77,7 @@ void ExampleScene::OnStart()
 	bkgQuad->GetTransform()->SetPosition(Vec3(0, 0, 50));
 	bkgQuad->GetTransform()->SetScale(Vec3(20, 20, 1));
 	AddEntity(bkgQuad);
-	m_pMainEntity = bkgQuad;
+	s_pMainObjectEntity = bkgQuad;
 
 	parentQuad = new Entity("test1");
 	parentQuad->AddComponent(std::unique_ptr<ModelComponent>(mc1));
@@ -103,10 +105,10 @@ void ExampleScene::OnStart()
 	Camera* cam = new Camera(ProjectionType::PERSPECTIVE, 60.0f, 0.1f, 1000.0f);
 
 	Renderer::SetActiveCamera(cam);
-	Entity* p_CameraEntity = new Entity("cameraEntity");
-	p_CameraEntity->AddComponent(std::unique_ptr<Camera>(cam));
-	p_CameraEntity->GetTransform()->SetPosition(Vec3(0, 0, -35));
-	AddEntity(p_CameraEntity);
+	s_CameraEntity = new Entity("cameraEntity");
+	s_CameraEntity->AddComponent(std::unique_ptr<Camera>(cam));
+	s_CameraEntity->GetTransform()->SetPosition(Vec3(0, 0, -35));
+	AddEntity(s_CameraEntity);
 
 
 	//m_pDirectionalLight = new DirectionalLight(Vec3(10., 0, -10.f), Colour(0, 0, 0, 1), Colour(0.5, 0.5, 1, 1), Colour(0.1, 0.1, 0.1, 1));
@@ -143,87 +145,88 @@ void ExampleScene::PostUpdate()
 
 void ExampleScene::RotateObject(float x, float y, float z)
 {
-
-	//if (parentQuad)
-	{
-		//parentQuad->GetTransform()->UpdatePosition(1, 0, 0);
-		PRINTL("ROTATE IN SCENE HIT");
-		m_pMainEntity->GetTransform()->RotateXYZ(x, y, z);
-	}
+   s_pMainObjectEntity->GetTransform()->RotateXYZ(x, y, z);
 }
+
+void ExampleScene::Zoom(float amount)
+{
+	s_CameraEntity->GetTransform()->UpdatePosition(0, 0, amount);
+}
+
+
 
 void ExampleScene::OnKeyPressed(const int key, const KeyState state)
 
 {
 	PRINTL("Key Pressed: " + ToString(key));
 
-	if (state == KeyState::RELEASED)
-	{
+	//if (state == KeyState::RELEASED)
+	//{
 
-	}
-	else if (state == KeyState::PRESSED)
-	{
-		switch (key)
-		{
-		case VK_LEFT:
-		{
-			parentQuad->GetTransform()->UpdatePosition(-1, 0, 0);
-			//p_CameraEntity->GetTransform()->UpdatePosition(-1, 0, 0);
-		}
-		break;
-		case VK_RIGHT:
-		{
-			parentQuad->GetTransform()->UpdatePosition(1, 0, 0);
-			//p_CameraEntity->GetTransform()->UpdatePosition(1, 0, 0);
-		}
-		break;
-		case VK_UP:
-		{
-			parentQuad->GetTransform()->UpdatePosition(0, 1, 0);
-			//p_CameraEntity->GetTransform()->UpdatePosition(0, 1, 0);
-		}
-		break;
-		case VK_DOWN:
-		{
-			parentQuad->GetTransform()->UpdatePosition(0, -1, 0);
-			//p_CameraEntity->GetTransform()->UpdatePosition(0, -1, 0);
-		}
-		break;
+	//}
+	//else if (state == KeyState::PRESSED)
+	//{
+	//	switch (key)
+	//	{
+	//	case VK_LEFT:
+	//	{
+	//		parentQuad->GetTransform()->UpdatePosition(-1, 0, 0);
+	//		//p_CameraEntity->GetTransform()->UpdatePosition(-1, 0, 0);
+	//	}
+	//	break;
+	//	case VK_RIGHT:
+	//	{
+	//		parentQuad->GetTransform()->UpdatePosition(1, 0, 0);
+	//		//p_CameraEntity->GetTransform()->UpdatePosition(1, 0, 0);
+	//	}
+	//	break;
+	//	case VK_UP:
+	//	{
+	//		parentQuad->GetTransform()->UpdatePosition(0, 1, 0);
+	//		//p_CameraEntity->GetTransform()->UpdatePosition(0, 1, 0);
+	//	}
+	//	break;
+	//	case VK_DOWN:
+	//	{
+	//		parentQuad->GetTransform()->UpdatePosition(0, -1, 0);
+	//		//p_CameraEntity->GetTransform()->UpdatePosition(0, -1, 0);
+	//	}
+	//	break;
 
-		case 0x57: // W
-		{
-			m_pSpotLight->UpdatePosition(0, 1, 0);
-		}
-		break;
-		case 0x53: // S
-		{
-			m_pSpotLight->UpdatePosition(0, -1, 0);
-		}
-		break;
-		case 0x41: // A
-		{
-			m_pSpotLight->UpdatePosition(-1, 0, 0);
-		}
-		break;
-		break;
-		case 0x44: // D
-		{
-			m_pSpotLight->UpdatePosition(1, 0, 0);
+	//	case 0x57: // W
+	//	{
+	//		m_pSpotLight->UpdatePosition(0, 1, 0);
+	//	}
+	//	break;
+	//	case 0x53: // S
+	//	{
+	//		m_pSpotLight->UpdatePosition(0, -1, 0);
+	//	}
+	//	break;
+	//	case 0x41: // A
+	//	{
+	//		m_pSpotLight->UpdatePosition(-1, 0, 0);
+	//	}
+	//	break;
+	//	break;
+	//	case 0x44: // D
+	//	{
+	//		m_pSpotLight->UpdatePosition(1, 0, 0);
 
-		}
-		break;
+	//	}
+	//	break;
 
-		case VK_ESCAPE: // esc
-		{
+	//	case VK_ESCAPE: // esc
+	//	{
 
-		}
-		break;
+	//	}
+	//	break;
 
-		default:
-			break;
-		}
+	//	default:
+	//		break;
+	//	}
 
-	}
+	//}
 }
 
 void ExampleScene::OnMouseMove(const int x, const int y)

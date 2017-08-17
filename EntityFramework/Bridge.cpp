@@ -78,6 +78,11 @@ void Bridge::RotateObject(float x, float y, float z)
 	ControlApp::RotateObject(x, y, z);
 }
 
+void Bridge::Zoom(float amount)
+{
+	ControlApp::Zoom(amount);
+}
+
 void Bridge::CallUpdateDelegate()
 {
 	if(s_OnProcUpdateDelegate)

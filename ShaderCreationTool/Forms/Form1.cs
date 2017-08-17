@@ -443,6 +443,15 @@ namespace ShaderCreationTool
             lastMouseX = e.X;
             lastMouseY = e.Y;
         }
+        private void ZoomInButton_Click(object sender, EventArgs e)
+        {
+            Bridge.Zoom(3);
+        }
+
+        private void ZoomOutButton_Click(object sender, EventArgs e)
+        {
+            Bridge.Zoom(-3);
+        }
 
         // BUTTONS 
         private void AddVariableButton_Click(object sender, EventArgs e)
@@ -537,13 +546,7 @@ namespace ShaderCreationTool
            
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-           
-           // Bridge.ReloadScene();
-        }
-
-      
+     
     }
 
 
