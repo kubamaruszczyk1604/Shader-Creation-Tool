@@ -22,7 +22,8 @@ namespace KLM_FRAMEWORK
 		static System::IntPtr FindMaterial(System::String^ path);
 
 		static System::IntPtr CreateShader(const ShaderType& type, System::String^ file, System::String^ functionName);
-
+		static System::String^ GetLastCompileMessage();
+		static void ClearCompilerMessages();
 
 	};
 

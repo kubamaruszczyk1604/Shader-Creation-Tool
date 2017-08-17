@@ -61,7 +61,7 @@ namespace ShaderCreationTool
                     }
                     else
                     {
-                        SCTConsole.Instance.PrintLine("WRONG SEQUENCE IN CHECKBOX NAME: FRAME BUFFER NODE\n");
+                        SCTConsole.Instance.PrintDebugLine("WRONG SEQUENCE IN CHECKBOX NAME: FRAME BUFFER NODE\n");
                         throw new Exception("WRONG SEQUENCE");
                     }
 
@@ -70,7 +70,7 @@ namespace ShaderCreationTool
                 }
                 else
                 {
-                    SCTConsole.Instance.PrintLine("WRONG SEQUENCE IN CHECKBOX NAME: FRAME BUFFER NODE\n");
+                    SCTConsole.Instance.PrintDebugLine("WRONG SEQUENCE IN CHECKBOX NAME: FRAME BUFFER NODE\n");
                     throw new Exception("WRONG SEQUENCE");
                 }
             }

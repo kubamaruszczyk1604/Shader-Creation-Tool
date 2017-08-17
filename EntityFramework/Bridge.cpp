@@ -1,6 +1,6 @@
 #include "Bridge.h"
 #include "Behaviours.h"
-
+#include "ResourceManagerWrapper.h" 
 
 void _UpdateCallbackMethod()
 { 
@@ -61,6 +61,11 @@ void Bridge::AddWndProcUpdateCallback(OnWndProcUpdate ^ dlg)
 void Bridge::AddWndProcMessageCallback(OnWndProcMessage ^ dlg)
 {
 	s_OnMessageDelegate += dlg;
+}
+
+System::String ^ Bridge::GetLastCompilerMessage()
+{
+	return ResourceManagerWrapper::GetLastCompileMessage();
 }
 
 void Bridge::CallUpdateDelegate()

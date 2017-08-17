@@ -45,8 +45,8 @@ namespace ShaderCreationTool
         private void OnClick(object sender, EventArgs e)
         {
 
-            SCTConsole.Instance.PrintLine("Connector with local ID: " + this.LocalID);
-            SCTConsole.Instance.PrintLine("PARENT ID: " + p_ParentNode.GetNodeID());
+            SCTConsole.Instance.PrintDebugLine("Connector with local ID: " + this.LocalID);
+            SCTConsole.Instance.PrintDebugLine("PARENT ID: " + p_ParentNode.GetNodeID());
 
             if (!Connected)
             {

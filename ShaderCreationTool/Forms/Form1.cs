@@ -82,6 +82,8 @@ namespace ShaderCreationTool
             NodeInstantiator.AddOnPlaceListener(OnPlaceNode);
             Bridge.AddWndProcUpdateCallback(MainUpdate);
             Bridge.AddWndProcMessageCallback(OnMessage);
+
+      
         }
 
         private async void StartRenderer(int delayMs)
@@ -155,7 +157,7 @@ namespace ShaderCreationTool
             form.ShowDialog();
             if (form.DialogResult == DialogResult.OK)
             {
-                SCTConsole.Instance.PrintLine("Selection: " + form.RequestedInputNodeType.ToString());
+                SCTConsole.Instance.PrintDebugLine("Selection: " + form.RequestedInputNodeType.ToString());
                 {
                     NodeInstantiator.StartPlacing(form.RequestedInputNodeType);
                     MovableObject.LockAllMovement();
@@ -173,7 +175,7 @@ namespace ShaderCreationTool
             form.ShowDialog();
             if (form.DialogResult == DialogResult.OK)
             {
-                SCTConsole.Instance.PrintLine("Selection: " + form.RequestedFunctionNodeDescription.Name);
+                SCTConsole.Instance.PrintDebugLine("Selection: " + form.RequestedFunctionNodeDescription.Name);
                 {
                     NodeInstantiator.StartPlacing(form.RequestedFunctionNodeDescription);
                     MovableObject.LockAllMovement();
@@ -246,7 +248,7 @@ namespace ShaderCreationTool
 
             //Connection open request - first connector clicked
             
-            SCTConsole.Instance.PrintLine("Connector on connection begin.");
+            SCTConsole.Instance.PrintDebugLine("Connector on connection begin.");
             m_TempLine = new SimpleZLine(EditAreaPanel);
             m_TempLineOrgin = EditAreaPanel.PointToClient(System.Windows.Forms.Cursor.Position);
             m_IsConnecting = true;
@@ -273,7 +275,7 @@ namespace ShaderCreationTool
                 {
                     if(c == null)
                     {
-                        SCTConsole.Instance.PrintLine("JEB");
+                        SCTConsole.Instance.PrintDebugLine("JEB");
                     }
                     if (c.ParentNode == sender.ParentNode) continue;
                     if (c.VariableType != sender.VariableType) continue;
@@ -287,19 +289,19 @@ namespace ShaderCreationTool
 
         private void OnConnectionBreak(Connector sender)
         {
-            SCTConsole.Instance.PrintLine("Connector on connection end");
+            SCTConsole.Instance.PrintDebugLine("Connector on connection end");
             ConnectionManager.RemoveConnection(sender.ParentConnection);
         }
 
         private void OnNodeClose(ISCTNode sender)
         {
-            SCTConsole.Instance.PrintLine("Node Close request..");
+            SCTConsole.Instance.PrintDebugLine("Node Close request..");
             DialogResult dialogResult =
                 MessageBox.Show("Are you sure that you want do delete this node ?", 
                 "Confirm node delete", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-                SCTConsole.Instance.PrintLine("Node Close request.. Confirmed");
+                SCTConsole.Instance.PrintDebugLine("Node Close request.. Confirmed");
                 m_Nodes.Remove(sender);
                 if (sender is IDisposable)
                 {
@@ -309,7 +311,7 @@ namespace ShaderCreationTool
             }
             else if (dialogResult == DialogResult.No)
             {
-                SCTConsole.Instance.PrintLine("Node Close request.. Aborted");
+                SCTConsole.Instance.PrintDebugLine("Node Close request.. Aborted");
             }
         }
 
@@ -320,7 +322,7 @@ namespace ShaderCreationTool
 
         private void OnPlaceNode(Point location, NodeType type)
         {
-            SCTConsole.Instance.PrintLine("OnPlaceNode()");
+            SCTConsole.Instance.PrintDebugLine("OnPlaceNode()");
             MovableObject.UnlockAllMovement();
             LockableNodes.UnlockButtons();
             Connector.UnlockAllConnectors();
@@ -367,7 +369,7 @@ namespace ShaderCreationTool
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            SCTConsole.Instance.PrintLine("Main Window Loaded...");
+            SCTConsole.Instance.PrintDebugLine("Main Window Loaded...");
         }
 
         private void MainWindow_Shown(object sender, EventArgs e)
@@ -442,8 +444,9 @@ namespace ShaderCreationTool
         private void button1_Click(object sender, EventArgs e)
         {
             //Bridge.ReloadScene();
-            SCTConsole.Instance.Show();
-            SCTConsole.Instance.PrintLine("Console shown test..");
+            SCTConsole.Instance.PrintLine(Bridge.GetLastCompilerMessage());
+           // SCTConsole.Instance.Show();
+           // SCTConsole.Instance.PrintLine("Console shown test..");
    
         }
 
@@ -503,7 +506,8 @@ namespace ShaderCreationTool
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if( MouseButtons == MouseButtons.Left)
-            SCTConsole.Instance.PrintLine("Is pressed now!");
+            SCTConsole.Instance.PrintDebugLine("Is pressed now!");
+         
         }
 
        

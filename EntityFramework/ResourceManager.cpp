@@ -11,7 +11,7 @@ namespace KLM_FRAMEWORK
 	std::unordered_map<std::string, Mesh*> ResourceManager::m_MeshesMap;
 	std::unordered_map<std::string, Material*> ResourceManager::m_MaterialsMap;
 	std::unordered_map<std::string, Shader*> ResourceManager::m_ShadersMap;
-
+	std::string ResourceManager::s_LastCompileLogMessage = "";
 
 
 
@@ -57,6 +57,7 @@ namespace KLM_FRAMEWORK
 
 	void ResourceManager::ReleaseAllResources()
 	{
+		s_LastCompileLogMessage = "";
 		for (auto it = m_MeshesMap.begin(); it != m_MeshesMap.end(); ++it)
 		{
 			if (it->second != nullptr)
@@ -125,7 +126,7 @@ namespace KLM_FRAMEWORK
 	}
 
 	Shader * ResourceManager::CreateShader(const ShaderType & type, const std::string & file, const std::string & functionName)
-	{
+	{   
 		Shader* output = nullptr;
 		if (!QueryMap<std::string, Shader*>(file + "|" + functionName, output, m_ShadersMap))
 		{
@@ -167,23 +168,35 @@ namespace KLM_FRAMEWORK
 					GLShader* shader = new GLShader(ShaderType::VERTEX);
 					if (shader == nullptr)
 					{
-						PRINTL("GL VERTEX SHADER FAILED TO CREATE: " + functionName);
+						const std::string message = "GL VERTEX SHADER FAILED TO CREATE: " + functionName;
+						PRINTL(message);
+						s_LastCompileLogMessage += "\r\n" + message + "\r\n";
 						return nullptr;
 					}
 					if (!shader->LoadFromFile(functionName))
 					{
-						PRINTL("GL VERTEX SHADER FAILED TO LOAD FROM FILE: " + functionName);
+						const std::string message = "GL VERTEX SHADER FAILED TO LOAD FROM FILE: " + functionName;
+						PRINTL(message);
+						s_LastCompileLogMessage += "\r\n" + message + "\r\n";
 						delete shader;
 						return nullptr;
 					}
-					PRINTL("GL VERTEX SHADER LOADED: " + functionName);
+
+					const std::string  message = "GL VERTEX SHADER LOADED: " + functionName;
+					PRINTL(message);
+					s_LastCompileLogMessage += "\r\n" + message +"\r\n";
+					
 					if (!shader->Compile(log))
 					{
-						PRINTL("GL VERTEX SHADER COMPILATION FAILED: " + functionName + "\nERROR: " + log);
+						const std::string compMSG = "GL VERTEX SHADER COMPILATION FAILED: " + functionName + "\r\nERROR: " + log;
+						s_LastCompileLogMessage += compMSG + "\r\n";
+						PRINTL(compMSG);
 						delete shader;
 						return nullptr;
 					}
-					PRINTL("GL VERTEX SHADER COMPILED: " + functionName + "\nSTATUS: " + log);
+					const std::string successMsg = "GL VERTEX SHADER COMPILED: " + functionName + "\r\nSTATUS: " + log;
+					s_LastCompileLogMessage +=  successMsg +"\r\n";
+					PRINTL(successMsg);
 					output = shader;
 				}
 
@@ -193,23 +206,35 @@ namespace KLM_FRAMEWORK
 					GLShader* shader = new GLShader(ShaderType::FRAGMENT);
 					if (shader == nullptr)
 					{
-						PRINTL("GL FRAGMENT SHADER FAILED TO CREATE: " + functionName);
+						const std::string message = "GL FRAGMENT SHADER FAILED TO CREATE: " + functionName;
+						PRINTL(message);
+						s_LastCompileLogMessage += "\r\n" + message + "\r\n";
 						return nullptr;
 					}
 					if (!shader->LoadFromFile(functionName))
 					{
-						PRINTL("GL FRAGMENT SHADER FAILED TO LOAD FROM FILE: " + functionName);
+						const std::string message = "GL FRAGMENT SHADER FAILED TO LOAD FROM FILE: " + functionName;
+						PRINTL(message);
+						s_LastCompileLogMessage += "\r\n" + message + "\r\n";
 						delete shader;
 						return nullptr;
 					}
-					PRINTL("GL FRAGMENT SHADER LOADED: " + functionName);
+
+					const std::string message = "GL FRAGMENT SHADER LOADED: " + functionName;
+					PRINTL(message);
+					s_LastCompileLogMessage += "\r\n" + message + "\r\n";
+
 					if (!shader->Compile(log))
 					{
-						PRINTL("GL FRAGMENT SHADER COMPILATION FAILED: " + functionName + "\nERROR: " + log);
+						const std::string compMsg = "GL FRAGMENT SHADER COMPILATION FAILED: " + functionName + "\r\nERROR: " + log;
+						PRINTL(compMsg);
+						s_LastCompileLogMessage += compMsg + "\r\n";
 						delete shader;
 						return nullptr;
 					}
-					PRINTL("GL FRAGMENT SHADER COMPILED: " + functionName + "\nSTATUS: " + log);
+					const std::string successMsg = "GL FRAGMENT SHADER COMPILED: " + functionName + "\r\nSTATUS: " + log;
+					PRINTL(successMsg);
+					s_LastCompileLogMessage += successMsg + "\r\n";
 					output = shader;
 				}
 				m_ShadersMap.insert(std::pair<std::string, Shader*>(file + "|" + functionName, output));

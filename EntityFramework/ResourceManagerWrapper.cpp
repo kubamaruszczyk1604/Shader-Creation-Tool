@@ -39,4 +39,14 @@ namespace KLM_FRAMEWORK
 		return static_cast<System::IntPtr>(p);
 	}
 
+	System::String ^ ResourceManagerWrapper::GetLastCompileMessage()
+	{
+		return gcnew System::String(ResourceManager::GetLastCompileMessage().c_str());
+	}
+
+	void ResourceManagerWrapper::ClearCompilerMessages()
+	{
+		ResourceManager::ClearCompilerMessages();
+	}
+
 }

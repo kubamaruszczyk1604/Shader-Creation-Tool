@@ -19,13 +19,17 @@ namespace ShaderCreationTool
             InitializeComponent();
             
         }
+        public void PrintDebugLine(String text)
+        { 
+            ConsoleTextBox.AppendText("DEBUG: " + text + "\r\n");
+        }
+
         public void PrintLine(String text)
         {
-          
-            ConsoleTextBox.AppendText("DEBUG: " + text + "\r\n");
-         
-            
+            ConsoleTextBox.AppendText(text + "\r\n");
+
         }
+
 
         private void ConsoleForm_Load(object sender, EventArgs e)
         {

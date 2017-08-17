@@ -17,7 +17,9 @@ public:
 	static void SetVariable(ShaderTextureVariable^ variable);
 	static void AddWndProcUpdateCallback(OnWndProcUpdate^ dlg);
 	static void AddWndProcMessageCallback(OnWndProcMessage^ dlg);
+	static System::String^ GetLastCompilerMessage();
 
+	// used only on C++ side
 	static void CallUpdateDelegate();
 	static void CallMessageDelegate(SUINT message, SUINT wParam, SUINT lParam);
 	

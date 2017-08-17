@@ -83,7 +83,7 @@ namespace ShaderCreationTool
                     TextBox textBox = (TextBox)control;
                     if (textBox.Name.Contains("Name"))
                     {
-                        SCTConsole.Instance.PrintLine("Name is:" + textBox.Name);
+                        SCTConsole.Instance.PrintDebugLine("Name is:" + textBox.Name);
                         textBox.Validated += TextBox_LostFocus;
                         textBox.KeyPress += TextBox_KeyPress;
                         m_NameTextbox = textBox;
@@ -124,7 +124,7 @@ namespace ShaderCreationTool
             }
             if (tbCounter < 2)
             {
-                SCTConsole.Instance.PrintLine("ERROR: No Texboxes in Input TEXTURE Node");
+                SCTConsole.Instance.PrintDebugLine("ERROR: No Texboxes in Input TEXTURE Node");
                 throw new Exception("ERROR: No Texboxes in Input TEXTURE  Node");
             }
 
@@ -302,7 +302,7 @@ namespace ShaderCreationTool
             DialogResult result = ofd.ShowDialog();
             if (result == DialogResult.OK)
             {
-                SCTConsole.Instance.PrintLine("Opening Texture file: " + ofd.FileName);
+                SCTConsole.Instance.PrintDebugLine("Opening Texture file: " + ofd.FileName);
                 try
                 {
                     m_ImagePanel.BackgroundImage = Image.FromFile(ofd.FileName);
@@ -314,7 +314,7 @@ namespace ShaderCreationTool
                 }
                 catch(Exception ex)
                 {
-                    SCTConsole.Instance.PrintLine(ex.Message);
+                    SCTConsole.Instance.PrintDebugLine(ex.Message);
                     p_ErrorCallback("Texture: "+ ofd.FileName + " has incorrect format\n",this);
                 }
             }
@@ -325,7 +325,7 @@ namespace ShaderCreationTool
 
         private void TextureChanged(string fileName)
         {
-            SCTConsole.Instance.PrintLine("Texture change detected!\n New file:" + fileName);
+            SCTConsole.Instance.PrintDebugLine("Texture change detected!\n New file:" + fileName);
         } 
 
         //////////////////// VARIABLE NAME HANDLING  ////////////////////
@@ -351,7 +351,7 @@ namespace ShaderCreationTool
             if (newText.Contains(" "))
             {
                 // error - spaces
-                SCTConsole.Instance.PrintLine("Error: White spaces not allowed in varable name!");
+                SCTConsole.Instance.PrintDebugLine("Error: White spaces not allowed in varable name!");
                 m_NameTextbox.Text = m_Name; // use old name
                 m_NameTextbox.Invalidate();
                 if (p_ErrorCallback != null)
@@ -364,7 +364,7 @@ namespace ShaderCreationTool
             //Check for empty string error
             if (newText == string.Empty)
             {
-                SCTConsole.Instance.PrintLine("Error: Variable name must contain characters!");
+                SCTConsole.Instance.PrintDebugLine("Error: Variable name must contain characters!");
                 m_NameTextbox.Text = m_Name;
                 m_NameTextbox.Invalidate();
                 if (p_ErrorCallback != null)
@@ -379,7 +379,7 @@ namespace ShaderCreationTool
             if (!regexItem.IsMatch(newText))
             {
                 // error - illegal signs
-                SCTConsole.Instance.PrintLine("Error: Symbols not allowed in varable name!");
+                SCTConsole.Instance.PrintDebugLine("Error: Symbols not allowed in varable name!");
                 if (p_ErrorCallback != null)
                 {
                     m_NameTextbox.Text = m_Name;
@@ -392,7 +392,7 @@ namespace ShaderCreationTool
             m_Name = newText;
 
             m_ShaderVariable.SetName(m_Name);
-            SCTConsole.Instance.PrintLine("TEXT CHANGED to: " + newText);
+            SCTConsole.Instance.PrintDebugLine("TEXT CHANGED to: " + newText);
    
         }
 

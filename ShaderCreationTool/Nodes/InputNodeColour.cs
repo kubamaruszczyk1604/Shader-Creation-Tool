@@ -67,13 +67,13 @@ namespace ShaderCreationTool
                     }
                     else
                     {
-                        SCTConsole.Instance.PrintLine("Checkbox name seqence error in Input Colour Node");
+                        SCTConsole.Instance.PrintDebugLine("Checkbox name seqence error in Input Colour Node");
                     }
                 }
                 else if (control is NumericUpDown)
                 {
                     NumericUpDown num = (NumericUpDown)control;
-                    SCTConsole.Instance.PrintLine("Name is:" + num.Name);
+                    SCTConsole.Instance.PrintDebugLine("Name is:" + num.Name);
                     num.Validated += Numeric_LostFocus;
                     num.KeyPress += Numeric_KeyPress;
 
@@ -89,7 +89,7 @@ namespace ShaderCreationTool
                 else if (control is TextBox)
                 {
                     TextBox textBox = (TextBox)control;
-                    SCTConsole.Instance.PrintLine("NAme is:" + textBox.Name);
+                    SCTConsole.Instance.PrintDebugLine("NAme is:" + textBox.Name);
                     textBox.Validated += TextBox_LostFocus;
                     textBox.KeyPress += TextBox_KeyPress;
                     m_NameTextbox = textBox;
@@ -129,7 +129,7 @@ namespace ShaderCreationTool
 
             if (tbCounter == 0)
             {
-                SCTConsole.Instance.PrintLine("ERROR: No Texboxes in Input Colour Node");
+                SCTConsole.Instance.PrintDebugLine("ERROR: No Texboxes in Input Colour Node");
                 throw new Exception("ERROR: No Texboxes in Input Colour Node");
             }
 
@@ -315,7 +315,7 @@ namespace ShaderCreationTool
             if (newText.Contains(" "))
             {
                 // error - spaces
-                SCTConsole.Instance.PrintLine("Error: White spaces not allowed in varable name!");
+                SCTConsole.Instance.PrintDebugLine("Error: White spaces not allowed in varable name!");
                 m_NameTextbox.Text = m_Name; // use old name
                 m_NameTextbox.Invalidate();
                 if (p_ErrorCallback != null)
@@ -328,7 +328,7 @@ namespace ShaderCreationTool
             //Check for empty string error
             if (newText == string.Empty)
             {
-                SCTConsole.Instance.PrintLine("Error: Variable name must contain characters!");
+                SCTConsole.Instance.PrintDebugLine("Error: Variable name must contain characters!");
                 m_NameTextbox.Text = m_Name;
                 m_NameTextbox.Invalidate();
                 if (p_ErrorCallback != null)
@@ -343,7 +343,7 @@ namespace ShaderCreationTool
             if (!regexItem.IsMatch(newText))
             {
                 // error - illegal signs
-                SCTConsole.Instance.PrintLine("Error: Symbols not allowed in varable name!");
+                SCTConsole.Instance.PrintDebugLine("Error: Symbols not allowed in varable name!");
                 if (p_ErrorCallback != null)
                 {
                     m_NameTextbox.Text = m_Name;
@@ -357,7 +357,7 @@ namespace ShaderCreationTool
             m_Name = newText;
 
             m_ShaderVariable.SetName(m_Name);
-            SCTConsole.Instance.PrintLine("TEXT CHANGED to: " + newText);
+            SCTConsole.Instance.PrintDebugLine("TEXT CHANGED to: " + newText);
             SetShaderVariableFromNumeric();
         }
 
