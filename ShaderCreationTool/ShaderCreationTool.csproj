@@ -61,7 +61,8 @@
     <Compile Include="Forms\SelectNodeForm.Designer.cs">
       <DependentUpon>SelectNodeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FunctionNodeConfigMgr.cs" />
+    <Compile Include="FunctionNodeReading\FunctionNodeConfigMgr.cs" />
+    <Compile Include="ICodeParser.cs" />
     <Compile Include="Nodes\CloneExtension.cs" />
     <Compile Include="Connections\Connection.cs" />
     <Compile Include="Lines\ConnectionLine.cs" />
