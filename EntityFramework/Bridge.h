@@ -19,6 +19,7 @@ public:
 	static void AddWndProcMessageCallback(OnWndProcMessage^ dlg);
 	static System::String^ GetLastCompilerMessage();
 	static void ClearLastCompilerMessage();
+	static void RotateObject(float x, float y, float z);
 
 
 

@@ -10,6 +10,7 @@ using namespace KLM_FRAMEWORK;
 bool ControlApp::s_ReloadRequest{ false };
 bool ControlApp::s_Running{ false };
 float ControlApp::s_TimeScale{ 1.0f };
+Scene* ControlApp::s_CurrentScene{ nullptr };
 
 Stopwatch ControlApp::s_GlobalTimer;
 Stopwatch ControlApp::s_FrameTimer;
@@ -56,7 +57,7 @@ void ControlApp::Run()
 		s_FrameTimer.Stop();
 		if (s_ReloadRequest)
 		{
-			SceneManager::Load(new ExampleScene());
+			SceneManager::Load(s_CurrentScene);
 			s_ReloadRequest = false;
 		}
 		s_FrameTimer.Start();
@@ -71,8 +72,9 @@ void ControlApp::Terminate()
 	s_Running = false;
 }
 
-void ControlApp::ReloadScene()
+void ControlApp::ReloadScene(Scene* scene)
 {
+	s_CurrentScene = scene;
 	s_ReloadRequest = true;
 }
 
@@ -96,5 +98,11 @@ void ControlApp::SetUpdateCallback(WndUpdateLoopCallback callback)
 void ControlApp::SetMessageCallback(WndMessageLoopCallback callback)
 {
 	s_MessageLoopCallback = callback;
+}
+
+void ControlApp::RotateObject(float x, float y, float z)
+{
+	ExampleScene* scene = static_cast<ExampleScene*>(s_CurrentScene);
+	scene->RotateObject(x, y, z);
 }
 

@@ -40,6 +40,12 @@ namespace KLM_FRAMEWORK
 		void SetRotationZ(float z) { m_Rotation.z = z; }
 		void SetRotation(KLM_AXIS axis, float rotation);
 		void Rotate(KLM_AXIS axis, float rotation);
+		void RotateXYZ(float x, float y, float z) 
+		{ 
+			m_Rotation.x += x; 
+			m_Rotation.y += y; 
+			m_Rotation.z += z;
+		}
 		void RotateX(float x) { m_Rotation.x += x; }
 		void RotateY(float y) { m_Rotation.y += y; }
 		void RotateZ(float z) { m_Rotation.z += z; }

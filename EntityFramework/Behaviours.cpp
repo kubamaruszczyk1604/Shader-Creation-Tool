@@ -1,5 +1,5 @@
 #include "Behaviours.h"
-
+Entity* ExampleScene::m_pMainEntity{ nullptr };
 void ExampleScene::OnStart()
 {
 	PRINTL("OnStart()");
@@ -75,7 +75,7 @@ void ExampleScene::OnStart()
 	bkgQuad->GetTransform()->SetPosition(Vec3(0, 0, 50));
 	bkgQuad->GetTransform()->SetScale(Vec3(20, 20, 1));
 	AddEntity(bkgQuad);
-
+	m_pMainEntity = bkgQuad;
 
 	parentQuad = new Entity("test1");
 	parentQuad->AddComponent(std::unique_ptr<ModelComponent>(mc1));
@@ -139,6 +139,17 @@ void ExampleScene::OnExit()
 
 void ExampleScene::PostUpdate()
 {
+}
+
+void ExampleScene::RotateObject(float x, float y, float z)
+{
+
+	//if (parentQuad)
+	{
+		//parentQuad->GetTransform()->UpdatePosition(1, 0, 0);
+		PRINTL("ROTATE IN SCENE HIT");
+		m_pMainEntity->GetTransform()->RotateXYZ(x, y, z);
+	}
 }
 
 void ExampleScene::OnKeyPressed(const int key, const KeyState state)

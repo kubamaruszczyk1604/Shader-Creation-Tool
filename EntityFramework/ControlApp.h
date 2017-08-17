@@ -18,6 +18,7 @@ private:
 	static float s_TimeScale;
 	static WndUpdateLoopCallback s_UpdateLoopCallback;
 	static WndMessageLoopCallback s_MessageLoopCallback;
+	static Scene* s_CurrentScene;
 	
 
 public:
@@ -27,10 +28,12 @@ public:
 	static void Create(int width, int height, System::IntPtr handle);
 	static void Run();
 	static void Terminate();
-	static void ReloadScene();
+	static void ReloadScene(Scene* scene);
 	static void SetShaderVectorVariable( ShaderVectorVariable^ variable);
 	static void SetShaderTextureVarable(ShaderTextureVariable^ variable);
 	static void SetUpdateCallback(WndUpdateLoopCallback callback);
 	static void SetMessageCallback(WndMessageLoopCallback callback);
+
+	static void RotateObject(float x, float y, float z);
 };
 

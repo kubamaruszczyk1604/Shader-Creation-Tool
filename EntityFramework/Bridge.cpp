@@ -40,7 +40,7 @@ int Bridge::Terminate()
 
 void Bridge::ReloadScene()
 {
-	ControlApp::ReloadScene();
+	ControlApp::ReloadScene(new ExampleScene());
 }
 
 void Bridge::SetVariable(ShaderVectorVariable ^ variable)
@@ -71,6 +71,11 @@ System::String ^ Bridge::GetLastCompilerMessage()
 void Bridge::ClearLastCompilerMessage()
 {
 	ResourceManagerWrapper::ClearCompilerMessages();
+}
+
+void Bridge::RotateObject(float x, float y, float z)
+{
+	ControlApp::RotateObject(x, y, z);
 }
 
 void Bridge::CallUpdateDelegate()

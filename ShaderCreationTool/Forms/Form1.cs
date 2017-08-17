@@ -518,7 +518,8 @@ namespace ShaderCreationTool
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Bridge.ReloadScene();
+            Bridge.RotateObject(1, 0, 0);
+           // Bridge.ReloadScene();
         }
     }
 

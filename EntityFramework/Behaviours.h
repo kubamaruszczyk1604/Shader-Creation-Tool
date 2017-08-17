@@ -43,6 +43,8 @@ private:
 	Entity* parentQuad{ nullptr };
 	Spotlight* m_pSpotLight{ nullptr };
 	DirectionalLight* m_pDirectionalLight{ nullptr };
+	static Entity* m_pMainEntity;
+	
 
 public:
 	~ExampleScene() {}
@@ -52,6 +54,7 @@ public:
 	void Update(float deltaTime, float totalTime = 0);
 	void OnExit();
 	void PostUpdate();
+	void RotateObject(float x, float y, float z);
 
 	//InputCallbacks
 	void OnKeyPressed(const int key, const KeyState state);
