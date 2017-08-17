@@ -33,6 +33,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.StatsGroupBox = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_ConnectionCount = new System.Windows.Forms.Label();
@@ -155,7 +156,6 @@
             this.uniformVariableNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.button2 = new System.Windows.Forms.Button();
             this.EditAreaPanel.SuspendLayout();
             this.StatsGroupBox.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -261,6 +261,16 @@
             this.EditAreaPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.EditAreaPanel_Scroll);
             this.EditAreaPanel.Click += new System.EventHandler(this.EditAreaPanel_Click);
             this.EditAreaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.EditAreaPanel_Paint);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(266, 22);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(170, 40);
+            this.button2.TabIndex = 37;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // StatsGroupBox
             // 
@@ -1665,7 +1675,7 @@
             this.PreviewAreaPanel.BackColor = System.Drawing.Color.DimGray;
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
-            this.PreviewAreaPanel.Location = new System.Drawing.Point(830, 3);
+            this.PreviewAreaPanel.Location = new System.Drawing.Point(849, 3);
             this.PreviewAreaPanel.Name = "PreviewAreaPanel";
             this.PreviewAreaPanel.Size = new System.Drawing.Size(466, 423);
             this.PreviewAreaPanel.TabIndex = 26;
@@ -1682,7 +1692,7 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.WaitOnLoad = true;
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PreviewWindow_MouseMove);
             // 
             // PreviewTextLabel
             // 
@@ -1869,16 +1879,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(266, 22);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(170, 40);
-            this.button2.TabIndex = 37;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainWindow
             // 

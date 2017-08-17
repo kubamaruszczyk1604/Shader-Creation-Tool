@@ -428,6 +428,22 @@ namespace ShaderCreationTool
             EditAreaPanel.Invalidate(false);
         }
 
+        int lastMouseX = 0;
+        int lastMouseY = 0;
+        private void PreviewWindow_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (MouseButtons == MouseButtons.Left)
+            {
+                SCTConsole.Instance.PrintDebugLine("Is pressed now!");
+                int amountX = lastMouseX - e.X;
+                int amountY = lastMouseY - e.Y;
+                Bridge.RotateObject((float)DegreeToRadian(amountY), (float)DegreeToRadian(amountX), 0);
+
+            }
+            lastMouseX = e.X;
+            lastMouseY = e.Y;
+        }
+
         // BUTTONS 
         private void AddVariableButton_Click(object sender, EventArgs e)
         {
@@ -439,6 +455,8 @@ namespace ShaderCreationTool
             Start_AddFunctionNode();
         }
 
+
+    
 
         // TEMPORARY STUFF
         private void button1_Click(object sender, EventArgs e)
@@ -468,6 +486,7 @@ namespace ShaderCreationTool
             }
         }
 
+      
         ////////////////////////////////  MENU ITEMS ///////////////////
         private void AddUniformVariable_MenuItem_Click(object sender, EventArgs e)
         {
@@ -511,22 +530,7 @@ namespace ShaderCreationTool
         }
 
 
-        int lastMouseX = 0;
-        int lastMouseY = 0;
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-           
-            if (MouseButtons == MouseButtons.Left)
-            {
-                SCTConsole.Instance.PrintDebugLine("Is pressed now!");
-                int amountX = lastMouseX - e.X;
-                int amountY = lastMouseY - e.Y;
-                Bridge.RotateObject((float)DegreeToRadian(amountY), (float)DegreeToRadian(amountX), 0);
-             
-            }
-            lastMouseX = e.X;
-            lastMouseY = e.Y;
-        }
+      
 
         private void StatsGroupBox_Enter(object sender, EventArgs e)
         {
@@ -538,6 +542,8 @@ namespace ShaderCreationTool
            
            // Bridge.ReloadScene();
         }
+
+      
     }
 
 
