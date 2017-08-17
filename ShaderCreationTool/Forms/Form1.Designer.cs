@@ -274,7 +274,6 @@
             this.StatsGroupBox.TabIndex = 24;
             this.StatsGroupBox.TabStop = false;
             this.StatsGroupBox.Text = "Stats";
-            this.StatsGroupBox.Enter += new System.EventHandler(this.StatsGroupBox_Enter);
             // 
             // panel1
             // 
@@ -1884,7 +1883,6 @@
             this.ZoomInButton.Size = new System.Drawing.Size(31, 24);
             this.ZoomInButton.TabIndex = 26;
             this.ZoomInButton.UseVisualStyleBackColor = false;
-            this.ZoomInButton.Click += new System.EventHandler(this.ZoomInButton_Click);
             // 
             // ZoomOutButton
             // 
@@ -1898,7 +1896,6 @@
             this.ZoomOutButton.Size = new System.Drawing.Size(31, 23);
             this.ZoomOutButton.TabIndex = 27;
             this.ZoomOutButton.UseVisualStyleBackColor = false;
-            this.ZoomOutButton.Click += new System.EventHandler(this.ZoomOutButton_Click);
             // 
             // MainWindow
             // 

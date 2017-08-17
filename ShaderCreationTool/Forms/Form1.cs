@@ -36,6 +36,8 @@ namespace ShaderCreationTool
         private bool m_IsConnecting;
         private Point m_TempLineOrgin;
 
+        private ZoomController m_ZoomController;
+
         private void MainUpdate()
         {
             //canncel connection request
@@ -83,7 +85,7 @@ namespace ShaderCreationTool
             Bridge.AddWndProcUpdateCallback(MainUpdate);
             Bridge.AddWndProcMessageCallback(OnMessage);
 
-      
+            m_ZoomController = new ZoomController(ZoomInButton, ZoomOutButton);
         }
 
         private async void StartRenderer(int delayMs)
@@ -389,6 +391,7 @@ namespace ShaderCreationTool
         private void OnMouseLeftDown()
         {
             NodeInstantiator.CaptureLeftMousePress();
+            m_ZoomController.RegisterLeftClick();
         }
 
         // MAIN EDIT AREA PANEL
@@ -443,15 +446,8 @@ namespace ShaderCreationTool
             lastMouseX = e.X;
             lastMouseY = e.Y;
         }
-        private void ZoomInButton_Click(object sender, EventArgs e)
-        {
-            Bridge.Zoom(3);
-        }
+      
 
-        private void ZoomOutButton_Click(object sender, EventArgs e)
-        {
-            Bridge.Zoom(-3);
-        }
 
         // BUTTONS 
         private void AddVariableButton_Click(object sender, EventArgs e)
@@ -537,16 +533,6 @@ namespace ShaderCreationTool
         {
             return angle * (180.0 / Math.PI);
         }
-
-
-      
-
-        private void StatsGroupBox_Enter(object sender, EventArgs e)
-        {
-           
-        }
-
-     
     }
 
 

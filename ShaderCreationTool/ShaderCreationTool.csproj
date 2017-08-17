@@ -94,6 +94,7 @@
     <Compile Include="Nodes\SCTFunctionNode.cs" />
     <Compile Include="Nodes\SCTNodeInterface.cs" />
     <Compile Include="Lines\SimpleZLine.cs" />
+    <Compile Include="ZoomController.cs" />
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
