@@ -484,6 +484,8 @@ namespace ShaderCreationTool
             string code;
            m_CodeParser.TranslateInputVariables(inputNodes, out code, out status);
             SCTConsole.Instance.PrintLine(code);
+            TextFileReaderWriter.Save(@"c:\nodes\testshad.txt", code);
+            SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
    
         }
 

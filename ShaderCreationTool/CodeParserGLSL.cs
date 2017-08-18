@@ -23,6 +23,7 @@ namespace ShaderCreationTool
             }
             return ok;
         }
+
         public bool TranslateNodeIntoFunction(SCTFunctionNode node, out string functionCode, out string status)
         {
 

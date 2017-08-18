@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeParserGLSL.cs" />
+    <Compile Include="TextFileReaderWriter.cs" />
     <Compile Include="Forms\ImagePreviewForm.cs">
       <SubType>Form</SubType>
     </Compile>
