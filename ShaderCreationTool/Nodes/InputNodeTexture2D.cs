@@ -37,6 +37,7 @@ namespace ShaderCreationTool
 
         public NodeType GetNodeType() { return NodeType.Input_Texture2D; }
         public string GetNodeID() { return m_UniqueID; }
+        public ShaderVariableType GetShaderVariableType() { return ShaderVariableType.Texture2D; }
 
         public InputNodeTexture2D(Panel nodeTemplate, Point location)
         {
@@ -134,7 +135,10 @@ namespace ShaderCreationTool
             m_ShaderVariable = new ShaderTextureVariable(s_PlainTexturePath, m_Name);
             Bridge.SetVariable(m_ShaderVariable);
         }
-
+        public string GetVariableName()
+        {
+            return m_Name;
+        }
         static public void LockButtons()
         {
             s_ButtonsLocked = true;

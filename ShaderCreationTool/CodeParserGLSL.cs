@@ -6,27 +6,48 @@ using System.Threading.Tasks;
 
 namespace ShaderCreationTool
 {
-    class CodeParserGLSL
+    class CodeParserGLSL: ICodeParser
     {
 
-        bool TranslateInputVariables(List<IInputNode> inputNodes, out string declarationsCode, out string status)
+       public bool TranslateInputVariables(List<IInputNode> inputNodes, out string declarationsCode, out string status)
         {
             declarationsCode = "";
             status = "";
-            return false;
+            const int maxTypeCharCount = 15;
+            bool ok = true;
+            foreach(IInputNode node in inputNodes)
+            {
+                string typeStr = TranslateVariableType(node.GetShaderVariableType());
+                declarationsCode += "uniform " + typeStr + " "+ new string(' ',maxTypeCharCount- typeStr.Length)  + node.GetVariableName() + "\r\n";
+                if (typeStr == string.Empty) ok = false;
+            }
+            return ok;
         }
-        bool TranslateNodeIntoFunction(SCTFunctionNode node, out string functionCode, out string status)
+        public bool TranslateNodeIntoFunction(SCTFunctionNode node, out string functionCode, out string status)
         {
 
             functionCode = "";
             status = "";
             return false;
         }
-        bool TranslateNetwork(List<ISCTNode> nodes, List<Connection> connections, out string code, out string status)
+        public bool TranslateNetwork(List<ISCTNode> nodes, List<Connection> connections, out string code, out string status)
         {
             code = "";
             status = "";
             return false;
+        }
+
+        private string TranslateVariableType(ShaderVariableType varType)
+        {
+            switch (varType)
+            {
+                case ShaderVariableType.Single: return "float";
+                case ShaderVariableType.Vector2: return "vec2";
+                case ShaderVariableType.Vector3: return "vec3";
+                case ShaderVariableType.Vector4: return "vec4";
+                case ShaderVariableType.Texture2D: return "sampler2D";
+                default: return string.Empty;
+             }
         }
     }
 }

@@ -33,7 +33,7 @@ namespace ShaderCreationTool
 
         public NodeType GetNodeType() { return NodeType.Input_Colour; }
         public string GetNodeID() { return m_UniqueID; }
-
+        public ShaderVariableType GetShaderVariableType() { return ShaderVariableType.Vector4; }
         public InputNodeColour(Panel nodeTemplate, Point location)
         {
             m_UniqueID = NodeIDCreator.CreateID(GetNodeType(), s_InstanceCounter);
@@ -140,6 +140,10 @@ namespace ShaderCreationTool
             Bridge.SetVariable(m_ShaderVariable);
             SetShaderVariableFromNumeric();
             
+        }
+        public string GetVariableName()
+        {
+            return m_Name;
         }
         static public void LockButtons()
         {

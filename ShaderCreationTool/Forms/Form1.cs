@@ -38,6 +38,8 @@ namespace ShaderCreationTool
 
         private ZoomController m_ZoomController;
 
+        private ICodeParser m_CodeParser;
+
         private void MainUpdate()
         {
             //canncel connection request
@@ -86,6 +88,8 @@ namespace ShaderCreationTool
             Bridge.AddWndProcMessageCallback(OnMessage);
 
             m_ZoomController = new ZoomController(ZoomInButton, ZoomOutButton);
+
+            m_CodeParser = new CodeParserGLSL();
         }
 
         private async void StartRenderer(int delayMs)
@@ -467,10 +471,19 @@ namespace ShaderCreationTool
         private void button1_Click(object sender, EventArgs e)
         {
             //Bridge.ReloadScene();
-            SCTConsole.Instance.PrintLine(Bridge.GetLastCompilerMessage());
-            Bridge.ClearLastCompilerMessage();
+           // SCTConsole.Instance.PrintLine(Bridge.GetLastCompilerMessage());
+            //Bridge.ClearLastCompilerMessage();
            // SCTConsole.Instance.Show();
            // SCTConsole.Instance.PrintLine("Console shown test..");
+           List<IInputNode> inputNodes = (m_Nodes.FindAll(o => o is IInputNode)).Cast<IInputNode>().ToList();
+            //foreach(IInputNode node in inputNodes)
+            //{
+            //    SCTConsole.Instance.PrintLine(node.GetVariableName());
+            //}
+            string status;
+            string code;
+           m_CodeParser.TranslateInputVariables(inputNodes, out code, out status);
+            SCTConsole.Instance.PrintLine(code);
    
         }
 

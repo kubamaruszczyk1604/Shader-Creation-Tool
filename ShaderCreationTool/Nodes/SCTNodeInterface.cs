@@ -41,7 +41,11 @@ namespace ShaderCreationTool
     {
        void AddOnCloseCallback(NodeCloseButtonCallback callback);
        void AddInputErrorCallback(NodeInputError callback);
+       string GetVariableName();
+        ShaderVariableType GetShaderVariableType();
+
     }
+
 
     class NodeIDCreator
     {
