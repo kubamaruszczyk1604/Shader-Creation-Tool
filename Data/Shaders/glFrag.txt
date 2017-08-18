@@ -107,6 +107,12 @@ int numL)
 
 
 out vec4 FragColour;
+
+void Test(in vec4 a, in vec4 b, out vec4 sum)
+{
+      sum = a*b;
+	  
+} 
 void main()
 {
 
@@ -121,10 +127,10 @@ void main()
     vec4 textureCol = texture2D(Texture0,UVs);
 	vec4 textureCol2 = texture2D(Texture1,UVs);
 	//result += textureCol*ambient;
-	//result += diffuseL*textureCol2* diffuse;
-	result += ambient * (textureCol);
-    result += diffuseL* diffuse * textureCol2;
-	result += specularL * specular;
+	Test(ambient,textureCol,result);
+	//result += ambient * (textureCol);
+   // result += diffuseL* diffuse * textureCol2;
+	//result += specularL * specular;
 	
 	
     FragColour = result;// ambient*textureCol + diffuse*textureCol*0.5f;
