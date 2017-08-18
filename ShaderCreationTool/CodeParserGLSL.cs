@@ -26,9 +26,20 @@ namespace ShaderCreationTool
 
         public bool TranslateNodeIntoFunction(SCTFunctionNode node, out string functionCode, out string status)
         {
-
             functionCode = "";
             status = "";
+            
+            FunctionNodeDescription desc = node.NodeDescription;
+            List<string> inputVariables = new List<string>();
+            for(int i = 0; i <desc.InputCount;++i)
+            {
+                ShaderVariableDescription varDesc = desc.GetInVariableDescription(i);
+                string assembled = "in " + TranslateVariableType(varDesc.Type) + " " + varDesc.Name;
+                inputVariables.Add(assembled);
+                SCTConsole.Instance.PrintDebugLine(assembled);
+            }
+
+
             return false;
         }
         public bool TranslateNetwork(List<ISCTNode> nodes, List<Connection> connections, out string code, out string status)
@@ -50,5 +61,7 @@ namespace ShaderCreationTool
                 default: return string.Empty;
              }
         }
+
+
     }
 }

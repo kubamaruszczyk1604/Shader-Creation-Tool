@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entities>
   <!--Shader Creation Tool - node config scripting file.-->
-  <Node Name="Multiply">
+  <Node Name="Multiply42">
   
     <Input_Variables>
       <Variable Name="Moja" Var_Type="Float4">
       </Variable>
-    </Input_Variables>
-	<Input_Variables>
-      <Variable Name="Sucz" Var_Type="Float4">
+      <Variable Name="Sucz" Var_Type="Float2">
       </Variable>
     </Input_Variables>
 	
@@ -25,13 +23,12 @@
    </Code>
   </Node>
  
-   <Node Name="Add">
+   <Node Name="Add44">
   
     <Input_Variables>
       <Variable Name="Colour1" Var_Type="Float4">
       </Variable>
-    </Input_Variables>
-	<Input_Variables>
+
       <Variable Name="Colour2" Var_Type="Float4">
       </Variable>
     </Input_Variables>
@@ -50,14 +47,12 @@
  </Node>
  
  
-    <Node Name="Subtract">
+    <Node Name="Subtract41">
   
     <Input_Variables>
       <Variable Name="Colour1" Var_Type="Float4">
       </Variable>
-    </Input_Variables>
-	<Input_Variables>
-      <Variable Name="Colour2" Var_Type="Float4">
+      <Variable Name="Colour2" Var_Type="Float">
       </Variable>
     </Input_Variables>
 	
@@ -76,13 +71,11 @@
   
   
   
-    <Node Name="Kupsztal">
+    <Node Name="Kupsko44">
   
     <Input_Variables>
       <Variable Name="Colour1" Var_Type="Float4">
       </Variable>
-    </Input_Variables>
-	<Input_Variables>
       <Variable Name="Colour2" Var_Type="Float4">
       </Variable>
     </Input_Variables>
@@ -93,10 +86,7 @@
     </Output_Variables>
 	
    <Code>
-   void Add(in Colour1,in Colour2, out FinalColour)
-   {
-    FinalColour = Colour1 + Colour2;
-   }
+
    </Code>
  </Node>
   

@@ -492,18 +492,25 @@ namespace ShaderCreationTool
 
         private void button44_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < ConnectionManager.ConnectionCount; ++i)
-            {
-                ConnectionManager.GetConnection(i).TestKillLine();
+            //for (int i = 0; i < ConnectionManager.ConnectionCount; ++i)
+            //{
+            //    ConnectionManager.GetConnection(i).TestKillLine();
+            //}
+            List<SCTFunctionNode> fNodes = (m_Nodes.FindAll(o => o is SCTFunctionNode)).Cast<SCTFunctionNode>().ToList();
+            string code;
+            string status;
+            foreach(SCTFunctionNode node in fNodes)
+            { 
+              m_CodeParser.TranslateNodeIntoFunction(node,out code, out status);
             }
         }
 
         private void button31_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < ConnectionManager.ConnectionCount; ++i)
-            {
-                ConnectionManager.GetConnection(i).TestRebuiltLine();
-            }
+            //for (int i = 0; i < ConnectionManager.ConnectionCount; ++i)
+            //{
+            //    ConnectionManager.GetConnection(i).TestRebuiltLine();
+            //}
         }
 
       
