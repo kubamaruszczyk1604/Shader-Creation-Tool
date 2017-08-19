@@ -67,7 +67,9 @@ namespace ShaderCreationTool
             }
 
 
-            signature += ")";
+            signature += ")\r\n{\r\n";
+            signature += ParseCode(desc.GetFunctionString());
+            signature += "\r\n}\r\n";
             return signature;
         }
 
@@ -82,6 +84,13 @@ namespace ShaderCreationTool
                 case ShaderVariableType.Texture2D: return "sampler2D";
                 default: return string.Empty;
              }
+        }
+
+        private string ParseCode(string code)
+        {
+            string s = code;
+            s = s.Replace("VECTOR4 ", "vec4 ").Replace("VECTOR3 ", "vec3 ").Replace("VECTOR2 ", "vec2 ").Replace("FLOAT ", "float ").Replace("COLOUR ", "vec4 ");
+            return s;
         }
 
 

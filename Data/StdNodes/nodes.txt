@@ -6,7 +6,7 @@
     <Input_Variables>
       <Variable Name="Moja" Var_Type="Float4">
       </Variable>
-      <Variable Name="Sucz" Var_Type="Float2">
+      <Variable Name="Sucz" Var_Type="Float4">
       </Variable>
     </Input_Variables>
 	
@@ -16,79 +16,18 @@
     </Output_Variables>
 	
    <Code>
-   void Multiply(in Colour1,in Colour2, out FinalColour)
-   {
-    FinalColour = Colour1 * Colour2;
-   }
+   COLOUR col1 = Moja;
+   COLOUR col2 = Sucz;
+    FinalColour = col1*col2;
+   
    </Code>
   </Node>
  
-   <Node Name="Add44">
-  
-    <Input_Variables>
-      <Variable Name="Colour1" Var_Type="Float4">
-      </Variable>
 
-      <Variable Name="Colour2" Var_Type="Float4">
-      </Variable>
-    </Input_Variables>
-	
-    <Output_Variables>
-      <Variable Name="FinalColour" Var_Type="Float4">
-      </Variable>
-    </Output_Variables>
-	
-   <Code>
-   void Add(in Colour1,in Colour2, out FinalColour)
-   {
-    FinalColour = Colour1 + Colour2;
-   }
-   </Code>
- </Node>
  
- 
-    <Node Name="Subtract41">
-  
-    <Input_Variables>
-      <Variable Name="Colour1" Var_Type="Float4">
-      </Variable>
-      <Variable Name="Colour2" Var_Type="Float">
-      </Variable>
-    </Input_Variables>
-	
-    <Output_Variables>
-      <Variable Name="FinalColour" Var_Type="Float4">
-      </Variable>
-    </Output_Variables>
-	
-   <Code>
-   void Add(in Colour1,in Colour2, out FinalColour)
-   {
-    FinalColour = Colour1 + Colour2;
-   }
-   </Code>
- </Node>
   
   
-  
-    <Node Name="Kupsko44">
-  
-    <Input_Variables>
-      <Variable Name="Colour1" Var_Type="Float4">
-      </Variable>
-      <Variable Name="Colour2" Var_Type="Float4">
-      </Variable>
-    </Input_Variables>
-	
-    <Output_Variables>
-      <Variable Name="FinalColour" Var_Type="Float4">
-      </Variable>
-    </Output_Variables>
-	
-   <Code>
 
-   </Code>
- </Node>
   
   
 </Entities>

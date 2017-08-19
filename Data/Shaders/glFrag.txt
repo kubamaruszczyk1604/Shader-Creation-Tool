@@ -113,6 +113,16 @@ void Test(in vec4 a, in vec4 b, out vec4 sum)
       sum = a*b;
 	  
 } 
+void Multiply42(vec4 Moja, vec4 Sucz, inout vec4 FinalColour)
+{
+
+   vec4 col1 = Moja;
+   vec4 col2 = Sucz;
+    FinalColour = col1*col2;
+   
+   
+}
+
 void main()
 {
 
@@ -127,7 +137,7 @@ void main()
     vec4 textureCol = texture2D(Texture0,UVs);
 	vec4 textureCol2 = texture2D(Texture1,UVs);
 	//result += textureCol*ambient;
-	Test(ambient,textureCol,result);
+	Multiply42(ambient,textureCol,result);
 	//result += ambient * (textureCol);
    // result += diffuseL* diffuse * textureCol2;
 	//result += specularL * specular;
