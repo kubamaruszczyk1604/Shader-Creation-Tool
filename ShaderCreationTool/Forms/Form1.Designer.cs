@@ -136,6 +136,8 @@
             this.In_SlotX = new System.Windows.Forms.CheckBox();
             this.TitleLabel_FunctionNode = new System.Windows.Forms.Label();
             this.PreviewAreaPanel = new System.Windows.Forms.Panel();
+            this.ZoomInButton = new System.Windows.Forms.Button();
+            this.ZoomOutButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PreviewTextLabel = new System.Windows.Forms.Label();
             this.AddGroupBox = new System.Windows.Forms.GroupBox();
@@ -155,8 +157,7 @@
             this.uniformVariableNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ZoomInButton = new System.Windows.Forms.Button();
-            this.ZoomOutButton = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.EditAreaPanel.SuspendLayout();
             this.StatsGroupBox.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -238,6 +239,7 @@
             this.EditAreaPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditAreaPanel.BackgroundImage")));
             this.EditAreaPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.EditAreaPanel.Controls.Add(this.button2);
             this.EditAreaPanel.Controls.Add(this.StatsGroupBox);
             this.EditAreaPanel.Controls.Add(this.Texture2DInputWindow);
             this.EditAreaPanel.Controls.Add(this.TransparentNodePanel);
@@ -1666,10 +1668,36 @@
             this.PreviewAreaPanel.Controls.Add(this.ZoomOutButton);
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
-            this.PreviewAreaPanel.Location = new System.Drawing.Point(849, 3);
+            this.PreviewAreaPanel.Location = new System.Drawing.Point(868, 3);
             this.PreviewAreaPanel.Name = "PreviewAreaPanel";
             this.PreviewAreaPanel.Size = new System.Drawing.Size(466, 423);
             this.PreviewAreaPanel.TabIndex = 26;
+            // 
+            // ZoomInButton
+            // 
+            this.ZoomInButton.BackColor = System.Drawing.Color.Maroon;
+            this.ZoomInButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ZoomInButton.BackgroundImage")));
+            this.ZoomInButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ZoomInButton.Font = new System.Drawing.Font("Bernard MT Condensed", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ZoomInButton.ForeColor = System.Drawing.Color.White;
+            this.ZoomInButton.Location = new System.Drawing.Point(408, 35);
+            this.ZoomInButton.Name = "ZoomInButton";
+            this.ZoomInButton.Size = new System.Drawing.Size(31, 24);
+            this.ZoomInButton.TabIndex = 26;
+            this.ZoomInButton.UseVisualStyleBackColor = false;
+            // 
+            // ZoomOutButton
+            // 
+            this.ZoomOutButton.BackColor = System.Drawing.Color.Maroon;
+            this.ZoomOutButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ZoomOutButton.BackgroundImage")));
+            this.ZoomOutButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ZoomOutButton.Font = new System.Drawing.Font("Bernard MT Condensed", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ZoomOutButton.ForeColor = System.Drawing.Color.White;
+            this.ZoomOutButton.Location = new System.Drawing.Point(408, 63);
+            this.ZoomOutButton.Name = "ZoomOutButton";
+            this.ZoomOutButton.Size = new System.Drawing.Size(31, 23);
+            this.ZoomOutButton.TabIndex = 27;
+            this.ZoomOutButton.UseVisualStyleBackColor = false;
             // 
             // pictureBox1
             // 
@@ -1871,31 +1899,15 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // ZoomInButton
+            // button2
             // 
-            this.ZoomInButton.BackColor = System.Drawing.Color.Maroon;
-            this.ZoomInButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ZoomInButton.BackgroundImage")));
-            this.ZoomInButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ZoomInButton.Font = new System.Drawing.Font("Bernard MT Condensed", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ZoomInButton.ForeColor = System.Drawing.Color.White;
-            this.ZoomInButton.Location = new System.Drawing.Point(408, 35);
-            this.ZoomInButton.Name = "ZoomInButton";
-            this.ZoomInButton.Size = new System.Drawing.Size(31, 24);
-            this.ZoomInButton.TabIndex = 26;
-            this.ZoomInButton.UseVisualStyleBackColor = false;
-            // 
-            // ZoomOutButton
-            // 
-            this.ZoomOutButton.BackColor = System.Drawing.Color.Maroon;
-            this.ZoomOutButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ZoomOutButton.BackgroundImage")));
-            this.ZoomOutButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ZoomOutButton.Font = new System.Drawing.Font("Bernard MT Condensed", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ZoomOutButton.ForeColor = System.Drawing.Color.White;
-            this.ZoomOutButton.Location = new System.Drawing.Point(408, 63);
-            this.ZoomOutButton.Name = "ZoomOutButton";
-            this.ZoomOutButton.Size = new System.Drawing.Size(31, 23);
-            this.ZoomOutButton.TabIndex = 27;
-            this.ZoomOutButton.UseVisualStyleBackColor = false;
+            this.button2.Location = new System.Drawing.Point(389, 14);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 37;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainWindow
             // 
@@ -2123,6 +2135,7 @@
         private System.Windows.Forms.GroupBox StatsGroupBox;
         private System.Windows.Forms.Button ZoomInButton;
         private System.Windows.Forms.Button ZoomOutButton;
+        private System.Windows.Forms.Button button2;
     }
 }
 

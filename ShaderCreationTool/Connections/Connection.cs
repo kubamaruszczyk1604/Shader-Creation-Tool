@@ -21,8 +21,18 @@ namespace ShaderCreationTool
         private ConnectionLine m_Line;
         private bool m_ConnectedFlag;
         private Control p_DrawOnControl;
+        private bool m_IsDirectInputConnection;
 
         ////////////////////////////////////////////  PUBLIC  ////////////////////////////////////////////
+
+        public bool IsDirectInputConnection { get { return m_IsDirectInputConnection;} }
+        public string Info
+        {
+            get
+            {
+                return  "Connection of: " + m_pSource.ParentNode.GetNodeID() + " and " + m_pDestination.ParentNode.GetNodeID();
+            }
+        }
 
        public static bool CheckConnectionValidity(Connector a, Connector b)
         {
@@ -49,6 +59,7 @@ namespace ShaderCreationTool
 
         public Connection(Connector a, Connector b, Control drawOn)
         {
+            m_IsDirectInputConnection = false;
             if(a.DirectionType == b.DirectionType)
             {
                 throw new Exception("Both a and b have the same direction");
@@ -61,7 +72,8 @@ namespace ShaderCreationTool
             a.SetAsConnected(this);
             b.SetAsConnected(this);
             p_DrawOnControl = drawOn;
-
+            if (a.ParentNode is IInputNode) m_IsDirectInputConnection = true;
+            if (b.ParentNode is IInputNode) m_IsDirectInputConnection = true;
         }
 
         public void Disconnect()

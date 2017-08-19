@@ -40,7 +40,7 @@ namespace ShaderCreationTool
             float distanceX = m_XRegulationButton.Location.X + m_XRegulationButton.Width/2 - m_StartX;
 
             m_Pan = distanceX / rangeX;
-            SCTConsole.Instance.PrintDebugLine("Pan range calculated: " + rangeX.ToString());
+            //SCTConsole.Instance.PrintDebugLine("Pan range calculated: " + rangeX.ToString());
         }
 
         private void OnYbuttonMoved()
@@ -48,7 +48,7 @@ namespace ShaderCreationTool
             m_YMoving = true;
             m_Invalidate = true;
             p_Control.Update();
-            SCTConsole.Instance.PrintDebugLine("Y range calculated: ");
+           // SCTConsole.Instance.PrintDebugLine("Y range calculated: ");
         }
 
         void OnMouseUpXButton(object sender, MouseEventArgs e)

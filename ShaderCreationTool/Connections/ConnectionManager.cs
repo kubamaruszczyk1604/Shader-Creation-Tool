@@ -63,5 +63,10 @@ namespace ShaderCreationTool
             return s_ConnectionList[index];
         }
 
+        static public List<Connection> GetInputConnections()
+        {
+            return (s_ConnectionList.FindAll(o => o.IsDirectInputConnection)).Cast<Connection>().ToList();
+        }
+ 
     }
 }

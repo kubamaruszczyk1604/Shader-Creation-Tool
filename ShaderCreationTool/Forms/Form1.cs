@@ -473,16 +473,15 @@ namespace ShaderCreationTool
             //Bridge.ReloadScene();
            // SCTConsole.Instance.PrintLine(Bridge.GetLastCompilerMessage());
             //Bridge.ClearLastCompilerMessage();
+
            // SCTConsole.Instance.Show();
            // SCTConsole.Instance.PrintLine("Console shown test..");
+
            List<IInputNode> inputNodes = (m_Nodes.FindAll(o => o is IInputNode)).Cast<IInputNode>().ToList();
-            //foreach(IInputNode node in inputNodes)
-            //{
-            //    SCTConsole.Instance.PrintLine(node.GetVariableName());
-            //}
+          
             string status;
             string code;
-           m_CodeParser.TranslateInputVariables(inputNodes, out code, out status);
+            m_CodeParser.TranslateInputVariables(inputNodes, out code, out status);
             SCTConsole.Instance.PrintLine(code);
             TextFileReaderWriter.Save(@"c:\nodes\testshad.txt", code);
             SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
@@ -505,13 +504,7 @@ namespace ShaderCreationTool
             }
         }
 
-        private void button31_Click(object sender, EventArgs e)
-        {
-            //for (int i = 0; i < ConnectionManager.ConnectionCount; ++i)
-            //{
-            //    ConnectionManager.GetConnection(i).TestRebuiltLine();
-            //}
-        }
+     
 
       
         ////////////////////////////////  MENU ITEMS ///////////////////
@@ -554,6 +547,16 @@ namespace ShaderCreationTool
         private double RadianToDegree(double angle)
         {
             return angle * (180.0 / Math.PI);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SCTConsole.Instance.PrintLine("\r\n\r\n");
+            List<Connection> inConnections = ConnectionManager.GetInputConnections();
+            foreach(Connection c in inConnections)
+            {
+                SCTConsole.Instance.PrintLine("\r\n" + c.Info);
+            }
         }
     }
 
