@@ -16,9 +16,10 @@
     </Output_Variables>
 	
    <Code>
+   
    COLOUR col1 = Moja;
    COLOUR col2 = Sucz;
-    FinalColour = col1*col2;
+   FinalColour = col1*col2;
    
    </Code>
   </Node>

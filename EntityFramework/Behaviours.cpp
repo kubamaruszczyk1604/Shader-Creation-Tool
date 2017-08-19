@@ -112,14 +112,14 @@ void ExampleScene::OnStart()
 
 
 	//m_pDirectionalLight = new DirectionalLight(Vec3(10., 0, -10.f), Colour(0, 0, 0, 1), Colour(0.5, 0.5, 1, 1), Colour(0.1, 0.1, 0.1, 1));
-	m_pSpotLight = new Spotlight(
-		Vec3(0, 0, -20.0f),
-		Colour(0, 0, 0, 1),
-		Colour(0.7, 0.9, 1, 1),
-		Colour(0, 0, 1, 1),
-		Vec3(0, 0, 1),
-		45.0f
-		);
+	//m_pSpotLight = new Spotlight(
+	//	Vec3(0, 0, -20.0f),
+	//	Colour(0, 0, 0, 1),
+	//	Colour(0.7, 0.9, 1, 1),
+	//	Colour(0, 0, 1, 1),
+	//	Vec3(0, 0, 1),
+	//	45.0f
+	//	);
 
 }
 
