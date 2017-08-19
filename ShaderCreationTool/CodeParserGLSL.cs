@@ -28,18 +28,11 @@ namespace ShaderCreationTool
         {
             functionCode = "";
             status = "";
-            
+
             FunctionNodeDescription desc = node.NodeDescription;
-            List<string> inputVariables = new List<string>();
-            for(int i = 0; i <desc.InputCount;++i)
-            {
-                ShaderVariableDescription varDesc = desc.GetInVariableDescription(i);
-                string assembled = "in " + TranslateVariableType(varDesc.Type) + " " + varDesc.Name;
-                inputVariables.Add(assembled);
-                SCTConsole.Instance.PrintDebugLine(assembled);
-            }
+            string signature = CreateSignature(desc);
 
-
+            SCTConsole.Instance.PrintDebugLine(signature);
             return false;
         }
         public bool TranslateNetwork(List<ISCTNode> nodes, List<Connection> connections, out string code, out string status)
@@ -47,6 +40,35 @@ namespace ShaderCreationTool
             code = "";
             status = "";
             return false;
+        }
+
+        private string CreateSignature(FunctionNodeDescription desc)
+        {
+            string signature = "void " + desc.Name + "(";
+            
+
+            for (int i = 0; i < desc.InputCount; ++i)
+            {
+                ShaderVariableDescription varDesc = desc.GetInVariableDescription(i);
+                string assembled = TranslateVariableType(varDesc.Type) + " " + varDesc.Name;
+
+                signature += assembled;
+                if (i < desc.InputCount - 1) signature += ", ";
+            }
+            signature += ", ";
+
+            for (int i = 0; i < desc.OutputCount; ++i)
+            {
+                ShaderVariableDescription varDesc = desc.GetOutVariableDescription(i);
+                string assembled = "inout " + TranslateVariableType(varDesc.Type) + " " + varDesc.Name;
+
+                signature += assembled;
+                if (i < desc.OutputCount - 1) signature += ", ";
+            }
+
+
+            signature += ")";
+            return signature;
         }
 
         private string TranslateVariableType(ShaderVariableType varType)
