@@ -116,6 +116,7 @@ namespace ShaderCreationTool
                     tbCounter++;
                     m_Name = "SCT_UNIFORM_FLOATIn_" + s_InstanceCounter.ToString();
                     m_NameTextbox.Text = m_Name;
+                    VaribaleNameGuard.ChangeName("", m_Name);
 
                 }
                 else if (control is Panel)
@@ -345,6 +346,19 @@ namespace ShaderCreationTool
                     m_NameTextbox.Text = m_Name;
                     m_NameTextbox.Invalidate();
                     p_ErrorCallback("Invalid Input: Symbols other than underscore ('_') are not allowed!", this);
+                }
+                return;
+            }
+            ChangeNameStateMessage cnm = VaribaleNameGuard.ChangeName(m_Name, newText);
+
+            if(cnm == ChangeNameStateMessage.ERROR_NameAlreadyExists)
+            {
+                SCTConsole.Instance.PrintDebugLine("Error: Name already exists!");
+                if (p_ErrorCallback != null)
+                {
+                    m_NameTextbox.Text = m_Name;
+                    m_NameTextbox.Invalidate();
+                    p_ErrorCallback("Invalid Input: NAME ALREADY EXISTS", this);
                 }
                 return;
             }

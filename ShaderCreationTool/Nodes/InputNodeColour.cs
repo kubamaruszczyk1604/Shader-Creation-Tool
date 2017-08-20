@@ -96,6 +96,7 @@ namespace ShaderCreationTool
                     tbCounter++;
                     m_Name = "SCT_UNIFORM_ColourIn_" + s_InstanceCounter.ToString();
                     m_NameTextbox.Text = m_Name;
+                    VaribaleNameGuard.ChangeName("", m_Name);
 
                 }
                 else if (control is Panel)

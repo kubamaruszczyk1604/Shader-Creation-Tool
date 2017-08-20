@@ -90,6 +90,7 @@ namespace ShaderCreationTool
                         m_NameTextbox = textBox;
                         m_Name = "SCT_TEXTURE2D_" + s_InstanceCounter.ToString();
                         m_NameTextbox.Text = m_Name;
+                        VaribaleNameGuard.ChangeName("", m_Name);
                         tbCounter++;
                     }
                     else if(textBox.Name.Contains("File"))
