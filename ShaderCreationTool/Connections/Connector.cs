@@ -38,6 +38,7 @@ namespace ShaderCreationTool
         private ISCTNode p_ParentNode;
         private Color m_StandardColour;
         private string m_LocalID;
+        private ShaderVariableDescription m_ShaderVariableDescription;
         static private Connector s_PreviouslyClickedConnector;
         static private bool m_AllConnectorsLocked = false;
 
@@ -85,6 +86,8 @@ namespace ShaderCreationTool
         public Connection ParentConnection { get { return p_ParentConnection; } }
         public ISCTNode ParentNode { get { return p_ParentNode; } }
         public string LocalID { get { return m_LocalID; } }
+        public bool HasShaderVariableDescription { get { return (m_ShaderVariableDescription == null) ? false : true; } }
+        public ShaderVariableDescription UsedShaderVariableDescription { get { return m_ShaderVariableDescription; } }
        
         public Connector(CheckBox control,ShaderVariableType variableType,ISCTNode parentNode, string localID)
         {
@@ -111,6 +114,10 @@ namespace ShaderCreationTool
             }
         }
 
+        public void SetShaderVaribaleDescription(ShaderVariableDescription desc)
+        {
+            m_ShaderVariableDescription = desc;
+        }
         
          /// <summary>
          /// Registered method will be called when this connector is not connected and is clicked on.

@@ -4,9 +4,9 @@
   <Node Name="Multiply42">
   
     <Input_Variables>
-      <Variable Name="Moja" Var_Type="Float4">
-	  DEFAULT = 0
-      </Variable>
+      <Variable Name="Moja" Var_Type="Float4"> 
+	  DEFAULT = (1,1,1,1) 
+	  </Variable>
       <Variable Name="Sucz" Var_Type="Float4">
       </Variable>
     </Input_Variables>
@@ -32,8 +32,8 @@
   
     <Input_Variables>
       <Variable Name="Moja" Var_Type="Float4">
-	  DEFAULT = 0
-      </Variable>
+	  DEFAULT = (1,1,1,1)
+	  </Variable>
       <Variable Name="Sucz" Var_Type="Float4">
       </Variable>
     </Input_Variables>

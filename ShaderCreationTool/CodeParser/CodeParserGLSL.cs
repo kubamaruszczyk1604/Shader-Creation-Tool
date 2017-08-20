@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace ShaderCreationTool
 {
     class CodeParserGLSL: ICodeParser
     {
-        private List<string> signatures;
-        private List<Connection> m_InputConnections = new List<Connection>();
+        private const string NUM_EXPR = @"\d+\.*\d*";
+
+        private List<string> m_Signatures;
+     //   private List<Connection> m_InputConnections = new List<Connection>();
+        Dictionary<ShaderVariableType, Regex> m_DefaultValuesTable;
         public CodeParserGLSL()
         {
-            signatures = new List<string>();
+            m_Signatures = new List<string>();
+            m_DefaultValuesTable = new Dictionary<ShaderVariableType, Regex>();
+            m_DefaultValuesTable.Add(ShaderVariableType.Single, new Regex(@"^\d+\.*\d*$"));
+            m_DefaultValuesTable.Add(ShaderVariableType.Vector2, new Regex(@"^\(\d+\.*\d*\,\d+\.*\d*\)$"));
+            m_DefaultValuesTable.Add(ShaderVariableType.Vector3, new Regex(@"^\(\d+\.*\d*\,\d+\.*\d*\,\d+\.*\d*\)$"));
+            m_DefaultValuesTable.Add(ShaderVariableType.Vector4, new Regex(@"^\(\d+\.*\d*\,\d+\.*\d*\,\d+\.*\d*\,\d+\.*\d*\)$"));
         }
 
        public bool TranslateInputVariables(List<IInputNode> inputNodes, out string declarationsCode, out string status)
@@ -39,7 +48,7 @@ namespace ShaderCreationTool
             {
                 FunctionNodeDescription desc = node.NodeDescription;
                 string signature = CreateSignature(desc);
-                if (signatures.Contains(signature))
+                if (m_Signatures.Contains(signature))
                 {
                     status = "Repeated signature: " + signature;
                     status += "SKIPPING..";
@@ -49,7 +58,7 @@ namespace ShaderCreationTool
                 body += ParseCode(desc.GetFunctionString());
                 body += "\r\n}\r\n";
                 functionCode = signature + body;
-                signatures.Add(signature);
+                m_Signatures.Add(signature);
                // SCTConsole.Instance.PrintDebugLine(functionCode);
             }
             catch(Exception e)
@@ -62,7 +71,7 @@ namespace ShaderCreationTool
         }
         public bool TranslateNodeListIntoFunctions(List<SCTFunctionNode> nodes, out string functionCode, out string status)
         {
-            signatures.Clear();
+            m_Signatures.Clear();
             functionCode = "";
             status = "";
             bool allOk = true;
@@ -99,7 +108,6 @@ namespace ShaderCreationTool
         {
             string output = string.Empty;
 
-
             List<Connector> outConnectors = node.GetAllConnectors(ConnectionDirection.Out);
             List<string> outVarParameters = new List<string>();
 
@@ -112,22 +120,16 @@ namespace ShaderCreationTool
                 output += assembled;
             }
 
-
-
             output += node.NodeDescription.Name + "(";
             List<Connector> inConnectors = node.GetAllConnectors(ConnectionDirection.In);
             foreach (Connector c in inConnectors)
             {
                 if (!c.Connected)
-                {
-                    output += "default, ";
-                    continue;
-                }
-
-                output += c.ParentConnection.OutVariableName + ", ";
-                
-             
+                    output +=  ProcessDefault(c) + ", ";
+                else
+                    output += c.ParentConnection.OutVariableName + ", ";
             }
+
             for(int i = 0; i < outVarParameters.Count;++i)
             {
                 output += outVarParameters[i];
@@ -137,6 +139,24 @@ namespace ShaderCreationTool
 
             SCTConsole.Instance.PrintDebugLine("\r\n\r\n\r\n" + output);
             return output;
+        }
+
+        private string ProcessDefault(Connector c)
+        {
+            if (!c.HasShaderVariableDescription) return  "no_description";
+            string defaultValInfo = c.UsedShaderVariableDescription.AdditionalInfo;
+            string ret = Regex.Replace(defaultValInfo, @"\s+", "");
+            if (ret == string.Empty) return "no_default_value_provided";
+            if (!ret.Contains("DEFAULT=")) return "DEFAULT_keyword_is_missing";
+            ret = Regex.Replace(ret, "DEFAULT=", "");
+            ret = ret.Trim();
+            if(!m_DefaultValuesTable[c.UsedShaderVariableDescription.Type].IsMatch(ret))
+            {
+                return "value_is_incorrect";
+            }
+            string type = TranslateVariableType(c.UsedShaderVariableDescription.Type);
+            ret = type + " " + ret;
+            return ret;
         }
 
         private string CreateSignature(FunctionNodeDescription desc)
