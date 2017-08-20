@@ -26,6 +26,8 @@ namespace ShaderCreationTool
         ////////////////////////////////////////////  PUBLIC  ////////////////////////////////////////////
 
         public bool IsDirectInputConnection { get { return m_IsDirectInputConnection;} }
+        public Connector SourceConnector { get { return m_pSource; } }
+        public Connector DestinationConnector { get { return m_pDestination; } }
         public string Info
         {
             get

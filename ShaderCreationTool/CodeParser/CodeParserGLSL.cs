@@ -9,6 +9,7 @@ namespace ShaderCreationTool
     class CodeParserGLSL: ICodeParser
     {
         private List<string> signatures;
+        private List<Connection> m_InputConnections = new List<Connection>();
         public CodeParserGLSL()
         {
             signatures = new List<string>();
@@ -89,7 +90,40 @@ namespace ShaderCreationTool
         {
             code = "";
             status = "";
+
             return false;
+        }
+
+        public string ConstructFunctionCall(SCTFunctionNode node)
+        {
+            string output = string.Empty;
+
+            List<Connector> inConnectors = node.GetAllConnectors(ConnectionDirection.In);
+            output = node.NodeDescription.Name +"(";
+
+            foreach(Connector c in inConnectors)
+            {
+                if (!c.Connected) continue;
+                ISCTNode sourceNode = c.ParentConnection.SourceConnector.ParentNode;
+                string varName = "";
+
+                if(sourceNode is IInputNode)
+                {
+                    IInputNode temp = (IInputNode)sourceNode;
+                    varName = temp.GetVariableName();
+                    output += varName + ", ";
+                }
+                else if(sourceNode is SCTFunctionNode)
+                {
+                    SCTFunctionNode temp = (SCTFunctionNode)sourceNode;
+
+                }
+
+
+                SCTConsole.Instance.PrintDebugLine(varName);
+            }
+            SCTConsole.Instance.PrintDebugLine(output);
+            return output;
         }
 
         private string CreateSignature(FunctionNodeDescription desc)

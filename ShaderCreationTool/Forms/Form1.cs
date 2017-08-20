@@ -504,9 +504,13 @@ namespace ShaderCreationTool
 
             code += "\r\n" + codeFunct;
 
+            foreach(SCTFunctionNode node in fNodes)
+            {
+                m_CodeParser.ConstructFunctionCall(node);
+            }
 
-            TextFileReaderWriter.Save(@"c:\nodes\testshad.txt", code);
-            SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
+            //TextFileReaderWriter.Save(@"c:\nodes\testshad.txt", code);
+            //SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
 
         }
 
