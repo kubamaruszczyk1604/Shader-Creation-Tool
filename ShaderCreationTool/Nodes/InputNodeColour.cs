@@ -357,6 +357,20 @@ namespace ShaderCreationTool
                 }
                 return;
             }
+
+            ChangeNameStateMessage cnm = VaribaleNameGuard.ChangeName(m_Name, newText);
+
+            if (cnm == ChangeNameStateMessage.ERROR_NameAlreadyExists)
+            {
+                SCTConsole.Instance.PrintDebugLine("Error: Name already exists!");
+                if (p_ErrorCallback != null)
+                {
+                    m_NameTextbox.Text = m_Name;
+                    m_NameTextbox.Invalidate();
+                    p_ErrorCallback("Invalid Input: NAME ALREADY EXISTS", this);
+                }
+                return;
+            }
             ResetNumeric();
             SetShaderVariableFromNumeric();
             m_Name = newText;
