@@ -31,8 +31,11 @@ namespace ShaderCreationTool
 
             FunctionNodeDescription desc = node.NodeDescription;
             string signature = CreateSignature(desc);
-
-            SCTConsole.Instance.PrintDebugLine(signature);
+            string body = "{\r\n";
+            body += ParseCode(desc.GetFunctionString());
+            body += "\r\n}\r\n";
+            functionCode = signature + body;
+            SCTConsole.Instance.PrintDebugLine(functionCode);
             return false;
         }
         public bool TranslateNetwork(List<ISCTNode> nodes, List<Connection> connections, out string code, out string status)
@@ -67,9 +70,7 @@ namespace ShaderCreationTool
             }
 
 
-            signature += ")\r\n{\r\n";
-            signature += ParseCode(desc.GetFunctionString());
-            signature += "\r\n}\r\n";
+            signature += ")\r\n";
             return signature;
         }
 
