@@ -49,8 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeParserGLSL.cs" />
-    <Compile Include="TextFileReaderWriter.cs" />
+    <Compile Include="CodeParser\CodeParserGLSL.cs" />
+    <Compile Include="Util\TextFileReaderWriter.cs" />
     <Compile Include="Forms\ImagePreviewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,7 +64,7 @@
       <DependentUpon>SelectNodeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FunctionNodeReading\FunctionNodeConfigMgr.cs" />
-    <Compile Include="ICodeParser.cs" />
+    <Compile Include="CodeParser\ICodeParser.cs" />
     <Compile Include="Nodes\CloneExtension.cs" />
     <Compile Include="Connections\Connection.cs" />
     <Compile Include="Lines\ConnectionLine.cs" />
@@ -96,7 +96,7 @@
     <Compile Include="Nodes\SCTFunctionNode.cs" />
     <Compile Include="Nodes\SCTNodeInterface.cs" />
     <Compile Include="Lines\SimpleZLine.cs" />
-    <Compile Include="ZoomController.cs" />
+    <Compile Include="Util\ZoomController.cs" />
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
