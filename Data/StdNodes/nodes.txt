@@ -43,11 +43,7 @@
       </Variable>
     </Output_Variables>
 	
-   <Code>
-   
-   FinalColour = Moja*Sucz;
-   
-   </Code>
+   <Code> FinalColour = Moja*Sucz; </Code>
   </Node>
 
   

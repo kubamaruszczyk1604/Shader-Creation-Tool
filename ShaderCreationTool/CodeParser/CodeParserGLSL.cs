@@ -71,7 +71,7 @@ namespace ShaderCreationTool
                 string tempStatus;
                 if (TranslateNodeIntoFunction(node, out tempFunctionCode, out tempStatus))
                 {
-                    functionCode += "\r\n" + tempFunctionCode;
+                    functionCode += tempFunctionCode;
                 }
                 else
                 {

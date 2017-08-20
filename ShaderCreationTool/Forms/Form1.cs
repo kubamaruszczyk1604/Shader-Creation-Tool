@@ -477,14 +477,7 @@ namespace ShaderCreationTool
            // SCTConsole.Instance.Show();
            // SCTConsole.Instance.PrintLine("Console shown test..");
 
-           List<IInputNode> inputNodes = (m_Nodes.FindAll(o => o is IInputNode)).Cast<IInputNode>().ToList();
-          
-            string status;
-            string code;
-            m_CodeParser.TranslateInputVariables(inputNodes, out code, out status);
-            SCTConsole.Instance.PrintLine(code);
-            TextFileReaderWriter.Save(@"c:\nodes\testshad.txt", code);
-            SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
+         
    
         }
 
@@ -495,12 +488,26 @@ namespace ShaderCreationTool
             //{
             //    ConnectionManager.GetConnection(i).TestKillLine();
             //}
-            List<SCTFunctionNode> fNodes = (m_Nodes.FindAll(o => o is SCTFunctionNode)).Cast<SCTFunctionNode>().ToList();
-            string code;
+
+            List<IInputNode> inputNodes = (m_Nodes.FindAll(o => o is IInputNode)).Cast<IInputNode>().ToList();
+
             string status;
-            m_CodeParser.TranslateNodeListIntoFunctions(fNodes, out code, out status);
-            SCTConsole.Instance.PrintLine(code);
+            string code;
+            m_CodeParser.TranslateInputVariables(inputNodes, out code, out status);
+           // SCTConsole.Instance.PrintLine(codeIn);
            
+
+            List<SCTFunctionNode> fNodes = (m_Nodes.FindAll(o => o is SCTFunctionNode)).Cast<SCTFunctionNode>().ToList();
+            string codeFunct;
+            string statusFunct;
+            m_CodeParser.TranslateNodeListIntoFunctions(fNodes, out codeFunct, out statusFunct);
+
+            code += "\r\n" + codeFunct;
+
+
+            TextFileReaderWriter.Save(@"c:\nodes\testshad.txt", code);
+            SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
+
         }
 
      
