@@ -364,6 +364,12 @@ namespace ShaderCreationTool
             }
 
             m_Name = newText;
+
+            foreach (Connector c in m_OutputConnectors)
+            {
+                if (!c.Connected) continue;
+                c.ParentConnection.RefreshoutVarName();
+            }
             m_ShaderVariable.SetName(m_Name);
             SCTConsole.Instance.PrintDebugLine("TEXT CHANGED to: " + newText);
             RefreshShaderVariable();

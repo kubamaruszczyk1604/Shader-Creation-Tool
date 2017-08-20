@@ -103,10 +103,14 @@ namespace ShaderCreationTool
 
 
             List<Connector> outConnectors = node.GetAllConnectors(ConnectionDirection.Out);
+            List<string> outVarParameters = new List<string>();
+
             foreach(Connector c in outConnectors)
             {
                 if (!c.Connected) continue;
                 string assembled = TranslateVariableType(c.VariableType) + "  " + c.ParentConnection.OutVariableName +"\r\n";
+
+                outVarParameters.Add(c.ParentConnection.OutVariableName);
                 output += assembled;
             }
 
@@ -118,13 +122,18 @@ namespace ShaderCreationTool
             {
                 if (!c.Connected) continue;
 
-                {
-                    
-                    output += c.ParentConnection.OutVariableName + ", ";
-                }
+                output += c.ParentConnection.OutVariableName + ", ";
+                
              
             }
-            SCTConsole.Instance.PrintDebugLine(output);
+            for(int i = 0; i < outVarParameters.Count;++i)
+            {
+                output += outVarParameters[i];
+                if (i < outVarParameters.Count - 1) output += ", ";
+            }
+            output += ");";
+
+            SCTConsole.Instance.PrintDebugLine("\r\n\r\n\r\n" + output);
             return output;
         }
 

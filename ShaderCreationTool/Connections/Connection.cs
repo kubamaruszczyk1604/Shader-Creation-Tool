@@ -79,20 +79,25 @@ namespace ShaderCreationTool
             if (a.ParentNode is IInputNode) m_IsDirectInputConnection = true;
             if (b.ParentNode is IInputNode) m_IsDirectInputConnection = true;
 
-            if(m_pSource.ParentNode is IInputNode)
+            RefreshoutVarName();
+
+        }
+
+        public void RefreshoutVarName()
+        {
+            if (m_pSource.ParentNode is IInputNode)
             {
                 ISCTNode sourceNode = m_pSource.ParentNode;
                 IInputNode temp = (IInputNode)sourceNode;
-                m_OutVariableName = temp.GetVariableName();  
+                m_OutVariableName = temp.GetVariableName();
             }
-            else if(m_pSource.ParentNode is SCTFunctionNode)
+            else if (m_pSource.ParentNode is SCTFunctionNode)
             {
-                
+
                 ISCTNode sourceNode = m_pSource.ParentNode;
                 SCTFunctionNode temp = (SCTFunctionNode)sourceNode;
                 m_OutVariableName = m_pSource.LocalID + "_" + temp.GetNodeID();
             }
-
         }
 
         public void Disconnect()
