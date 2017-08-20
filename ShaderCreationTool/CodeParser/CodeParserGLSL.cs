@@ -93,9 +93,7 @@ namespace ShaderCreationTool
 
             return false;
         }
-
-
-        
+    
 
         public string ConstructFunctionCall(SCTFunctionNode node)
         {
@@ -120,7 +118,11 @@ namespace ShaderCreationTool
             List<Connector> inConnectors = node.GetAllConnectors(ConnectionDirection.In);
             foreach (Connector c in inConnectors)
             {
-                if (!c.Connected) continue;
+                if (!c.Connected)
+                {
+                    output += "default, ";
+                    continue;
+                }
 
                 output += c.ParentConnection.OutVariableName + ", ";
                 
