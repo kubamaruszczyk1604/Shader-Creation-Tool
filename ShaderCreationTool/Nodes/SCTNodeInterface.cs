@@ -49,10 +49,16 @@ namespace ShaderCreationTool
 
     class NodeIDCreator
     {
-        static public string CreateID(NodeType type, int counter)
+        static public string CreateID(NodeType type,int counter)
         {
-            string str = "SCT_NODE_" + 
-                type.ToString() + DateTime.Now.ToString("_yy_MM_dd_HH_mm_ss_") + counter;
+            string str = "NODE_" + 
+                type.ToString() + "_" +counter.ToString()  + DateTime.Now.ToString("_yy_MM_dd_HH_mm_ss") ;
+            return str;
+        }
+        static public string CreateID(FunctionNodeDescription desc, int counter)
+        {
+            string str = "NF_" + desc.Name + "_"+ counter.ToString() +"_"
+                + DateTime.Now.ToString("ss");
             return str;
         }
     }

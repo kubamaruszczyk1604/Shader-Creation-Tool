@@ -22,12 +22,14 @@ namespace ShaderCreationTool
         private bool m_ConnectedFlag;
         private Control p_DrawOnControl;
         private bool m_IsDirectInputConnection;
+        private string m_OutVariableName;
 
         ////////////////////////////////////////////  PUBLIC  ////////////////////////////////////////////
 
         public bool IsDirectInputConnection { get { return m_IsDirectInputConnection;} }
         public Connector SourceConnector { get { return m_pSource; } }
         public Connector DestinationConnector { get { return m_pDestination; } }
+        public string OutVariableName { get { return m_OutVariableName; } }
         public string Info
         {
             get
@@ -76,6 +78,21 @@ namespace ShaderCreationTool
             p_DrawOnControl = drawOn;
             if (a.ParentNode is IInputNode) m_IsDirectInputConnection = true;
             if (b.ParentNode is IInputNode) m_IsDirectInputConnection = true;
+
+            if(m_pSource.ParentNode is IInputNode)
+            {
+                ISCTNode sourceNode = m_pSource.ParentNode;
+                IInputNode temp = (IInputNode)sourceNode;
+                m_OutVariableName = temp.GetVariableName();  
+            }
+            else if(m_pSource.ParentNode is SCTFunctionNode)
+            {
+                
+                ISCTNode sourceNode = m_pSource.ParentNode;
+                SCTFunctionNode temp = (SCTFunctionNode)sourceNode;
+                m_OutVariableName = m_pSource.LocalID + "_" + temp.GetNodeID();
+            }
+
         }
 
         public void Disconnect()

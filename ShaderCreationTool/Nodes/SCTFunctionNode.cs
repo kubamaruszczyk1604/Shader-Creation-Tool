@@ -35,7 +35,7 @@ namespace ShaderCreationTool
 
         public SCTFunctionNode(Panel nodeTemplate, Point location, FunctionNodeDescription description)
         {
-            m_UniqueID = NodeIDCreator.CreateID(GetNodeType(), s_InstanceCounter);
+            m_UniqueID = NodeIDCreator.CreateID(description, s_InstanceCounter);
             m_FunctionNodeDescription = description;
             //Copy template (make local instance)
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
@@ -90,7 +90,8 @@ namespace ShaderCreationTool
                // cd.Text = "[" + description.GetInVariableDescription(i).Type.ToString() + "]\n";
                 cd.Text = description.GetInVariableDescription(i).Name;
                 cd.Click += AnyElement_Click;
-                Connector tempCon = new Connector(cd, description.GetInVariableDescription(i).Type,this, "IN_" + inConnectorCounter.ToString());
+                Connector tempCon = new Connector(cd, description.GetInVariableDescription(i).Type,this, "IN_" 
+                    + cd. Text + inConnectorCounter.ToString());
                 m_InputConnectors.Add(tempCon);
                 inConnectorCounter++;
             }
@@ -101,7 +102,8 @@ namespace ShaderCreationTool
                 cd.Location = new Point(cd.Location.X, cd.Location.Y + connectorYOffset * i);
                 cd.Text = description.GetOutVariableDescription(i).Name;
                 cd.Click += AnyElement_Click;
-                Connector tempCon = new Connector(cd, description.GetOutVariableDescription(i).Type,this, "OUT_" + outConnectorCounter.ToString());
+                Connector tempCon = new Connector(cd, description.GetOutVariableDescription(i).Type,this, 
+                    "OUT_" + cd.Text + outConnectorCounter.ToString());
                 m_OutputConnectors.Add(tempCon);
                 outConnectorCounter++;
             }

@@ -77,7 +77,7 @@ namespace ShaderCreationTool
                     if (checkBox.Name.Contains(Connector.s_OutSlotSequenceID))
                     {
                         //////////////////////////// TU JEST TEN BLAD ------->>>>>>>>>>
-                        Connector tempCon = new Connector(checkBox, m_VarType, this, "OUT_" + connectorCounter.ToString());
+                        Connector tempCon = new Connector(checkBox, m_VarType, this, "OUT_" +checkBox.Text+ connectorCounter.ToString());
                         m_OutputConnectors.Add(tempCon);
                         connectorCounter++;
                     }

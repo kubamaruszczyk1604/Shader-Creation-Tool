@@ -61,7 +61,7 @@ namespace ShaderCreationTool
                     CheckBox checkBox = (CheckBox)control;
                     if (checkBox.Name.Contains(Connector.s_OutSlotSequenceID))
                     {
-                        Connector tempCon = new Connector(checkBox, ShaderVariableType.Vector4, this, "OUT_" + connectorCounter.ToString());
+                        Connector tempCon = new Connector(checkBox, ShaderVariableType.Vector4, this, "OUT_" + checkBox.Text + connectorCounter.ToString());
                         connectorCounter++;
                         m_OutputConnectors.Add(tempCon);
                     }

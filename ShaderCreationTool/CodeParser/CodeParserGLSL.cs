@@ -94,33 +94,35 @@ namespace ShaderCreationTool
             return false;
         }
 
+
+        
+
         public string ConstructFunctionCall(SCTFunctionNode node)
         {
             string output = string.Empty;
 
-            List<Connector> inConnectors = node.GetAllConnectors(ConnectionDirection.In);
-            output = node.NodeDescription.Name +"(";
 
-            foreach(Connector c in inConnectors)
+            List<Connector> outConnectors = node.GetAllConnectors(ConnectionDirection.Out);
+            foreach(Connector c in outConnectors)
             {
                 if (!c.Connected) continue;
-                ISCTNode sourceNode = c.ParentConnection.SourceConnector.ParentNode;
-                string varName = "";
+                string assembled = TranslateVariableType(c.VariableType) + "  " + c.ParentConnection.OutVariableName +"\r\n";
+                output += assembled;
+            }
 
-                if(sourceNode is IInputNode)
+
+
+            output += node.NodeDescription.Name + "(";
+            List<Connector> inConnectors = node.GetAllConnectors(ConnectionDirection.In);
+            foreach (Connector c in inConnectors)
+            {
+                if (!c.Connected) continue;
+
                 {
-                    IInputNode temp = (IInputNode)sourceNode;
-                    varName = temp.GetVariableName();
-                    output += varName + ", ";
+                    
+                    output += c.ParentConnection.OutVariableName + ", ";
                 }
-                else if(sourceNode is SCTFunctionNode)
-                {
-                    SCTFunctionNode temp = (SCTFunctionNode)sourceNode;
-
-                }
-
-
-                SCTConsole.Instance.PrintDebugLine(varName);
+             
             }
             SCTConsole.Instance.PrintDebugLine(output);
             return output;
