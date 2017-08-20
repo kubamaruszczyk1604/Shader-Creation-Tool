@@ -498,10 +498,9 @@ namespace ShaderCreationTool
             List<SCTFunctionNode> fNodes = (m_Nodes.FindAll(o => o is SCTFunctionNode)).Cast<SCTFunctionNode>().ToList();
             string code;
             string status;
-            foreach(SCTFunctionNode node in fNodes)
-            { 
-              m_CodeParser.TranslateNodeIntoFunction(node,out code, out status);
-            }
+            m_CodeParser.TranslateNodeListIntoFunctions(fNodes, out code, out status);
+            SCTConsole.Instance.PrintLine(code);
+           
         }
 
      

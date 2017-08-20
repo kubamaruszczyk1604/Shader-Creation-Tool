@@ -214,6 +214,8 @@ namespace ShaderCreationTool
             if (GetType(type, out outType))
             {
                 varDesc = new ShaderVariableDescription(name, outType, direction);
+                varDesc.AdditionalInfo = variableNode.InnerText;
+               // SCTConsole.Instance.PrintDebugLine(varDesc.AdditionalInfo);
             }
             else
             {

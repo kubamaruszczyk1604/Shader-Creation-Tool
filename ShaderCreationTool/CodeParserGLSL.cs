@@ -8,6 +8,11 @@ namespace ShaderCreationTool
 {
     class CodeParserGLSL: ICodeParser
     {
+        private List<string> signatures;
+        public CodeParserGLSL()
+        {
+            signatures = new List<string>();
+        }
 
        public bool TranslateInputVariables(List<IInputNode> inputNodes, out string declarationsCode, out string status)
         {
@@ -28,16 +33,58 @@ namespace ShaderCreationTool
         {
             functionCode = "";
             status = "";
-
-            FunctionNodeDescription desc = node.NodeDescription;
-            string signature = CreateSignature(desc);
-            string body = "{\r\n";
-            body += ParseCode(desc.GetFunctionString());
-            body += "\r\n}\r\n";
-            functionCode = signature + body;
-            SCTConsole.Instance.PrintDebugLine(functionCode);
-            return false;
+       
+            try
+            {
+                FunctionNodeDescription desc = node.NodeDescription;
+                string signature = CreateSignature(desc);
+                if (signatures.Contains(signature))
+                {
+                    status = "Repeated signature: " + signature;
+                    status += "SKIPPING..";
+                    return true;
+                }
+                string body = "{\r\n";
+                body += ParseCode(desc.GetFunctionString());
+                body += "\r\n}\r\n";
+                functionCode = signature + body;
+                signatures.Add(signature);
+               // SCTConsole.Instance.PrintDebugLine(functionCode);
+            }
+            catch(Exception e)
+            {
+                status = e.Message;
+                return false;
+            }
+            status = "ok";
+            return true;
         }
+        public bool TranslateNodeListIntoFunctions(List<SCTFunctionNode> nodes, out string functionCode, out string status)
+        {
+            signatures.Clear();
+            functionCode = "";
+            status = "";
+            bool allOk = true;
+            foreach(SCTFunctionNode node in nodes)
+            {
+                string tempFunctionCode;
+                string tempStatus;
+                if (TranslateNodeIntoFunction(node, out tempFunctionCode, out tempStatus))
+                {
+                    functionCode += "\r\n" + tempFunctionCode;
+                }
+                else
+                {
+                    allOk = false;
+                }
+                status += tempStatus;
+                
+            }
+
+            return allOk;
+        }
+
+
         public bool TranslateNetwork(List<ISCTNode> nodes, List<Connection> connections, out string code, out string status)
         {
             code = "";
@@ -48,7 +95,7 @@ namespace ShaderCreationTool
         private string CreateSignature(FunctionNodeDescription desc)
         {
             string signature = "void " + desc.Name + "(";
-            
+           
 
             for (int i = 0; i < desc.InputCount; ++i)
             {
@@ -68,7 +115,6 @@ namespace ShaderCreationTool
                 signature += assembled;
                 if (i < desc.OutputCount - 1) signature += ", ";
             }
-
 
             signature += ")\r\n";
             return signature;

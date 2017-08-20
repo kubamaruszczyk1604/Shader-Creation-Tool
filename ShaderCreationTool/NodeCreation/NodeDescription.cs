@@ -24,6 +24,8 @@ namespace ShaderCreationTool
         public ShaderVariableType Type { get { return m_Type; } }
         public ConnectionDirection ConnectionDirection { get { return m_ConnectionDirection; } }
 
+        public string AdditionalInfo { get; set; }
+
 
     }
 

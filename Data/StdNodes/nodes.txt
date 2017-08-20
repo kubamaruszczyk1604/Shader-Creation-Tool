@@ -5,6 +5,7 @@
   
     <Input_Variables>
       <Variable Name="Moja" Var_Type="Float4">
+	  DEFAULT = 0
       </Variable>
       <Variable Name="Sucz" Var_Type="Float4">
       </Variable>
@@ -27,7 +28,27 @@
 
  
   
+    <Node Name="Multiply44">
   
+    <Input_Variables>
+      <Variable Name="Moja" Var_Type="Float4">
+	  DEFAULT = 0
+      </Variable>
+      <Variable Name="Sucz" Var_Type="Float4">
+      </Variable>
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="FinalColour" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>
+	
+   <Code>
+   
+   FinalColour = Moja*Sucz;
+   
+   </Code>
+  </Node>
 
   
   

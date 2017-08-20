@@ -114,7 +114,7 @@ namespace ShaderCreationTool
                     textBox.KeyPress += TextBox_KeyPress;
                     m_NameTextbox = textBox;
                     tbCounter++;
-                    m_Name = "SCT_UNIFORM_FLOAT4In_" + s_InstanceCounter.ToString();
+                    m_Name = "SCT_UNIFORM_FLOATIn_" + s_InstanceCounter.ToString();
                     m_NameTextbox.Text = m_Name;
 
                 }
