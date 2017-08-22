@@ -10,10 +10,11 @@ namespace ShaderCreationTool
     class CodeParserGLSL: ICodeParser
     {
         private const string NUM_EXPR = @"\d+\.*\d*";
-
         private List<string> m_Signatures;
-     //   private List<Connection> m_InputConnections = new List<Connection>();
-        Dictionary<ShaderVariableType, Regex> m_DefaultValuesTable;
+        private Dictionary<ShaderVariableType, Regex> m_DefaultValuesTable;
+
+
+
         public CodeParserGLSL()
         {
             m_Signatures = new List<string>();
@@ -46,7 +47,7 @@ namespace ShaderCreationTool
             try
             {
                 FunctionNodeDescription desc = node.NodeDescription;
-                string signature = CreateSignature(desc);
+                string signature = CreateFunctionSignature(desc);
                 if (m_Signatures.Contains(signature))
                 {
                     status = "Repeated signature: " + signature;
@@ -89,7 +90,12 @@ namespace ShaderCreationTool
                 }
                 status += tempStatus;            
             }
-
+            List<Connection> inputConnections = ConnectionManager.ConnectionList.FindAll(o => o.IsDirectInputConnection);
+            foreach(Connection c in inputConnections)
+            {
+                c.Highlighted = true;
+                
+            }
             return allOk;
         }
 
@@ -98,6 +104,8 @@ namespace ShaderCreationTool
         {
             code = "";
             status = "";
+            List<Connection> inputConnections = connections.FindAll(o => o.IsDirectInputConnection);
+            
 
             return false;
         }
@@ -171,7 +179,7 @@ namespace ShaderCreationTool
             return ret;
         }
 
-        private string CreateSignature(FunctionNodeDescription desc)
+        private string CreateFunctionSignature(FunctionNodeDescription desc)
         {
             string signature = "void " + desc.Name + "(";
            

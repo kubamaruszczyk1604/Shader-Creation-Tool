@@ -14,7 +14,10 @@
     <Output_Variables>
       <Variable Name="FinalColour" Var_Type="Float4">
       </Variable>
+	    <Variable Name="FinalColour2" Var_Type="Float4">
+      </Variable>
     </Output_Variables>
+	
 	
    <Code>
    

@@ -7,11 +7,13 @@ namespace ShaderCreationTool
 {
     class ConnectionLine: IDisposable
     {
-        private readonly Pen m_Pen = new Pen(Color.FromArgb(100,255,155,155), 3);
+        private readonly Pen m_StandardPen = new Pen(Color.FromArgb(100,255,155,155), 3);
+        private readonly Pen m_HighlightPen = new Pen(Color.FromArgb(150, 255, 100, 100), 5);
         private readonly Size c_ButtonSize = new Size(13, 13);
         private readonly Color c_ButtonBackColour = Color.FromArgb(100, 255, 155, 155);
         private readonly Color c_ButtonForeColour = Color.FromArgb(255, 100, 100, 130);
 
+        private Pen m_UsedPen;
         private Control p_Control;
         private bool m_Invalidate;
         private float m_Pan;
@@ -65,6 +67,7 @@ namespace ShaderCreationTool
 
         public ConnectionLine(Control control)
         {
+            m_UsedPen = m_StandardPen;
             p_Control = control;
             m_Invalidate = false;
             m_Pan = 0.55f;
@@ -101,9 +104,16 @@ namespace ShaderCreationTool
             m_XMoving = false;
             m_YMoving = false;
             m_CapturedYPosition = false;
-
+           // Highlight(true);
         }
 
+        public void Highlight(bool on)
+        {
+            if (on) m_UsedPen = m_HighlightPen;
+            else m_UsedPen = m_StandardPen;
+
+            m_Invalidate = true;
+        }
 
         public void Save(StreamWriter writer)
         {
@@ -197,9 +207,10 @@ namespace ShaderCreationTool
                 p_Control.Invalidate();
                 m_Invalidate = false;
             }
-            g.DrawLines(m_Pen, points);
-            g.DrawLine(m_Pen,a, aFixed);
-            g.DrawLine(m_Pen, b, bFixed);
+           
+            g.DrawLines(m_UsedPen, points);
+            g.DrawLine(m_UsedPen, a, aFixed);
+            g.DrawLine(m_UsedPen, b, bFixed);
         }
 
 

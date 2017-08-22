@@ -21,6 +21,8 @@ namespace ShaderCreationTool
 
         static public int ConnectionCount { get { return s_ConnectionList.Count; } }
 
+        static public List<Connection> ConnectionList { get { return s_ConnectionList; } }
+
         static public void Draw(Graphics graphics)
         {
             foreach (Connection c in s_ConnectionList)

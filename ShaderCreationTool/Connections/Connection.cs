@@ -59,6 +59,7 @@ namespace ShaderCreationTool
 
         public bool IsConnected { get { return m_ConnectedFlag; } } 
         public Control DrawOnControl { get { return p_DrawOnControl; } }
+        public bool Highlighted { set { m_Line.Highlight(value); } }
 
 
         public Connection(Connector a, Connector b, Control drawOn)
