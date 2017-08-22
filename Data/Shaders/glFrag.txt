@@ -9,7 +9,7 @@ in vec3 normal;
 
 
 out vec4 FragColour;
- uniform vec4      textura;
+uniform sampler2D      textura;
 uniform vec4            col;
 
 void Multiply44(vec4 Moja, vec4 Sucz, inout vec4 FinalColour)
@@ -21,9 +21,9 @@ void Multiply44(vec4 Moja, vec4 Sucz, inout vec4 FinalColour)
 void main()
 {
 
-vec4  OUT_FinalColour0_NF_Multiply44_0_22;
-Multiply44(textura, col, OUT_FinalColour0_NF_Multiply44_0_22);
-FragColour = OUT_FinalColour0_NF_Multiply44_0_22;
+   vec4  OUT_FinalColour0_NF_Multiply44_0_22;
+   Multiply44(texture2D(textura,UVs), col, OUT_FinalColour0_NF_Multiply44_0_22);
+   FragColour = OUT_FinalColour0_NF_Multiply44_0_22;
 }
 
 
