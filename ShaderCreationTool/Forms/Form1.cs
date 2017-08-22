@@ -489,25 +489,27 @@ namespace ShaderCreationTool
             //    ConnectionManager.GetConnection(i).TestKillLine();
             //}
 
-            List<IInputNode> inputNodes = (m_Nodes.FindAll(o => o is IInputNode)).Cast<IInputNode>().ToList();
+
+
+           // List<IInputNode> inputNodes = (m_Nodes.FindAll(o => o is IInputNode)).Cast<IInputNode>().ToList();
 
             string status;
             string code;
-            m_CodeParser.TranslateInputVariables(inputNodes, out code, out status);
-           // SCTConsole.Instance.PrintLine(codeIn);
+           // m_CodeParser.TranslateInputVariables(inputNodes, out code, out status);
+           //// SCTConsole.Instance.PrintLine(codeIn);
            
 
-            List<SCTFunctionNode> fNodes = (m_Nodes.FindAll(o => o is SCTFunctionNode)).Cast<SCTFunctionNode>().ToList();
-            string codeFunct;
-            string statusFunct;
-            m_CodeParser.TranslateNodeListIntoFunctions(fNodes, out codeFunct, out statusFunct);
+           // List<SCTFunctionNode> fNodes = (m_Nodes.FindAll(o => o is SCTFunctionNode)).Cast<SCTFunctionNode>().ToList();
+           // string codeFunct;
+           // string statusFunct;
+           // m_CodeParser.TranslateNodeListIntoFunctions(fNodes, out codeFunct, out statusFunct);
 
-            code += "\r\n" + codeFunct;
+           // code += "\r\n" + codeFunct;
 
-            foreach(SCTFunctionNode node in fNodes)
-            {
-                m_CodeParser.ConstructFunctionCall(node);
-            }
+           // foreach(SCTFunctionNode node in fNodes)
+           // {
+           //     m_CodeParser.ConstructFunctionCall(node);
+           // }
 
             m_CodeParser.TranslateNetwork(m_Nodes, ConnectionManager.ConnectionList, out code, out status);
 

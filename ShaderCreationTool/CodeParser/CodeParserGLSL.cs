@@ -100,21 +100,59 @@ namespace ShaderCreationTool
             code = "";
             status = "";
             List<SCTFunctionNode> nodesToProcess = nodes.FindAll(o => o is SCTFunctionNode).Cast<SCTFunctionNode>().ToList();
+            List<SCTFunctionNode> tempRestoreStateNodeList = new List<SCTFunctionNode>(nodesToProcess);
             List<Connection> inputConnections = connections.FindAll(o => o.IsDirectInputConnection);
             foreach (Connection c in inputConnections)
             {
                 c.Highlighted = true;
             }
 
-            foreach(SCTFunctionNode node in nodesToProcess)
-            {
-                SCTConsole.Instance.PrintLine("Node: " + node.NodeDescription.Name + " is: " + HasAllInputsReady(node).ToString());
-            }
+            //foreach(SCTFunctionNode node in nodesToProcess)
+            //{
+            //    SCTConsole.Instance.PrintLine("Node: " + node.NodeDescription.Name + " is: " + HasAllInputsCalculated(node).ToString());
+            //}
 
+            string result = ProcessNodes(ref nodesToProcess);
+
+            SCTConsole.Instance.PrintDebugLine(result);
+
+            foreach(SCTFunctionNode node in tempRestoreStateNodeList)
+            {
+                SetOutputsAsCalclulated(node, false);
+            }
 
             return false;
         }
     
+
+        private string ProcessNodes(ref List<SCTFunctionNode> nodes)
+        {
+            string ret = string.Empty;
+
+            List<SCTFunctionNode> removeList = new List<SCTFunctionNode>();
+            foreach(SCTFunctionNode node in nodes)
+            {
+                if(HasAllInputsCalculated(node))
+                {
+                    ret += "\r\n" + ConstructFunctionCall(node);
+                    SetOutputsAsCalclulated(node, true);
+                    removeList.Add(node);         
+                }
+            }
+   
+            foreach(SCTFunctionNode rem in removeList)
+            {
+                nodes.Remove(rem);
+            }
+           
+            if(nodes.Count > 0)
+            {
+                ret += ProcessNodes(ref nodes);
+            }
+
+            return ret;
+        }
+
 
         public string ConstructFunctionCall(SCTFunctionNode node)
         {
@@ -161,7 +199,7 @@ namespace ShaderCreationTool
             }
             output += ");";
 
-            SCTConsole.Instance.PrintDebugLine("\r\n\r\n\r\n" + output);
+           // SCTConsole.Instance.PrintDebugLine("\r\n\r\n\r\n" + output);
             return output;
         }
 
@@ -238,7 +276,7 @@ namespace ShaderCreationTool
 
         ///////////////////
 
-        private bool HasAllInputsReady(SCTFunctionNode node)
+        private bool HasAllInputsCalculated(SCTFunctionNode node)
         {
            
             foreach (Connector c in node.GetAllConnectors(ConnectionDirection.In))
@@ -251,5 +289,18 @@ namespace ShaderCreationTool
             }
             return true; 
         }
+
+        private void SetOutputsAsCalclulated(SCTFunctionNode node, bool calculated)
+        {
+            foreach (Connector c in node.GetAllConnectors(ConnectionDirection.Out))
+            {
+                if (!c.Connected) continue;
+                if (calculated) c.ParentConnection.SetAsProcessed();
+                else c.ParentConnection.SetAsUnprocessed();
+            }
+        }
+
+
+
     }
 }
