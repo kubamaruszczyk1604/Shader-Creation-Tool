@@ -111,7 +111,7 @@ namespace ShaderCreationTool
         {
             if (on) m_UsedPen = m_HighlightPen;
             else m_UsedPen = m_StandardPen;
-
+            p_Control.Invalidate();
             m_Invalidate = true;
         }
 
