@@ -34,7 +34,7 @@ namespace ShaderCreationTool
             foreach(IInputNode node in inputNodes)
             {
                 string typeStr = TranslateVariableType(node.GetShaderVariableType());
-                declarationsCode += "uniform " + typeStr + " "+ new string(' ',maxTypeCharCount- typeStr.Length)  + node.GetVariableName() + "\r\n";
+                declarationsCode += "uniform " + typeStr + " "+ new string(' ',maxTypeCharCount- typeStr.Length)  + node.GetVariableName() + ";\r\n";
                 if (typeStr == string.Empty) ok = false;
             }
             return ok;
@@ -99,6 +99,9 @@ namespace ShaderCreationTool
         {
             code = "";
             status = "";
+
+            List<IInputNode> inputNodes = (nodes.FindAll(o => o is IInputNode)).Cast<IInputNode>().ToList();
+
             List<SCTFunctionNode> nodesToProcess = nodes.FindAll(o => o is SCTFunctionNode).Cast<SCTFunctionNode>().ToList();
             List<SCTFunctionNode> tempRestoreStateNodeList = new List<SCTFunctionNode>(nodesToProcess);
             List<Connection> inputConnections = connections.FindAll(o => o.IsDirectInputConnection);
@@ -107,14 +110,21 @@ namespace ShaderCreationTool
                 c.Highlighted = true;
             }
 
-            //foreach(SCTFunctionNode node in nodesToProcess)
-            //{
-            //    SCTConsole.Instance.PrintLine("Node: " + node.NodeDescription.Name + " is: " + HasAllInputsCalculated(node).ToString());
-            //}
+            // Input variables
+            TranslateInputVariables(inputNodes, out code, out status);
+            string codeFunct;
+            string statusFunct;
 
+            // Functions extraction
+            TranslateNodeListIntoFunctions(nodesToProcess, out codeFunct, out statusFunct);
+            code += "\r\n" + codeFunct;
+
+            // network (function calls)
             string result = ProcessNodes(ref nodesToProcess);
 
-            SCTConsole.Instance.PrintDebugLine(result);
+            code += "\r\n\r\n void main()\r\n{\r\n" + result + "\r\n}"; 
+
+            SCTConsole.Instance.PrintDebugLine(code);
 
             foreach(SCTFunctionNode node in tempRestoreStateNodeList)
             {
@@ -167,7 +177,7 @@ namespace ShaderCreationTool
                 //if connected  create output variable
                 if (c.Connected)
                 {
-                    string assembled = TranslateVariableType(c.VariableType) + "  " + c.ParentConnection.OutVariableName + "\r\n";
+                    string assembled = TranslateVariableType(c.VariableType) + "  " + c.ParentConnection.OutVariableName + ";\r\n";
 
                     outVarParameters.Add(c.ParentConnection.OutVariableName);// add to function call list
                     output += assembled; // add to forward declarations

@@ -14,7 +14,7 @@
     <Output_Variables>
       <Variable Name="FinalColour" Var_Type="Float4">
       </Variable>
-	    <Variable Name="FinalColour2" Var_Type="Float4">
+	    <Variable Name="FinalColourX" Var_Type="Float4">
       </Variable>
     </Output_Variables>
 	
@@ -38,6 +38,26 @@
 	  DEFAULT = (1,1,1,1)
 	  </Variable>
       <Variable Name="Sucz" Var_Type="Float4">
+      </Variable>
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="FinalColour" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>
+	
+   <Code> FinalColour = Moja*Sucz; </Code>
+  </Node>
+  
+      <Node Name="MultiplyHUJEC">
+  
+    <Input_Variables>
+      <Variable Name="fff" Var_Type="Float4">
+	  DEFAULT = (1,1,1,1)
+	  </Variable>
+      <Variable Name="rer" Var_Type="Float4">
+      </Variable>
+	   <Variable Name="cel" Var_Type="Float4">
       </Variable>
     </Input_Variables>
 	
