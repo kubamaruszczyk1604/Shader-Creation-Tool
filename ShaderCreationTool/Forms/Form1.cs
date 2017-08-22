@@ -470,7 +470,8 @@ namespace ShaderCreationTool
         // TEMPORARY STUFF
         private void button1_Click(object sender, EventArgs e)
         {
-            //Bridge.ReloadScene();
+            //throw new Exception("Jeb");
+            Bridge.ReloadScene();
            // SCTConsole.Instance.PrintLine(Bridge.GetLastCompilerMessage());
             //Bridge.ClearLastCompilerMessage();
 
