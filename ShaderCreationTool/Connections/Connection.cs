@@ -23,6 +23,7 @@ namespace ShaderCreationTool
         private Control p_DrawOnControl;
         private bool m_IsDirectInputConnection;
         private string m_OutVariableName;
+        private bool m_IsProcessed;
 
         ////////////////////////////////////////////  PUBLIC  ////////////////////////////////////////////
 
@@ -60,11 +61,16 @@ namespace ShaderCreationTool
         public bool IsConnected { get { return m_ConnectedFlag; } } 
         public Control DrawOnControl { get { return p_DrawOnControl; } }
         public bool Highlighted { set { m_Line.Highlight(value); } }
+        public bool IsProcessed
+        {
+            get { return (m_IsDirectInputConnection) ? true : m_IsProcessed; }
+        }
 
 
         public Connection(Connector a, Connector b, Control drawOn)
         {
             m_IsDirectInputConnection = false;
+            m_IsProcessed = false;
             if(a.DirectionType == b.DirectionType)
             {
                 throw new Exception("Both a and b have the same direction");
@@ -83,6 +89,9 @@ namespace ShaderCreationTool
             RefreshoutVarName();
 
         }
+
+        public void SetAsProcessed(){ m_IsProcessed = true; }
+        public void SetAsUnprocessed() { m_IsProcessed = false; }
 
         public void RefreshoutVarName()
         {

@@ -90,12 +90,7 @@ namespace ShaderCreationTool
                 }
                 status += tempStatus;            
             }
-            List<Connection> inputConnections = ConnectionManager.ConnectionList.FindAll(o => o.IsDirectInputConnection);
-            foreach(Connection c in inputConnections)
-            {
-                c.Highlighted = true;
-                
-            }
+         
             return allOk;
         }
 
@@ -104,8 +99,18 @@ namespace ShaderCreationTool
         {
             code = "";
             status = "";
+            List<SCTFunctionNode> nodesToProcess = nodes.FindAll(o => o is SCTFunctionNode).Cast<SCTFunctionNode>().ToList();
             List<Connection> inputConnections = connections.FindAll(o => o.IsDirectInputConnection);
-            
+            foreach (Connection c in inputConnections)
+            {
+                c.Highlighted = true;
+            }
+
+            foreach(SCTFunctionNode node in nodesToProcess)
+            {
+                SCTConsole.Instance.PrintLine("Node: " + node.NodeDescription.Name + " is: " + HasAllInputsReady(node).ToString());
+            }
+
 
             return false;
         }
@@ -228,5 +233,23 @@ namespace ShaderCreationTool
         }
 
 
+
+
+
+        ///////////////////
+
+        private bool HasAllInputsReady(SCTFunctionNode node)
+        {
+           
+            foreach (Connector c in node.GetAllConnectors(ConnectionDirection.In))
+            {
+                if (!c.Connected) continue;
+                if(!c.ParentConnection.IsProcessed)
+                {
+                    return false;
+                }
+            }
+            return true; 
+        }
     }
 }

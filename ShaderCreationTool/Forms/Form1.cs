@@ -509,6 +509,8 @@ namespace ShaderCreationTool
                 m_CodeParser.ConstructFunctionCall(node);
             }
 
+            m_CodeParser.TranslateNetwork(m_Nodes, ConnectionManager.ConnectionList, out code, out status);
+
             //TextFileReaderWriter.Save(@"c:\nodes\testshad.txt", code);
             //SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
 
