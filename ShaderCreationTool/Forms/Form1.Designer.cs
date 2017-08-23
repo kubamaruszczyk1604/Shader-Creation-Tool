@@ -1927,7 +1927,7 @@
             this.VertexPositionWindow.Controls.Add(this.panel11);
             this.VertexPositionWindow.Controls.Add(this.label_Title_vertexPos);
             this.VertexPositionWindow.Enabled = false;
-            this.VertexPositionWindow.Location = new System.Drawing.Point(264, 1083);
+            this.VertexPositionWindow.Location = new System.Drawing.Point(252, 1116);
             this.VertexPositionWindow.Name = "VertexPositionWindow";
             this.VertexPositionWindow.Size = new System.Drawing.Size(178, 136);
             this.VertexPositionWindow.TabIndex = 33;
