@@ -37,7 +37,7 @@ namespace ShaderCreationTool
         string GetNodeID();
     }
 
-    interface IInputNode
+    interface IInputNode: ISCTNode
     {
        void AddOnCloseCallback(NodeCloseButtonCallback callback);
        void AddInputErrorCallback(NodeInputError callback);
@@ -46,7 +46,7 @@ namespace ShaderCreationTool
 
     }
 
-    interface IAttribNode
+    interface IAttribNode: ISCTNode
     {
         void AddOnCloseCallback(NodeCloseButtonCallback callback);
         string GetVariableName();

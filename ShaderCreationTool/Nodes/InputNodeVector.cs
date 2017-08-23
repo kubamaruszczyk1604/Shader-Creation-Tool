@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 
 namespace ShaderCreationTool
 {
-    class InputNodeVector :ISCTNode, IDisposable,IInputNode
+    class InputNodeVector :IDisposable,IInputNode
     {
         // Things to save: Position, Dimensions, Name, Values
 

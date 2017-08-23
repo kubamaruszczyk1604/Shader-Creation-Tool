@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 
 namespace ShaderCreationTool
 {
-    class InputNodeTexture2D : ISCTNode, IInputNode, IDisposable
+    class InputNodeTexture2D :  IInputNode, IDisposable
     {
         private const string s_PlainTexturePath = "../Assets/Textures/bkg.bmp";
 
