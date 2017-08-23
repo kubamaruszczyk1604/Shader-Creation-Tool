@@ -53,7 +53,7 @@ namespace ShaderCreationTool
             m_OutputConnectors = new List<Connector>();
             m_InputConnectors = new List<Connector>();
             int tbCounter = 0;
-            int inConnectorCounter = 0;
+           // int inConnectorCounter = 0;
             int outConnectorCounter = 0;
             List<Control> allControlls = ControlExtensions.GetAllChildreenControls<Control>(m_SctElement).Cast<Control>().ToList();
             foreach (Control control in allControlls)

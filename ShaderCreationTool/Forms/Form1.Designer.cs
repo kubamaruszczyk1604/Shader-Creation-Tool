@@ -1992,7 +1992,6 @@
             this.Out_Slot_vertPos.Text = "OutCol";
             this.Out_Slot_vertPos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_Slot_vertPos.UseVisualStyleBackColor = true;
-            this.Out_Slot_vertPos.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label_Title_vertexPos
             // 
