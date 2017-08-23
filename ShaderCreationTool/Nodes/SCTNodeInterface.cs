@@ -23,7 +23,9 @@ namespace ShaderCreationTool
         AttribPosition = 8,
         AttribNormal = 9,
         AttribUVs = 10,
-        AttribTangent = 11
+        AttribTangent = 11,
+        AttribInput_Time = 12,
+        AttribInput_CameraPos = 13
     }
 
     delegate void NodeCloseButtonCallback(ISCTNode sender);

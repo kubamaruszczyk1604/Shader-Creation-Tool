@@ -30,7 +30,9 @@ namespace ShaderCreationTool
             "Position",
             "Normal",
             "Texture UVs",
-            "TangentVector"
+            "TangentVector",
+            "Camera Position",
+            "Time"
         };
 
         private static NodeType StringToNodeType(string str)
@@ -46,7 +48,8 @@ namespace ShaderCreationTool
                 case "Position": { return NodeType.AttribPosition; }
                 case "Normal": { return NodeType.AttribNormal; }
                 case "Texture UVs": { return NodeType.AttribUVs; }
-                case "TangentVector": { return NodeType.AttribTangent; }
+                case "Camera Position": { return NodeType.AttribInput_CameraPos; }
+                case "Time": { return NodeType.AttribInput_Time; }
                 default: { return NodeType.Target; } // error condition
 
             }
