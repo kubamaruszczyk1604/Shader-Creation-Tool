@@ -1918,6 +1918,7 @@
             this.AddAttribButton.TabIndex = 10;
             this.AddAttribButton.Text = "Add Attribute Input";
             this.AddAttribButton.UseVisualStyleBackColor = false;
+            this.AddAttribButton.Click += new System.EventHandler(this.AddAttribButton_Click);
             // 
             // VertexPositionWindow
             // 

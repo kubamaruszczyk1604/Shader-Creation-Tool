@@ -64,7 +64,7 @@ namespace ShaderCreationTool
                 EditAreaPanel.Invalidate(false);
             }
         }
-        private AttribNodePosition attnp;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -90,7 +90,6 @@ namespace ShaderCreationTool
             m_ZoomController = new ZoomController(ZoomInButton, ZoomOutButton);
 
             m_CodeParser = new CodeParserGLSL();
-            attnp = new AttribNodePosition(VertexPositionWindow, new Point(200, 100));
             
         }
 
@@ -111,57 +110,28 @@ namespace ShaderCreationTool
             nodes.Add(fbn);
         }
 
-        private async void AddExampleNodes()
-        {
-            await Task.Delay(1);
-            ShaderVariableDescription inDesc1 = new ShaderVariableDescription("Kolor1", ShaderVariableType.Vector4, ConnectionDirection.In);
-            ShaderVariableDescription inDesc2 = new ShaderVariableDescription("Kolor2", ShaderVariableType.Vector4, ConnectionDirection.In);
-            ShaderVariableDescription inDesc3 = new ShaderVariableDescription("Kolor3", ShaderVariableType.Vector4, ConnectionDirection.In);
-            ShaderVariableDescription inDesc4 = new ShaderVariableDescription("Kolorfff", ShaderVariableType.Vector4, ConnectionDirection.In);
+    
+        //private async void AddExampleNodeFromFile(string path)
+        //{
 
-            ShaderVariableDescription outDesc1 = new ShaderVariableDescription("Kolor4", ShaderVariableType.Vector4, ConnectionDirection.Out);
-            ShaderVariableDescription outDesc2 = new ShaderVariableDescription("WYJSCIE", ShaderVariableType.Single, ConnectionDirection.Out);
-
-
-            FunctionNodeDescription d = new FunctionNodeDescription("test of lngh");
-            d.AddInputVariable(inDesc1);
-            d.AddInputVariable(inDesc2);
-            d.AddInputVariable(inDesc3);
-            d.AddInputVariable(inDesc3);
-            d.AddOutputVariable(outDesc1);
-            d.AddOutputVariable(outDesc2);
-
-            for (int i = 0; i < 1; ++i)
-            {
-                SCTFunctionNode temp = new SCTFunctionNode(FunctionNodeWindow, new Point(240 * i, 300), UpdateOnObjectMoved, d);
-                temp.AddOnBeginConnectionCallback(OnConnectionBegin);
-                temp.AddOnBreakConnectionCallback(OnConnectionBreak);
-                temp.AddOnCloseCallback(OnNodeClose);
-                m_Nodes.Add(temp);
-            }
-
-        }
-        private async void AddExampleNodeFromFile(string path)
-        {
-
-            List<FunctionNodeDescription> d;
-            string status;
-            ReaderXML.ReadInDescriptions(path, out d, out status);
+        //    List<FunctionNodeDescription> d;
+        //    string status;
+        //    ReaderXML.ReadInDescriptions(path, out d, out status);
            
-            SCTFunctionNode temp = new SCTFunctionNode(FunctionNodeWindow, new Point(240 , 300), UpdateOnObjectMoved, d[0]);
-                temp.AddOnBeginConnectionCallback(OnConnectionBegin);
-                temp.AddOnBreakConnectionCallback(OnConnectionBreak);
-                temp.AddOnCloseCallback(OnNodeClose);
-                m_Nodes.Add(temp);
+        //    SCTFunctionNode temp = new SCTFunctionNode(FunctionNodeWindow, new Point(240 , 300), UpdateOnObjectMoved, d[0]);
+        //        temp.AddOnBeginConnectionCallback(OnConnectionBegin);
+        //        temp.AddOnBreakConnectionCallback(OnConnectionBreak);
+        //        temp.AddOnCloseCallback(OnNodeClose);
+        //        m_Nodes.Add(temp);
             
 
-        }
+        //}
 
         // USED METHODS
 
-        private void Start_AddVariableNode()
+        private void Start_AddVariableNode(bool input)
         {
-            var form = new SelectNodeForm(true);
+            var form = new SelectNodeForm(input);
             form.ShowDialog();
             if (form.DialogResult == DialogResult.OK)
             {
@@ -194,6 +164,7 @@ namespace ShaderCreationTool
             form.Dispose();
         }
 
+        
 
         private void CancelIsConnecting()
         {
@@ -343,6 +314,7 @@ namespace ShaderCreationTool
                 case NodeType.Input_Float4:{ temp = new InputNodeVector(Float4InputWindow, location); break; }
                 case NodeType.Input_Colour: { temp = new InputNodeColour(ColourInputWindow, location); break; }
                 case NodeType.Input_Texture2D: { temp = new InputNodeTexture2D(Texture2DInputWindow, location); break; }
+                case NodeType.AttribPosition: { temp = new AttribNodePosition(VertexPositionWindow, location); break; }
                 case NodeType.Funtion: { temp = new SCTFunctionNode(FunctionNodeWindow, location, NodeInstantiator.FunctionDescriptionStruct); break; }
                 default:{ MessageBox.Show(type.ToString() + " NOT IMPLEMENTED"); return; }
             }
@@ -362,6 +334,12 @@ namespace ShaderCreationTool
                 SCTFunctionNode inpN = (SCTFunctionNode)temp;
                 inpN.AddOnCloseCallback(OnNodeClose);
             }
+            else if (temp is IAttribNode)
+            {
+                IAttribNode inpN = (IAttribNode)temp;
+                inpN.AddOnCloseCallback(OnNodeClose);
+            }
+
             m_Nodes.Add(temp);   
         }
 
@@ -458,7 +436,7 @@ namespace ShaderCreationTool
         // BUTTONS 
         private void AddVariableButton_Click(object sender, EventArgs e)
         {
-            Start_AddVariableNode();
+            Start_AddVariableNode(true);
         }
 
         private void AddNodeButton_Click(object sender, EventArgs e)
@@ -467,7 +445,10 @@ namespace ShaderCreationTool
         }
 
 
-    
+        private void AddAttribButton_Click(object sender, EventArgs e)
+        {
+            Start_AddVariableNode(false);
+        }
 
         // TEMPORARY STUFF
         private void button1_Click(object sender, EventArgs e)
@@ -509,7 +490,7 @@ namespace ShaderCreationTool
         ////////////////////////////////  MENU ITEMS ///////////////////
         private void AddUniformVariable_MenuItem_Click(object sender, EventArgs e)
         {
-            Start_AddVariableNode();
+            Start_AddVariableNode(true);
         }
 
         private void FunctionNodeMenuItem_Click(object sender, EventArgs e)
@@ -557,6 +538,8 @@ namespace ShaderCreationTool
                 SCTConsole.Instance.PrintLine("\r\n" + c.Info);
             }
         }
+
+      
     }
 
 
