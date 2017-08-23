@@ -196,12 +196,7 @@ namespace ShaderCreationTool
                 //if connected use variable name associated with connection
                 if (c.Connected)
                 {
-                    //if(c.ParentConnection.SourceConnector.ParentNode is InputNodeTexture2D)
-                    //{
-                    //    output += "texture2D(" + c.ParentConnection.OutVariableName + ", UVs)"  +  ", ";
-                    //}
-                    //else
-                        output += c.ParentConnection.OutVariableName + ", ";
+                    output += c.ParentConnection.OutVariableName + ", ";
                 }
 
                 else // otherwise use default value
