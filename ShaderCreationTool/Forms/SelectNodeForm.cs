@@ -29,7 +29,8 @@ namespace ShaderCreationTool
         private List<string> m_Items;
         private NodeType m_ReturnedNodeType;
         private FunctionNodeDescription m_FuntionNodeDescription;
-        private bool m_InputNodes;
+      //  private bool m_InputNodes;
+        private DisplayedNodeType m_DisplayedType;
         private bool m_ReadingOK;
 
         public int Selection { get; set; }
@@ -44,7 +45,8 @@ namespace ShaderCreationTool
         public SelectNodeForm()
         {
             m_Items = s_InputOptionsText.ToList();
-            m_InputNodes = true;
+           // m_InputNodes = true;
+            m_DisplayedType = DisplayedNodeType.Input;
             InitializeComponent();
             listBox1.DataSource = m_Items;
 
@@ -59,7 +61,8 @@ namespace ShaderCreationTool
             {
                 m_Items = FunctionNodeConfigMgr.NodeList;
                 m_ReturnedNodeType = NodeType.Funtion;
-                m_InputNodes = false;
+               // m_InputNodes = false;
+                m_DisplayedType = DisplayedNodeType.Function;
                 listBox1.DataSource = m_Items;
                 m_ReadingOK = true;
                
@@ -104,11 +107,11 @@ namespace ShaderCreationTool
         /////////////////////////////  DIRECT UI EVENTS ///////////////////////////////
         private void OnInput(object sender, EventArgs e)
         {
-            if (m_InputNodes)
+            if (m_DisplayedType == DisplayedNodeType.Input)
             {
                 ItemSelectedInputNodes(sender, e);
             }
-            else 
+            else if (m_DisplayedType == DisplayedNodeType.Function)
             {
                 ItemSelectedFuntionNodes(sender, e);
             }
@@ -133,7 +136,7 @@ namespace ShaderCreationTool
 
         private void SelectNodeForm_Shown(object sender, EventArgs e)
         {
-            if (!m_ReadingOK && !m_InputNodes)
+            if (!m_ReadingOK && m_DisplayedType == DisplayedNodeType.Function)
             {
                 //this.Hide();
                 MessageBox.Show("Error While reading XML FILE:" + FunctionNodeConfigMgr.LastStatus, "XML ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
