@@ -53,7 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeParser\CodeParserGLSL.cs" />
-    <Compile Include="Nodes\AttribNodePosition.cs" />
+    <Compile Include="Nodes\AttribNodeSimple.cs" />
+    <Compile Include="Nodes\AttribNodeWithSelection.cs" />
     <Compile Include="Util\TextFileReaderWriter.cs" />
     <Compile Include="Forms\ImagePreviewForm.cs">
       <SubType>Form</SubType>

@@ -1816,7 +1816,7 @@
             this.PreviewAreaPanel.Controls.Add(this.ZoomOutButton);
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
-            this.PreviewAreaPanel.Location = new System.Drawing.Point(925, 3);
+            this.PreviewAreaPanel.Location = new System.Drawing.Point(817, 7);
             this.PreviewAreaPanel.Name = "PreviewAreaPanel";
             this.PreviewAreaPanel.Size = new System.Drawing.Size(466, 423);
             this.PreviewAreaPanel.TabIndex = 26;

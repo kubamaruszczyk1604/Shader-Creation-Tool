@@ -12,13 +12,13 @@ using System.Text.RegularExpressions;
 
 namespace ShaderCreationTool
 {
-    class AttribNodePosition: IDisposable, IAttribNode
+    class AttribNodeSimple : IDisposable, IAttribNode
     {
         private Panel m_SctElement;
         private MovableObject m_Mover;
         private List<Connector> m_OutputConnectors;
         private NodeCloseButtonCallback p_CloseCallback;
-        private readonly string[] c_Names = { "SCT_WorldPosition", "SCT_Position", "SCT_PositionInTangent" };
+
         private string m_Name;
         private NodeType m_NodeType;
         private static bool s_ButtonsLocked = false;
@@ -31,11 +31,8 @@ namespace ShaderCreationTool
         public ShaderVariableType GetShaderVariableType() { return m_VarType; }
 
 
-
-        public AttribNodePosition(Panel nodeTemplate, Point location)
+        public AttribNodeSimple(Panel nodeTemplate, Point location)
         {
-
-      
             //Copy template (make local instance)
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
             m_SctElement.Location = location;
@@ -46,10 +43,26 @@ namespace ShaderCreationTool
 
             m_OutputConnectors = new List<Connector>();
             List<Control> allControlls = ControlExtensions.GetAllChildreenControls<Control>(m_SctElement).Cast<Control>().ToList();
-            //allControlls.Add(m_SctElement);
+            Label title = (Label)allControlls.Find(o => o.Name.Contains("Title"));
 
-            m_VarType = ShaderVariableType.Vector4;
-            m_NodeType = NodeType.AttribPosition;
+            if (title == null) throw new Exception("Incorrect window template in Attrib Node!");
+
+            if (title.Name.Contains("UV"))
+            {
+                m_VarType = ShaderVariableType.Vector2;
+                m_NodeType = NodeType.AttribUVs;
+            }
+            else if (title.Name.Contains("Time"))
+            {
+                m_VarType = ShaderVariableType.Single;
+                m_NodeType = NodeType.AttribInput_Time;
+            }
+            else
+            {
+                throw new Exception("Incorrect window template in Attrib Node!");
+            }
+
+
             m_UniqueID = NodeIDCreator.CreateID(GetNodeType(), s_InstanceCounter);
 
             int connectorCounter = 0;
@@ -71,16 +84,6 @@ namespace ShaderCreationTool
                         SCTConsole.Instance.PrintDebugLine("Checkbox name seqence error in ATTRIB_POSITION Node");
                     }
                 }
-                else if (control is ComboBox)
-                {
-                    ComboBox comb = (ComboBox)control;
-                    comb.SelectedIndexChanged += Combo_SelectedIndexChanged;
-                    comb.Items.Add("World Space");
-                    comb.Items.Add("Model Space");
-                    comb.Items.Add("Tangent Space");
-                    comb.SelectedIndex = 0;
-                }
-
                 else if (control is Panel)
                 {
                     Panel p = (Panel)control;
@@ -107,16 +110,12 @@ namespace ShaderCreationTool
 
             if (connectorCounter < 1)
             {
-                SCTConsole.Instance.PrintDebugLine("ERROR: No output connectors in AttribNode_Position1");
-                throw new Exception("ERROR: No output connectors in AttribNode_Position1");
+                SCTConsole.Instance.PrintDebugLine("ERROR: No output connectors in AttribNode1");
+                throw new Exception("ERROR: No output connectors in AttribNode");
             }
             s_InstanceCounter++;
             ShowNode(1);
         }
-
-
-
-
 
 
         public void AddOnMovedCallback(ObjectMovedCallback onMovedCallback)
@@ -228,12 +227,5 @@ namespace ShaderCreationTool
         {
             m_Mover.MoveControlMouseMove(m_SctElement, e);
         }
-
-        private void Combo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ComboBox cb = (ComboBox)sender;
-            m_Name = c_Names[cb.SelectedIndex];
-        }
-
     }
 }

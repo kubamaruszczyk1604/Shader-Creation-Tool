@@ -314,7 +314,11 @@ namespace ShaderCreationTool
                 case NodeType.Input_Float4:{ temp = new InputNodeVector(Float4InputWindow, location); break; }
                 case NodeType.Input_Colour: { temp = new InputNodeColour(ColourInputWindow, location); break; }
                 case NodeType.Input_Texture2D: { temp = new InputNodeTexture2D(Texture2DInputWindow, location); break; }
-                case NodeType.AttribPosition: { temp = new AttribNodePosition(VertexPositionWindow, location); break; }
+                case NodeType.AttribPosition: { temp = new AttribNodeWithSelection(VertexPositionWindow, location); break; }
+                case NodeType.AttribNormal: { temp = new AttribNodeWithSelection(NormalVectorWindow, location); break; }
+                case NodeType.AttribInput_CameraPos: { temp = new AttribNodeWithSelection(CameraPositionWindow, location); break; }
+                case NodeType.AttribUVs: { temp = new AttribNodeSimple(UVsWindow, location); break; }
+                case NodeType.AttribInput_Time: { temp = new AttribNodeSimple(TimeWindow, location); break; }
                 case NodeType.Funtion: { temp = new SCTFunctionNode(FunctionNodeWindow, location, NodeInstantiator.FunctionDescriptionStruct); break; }
                 default:{ MessageBox.Show(type.ToString() + " NOT IMPLEMENTED"); return; }
             }
