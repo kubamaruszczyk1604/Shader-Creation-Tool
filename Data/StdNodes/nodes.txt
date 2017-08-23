@@ -49,15 +49,12 @@
    <Code> FinalColour = Moja*Sucz; </Code>
   </Node>
   
-      <Node Name="MultiplyHUJEC">
+      <Node Name="Sampler2D">
   
     <Input_Variables>
-      <Variable Name="fff" Var_Type="Float4">
-	  DEFAULT = (1,1,1,1)
+      <Variable Name="Texture" Var_Type="Texture2D">
 	  </Variable>
-      <Variable Name="rer" Var_Type="Float4">
-      </Variable>
-	   <Variable Name="cel" Var_Type="Float4">
+      <Variable Name="Texcoord" Var_Type="Float2">
       </Variable>
     </Input_Variables>
 	
@@ -66,7 +63,7 @@
       </Variable>
     </Output_Variables>
 	
-   <Code> FinalColour = Moja*Sucz; </Code>
+   <Code> FinalColour = SampleTexture(Texture,Texcoord) </Code>
   </Node>
 
   

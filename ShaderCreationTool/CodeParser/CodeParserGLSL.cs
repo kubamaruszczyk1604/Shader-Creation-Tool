@@ -196,11 +196,12 @@ namespace ShaderCreationTool
                 //if connected use variable name associated with connection
                 if (c.Connected)
                 {
-                    if(c.ParentConnection.SourceConnector.ParentNode is InputNodeTexture2D)
-                    {
-                        output += "texture2D(" + c.ParentConnection.OutVariableName + ", UVs)"  +  ", ";
-                    }
-                    else output += c.ParentConnection.OutVariableName + ", ";
+                    //if(c.ParentConnection.SourceConnector.ParentNode is InputNodeTexture2D)
+                    //{
+                    //    output += "texture2D(" + c.ParentConnection.OutVariableName + ", UVs)"  +  ", ";
+                    //}
+                    //else
+                        output += c.ParentConnection.OutVariableName + ", ";
                 }
 
                 else // otherwise use default value
@@ -285,6 +286,7 @@ namespace ShaderCreationTool
         {
             string s = code;
             s = s.Replace("VECTOR4 ", "vec4 ").Replace("VECTOR3 ", "vec3 ").Replace("VECTOR2 ", "vec2 ").Replace("FLOAT ", "float ").Replace("COLOUR ", "vec4 ");
+            s = s.Replace("SampleTexture", "texture2D");
             return s;
         }
 
