@@ -157,6 +157,15 @@
             this.uniformVariableNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.AddAttribButton = new System.Windows.Forms.Button();
+            this.VertexPositionWindow = new System.Windows.Forms.Panel();
+            this.closeButton_VertPos = new System.Windows.Forms.Button();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.PosLabel = new System.Windows.Forms.Label();
+            this.vertPos_inner_panel = new System.Windows.Forms.Panel();
+            this.Out_Slot_vertPos = new System.Windows.Forms.CheckBox();
+            this.label_Title_vertexPos = new System.Windows.Forms.Label();
+            this.comboBox_Space_VertPos = new System.Windows.Forms.ComboBox();
             this.EditAreaPanel.SuspendLayout();
             this.StatsGroupBox.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -204,6 +213,9 @@
             this.AddGroupBox.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.VertexPositionWindow.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.vertPos_inner_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -238,6 +250,7 @@
             this.EditAreaPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EditAreaPanel.BackgroundImage")));
             this.EditAreaPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EditAreaPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.EditAreaPanel.Controls.Add(this.VertexPositionWindow);
             this.EditAreaPanel.Controls.Add(this.button2);
             this.EditAreaPanel.Controls.Add(this.StatsGroupBox);
             this.EditAreaPanel.Controls.Add(this.Texture2DInputWindow);
@@ -279,7 +292,7 @@
             this.StatsGroupBox.Controls.Add(this.panel1);
             this.StatsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatsGroupBox.ForeColor = System.Drawing.SystemColors.Control;
-            this.StatsGroupBox.Location = new System.Drawing.Point(3, 178);
+            this.StatsGroupBox.Location = new System.Drawing.Point(3, 296);
             this.StatsGroupBox.Name = "StatsGroupBox";
             this.StatsGroupBox.Size = new System.Drawing.Size(147, 93);
             this.StatsGroupBox.TabIndex = 24;
@@ -1661,7 +1674,7 @@
             this.PreviewAreaPanel.Controls.Add(this.ZoomOutButton);
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
-            this.PreviewAreaPanel.Location = new System.Drawing.Point(887, 3);
+            this.PreviewAreaPanel.Location = new System.Drawing.Point(906, 3);
             this.PreviewAreaPanel.Name = "PreviewAreaPanel";
             this.PreviewAreaPanel.Size = new System.Drawing.Size(466, 423);
             this.PreviewAreaPanel.TabIndex = 26;
@@ -1726,13 +1739,14 @@
             // AddGroupBox
             // 
             this.AddGroupBox.BackColor = System.Drawing.Color.Gray;
+            this.AddGroupBox.Controls.Add(this.AddAttribButton);
             this.AddGroupBox.Controls.Add(this.AddVariableButton);
             this.AddGroupBox.Controls.Add(this.AddNodeButton);
             this.AddGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddGroupBox.ForeColor = System.Drawing.SystemColors.Control;
             this.AddGroupBox.Location = new System.Drawing.Point(3, 7);
             this.AddGroupBox.Name = "AddGroupBox";
-            this.AddGroupBox.Size = new System.Drawing.Size(136, 165);
+            this.AddGroupBox.Size = new System.Drawing.Size(128, 238);
             this.AddGroupBox.TabIndex = 23;
             this.AddGroupBox.TabStop = false;
             this.AddGroupBox.Text = "ADD";
@@ -1892,6 +1906,121 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // AddAttribButton
+            // 
+            this.AddAttribButton.BackColor = System.Drawing.Color.Brown;
+            this.AddAttribButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddAttribButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddAttribButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.AddAttribButton.Location = new System.Drawing.Point(7, 160);
+            this.AddAttribButton.Name = "AddAttribButton";
+            this.AddAttribButton.Size = new System.Drawing.Size(112, 64);
+            this.AddAttribButton.TabIndex = 10;
+            this.AddAttribButton.Text = "Add Attribute Input";
+            this.AddAttribButton.UseVisualStyleBackColor = false;
+            // 
+            // VertexPositionWindow
+            // 
+            this.VertexPositionWindow.BackColor = System.Drawing.Color.Indigo;
+            this.VertexPositionWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.VertexPositionWindow.Controls.Add(this.closeButton_VertPos);
+            this.VertexPositionWindow.Controls.Add(this.panel11);
+            this.VertexPositionWindow.Controls.Add(this.label_Title_vertexPos);
+            this.VertexPositionWindow.Enabled = false;
+            this.VertexPositionWindow.Location = new System.Drawing.Point(264, 1083);
+            this.VertexPositionWindow.Name = "VertexPositionWindow";
+            this.VertexPositionWindow.Size = new System.Drawing.Size(178, 136);
+            this.VertexPositionWindow.TabIndex = 33;
+            this.VertexPositionWindow.Visible = false;
+            // 
+            // closeButton_VertPos
+            // 
+            this.closeButton_VertPos.BackColor = System.Drawing.Color.Black;
+            this.closeButton_VertPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButton_VertPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButton_VertPos.ForeColor = System.Drawing.Color.Transparent;
+            this.closeButton_VertPos.Location = new System.Drawing.Point(151, 3);
+            this.closeButton_VertPos.Name = "closeButton_VertPos";
+            this.closeButton_VertPos.Size = new System.Drawing.Size(22, 22);
+            this.closeButton_VertPos.TabIndex = 2;
+            this.closeButton_VertPos.Text = "X";
+            this.closeButton_VertPos.UseVisualStyleBackColor = false;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel11.Controls.Add(this.comboBox_Space_VertPos);
+            this.panel11.Controls.Add(this.PosLabel);
+            this.panel11.Controls.Add(this.vertPos_inner_panel);
+            this.panel11.Location = new System.Drawing.Point(-1, 26);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(179, 109);
+            this.panel11.TabIndex = 1;
+            // 
+            // PosLabel
+            // 
+            this.PosLabel.AutoSize = true;
+            this.PosLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PosLabel.ForeColor = System.Drawing.Color.White;
+            this.PosLabel.Location = new System.Drawing.Point(6, 11);
+            this.PosLabel.Name = "PosLabel";
+            this.PosLabel.Size = new System.Drawing.Size(83, 13);
+            this.PosLabel.TabIndex = 2;
+            this.PosLabel.Text = "Select Space";
+            // 
+            // vertPos_inner_panel
+            // 
+            this.vertPos_inner_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.vertPos_inner_panel.Controls.Add(this.Out_Slot_vertPos);
+            this.vertPos_inner_panel.Location = new System.Drawing.Point(5, 54);
+            this.vertPos_inner_panel.Name = "vertPos_inner_panel";
+            this.vertPos_inner_panel.Size = new System.Drawing.Size(173, 51);
+            this.vertPos_inner_panel.TabIndex = 0;
+            // 
+            // Out_Slot_vertPos
+            // 
+            this.Out_Slot_vertPos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Out_Slot_vertPos.AutoSize = true;
+            this.Out_Slot_vertPos.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_vertPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Out_Slot_vertPos.ForeColor = System.Drawing.Color.BurlyWood;
+            this.Out_Slot_vertPos.Location = new System.Drawing.Point(96, 28);
+            this.Out_Slot_vertPos.Name = "Out_Slot_vertPos";
+            this.Out_Slot_vertPos.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Out_Slot_vertPos.Size = new System.Drawing.Size(73, 20);
+            this.Out_Slot_vertPos.TabIndex = 8;
+            this.Out_Slot_vertPos.Text = "OutCol";
+            this.Out_Slot_vertPos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_vertPos.UseVisualStyleBackColor = true;
+            this.Out_Slot_vertPos.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // label_Title_vertexPos
+            // 
+            this.label_Title_vertexPos.AutoSize = true;
+            this.label_Title_vertexPos.BackColor = System.Drawing.Color.Transparent;
+            this.label_Title_vertexPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title_vertexPos.ForeColor = System.Drawing.Color.White;
+            this.label_Title_vertexPos.Location = new System.Drawing.Point(23, 5);
+            this.label_Title_vertexPos.Name = "label_Title_vertexPos";
+            this.label_Title_vertexPos.Size = new System.Drawing.Size(122, 18);
+            this.label_Title_vertexPos.TabIndex = 0;
+            this.label_Title_vertexPos.Text = "Vertex Position";
+            this.label_Title_vertexPos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // comboBox_Space_VertPos
+            // 
+            this.comboBox_Space_VertPos.BackColor = System.Drawing.Color.White;
+            this.comboBox_Space_VertPos.ForeColor = System.Drawing.Color.Black;
+            this.comboBox_Space_VertPos.FormattingEnabled = true;
+            this.comboBox_Space_VertPos.Items.AddRange(new object[] {
+            "World Space",
+            "Model Space",
+            "Tangent Space"});
+            this.comboBox_Space_VertPos.Location = new System.Drawing.Point(5, 27);
+            this.comboBox_Space_VertPos.Name = "comboBox_Space_VertPos";
+            this.comboBox_Space_VertPos.Size = new System.Drawing.Size(169, 21);
+            this.comboBox_Space_VertPos.TabIndex = 3;
+            // 
             // MainWindow
             // 
             this.AcceptButton = this.button1;
@@ -1984,6 +2113,12 @@
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.VertexPositionWindow.ResumeLayout(false);
+            this.VertexPositionWindow.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            this.vertPos_inner_panel.ResumeLayout(false);
+            this.vertPos_inner_panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2118,6 +2253,15 @@
         private System.Windows.Forms.Button ZoomInButton;
         private System.Windows.Forms.Button ZoomOutButton;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button AddAttribButton;
+        private System.Windows.Forms.Panel VertexPositionWindow;
+        private System.Windows.Forms.Button closeButton_VertPos;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.ComboBox comboBox_Space_VertPos;
+        private System.Windows.Forms.Label PosLabel;
+        private System.Windows.Forms.Panel vertPos_inner_panel;
+        private System.Windows.Forms.CheckBox Out_Slot_vertPos;
+        private System.Windows.Forms.Label label_Title_vertexPos;
     }
 }
 

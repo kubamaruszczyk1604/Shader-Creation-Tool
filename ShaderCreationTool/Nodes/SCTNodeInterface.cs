@@ -46,6 +46,14 @@ namespace ShaderCreationTool
 
     }
 
+    interface IAttribNode
+    {
+        void AddOnCloseCallback(NodeCloseButtonCallback callback);
+        string GetVariableName();
+        ShaderVariableType GetShaderVariableType();
+
+    }
+
 
     class NodeIDCreator
     {

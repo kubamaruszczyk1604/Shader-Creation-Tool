@@ -573,6 +573,11 @@ namespace ShaderCreationTool
                 SCTConsole.Instance.PrintLine("\r\n" + c.Info);
             }
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
