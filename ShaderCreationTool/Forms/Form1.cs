@@ -161,7 +161,7 @@ namespace ShaderCreationTool
 
         private void Start_AddVariableNode()
         {
-            var form = new SelectNodeForm();
+            var form = new SelectNodeForm(true);
             form.ShowDialog();
             if (form.DialogResult == DialogResult.OK)
             {

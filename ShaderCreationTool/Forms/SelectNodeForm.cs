@@ -14,6 +14,7 @@ namespace ShaderCreationTool
     public partial class SelectNodeForm : Form
     {
         enum DisplayedNodeType { Input,Function,Attrib };
+
         private static readonly string[] s_InputOptionsText =
         {
             "Single Float Number",
@@ -24,7 +25,34 @@ namespace ShaderCreationTool
             "Texture 2D",
         };
 
-     
+        private static readonly string[] s_AttribOptionsText =
+        {
+            "Position",
+            "Normal",
+            "Texture UVs",
+            "TangentVector"
+        };
+
+        private static NodeType StringToNodeType(string str)
+        {
+            switch(str)
+            {
+                case "Single Float Number": { return NodeType.Input_Float; }
+                case "Vector Float 2": { return NodeType.Input_Float2; }
+                case "Vector Float 3": { return NodeType.Input_Float3; }
+                case "Vector Float 4": { return NodeType.Input_Float4; }
+                case "Colour RGBA": { return NodeType.Input_Colour; }
+                case "Texture 2D": { return NodeType.Input_Texture2D; }
+                case "Position": { return NodeType.AttribPosition; }
+                case "Normal": { return NodeType.AttribNormal; }
+                case "Texture UVs": { return NodeType.AttribUVs; }
+                case "TangentVector": { return NodeType.AttribTangent; }
+                default: { return NodeType.Target; } // error condition
+
+            }
+        }
+
+       
 
         private List<string> m_Items;
         private NodeType m_ReturnedNodeType;
@@ -42,11 +70,18 @@ namespace ShaderCreationTool
         }
 
         // for input nodes - predefined set of options
-        public SelectNodeForm()
+        public SelectNodeForm(bool input)
         {
-            m_Items = s_InputOptionsText.ToList();
-           // m_InputNodes = true;
-            m_DisplayedType = DisplayedNodeType.Input;
+            if (input)
+            {
+                m_Items = s_InputOptionsText.ToList();
+                m_DisplayedType = DisplayedNodeType.Input;
+            }
+            else
+            {
+                m_Items = s_AttribOptionsText.ToList();
+                m_DisplayedType = DisplayedNodeType.Attrib;
+            }
             InitializeComponent();
             listBox1.DataSource = m_Items;
 
@@ -61,7 +96,6 @@ namespace ShaderCreationTool
             {
                 m_Items = FunctionNodeConfigMgr.NodeList;
                 m_ReturnedNodeType = NodeType.Funtion;
-               // m_InputNodes = false;
                 m_DisplayedType = DisplayedNodeType.Function;
                 listBox1.DataSource = m_Items;
                 m_ReadingOK = true;
@@ -81,11 +115,19 @@ namespace ShaderCreationTool
         {
           
             Selection = ((ListBox)sender).SelectedIndex;
-            m_ReturnedNodeType = (NodeType)Selection;
+            m_ReturnedNodeType = StringToNodeType((string)((ListBox)sender).SelectedValue);
             this.DialogResult = DialogResult.OK;
          
         }
 
+        private void ItemSelectedAttribNodes(object sender, EventArgs e)
+        {
+
+            Selection = ((ListBox)sender).SelectedIndex;
+            m_ReturnedNodeType = StringToNodeType((string)((ListBox)sender).SelectedValue);
+            this.DialogResult = DialogResult.OK;
+
+        }
 
         private void ItemSelectedFuntionNodes(object sender, EventArgs e)
         {
@@ -114,6 +156,10 @@ namespace ShaderCreationTool
             else if (m_DisplayedType == DisplayedNodeType.Function)
             {
                 ItemSelectedFuntionNodes(sender, e);
+            }
+            else if (m_DisplayedType == DisplayedNodeType.Attrib)
+            {
+                ItemSelectedAttribNodes(sender, e);
             }
         }
         private void listBox1_DoubleClick(object sender, EventArgs e)
