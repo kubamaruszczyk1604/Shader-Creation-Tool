@@ -64,7 +64,7 @@ namespace ShaderCreationTool
                 EditAreaPanel.Invalidate(false);
             }
         }
-
+        private AttribNodePosition attnp;
         public MainWindow()
         {
             InitializeComponent();
@@ -90,6 +90,8 @@ namespace ShaderCreationTool
             m_ZoomController = new ZoomController(ZoomInButton, ZoomOutButton);
 
             m_CodeParser = new CodeParserGLSL();
+            attnp = new AttribNodePosition(VertexPositionWindow, new Point(200, 100));
+            
         }
 
         private async void StartRenderer(int delayMs)
@@ -490,27 +492,9 @@ namespace ShaderCreationTool
             //    ConnectionManager.GetConnection(i).TestKillLine();
             //}
 
-
-
-           // List<IInputNode> inputNodes = (m_Nodes.FindAll(o => o is IInputNode)).Cast<IInputNode>().ToList();
-
             string status;
             string code;
-           // m_CodeParser.TranslateInputVariables(inputNodes, out code, out status);
-           //// SCTConsole.Instance.PrintLine(codeIn);
-           
-
-           // List<SCTFunctionNode> fNodes = (m_Nodes.FindAll(o => o is SCTFunctionNode)).Cast<SCTFunctionNode>().ToList();
-           // string codeFunct;
-           // string statusFunct;
-           // m_CodeParser.TranslateNodeListIntoFunctions(fNodes, out codeFunct, out statusFunct);
-
-           // code += "\r\n" + codeFunct;
-
-           // foreach(SCTFunctionNode node in fNodes)
-           // {
-           //     m_CodeParser.ConstructFunctionCall(node);
-           // }
+        
 
             m_CodeParser.TranslateNetwork(m_Nodes, ConnectionManager.ConnectionList, out code, out status);
 

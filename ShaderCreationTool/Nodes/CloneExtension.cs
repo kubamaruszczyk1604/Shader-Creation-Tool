@@ -83,6 +83,13 @@ namespace ShaderCreationTool
                     btn.Enabled = enableAllChildreen;
                     targetInstance.Controls.Add(btn);
                 }
+                else if (control is ComboBox)
+                {
+                    ComboBox com = ((ComboBox)control).CopyAsSCTElement(enableAllChildreen);
+                    com.Parent = targetInstance;
+                    com.Enabled = enableAllChildreen;
+                    targetInstance.Controls.Add(com);
+                }
                 else if (control is NumericUpDown)
                 {
                     NumericUpDown n = ((NumericUpDown)control).CopyAsSCTElement(enableAllChildreen);

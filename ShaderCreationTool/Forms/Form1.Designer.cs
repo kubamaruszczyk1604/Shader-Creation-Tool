@@ -1984,12 +1984,12 @@
             this.Out_Slot_vertPos.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_Slot_vertPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Out_Slot_vertPos.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_Slot_vertPos.Location = new System.Drawing.Point(96, 28);
+            this.Out_Slot_vertPos.Location = new System.Drawing.Point(86, 28);
             this.Out_Slot_vertPos.Name = "Out_Slot_vertPos";
             this.Out_Slot_vertPos.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Out_Slot_vertPos.Size = new System.Drawing.Size(73, 20);
+            this.Out_Slot_vertPos.Size = new System.Drawing.Size(83, 20);
             this.Out_Slot_vertPos.TabIndex = 8;
-            this.Out_Slot_vertPos.Text = "OutCol";
+            this.Out_Slot_vertPos.Text = "Position";
             this.Out_Slot_vertPos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_Slot_vertPos.UseVisualStyleBackColor = true;
             // 
@@ -2009,12 +2009,9 @@
             // comboBox_Space_VertPos
             // 
             this.comboBox_Space_VertPos.BackColor = System.Drawing.Color.White;
+            this.comboBox_Space_VertPos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Space_VertPos.ForeColor = System.Drawing.Color.Black;
             this.comboBox_Space_VertPos.FormattingEnabled = true;
-            this.comboBox_Space_VertPos.Items.AddRange(new object[] {
-            "World Space",
-            "Model Space",
-            "Tangent Space"});
             this.comboBox_Space_VertPos.Location = new System.Drawing.Point(5, 27);
             this.comboBox_Space_VertPos.Name = "comboBox_Space_VertPos";
             this.comboBox_Space_VertPos.Size = new System.Drawing.Size(169, 21);

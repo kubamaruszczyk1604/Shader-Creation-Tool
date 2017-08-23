@@ -13,6 +13,7 @@ namespace ShaderCreationTool
   
     public partial class SelectNodeForm : Form
     {
+        enum DisplayedNodeType { Input,Function,Attrib };
         private static readonly string[] s_InputOptionsText =
         {
             "Single Float Number",
@@ -20,8 +21,10 @@ namespace ShaderCreationTool
             "Vector Float 3",
             "Vector Float 4",
             "Colour RGBA",
-            "Texture 2D"
+            "Texture 2D",
         };
+
+     
 
         private List<string> m_Items;
         private NodeType m_ReturnedNodeType;

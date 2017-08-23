@@ -19,7 +19,11 @@ namespace ShaderCreationTool
         Input_Colour = 4,
         Input_Texture2D = 5,
         Funtion = 6,
-        Target = 7
+        Target = 7,
+        AttribPosition = 8,
+        AttribNormal = 9,
+        AttribUVs = 10,
+        AttribTangent = 11
     }
 
     delegate void NodeCloseButtonCallback(ISCTNode sender);
