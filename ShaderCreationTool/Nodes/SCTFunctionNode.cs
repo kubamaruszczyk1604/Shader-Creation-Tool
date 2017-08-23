@@ -105,7 +105,7 @@ namespace ShaderCreationTool
                 cd.Click += AnyElement_Click;
                 Connector tempCon = new Connector(cd, description.GetOutVariableDescription(i).Type,this, 
                     "OUT_" + cd.Text + outConnectorCounter.ToString());
-                tempCon.SetShaderVaribaleDescription(description.GetInVariableDescription(i));
+                tempCon.SetShaderVaribaleDescription(description.GetOutVariableDescription(i));
                 m_OutputConnectors.Add(tempCon);
                 outConnectorCounter++;
             }

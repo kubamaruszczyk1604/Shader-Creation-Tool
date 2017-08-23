@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entities>
   <!--Shader Creation Tool - node config scripting file.-->
-  <Node Name="Multiply42">
+  <Node Name="AddV4s">
   
     <Input_Variables>
-      <Variable Name="Moja" Var_Type="Float4"> 
-	  DEFAULT = (1,1,1,1) 
+      <Variable Name="VecA" Var_Type="Float4"> 
+	  DEFAULT = (0,0,0,0) 
 	  </Variable>
-      <Variable Name="Sucz" Var_Type="Float4">
+      <Variable Name="VecB" Var_Type="Float4">
+	   DEFAULT = (0,0,0,0) 
       </Variable>
     </Input_Variables>
 	
     <Output_Variables>
       <Variable Name="FinalColour" Var_Type="Float4">
       </Variable>
-	    <Variable Name="FinalColourX" Var_Type="Float4">
-      </Variable>
     </Output_Variables>
 	
 	
    <Code>
    
-   COLOUR col1 = Moja;
-   COLOUR col2 = Sucz;
-   FinalColour = col1*col2;
+   FinalColour = VecA+VecB;
    
    </Code>
   </Node>
@@ -31,13 +28,14 @@
 
  
   
-    <Node Name="Multiply44">
+    <Node Name="MultiplyV4xV4">
   
     <Input_Variables>
-      <Variable Name="Moja" Var_Type="Float4">
+      <Variable Name="VecA" Var_Type="Float4">
 	  DEFAULT = (1,1,1,1)
 	  </Variable>
-      <Variable Name="Sucz" Var_Type="Float4">
+      <Variable Name="VecB" Var_Type="Float4">
+	   DEFAULT = (1,1,1,1)
       </Variable>
     </Input_Variables>
 	
@@ -46,8 +44,9 @@
       </Variable>
     </Output_Variables>
 	
-   <Code> FinalColour = Moja*Sucz; </Code>
+   <Code> FinalColour = VecA*VecB; </Code> 
   </Node>
+  
   
       <Node Name="Sampler2D">
   
@@ -66,6 +65,24 @@
    <Code> FinalColour = SampleTexture(Texture,Texcoord) </Code>
   </Node>
 
+       <Node Name="ExampleFunctionNode_TEST">
+  
+    <Input_Variables>
+      <Variable Name="just" Var_Type="Float4">
+	  </Variable>
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="FinalOut1" Var_Type="Float4">
+      </Variable>
+	   <Variable Name="FinalOut2" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>
+	
+   <Code>//put you code here </Code>
+  </Node>
+  
+ 
   
   
 </Entities>
