@@ -94,20 +94,5 @@ namespace ShaderCreationTool
         }
     }
 
-    static class AttribVariableStrings
-    {
-        // simple
-        public static readonly string c_TimeVariableName = "UnifTime";
-        public static readonly string c_UVVariableName = "UVs";
-
-
-        // with space selection
-        public static readonly string[] c_NamesPosition =  {
-            "Position_WorldSpace",
-            "Position_ObjectSpace",
-            "Position_EyeSpace"
-        };
-        public static readonly string[] c_NamesNormal = { "Normal_InverseWorld", "Normal_ObjectScpace" };
-        public static readonly string[] c_NamesCameraPos = { "Camera_WorldSpace" };
-    }
+   
 }

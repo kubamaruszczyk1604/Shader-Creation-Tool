@@ -26,9 +26,9 @@ namespace ShaderCreationTool
             get
             {
                 var list = new List<string>();
-                list.AddRange(AttribVariableStrings.c_NamesPosition);
-                list.AddRange(AttribVariableStrings.c_NamesNormal);
-                list.AddRange(AttribVariableStrings.c_NamesCameraPos);
+                list.AddRange(AttribVariableStrings.POSITION_VARIABLE_NAMES_ARRAY);
+                list.AddRange(AttribVariableStrings.NORMAL_VARIABLE_NAMES_ARRAY);
+                list.AddRange(AttribVariableStrings.CAMERA_POS_VARIABLE_NAMES_ARRAY);
                 return list.ToArray();
             }
         }
@@ -64,7 +64,7 @@ namespace ShaderCreationTool
 
             if(title.Name.Contains("vertexPos"))
             {
-                m_VarType = ShaderVariableType.Vector4;
+                m_VarType = ShaderVariableType.Vector3;
                 m_NodeType = NodeType.AttribPosition;
             }
             else if (title.Name.Contains("normal"))
@@ -112,9 +112,9 @@ namespace ShaderCreationTool
                     
                     switch(m_NodeType)
                     {
-                        case NodeType.AttribPosition: { arr = AttribVariableStrings.c_NamesPosition; break; }
-                        case NodeType.AttribNormal: { arr = AttribVariableStrings.c_NamesNormal; break; }
-                        case NodeType.AttribInput_CameraPos: { arr = AttribVariableStrings.c_NamesCameraPos; break; }
+                        case NodeType.AttribPosition: { arr = AttribVariableStrings.POSITION_VARIABLE_NAMES_ARRAY; break; }
+                        case NodeType.AttribNormal: { arr = AttribVariableStrings.NORMAL_VARIABLE_NAMES_ARRAY; break; }
+                        case NodeType.AttribInput_CameraPos: { arr = AttribVariableStrings.CAMERA_POS_VARIABLE_NAMES_ARRAY; break; }
                         default: { arr = new string[0]; break; }
                     }
                     foreach(string s in arr)
@@ -279,11 +279,11 @@ namespace ShaderCreationTool
         {
             ComboBox cb = (ComboBox)sender;
             if (m_NodeType == NodeType.AttribPosition)
-            { m_Name = AttribVariableStrings.c_NamesPosition[cb.SelectedIndex]; }
+            { m_Name = AttribVariableStrings.POSITION_VARIABLE_NAMES_ARRAY[cb.SelectedIndex]; }
             else if (m_NodeType == NodeType.AttribNormal)
-            { m_Name = AttribVariableStrings.c_NamesNormal[cb.SelectedIndex]; }
+            { m_Name = AttribVariableStrings.NORMAL_VARIABLE_NAMES_ARRAY[cb.SelectedIndex]; }
             else if (m_NodeType == NodeType.AttribInput_CameraPos)
-            { m_Name = AttribVariableStrings.c_NamesCameraPos[cb.SelectedIndex]; }
+            { m_Name = AttribVariableStrings.CAMERA_POS_VARIABLE_NAMES_ARRAY[cb.SelectedIndex]; }
         }
 
     }
