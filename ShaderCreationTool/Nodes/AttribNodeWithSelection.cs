@@ -14,22 +14,21 @@ namespace ShaderCreationTool
 {
     class AttribNodeWithSelection: IDisposable, IAttribNode
     {
+        
+
         private Panel m_SctElement;
         private MovableObject m_Mover;
         private List<Connector> m_OutputConnectors;
         private NodeCloseButtonCallback p_CloseCallback;
-        private static readonly string[] c_NamesPosition = { "Position_WorldSpace", "Position_ObjectSpace", "Position_EyeSpace"};
-        private static readonly string[] c_NamesNormal = { "Normal_InverseWorld", "Normal_ObjectScpace" };
-        private static readonly string[] c_NamesCameraPos = { "Camera_WorldSpace" };
 
         public static string [] VariablesStrings
         {
             get
             {
                 var list = new List<string>();
-                list.AddRange(c_NamesPosition);
-                list.AddRange(c_NamesNormal);
-                list.AddRange(c_NamesCameraPos);
+                list.AddRange(AttribVariableStrings.c_NamesPosition);
+                list.AddRange(AttribVariableStrings.c_NamesNormal);
+                list.AddRange(AttribVariableStrings.c_NamesCameraPos);
                 return list.ToArray();
             }
         }
@@ -113,9 +112,9 @@ namespace ShaderCreationTool
                     
                     switch(m_NodeType)
                     {
-                        case NodeType.AttribPosition: { arr = c_NamesPosition; break; }
-                        case NodeType.AttribNormal: { arr = c_NamesNormal; break; }
-                        case NodeType.AttribInput_CameraPos: { arr =c_NamesCameraPos; break; }
+                        case NodeType.AttribPosition: { arr = AttribVariableStrings.c_NamesPosition; break; }
+                        case NodeType.AttribNormal: { arr = AttribVariableStrings.c_NamesNormal; break; }
+                        case NodeType.AttribInput_CameraPos: { arr = AttribVariableStrings.c_NamesCameraPos; break; }
                         default: { arr = new string[0]; break; }
                     }
                     foreach(string s in arr)
@@ -280,11 +279,11 @@ namespace ShaderCreationTool
         {
             ComboBox cb = (ComboBox)sender;
             if (m_NodeType == NodeType.AttribPosition)
-            { m_Name = c_NamesPosition[cb.SelectedIndex]; }
+            { m_Name = AttribVariableStrings.c_NamesPosition[cb.SelectedIndex]; }
             else if (m_NodeType == NodeType.AttribNormal)
-            { m_Name = c_NamesNormal[cb.SelectedIndex]; }
+            { m_Name = AttribVariableStrings.c_NamesNormal[cb.SelectedIndex]; }
             else if (m_NodeType == NodeType.AttribInput_CameraPos)
-            { m_Name = c_NamesCameraPos[cb.SelectedIndex]; }
+            { m_Name = AttribVariableStrings.c_NamesCameraPos[cb.SelectedIndex]; }
         }
 
     }

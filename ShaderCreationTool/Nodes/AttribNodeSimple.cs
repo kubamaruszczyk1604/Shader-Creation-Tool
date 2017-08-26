@@ -14,6 +14,8 @@ namespace ShaderCreationTool
 {
     class AttribNodeSimple : IDisposable, IAttribNode
     {
+      
+
         private Panel m_SctElement;
         private MovableObject m_Mover;
         private List<Connector> m_OutputConnectors;
@@ -51,10 +53,12 @@ namespace ShaderCreationTool
             {
                 m_VarType = ShaderVariableType.Vector2;
                 m_NodeType = NodeType.AttribUVs;
+                m_Name = AttribVariableStrings.c_UVVariableName;
             }
             else if (title.Name.Contains("Time"))
             {
                 m_VarType = ShaderVariableType.Single;
+                m_Name = AttribVariableStrings.c_TimeVariableName;
                 m_NodeType = NodeType.AttribInput_Time;
             }
             else
@@ -81,7 +85,7 @@ namespace ShaderCreationTool
                     }
                     else
                     {
-                        SCTConsole.Instance.PrintDebugLine("Checkbox name seqence error in ATTRIB_POSITION Node");
+                        SCTConsole.Instance.PrintDebugLine("Checkbox name seqence error in ATTRIB Node");
                     }
                 }
                 else if (control is Panel)
