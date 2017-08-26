@@ -8,23 +8,42 @@ namespace ShaderCreationTool
 {
     static class AttribVariableStrings
     {
-        // simple
-        public static readonly string TIME_VARIABLE_NAME = "UnifTime";
-        public static readonly string UV_VARIABLE_NAME = "UVs";
-
-
-        // with space selection
-        public static readonly string[] POSITION_VARIABLE_NAMES_ARRAY =  {
-            "Position_WorldSpace",
-            "Position_ObjectSpace",
-            "Position_EyeSpace"
+        //******************************  VERTEX OUTPUT VARIABLES  *********************//
+        // PER-VERTEX VARIABLES
+        public static readonly string O_UV_VARIABLE_NAME = "oUVs";
+        public static readonly string[] O_POSITION_VAR_NAMES =  {
+            "oPosition_WorldSpace",
+            "oPosition_ObjectSpace",
+            "oPosition_EyeSpace"
         };
-        public static readonly string[] NORMAL_VARIABLE_NAMES_ARRAY = { "Normal_InverseWorld", "Normal_ObjectScpace" };
-        public static readonly string[] CAMERA_POS_VARIABLE_NAMES_ARRAY = { "Camera_WorldSpace" };
 
-        public static readonly string WORLD_MAT_VARIABLE_NAME = "WORLD";
-        public static readonly string INVERSE_WORLD_MAT_VARIABLE_NAME = "WORLD_INVERSE";
-        public static readonly string VIEW_MAT_VARIABLE_NAME = "VIEW";
-        public static readonly string MVP_MAT_VARIABLE_NAME = "MVP";
+        public static readonly string[] O_NORMAL_VAR_NAMES = { "oNormal_InvWorldSpace", "oNormal_ObjectScpace" };
+
+
+        // STANDARD UNIFORM VARIABLES
+        public static readonly string O_TIME_VARIABLE_NAME = "oTime";
+        public static readonly string[] O_CAMERA_POS_VAR_NAMES = { "oCamera_WorldSpace" };
+
+
+
+        //******************************  VERTEX INPUT VARIABLES  *********************//
+
+        
+        public static readonly string U_CAMERA_POSITION_VAR_NAME = "uCameraPosition";
+        public static readonly string U_TIME_VAR_NAME = "uTime";
+
+        public static readonly string U_WORLD_MAT_VAR_NAME = "uWORLD";
+        public static readonly string U_INVERSE_WORLD_MAT_VAR_NAME = "uWORLD_INVERSE";
+        public static readonly string U_VIEW_MAT_VAR_NAME = "uVIEW";
+        public static readonly string U_MVP_MAT_VAR_NAME = "uMVP";
+
+
+        public static readonly string IN_POSITION_VAR_STR = "layout(location = 0) in vec3 vertex_position;";
+        public static readonly string IN_NORMAL_VAR_STR = "layout(location = 1) in vec3 vertex_normal;";
+        public static readonly string IN_TANGENT_VAR_STR = "layout(location = 2) in vec3 tangent;";
+        public static readonly string IN_UVS_VAR_STR = "layout(location = 3) in vec2 uvs;";
+
+        public static readonly string SHADER_VERSION_STR = "#version 330";
+
     }
 }

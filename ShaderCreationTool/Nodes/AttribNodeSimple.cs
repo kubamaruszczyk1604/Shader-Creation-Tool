@@ -53,12 +53,12 @@ namespace ShaderCreationTool
             {
                 m_VarType = ShaderVariableType.Vector2;
                 m_NodeType = NodeType.AttribUVs;
-                m_Name = AttribVariableStrings.UV_VARIABLE_NAME;
+                m_Name = AttribVariableStrings.O_UV_VARIABLE_NAME;
             }
             else if (title.Name.Contains("Time"))
             {
                 m_VarType = ShaderVariableType.Single;
-                m_Name = AttribVariableStrings.TIME_VARIABLE_NAME;
+                m_Name = AttribVariableStrings.O_TIME_VARIABLE_NAME;
                 m_NodeType = NodeType.AttribInput_Time;
             }
             else

@@ -26,9 +26,9 @@ namespace ShaderCreationTool
             get
             {
                 var list = new List<string>();
-                list.AddRange(AttribVariableStrings.POSITION_VARIABLE_NAMES_ARRAY);
-                list.AddRange(AttribVariableStrings.NORMAL_VARIABLE_NAMES_ARRAY);
-                list.AddRange(AttribVariableStrings.CAMERA_POS_VARIABLE_NAMES_ARRAY);
+                list.AddRange(AttribVariableStrings.O_POSITION_VAR_NAMES);
+                list.AddRange(AttribVariableStrings.O_NORMAL_VAR_NAMES);
+                list.AddRange(AttribVariableStrings.O_CAMERA_POS_VAR_NAMES);
                 return list.ToArray();
             }
         }
@@ -112,9 +112,9 @@ namespace ShaderCreationTool
                     
                     switch(m_NodeType)
                     {
-                        case NodeType.AttribPosition: { arr = AttribVariableStrings.POSITION_VARIABLE_NAMES_ARRAY; break; }
-                        case NodeType.AttribNormal: { arr = AttribVariableStrings.NORMAL_VARIABLE_NAMES_ARRAY; break; }
-                        case NodeType.AttribInput_CameraPos: { arr = AttribVariableStrings.CAMERA_POS_VARIABLE_NAMES_ARRAY; break; }
+                        case NodeType.AttribPosition: { arr = AttribVariableStrings.O_POSITION_VAR_NAMES; break; }
+                        case NodeType.AttribNormal: { arr = AttribVariableStrings.O_NORMAL_VAR_NAMES; break; }
+                        case NodeType.AttribInput_CameraPos: { arr = AttribVariableStrings.O_CAMERA_POS_VAR_NAMES; break; }
                         default: { arr = new string[0]; break; }
                     }
                     foreach(string s in arr)
@@ -279,11 +279,11 @@ namespace ShaderCreationTool
         {
             ComboBox cb = (ComboBox)sender;
             if (m_NodeType == NodeType.AttribPosition)
-            { m_Name = AttribVariableStrings.POSITION_VARIABLE_NAMES_ARRAY[cb.SelectedIndex]; }
+            { m_Name = AttribVariableStrings.O_POSITION_VAR_NAMES[cb.SelectedIndex]; }
             else if (m_NodeType == NodeType.AttribNormal)
-            { m_Name = AttribVariableStrings.NORMAL_VARIABLE_NAMES_ARRAY[cb.SelectedIndex]; }
+            { m_Name = AttribVariableStrings.O_NORMAL_VAR_NAMES[cb.SelectedIndex]; }
             else if (m_NodeType == NodeType.AttribInput_CameraPos)
-            { m_Name = AttribVariableStrings.CAMERA_POS_VARIABLE_NAMES_ARRAY[cb.SelectedIndex]; }
+            { m_Name = AttribVariableStrings.O_CAMERA_POS_VAR_NAMES[cb.SelectedIndex]; }
         }
 
     }
