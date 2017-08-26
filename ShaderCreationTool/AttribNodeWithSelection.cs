@@ -115,7 +115,7 @@ namespace ShaderCreationTool
                     {
                         case NodeType.AttribPosition: { arr = c_NamesPosition; break; }
                         case NodeType.AttribNormal: { arr = c_NamesNormal; break; }
-                        case NodeType.AttribInput_CameraPos: { arr = c_NamesPosition; break; }
+                        case NodeType.AttribInput_CameraPos: { arr =c_NamesCameraPos; break; }
                         default: { arr = new string[0]; break; }
                     }
                     foreach(string s in arr)

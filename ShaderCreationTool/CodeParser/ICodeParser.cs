@@ -11,7 +11,8 @@ namespace ShaderCreationTool
         bool TranslateInputVariables(List<IInputNode> inputNodes, out string declarationsCode, out string status);
         bool TranslateNodeIntoFunction(SCTFunctionNode node, out string functionCode, out string status);
         bool TranslateNodeListIntoFunctions(List<SCTFunctionNode> nodes, out string functionCode, out string status);
-        bool TranslateNetwork(List<ISCTNode> nodes, List<Connection> connections, out string code, out string status);
+        bool TranslateNetworkFragment(List<ISCTNode> nodes, List<Connection> connections, out string fragmentShaderCode, out string status);
+        bool TranslateNetworkVertex(List<ISCTNode> nodes, List<Connection> connections, out string fragmentShaderCode, out string status);
         string ConstructFunctionCall(SCTFunctionNode node);
     }
 }

@@ -83,8 +83,8 @@ namespace ShaderCreationTool
             a.SetAsConnected(this);
             b.SetAsConnected(this);
             p_DrawOnControl = drawOn;
-            if (a.ParentNode is IInputNode) m_IsDirectInputConnection = true;
-            if (b.ParentNode is IInputNode) m_IsDirectInputConnection = true;
+            if (a.ParentNode is IInputNode || a.ParentNode is IAttribNode) m_IsDirectInputConnection = true;
+            if (b.ParentNode is IInputNode || b.ParentNode is IAttribNode) m_IsDirectInputConnection = true;
 
             RefreshoutVarName();
 

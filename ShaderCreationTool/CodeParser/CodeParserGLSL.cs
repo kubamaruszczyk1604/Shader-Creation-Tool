@@ -9,6 +9,7 @@ namespace ShaderCreationTool
 {
     class CodeParserGLSL: ICodeParser
     {
+        private const string VERTEX_BASE_PATH = @"..\Data\ShaderBase\vertBase.txt";
         private const string NUM_EXPR = @"\d+\.*\d*";
         private List<string> m_Signatures;
         private Dictionary<ShaderVariableType, Regex> m_DefaultValuesTable;
@@ -95,7 +96,7 @@ namespace ShaderCreationTool
         }
 
 
-        public bool TranslateNetwork(List<ISCTNode> nodes, List<Connection> connections, out string code, out string status)
+        public bool TranslateNetworkFragment(List<ISCTNode> nodes, List<Connection> connections, out string code, out string status)
         {
             code = "";
             status = "";
@@ -164,6 +165,17 @@ namespace ShaderCreationTool
             return ret;
         }
 
+
+
+        public bool TranslateNetworkVertex(List<ISCTNode> nodes, List<Connection> connections, out string fragmentShaderCode, out string status)
+        {
+            fragmentShaderCode = string.Empty;
+            status = string.Empty;
+
+            
+
+            return true;
+        }
 
         public string ConstructFunctionCall(SCTFunctionNode node)
         {

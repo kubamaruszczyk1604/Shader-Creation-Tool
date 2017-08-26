@@ -111,21 +111,7 @@ namespace ShaderCreationTool
         }
 
     
-        //private async void AddExampleNodeFromFile(string path)
-        //{
-
-        //    List<FunctionNodeDescription> d;
-        //    string status;
-        //    ReaderXML.ReadInDescriptions(path, out d, out status);
-           
-        //    SCTFunctionNode temp = new SCTFunctionNode(FunctionNodeWindow, new Point(240 , 300), UpdateOnObjectMoved, d[0]);
-        //        temp.AddOnBeginConnectionCallback(OnConnectionBegin);
-        //        temp.AddOnBreakConnectionCallback(OnConnectionBreak);
-        //        temp.AddOnCloseCallback(OnNodeClose);
-        //        m_Nodes.Add(temp);
-            
-
-        //}
+        
 
         // USED METHODS
 
@@ -298,7 +284,7 @@ namespace ShaderCreationTool
         {
             MessageBox.Show(errorDescription, "Invalid input",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
-
+        private IAttribNode anode;
         private void OnPlaceNode(Point location, NodeType type)
         {
             SCTConsole.Instance.PrintDebugLine("OnPlaceNode()");
@@ -342,6 +328,7 @@ namespace ShaderCreationTool
             {
                 IAttribNode inpN = (IAttribNode)temp;
                 inpN.AddOnCloseCallback(OnNodeClose);
+                anode = inpN;
             }
 
             m_Nodes.Add(temp);   
@@ -481,7 +468,7 @@ namespace ShaderCreationTool
             string code;
         
 
-            m_CodeParser.TranslateNetwork(m_Nodes, ConnectionManager.ConnectionList, out code, out status);
+            m_CodeParser.TranslateNetworkFragment(m_Nodes, ConnectionManager.ConnectionList, out code, out status);
 
             //TextFileReaderWriter.Save(@"c:\nodes\testshad.txt", code);
             //SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
@@ -535,12 +522,14 @@ namespace ShaderCreationTool
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SCTConsole.Instance.PrintLine("\r\n\r\n");
-            List<Connection> inConnections = ConnectionManager.GetInputConnections();
-            foreach(Connection c in inConnections)
-            {
-                SCTConsole.Instance.PrintLine("\r\n" + c.Info);
-            }
+            //SCTConsole.Instance.PrintLine("\r\n\r\n");
+            //List<Connection> inConnections = ConnectionManager.GetInputConnections();
+            //foreach(Connection c in inConnections)
+            //{
+            //    SCTConsole.Instance.PrintLine("\r\n" + c.Info);
+            //}
+
+            SCTConsole.Instance.PrintLine("Name of the variable: " + anode.GetVariableName());
         }
 
       
