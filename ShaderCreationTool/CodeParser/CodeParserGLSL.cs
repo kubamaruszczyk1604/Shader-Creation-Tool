@@ -160,6 +160,7 @@ namespace ShaderCreationTool
                 ret += ProcessNodes(ref nodes);
             }
 
+
             return ret;
         }
 
