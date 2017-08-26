@@ -38,10 +38,10 @@ namespace ShaderCreationTool
         public static readonly string U_MVP_MAT_VAR_NAME = "uMVP";
 
 
-        public static readonly string IN_POSITION_VAR_STR = "layout(location = 0) in vec3 vertex_position;";
-        public static readonly string IN_NORMAL_VAR_STR = "layout(location = 1) in vec3 vertex_normal;";
-        public static readonly string IN_TANGENT_VAR_STR = "layout(location = 2) in vec3 tangent;";
-        public static readonly string IN_UVS_VAR_STR = "layout(location = 3) in vec2 uvs;";
+        public static readonly string IN_POSITION_VAR_STR = "vertex_position";
+        public static readonly string IN_NORMAL_VAR_STR = "vertex_normal";
+        public static readonly string IN_TANGENT_VAR_STR = "tangent";
+        public static readonly string IN_UVS_VAR_STR = "uvs";
 
         public static readonly string SHADER_VERSION_STR = "#version 330";
 
