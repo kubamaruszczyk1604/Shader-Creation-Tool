@@ -48,6 +48,7 @@ namespace ShaderCreationTool
                 if (ReadNode(node, out desc, ref status))
                 {
                     outputList.Add(desc);
+
                 }
             }
 
