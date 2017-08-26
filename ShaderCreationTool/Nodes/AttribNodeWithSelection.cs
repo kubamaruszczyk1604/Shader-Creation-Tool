@@ -115,12 +115,14 @@ namespace ShaderCreationTool
                     {
                         case NodeType.AttribPosition: { arr = c_NamesPosition; break; }
                         case NodeType.AttribNormal: { arr = c_NamesNormal; break; }
-                        case NodeType.AttribInput_CameraPos: { arr = c_NamesPosition; break; }
+                        case NodeType.AttribInput_CameraPos: { arr =c_NamesCameraPos; break; }
                         default: { arr = new string[0]; break; }
                     }
                     foreach(string s in arr)
                     {
-                        //if(s.Contains("World")) comb.
+                        if (s.Contains("World")) comb.Items.Add("World Space");
+                        else if (s.Contains("Object")) comb.Items.Add("Object Space");
+                        else if (s.Contains("Eye")) comb.Items.Add("Eye Space");
 
                     }
                     comb.SelectedIndex = 0;
