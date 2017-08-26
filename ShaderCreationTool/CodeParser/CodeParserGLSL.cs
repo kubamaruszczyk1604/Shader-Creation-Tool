@@ -167,14 +167,18 @@ namespace ShaderCreationTool
 
 
 
-        public bool TranslateNetworkVertex(List<ISCTNode> nodes, List<Connection> connections, out string fragmentShaderCode, out string status)
+        public bool TranslateNetworkVertex(List<ISCTNode> nodes, List<Connection> connections, out string vertexShaderCode, out string status)
         {
-            fragmentShaderCode = string.Empty;
+            vertexShaderCode = string.Empty;
             status = string.Empty;
 
-            
-
-            return true;
+            if(TextFileReaderWriter.Read(VERTEX_BASE_PATH,out vertexShaderCode))
+            {
+                status += "Reading vertex base OK.\r\n";
+                return true;
+            }
+            status += "Reading vertex base FAILED!\r\n";
+            return false;
         }
 
         public string ConstructFunctionCall(SCTFunctionNode node)

@@ -29,6 +29,26 @@ namespace ShaderCreationTool
             return true;
         }
 
+        static public bool Read(string path, out string content)
+        {
+            content = "";
+            try
+            {
+                StreamReader reader = new StreamReader(path);
+                while(!reader.EndOfStream)
+                {
+                    content += reader.ReadLine() + "\r\n";
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                s_LastError = e.Message;
+                return false;
+            }
+            return true;
+        }
+
 
 
 
