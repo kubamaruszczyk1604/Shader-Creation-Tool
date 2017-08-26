@@ -1,0 +1,30 @@
+#version 330
+
+layout(location = 0) in vec3 vertex_position;
+layout(location = 1) in vec3 vertex_normal;
+layout(location = 2) in vec3 tangent;
+layout(location = 3) in vec2 uvs;
+
+uniform mat4 MVP;
+uniform mat4 WORLD;
+uniform mat4 WORLD_INVERSE;
+uniform mat4 VIEW;
+uniform vec3 CAMERA_POSITION;
+
+out vec3 worldPos;
+out vec2 UVs;
+out vec4 position;
+out vec3 normal;
+
+void main() 
+{
+  normal =     mat3(WORLD_INVERSE) * vertex_normal;
+  //worldPos = mat3(WORLD) * vertex_position;//normal
+  	//output.normal = mul(INV_TRANSP_WORLD, normalize(float4(input.nor, 0)));
+  UVs = uvs;
+  
+  worldPos = (WORLD * vec4(vertex_position,1)).xyz;
+  position = MVP*vec4(vertex_position, 1.0);
+  gl_Position = position;
+  
+}
