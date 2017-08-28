@@ -13,7 +13,7 @@ namespace ShaderCreationTool
         private const string NUM_EXPR = @"\d+\.*\d*";
         private List<string> m_Signatures;
         private Dictionary<ShaderVariableType, Regex> m_DefaultValuesTable;
-
+        private string m_VertexOutVars;
 
 
         public CodeParserGLSL()
@@ -26,20 +26,7 @@ namespace ShaderCreationTool
             m_DefaultValuesTable.Add(ShaderVariableType.Vector4, new Regex(@"^\(\d+\.*\d*\,\d+\.*\d*\,\d+\.*\d*\,\d+\.*\d*\)$"));
         }
 
-       public bool TranslateInputVariables(List<IInputNode> inputNodes, out string declarationsCode, out string status)
-        {
-            declarationsCode = "";
-            status = "";
-            const int maxTypeCharCount = 15;
-            bool ok = true;
-            foreach(IInputNode node in inputNodes)
-            {
-                string typeStr = TranslateVariableType(node.GetShaderVariableType());
-                declarationsCode += "uniform " + typeStr + " "+ new string(' ',maxTypeCharCount- typeStr.Length)  + node.GetVariableName() + ";\r\n";
-                if (typeStr == string.Empty) ok = false;
-            }
-            return ok;
-        }
+    
 
         public bool TranslateNodeIntoFunction(SCTFunctionNode node, out string functionCode, out string status)
         {
@@ -96,7 +83,86 @@ namespace ShaderCreationTool
         }
 
 
-        public bool TranslateNetworkFragment(List<ISCTNode> nodes, List<Connection> connections, out string code, out string status)
+        public bool TranslateNetworkVertex(List<ISCTNode> nodes, List<Connection> connections, out string vertexShaderCode, out string status)
+        {
+            vertexShaderCode = string.Empty;
+            status = string.Empty;
+            string NL = "\r\n";
+            string TAB = "   ";
+
+            //version
+            vertexShaderCode += AttribVariableStrings.SHADER_VERSION_STR + NL + NL;
+            //Layout in variables
+            vertexShaderCode += "layout(location = 0) in vec3 " + AttribVariableStrings.IN_POSITION_VAR_STR + ";" + NL;
+            vertexShaderCode += "layout(location = 1) in vec3 " + AttribVariableStrings.IN_NORMAL_VAR_STR + ";" + NL;
+            vertexShaderCode += "layout(location = 2) in vec3 " + AttribVariableStrings.IN_TANGENT_VAR_STR + ";" + NL;
+            vertexShaderCode += "layout(location = 3) in vec2 " + AttribVariableStrings.IN_UVS_VAR_STR + ";" + NL + NL + NL;
+
+
+            vertexShaderCode += "uniform mat4 " + AttribVariableStrings.U_WORLD_MAT_VAR_NAME + ";" + NL;
+            vertexShaderCode += "uniform mat4 " + AttribVariableStrings.U_INVERSE_WORLD_MAT_VAR_NAME + ";" + NL;
+            vertexShaderCode += "uniform mat4 " + AttribVariableStrings.U_VIEW_MAT_VAR_NAME + ";" + NL;
+            vertexShaderCode += "uniform mat4 " + AttribVariableStrings.U_MVP_MAT_VAR_NAME + ";" + NL;
+            vertexShaderCode += "uniform vec3 " + AttribVariableStrings.U_CAMERA_POSITION_VAR_NAME + ";" + NL;
+            vertexShaderCode += "uniform float " + AttribVariableStrings.U_TIME_VAR_NAME + ";" + NL + NL;
+
+            string outVars = string.Empty;
+            outVars += "//Passed to fragment shader" + NL;
+            outVars += "out vec3 " + AttribVariableStrings.O_POSITION_VAR_NAMES[0] + ";" + NL;
+            outVars += "out vec3 " + AttribVariableStrings.O_POSITION_VAR_NAMES[1] + ";" + NL;
+            outVars += "out vec3 " + AttribVariableStrings.O_POSITION_VAR_NAMES[2] + ";" + NL;
+            outVars += "out vec3 " + AttribVariableStrings.O_NORMAL_VAR_NAMES[0] + ";" + NL;
+            outVars += "out vec3 " + AttribVariableStrings.O_NORMAL_VAR_NAMES[1] + ";" + NL;
+            outVars += "out vec2 " + AttribVariableStrings.O_UV_VARIABLE_NAME + ";" + NL;
+            outVars += "out vec3 " + AttribVariableStrings.O_CAMERA_POS_VAR_NAMES[0] + ";" + NL;
+            outVars += "out float " + AttribVariableStrings.O_TIME_VARIABLE_NAME + ";" + NL;
+            m_VertexOutVars = outVars;
+
+            vertexShaderCode += outVars + NL;
+
+            //main
+            vertexShaderCode += "void main()\r\n{" + NL + NL;
+            //LINE1
+            vertexShaderCode += TAB + AttribVariableStrings.O_POSITION_VAR_NAMES[0] + " = (" +
+                AttribVariableStrings.U_WORLD_MAT_VAR_NAME + " * vec4(" + AttribVariableStrings.IN_POSITION_VAR_STR +
+                ",1)).xyz;" + NL;
+            //LINE2
+            vertexShaderCode += TAB + AttribVariableStrings.O_POSITION_VAR_NAMES[1] + " = " +
+                AttribVariableStrings.IN_POSITION_VAR_STR + ";" + NL;
+            //LINE3
+            vertexShaderCode += TAB + AttribVariableStrings.O_POSITION_VAR_NAMES[2] + " = (" +
+             AttribVariableStrings.U_VIEW_MAT_VAR_NAME + " * vec4(" + AttribVariableStrings.IN_POSITION_VAR_STR +
+             ",1)).xyz;" + NL + NL;
+
+            //LINE 5
+            vertexShaderCode += TAB + AttribVariableStrings.O_NORMAL_VAR_NAMES[0] +
+                " = mat3(" + AttribVariableStrings.U_INVERSE_WORLD_MAT_VAR_NAME +
+                ") * " + AttribVariableStrings.IN_NORMAL_VAR_STR + ";" + NL;
+            //LINE 6
+            vertexShaderCode += TAB + AttribVariableStrings.O_NORMAL_VAR_NAMES[1] + " = " + 
+                AttribVariableStrings.IN_NORMAL_VAR_STR + ";" + NL;
+
+            //LINE 7
+            vertexShaderCode += TAB + AttribVariableStrings.O_UV_VARIABLE_NAME + " = " +
+                AttribVariableStrings.IN_UVS_VAR_STR + ";" + NL;
+            //LINE 8
+            vertexShaderCode += TAB + AttribVariableStrings.O_CAMERA_POS_VAR_NAMES[0] + " = " +
+                AttribVariableStrings.U_CAMERA_POSITION_VAR_NAME + ";" + NL;
+            //LINE 9
+            vertexShaderCode += TAB + AttribVariableStrings.O_TIME_VARIABLE_NAME + " = " +
+                AttribVariableStrings.U_TIME_VAR_NAME + ";" + NL;
+
+            //LINE10
+            vertexShaderCode += NL + TAB + "gl_Position = " + AttribVariableStrings.U_MVP_MAT_VAR_NAME + " * vec4(" +
+                AttribVariableStrings.IN_POSITION_VAR_STR + ",1.0);" + NL + NL + "}";
+
+            return true;
+        }
+
+        public bool TranslateNetworkFragment(
+            List<ISCTNode> nodes, 
+            List<Connection> connections, 
+            out string code, out string status)
         {
             code = "";
             status = "";
@@ -111,19 +177,27 @@ namespace ShaderCreationTool
                 c.Highlighted = true;
             }
 
-            // Input variables
-            TranslateInputVariables(inputNodes, out code, out status);
-            string codeFunct;
-            string statusFunct;
+            m_VertexOutVars = m_VertexOutVars.Replace("out ", "in ").Replace("to fragment", "from vertex");
+            code += AttribVariableStrings.SHADER_VERSION_STR + "\r\n\r\n" + m_VertexOutVars + "\r\n\r\n";
+            //m_VertexOutVars = string.Empty;
+
+            // Input uniform variables
+            string codeUniforms;
+            TranslateInputVariables(inputNodes, out codeUniforms, out status);
+            code += codeUniforms;
+
+
+            string codeFunctions;
+            string statusFunctions;
 
             // Functions extraction
-            TranslateNodeListIntoFunctions(nodesToProcess, out codeFunct, out statusFunct);
-            code += "\r\n" + codeFunct;
+            TranslateNodeListIntoFunctions(nodesToProcess, out codeFunctions, out statusFunctions);
+            code += "\r\n" + codeFunctions;
 
             // network (function calls)
-            string result = ProcessNodes(ref nodesToProcess);
+            string codeNodes = ProcessNodes(ref nodesToProcess);
 
-            code += "\r\n\r\n void main()\r\n{\r\n" + result + "\r\n}"; 
+            code += "\r\n\r\n void main()\r\n{\r\n" + codeNodes + "\r\n}"; 
 
            // SCTConsole.Instance.PrintDebugLine(code);
 
@@ -166,87 +240,21 @@ namespace ShaderCreationTool
         }
 
 
-
-        public bool TranslateNetworkVertex(List<ISCTNode> nodes, List<Connection> connections, out string vertexShaderCode, out string status)
+        public bool TranslateInputVariables(List<IInputNode> inputNodes, out string declarationsCode, out string status)
         {
-            vertexShaderCode = string.Empty;
-            status = string.Empty;
-            string NL = "\r\n";
-            string SP3 = "   ";
-            
-            //version
-            vertexShaderCode += AttribVariableStrings.SHADER_VERSION_STR +NL + NL;
-            //Layout in variables
-            vertexShaderCode += "layout(location = 0) in vec3 " + AttribVariableStrings.IN_POSITION_VAR_STR +";"+ NL;
-            vertexShaderCode += "layout(location = 1) in vec3 " + AttribVariableStrings.IN_NORMAL_VAR_STR + ";" + NL;
-            vertexShaderCode += "layout(location = 2) in vec3 " + AttribVariableStrings.IN_TANGENT_VAR_STR + ";" + NL;
-            vertexShaderCode += "layout(location = 3) in vec2 " + AttribVariableStrings.IN_UVS_VAR_STR + ";" + NL + NL + NL;
-
-
-            vertexShaderCode += "uniform mat4 " + AttribVariableStrings.U_WORLD_MAT_VAR_NAME + ";" + NL;
-            vertexShaderCode += "uniform mat4 " + AttribVariableStrings.U_INVERSE_WORLD_MAT_VAR_NAME + ";" + NL;
-            vertexShaderCode += "uniform mat4 " + AttribVariableStrings.U_VIEW_MAT_VAR_NAME + ";" + NL;
-            vertexShaderCode += "uniform mat4 " + AttribVariableStrings.U_MVP_MAT_VAR_NAME + ";" + NL;
-            vertexShaderCode += "uniform vec3 " + AttribVariableStrings.U_CAMERA_POSITION_VAR_NAME + ";" + NL;
-            vertexShaderCode += "uniform float " + AttribVariableStrings.U_TIME_VAR_NAME + ";" + NL + NL;
-
-            string outVars = string.Empty;
-            outVars += "//Passed to fragment shader" + NL;
-            outVars += "out vec3 " + AttribVariableStrings.O_POSITION_VAR_NAMES[0] + ";" + NL;
-            outVars += "out vec3 " + AttribVariableStrings.O_POSITION_VAR_NAMES[1] + ";" + NL;
-            outVars += "out vec3 " + AttribVariableStrings.O_POSITION_VAR_NAMES[2] + ";" + NL;
-            outVars += "out vec3 " + AttribVariableStrings.O_NORMAL_VAR_NAMES[0] + ";" + NL;
-            outVars += "out vec3 " + AttribVariableStrings.O_NORMAL_VAR_NAMES[1] + ";" + NL;
-            outVars += "out vec2 " + AttribVariableStrings.O_UV_VARIABLE_NAME + ";" + NL;
-            outVars += "out vec3 " + AttribVariableStrings.O_CAMERA_POS_VAR_NAMES[0] + ";" + NL;
-            outVars += "out float " + AttribVariableStrings.O_TIME_VARIABLE_NAME + ";" + NL;
-
-            vertexShaderCode += outVars + NL;
-
-            //main
-            vertexShaderCode += "void main()\r\n{"+NL + NL;
-            //LINE1
-            vertexShaderCode += SP3 + AttribVariableStrings.O_POSITION_VAR_NAMES[0] + " = (" +
-                AttribVariableStrings.U_WORLD_MAT_VAR_NAME + " * vec4(" + AttribVariableStrings.IN_POSITION_VAR_STR +
-                ",1)).xyz;" + NL;
-            //LINE2
-            vertexShaderCode += SP3 + AttribVariableStrings.O_POSITION_VAR_NAMES[1] + " = " +
-                AttribVariableStrings.IN_POSITION_VAR_STR + ";" + NL;
-            //LINE3
-            vertexShaderCode += SP3 + AttribVariableStrings.O_POSITION_VAR_NAMES[2] + " = (" +
-             AttribVariableStrings.U_VIEW_MAT_VAR_NAME + " * vec4(" + AttribVariableStrings.IN_POSITION_VAR_STR +
-             ",1)).xyz;" + NL + NL;
-
-            //LINE 5
-            vertexShaderCode += SP3 + AttribVariableStrings.O_NORMAL_VAR_NAMES[0] + " = mat3(" + AttribVariableStrings.U_INVERSE_WORLD_MAT_VAR_NAME +
-                ") * " + AttribVariableStrings.IN_NORMAL_VAR_STR + ";" + NL;
-            //LINE 6
-            vertexShaderCode += SP3 + AttribVariableStrings.O_NORMAL_VAR_NAMES[1] + " = " + AttribVariableStrings.IN_NORMAL_VAR_STR + ";" + NL;
-
-            //LINE 7
-            vertexShaderCode += SP3 + AttribVariableStrings.O_UV_VARIABLE_NAME + " = " +
-                AttribVariableStrings.IN_UVS_VAR_STR + ";" + NL;
-            //LINE 8
-            vertexShaderCode += SP3 + AttribVariableStrings.O_CAMERA_POS_VAR_NAMES[0] + " = " + 
-                AttribVariableStrings.U_CAMERA_POSITION_VAR_NAME + ";" + NL;
-            //LINE 9
-            vertexShaderCode += SP3 + AttribVariableStrings.O_TIME_VARIABLE_NAME + " = " + 
-                AttribVariableStrings.U_TIME_VAR_NAME + ";" + NL;
-
-            //LINE10
-            vertexShaderCode += NL + SP3 + "gl_Position = " + AttribVariableStrings.U_MVP_MAT_VAR_NAME + " * vec4(" +
-                AttribVariableStrings.IN_POSITION_VAR_STR + ",1.0);" + NL + NL + "}";
-
-
-
-            //if(TextFileReaderWriter.Read(VERTEX_BASE_PATH,out vertexShaderCode))
-            //{
-            //    status += "Reading vertex base OK.\r\n";
-            //    return true;
-            //}
-            //status += "Reading vertex base FAILED!\r\n";
-            return false;
+            declarationsCode = "";
+            status = "";
+            const int maxTypeCharCount = 15;
+            bool ok = true;
+            foreach (IInputNode node in inputNodes)
+            {
+                string typeStr = TranslateVariableType(node.GetShaderVariableType());
+                declarationsCode += "uniform " + typeStr + " " + new string(' ', maxTypeCharCount - typeStr.Length) + node.GetVariableName() + ";\r\n";
+                if (typeStr == string.Empty) ok = false;
+            }
+            return ok;
         }
+
 
         public string ConstructFunctionCall(SCTFunctionNode node)
         {

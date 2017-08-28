@@ -478,7 +478,8 @@ namespace ShaderCreationTool
 
             SCTConsole.Instance.PrintLine("VERTEX SHADER: \r\n" + vertCode);
             SCTConsole.Instance.PrintLine("FRAGMENT SHADER: \r\n" + fragCode);
-            //TextFileReaderWriter.Save(@"c:\nodes\testshad.txt", code);
+            TextFileReaderWriter.Save(@"c:\nodes\testvert.txt", vertCode);
+            TextFileReaderWriter.Save(@"c:\nodes\testfrag.txt", fragCode);
             //SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
 
         }
