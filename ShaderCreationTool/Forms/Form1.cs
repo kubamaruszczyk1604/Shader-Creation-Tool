@@ -470,9 +470,6 @@ namespace ShaderCreationTool
             string fragCode;
         
 
-           
-
-
             string vertStat;
             string vertCode;
             m_CodeParser.TranslateNetworkVertex(null, null, out vertCode, out vertStat);

@@ -62,7 +62,7 @@
       </Variable>
     </Output_Variables>
 	
-   <Code> FinalColour = SampleTexture(Texture,Texcoord) </Code>
+   <Code> FinalColour = SampleTexture(Texture,Texcoord); </Code>
   </Node>
 
        <Node Name="ExampleFunctionNode_TEST">

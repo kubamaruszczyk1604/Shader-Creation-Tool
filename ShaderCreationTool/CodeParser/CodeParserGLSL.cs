@@ -28,60 +28,6 @@ namespace ShaderCreationTool
 
     
 
-        public bool TranslateNodeIntoFunction(SCTFunctionNode node, out string functionCode, out string status)
-        {
-            functionCode = "";
-            status = "";
-            try
-            {
-                FunctionNodeDescription desc = node.NodeDescription;
-                string signature = CreateFunctionSignature(desc);
-                if (m_Signatures.Contains(signature))
-                {
-                    status = "Repeated signature: " + signature;
-                    status += "SKIPPING..";
-                    return true;
-                }
-                string body = "{\r\n";
-                body += ParseCode(desc.GetFunctionString());
-                body += "\r\n}\r\n";
-                functionCode = signature + body;
-                m_Signatures.Add(signature);
-               // SCTConsole.Instance.PrintDebugLine(functionCode);
-            }
-            catch(Exception e)
-            {
-                status = e.Message;
-                return false;
-            }
-            status = "ok";
-            return true;
-        }
-
-        public bool TranslateNodeListIntoFunctions(List<SCTFunctionNode> nodes, out string functionCode, out string status)
-        {
-            m_Signatures.Clear();
-            functionCode = "";
-            status = "";
-            bool allOk = true;
-            foreach(SCTFunctionNode node in nodes)
-            {
-                string tempFunctionCode;
-                string tempStatus;
-                if (TranslateNodeIntoFunction(node, out tempFunctionCode, out tempStatus))
-                {
-                    functionCode += tempFunctionCode;
-                }
-                else
-                {
-                    allOk = false;
-                }
-                status += tempStatus;            
-            }
-         
-            return allOk;
-        }
-
 
         public bool TranslateNetworkVertex(List<ISCTNode> nodes, List<Connection> connections, out string vertexShaderCode, out string status)
         {
@@ -166,9 +112,16 @@ namespace ShaderCreationTool
         {
             code = "";
             status = "";
+            FrameBufferNode fbNode = (FrameBufferNode)nodes.Find(o => o is FrameBufferNode);
+            Connector con = fbNode.GetConnector(ConnectionDirection.In, 1);
+            if(!con.Connected)
+            {
+                status = "FRAGMENT_NOT_CONNECTED";
+                return false;
+            }
+
 
             List<IInputNode> inputNodes = (nodes.FindAll(o => o is IInputNode)).Cast<IInputNode>().ToList();
-
             List<SCTFunctionNode> nodesToProcess = nodes.FindAll(o => o is SCTFunctionNode).Cast<SCTFunctionNode>().ToList();
             List<SCTFunctionNode> tempRestoreStateNodeList = new List<SCTFunctionNode>(nodesToProcess);
             List<Connection> inputConnections = connections.FindAll(o => o.IsDirectInputConnection);
@@ -179,6 +132,7 @@ namespace ShaderCreationTool
 
             m_VertexOutVars = m_VertexOutVars.Replace("out ", "in ").Replace("to fragment", "from vertex");
             code += AttribVariableStrings.SHADER_VERSION_STR + "\r\n\r\n" + m_VertexOutVars + "\r\n\r\n";
+            code += "out vec4 FragColour;\r\n\r\n";
             //m_VertexOutVars = string.Empty;
 
             // Input uniform variables
@@ -196,10 +150,18 @@ namespace ShaderCreationTool
 
             // network (function calls)
             string codeNodes = ProcessNodes(ref nodesToProcess);
+            string ss = "FragColour = " + con.ParentConnection.OutVariableName + ";\r\n";
 
-            code += "\r\n\r\n void main()\r\n{\r\n" + codeNodes + "\r\n}"; 
+            code += "\r\n\r\n void main()\r\n{\r\n" + codeNodes + "\r\n" + ss + "\r\n}";
 
-           // SCTConsole.Instance.PrintDebugLine(code);
+            // SCTConsole.Instance.PrintDebugLine(code);
+
+           
+            
+          
+             
+             SCTConsole.Instance.PrintDebugLine("TERAZ KURWAAA: " + ss);
+           
 
             foreach(SCTFunctionNode node in tempRestoreStateNodeList)
             {
@@ -208,7 +170,63 @@ namespace ShaderCreationTool
 
             return false;
         }
-    
+
+
+        private bool TranslateNodeIntoFunction(SCTFunctionNode node, out string functionCode, out string status)
+        {
+            functionCode = "";
+            status = "";
+            try
+            {
+                FunctionNodeDescription desc = node.NodeDescription;
+                string signature = CreateFunctionSignature(desc);
+                if (m_Signatures.Contains(signature))
+                {
+                    status = "Repeated signature: " + signature;
+                    status += "SKIPPING..";
+                    return true;
+                }
+                string body = "{\r\n";
+                body += ParseCode(desc.GetFunctionString());
+                body += "\r\n}\r\n";
+                functionCode = signature + body;
+                m_Signatures.Add(signature);
+                // SCTConsole.Instance.PrintDebugLine(functionCode);
+            }
+            catch (Exception e)
+            {
+                status = e.Message;
+                return false;
+            }
+            status = "ok";
+            return true;
+        }
+
+        private bool TranslateNodeListIntoFunctions(List<SCTFunctionNode> nodes, out string functionCode, out string status)
+        {
+            m_Signatures.Clear();
+            functionCode = "";
+            status = "";
+            bool allOk = true;
+            foreach (SCTFunctionNode node in nodes)
+            {
+                string tempFunctionCode;
+                string tempStatus;
+                if (TranslateNodeIntoFunction(node, out tempFunctionCode, out tempStatus))
+                {
+                    functionCode += tempFunctionCode;
+                }
+                else
+                {
+                    allOk = false;
+                }
+                status += tempStatus;
+            }
+
+            return allOk;
+        }
+
+
 
         private string ProcessNodes(ref List<SCTFunctionNode> nodes)
         {
@@ -238,9 +256,9 @@ namespace ShaderCreationTool
 
             return ret;
         }
+       
 
-
-        public bool TranslateInputVariables(List<IInputNode> inputNodes, out string declarationsCode, out string status)
+        private bool TranslateInputVariables(List<IInputNode> inputNodes, out string declarationsCode, out string status)
         {
             declarationsCode = "";
             status = "";
@@ -256,7 +274,7 @@ namespace ShaderCreationTool
         }
 
 
-        public string ConstructFunctionCall(SCTFunctionNode node)
+        private string ConstructFunctionCall(SCTFunctionNode node)
         {
             string output = string.Empty;
 
@@ -331,7 +349,6 @@ namespace ShaderCreationTool
         private string CreateFunctionSignature(FunctionNodeDescription desc)
         {
             string signature = "void " + desc.Name + "(";
-           
 
             for (int i = 0; i < desc.InputCount; ++i)
             {
@@ -376,8 +393,6 @@ namespace ShaderCreationTool
             s = s.Replace("SampleTexture", "texture2D");
             return s;
         }
-
-
 
 
 
