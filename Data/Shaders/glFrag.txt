@@ -1,52 +1,20 @@
 #version 330
-in vec3 worldPos;
-in vec2 UVs;
-in vec4 position;
-in vec3 normal;
+
+//Passed from vertex shader
+in vec3 oPosition_WorldSpace;
+in vec3 oPosition_ObjectSpace;
+in vec3 oPosition_EyeSpace;
+in vec3 oNormal_InvWorldSpace;
+in vec3 oNormal_ObjectScpace;
+in vec2 oUVs;
+in vec3 oCamera_WorldSpace;
+in float oTime;
+
+
 
 out vec4 FragColour;
 
-
-uniform sampler2D       texture1;
-uniform sampler2D       texture2;
-uniform vec4            col1;
-uniform vec4            col2;
-
-void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
-{
-   FinalColour = texture2D(Texture,Texcoord); 
-   
-}
-
-void MultiplyV4xV4(vec4 VecA, vec4 VecB, inout vec4 FinalColour)
-{
-  FinalColour = VecA*VecB; 
-}
-
-void AddV4s(vec4 VecA, vec4 VecB, inout vec4 FinalColour)
-{
-  FinalColour = VecA+VecB; 
-}
-
-
  void main()
 {
-
-    vec4  OUT_FinalColour0_NF_Sampler2D_0_40;
-    Sampler2D(texture1, UVs, OUT_FinalColour0_NF_Sampler2D_0_40);
-	
-    vec4  OUT_FinalColour0_NF_Sampler2D_1_01;
-    Sampler2D(texture2, UVs, OUT_FinalColour0_NF_Sampler2D_1_01);
-	
-    vec4  OUT_FinalColour0_NF_MultiplyV4xV4_2_19;
-    MultiplyV4xV4(OUT_FinalColour0_NF_Sampler2D_0_40, col1, OUT_FinalColour0_NF_MultiplyV4xV4_2_19);
-	
-    vec4  OUT_FinalColour0_NF_MultiplyV4xV4_3_46;
-    MultiplyV4xV4(OUT_FinalColour0_NF_Sampler2D_1_01, col2, OUT_FinalColour0_NF_MultiplyV4xV4_3_46);
-	
-    vec4  OUT_FinalColour0_NF_MultiplyV4xV4_4_14;
-    AddV4s(OUT_FinalColour0_NF_MultiplyV4xV4_2_19, OUT_FinalColour0_NF_MultiplyV4xV4_3_46, OUT_FinalColour0_NF_MultiplyV4xV4_4_14);
-	
-	FragColour = OUT_FinalColour0_NF_MultiplyV4xV4_4_14;
+ FragColour = vec4(1,1,0,1);
 }
-

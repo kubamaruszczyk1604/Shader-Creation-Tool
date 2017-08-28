@@ -5,22 +5,37 @@ layout(location = 1) in vec3 vertex_normal;
 layout(location = 2) in vec3 tangent;
 layout(location = 3) in vec2 uvs;
 
-uniform mat4 uMVP;
+
 uniform mat4 uWORLD;
 uniform mat4 uWORLD_INVERSE;
+uniform mat4 uVIEW;
+uniform mat4 uMVP;
 uniform vec3 uCameraPosition;
+uniform float uTime;
 
-out vec3 worldPos;
-out vec2 UVs;
-out vec4 position;
-out vec3 normal;
+//Passed to fragment shader
+out vec3 oPosition_WorldSpace;
+out vec3 oPosition_ObjectSpace;
+out vec3 oPosition_EyeSpace;
+out vec3 oNormal_InvWorldSpace;
+out vec3 oNormal_ObjectScpace;
+out vec2 oUVs;
+out vec3 oCamera_WorldSpace;
+out float oTime;
 
-void main() 
+void main()
 {
-  normal =     mat3(uWORLD_INVERSE) * vertex_normal;
-  UVs = uvs;
-  worldPos = (uWORLD * vec4(vertex_position,1)).xyz;
-  position = uMVP*vec4(vertex_position, 1.0);
-  gl_Position = position;
-  
+
+   oPosition_WorldSpace = (uWORLD * vec4(vertex_position,1)).xyz;
+   oPosition_ObjectSpace = vertex_position;
+   oPosition_EyeSpace = (uVIEW * vec4(vertex_position,1)).xyz;
+
+   oNormal_InvWorldSpace = mat3(uWORLD_INVERSE) * vertex_normal;
+   oNormal_ObjectScpace = vertex_normal;
+   oUVs = uvs;
+   oCamera_WorldSpace = uCameraPosition;
+   oTime = uTime;
+
+   gl_Position = uMVP * vec4(vertex_position,1.0);
+
 }

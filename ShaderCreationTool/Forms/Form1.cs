@@ -25,6 +25,8 @@ namespace ShaderCreationTool
         //static extern bool AllocConsole();
 
         private const string NODES_PATH = @"..\Data\StdNodes\nodes.txt";
+        private const string VERT_PATH = @"..\Data\Shaders\glVert.txt";
+        private const string FRAG_PATH = @"..\Data\Shaders\glFrag.txt";
 
         private SimpleZLine m_TempLine;
         private MovableObject m_MovableKey;
@@ -478,8 +480,8 @@ namespace ShaderCreationTool
 
             SCTConsole.Instance.PrintLine("VERTEX SHADER: \r\n" + vertCode);
             SCTConsole.Instance.PrintLine("FRAGMENT SHADER: \r\n" + fragCode);
-            TextFileReaderWriter.Save(@"c:\nodes\testvert.txt", vertCode);
-            TextFileReaderWriter.Save(@"c:\nodes\testfrag.txt", fragCode);
+            TextFileReaderWriter.Save(VERT_PATH, vertCode);
+            TextFileReaderWriter.Save(FRAG_PATH, fragCode);
             //SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
 
         }
