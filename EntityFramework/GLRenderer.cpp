@@ -9,6 +9,7 @@
 namespace KLM_FRAMEWORK
 {
 	using namespace msclr::interop;
+	using namespace ShaderCreationTool;
 
 	bool GLRenderer::s_IsRunning{ false };
 	HWND GLRenderer::s_hWnd{ 0 };
@@ -150,7 +151,7 @@ namespace KLM_FRAMEWORK
 		Mat4 worldView;
 		if (s_CurrentCamera->GetParent() == nullptr)
 		{
-			worldView = s_CurrentCamera->GetTransformMatrix() * entity->GetTransform()->GetWorldMat();
+			worldView = s_CurrentCamera->GetViewMatrix() * entity->GetTransform()->GetWorldMat();
 		}
 		else
 		{
@@ -292,26 +293,31 @@ namespace KLM_FRAMEWORK
 
 
 		Mat4 worldView;
+		Mat4 viewMat;
+		Vec4 cameraPos;
 		if (s_CurrentCamera->GetParent() == nullptr)
 		{
-			worldView = s_CurrentCamera->GetTransformMatrix() * entity->GetTransform()->GetWorldMat();
+		
+			worldView = s_CurrentCamera->GetViewMatrix() * entity->GetTransform()->GetWorldMat();
+			viewMat = s_CurrentCamera->GetViewMatrix();
+			cameraPos = s_CurrentCamera->GetPosition();
 		}
 		else
 		{
 			Entity* parent = s_CurrentCamera->GetParent();
-			worldView =
-				s_CurrentCamera->SetTransformMatrix(parent->GetTransform()->GetWorldMat())
-				* entity->GetTransform()->GetWorldMat();
+			viewMat = s_CurrentCamera->SetTransformMatrix(parent->GetTransform()->GetWorldMat());
 
-			//ubs.CameraPosition = (parent->GetTransform()->GetWorldMat()*glm::vec4(0, 0, 0, 1));
+			worldView = viewMat * entity->GetTransform()->GetWorldMat();
+
+			cameraPos = (parent->GetTransform()->GetWorldMat()* Vec4(0, 0, 0, 1));
 		}
 		Mat4 MVP = s_CurrentCamera->GetProjectionMatrix(s_ScreenWidth, s_ScreenHeight) * worldView;
 
 
 
+
+
 		//Matrices
-		GLuint MVP_ID = glGetUniformLocation(shaderProgID, "MVP");
-		glUniformMatrix4fv(MVP_ID, 1, GL_FALSE, &MVP[0][0]);
 
 		GLuint WORLD_ID = glGetUniformLocation(shaderProgID, "WORLD");
 		glm::mat4 world = entity->GetTransform()->GetWorldMat();
@@ -320,6 +326,19 @@ namespace KLM_FRAMEWORK
 		GLuint WORLD_INVERSED_ID = glGetUniformLocation(shaderProgID, "WORLD_INVERSE");
 		glm::mat4 worldInverse = glm::transpose(glm::inverse(entity->GetTransform()->GetWorldMat()));
 		glUniformMatrix4fv(WORLD_INVERSED_ID, 1, GL_FALSE, &worldInverse[0][0]);
+
+		GLuint VIEW_ID = glGetUniformLocation(shaderProgID, "uVIEW");
+		glUniformMatrix4fv(VIEW_ID, 1, GL_FALSE, &MVP[0][0]);
+
+		GLuint MVP_ID = glGetUniformLocation(shaderProgID, "MVP");
+		glUniformMatrix4fv(MVP_ID, 1, GL_FALSE, &MVP[0][0]);
+
+		// Camera position
+		GLuint CAMERA_POS_ID = glGetUniformLocation(shaderProgID, "uCameraPosition");
+		glUniform3fv(CAMERA_POS_ID, 1, &cameraPos.x);// first element is x
+		
+
+		
 
 
 		//Lighting

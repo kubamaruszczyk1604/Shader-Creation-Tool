@@ -44,9 +44,12 @@ namespace KLM_FRAMEWORK
 		void SetActive(bool active) { m_Active = active; }
 		bool isActive()const { return  m_Active; }
 
+		Vec4 GetPosition() const { return m_TransformMat* Vec4(0, 0, 0, 1); }
+
 		const glm::mat4& GetProjectionMatrix(const int& scrWidth, const int& scrHeight);
 		const glm::mat4& SetTransformMatrix(const Vec3& translation, const Vec3& rotation);
 		const glm::mat4& SetTransformMatrix(const glm::mat4& mat);
+		const glm::mat4& GetViewMatrix()const { return glm::inverse(m_TransformMat); }
 		const glm::mat4& GetTransformMatrix()const { return m_TransformMat; }
 
 		inline Vec3 GetLocalPosition() const { return m_NoParrentPos; }

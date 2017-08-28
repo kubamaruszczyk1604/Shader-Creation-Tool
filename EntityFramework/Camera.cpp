@@ -52,7 +52,7 @@ namespace KLM_FRAMEWORK
 	const glm::mat4 & Camera::SetTransformMatrix(const glm::mat4 & mat)
 	{
 		m_TransformMat = mat;
-		m_TransformMat = glm::inverse(m_TransformMat);
-		return m_TransformMat;
+		return glm::inverse(m_TransformMat);
+		
 	}
 }

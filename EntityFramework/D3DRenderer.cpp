@@ -219,7 +219,7 @@ namespace KLM_FRAMEWORK
 		Mat4 worldView;
 		if (s_CurrentCamera->GetParent() == nullptr)
 		{
-			worldView = s_CurrentCamera->GetTransformMatrix() * entity->GetTransform()->GetWorldMat();
+			worldView = s_CurrentCamera->GetViewMatrix() * entity->GetTransform()->GetWorldMat();
 		}
 		else
 		{
