@@ -323,22 +323,22 @@ namespace KLM_FRAMEWORK
 		glm::mat4 world = entity->GetTransform()->GetWorldMat();
 		glUniformMatrix4fv(WORLD_ID, 1, GL_FALSE, &world[0][0]);
 
-		GLuint WORLD_INVERSED_ID = glGetUniformLocation(shaderProgID, "WORLD_INVERSE");
+		GLuint WORLD_INVERSED_ID = glGetUniformLocation(shaderProgID, AttribVariableStrings::U_INVERSE_WORLD_MAT_VAR_NAME);
 		glm::mat4 worldInverse = glm::transpose(glm::inverse(entity->GetTransform()->GetWorldMat()));
 		glUniformMatrix4fv(WORLD_INVERSED_ID, 1, GL_FALSE, &worldInverse[0][0]);
 
-		GLuint VIEW_ID = glGetUniformLocation(shaderProgID, "uVIEW");
+		GLuint VIEW_ID = glGetUniformLocation(shaderProgID, AttribVariableStrings::U_VIEW_MAT_VAR_NAME);
 		glUniformMatrix4fv(VIEW_ID, 1, GL_FALSE, &MVP[0][0]);
 
-		GLuint MVP_ID = glGetUniformLocation(shaderProgID, "MVP");
+		GLuint MVP_ID = glGetUniformLocation(shaderProgID, AttribVariableStrings::U_MVP_MAT_VAR_NAME);
 		glUniformMatrix4fv(MVP_ID, 1, GL_FALSE, &MVP[0][0]);
 
 		// Camera position
-		GLuint CAMERA_POS_ID = glGetUniformLocation(shaderProgID, "uCameraPosition");
+		GLuint CAMERA_POS_ID = glGetUniformLocation(shaderProgID, AttribVariableStrings::U_CAMERA_POSITION_VAR_NAME);
 		glUniform3fv(CAMERA_POS_ID, 1, &cameraPos.x);// first element is x
 		
 		float dummyTime = 1;
-		GLuint TIME_ID = glGetUniformLocation(shaderProgID, "uTime");
+		GLuint TIME_ID = glGetUniformLocation(shaderProgID, AttribVariableStrings::U_TIME_VAR_NAME);
 		glUniform1f(TIME_ID,dummyTime);
 
 
