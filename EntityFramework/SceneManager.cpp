@@ -25,7 +25,8 @@ namespace KLM_FRAMEWORK
 			ListOfEntities* list = m_upCurrentScene->GetEntityManager()->GetListOfEntities();
 			BehaviourManager::TerminateAllBehaviours(list);
 			m_upCurrentScene.get()->OnExit();
-			ResourceManager::ReleaseAllResources();
+			//ResourceManager::ReleaseAllResources();
+			ResourceManager::ReleaseShaders();
 		}
 		m_upCurrentScene = std::unique_ptr<Scene>(scene);
 		m_upCurrentScene->OnStart();

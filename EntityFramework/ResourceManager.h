@@ -17,6 +17,7 @@ namespace KLM_FRAMEWORK
 		static Texture* LoadTexture(const std::string& path, TextureAddressMode wrapMode);
 
 		static void ReleaseAllResources();
+		static void ReleaseShaders();
 
 		static Material* CreateMaterial(const MaterialDescription& desc, const std::string& name);
 		static Material* FindMaterial(const std::string& name);

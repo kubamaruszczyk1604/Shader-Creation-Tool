@@ -85,6 +85,24 @@ namespace KLM_FRAMEWORK
 		std::cout << "Resource Manager -> RELEASED RESOURCESS" << std::endl;
 	}
 
+	void ResourceManager::ReleaseShaders()
+	{
+		for (auto it = m_MaterialsMap.begin(); it != m_MaterialsMap.end(); ++it)
+		{
+			if (it->second != nullptr)
+				delete it->second;
+		}
+		m_MaterialsMap.clear();
+
+		for (auto it = m_ShadersMap.begin(); it != m_ShadersMap.end(); ++it)
+		{
+			if (it->second != nullptr)
+				delete it->second;
+		}
+		m_ShadersMap.clear();
+		std::cout << "Resource Manager -> RELEASED SHADERS" << std::endl;
+	}
+
 
 	Material * ResourceManager::CreateMaterial(const MaterialDescription & desc, const std::string& name)
 	{
