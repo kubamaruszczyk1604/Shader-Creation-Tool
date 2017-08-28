@@ -337,11 +337,12 @@ namespace KLM_FRAMEWORK
 		GLuint CAMERA_POS_ID = glGetUniformLocation(shaderProgID, "uCameraPosition");
 		glUniform3fv(CAMERA_POS_ID, 1, &cameraPos.x);// first element is x
 		
+		float dummyTime = 1;
+		GLuint TIME_ID = glGetUniformLocation(shaderProgID, "uTime");
+		glUniform1f(TIME_ID,dummyTime);
 
-		
 
-
-		//Lighting
+	
 		
 
 		mc->GetMesh()->GetVBO()->Draw(PrimitiveType::TRIANGLES);
