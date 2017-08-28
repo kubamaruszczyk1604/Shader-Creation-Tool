@@ -318,8 +318,8 @@ namespace KLM_FRAMEWORK
 
 
 		//Matrices
-
-		GLuint WORLD_ID = glGetUniformLocation(shaderProgID, "WORLD");
+		
+		GLuint WORLD_ID = glGetUniformLocation(shaderProgID, AttribVariableStrings::U_WORLD_MAT_VAR_NAME);
 		glm::mat4 world = entity->GetTransform()->GetWorldMat();
 		glUniformMatrix4fv(WORLD_ID, 1, GL_FALSE, &world[0][0]);
 
@@ -342,8 +342,6 @@ namespace KLM_FRAMEWORK
 		glUniform1f(TIME_ID,dummyTime);
 
 
-	
-		
 
 		mc->GetMesh()->GetVBO()->Draw(PrimitiveType::TRIANGLES);
 	}
