@@ -125,7 +125,7 @@ namespace ShaderCreationTool
 
             code += "\r\n\r\n void main()\r\n{\r\n" + result + "\r\n}"; 
 
-            SCTConsole.Instance.PrintDebugLine(code);
+           // SCTConsole.Instance.PrintDebugLine(code);
 
             foreach(SCTFunctionNode node in tempRestoreStateNodeList)
             {

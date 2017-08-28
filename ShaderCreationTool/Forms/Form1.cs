@@ -464,17 +464,20 @@ namespace ShaderCreationTool
             //    ConnectionManager.GetConnection(i).TestKillLine();
             //}
 
-            string status;
-            string code;
+            string fragStatus;
+            string fragCode;
         
 
-            m_CodeParser.TranslateNetworkFragment(m_Nodes, ConnectionManager.ConnectionList, out code, out status);
+           
 
 
             string vertStat;
             string vertCode;
             m_CodeParser.TranslateNetworkVertex(null, null, out vertCode, out vertStat);
+            m_CodeParser.TranslateNetworkFragment(m_Nodes, ConnectionManager.ConnectionList, out fragCode, out fragStatus);
+
             SCTConsole.Instance.PrintLine("VERTEX SHADER: \r\n" + vertCode);
+            SCTConsole.Instance.PrintLine("FRAGMENT SHADER: \r\n" + fragCode);
             //TextFileReaderWriter.Save(@"c:\nodes\testshad.txt", code);
             //SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
 
