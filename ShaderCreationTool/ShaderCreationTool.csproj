@@ -55,7 +55,7 @@
     <Compile Include="Nodes\AttribNodeWithSelection.cs" />
     <Compile Include="CodeParser\CodeParserGLSL.cs" />
     <Compile Include="Nodes\AttribNodeSimple.cs" />
-    <Compile Include="Nodes\VaraibleStrings.cs" />
+    <Compile Include="VariableStrings.cs" />
     <Compile Include="Util\TextFileReaderWriter.cs" />
     <Compile Include="Forms\ImagePreviewForm.cs">
       <SubType>Form</SubType>

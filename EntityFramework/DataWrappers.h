@@ -1,8 +1,10 @@
 #pragma once
 #include "StdIncludes.h"
 #include "CrossLanguageTypes.cs"
+#include "VariableStrings.cs"
 #include <msclr\marshal_cppstd.h>
 #include "Texture.h"
+
 public ref class ShaderVectorVariable
 {
 

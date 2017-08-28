@@ -1,6 +1,9 @@
 ﻿
 namespace ShaderCreationTool
 {
+#if __cplusplus
+    
+#else
     static class AttribVariableStrings
     {
         //******************************  VERTEX OUTPUT VARIABLES  *********************//
@@ -41,4 +44,5 @@ namespace ShaderCreationTool
         public static readonly string SHADER_VERSION_STR = "#version 330";
 
     }
+#endif
 }
