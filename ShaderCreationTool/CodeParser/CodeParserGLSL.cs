@@ -273,6 +273,7 @@ namespace ShaderCreationTool
             return ok;
         }
 
+       
 
         private string ConstructFunctionCall(SCTFunctionNode node)
         {
@@ -307,6 +308,7 @@ namespace ShaderCreationTool
                 if (c.Connected)
                 {
                     output += c.ParentConnection.OutVariableName + ", ";
+                    SCTConsole.Instance.PrintLine("JEB");
                 }
 
                 else // otherwise use default value

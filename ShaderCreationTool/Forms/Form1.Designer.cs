@@ -33,6 +33,34 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
+            this.CameraPositionWindow = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.comboBox_camPos = new System.Windows.Forms.ComboBox();
+            this.camPos_label = new System.Windows.Forms.Label();
+            this.camPos_inner_panel = new System.Windows.Forms.Panel();
+            this.Out_Slot_cameraPosition = new System.Windows.Forms.CheckBox();
+            this.label_Title_cameraPos = new System.Windows.Forms.Label();
+            this.TimeWindow = new System.Windows.Forms.Panel();
+            this.closeButton_Time = new System.Windows.Forms.Button();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.time_inner_panel = new System.Windows.Forms.Panel();
+            this.Out_Slot_time = new System.Windows.Forms.CheckBox();
+            this.label_Title_Time = new System.Windows.Forms.Label();
+            this.UVsWindow = new System.Windows.Forms.Panel();
+            this.closeButton_UV = new System.Windows.Forms.Button();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.texcoord_inner_panel = new System.Windows.Forms.Panel();
+            this.Out_Slot_uv = new System.Windows.Forms.CheckBox();
+            this.label_Title_UVs = new System.Windows.Forms.Label();
+            this.NormalVectorWindow = new System.Windows.Forms.Panel();
+            this.closeButton_NormalVect = new System.Windows.Forms.Button();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.comboBox_VertNormal = new System.Windows.Forms.ComboBox();
+            this.normLabel = new System.Windows.Forms.Label();
+            this.normalVector_inner_panel = new System.Windows.Forms.Panel();
+            this.Out_Slot_normal = new System.Windows.Forms.CheckBox();
+            this.label_Title_normal = new System.Windows.Forms.Label();
             this.VertexPositionWindow = new System.Windows.Forms.Panel();
             this.closeButton_VertPos = new System.Windows.Forms.Button();
             this.panel11 = new System.Windows.Forms.Panel();
@@ -166,35 +194,19 @@
             this.uniformVariableNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.NormalVectorWindow = new System.Windows.Forms.Panel();
-            this.closeButton_NormalVect = new System.Windows.Forms.Button();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.comboBox_VertNormal = new System.Windows.Forms.ComboBox();
-            this.normLabel = new System.Windows.Forms.Label();
-            this.normalVector_inner_panel = new System.Windows.Forms.Panel();
-            this.Out_Slot_normal = new System.Windows.Forms.CheckBox();
-            this.label_Title_normal = new System.Windows.Forms.Label();
-            this.UVsWindow = new System.Windows.Forms.Panel();
-            this.closeButton_UV = new System.Windows.Forms.Button();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.texcoord_inner_panel = new System.Windows.Forms.Panel();
-            this.Out_Slot_uv = new System.Windows.Forms.CheckBox();
-            this.label_Title_UVs = new System.Windows.Forms.Label();
-            this.TimeWindow = new System.Windows.Forms.Panel();
-            this.closeButton_Time = new System.Windows.Forms.Button();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.time_inner_panel = new System.Windows.Forms.Panel();
-            this.Out_Slot_time = new System.Windows.Forms.CheckBox();
-            this.label_Title_Time = new System.Windows.Forms.Label();
-            this.CameraPositionWindow = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.comboBox_camPos = new System.Windows.Forms.ComboBox();
-            this.camPos_label = new System.Windows.Forms.Label();
-            this.camPos_inner_panel = new System.Windows.Forms.Panel();
-            this.Out_Slot_cameraPosition = new System.Windows.Forms.CheckBox();
-            this.label_Title_cameraPos = new System.Windows.Forms.Label();
             this.EditAreaPanel.SuspendLayout();
+            this.CameraPositionWindow.SuspendLayout();
+            this.panel14.SuspendLayout();
+            this.camPos_inner_panel.SuspendLayout();
+            this.TimeWindow.SuspendLayout();
+            this.panel15.SuspendLayout();
+            this.time_inner_panel.SuspendLayout();
+            this.UVsWindow.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.texcoord_inner_panel.SuspendLayout();
+            this.NormalVectorWindow.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.normalVector_inner_panel.SuspendLayout();
             this.VertexPositionWindow.SuspendLayout();
             this.panel11.SuspendLayout();
             this.vertPos_inner_panel.SuspendLayout();
@@ -244,18 +256,6 @@
             this.AddGroupBox.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.NormalVectorWindow.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.normalVector_inner_panel.SuspendLayout();
-            this.UVsWindow.SuspendLayout();
-            this.panel13.SuspendLayout();
-            this.texcoord_inner_panel.SuspendLayout();
-            this.TimeWindow.SuspendLayout();
-            this.panel15.SuspendLayout();
-            this.time_inner_panel.SuspendLayout();
-            this.CameraPositionWindow.SuspendLayout();
-            this.panel14.SuspendLayout();
-            this.camPos_inner_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -279,7 +279,7 @@
             this.button44.Name = "button44";
             this.button44.Size = new System.Drawing.Size(137, 28);
             this.button44.TabIndex = 14;
-            this.button44.Text = "Select Mesh";
+            this.button44.Text = "RUN EFFECTS";
             this.button44.UseVisualStyleBackColor = false;
             this.button44.Click += new System.EventHandler(this.button44_Click);
             // 
@@ -319,6 +319,350 @@
             this.EditAreaPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.EditAreaPanel_Scroll);
             this.EditAreaPanel.Click += new System.EventHandler(this.EditAreaPanel_Click);
             this.EditAreaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.EditAreaPanel_Paint);
+            // 
+            // CameraPositionWindow
+            // 
+            this.CameraPositionWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.CameraPositionWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CameraPositionWindow.Controls.Add(this.button3);
+            this.CameraPositionWindow.Controls.Add(this.panel14);
+            this.CameraPositionWindow.Controls.Add(this.label_Title_cameraPos);
+            this.CameraPositionWindow.Enabled = false;
+            this.CameraPositionWindow.Location = new System.Drawing.Point(628, 1096);
+            this.CameraPositionWindow.Name = "CameraPositionWindow";
+            this.CameraPositionWindow.Size = new System.Drawing.Size(178, 120);
+            this.CameraPositionWindow.TabIndex = 35;
+            this.CameraPositionWindow.Visible = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Black;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.Transparent;
+            this.button3.Location = new System.Drawing.Point(151, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(22, 22);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "X";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel14.Controls.Add(this.comboBox_camPos);
+            this.panel14.Controls.Add(this.camPos_label);
+            this.panel14.Controls.Add(this.camPos_inner_panel);
+            this.panel14.Location = new System.Drawing.Point(-1, 26);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(179, 96);
+            this.panel14.TabIndex = 1;
+            // 
+            // comboBox_camPos
+            // 
+            this.comboBox_camPos.BackColor = System.Drawing.Color.White;
+            this.comboBox_camPos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_camPos.ForeColor = System.Drawing.Color.Black;
+            this.comboBox_camPos.FormattingEnabled = true;
+            this.comboBox_camPos.Location = new System.Drawing.Point(5, 27);
+            this.comboBox_camPos.Name = "comboBox_camPos";
+            this.comboBox_camPos.Size = new System.Drawing.Size(169, 21);
+            this.comboBox_camPos.TabIndex = 3;
+            // 
+            // camPos_label
+            // 
+            this.camPos_label.AutoSize = true;
+            this.camPos_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.camPos_label.ForeColor = System.Drawing.Color.White;
+            this.camPos_label.Location = new System.Drawing.Point(6, 11);
+            this.camPos_label.Name = "camPos_label";
+            this.camPos_label.Size = new System.Drawing.Size(83, 13);
+            this.camPos_label.TabIndex = 2;
+            this.camPos_label.Text = "Select Space";
+            // 
+            // camPos_inner_panel
+            // 
+            this.camPos_inner_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.camPos_inner_panel.Controls.Add(this.Out_Slot_cameraPosition);
+            this.camPos_inner_panel.Location = new System.Drawing.Point(5, 54);
+            this.camPos_inner_panel.Name = "camPos_inner_panel";
+            this.camPos_inner_panel.Size = new System.Drawing.Size(173, 29);
+            this.camPos_inner_panel.TabIndex = 0;
+            // 
+            // Out_Slot_cameraPosition
+            // 
+            this.Out_Slot_cameraPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Out_Slot_cameraPosition.AutoSize = true;
+            this.Out_Slot_cameraPosition.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_cameraPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Out_Slot_cameraPosition.ForeColor = System.Drawing.Color.BurlyWood;
+            this.Out_Slot_cameraPosition.Location = new System.Drawing.Point(92, 6);
+            this.Out_Slot_cameraPosition.Name = "Out_Slot_cameraPosition";
+            this.Out_Slot_cameraPosition.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Out_Slot_cameraPosition.Size = new System.Drawing.Size(77, 20);
+            this.Out_Slot_cameraPosition.TabIndex = 8;
+            this.Out_Slot_cameraPosition.Text = "Normal";
+            this.Out_Slot_cameraPosition.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_cameraPosition.UseVisualStyleBackColor = true;
+            // 
+            // label_Title_cameraPos
+            // 
+            this.label_Title_cameraPos.AutoSize = true;
+            this.label_Title_cameraPos.BackColor = System.Drawing.Color.Transparent;
+            this.label_Title_cameraPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title_cameraPos.ForeColor = System.Drawing.Color.White;
+            this.label_Title_cameraPos.Location = new System.Drawing.Point(13, 6);
+            this.label_Title_cameraPos.Name = "label_Title_cameraPos";
+            this.label_Title_cameraPos.Size = new System.Drawing.Size(134, 18);
+            this.label_Title_cameraPos.TabIndex = 0;
+            this.label_Title_cameraPos.Text = "Camera Position";
+            this.label_Title_cameraPos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TimeWindow
+            // 
+            this.TimeWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.TimeWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TimeWindow.Controls.Add(this.closeButton_Time);
+            this.TimeWindow.Controls.Add(this.panel15);
+            this.TimeWindow.Controls.Add(this.label_Title_Time);
+            this.TimeWindow.Enabled = false;
+            this.TimeWindow.Location = new System.Drawing.Point(863, 1141);
+            this.TimeWindow.Name = "TimeWindow";
+            this.TimeWindow.Size = new System.Drawing.Size(178, 87);
+            this.TimeWindow.TabIndex = 36;
+            this.TimeWindow.Visible = false;
+            // 
+            // closeButton_Time
+            // 
+            this.closeButton_Time.BackColor = System.Drawing.Color.Black;
+            this.closeButton_Time.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButton_Time.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButton_Time.ForeColor = System.Drawing.Color.Transparent;
+            this.closeButton_Time.Location = new System.Drawing.Point(151, 3);
+            this.closeButton_Time.Name = "closeButton_Time";
+            this.closeButton_Time.Size = new System.Drawing.Size(22, 22);
+            this.closeButton_Time.TabIndex = 2;
+            this.closeButton_Time.Text = "X";
+            this.closeButton_Time.UseVisualStyleBackColor = false;
+            // 
+            // panel15
+            // 
+            this.panel15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel15.Controls.Add(this.time_inner_panel);
+            this.panel15.Location = new System.Drawing.Point(-1, 26);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(179, 59);
+            this.panel15.TabIndex = 1;
+            // 
+            // time_inner_panel
+            // 
+            this.time_inner_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.time_inner_panel.Controls.Add(this.Out_Slot_time);
+            this.time_inner_panel.Location = new System.Drawing.Point(6, 16);
+            this.time_inner_panel.Name = "time_inner_panel";
+            this.time_inner_panel.Size = new System.Drawing.Size(173, 40);
+            this.time_inner_panel.TabIndex = 0;
+            // 
+            // Out_Slot_time
+            // 
+            this.Out_Slot_time.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Out_Slot_time.AutoSize = true;
+            this.Out_Slot_time.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Out_Slot_time.ForeColor = System.Drawing.Color.BurlyWood;
+            this.Out_Slot_time.Location = new System.Drawing.Point(109, 12);
+            this.Out_Slot_time.Name = "Out_Slot_time";
+            this.Out_Slot_time.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Out_Slot_time.Size = new System.Drawing.Size(62, 20);
+            this.Out_Slot_time.TabIndex = 8;
+            this.Out_Slot_time.Text = "Time";
+            this.Out_Slot_time.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_time.UseVisualStyleBackColor = true;
+            // 
+            // label_Title_Time
+            // 
+            this.label_Title_Time.AutoSize = true;
+            this.label_Title_Time.BackColor = System.Drawing.Color.Transparent;
+            this.label_Title_Time.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title_Time.ForeColor = System.Drawing.Color.White;
+            this.label_Title_Time.Location = new System.Drawing.Point(65, 7);
+            this.label_Title_Time.Name = "label_Title_Time";
+            this.label_Title_Time.Size = new System.Drawing.Size(45, 18);
+            this.label_Title_Time.TabIndex = 0;
+            this.label_Title_Time.Text = "Time";
+            this.label_Title_Time.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // UVsWindow
+            // 
+            this.UVsWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.UVsWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UVsWindow.Controls.Add(this.closeButton_UV);
+            this.UVsWindow.Controls.Add(this.panel13);
+            this.UVsWindow.Controls.Add(this.label_Title_UVs);
+            this.UVsWindow.Enabled = false;
+            this.UVsWindow.Location = new System.Drawing.Point(863, 1048);
+            this.UVsWindow.Name = "UVsWindow";
+            this.UVsWindow.Size = new System.Drawing.Size(178, 87);
+            this.UVsWindow.TabIndex = 35;
+            this.UVsWindow.Visible = false;
+            // 
+            // closeButton_UV
+            // 
+            this.closeButton_UV.BackColor = System.Drawing.Color.Black;
+            this.closeButton_UV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButton_UV.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButton_UV.ForeColor = System.Drawing.Color.Transparent;
+            this.closeButton_UV.Location = new System.Drawing.Point(151, 3);
+            this.closeButton_UV.Name = "closeButton_UV";
+            this.closeButton_UV.Size = new System.Drawing.Size(22, 22);
+            this.closeButton_UV.TabIndex = 2;
+            this.closeButton_UV.Text = "X";
+            this.closeButton_UV.UseVisualStyleBackColor = false;
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel13.Controls.Add(this.texcoord_inner_panel);
+            this.panel13.Location = new System.Drawing.Point(-1, 26);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(179, 59);
+            this.panel13.TabIndex = 1;
+            // 
+            // texcoord_inner_panel
+            // 
+            this.texcoord_inner_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.texcoord_inner_panel.Controls.Add(this.Out_Slot_uv);
+            this.texcoord_inner_panel.Location = new System.Drawing.Point(6, 16);
+            this.texcoord_inner_panel.Name = "texcoord_inner_panel";
+            this.texcoord_inner_panel.Size = new System.Drawing.Size(173, 40);
+            this.texcoord_inner_panel.TabIndex = 0;
+            // 
+            // Out_Slot_uv
+            // 
+            this.Out_Slot_uv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Out_Slot_uv.AutoSize = true;
+            this.Out_Slot_uv.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_uv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Out_Slot_uv.ForeColor = System.Drawing.Color.BurlyWood;
+            this.Out_Slot_uv.Location = new System.Drawing.Point(77, 13);
+            this.Out_Slot_uv.Name = "Out_Slot_uv";
+            this.Out_Slot_uv.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Out_Slot_uv.Size = new System.Drawing.Size(93, 20);
+            this.Out_Slot_uv.TabIndex = 8;
+            this.Out_Slot_uv.Text = "Texcoord";
+            this.Out_Slot_uv.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_uv.UseVisualStyleBackColor = true;
+            // 
+            // label_Title_UVs
+            // 
+            this.label_Title_UVs.AutoSize = true;
+            this.label_Title_UVs.BackColor = System.Drawing.Color.Transparent;
+            this.label_Title_UVs.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title_UVs.ForeColor = System.Drawing.Color.White;
+            this.label_Title_UVs.Location = new System.Drawing.Point(44, 7);
+            this.label_Title_UVs.Name = "label_Title_UVs";
+            this.label_Title_UVs.Size = new System.Drawing.Size(79, 18);
+            this.label_Title_UVs.TabIndex = 0;
+            this.label_Title_UVs.Text = "Texcoord";
+            this.label_Title_UVs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // NormalVectorWindow
+            // 
+            this.NormalVectorWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
+            this.NormalVectorWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NormalVectorWindow.Controls.Add(this.closeButton_NormalVect);
+            this.NormalVectorWindow.Controls.Add(this.panel12);
+            this.NormalVectorWindow.Controls.Add(this.label_Title_normal);
+            this.NormalVectorWindow.Enabled = false;
+            this.NormalVectorWindow.Location = new System.Drawing.Point(446, 1095);
+            this.NormalVectorWindow.Name = "NormalVectorWindow";
+            this.NormalVectorWindow.Size = new System.Drawing.Size(178, 121);
+            this.NormalVectorWindow.TabIndex = 34;
+            this.NormalVectorWindow.Visible = false;
+            // 
+            // closeButton_NormalVect
+            // 
+            this.closeButton_NormalVect.BackColor = System.Drawing.Color.Black;
+            this.closeButton_NormalVect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButton_NormalVect.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButton_NormalVect.ForeColor = System.Drawing.Color.Transparent;
+            this.closeButton_NormalVect.Location = new System.Drawing.Point(151, 3);
+            this.closeButton_NormalVect.Name = "closeButton_NormalVect";
+            this.closeButton_NormalVect.Size = new System.Drawing.Size(22, 22);
+            this.closeButton_NormalVect.TabIndex = 2;
+            this.closeButton_NormalVect.Text = "X";
+            this.closeButton_NormalVect.UseVisualStyleBackColor = false;
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel12.Controls.Add(this.comboBox_VertNormal);
+            this.panel12.Controls.Add(this.normLabel);
+            this.panel12.Controls.Add(this.normalVector_inner_panel);
+            this.panel12.Location = new System.Drawing.Point(-1, 26);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(179, 93);
+            this.panel12.TabIndex = 1;
+            // 
+            // comboBox_VertNormal
+            // 
+            this.comboBox_VertNormal.BackColor = System.Drawing.Color.White;
+            this.comboBox_VertNormal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_VertNormal.ForeColor = System.Drawing.Color.Black;
+            this.comboBox_VertNormal.FormattingEnabled = true;
+            this.comboBox_VertNormal.Location = new System.Drawing.Point(5, 27);
+            this.comboBox_VertNormal.Name = "comboBox_VertNormal";
+            this.comboBox_VertNormal.Size = new System.Drawing.Size(169, 21);
+            this.comboBox_VertNormal.TabIndex = 3;
+            // 
+            // normLabel
+            // 
+            this.normLabel.AutoSize = true;
+            this.normLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.normLabel.ForeColor = System.Drawing.Color.White;
+            this.normLabel.Location = new System.Drawing.Point(6, 11);
+            this.normLabel.Name = "normLabel";
+            this.normLabel.Size = new System.Drawing.Size(83, 13);
+            this.normLabel.TabIndex = 2;
+            this.normLabel.Text = "Select Space";
+            // 
+            // normalVector_inner_panel
+            // 
+            this.normalVector_inner_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.normalVector_inner_panel.Controls.Add(this.Out_Slot_normal);
+            this.normalVector_inner_panel.Location = new System.Drawing.Point(5, 54);
+            this.normalVector_inner_panel.Name = "normalVector_inner_panel";
+            this.normalVector_inner_panel.Size = new System.Drawing.Size(173, 31);
+            this.normalVector_inner_panel.TabIndex = 0;
+            // 
+            // Out_Slot_normal
+            // 
+            this.Out_Slot_normal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Out_Slot_normal.AutoSize = true;
+            this.Out_Slot_normal.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Out_Slot_normal.ForeColor = System.Drawing.Color.BurlyWood;
+            this.Out_Slot_normal.Location = new System.Drawing.Point(94, 7);
+            this.Out_Slot_normal.Name = "Out_Slot_normal";
+            this.Out_Slot_normal.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Out_Slot_normal.Size = new System.Drawing.Size(77, 20);
+            this.Out_Slot_normal.TabIndex = 8;
+            this.Out_Slot_normal.Text = "Normal";
+            this.Out_Slot_normal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Out_Slot_normal.UseVisualStyleBackColor = true;
+            // 
+            // label_Title_normal
+            // 
+            this.label_Title_normal.AutoSize = true;
+            this.label_Title_normal.BackColor = System.Drawing.Color.Transparent;
+            this.label_Title_normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title_normal.ForeColor = System.Drawing.Color.White;
+            this.label_Title_normal.Location = new System.Drawing.Point(53, 7);
+            this.label_Title_normal.Name = "label_Title_normal";
+            this.label_Title_normal.Size = new System.Drawing.Size(63, 18);
+            this.label_Title_normal.TabIndex = 0;
+            this.label_Title_normal.Text = "Normal";
+            this.label_Title_normal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // VertexPositionWindow
             // 
@@ -1816,7 +2160,7 @@
             this.PreviewAreaPanel.Controls.Add(this.ZoomOutButton);
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
-            this.PreviewAreaPanel.Location = new System.Drawing.Point(817, 7);
+            this.PreviewAreaPanel.Location = new System.Drawing.Point(836, 7);
             this.PreviewAreaPanel.Name = "PreviewAreaPanel";
             this.PreviewAreaPanel.Size = new System.Drawing.Size(466, 423);
             this.PreviewAreaPanel.TabIndex = 26;
@@ -2062,350 +2406,6 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // NormalVectorWindow
-            // 
-            this.NormalVectorWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
-            this.NormalVectorWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NormalVectorWindow.Controls.Add(this.closeButton_NormalVect);
-            this.NormalVectorWindow.Controls.Add(this.panel12);
-            this.NormalVectorWindow.Controls.Add(this.label_Title_normal);
-            this.NormalVectorWindow.Enabled = false;
-            this.NormalVectorWindow.Location = new System.Drawing.Point(446, 1095);
-            this.NormalVectorWindow.Name = "NormalVectorWindow";
-            this.NormalVectorWindow.Size = new System.Drawing.Size(178, 121);
-            this.NormalVectorWindow.TabIndex = 34;
-            this.NormalVectorWindow.Visible = false;
-            // 
-            // closeButton_NormalVect
-            // 
-            this.closeButton_NormalVect.BackColor = System.Drawing.Color.Black;
-            this.closeButton_NormalVect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton_NormalVect.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeButton_NormalVect.ForeColor = System.Drawing.Color.Transparent;
-            this.closeButton_NormalVect.Location = new System.Drawing.Point(151, 3);
-            this.closeButton_NormalVect.Name = "closeButton_NormalVect";
-            this.closeButton_NormalVect.Size = new System.Drawing.Size(22, 22);
-            this.closeButton_NormalVect.TabIndex = 2;
-            this.closeButton_NormalVect.Text = "X";
-            this.closeButton_NormalVect.UseVisualStyleBackColor = false;
-            // 
-            // panel12
-            // 
-            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel12.Controls.Add(this.comboBox_VertNormal);
-            this.panel12.Controls.Add(this.normLabel);
-            this.panel12.Controls.Add(this.normalVector_inner_panel);
-            this.panel12.Location = new System.Drawing.Point(-1, 26);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(179, 93);
-            this.panel12.TabIndex = 1;
-            // 
-            // comboBox_VertNormal
-            // 
-            this.comboBox_VertNormal.BackColor = System.Drawing.Color.White;
-            this.comboBox_VertNormal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_VertNormal.ForeColor = System.Drawing.Color.Black;
-            this.comboBox_VertNormal.FormattingEnabled = true;
-            this.comboBox_VertNormal.Location = new System.Drawing.Point(5, 27);
-            this.comboBox_VertNormal.Name = "comboBox_VertNormal";
-            this.comboBox_VertNormal.Size = new System.Drawing.Size(169, 21);
-            this.comboBox_VertNormal.TabIndex = 3;
-            // 
-            // normLabel
-            // 
-            this.normLabel.AutoSize = true;
-            this.normLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.normLabel.ForeColor = System.Drawing.Color.White;
-            this.normLabel.Location = new System.Drawing.Point(6, 11);
-            this.normLabel.Name = "normLabel";
-            this.normLabel.Size = new System.Drawing.Size(83, 13);
-            this.normLabel.TabIndex = 2;
-            this.normLabel.Text = "Select Space";
-            // 
-            // normalVector_inner_panel
-            // 
-            this.normalVector_inner_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.normalVector_inner_panel.Controls.Add(this.Out_Slot_normal);
-            this.normalVector_inner_panel.Location = new System.Drawing.Point(5, 54);
-            this.normalVector_inner_panel.Name = "normalVector_inner_panel";
-            this.normalVector_inner_panel.Size = new System.Drawing.Size(173, 31);
-            this.normalVector_inner_panel.TabIndex = 0;
-            // 
-            // Out_Slot_normal
-            // 
-            this.Out_Slot_normal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Out_Slot_normal.AutoSize = true;
-            this.Out_Slot_normal.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Out_Slot_normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Out_Slot_normal.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_Slot_normal.Location = new System.Drawing.Point(94, 7);
-            this.Out_Slot_normal.Name = "Out_Slot_normal";
-            this.Out_Slot_normal.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Out_Slot_normal.Size = new System.Drawing.Size(77, 20);
-            this.Out_Slot_normal.TabIndex = 8;
-            this.Out_Slot_normal.Text = "Normal";
-            this.Out_Slot_normal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Out_Slot_normal.UseVisualStyleBackColor = true;
-            // 
-            // label_Title_normal
-            // 
-            this.label_Title_normal.AutoSize = true;
-            this.label_Title_normal.BackColor = System.Drawing.Color.Transparent;
-            this.label_Title_normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title_normal.ForeColor = System.Drawing.Color.White;
-            this.label_Title_normal.Location = new System.Drawing.Point(53, 7);
-            this.label_Title_normal.Name = "label_Title_normal";
-            this.label_Title_normal.Size = new System.Drawing.Size(63, 18);
-            this.label_Title_normal.TabIndex = 0;
-            this.label_Title_normal.Text = "Normal";
-            this.label_Title_normal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // UVsWindow
-            // 
-            this.UVsWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
-            this.UVsWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UVsWindow.Controls.Add(this.closeButton_UV);
-            this.UVsWindow.Controls.Add(this.panel13);
-            this.UVsWindow.Controls.Add(this.label_Title_UVs);
-            this.UVsWindow.Enabled = false;
-            this.UVsWindow.Location = new System.Drawing.Point(863, 1048);
-            this.UVsWindow.Name = "UVsWindow";
-            this.UVsWindow.Size = new System.Drawing.Size(178, 87);
-            this.UVsWindow.TabIndex = 35;
-            this.UVsWindow.Visible = false;
-            // 
-            // closeButton_UV
-            // 
-            this.closeButton_UV.BackColor = System.Drawing.Color.Black;
-            this.closeButton_UV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton_UV.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeButton_UV.ForeColor = System.Drawing.Color.Transparent;
-            this.closeButton_UV.Location = new System.Drawing.Point(151, 3);
-            this.closeButton_UV.Name = "closeButton_UV";
-            this.closeButton_UV.Size = new System.Drawing.Size(22, 22);
-            this.closeButton_UV.TabIndex = 2;
-            this.closeButton_UV.Text = "X";
-            this.closeButton_UV.UseVisualStyleBackColor = false;
-            // 
-            // panel13
-            // 
-            this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel13.Controls.Add(this.texcoord_inner_panel);
-            this.panel13.Location = new System.Drawing.Point(-1, 26);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(179, 59);
-            this.panel13.TabIndex = 1;
-            // 
-            // texcoord_inner_panel
-            // 
-            this.texcoord_inner_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.texcoord_inner_panel.Controls.Add(this.Out_Slot_uv);
-            this.texcoord_inner_panel.Location = new System.Drawing.Point(6, 16);
-            this.texcoord_inner_panel.Name = "texcoord_inner_panel";
-            this.texcoord_inner_panel.Size = new System.Drawing.Size(173, 40);
-            this.texcoord_inner_panel.TabIndex = 0;
-            // 
-            // Out_Slot_uv
-            // 
-            this.Out_Slot_uv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Out_Slot_uv.AutoSize = true;
-            this.Out_Slot_uv.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Out_Slot_uv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Out_Slot_uv.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_Slot_uv.Location = new System.Drawing.Point(77, 13);
-            this.Out_Slot_uv.Name = "Out_Slot_uv";
-            this.Out_Slot_uv.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Out_Slot_uv.Size = new System.Drawing.Size(93, 20);
-            this.Out_Slot_uv.TabIndex = 8;
-            this.Out_Slot_uv.Text = "Texcoord";
-            this.Out_Slot_uv.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Out_Slot_uv.UseVisualStyleBackColor = true;
-            // 
-            // label_Title_UVs
-            // 
-            this.label_Title_UVs.AutoSize = true;
-            this.label_Title_UVs.BackColor = System.Drawing.Color.Transparent;
-            this.label_Title_UVs.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title_UVs.ForeColor = System.Drawing.Color.White;
-            this.label_Title_UVs.Location = new System.Drawing.Point(44, 7);
-            this.label_Title_UVs.Name = "label_Title_UVs";
-            this.label_Title_UVs.Size = new System.Drawing.Size(79, 18);
-            this.label_Title_UVs.TabIndex = 0;
-            this.label_Title_UVs.Text = "Texcoord";
-            this.label_Title_UVs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // TimeWindow
-            // 
-            this.TimeWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
-            this.TimeWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TimeWindow.Controls.Add(this.closeButton_Time);
-            this.TimeWindow.Controls.Add(this.panel15);
-            this.TimeWindow.Controls.Add(this.label_Title_Time);
-            this.TimeWindow.Enabled = false;
-            this.TimeWindow.Location = new System.Drawing.Point(863, 1141);
-            this.TimeWindow.Name = "TimeWindow";
-            this.TimeWindow.Size = new System.Drawing.Size(178, 87);
-            this.TimeWindow.TabIndex = 36;
-            this.TimeWindow.Visible = false;
-            // 
-            // closeButton_Time
-            // 
-            this.closeButton_Time.BackColor = System.Drawing.Color.Black;
-            this.closeButton_Time.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton_Time.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeButton_Time.ForeColor = System.Drawing.Color.Transparent;
-            this.closeButton_Time.Location = new System.Drawing.Point(151, 3);
-            this.closeButton_Time.Name = "closeButton_Time";
-            this.closeButton_Time.Size = new System.Drawing.Size(22, 22);
-            this.closeButton_Time.TabIndex = 2;
-            this.closeButton_Time.Text = "X";
-            this.closeButton_Time.UseVisualStyleBackColor = false;
-            // 
-            // panel15
-            // 
-            this.panel15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel15.Controls.Add(this.time_inner_panel);
-            this.panel15.Location = new System.Drawing.Point(-1, 26);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(179, 59);
-            this.panel15.TabIndex = 1;
-            // 
-            // time_inner_panel
-            // 
-            this.time_inner_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.time_inner_panel.Controls.Add(this.Out_Slot_time);
-            this.time_inner_panel.Location = new System.Drawing.Point(6, 16);
-            this.time_inner_panel.Name = "time_inner_panel";
-            this.time_inner_panel.Size = new System.Drawing.Size(173, 40);
-            this.time_inner_panel.TabIndex = 0;
-            // 
-            // Out_Slot_time
-            // 
-            this.Out_Slot_time.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Out_Slot_time.AutoSize = true;
-            this.Out_Slot_time.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Out_Slot_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Out_Slot_time.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_Slot_time.Location = new System.Drawing.Point(109, 12);
-            this.Out_Slot_time.Name = "Out_Slot_time";
-            this.Out_Slot_time.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Out_Slot_time.Size = new System.Drawing.Size(62, 20);
-            this.Out_Slot_time.TabIndex = 8;
-            this.Out_Slot_time.Text = "Time";
-            this.Out_Slot_time.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Out_Slot_time.UseVisualStyleBackColor = true;
-            // 
-            // label_Title_Time
-            // 
-            this.label_Title_Time.AutoSize = true;
-            this.label_Title_Time.BackColor = System.Drawing.Color.Transparent;
-            this.label_Title_Time.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title_Time.ForeColor = System.Drawing.Color.White;
-            this.label_Title_Time.Location = new System.Drawing.Point(65, 7);
-            this.label_Title_Time.Name = "label_Title_Time";
-            this.label_Title_Time.Size = new System.Drawing.Size(45, 18);
-            this.label_Title_Time.TabIndex = 0;
-            this.label_Title_Time.Text = "Time";
-            this.label_Title_Time.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // CameraPositionWindow
-            // 
-            this.CameraPositionWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(30)))));
-            this.CameraPositionWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CameraPositionWindow.Controls.Add(this.button3);
-            this.CameraPositionWindow.Controls.Add(this.panel14);
-            this.CameraPositionWindow.Controls.Add(this.label_Title_cameraPos);
-            this.CameraPositionWindow.Enabled = false;
-            this.CameraPositionWindow.Location = new System.Drawing.Point(628, 1096);
-            this.CameraPositionWindow.Name = "CameraPositionWindow";
-            this.CameraPositionWindow.Size = new System.Drawing.Size(178, 120);
-            this.CameraPositionWindow.TabIndex = 35;
-            this.CameraPositionWindow.Visible = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.Black;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.Transparent;
-            this.button3.Location = new System.Drawing.Point(151, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(22, 22);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "X";
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // panel14
-            // 
-            this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel14.Controls.Add(this.comboBox_camPos);
-            this.panel14.Controls.Add(this.camPos_label);
-            this.panel14.Controls.Add(this.camPos_inner_panel);
-            this.panel14.Location = new System.Drawing.Point(-1, 26);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(179, 96);
-            this.panel14.TabIndex = 1;
-            // 
-            // comboBox_camPos
-            // 
-            this.comboBox_camPos.BackColor = System.Drawing.Color.White;
-            this.comboBox_camPos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_camPos.ForeColor = System.Drawing.Color.Black;
-            this.comboBox_camPos.FormattingEnabled = true;
-            this.comboBox_camPos.Location = new System.Drawing.Point(5, 27);
-            this.comboBox_camPos.Name = "comboBox_camPos";
-            this.comboBox_camPos.Size = new System.Drawing.Size(169, 21);
-            this.comboBox_camPos.TabIndex = 3;
-            // 
-            // camPos_label
-            // 
-            this.camPos_label.AutoSize = true;
-            this.camPos_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.camPos_label.ForeColor = System.Drawing.Color.White;
-            this.camPos_label.Location = new System.Drawing.Point(6, 11);
-            this.camPos_label.Name = "camPos_label";
-            this.camPos_label.Size = new System.Drawing.Size(83, 13);
-            this.camPos_label.TabIndex = 2;
-            this.camPos_label.Text = "Select Space";
-            // 
-            // camPos_inner_panel
-            // 
-            this.camPos_inner_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.camPos_inner_panel.Controls.Add(this.Out_Slot_cameraPosition);
-            this.camPos_inner_panel.Location = new System.Drawing.Point(5, 54);
-            this.camPos_inner_panel.Name = "camPos_inner_panel";
-            this.camPos_inner_panel.Size = new System.Drawing.Size(173, 29);
-            this.camPos_inner_panel.TabIndex = 0;
-            // 
-            // Out_Slot_cameraPosition
-            // 
-            this.Out_Slot_cameraPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Out_Slot_cameraPosition.AutoSize = true;
-            this.Out_Slot_cameraPosition.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Out_Slot_cameraPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Out_Slot_cameraPosition.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_Slot_cameraPosition.Location = new System.Drawing.Point(92, 6);
-            this.Out_Slot_cameraPosition.Name = "Out_Slot_cameraPosition";
-            this.Out_Slot_cameraPosition.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Out_Slot_cameraPosition.Size = new System.Drawing.Size(77, 20);
-            this.Out_Slot_cameraPosition.TabIndex = 8;
-            this.Out_Slot_cameraPosition.Text = "Normal";
-            this.Out_Slot_cameraPosition.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Out_Slot_cameraPosition.UseVisualStyleBackColor = true;
-            // 
-            // label_Title_cameraPos
-            // 
-            this.label_Title_cameraPos.AutoSize = true;
-            this.label_Title_cameraPos.BackColor = System.Drawing.Color.Transparent;
-            this.label_Title_cameraPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title_cameraPos.ForeColor = System.Drawing.Color.White;
-            this.label_Title_cameraPos.Location = new System.Drawing.Point(13, 6);
-            this.label_Title_cameraPos.Name = "label_Title_cameraPos";
-            this.label_Title_cameraPos.Size = new System.Drawing.Size(134, 18);
-            this.label_Title_cameraPos.TabIndex = 0;
-            this.label_Title_cameraPos.Text = "Camera Position";
-            this.label_Title_cameraPos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // MainWindow
             // 
             this.AcceptButton = this.button1;
@@ -2427,6 +2427,28 @@
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.Shown += new System.EventHandler(this.MainWindow_Shown);
             this.EditAreaPanel.ResumeLayout(false);
+            this.CameraPositionWindow.ResumeLayout(false);
+            this.CameraPositionWindow.PerformLayout();
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
+            this.camPos_inner_panel.ResumeLayout(false);
+            this.camPos_inner_panel.PerformLayout();
+            this.TimeWindow.ResumeLayout(false);
+            this.TimeWindow.PerformLayout();
+            this.panel15.ResumeLayout(false);
+            this.time_inner_panel.ResumeLayout(false);
+            this.time_inner_panel.PerformLayout();
+            this.UVsWindow.ResumeLayout(false);
+            this.UVsWindow.PerformLayout();
+            this.panel13.ResumeLayout(false);
+            this.texcoord_inner_panel.ResumeLayout(false);
+            this.texcoord_inner_panel.PerformLayout();
+            this.NormalVectorWindow.ResumeLayout(false);
+            this.NormalVectorWindow.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            this.normalVector_inner_panel.ResumeLayout(false);
+            this.normalVector_inner_panel.PerformLayout();
             this.VertexPositionWindow.ResumeLayout(false);
             this.VertexPositionWindow.PerformLayout();
             this.panel11.ResumeLayout(false);
@@ -2504,28 +2526,6 @@
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.NormalVectorWindow.ResumeLayout(false);
-            this.NormalVectorWindow.PerformLayout();
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
-            this.normalVector_inner_panel.ResumeLayout(false);
-            this.normalVector_inner_panel.PerformLayout();
-            this.UVsWindow.ResumeLayout(false);
-            this.UVsWindow.PerformLayout();
-            this.panel13.ResumeLayout(false);
-            this.texcoord_inner_panel.ResumeLayout(false);
-            this.texcoord_inner_panel.PerformLayout();
-            this.TimeWindow.ResumeLayout(false);
-            this.TimeWindow.PerformLayout();
-            this.panel15.ResumeLayout(false);
-            this.time_inner_panel.ResumeLayout(false);
-            this.time_inner_panel.PerformLayout();
-            this.CameraPositionWindow.ResumeLayout(false);
-            this.CameraPositionWindow.PerformLayout();
-            this.panel14.ResumeLayout(false);
-            this.panel14.PerformLayout();
-            this.camPos_inner_panel.ResumeLayout(false);
-            this.camPos_inner_panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -101,6 +101,12 @@ namespace ShaderCreationTool
                 IInputNode temp = (IInputNode)sourceNode;
                 m_OutVariableName = temp.GetVariableName();
             }
+            if (m_pSource.ParentNode is IAttribNode)
+            {
+                ISCTNode sourceNode = m_pSource.ParentNode;
+                IAttribNode temp = (IAttribNode)sourceNode;
+                m_OutVariableName = temp.GetVariableName();
+            }
             else if (m_pSource.ParentNode is SCTFunctionNode)
             {
 

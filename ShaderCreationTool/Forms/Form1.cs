@@ -447,7 +447,7 @@ namespace ShaderCreationTool
         private void button1_Click(object sender, EventArgs e)
         {
             //throw new Exception("Jeb");
-            Bridge.ReloadScene();
+           
            // SCTConsole.Instance.PrintLine(Bridge.GetLastCompilerMessage());
             //Bridge.ClearLastCompilerMessage();
 
@@ -475,11 +475,14 @@ namespace ShaderCreationTool
             m_CodeParser.TranslateNetworkVertex(null, null, out vertCode, out vertStat);
             m_CodeParser.TranslateNetworkFragment(m_Nodes, ConnectionManager.ConnectionList, out fragCode, out fragStatus);
 
-            SCTConsole.Instance.PrintLine("VERTEX SHADER: \r\n" + vertCode);
-            SCTConsole.Instance.PrintLine("FRAGMENT SHADER: \r\n" + fragCode);
+            //SCTConsole.Instance.PrintLine("VERTEX SHADER: \r\n" + vertCode);
+            //SCTConsole.Instance.PrintLine("FRAGMENT SHADER: \r\n" + fragCode);
             TextFileReaderWriter.Save(VERT_PATH, vertCode);
             TextFileReaderWriter.Save(FRAG_PATH, fragCode);
-            //SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
+            SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
+            Thread.Sleep(100);
+            Bridge.ReloadScene();
+            //
 
         }
 
