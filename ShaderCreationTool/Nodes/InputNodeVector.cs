@@ -389,10 +389,13 @@ namespace ShaderCreationTool
 
         private void RefreshShaderVariable()
         {
-            for(int i = 0; i < m_ConnectorCount;++i)
+            //m_ShaderVariable.Set((float)m_Numeric[0].Value, (float)m_Numeric[1].Value,
+            //   (float)m_Numeric[2].Value, (float)m_Numeric[3].Value);
+            for (int i = 0; i < m_ConnectorCount; ++i)
             {
                 m_ShaderVariable.SetAtIndex(i, (float)m_Numeric[i].Value);
             }
+         
         }
 
 

@@ -13,13 +13,14 @@ in float oTime;
 
 out vec4 FragColour;
 
-uniform vec4            SCT_UNIFORM_ColourIn_1;
+uniform vec3            SCT_UNIFORM_FLOATIn_0;
+uniform vec4            SCT_UNIFORM_FLOATIn_1;
 
 
 
  void main()
 {
 
-FragColour = SCT_UNIFORM_ColourIn_1;
+FragColour = SCT_UNIFORM_FLOATIn_1;
 
 }

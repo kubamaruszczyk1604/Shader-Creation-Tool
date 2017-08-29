@@ -266,6 +266,12 @@ namespace KLM_FRAMEWORK
 				Vec4 vect = DataConverter::ToVec4(variable);
 				glUniform4fv(id, 1, &vect.x);
 			}
+			else if (variable->GetType() == ShaderVariableType::Vector3)
+			{
+				GLuint id = glGetUniformLocation(shaderProgID, name.c_str());
+				Vec3 vect = DataConverter::ToVec3(variable);
+				glUniform3fv(id, 1, &vect.x);
+			}
 		}
 
 

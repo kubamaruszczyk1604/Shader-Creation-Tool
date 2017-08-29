@@ -97,4 +97,23 @@
   </Node>
   
   
+     <Node Name="Vec_4TO3">
+  
+    <Input_Variables>
+      <Variable Name="Vec3in" Var_Type="Float3">
+	  </Variable>
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="FinalOut" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>
+	
+   <Code> 
+   
+   FinalOut = VECTOR4 (Vec3in,1);
+   </Code>
+  </Node>
+  
+  
 </Entities>
