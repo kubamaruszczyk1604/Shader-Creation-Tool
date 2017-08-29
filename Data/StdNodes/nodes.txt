@@ -18,11 +18,7 @@
     </Output_Variables>
 	
 	
-   <Code>
-   
-   FinalColour = VecA+VecB;
-   
-   </Code>
+   <Code> FinalColour = VecA+VecB; </Code>
   </Node>
  
 

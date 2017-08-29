@@ -29,7 +29,6 @@ namespace ShaderCreationTool
         private const string FRAG_PATH = @"..\Data\Shaders\glFrag.txt";
 
         private SimpleZLine m_TempLine;
-        private MovableObject m_MovableKey;
         private MovableObject m_MovablePreviewPanel;
 
         private List<ISCTNode> m_Nodes;
@@ -72,13 +71,8 @@ namespace ShaderCreationTool
             InitializeComponent();
             this.DoubleBuffered = true;
             m_IsConnecting = false;
-
-            m_MovableKey = new MovableObject(button44);
-            m_MovableKey.AddObjectMovedEventListener(UpdateOnObjectMoved);
             m_MovablePreviewPanel = new MovableObject(PreviewAreaPanel);
-            m_MovablePreviewPanel.AddObjectMovedEventListener(UpdateOnObjectMoved);
-
-         
+            m_MovablePreviewPanel.AddObjectMovedEventListener(UpdateOnObjectMoved);      
             SCTConsole.Instance.Show();
             m_Nodes = new List<ISCTNode>();
             CreateAndSetupFrameNode(m_Nodes);
@@ -443,20 +437,7 @@ namespace ShaderCreationTool
             Start_AddVariableNode(false);
         }
 
-        // TEMPORARY STUFF
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //throw new Exception("Jeb");
-           
-           // SCTConsole.Instance.PrintLine(Bridge.GetLastCompilerMessage());
-            //Bridge.ClearLastCompilerMessage();
-
-           // SCTConsole.Instance.Show();
-           // SCTConsole.Instance.PrintLine("Console shown test..");
-
-         
-   
-        }
+  
 
 
         private void button44_Click(object sender, EventArgs e)
@@ -505,7 +486,10 @@ namespace ShaderCreationTool
         }
 
 
-
+        private void AttributeNodeMenuItem_Click(object sender, EventArgs e)
+        {
+            Start_AddVariableNode(false);
+        }
 
         /////////////////////////////// UTIL  ////////////////////////
         void SetCursorRecursive(IEnumerable theControls, Cursor cursor)

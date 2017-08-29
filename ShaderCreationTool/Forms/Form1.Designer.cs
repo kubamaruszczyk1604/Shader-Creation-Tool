@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            this.button1 = new System.Windows.Forms.Button();
             this.button44 = new System.Windows.Forms.Button();
             this.EditAreaPanel = new System.Windows.Forms.Panel();
             this.CameraPositionWindow = new System.Windows.Forms.Panel();
@@ -70,12 +69,6 @@
             this.Out_Slot_vertPos = new System.Windows.Forms.CheckBox();
             this.label_Title_vertexPos = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.StatsGroupBox = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label_ConnectionCount = new System.Windows.Forms.Label();
-            this.label_NodeCount = new System.Windows.Forms.Label();
-            this.captionConnections = new System.Windows.Forms.Label();
-            this.captionTotalNodes = new System.Windows.Forms.Label();
             this.Texture2DInputWindow = new System.Windows.Forms.Panel();
             this.closeButton_Texture2D = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -176,6 +169,12 @@
             this.ZoomOutButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PreviewTextLabel = new System.Windows.Forms.Label();
+            this.StatsGroupBox = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label_ConnectionCount = new System.Windows.Forms.Label();
+            this.label_NodeCount = new System.Windows.Forms.Label();
+            this.captionConnections = new System.Windows.Forms.Label();
+            this.captionTotalNodes = new System.Windows.Forms.Label();
             this.AddGroupBox = new System.Windows.Forms.GroupBox();
             this.AddAttribButton = new System.Windows.Forms.Button();
             this.AddVariableButton = new System.Windows.Forms.Button();
@@ -187,13 +186,21 @@
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hLSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addVariableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uniformVariableNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.attributeNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compileAndRunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.runToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cleanProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditAreaPanel.SuspendLayout();
             this.CameraPositionWindow.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -210,8 +217,6 @@
             this.VertexPositionWindow.SuspendLayout();
             this.panel11.SuspendLayout();
             this.vertPos_inner_panel.SuspendLayout();
-            this.StatsGroupBox.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.Texture2DInputWindow.SuspendLayout();
             this.panel9.SuspendLayout();
             this.texture2D_Inner_Panel.SuspendLayout();
@@ -253,21 +258,12 @@
             this.InnerPanel.SuspendLayout();
             this.PreviewAreaPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.StatsGroupBox.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.AddGroupBox.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(533, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 32);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "LoadRenderer";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button44
             // 
@@ -275,7 +271,7 @@
             this.button44.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button44.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button44.Location = new System.Drawing.Point(671, 7);
+            this.button44.Location = new System.Drawing.Point(450, 14);
             this.button44.Name = "button44";
             this.button44.Size = new System.Drawing.Size(137, 28);
             this.button44.TabIndex = 14;
@@ -296,7 +292,6 @@
             this.EditAreaPanel.Controls.Add(this.NormalVectorWindow);
             this.EditAreaPanel.Controls.Add(this.VertexPositionWindow);
             this.EditAreaPanel.Controls.Add(this.button2);
-            this.EditAreaPanel.Controls.Add(this.StatsGroupBox);
             this.EditAreaPanel.Controls.Add(this.Texture2DInputWindow);
             this.EditAreaPanel.Controls.Add(this.TransparentNodePanel);
             this.EditAreaPanel.Controls.Add(this.FloatInputWindow);
@@ -307,14 +302,12 @@
             this.EditAreaPanel.Controls.Add(this.FrameBufferWindow);
             this.EditAreaPanel.Controls.Add(this.FunctionNodeWindow);
             this.EditAreaPanel.Controls.Add(this.PreviewAreaPanel);
-            this.EditAreaPanel.Controls.Add(this.button1);
             this.EditAreaPanel.Controls.Add(this.button44);
-            this.EditAreaPanel.Controls.Add(this.AddGroupBox);
             this.EditAreaPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EditAreaPanel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.EditAreaPanel.Location = new System.Drawing.Point(0, 28);
             this.EditAreaPanel.Name = "EditAreaPanel";
-            this.EditAreaPanel.Size = new System.Drawing.Size(1312, 703);
+            this.EditAreaPanel.Size = new System.Drawing.Size(1425, 760);
             this.EditAreaPanel.TabIndex = 19;
             this.EditAreaPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.EditAreaPanel_Scroll);
             this.EditAreaPanel.Click += new System.EventHandler(this.EditAreaPanel_Click);
@@ -764,89 +757,13 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(389, 14);
+            this.button2.Location = new System.Drawing.Point(606, 14);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 37;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // StatsGroupBox
-            // 
-            this.StatsGroupBox.BackColor = System.Drawing.Color.Gray;
-            this.StatsGroupBox.Controls.Add(this.panel1);
-            this.StatsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatsGroupBox.ForeColor = System.Drawing.SystemColors.Control;
-            this.StatsGroupBox.Location = new System.Drawing.Point(3, 296);
-            this.StatsGroupBox.Name = "StatsGroupBox";
-            this.StatsGroupBox.Size = new System.Drawing.Size(147, 93);
-            this.StatsGroupBox.TabIndex = 24;
-            this.StatsGroupBox.TabStop = false;
-            this.StatsGroupBox.Text = "Stats";
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label_ConnectionCount);
-            this.panel1.Controls.Add(this.label_NodeCount);
-            this.panel1.Controls.Add(this.captionConnections);
-            this.panel1.Controls.Add(this.captionTotalNodes);
-            this.panel1.Location = new System.Drawing.Point(6, 19);
-            this.panel1.Name = "panel1";
-            this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.panel1.Size = new System.Drawing.Size(131, 59);
-            this.panel1.TabIndex = 37;
-            // 
-            // label_ConnectionCount
-            // 
-            this.label_ConnectionCount.AutoSize = true;
-            this.label_ConnectionCount.BackColor = System.Drawing.Color.Transparent;
-            this.label_ConnectionCount.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_ConnectionCount.ForeColor = System.Drawing.Color.Lime;
-            this.label_ConnectionCount.Location = new System.Drawing.Point(106, 34);
-            this.label_ConnectionCount.Name = "label_ConnectionCount";
-            this.label_ConnectionCount.Size = new System.Drawing.Size(15, 14);
-            this.label_ConnectionCount.TabIndex = 24;
-            this.label_ConnectionCount.Text = "0";
-            // 
-            // label_NodeCount
-            // 
-            this.label_NodeCount.AutoSize = true;
-            this.label_NodeCount.BackColor = System.Drawing.Color.Transparent;
-            this.label_NodeCount.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_NodeCount.ForeColor = System.Drawing.Color.Lime;
-            this.label_NodeCount.Location = new System.Drawing.Point(106, 7);
-            this.label_NodeCount.Name = "label_NodeCount";
-            this.label_NodeCount.Size = new System.Drawing.Size(15, 14);
-            this.label_NodeCount.TabIndex = 23;
-            this.label_NodeCount.Text = "0";
-            // 
-            // captionConnections
-            // 
-            this.captionConnections.AutoSize = true;
-            this.captionConnections.BackColor = System.Drawing.Color.Transparent;
-            this.captionConnections.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.captionConnections.ForeColor = System.Drawing.Color.Lime;
-            this.captionConnections.Location = new System.Drawing.Point(6, 34);
-            this.captionConnections.Name = "captionConnections";
-            this.captionConnections.Size = new System.Drawing.Size(92, 14);
-            this.captionConnections.TabIndex = 22;
-            this.captionConnections.Text = "Connections:";
-            // 
-            // captionTotalNodes
-            // 
-            this.captionTotalNodes.AutoSize = true;
-            this.captionTotalNodes.BackColor = System.Drawing.Color.Transparent;
-            this.captionTotalNodes.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.captionTotalNodes.ForeColor = System.Drawing.Color.Lime;
-            this.captionTotalNodes.Location = new System.Drawing.Point(6, 10);
-            this.captionTotalNodes.Name = "captionTotalNodes";
-            this.captionTotalNodes.Size = new System.Drawing.Size(50, 14);
-            this.captionTotalNodes.TabIndex = 21;
-            this.captionTotalNodes.Text = "Nodes:";
             // 
             // Texture2DInputWindow
             // 
@@ -1000,7 +917,7 @@
             this.TransparentNodePanel.BackColor = System.Drawing.Color.Transparent;
             this.TransparentNodePanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TransparentNodePanel.BackgroundImage")));
             this.TransparentNodePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.TransparentNodePanel.Location = new System.Drawing.Point(607, 66);
+            this.TransparentNodePanel.Location = new System.Drawing.Point(1182, 904);
             this.TransparentNodePanel.Name = "TransparentNodePanel";
             this.TransparentNodePanel.Size = new System.Drawing.Size(192, 240);
             this.TransparentNodePanel.TabIndex = 36;
@@ -1999,7 +1916,7 @@
             this.FrameBufferWindow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.FrameBufferWindow.Controls.Add(this.panel4);
             this.FrameBufferWindow.Controls.Add(this.label1);
-            this.FrameBufferWindow.Location = new System.Drawing.Point(814, 443);
+            this.FrameBufferWindow.Location = new System.Drawing.Point(914, 475);
             this.FrameBufferWindow.Name = "FrameBufferWindow";
             this.FrameBufferWindow.Size = new System.Drawing.Size(230, 103);
             this.FrameBufferWindow.TabIndex = 31;
@@ -2160,7 +2077,7 @@
             this.PreviewAreaPanel.Controls.Add(this.ZoomOutButton);
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
-            this.PreviewAreaPanel.Location = new System.Drawing.Point(836, 7);
+            this.PreviewAreaPanel.Location = new System.Drawing.Point(897, 14);
             this.PreviewAreaPanel.Name = "PreviewAreaPanel";
             this.PreviewAreaPanel.Size = new System.Drawing.Size(466, 423);
             this.PreviewAreaPanel.TabIndex = 26;
@@ -2222,6 +2139,82 @@
             this.PreviewTextLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PreviewTextLabel_MouseDown);
             this.PreviewTextLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PreviewTextLabel_MouseMove);
             // 
+            // StatsGroupBox
+            // 
+            this.StatsGroupBox.BackColor = System.Drawing.Color.Gray;
+            this.StatsGroupBox.Controls.Add(this.panel1);
+            this.StatsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatsGroupBox.ForeColor = System.Drawing.SystemColors.Control;
+            this.StatsGroupBox.Location = new System.Drawing.Point(5, 290);
+            this.StatsGroupBox.Name = "StatsGroupBox";
+            this.StatsGroupBox.Size = new System.Drawing.Size(147, 93);
+            this.StatsGroupBox.TabIndex = 24;
+            this.StatsGroupBox.TabStop = false;
+            this.StatsGroupBox.Text = "Stats";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label_ConnectionCount);
+            this.panel1.Controls.Add(this.label_NodeCount);
+            this.panel1.Controls.Add(this.captionConnections);
+            this.panel1.Controls.Add(this.captionTotalNodes);
+            this.panel1.Location = new System.Drawing.Point(6, 19);
+            this.panel1.Name = "panel1";
+            this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.panel1.Size = new System.Drawing.Size(131, 59);
+            this.panel1.TabIndex = 37;
+            // 
+            // label_ConnectionCount
+            // 
+            this.label_ConnectionCount.AutoSize = true;
+            this.label_ConnectionCount.BackColor = System.Drawing.Color.Transparent;
+            this.label_ConnectionCount.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_ConnectionCount.ForeColor = System.Drawing.Color.Lime;
+            this.label_ConnectionCount.Location = new System.Drawing.Point(106, 34);
+            this.label_ConnectionCount.Name = "label_ConnectionCount";
+            this.label_ConnectionCount.Size = new System.Drawing.Size(15, 14);
+            this.label_ConnectionCount.TabIndex = 24;
+            this.label_ConnectionCount.Text = "0";
+            // 
+            // label_NodeCount
+            // 
+            this.label_NodeCount.AutoSize = true;
+            this.label_NodeCount.BackColor = System.Drawing.Color.Transparent;
+            this.label_NodeCount.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_NodeCount.ForeColor = System.Drawing.Color.Lime;
+            this.label_NodeCount.Location = new System.Drawing.Point(106, 7);
+            this.label_NodeCount.Name = "label_NodeCount";
+            this.label_NodeCount.Size = new System.Drawing.Size(15, 14);
+            this.label_NodeCount.TabIndex = 23;
+            this.label_NodeCount.Text = "0";
+            // 
+            // captionConnections
+            // 
+            this.captionConnections.AutoSize = true;
+            this.captionConnections.BackColor = System.Drawing.Color.Transparent;
+            this.captionConnections.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.captionConnections.ForeColor = System.Drawing.Color.Lime;
+            this.captionConnections.Location = new System.Drawing.Point(6, 34);
+            this.captionConnections.Name = "captionConnections";
+            this.captionConnections.Size = new System.Drawing.Size(92, 14);
+            this.captionConnections.TabIndex = 22;
+            this.captionConnections.Text = "Connections:";
+            // 
+            // captionTotalNodes
+            // 
+            this.captionTotalNodes.AutoSize = true;
+            this.captionTotalNodes.BackColor = System.Drawing.Color.Transparent;
+            this.captionTotalNodes.Font = new System.Drawing.Font("Quartz MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.captionTotalNodes.ForeColor = System.Drawing.Color.Lime;
+            this.captionTotalNodes.Location = new System.Drawing.Point(6, 10);
+            this.captionTotalNodes.Name = "captionTotalNodes";
+            this.captionTotalNodes.Size = new System.Drawing.Size(50, 14);
+            this.captionTotalNodes.TabIndex = 21;
+            this.captionTotalNodes.Text = "Nodes:";
+            // 
             // AddGroupBox
             // 
             this.AddGroupBox.BackColor = System.Drawing.Color.Gray;
@@ -2230,7 +2223,7 @@
             this.AddGroupBox.Controls.Add(this.AddNodeButton);
             this.AddGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddGroupBox.ForeColor = System.Drawing.SystemColors.Control;
-            this.AddGroupBox.Location = new System.Drawing.Point(3, 7);
+            this.AddGroupBox.Location = new System.Drawing.Point(5, 40);
             this.AddGroupBox.Name = "AddGroupBox";
             this.AddGroupBox.Size = new System.Drawing.Size(128, 238);
             this.AddGroupBox.TabIndex = 23;
@@ -2247,7 +2240,7 @@
             this.AddAttribButton.Name = "AddAttribButton";
             this.AddAttribButton.Size = new System.Drawing.Size(112, 64);
             this.AddAttribButton.TabIndex = 10;
-            this.AddAttribButton.Text = "Add Attribute Input";
+            this.AddAttribButton.Text = "Add Attribute Node";
             this.AddAttribButton.UseVisualStyleBackColor = false;
             this.AddAttribButton.Click += new System.EventHandler(this.AddAttribButton_Click);
             // 
@@ -2261,7 +2254,7 @@
             this.AddVariableButton.Name = "AddVariableButton";
             this.AddVariableButton.Size = new System.Drawing.Size(112, 64);
             this.AddVariableButton.TabIndex = 8;
-            this.AddVariableButton.Text = "Add Variable";
+            this.AddVariableButton.Text = "Add New Variable";
             this.AddVariableButton.UseVisualStyleBackColor = false;
             this.AddVariableButton.Click += new System.EventHandler(this.AddVariableButton_Click);
             // 
@@ -2275,7 +2268,7 @@
             this.AddNodeButton.Name = "AddNodeButton";
             this.AddNodeButton.Size = new System.Drawing.Size(112, 65);
             this.AddNodeButton.TabIndex = 9;
-            this.AddNodeButton.Text = "Add Node";
+            this.AddNodeButton.Text = "Add Function Node";
             this.AddNodeButton.UseVisualStyleBackColor = false;
             this.AddNodeButton.Click += new System.EventHandler(this.AddNodeButton_Click);
             // 
@@ -2285,10 +2278,12 @@
             this.MainMenuStrip.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editToolStripMenuItem});
+            this.editToolStripMenuItem,
+            this.runToolStripMenuItem,
+            this.consoleToolStripMenuItem});
             this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MainMenuStrip.Name = "MainMenuStrip";
-            this.MainMenuStrip.Size = new System.Drawing.Size(1312, 28);
+            this.MainMenuStrip.Size = new System.Drawing.Size(1425, 28);
             this.MainMenuStrip.TabIndex = 20;
             this.MainMenuStrip.Text = "menuStrip1";
             // 
@@ -2336,11 +2331,10 @@
             // 
             this.exportToToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.exportToToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gLSLToolStripMenuItem,
-            this.hLSLToolStripMenuItem});
+            this.gLSLToolStripMenuItem});
             this.exportToToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.exportToToolStripMenuItem.Name = "exportToToolStripMenuItem";
-            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.exportToToolStripMenuItem.Text = "Export to..";
             // 
             // gLSLToolStripMenuItem
@@ -2348,12 +2342,6 @@
             this.gLSLToolStripMenuItem.Name = "gLSLToolStripMenuItem";
             this.gLSLToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
             this.gLSLToolStripMenuItem.Text = "GLSL";
-            // 
-            // hLSLToolStripMenuItem
-            // 
-            this.hLSLToolStripMenuItem.Name = "hLSLToolStripMenuItem";
-            this.hLSLToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
-            this.hLSLToolStripMenuItem.Text = "HLSL";
             // 
             // exitToolStripMenuItem
             // 
@@ -2378,10 +2366,11 @@
             this.addVariableToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.addVariableToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.uniformVariableNodeToolStripMenuItem,
-            this.functionNodeToolStripMenuItem});
+            this.functionNodeToolStripMenuItem,
+            this.attributeNodeToolStripMenuItem});
             this.addVariableToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.addVariableToolStripMenuItem.Name = "addVariableToolStripMenuItem";
-            this.addVariableToolStripMenuItem.Size = new System.Drawing.Size(106, 24);
+            this.addVariableToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.addVariableToolStripMenuItem.Text = "Add";
             // 
             // uniformVariableNodeToolStripMenuItem
@@ -2389,8 +2378,8 @@
             this.uniformVariableNodeToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.uniformVariableNodeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.uniformVariableNodeToolStripMenuItem.Name = "uniformVariableNodeToolStripMenuItem";
-            this.uniformVariableNodeToolStripMenuItem.Size = new System.Drawing.Size(231, 24);
-            this.uniformVariableNodeToolStripMenuItem.Text = "Uniform Variable Node";
+            this.uniformVariableNodeToolStripMenuItem.Size = new System.Drawing.Size(207, 24);
+            this.uniformVariableNodeToolStripMenuItem.Text = "New Variable Node";
             this.uniformVariableNodeToolStripMenuItem.Click += new System.EventHandler(this.AddUniformVariable_MenuItem_Click);
             // 
             // functionNodeToolStripMenuItem
@@ -2406,16 +2395,96 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // attributeNodeToolStripMenuItem
+            // 
+            this.attributeNodeToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
+            this.attributeNodeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.attributeNodeToolStripMenuItem.Name = "attributeNodeToolStripMenuItem";
+            this.attributeNodeToolStripMenuItem.Size = new System.Drawing.Size(207, 24);
+            this.attributeNodeToolStripMenuItem.Text = "Attribute Node";
+            this.attributeNodeToolStripMenuItem.Click += new System.EventHandler(this.AttributeNodeMenuItem_Click);
+            // 
+            // runToolStripMenuItem
+            // 
+            this.runToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.compileAndRunToolStripMenuItem,
+            this.runToolStripMenuItem1,
+            this.stopToolStripMenuItem,
+            this.cleanProjectToolStripMenuItem});
+            this.runToolStripMenuItem.ForeColor = System.Drawing.Color.LightGray;
+            this.runToolStripMenuItem.Name = "runToolStripMenuItem";
+            this.runToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.runToolStripMenuItem.Text = "Build";
+            // 
+            // compileAndRunToolStripMenuItem
+            // 
+            this.compileAndRunToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
+            this.compileAndRunToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.compileAndRunToolStripMenuItem.Name = "compileAndRunToolStripMenuItem";
+            this.compileAndRunToolStripMenuItem.Size = new System.Drawing.Size(192, 24);
+            this.compileAndRunToolStripMenuItem.Text = "Compile and Run";
+            // 
+            // runToolStripMenuItem1
+            // 
+            this.runToolStripMenuItem1.BackColor = System.Drawing.Color.DimGray;
+            this.runToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
+            this.runToolStripMenuItem1.Name = "runToolStripMenuItem1";
+            this.runToolStripMenuItem1.Size = new System.Drawing.Size(192, 24);
+            this.runToolStripMenuItem1.Text = "Reload";
+            // 
+            // stopToolStripMenuItem
+            // 
+            this.stopToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
+            this.stopToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(192, 24);
+            this.stopToolStripMenuItem.Text = "Stop";
+            // 
+            // cleanProjectToolStripMenuItem
+            // 
+            this.cleanProjectToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
+            this.cleanProjectToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.cleanProjectToolStripMenuItem.Name = "cleanProjectToolStripMenuItem";
+            this.cleanProjectToolStripMenuItem.Size = new System.Drawing.Size(192, 24);
+            this.cleanProjectToolStripMenuItem.Text = "Clean";
+            // 
+            // consoleToolStripMenuItem
+            // 
+            this.consoleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showConsoleToolStripMenuItem,
+            this.hideConsoleToolStripMenuItem});
+            this.consoleToolStripMenuItem.ForeColor = System.Drawing.Color.LightGray;
+            this.consoleToolStripMenuItem.Name = "consoleToolStripMenuItem";
+            this.consoleToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
+            this.consoleToolStripMenuItem.Text = "Console";
+            // 
+            // showConsoleToolStripMenuItem
+            // 
+            this.showConsoleToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
+            this.showConsoleToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.showConsoleToolStripMenuItem.Name = "showConsoleToolStripMenuItem";
+            this.showConsoleToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
+            this.showConsoleToolStripMenuItem.Text = "Show Console";
+            // 
+            // hideConsoleToolStripMenuItem
+            // 
+            this.hideConsoleToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
+            this.hideConsoleToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.hideConsoleToolStripMenuItem.Name = "hideConsoleToolStripMenuItem";
+            this.hideConsoleToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
+            this.hideConsoleToolStripMenuItem.Text = "Hide Console";
+            // 
             // MainWindow
             // 
-            this.AcceptButton = this.button1;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1312, 731);
+            this.ClientSize = new System.Drawing.Size(1425, 788);
+            this.Controls.Add(this.StatsGroupBox);
+            this.Controls.Add(this.AddGroupBox);
             this.Controls.Add(this.EditAreaPanel);
             this.Controls.Add(this.MainMenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -2455,9 +2524,6 @@
             this.panel11.PerformLayout();
             this.vertPos_inner_panel.ResumeLayout(false);
             this.vertPos_inner_panel.PerformLayout();
-            this.StatsGroupBox.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.Texture2DInputWindow.ResumeLayout(false);
             this.Texture2DInputWindow.PerformLayout();
             this.panel9.ResumeLayout(false);
@@ -2522,6 +2588,9 @@
             this.PreviewAreaPanel.ResumeLayout(false);
             this.PreviewAreaPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.StatsGroupBox.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.AddGroupBox.ResumeLayout(false);
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
@@ -2532,8 +2601,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button44;
         private System.Windows.Forms.Panel EditAreaPanel;
         private System.Windows.Forms.GroupBox AddGroupBox;
@@ -2548,7 +2615,6 @@
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gLSLToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hLSLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Label PreviewTextLabel;
         private System.Windows.Forms.Panel MiddlePanel;
@@ -2697,6 +2763,15 @@
         private System.Windows.Forms.Panel camPos_inner_panel;
         private System.Windows.Forms.CheckBox Out_Slot_cameraPosition;
         private System.Windows.Forms.Label label_Title_cameraPos;
+        private System.Windows.Forms.ToolStripMenuItem attributeNodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem runToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem compileAndRunToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem runToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cleanProjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consoleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showConsoleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hideConsoleToolStripMenuItem;
     }
 }
 
