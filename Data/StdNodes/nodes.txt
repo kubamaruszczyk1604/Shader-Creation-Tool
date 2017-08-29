@@ -76,7 +76,25 @@
    <Code> FinalOut = VECTOR4 (Norm,1);</Code>
   </Node>
   
- 
+   <Node Name="DirSimpleLight">
+  
+    <Input_Variables>
+      <Variable Name="normal" Var_Type="Float3">
+	  </Variable>
+	   <Variable Name="lightDir" Var_Type="Float3">
+	  </Variable>
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="FinalOut" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>
+	
+   <Code> 
+   FLOAT NdotL = max( dot(normalize(normal),normalize(lightDir)), 0.0);
+   FinalOut = VECTOR4 (1,1,1,0)*NdotL;
+   </Code>
+  </Node>
   
   
 </Entities>
