@@ -131,19 +131,31 @@ namespace ShaderCreationTool
         /// </summary>
         private void BuildShaders()
         {
+            SCTConsole.Instance.PrintLine("\r\n\r\n***** CREATE AND BUILD SHADERS  *****\r\n");
             string vertStat;
             string vertCode;
+            SCTConsole.Instance.Print("Parsing vertex shader..");
             m_CodeParser.TranslateNetworkVertex(null, null, out vertCode, out vertStat);
+            SCTConsole.Instance.PrintLine(vertStat);
 
             string fragStatus;
             string fragCode;
+            SCTConsole.Instance.Print("Parsing fragment shader..");
             m_CodeParser.TranslateNetworkFragment(m_Nodes, ConnectionManager.ConnectionList, out fragCode, out fragStatus);
+            SCTConsole.Instance.PrintLine(fragStatus);
 
+
+            SCTConsole.Instance.Print("Saving temp shaders..");
             TextFileReaderWriter.Save(VERT_PATH, vertCode);
             TextFileReaderWriter.Save(FRAG_PATH, fragCode);
-            SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
+
+          
             Thread.Sleep(100);
+            SCTConsole.Instance.PrintLine((TextFileReaderWriter.LastError == string.Empty)?
+                "OK": "FAILED\r\n" + TextFileReaderWriter.LastError);
+
             Bridge.ReloadScene();
+            SCTConsole.Instance.PrintLine(Bridge.GetLastCompilerMessage());
         }
 
         /// <summary>
@@ -489,7 +501,6 @@ namespace ShaderCreationTool
         {
             if (MouseButtons == MouseButtons.Left)
             {
-                SCTConsole.Instance.PrintDebugLine("Is pressed now!");
                 int amountX = lastMouseX - e.X;
                 int amountY = lastMouseY - e.Y;
                 Bridge.RotateObject((float)DegToRad(amountY), (float)DegToRad(amountX), 0);
@@ -553,6 +564,24 @@ namespace ShaderCreationTool
         {
             Bridge.ReloadScene();
         }
+
+        private void CleanProjectMenuItem_Click(object sender, EventArgs e)
+        {
+           // TextFileReaderWriter.ClearTxtFile(VERT_PATH);
+            TextFileReaderWriter.ClearTxtFile(FRAG_PATH);
+            Bridge.ReloadScene();
+        }
+
+        private void ShowConsoleMenuItem_Click(object sender, EventArgs e)
+        {
+            SCTConsole.Instance.Show();
+            SCTConsole.Instance.BringToFront();
+        }
+
+        private void HideConsoleMenuItem_Click(object sender, EventArgs e)
+        {
+            SCTConsole.Instance.Hide();
+        }
         /////////////////////////////// UTIL  ////////////////////////
 
         /// <summary>
@@ -590,7 +619,7 @@ namespace ShaderCreationTool
             SCTConsole.Instance.PrintLine("Name of the variable: " + anode.GetVariableName());
         }
 
-       
+      
     }
 
 

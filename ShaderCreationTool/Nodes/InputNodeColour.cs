@@ -73,7 +73,6 @@ namespace ShaderCreationTool
                 else if (control is NumericUpDown)
                 {
                     NumericUpDown num = (NumericUpDown)control;
-                    SCTConsole.Instance.PrintDebugLine("Name is:" + num.Name);
                     num.Validated += Numeric_LostFocus;
                     num.KeyPress += Numeric_KeyPress;
 
@@ -89,7 +88,6 @@ namespace ShaderCreationTool
                 else if (control is TextBox)
                 {
                     TextBox textBox = (TextBox)control;
-                    SCTConsole.Instance.PrintDebugLine("NAme is:" + textBox.Name);
                     textBox.Validated += TextBox_LostFocus;
                     textBox.KeyPress += TextBox_KeyPress;
                     m_NameTextbox = textBox;

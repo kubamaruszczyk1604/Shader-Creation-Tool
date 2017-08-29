@@ -271,7 +271,7 @@
             this.button44.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button44.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button44.Location = new System.Drawing.Point(450, 14);
+            this.button44.Location = new System.Drawing.Point(426, 11);
             this.button44.Name = "button44";
             this.button44.Size = new System.Drawing.Size(137, 28);
             this.button44.TabIndex = 14;
@@ -757,7 +757,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(606, 14);
+            this.button2.Location = new System.Drawing.Point(628, 11);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 37;
@@ -2370,7 +2370,7 @@
             this.attributeNodeToolStripMenuItem});
             this.addVariableToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.addVariableToolStripMenuItem.Name = "addVariableToolStripMenuItem";
-            this.addVariableToolStripMenuItem.Size = new System.Drawing.Size(106, 24);
+            this.addVariableToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.addVariableToolStripMenuItem.Text = "Add";
             // 
             // uniformVariableNodeToolStripMenuItem
@@ -2445,6 +2445,7 @@
             this.cleanProjectToolStripMenuItem.Name = "cleanProjectToolStripMenuItem";
             this.cleanProjectToolStripMenuItem.Size = new System.Drawing.Size(192, 24);
             this.cleanProjectToolStripMenuItem.Text = "Clean";
+            this.cleanProjectToolStripMenuItem.Click += new System.EventHandler(this.CleanProjectMenuItem_Click);
             // 
             // consoleToolStripMenuItem
             // 
@@ -2463,6 +2464,7 @@
             this.showConsoleToolStripMenuItem.Name = "showConsoleToolStripMenuItem";
             this.showConsoleToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.showConsoleToolStripMenuItem.Text = "Show Console";
+            this.showConsoleToolStripMenuItem.Click += new System.EventHandler(this.ShowConsoleMenuItem_Click);
             // 
             // hideConsoleToolStripMenuItem
             // 
@@ -2471,6 +2473,7 @@
             this.hideConsoleToolStripMenuItem.Name = "hideConsoleToolStripMenuItem";
             this.hideConsoleToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.hideConsoleToolStripMenuItem.Text = "Hide Console";
+            this.hideConsoleToolStripMenuItem.Click += new System.EventHandler(this.HideConsoleMenuItem_Click);
             // 
             // errorProvider1
             // 

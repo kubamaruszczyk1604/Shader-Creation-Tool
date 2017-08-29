@@ -9,9 +9,13 @@ namespace ShaderCreationTool
 {
     static class TextFileReaderWriter
     {
-        private static string s_LastError;
+        private static string s_LastError = "";
         public static string LastError { get { return s_LastError; } }
 
+        static public void ResetLastError()
+        {
+            s_LastError = "";
+        }
         static public bool Save(string path, string content)
         {
             try
@@ -49,8 +53,23 @@ namespace ShaderCreationTool
             return true;
         }
 
-
-
+       
+        static public bool ClearTxtFile(string path)
+        {
+            try
+            {
+                StreamWriter writer = new StreamWriter(path);
+                writer.Write("//**********  SCT THIS FILE IS EMPTY **********//");
+                writer.Flush();
+                writer.Close();
+            }
+            catch (Exception e)
+            {
+                s_LastError = e.Message;
+                return false;
+            }
+            return true;
+        }
 
     }
 }

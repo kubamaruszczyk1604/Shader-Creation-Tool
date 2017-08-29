@@ -102,6 +102,7 @@ namespace ShaderCreationTool
             vertexShaderCode += NL + TAB + "gl_Position = " + AttribVariableStrings.U_MVP_MAT_VAR_NAME + " * vec4(" +
                 AttribVariableStrings.IN_POSITION_VAR_STR + ",1.0);" + NL + NL + "}";
 
+            status += "FINISHED\r\n";
             return true;
         }
 
@@ -111,7 +112,6 @@ namespace ShaderCreationTool
             out string code, out string status)
         {
             code = "";
-            status = "";
             FrameBufferNode fbNode = (FrameBufferNode)nodes.Find(o => o is FrameBufferNode);
             Connector con = fbNode.GetConnector(ConnectionDirection.In, 1);
             if(!con.Connected)
@@ -152,23 +152,14 @@ namespace ShaderCreationTool
             string codeNodes = ProcessNodes(ref nodesToProcess);
             string ss = "FragColour = " + con.ParentConnection.OutVariableName + ";\r\n";
 
-            code += "\r\n\r\n void main()\r\n{\r\n" + codeNodes + "\r\n" + ss + "\r\n}";
-
-            // SCTConsole.Instance.PrintDebugLine(code);
-
-           
-            
-          
-             
-             SCTConsole.Instance.PrintDebugLine("TERAZ KURWAAA: " + ss);
-           
+            code += "\r\n\r\n void main()\r\n{\r\n" + codeNodes + "\r\n" + ss + "\r\n}";         
 
             foreach(SCTFunctionNode node in tempRestoreStateNodeList)
             {
                 SetOutputsAsCalclulated(node, false);
             }
-
-            return false;
+            status = "OK\r\n";
+            return true;
         }
 
 
@@ -182,8 +173,8 @@ namespace ShaderCreationTool
                 string signature = CreateFunctionSignature(desc);
                 if (m_Signatures.Contains(signature))
                 {
-                    status = "Repeated signature: " + signature;
-                    status += "SKIPPING..";
+                    status = "Repeated signature: " + signature ;
+                    status += "   SKIPPING..\r\n";
                     return true;
                 }
                 string body = "{\r\n";
@@ -198,7 +189,7 @@ namespace ShaderCreationTool
                 status = e.Message;
                 return false;
             }
-            status = "ok";
+            status = "OK\r\n";
             return true;
         }
 
@@ -261,7 +252,7 @@ namespace ShaderCreationTool
         private bool TranslateInputVariables(List<IInputNode> inputNodes, out string declarationsCode, out string status)
         {
             declarationsCode = "";
-            status = "";
+            status = "Detected user uniform variables:\r\n";
             const int maxTypeCharCount = 15;
             bool ok = true;
             foreach (IInputNode node in inputNodes)
@@ -269,6 +260,7 @@ namespace ShaderCreationTool
                 string typeStr = TranslateVariableType(node.GetShaderVariableType());
                 declarationsCode += "uniform " + typeStr + " " + new string(' ', maxTypeCharCount - typeStr.Length) + node.GetVariableName() + ";\r\n";
                 if (typeStr == string.Empty) ok = false;
+                status += declarationsCode + "\r\n";
             }
             return ok;
         }
@@ -288,14 +280,15 @@ namespace ShaderCreationTool
                 //if connected  create output variable
                 if (c.Connected)
                 {
-                    string assembled = TranslateVariableType(c.VariableType) + "  " + c.ParentConnection.OutVariableName + ";\r\n";
-
+                    string assembled = TranslateVariableType(c.VariableType) + "  " + 
+                        c.ParentConnection.OutVariableName + ";\r\n";
                     outVarParameters.Add(c.ParentConnection.OutVariableName);// add to function call list
                     output += assembled; // add to forward declarations
                 }
                 else
                 {
-                    outVarParameters.Add("dummyOut" + TranslateVariableType(c.VariableType).ToUpper());// add to function call list
+                    // add to function call list
+                    outVarParameters.Add("dummyOut" + TranslateVariableType(c.VariableType).ToUpper());
                 }
             }
 
@@ -308,7 +301,6 @@ namespace ShaderCreationTool
                 if (c.Connected)
                 {
                     output += c.ParentConnection.OutVariableName + ", ";
-                    SCTConsole.Instance.PrintLine("JEB");
                 }
 
                 else // otherwise use default value
@@ -325,7 +317,6 @@ namespace ShaderCreationTool
             }
             output += ");";
 
-           // SCTConsole.Instance.PrintDebugLine("\r\n\r\n\r\n" + output);
             return output;
         }
 

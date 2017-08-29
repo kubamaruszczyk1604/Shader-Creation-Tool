@@ -27,9 +27,12 @@ namespace ShaderCreationTool
         public void PrintLine(String text)
         {
             ConsoleTextBox.AppendText(text + "\r\n");
-
         }
 
+        public void Print(String text)
+        {
+            ConsoleTextBox.AppendText(text);
+        }
 
         private void ConsoleForm_Load(object sender, EventArgs e)
         {

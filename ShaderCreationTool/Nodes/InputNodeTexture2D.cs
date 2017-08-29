@@ -84,7 +84,6 @@ namespace ShaderCreationTool
                     TextBox textBox = (TextBox)control;
                     if (textBox.Name.Contains("Name"))
                     {
-                        SCTConsole.Instance.PrintDebugLine("Name is:" + textBox.Name);
                         textBox.Validated += TextBox_LostFocus;
                         textBox.KeyPress += TextBox_KeyPress;
                         m_NameTextbox = textBox;
