@@ -17,7 +17,6 @@ using System.Runtime.InteropServices;
 namespace ShaderCreationTool
 {
 
-
     public partial class MainWindow : Form
     {
         //[DllImport("kernel32.dll", SetLastError = true)]
@@ -30,13 +29,10 @@ namespace ShaderCreationTool
 
         private SimpleZLine m_TempLine;
         private MovableObject m_MovablePreviewPanel;
-
         private List<ISCTNode> m_Nodes;
         private List<Connector> m_HighlightedConnectorList;
-
         private bool m_IsConnecting;
         private Point m_TempLineOrgin;
-
         private ZoomController m_ZoomController;
 
         private ICodeParser m_CodeParser;
@@ -82,7 +78,6 @@ namespace ShaderCreationTool
             }
         }
 
-
         /// <summary>
         /// Form OnMessage() method called on any user input (mouse, keyboard) related to the form
         /// and its childreen 
@@ -127,12 +122,12 @@ namespace ShaderCreationTool
             nodes.Add(fbn);
         }
 
-    
   
-        // SCT METHODS
+        ////////// SCT METHODS /////////
 
         /// <summary>
-        /// Creates shaders from  network of nodes and connections, builds them and reloads renderer.
+        /// Creates and builds shaders.
+        /// Reloads renderer.
         /// </summary>
         private void BuildShaders()
         {
@@ -497,7 +492,7 @@ namespace ShaderCreationTool
                 SCTConsole.Instance.PrintDebugLine("Is pressed now!");
                 int amountX = lastMouseX - e.X;
                 int amountY = lastMouseY - e.Y;
-                Bridge.RotateObject((float)DegreeToRadian(amountY), (float)DegreeToRadian(amountX), 0);
+                Bridge.RotateObject((float)DegToRad(amountY), (float)DegToRad(amountX), 0);
 
             }
             lastMouseX = e.X;
@@ -527,8 +522,6 @@ namespace ShaderCreationTool
         {
             BuildShaders();
         }
-
-     
 
       
         ////////////////////////////////  MENU ITEMS ///////////////////
@@ -561,6 +554,12 @@ namespace ShaderCreationTool
             Bridge.ReloadScene();
         }
         /////////////////////////////// UTIL  ////////////////////////
+
+        /// <summary>
+        /// Sets cursor for a control group and all childreen.
+        /// </summary>
+        /// <param name="theControls">Controls list.</param>
+        /// <param name="cursor">Cursor to set.</param>
         void SetCursorRecursive(IEnumerable theControls, Cursor cursor)
         {
             foreach (Control control in theControls)
@@ -575,11 +574,13 @@ namespace ShaderCreationTool
                 }
             }
         }
-        private double DegreeToRadian(double angle)
+
+        private double DegToRad(double angle)
         {
             return Math.PI * angle / 180.0;
         }
-        private double RadianToDegree(double angle)
+
+        private double RadToDeg(double angle)
         {
             return angle * (180.0 / Math.PI);
         }
