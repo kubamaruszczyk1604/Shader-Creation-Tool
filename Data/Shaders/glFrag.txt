@@ -13,13 +13,31 @@ in float oTime;
 
 out vec4 FragColour;
 
-uniform vec4            SCT_UNIFORM_ColourIn_0;
+uniform sampler2D       SCT_TEXTURE2D_0;
 
+void VisualizeNormal(vec3 Norm, inout vec4 FinalOut)
+{
+ FinalOut = vec4 (Norm,1);
+}
+void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
+{
+ FinalColour = texture2D(Texture,Texcoord); 
+}
+void AddV4s(vec4 VecA, vec4 VecB, inout vec4 FinalColour)
+{
+ FinalColour = VecA+VecB; 
+}
 
 
  void main()
 {
 
-FragColour = SCT_UNIFORM_ColourIn_0;
+vec4  OUT_FinalOut0_NF_VisualizeNormal_0_14;
+VisualizeNormal(oNormal_InvWorldSpace, OUT_FinalOut0_NF_VisualizeNormal_0_14);
+vec4  OUT_FinalColour0_NF_Sampler2D_1_35;
+Sampler2D(SCT_TEXTURE2D_0, oUVs, OUT_FinalColour0_NF_Sampler2D_1_35);
+vec4  OUT_FinalColour0_NF_AddV4s_2_33;
+AddV4s(OUT_FinalColour0_NF_Sampler2D_1_35, OUT_FinalOut0_NF_VisualizeNormal_0_14, OUT_FinalColour0_NF_AddV4s_2_33);
+FragColour = OUT_FinalColour0_NF_AddV4s_2_33;
 
 }

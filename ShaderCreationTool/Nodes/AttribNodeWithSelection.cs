@@ -284,6 +284,13 @@ namespace ShaderCreationTool
             { m_Name = AttribVariableStrings.O_NORMAL_VAR_NAMES[cb.SelectedIndex]; }
             else if (m_NodeType == NodeType.AttribInput_CameraPos)
             { m_Name = AttribVariableStrings.O_CAMERA_POS_VAR_NAMES[cb.SelectedIndex]; }
+
+
+            foreach (Connector c in m_OutputConnectors)
+            {
+                if (!c.Connected) continue;
+                c.ParentConnection.RefreshoutVarName();
+            }
         }
 
     }

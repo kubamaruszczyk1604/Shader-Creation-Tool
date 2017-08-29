@@ -61,21 +61,19 @@
    <Code> FinalColour = SampleTexture(Texture,Texcoord); </Code>
   </Node>
 
-       <Node Name="ExampleFunctionNode_TEST">
+       <Node Name="VisualizeNormal">
   
     <Input_Variables>
-      <Variable Name="just" Var_Type="Float4">
+      <Variable Name="Norm" Var_Type="Float3">
 	  </Variable>
     </Input_Variables>
 	
     <Output_Variables>
-      <Variable Name="FinalOut1" Var_Type="Float4">
-      </Variable>
-	   <Variable Name="FinalOut2" Var_Type="Float4">
+      <Variable Name="FinalOut" Var_Type="Float4">
       </Variable>
     </Output_Variables>
 	
-   <Code>//put you code here </Code>
+   <Code> FinalOut = VECTOR4 (Norm,1);</Code>
   </Node>
   
  
