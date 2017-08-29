@@ -41,7 +41,35 @@ namespace ShaderCreationTool
 
         private ICodeParser m_CodeParser;
 
-        private void MainUpdate()
+        public MainWindow()
+        {
+            InitializeComponent();
+            this.DoubleBuffered = true;
+            m_IsConnecting = false;
+            m_MovablePreviewPanel = new MovableObject(PreviewAreaPanel);
+            m_MovablePreviewPanel.AddObjectMovedEventListener(UpdateOnObjectMoved);
+            SCTConsole.Instance.Show();
+            m_Nodes = new List<ISCTNode>();
+            CreateTargetNode(m_Nodes);
+            m_HighlightedConnectorList = new List<Connector>();
+            NodeInstantiator.SetupInstantiator(TransparentNodePanel);
+            NodeInstantiator.AddOnObjectMovedCallback(UpdateOnObjectMoved);
+            NodeInstantiator.AddOnPlaceListener(OnPlaceNode);
+            Bridge.AddWndProcUpdateCallback(WinformUpdate);
+            Bridge.AddWndProcMessageCallback(OnMessage);
+
+            m_ZoomController = new ZoomController(ZoomInButton, ZoomOutButton);
+
+            m_CodeParser = new CodeParserGLSL();
+
+        }
+
+        //////////////////////////// WINAPI CALLBACKS ///////////////////
+
+       /// <summary>
+       /// Form Update() method called once per frame.
+       /// </summary>
+        private void WinformUpdate()
         {
             //canncel connection request
             if (MouseButtons == MouseButtons.Right)
@@ -54,6 +82,14 @@ namespace ShaderCreationTool
             }
         }
 
+
+        /// <summary>
+        /// Form OnMessage() method called on any user input (mouse, keyboard) related to the form
+        /// and its childreen 
+        /// </summary>
+        /// <param name="message">Winapi message</param>
+        /// <param name="wParam">Winapi wParam</param>
+        /// <param name="lParam">Winapi lParam</param>
         private void OnMessage(ulong message, ulong wParam, ulong lParam)
         {
             label_ConnectionCount.Text = ConnectionManager.ConnectionCount.ToString();
@@ -66,29 +102,10 @@ namespace ShaderCreationTool
             }
         }
 
-        public MainWindow()
-        {
-            InitializeComponent();
-            this.DoubleBuffered = true;
-            m_IsConnecting = false;
-            m_MovablePreviewPanel = new MovableObject(PreviewAreaPanel);
-            m_MovablePreviewPanel.AddObjectMovedEventListener(UpdateOnObjectMoved);      
-            SCTConsole.Instance.Show();
-            m_Nodes = new List<ISCTNode>();
-            CreateAndSetupFrameNode(m_Nodes);
-            m_HighlightedConnectorList = new List<Connector>();
-            NodeInstantiator.SetupInstantiator(TransparentNodePanel);
-            NodeInstantiator.AddOnObjectMovedCallback(UpdateOnObjectMoved);
-            NodeInstantiator.AddOnPlaceListener(OnPlaceNode);
-            Bridge.AddWndProcUpdateCallback(MainUpdate);
-            Bridge.AddWndProcMessageCallback(OnMessage);
-
-            m_ZoomController = new ZoomController(ZoomInButton, ZoomOutButton);
-
-            m_CodeParser = new CodeParserGLSL();
-            
-        }
-
+        /// <summary>
+        /// Initializes and starts C++ renderer.
+        /// </summary>
+        /// <param name="delayMs">Delay in miliseconds.</param>
         private async void StartRenderer(int delayMs)
         {
            // AllocConsole();
@@ -97,7 +114,11 @@ namespace ShaderCreationTool
             Bridge.StartRenderer(pictureBox1.Width, pictureBox1.Height, pointer);
         }
 
-        private void CreateAndSetupFrameNode(List<ISCTNode> nodes)
+        /// <summary>
+        /// Creates target "FrameBuffer" node. This node is "non closable" and will be always present.
+        /// </summary>
+        /// <param name="nodes">Main list of nodes.</param>
+        private void CreateTargetNode(List<ISCTNode> nodes)
         {
             FrameBufferNode fbn = new FrameBufferNode(FrameBufferWindow);
             fbn.AddOnBeginConnectionCallback(OnConnectionBegin);
@@ -107,10 +128,33 @@ namespace ShaderCreationTool
         }
 
     
-        
+  
+        // SCT METHODS
 
-        // USED METHODS
+        /// <summary>
+        /// Creates shaders from  network of nodes and connections, builds them and reloads renderer.
+        /// </summary>
+        private void BuildShaders()
+        {
+            string vertStat;
+            string vertCode;
+            m_CodeParser.TranslateNetworkVertex(null, null, out vertCode, out vertStat);
 
+            string fragStatus;
+            string fragCode;
+            m_CodeParser.TranslateNetworkFragment(m_Nodes, ConnectionManager.ConnectionList, out fragCode, out fragStatus);
+
+            TextFileReaderWriter.Save(VERT_PATH, vertCode);
+            TextFileReaderWriter.Save(FRAG_PATH, fragCode);
+            SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
+            Thread.Sleep(100);
+            Bridge.ReloadScene();
+        }
+
+        /// <summary>
+        /// Starts the process of variable node addition
+        /// </summary>
+        /// <param name="input">true - user uniform node, false - attrib node</param>
         private void Start_AddVariableNode(bool input)
         {
             var form = new SelectNodeForm(input);
@@ -128,7 +172,9 @@ namespace ShaderCreationTool
             form.Dispose();
         }
 
-
+        /// <summary>
+        /// Starts proces of function node addition.
+        /// </summary>
         private void Start_AddFunctionNode()
         {
             var form = new SelectNodeForm(NODES_PATH);
@@ -145,9 +191,10 @@ namespace ShaderCreationTool
             }
             form.Dispose();
         }
-
-        
-
+   
+        /// <summary>
+        /// Causes application to exit "Is Connecting" mode and return to normal mode. 
+        /// </summary>
         private void CancelIsConnecting()
         {
             if (!m_IsConnecting) return;
@@ -168,6 +215,7 @@ namespace ShaderCreationTool
             m_HighlightedConnectorList.Clear();
         }
 
+        // Method cancel new node placement causes return to "normal" mode.
         private void CancelNewNode()
         {
             NodeInstantiator.CancelInstantiate();
@@ -176,6 +224,10 @@ namespace ShaderCreationTool
             Connector.UnlockAllConnectors();
         }
 
+        /// <summary>
+        /// Method passed as a callback to all movable objects.
+        /// Causes EditAreaPanel refresh.
+        /// </summary>
         private void UpdateOnObjectMoved()
         {
             if (m_IsConnecting) m_TempLine.Invalidate();
@@ -184,6 +236,9 @@ namespace ShaderCreationTool
             EditAreaPanel.Update();
         }
 
+        /// <summary>
+        /// Brings all non-movable buttons and panels to front (so the nodes can never be on top of them)
+        /// </summary>
         private void BringStaticObjectsToFront()
         {
             AddGroupBox.BringToFront();
@@ -193,13 +248,20 @@ namespace ShaderCreationTool
 
         ////////////////////////////  CALLBACKS   /////////////////////////////
 
-        // Method Called when "not connected" connector is clicked
+        /// <summary>
+        ///  Method Called when "not connected" connector is clicked
+        /// </summary>
+        /// <param name="sender">Connector on which user clicked.</param>
+        /// <returns>true - connector is the "source connector"(first one clicked),
+        ///  false - connector is the "target connector" )</returns>
         private bool OnConnectionBegin(Connector sender)
         {
+            
             // If the program is in "connecting state" already:
             // ..this click was on targer connector - make new connecion
             if (m_IsConnecting)
             {
+                // FINALIZE CONNECTION CREATION REQUEST
                 if (!Connection.CheckConnectionValidity(Connector.GetPreviouslyClickedConnector(), sender)) return false;
                 var tempCon = new Connection(Connector.GetPreviouslyClickedConnector(), sender, EditAreaPanel);
                 ConnectionManager.AddConnecion(tempCon);
@@ -207,8 +269,7 @@ namespace ShaderCreationTool
                 return false;
             }
 
-            //Connection open request - first connector clicked
-            
+            //CONNECTION OPEN REQUEST - first connector clicked
             SCTConsole.Instance.PrintDebugLine("Connector on connection begin.");
             m_TempLine = new SimpleZLine(EditAreaPanel);
             m_TempLineOrgin = EditAreaPanel.PointToClient(System.Windows.Forms.Cursor.Position);
@@ -248,12 +309,21 @@ namespace ShaderCreationTool
             return true;
         }
 
+
+        /// <summary>
+        /// Called on disconnect request.
+        /// </summary>
+        /// <param name="sender">Connector requesting "dissconnect" action.</param>
         private void OnConnectionBreak(Connector sender)
         {
             SCTConsole.Instance.PrintDebugLine("Connector on connection end");
             ConnectionManager.RemoveConnection(sender.ParentConnection);
         }
 
+        /// <summary>
+        /// Called when node button "X"(close) is pressed.
+        /// </summary>
+        /// <param name="sender">Node to close.</param>
         private void OnNodeClose(ISCTNode sender)
         {
             SCTConsole.Instance.PrintDebugLine("Node Close request..");
@@ -276,11 +346,23 @@ namespace ShaderCreationTool
             }
         }
 
+        /// <summary>
+        /// Callback method called when user is is incorrect.
+        /// </summary>
+        /// <param name="errorDescription">string description of an error</param>
+        /// <param name="sender">Input node with incorrect input from user</param>
         private void OnInputError(string errorDescription,ISCTNode sender)
         {
             MessageBox.Show(errorDescription, "Invalid input",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+
         private IAttribNode anode;
+        /// <summary>
+        /// Method finalizes nodes placement. 
+        /// Called wyhen user conform positon of the new node.
+        /// </summary>
+        /// <param name="location">Where to place the node on EditAreaPanel.</param>
+        /// <param name="type">Type of node to be created.</param>
         private void OnPlaceNode(Point location, NodeType type)
         {
             SCTConsole.Instance.PrintDebugLine("OnPlaceNode()");
@@ -383,6 +465,9 @@ namespace ShaderCreationTool
         private void EditAreaPanel_Click(object sender, EventArgs e)
         {
             fileToolStripMenuItem.HideDropDown();
+            editToolStripMenuItem.HideDropDown();
+            buildToolStripMenuItem.HideDropDown();
+            consoleToolStripMenuItem.HideDropDown();
             EditAreaPanel.Focus();
         }
 
@@ -400,6 +485,7 @@ namespace ShaderCreationTool
         private void EditAreaPanel_Scroll(object sender, ScrollEventArgs e)
         {
             EditAreaPanel.Invalidate(false);
+            EditAreaPanel.Update();
         }
 
         int lastMouseX = 0;
@@ -437,34 +523,9 @@ namespace ShaderCreationTool
             Start_AddVariableNode(false);
         }
 
-  
-
-
         private void button44_Click(object sender, EventArgs e)
         {
-            //for (int i = 0; i < ConnectionManager.ConnectionCount; ++i)
-            //{
-            //    ConnectionManager.GetConnection(i).TestKillLine();
-            //}
-
-            string fragStatus;
-            string fragCode;
-        
-
-            string vertStat;
-            string vertCode;
-            m_CodeParser.TranslateNetworkVertex(null, null, out vertCode, out vertStat);
-            m_CodeParser.TranslateNetworkFragment(m_Nodes, ConnectionManager.ConnectionList, out fragCode, out fragStatus);
-
-            //SCTConsole.Instance.PrintLine("VERTEX SHADER: \r\n" + vertCode);
-            //SCTConsole.Instance.PrintLine("FRAGMENT SHADER: \r\n" + fragCode);
-            TextFileReaderWriter.Save(VERT_PATH, vertCode);
-            TextFileReaderWriter.Save(FRAG_PATH, fragCode);
-            SCTConsole.Instance.PrintDebugLine(TextFileReaderWriter.LastError);
-            Thread.Sleep(100);
-            Bridge.ReloadScene();
-            //
-
+            BuildShaders();
         }
 
      
@@ -491,6 +552,14 @@ namespace ShaderCreationTool
             Start_AddVariableNode(false);
         }
 
+        private void CompileAndRunMenuItem_Click(object sender, EventArgs e)
+        {
+            BuildShaders();
+        }
+        private void RunMenuItem1_Click(object sender, EventArgs e)
+        {
+            Bridge.ReloadScene();
+        }
         /////////////////////////////// UTIL  ////////////////////////
         void SetCursorRecursive(IEnumerable theControls, Cursor cursor)
         {
@@ -517,17 +586,10 @@ namespace ShaderCreationTool
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //SCTConsole.Instance.PrintLine("\r\n\r\n");
-            //List<Connection> inConnections = ConnectionManager.GetInputConnections();
-            //foreach(Connection c in inConnections)
-            //{
-            //    SCTConsole.Instance.PrintLine("\r\n" + c.Info);
-            //}
-
             SCTConsole.Instance.PrintLine("Name of the variable: " + anode.GetVariableName());
         }
 
-      
+       
     }
 
 

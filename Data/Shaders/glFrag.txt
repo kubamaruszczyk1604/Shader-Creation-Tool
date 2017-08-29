@@ -24,8 +24,8 @@ void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
  void main()
 {
 
-vec4  OUT_FinalColour0_NF_Sampler2D_0_30;
-Sampler2D(SCT_TEXTURE2D_0, oUVs, OUT_FinalColour0_NF_Sampler2D_0_30);
-FragColour = OUT_FinalColour0_NF_Sampler2D_0_30;
+vec4  OUT_FinalColour0_NF_Sampler2D_0_28;
+Sampler2D(SCT_TEXTURE2D_0, oUVs, OUT_FinalColour0_NF_Sampler2D_0_28);
+FragColour = OUT_FinalColour0_NF_Sampler2D_0_28;
 
 }
