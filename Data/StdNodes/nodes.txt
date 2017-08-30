@@ -130,7 +130,7 @@
 	
    <Code> 
    
-   FinalOut = VECTOR4 (Vec2in.x,Vec2in.y,1);
+   FinalOut = VECTOR4 (Vec2in.x,Vec2in.y,1,1);
    </Code>
   </Node>
   

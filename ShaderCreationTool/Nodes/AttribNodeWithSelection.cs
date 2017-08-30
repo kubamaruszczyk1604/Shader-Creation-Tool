@@ -74,7 +74,7 @@ namespace ShaderCreationTool
             }
             else if (title.Name.Contains("camera"))
             {
-                m_VarType = ShaderVariableType.Vector4;
+                m_VarType = ShaderVariableType.Vector3;
                 m_NodeType = NodeType.AttribInput_CameraPos;
             }
             else

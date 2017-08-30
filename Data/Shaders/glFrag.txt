@@ -13,15 +13,12 @@ in float oTime;
 
 out vec4 FragColour;
 
-uniform float           kj;
-uniform float           SCT_UNIFORM_FLOATIn_1;
-uniform float           SCT_UNIFORM_FLOATIn_2;
-uniform float           SCT_UNIFORM_FLOATIn_3;
 
-void FloatX4_TO_Vec4(float f1, float f2, float f3, float f4, inout vec4 FinalOut)
+void Vec_3TO4(vec3 Vec3in, inout vec4 FinalOut)
 {
+ 
    
-   FinalOut = vec4 (f1,f2,f3,f4);
+   FinalOut = vec4 (Vec3in,1);
    
 }
 
@@ -29,8 +26,8 @@ void FloatX4_TO_Vec4(float f1, float f2, float f3, float f4, inout vec4 FinalOut
  void main()
 {
 
-vec4  OUT_FinalOut0_NF_FloatX4_TO_Vec4_0_05;
-FloatX4_TO_Vec4(kj, SCT_UNIFORM_FLOATIn_1, SCT_UNIFORM_FLOATIn_2, SCT_UNIFORM_FLOATIn_3, OUT_FinalOut0_NF_FloatX4_TO_Vec4_0_05);
-FragColour = OUT_FinalOut0_NF_FloatX4_TO_Vec4_0_05;
+vec4  OUT_FinalOut0_NF_Vec_3TO4_0_03;
+Vec_3TO4(oCamera_WorldSpace, OUT_FinalOut0_NF_Vec_3TO4_0_03);
+FragColour = OUT_FinalOut0_NF_Vec_3TO4_0_03;
 
 }

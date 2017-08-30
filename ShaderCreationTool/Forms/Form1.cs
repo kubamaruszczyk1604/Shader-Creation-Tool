@@ -131,6 +131,8 @@ namespace ShaderCreationTool
         /// </summary>
         private void BuildShaders()
         {
+            SCTConsole.Instance.Show();
+            SCTConsole.Instance.BringToFront();
             SCTConsole.Instance.PrintLine("\r\n\r\n***** CREATE AND BUILD SHADERS  *****\r\n");
             string vertStat;
             string vertCode;
@@ -155,6 +157,7 @@ namespace ShaderCreationTool
                 "OK": "FAILED\r\n" + TextFileReaderWriter.LastError);
 
             Bridge.ReloadScene();
+            Bridge.ClearLastCompilerMessage();
             SCTConsole.Instance.PrintLine(Bridge.GetLastCompilerMessage());
         }
 

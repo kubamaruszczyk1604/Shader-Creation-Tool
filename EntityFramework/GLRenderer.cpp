@@ -332,7 +332,7 @@ namespace KLM_FRAMEWORK
 		Mat4 MVP = s_CurrentCamera->GetProjectionMatrix(s_ScreenWidth, s_ScreenHeight) * worldView;
 
 
-
+		PrintVec(cameraPos);
 
 
 		//Matrices
