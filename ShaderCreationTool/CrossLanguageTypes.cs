@@ -31,6 +31,7 @@ enum
 
 public delegate void OnWndProcUpdate();
 public delegate void OnWndProcMessage(SUINT message, SUINT wParam, SUINT lParam);
+public delegate void OnSceneReload();
 
 //#if CSharp
 //}

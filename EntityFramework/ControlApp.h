@@ -7,6 +7,7 @@
 
 using WndUpdateLoopCallback = void(*)();
 using WndMessageLoopCallback = void(*)(SUINT message, SUINT wParam, SUINT lParam);
+using SceneReloadedCallback = void(*)();
 
 class ControlApp
 {
@@ -18,6 +19,7 @@ private:
 	static float s_TimeScale;
 	static WndUpdateLoopCallback s_UpdateLoopCallback;
 	static WndMessageLoopCallback s_MessageLoopCallback;
+	static SceneReloadedCallback s_SceneReloadedCallback;
 	static Scene* s_CurrentScene;
 	
 
@@ -33,6 +35,7 @@ public:
 	static void SetShaderTextureVarable(ShaderTextureVariable^ variable);
 	static void SetUpdateCallback(WndUpdateLoopCallback callback);
 	static void SetMessageCallback(WndMessageLoopCallback callback);
+	static void SetSceneReloadedCallback(SceneReloadedCallback callback);
 
 	static void RotateObject(float x, float y, float z);
 	static void Zoom(float amount);

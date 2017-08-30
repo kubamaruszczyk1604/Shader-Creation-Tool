@@ -196,7 +196,7 @@ namespace ShaderCreationTool
         private bool TranslateNodeListIntoFunctions(List<SCTFunctionNode> nodes, out string functionCode, out string status)
         {
             m_Signatures.Clear();
-            functionCode = "";
+            functionCode = "// SCT Nodes Translated as functions.\r\n";
             status = "";
             bool allOk = true;
             foreach (SCTFunctionNode node in nodes)
@@ -205,7 +205,7 @@ namespace ShaderCreationTool
                 string tempStatus;
                 if (TranslateNodeIntoFunction(node, out tempFunctionCode, out tempStatus))
                 {
-                    functionCode += tempFunctionCode;
+                    functionCode += tempFunctionCode + "\r\n";
                 }
                 else
                 {
@@ -251,7 +251,7 @@ namespace ShaderCreationTool
 
         private bool TranslateInputVariables(List<IInputNode> inputNodes, out string declarationsCode, out string status)
         {
-            declarationsCode = "";
+            declarationsCode = "//Uniform nodes translated as uniform variables.\r\n";
             status = "Detected user uniform variables:\r\n";
             const int maxTypeCharCount = 15;
             bool ok = true;
@@ -269,7 +269,7 @@ namespace ShaderCreationTool
 
         private string ConstructFunctionCall(SCTFunctionNode node)
         {
-            string output = string.Empty;
+            string output = "//SCT CALL: " + node.NodeDescription.Name + "\r\n";
 
             List<Connector> outConnectors = node.GetAllConnectors(ConnectionDirection.Out);
             List<string> outVarParameters = new List<string>();
@@ -283,16 +283,16 @@ namespace ShaderCreationTool
                     string assembled = TranslateVariableType(c.VariableType) + "  " + 
                         c.ParentConnection.OutVariableName + ";\r\n";
                     outVarParameters.Add(c.ParentConnection.OutVariableName);// add to function call list
-                    output += assembled; // add to forward declarations
+                    output += "   " + assembled; // add to forward declarations
                 }
                 else
                 {
                     // add to function call list
-                    outVarParameters.Add("dummyOut" + TranslateVariableType(c.VariableType).ToUpper());
+                    outVarParameters.Add("    dummyOut" + TranslateVariableType(c.VariableType).ToUpper());
                 }
             }
 
-            output += node.NodeDescription.Name + "(";
+            output += "   " + node.NodeDescription.Name + "(";
             //place input variables inside function call
             List<Connector> inConnectors = node.GetAllConnectors(ConnectionDirection.In);
             foreach (Connector c in inConnectors)
@@ -305,8 +305,6 @@ namespace ShaderCreationTool
 
                 else // otherwise use default value
                     output += ProcessDefaultInput(c) + ", ";
-
-                
             }
 
             //place output variables inside function call
@@ -315,7 +313,7 @@ namespace ShaderCreationTool
                 output += outVarParameters[i];
                 if (i < outVarParameters.Count - 1) output += ", ";
             }
-            output += ");";
+            output += ");\r\n";
 
             return output;
         }

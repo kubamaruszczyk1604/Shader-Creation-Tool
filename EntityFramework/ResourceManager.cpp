@@ -87,6 +87,7 @@ namespace KLM_FRAMEWORK
 
 	void ResourceManager::ReleaseShaders()
 	{
+		ClearCompilerMessages();
 		for (auto it = m_MaterialsMap.begin(); it != m_MaterialsMap.end(); ++it)
 		{
 			if (it->second != nullptr)
@@ -116,7 +117,7 @@ namespace KLM_FRAMEWORK
 			Texture* specTex = ResourceManager::LoadTexture(desc.SpecularMap, desc.SpecularWrapMode);
 			Texture* normTex = ResourceManager::LoadTexture(desc.NormalMap, desc.NormalWrapMode);
 
-
+			
 			Shader* m_VS_TempPtr = 
 				ResourceManager::CreateShader(ShaderType::VERTEX, desc.DXShaderFile, desc.VertexShader);
 			Shader* m_PS_TempPtr =  

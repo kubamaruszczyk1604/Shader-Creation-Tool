@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entities>
   <!--Shader Creation Tool - node config scripting file.-->
-  <Node Name="AddV4s">
+  <Node Name="AddV4">
   
     <Input_Variables>
       <Variable Name="VecA" Var_Type="Float4"> 
 	  DEFAULT = (0,0,0,0) 
 	  </Variable>
       <Variable Name="VecB" Var_Type="Float4">
+	   DEFAULT = (0,0,0,0) 
+      </Variable>
+	   <Variable Name="VecC" Var_Type="Float4">
 	   DEFAULT = (0,0,0,0) 
       </Variable>
     </Input_Variables>
@@ -18,19 +21,22 @@
     </Output_Variables>
 	
 	
-   <Code> FinalColour = VecA+VecB; </Code>
+   <Code> FinalColour = VecA+VecB+VecC; </Code>
   </Node>
  
 
  
   
-    <Node Name="MultiplyV4xV4">
+    <Node Name="MultiplyV4">
   
     <Input_Variables>
       <Variable Name="VecA" Var_Type="Float4">
 	  DEFAULT = (1,1,1,1)
 	  </Variable>
       <Variable Name="VecB" Var_Type="Float4">
+	   DEFAULT = (1,1,1,1)
+      </Variable>
+	  <Variable Name="VecC" Var_Type="Float4">
 	   DEFAULT = (1,1,1,1)
       </Variable>
     </Input_Variables>
@@ -40,28 +46,13 @@
       </Variable>
     </Output_Variables>
 	
-   <Code> FinalColour = VecA*VecB; </Code> 
+   <Code> FinalColour = VecA*VecB*VecC; </Code> 
   </Node>
   
   
-      <Node Name="Sampler2D">
-  
-    <Input_Variables>
-      <Variable Name="Texture" Var_Type="Texture2D">
-	  </Variable>
-      <Variable Name="Texcoord" Var_Type="Float2">
-      </Variable>
-    </Input_Variables>
-	
-    <Output_Variables>
-      <Variable Name="FinalColour" Var_Type="Float4">
-      </Variable>
-    </Output_Variables>
-	
-   <Code> FinalColour = SampleTexture(Texture,Texcoord); </Code>
-  </Node>
 
-       <Node Name="VisualizeNormal">
+
+  <Node Name="VisualizeNormal">
   
     <Input_Variables>
       <Variable Name="Norm" Var_Type="Float3">
@@ -109,10 +100,7 @@
       </Variable>
     </Output_Variables>
 	
-   <Code> 
-   
-   FinalOut = VECTOR4 (Vec3in,1);
-   </Code>
+   <Code>   FinalOut = VECTOR4 (Vec3in,1); </Code>
   </Node>
   
   
@@ -128,10 +116,7 @@
       </Variable>
     </Output_Variables>
 	
-   <Code> 
-   
-   FinalOut = VECTOR4 (Vec2in.x,Vec2in.y,1,1);
-   </Code>
+   <Code> FinalOut = VECTOR4 (Vec2in.x,Vec2in.y,1,1); </Code>
   </Node>
   
   
@@ -152,9 +137,23 @@
       <Variable Name="FinalOut" Var_Type="Float4">
       </Variable>
     </Output_Variables>	
-   <Code>   
-   FinalOut = VECTOR4 (f1,f2,f3,f4);
-   </Code>
+   <Code> FinalOut = VECTOR4 (f1,f2,f3,f4); </Code>
+  </Node>
+  
+  <Node Name="Sampler2D">
+    <Input_Variables>
+      <Variable Name="Texture" Var_Type="Texture2D">
+	  </Variable>
+      <Variable Name="Texcoord" Var_Type="Float2">
+      </Variable>
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="FinalColour" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>
+	
+   <Code> FinalColour = SampleTexture(Texture,Texcoord); </Code>
   </Node>
   
   <Node Name="UVScroll"> 
@@ -169,8 +168,58 @@
       <Variable Name="UVOut" Var_Type="Float2">
       </Variable>
     </Output_Variables>	
+   <Code>  UVOut = VECTOR2 (UVIn.x+Time, UVIn.y);</Code>
+  </Node>
+  
+   <Node Name="SPLIT_V2"> 
+    <Input_Variables>
+      <Variable Name="In" Var_Type="Float2">
+	  </Variable>
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="Out1" Var_Type="Float2">
+      </Variable>
+	   <Variable Name="Out2" Var_Type="Float2">
+      </Variable>
+    </Output_Variables>	
    <Code>   
-   UVOut = VECTOR2 (UVIn.x+Time, UVIn.y);
+    Out1 = In;
+    Out2 = In;
+   </Code>
+  </Node>
+  
+  <Node Name="BW_FILTER"> 
+    <Input_Variables>
+      <Variable Name="ColourIn" Var_Type="Float4">
+	  </Variable>
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="ColourBW" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>	
+   <Code>
+   float avg = (ColourIn.x + ColourIn.y + ColourIn.z)/3.0;
+   ColourBW = VECTOR4 (avg,avg,avg,ColourIn.a);
+   </Code>
+  </Node>
+  
+   <Node Name="PASS_FILTER"> 
+    <Input_Variables>
+      <Variable Name="ColourIn" Var_Type="Float4">
+	  </Variable>
+	  <Variable Name="ColourPass" Var_Type="Float4">
+	  </Variable>
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="ColourOUT" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>	
+   <Code>
+   float avg = ((ColourIn.x + ColourIn.y + ColourIn.z)/3.0) ;
+   ColourOUT = VECTOR4 (avg,avg,avg,ColourIn.a)* ColourPass;
    </Code>
   </Node>
   

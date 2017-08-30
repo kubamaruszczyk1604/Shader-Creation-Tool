@@ -17,6 +17,7 @@ Stopwatch ControlApp::s_FrameTimer;
 
 WndUpdateLoopCallback ControlApp::s_UpdateLoopCallback{ nullptr };
 WndMessageLoopCallback ControlApp::s_MessageLoopCallback{ nullptr };
+SceneReloadedCallback ControlApp::s_SceneReloadedCallback{ nullptr };
 
 
 void ControlApp::Create(int width, int height, System::IntPtr handle)
@@ -59,6 +60,7 @@ void ControlApp::Run()
 		{
 			SceneManager::Load(s_CurrentScene);
 			s_ReloadRequest = false;
+			if (s_SceneReloadedCallback) s_SceneReloadedCallback();
 		}
 		s_FrameTimer.Start();
 	}
@@ -98,6 +100,11 @@ void ControlApp::SetUpdateCallback(WndUpdateLoopCallback callback)
 void ControlApp::SetMessageCallback(WndMessageLoopCallback callback)
 {
 	s_MessageLoopCallback = callback;
+}
+
+void ControlApp::SetSceneReloadedCallback(SceneReloadedCallback callback)
+{
+	s_SceneReloadedCallback = callback;
 }
 
 void ControlApp::RotateObject(float x, float y, float z)

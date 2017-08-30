@@ -53,6 +53,7 @@ namespace ShaderCreationTool
             NodeInstantiator.AddOnPlaceListener(OnPlaceNode);
             Bridge.AddWndProcUpdateCallback(WinformUpdate);
             Bridge.AddWndProcMessageCallback(OnMessage);
+            Bridge.AddOnSceneReloadCallback(OnSceneReloaded);
 
             m_ZoomController = new ZoomController(ZoomInButton, ZoomOutButton);
 
@@ -152,13 +153,15 @@ namespace ShaderCreationTool
             TextFileReaderWriter.Save(FRAG_PATH, fragCode);
 
           
-            Thread.Sleep(100);
+            Thread.Sleep(50);
             SCTConsole.Instance.PrintLine((TextFileReaderWriter.LastError == string.Empty)?
                 "OK": "FAILED\r\n" + TextFileReaderWriter.LastError);
 
+      
             Bridge.ReloadScene();
-            Bridge.ClearLastCompilerMessage();
-            SCTConsole.Instance.PrintLine(Bridge.GetLastCompilerMessage());
+           
+            
+
         }
 
         /// <summary>
@@ -257,6 +260,12 @@ namespace ShaderCreationTool
 
 
         ////////////////////////////  CALLBACKS   /////////////////////////////
+
+        private void OnSceneReloaded()
+        {
+            SCTConsole.Instance.PrintLine(Bridge.GetLastCompilerMessage());
+        }
+
 
         /// <summary>
         ///  Method Called when "not connected" connector is clicked

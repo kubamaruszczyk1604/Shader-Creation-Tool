@@ -12,6 +12,11 @@ void _MessageCallbackMethod(SUINT message, SUINT wParam, SUINT lParam)
 	Bridge::CallMessageDelegate(message, wParam, lParam);
 }
 
+void _SceneReloadCallback()
+{
+	Bridge::CallOnSceneReloadDelegate();
+}
+
 
 int Bridge::StartRenderer(int width, int height, System::IntPtr handle)
 {
@@ -24,6 +29,7 @@ int Bridge::StartRenderer(int width, int height, System::IntPtr handle)
 	ControlApp::Create(width, height, handle);
 	ControlApp::SetUpdateCallback(_UpdateCallbackMethod);
 	ControlApp::SetMessageCallback(_MessageCallbackMethod);
+	ControlApp::SetSceneReloadedCallback(_SceneReloadCallback);
 	SceneManager::Load(new ExampleScene());
 	ControlApp::Run();
 
@@ -63,6 +69,11 @@ void Bridge::AddWndProcMessageCallback(OnWndProcMessage ^ dlg)
 	s_OnMessageDelegate += dlg;
 }
 
+void Bridge::AddOnSceneReloadCallback(OnSceneReload ^ dlg)
+{
+	s_OnSceneReloadDelegate += dlg;
+}
+
 System::String ^ Bridge::GetLastCompilerMessage()
 {
 	return ResourceManagerWrapper::GetLastCompileMessage();
@@ -93,4 +104,10 @@ void Bridge::CallMessageDelegate(SUINT message, SUINT wParam, SUINT lParam)
 {
 	if(s_OnMessageDelegate)
 	s_OnMessageDelegate(message, wParam, lParam);
+}
+
+void Bridge::CallOnSceneReloadDelegate()
+{
+	if (s_OnSceneReloadDelegate)
+		s_OnSceneReloadDelegate();
 }
