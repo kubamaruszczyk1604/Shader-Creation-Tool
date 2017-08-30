@@ -92,7 +92,7 @@
 	
    <Code> 
    FLOAT NdotL = max( dot(normalize(normal),normalize(lightDir)), 0.0);
-   FinalOut = VECTOR4 (1,1,1,0)*NdotL;
+   FinalOut = VECTOR4 (1,1,1,1)*NdotL;
    </Code>
   </Node>
   

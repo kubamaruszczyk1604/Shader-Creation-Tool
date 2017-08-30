@@ -149,7 +149,14 @@ namespace ShaderCreationTool
 
             s_InstanceCounter++;
             ShowNode(1);
+            if(m_VarType == ShaderVariableType.Vector4)
             m_ShaderVariable = new ShaderVectorVariable(0, 0, 0, 1, m_Name);
+            else if(m_VarType == ShaderVariableType.Vector3)
+                m_ShaderVariable = new ShaderVectorVariable(0, 0, 0, m_Name);
+            else if (m_VarType == ShaderVariableType.Vector2)
+                m_ShaderVariable = new ShaderVectorVariable(0, 0, m_Name);
+            else if (m_VarType == ShaderVariableType.Single)
+                m_ShaderVariable = new ShaderVectorVariable(0.0f, m_Name);
             Bridge.SetVariable(m_ShaderVariable);
             RefreshShaderVariable();
         }
