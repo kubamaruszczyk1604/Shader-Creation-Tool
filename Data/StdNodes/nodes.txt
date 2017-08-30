@@ -162,13 +162,16 @@
 	  </Variable>
       <Variable Name="UVIn" Var_Type="Float2">
 	  </Variable>
+	   <Variable Name="Speed" Var_Type="Float">
+	   DEFAULT = 1
+	  </Variable>
     </Input_Variables>
 	
     <Output_Variables>
       <Variable Name="UVOut" Var_Type="Float2">
       </Variable>
     </Output_Variables>	
-   <Code>  UVOut = VECTOR2 (UVIn.x+Time, UVIn.y);</Code>
+   <Code>  UVOut = VECTOR2 (UVIn.x+Time*Speed, UVIn.y);</Code>
   </Node>
   
    <Node Name="SPLIT_V2"> 

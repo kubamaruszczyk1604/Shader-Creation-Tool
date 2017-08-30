@@ -323,7 +323,7 @@ namespace ShaderCreationTool
         {
             if (!c.HasShaderVariableDescription) return  "no_description";
             string defaultValInfo = c.UsedShaderVariableDescription.AdditionalInfo;
-            string ret = Regex.Replace(defaultValInfo, @"\s+", "");
+            string ret = Regex.Replace(defaultValInfo, @"\s+", "");//remove all spaces
             if (ret == string.Empty) return "no_default_value_provided";
             if (!ret.Contains("DEFAULT=")) return "DEFAULT_keyword_is_missing";
             ret = Regex.Replace(ret, "DEFAULT=", "");
@@ -333,7 +333,7 @@ namespace ShaderCreationTool
                 return "value_is_incorrect";
             }
             string type = TranslateVariableType(c.UsedShaderVariableDescription.Type);
-            ret = type + " " + ret;
+            if(type != "float") ret = type + " " + ret;
             return ret;
         }
 
