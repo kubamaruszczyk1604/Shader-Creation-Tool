@@ -97,7 +97,7 @@
   </Node>
   
   
-     <Node Name="Vec_4TO3">
+     <Node Name="Vec_3TO4">
   
     <Input_Variables>
       <Variable Name="Vec3in" Var_Type="Float3">
@@ -115,5 +115,46 @@
    </Code>
   </Node>
   
+  
+  <Node Name="Vec_2TO4">
+  
+    <Input_Variables>
+      <Variable Name="Vec2in" Var_Type="Float2">
+	  </Variable>
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="FinalOut" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>
+	
+   <Code> 
+   
+   FinalOut = VECTOR4 (Vec2in.x,Vec2in.y,1);
+   </Code>
+  </Node>
+  
+  
+  
+     <Node Name="FloatX4_TO_Vec4"> 
+    <Input_Variables>
+      <Variable Name="f1" Var_Type="Float">
+	  </Variable>
+	   <Variable Name="f2" Var_Type="Float">
+	  </Variable>
+	   <Variable Name="f3" Var_Type="Float">
+	  </Variable>
+	   <Variable Name="f4" Var_Type="Float">
+	  </Variable>
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="FinalOut" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>	
+   <Code>   
+   FinalOut = VECTOR4 (f1,f2,f3,f4);
+   </Code>
+  </Node>
   
 </Entities>

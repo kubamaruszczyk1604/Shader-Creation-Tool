@@ -13,35 +13,24 @@ in float oTime;
 
 out vec4 FragColour;
 
-uniform sampler2D       SCT_TEXTURE2D_0;
-uniform vec3            SCT_UNIFORM_FLOATIn_0;
+uniform float           kj;
+uniform float           SCT_UNIFORM_FLOATIn_1;
+uniform float           SCT_UNIFORM_FLOATIn_2;
+uniform float           SCT_UNIFORM_FLOATIn_3;
 
-void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
+void FloatX4_TO_Vec4(float f1, float f2, float f3, float f4, inout vec4 FinalOut)
 {
- FinalColour = texture2D(Texture,Texcoord); 
-}
-void DirSimpleLight(vec3 normal, vec3 lightDir, inout vec4 FinalOut)
-{
- 
-   float NdotL = max( dot(normalize(normal),normalize(lightDir)), 0.0);
-   FinalOut = vec4 (1,1,1,1)*NdotL;
    
-}
-void MultiplyV4xV4(vec4 VecA, vec4 VecB, inout vec4 FinalColour)
-{
- FinalColour = VecA*VecB; 
+   FinalOut = vec4 (f1,f2,f3,f4);
+   
 }
 
 
  void main()
 {
 
-vec4  OUT_FinalColour0_NF_Sampler2D_0_44;
-Sampler2D(SCT_TEXTURE2D_0, oUVs, OUT_FinalColour0_NF_Sampler2D_0_44);
-vec4  OUT_FinalOut0_NF_DirSimpleLight_1_12;
-DirSimpleLight(oNormal_InvWorldSpace, SCT_UNIFORM_FLOATIn_0, OUT_FinalOut0_NF_DirSimpleLight_1_12);
-vec4  OUT_FinalColour0_NF_MultiplyV4xV4_2_19;
-MultiplyV4xV4(OUT_FinalColour0_NF_Sampler2D_0_44, OUT_FinalOut0_NF_DirSimpleLight_1_12, OUT_FinalColour0_NF_MultiplyV4xV4_2_19);
-FragColour = OUT_FinalColour0_NF_MultiplyV4xV4_2_19;
+vec4  OUT_FinalOut0_NF_FloatX4_TO_Vec4_0_05;
+FloatX4_TO_Vec4(kj, SCT_UNIFORM_FLOATIn_1, SCT_UNIFORM_FLOATIn_2, SCT_UNIFORM_FLOATIn_3, OUT_FinalOut0_NF_FloatX4_TO_Vec4_0_05);
+FragColour = OUT_FinalOut0_NF_FloatX4_TO_Vec4_0_05;
 
 }
