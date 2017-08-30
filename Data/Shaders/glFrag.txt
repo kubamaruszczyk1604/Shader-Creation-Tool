@@ -14,9 +14,42 @@ in float oTime;
 out vec4 FragColour;
 
 //Uniform nodes translated as uniform variables.
-uniform vec4            SCT_UNIFORM_ColourIn_0;
+uniform sampler2D       SCT_TEXTURE2D_0;
+uniform float           SCT_UNIFORM_FLOATIn_0;
+uniform sampler2D       SCT_TEXTURE2D_1;
+uniform vec4            SCT_UNIFORM_ColourIn_1;
 
 // SCT Nodes Translated as functions.
+void UVScroll(float Time, vec2 UVIn, float Speed, inout vec2 UVOut)
+{
+  UVOut = vec2(UVIn.x+Time*Speed, UVIn.y);
+}
+
+void SPLIT_V2(vec2 In, inout vec2 Out1, inout vec2 Out2)
+{
+   
+    Out1 = In;
+    Out2 = In;
+   
+}
+
+void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
+{
+ FinalColour = texture2D(Texture,Texcoord); 
+}
+
+void AddV4(vec4 VecA, vec4 VecB, vec4 VecC, inout vec4 FinalColour)
+{
+ FinalColour = VecA+VecB+VecC; 
+}
+
+void Vec_2TO4(vec2 Vec2in, inout vec4 FinalOut)
+{
+ FinalOut = vec4(Vec2in.x,Vec2in.y,1,1); 
+}
+
+
+
 void MultiplyV4(vec4 VecA, vec4 VecB, vec4 VecC, inout vec4 FinalColour)
 {
  FinalColour = VecA*VecB*VecC; 
@@ -27,10 +60,40 @@ void MultiplyV4(vec4 VecA, vec4 VecB, vec4 VecC, inout vec4 FinalColour)
  void main()
 {
 
-//SCT CALL: MultiplyV4
-   vec4  OUT_FinalColour0_NF_MultiplyV4_0_04;
-   MultiplyV4(SCT_UNIFORM_ColourIn_0, vec4 (1,1,1,1), vec4 (1,1,1,1), OUT_FinalColour0_NF_MultiplyV4_0_04);
+//SCT CALL: SPLIT_V2
+   vec2  OUT_Out10_NF_SPLIT_V2_1_46;
+   vec2  OUT_Out21_NF_SPLIT_V2_1_46;
+   SPLIT_V2(oUVs, OUT_Out10_NF_SPLIT_V2_1_46, OUT_Out21_NF_SPLIT_V2_1_46);
 
-FragColour = OUT_FinalColour0_NF_MultiplyV4_0_04;
+//SCT CALL: SPLIT_V2
+   vec2  OUT_Out10_NF_SPLIT_V2_7_46;
+   vec2  OUT_Out21_NF_SPLIT_V2_7_46;
+   SPLIT_V2(OUT_Out21_NF_SPLIT_V2_1_46, OUT_Out10_NF_SPLIT_V2_7_46, OUT_Out21_NF_SPLIT_V2_7_46);
+
+//SCT CALL: UVScroll
+   vec2  OUT_UVOut0_NF_UVScroll_0_26;
+   UVScroll(oTime, OUT_Out10_NF_SPLIT_V2_1_46, SCT_UNIFORM_FLOATIn_0, OUT_UVOut0_NF_UVScroll_0_26);
+
+//SCT CALL: Sampler2D
+   vec4  OUT_FinalColour0_NF_Sampler2D_2_09;
+   Sampler2D(SCT_TEXTURE2D_0, OUT_UVOut0_NF_UVScroll_0_26, OUT_FinalColour0_NF_Sampler2D_2_09);
+
+//SCT CALL: Vec_2TO4
+   vec4  OUT_FinalOut0_NF_Vec_2TO4_4_47;
+   Vec_2TO4(OUT_Out10_NF_SPLIT_V2_7_46, OUT_FinalOut0_NF_Vec_2TO4_4_47);
+
+//SCT CALL: Sampler2D
+   vec4  OUT_FinalColour0_NF_Sampler2D_6_11;
+   Sampler2D(SCT_TEXTURE2D_1, OUT_Out21_NF_SPLIT_V2_7_46, OUT_FinalColour0_NF_Sampler2D_6_11);
+
+//SCT CALL: MultiplyV4
+   vec4  OUT_FinalColour0_NF_MultiplyV4_8_40;
+   MultiplyV4(OUT_FinalColour0_NF_Sampler2D_2_09, SCT_UNIFORM_ColourIn_1, OUT_FinalOut0_NF_Vec_2TO4_4_47, OUT_FinalColour0_NF_MultiplyV4_8_40);
+
+//SCT CALL: AddV4
+   vec4  OUT_FinalColour0_NF_AddV4_3_35;
+   AddV4(OUT_FinalColour0_NF_MultiplyV4_8_40, vec4 (0,0,0,0), OUT_FinalColour0_NF_Sampler2D_6_11, OUT_FinalColour0_NF_AddV4_3_35);
+
+FragColour = OUT_FinalColour0_NF_AddV4_3_35;
 
 }

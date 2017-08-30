@@ -74,7 +74,7 @@ void ExampleScene::OnStart()
 
 	Entity* bkgQuad = new Entity("test3");
 	bkgQuad->AddComponent(std::unique_ptr<ModelComponent>(bkgQuadModel));
-	bkgQuad->GetTransform()->SetPosition(Vec3(0, 0, 50));
+	bkgQuad->GetTransform()->SetPosition(Vec3(0, 0, 0));
 	bkgQuad->GetTransform()->SetScale(Vec3(20, 20, 1));
 	AddEntity(bkgQuad);
 	s_pMainObjectEntity = bkgQuad;
@@ -107,19 +107,10 @@ void ExampleScene::OnStart()
 	Renderer::SetActiveCamera(cam);
 	s_CameraEntity = new Entity("cameraEntity");
 	s_CameraEntity->AddComponent(std::unique_ptr<Camera>(cam));
-	s_CameraEntity->GetTransform()->SetPosition(Vec3(0, 0, -35));
+	s_CameraEntity->GetTransform()->SetPosition(Vec3(0, 0, -85));
 	AddEntity(s_CameraEntity);
 
 
-	//m_pDirectionalLight = new DirectionalLight(Vec3(10., 0, -10.f), Colour(0, 0, 0, 1), Colour(0.5, 0.5, 1, 1), Colour(0.1, 0.1, 0.1, 1));
-	//m_pSpotLight = new Spotlight(
-	//	Vec3(0, 0, -20.0f),
-	//	Colour(0, 0, 0, 1),
-	//	Colour(0.7, 0.9, 1, 1),
-	//	Colour(0, 0, 1, 1),
-	//	Vec3(0, 0, 1),
-	//	45.0f
-	//	);
 
 }
 

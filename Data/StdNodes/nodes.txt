@@ -64,7 +64,7 @@
       </Variable>
     </Output_Variables>
 	
-   <Code> FinalOut = VECTOR4 (Norm,1);</Code>
+   <Code> FinalOut = VECTOR4(Norm,1);</Code>
   </Node>
   
    <Node Name="DirSimpleLight">
@@ -83,7 +83,7 @@
 	
    <Code> 
    FLOAT NdotL = max( dot(normalize(normal),normalize(lightDir)), 0.0);
-   FinalOut = VECTOR4 (1,1,1,1)*NdotL;
+   FinalOut = VECTOR4(1,1,1,1)*NdotL;
    </Code>
   </Node>
   
@@ -100,7 +100,7 @@
       </Variable>
     </Output_Variables>
 	
-   <Code>   FinalOut = VECTOR4 (Vec3in,1); </Code>
+   <Code>   FinalOut = VECTOR4(Vec3in,1); </Code>
   </Node>
   
   
@@ -116,7 +116,7 @@
       </Variable>
     </Output_Variables>
 	
-   <Code> FinalOut = VECTOR4 (Vec2in.x,Vec2in.y,1,1); </Code>
+   <Code> FinalOut = VECTOR4(Vec2in.x,Vec2in.y,1,1); </Code>
   </Node>
   
   
@@ -137,7 +137,7 @@
       <Variable Name="FinalOut" Var_Type="Float4">
       </Variable>
     </Output_Variables>	
-   <Code> FinalOut = VECTOR4 (f1,f2,f3,f4); </Code>
+   <Code> FinalOut = VECTOR4(f1,f2,f3,f4); </Code>
   </Node>
   
   <Node Name="Sampler2D">
@@ -171,7 +171,7 @@
       <Variable Name="UVOut" Var_Type="Float2">
       </Variable>
     </Output_Variables>	
-   <Code>  UVOut = VECTOR2 (UVIn.x+Time*Speed, UVIn.y);</Code>
+   <Code>  UVOut = VECTOR2(UVIn.x+Time*Speed, UVIn.y);</Code>
   </Node>
   
    <Node Name="SPLIT_V2"> 
@@ -204,7 +204,7 @@
     </Output_Variables>	
    <Code>
    float avg = (ColourIn.x + ColourIn.y + ColourIn.z)/3.0;
-   ColourBW = VECTOR4 (avg,avg,avg,ColourIn.a);
+   ColourBW = VECTOR4(avg,avg,avg,ColourIn.a);
    </Code>
   </Node>
   
@@ -222,7 +222,7 @@
     </Output_Variables>	
    <Code>
    float avg = ((ColourIn.x + ColourIn.y + ColourIn.z)/3.0) ;
-   ColourOUT = VECTOR4 (avg,avg,avg,ColourIn.a)* ColourPass;
+   ColourOUT = VECTOR4(avg,avg,avg,ColourIn.a)* ColourPass;
    </Code>
   </Node>
   
