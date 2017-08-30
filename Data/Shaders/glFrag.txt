@@ -13,21 +13,27 @@ in float oTime;
 
 out vec4 FragColour;
 
+uniform sampler2D       SCT_TEXTURE2D_0;
 
-void Vec_3TO4(vec3 Vec3in, inout vec4 FinalOut)
+void UVScroll(float Time, vec2 UVIn, inout vec2 UVOut)
 {
- 
    
-   FinalOut = vec4 (Vec3in,1);
+   UVOut = vec2 (UVIn.x+Time, UVIn.y);
    
+}
+void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
+{
+ FinalColour = texture2D(Texture,Texcoord); 
 }
 
 
  void main()
 {
 
-vec4  OUT_FinalOut0_NF_Vec_3TO4_0_03;
-Vec_3TO4(oCamera_WorldSpace, OUT_FinalOut0_NF_Vec_3TO4_0_03);
-FragColour = OUT_FinalOut0_NF_Vec_3TO4_0_03;
+vec2  OUT_UVOut0_NF_UVScroll_0_52;
+UVScroll(oTime, oUVs, OUT_UVOut0_NF_UVScroll_0_52);
+vec4  OUT_FinalColour0_NF_Sampler2D_2_36;
+Sampler2D(SCT_TEXTURE2D_0, OUT_UVOut0_NF_UVScroll_0_52, OUT_FinalColour0_NF_Sampler2D_2_36);
+FragColour = OUT_FinalColour0_NF_Sampler2D_2_36;
 
 }

@@ -27,7 +27,7 @@ namespace KLM_FRAMEWORK
 		static bool KLMSetPixelFormat(HDC hdc);
 
 		static Vec4 VectorVariableTest;
-	
+		static float dummyTime;
 
 	public:
 		GLRenderer() = delete;
