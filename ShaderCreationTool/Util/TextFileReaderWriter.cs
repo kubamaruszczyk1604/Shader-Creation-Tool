@@ -71,5 +71,37 @@ namespace ShaderCreationTool
             return true;
         }
 
+        static public bool SaveEncrypted(string path, string content, string key)
+        {
+            string encrypted = string.Empty; 
+            try
+            {
+                encrypted = StringCipher.Encrypt(content, key);
+            }
+            catch(Exception e)
+            {
+                s_LastError = e.Message;
+                return false;
+            }
+            return Save(path, encrypted);
+        }
+
+        static public bool ReadEncrypted(string path,string key, out string content)
+        {
+            string encrypted = string.Empty;
+            content = string.Empty;
+            if (!Read(path, out encrypted)) return false;
+            try
+            {
+                content = StringCipher.Decrypt(encrypted, key);
+            }
+            catch(Exception e)
+            {
+                s_LastError = e.Message;
+                return false;
+            }
+            return true;
+        }
+
     }
 }

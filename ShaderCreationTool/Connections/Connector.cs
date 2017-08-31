@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,7 +89,12 @@ namespace ShaderCreationTool
         public bool HasShaderVariableDescription { get { return (m_ShaderVariableDescription == null) ? false : true; } }
         public ShaderVariableDescription UsedShaderVariableDescription { get { return m_ShaderVariableDescription; } }
        
-        public Connector(CheckBox control,ShaderVariableType variableType,ISCTNode parentNode, string localID)
+        static Connector Load(CheckBox control, ISCTNode parentNode,StreamReader reader)
+        {
+            return null;
+        }
+
+        public Connector(CheckBox control, ShaderVariableType variableType,ISCTNode parentNode, string localID)
         {
             m_LocalID = localID;
             p_ParentNode = parentNode;

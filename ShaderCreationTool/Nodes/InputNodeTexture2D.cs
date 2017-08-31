@@ -39,6 +39,8 @@ namespace ShaderCreationTool
         public string GetNodeID() { return m_UniqueID; }
         public ShaderVariableType GetShaderVariableType() { return ShaderVariableType.Texture2D; }
 
+       
+
         public InputNodeTexture2D(Panel nodeTemplate, Point location)
         {
             m_UniqueID = NodeIDCreator.CreateID(GetNodeType(), s_InstanceCounter);

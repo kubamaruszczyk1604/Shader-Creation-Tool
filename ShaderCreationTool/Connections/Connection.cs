@@ -27,6 +27,9 @@ namespace ShaderCreationTool
 
         ////////////////////////////////////////////  PUBLIC  ////////////////////////////////////////////
 
+        
+
+
         public bool IsDirectInputConnection { get { return m_IsDirectInputConnection;} }
         public Connector SourceConnector { get { return m_pSource; } }
         public Connector DestinationConnector { get { return m_pDestination; } }
@@ -149,9 +152,10 @@ namespace ShaderCreationTool
             m_Line.GetConfig(out x, out y);
             m_Line.Invalidate();
             m_Line.Dispose();
-            
             m_Line = null;
         }
+
+
 
         public void TestRebuiltLine()
         {
