@@ -122,7 +122,7 @@ namespace ShaderCreationTool
             ShowNode(1);
         }
 
-        public void Serialize(ISCTNode node, XmlWriter target)
+        public void Serialize(XmlWriter target)
         {
 
         }

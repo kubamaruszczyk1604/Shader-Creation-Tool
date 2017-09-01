@@ -140,7 +140,7 @@ namespace ShaderCreationTool
             Bridge.SetVariable(m_ShaderVariable);
         }
 
-        public void Serialize(ISCTNode node, XmlWriter target)
+        public void Serialize(XmlWriter target)
         {
         }
 

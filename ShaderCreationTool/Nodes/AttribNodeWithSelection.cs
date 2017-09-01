@@ -164,7 +164,7 @@ namespace ShaderCreationTool
 
 
 
-        public void Serialize(ISCTNode node, XmlWriter target)
+        public void Serialize( XmlWriter target)
         {
          
         }

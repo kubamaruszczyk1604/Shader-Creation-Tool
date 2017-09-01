@@ -39,6 +39,9 @@ namespace ShaderCreationTool
         public NodeType GetNodeType() { return m_NodeType; }
         public string GetNodeID() { return m_UniqueID; }
         public ShaderVariableType GetShaderVariableType() { return m_VarType; }
+        public ShaderVectorVariable GetRawShaderVariable() { return m_ShaderVariable; }
+        public Point GetPosition() { return m_SctElement.Location; }
+
         public InputNodeVector(Panel nodeTemplate, Point location)
         {
 
@@ -163,8 +166,9 @@ namespace ShaderCreationTool
             Bridge.SetVariable(m_ShaderVariable);
             RefreshShaderVariable();
         }
-        public void Serialize(ISCTNode node, XmlWriter target)
+        public void Serialize(XmlWriter target)
         {
+            XmlNodeSerializer.SerializeVectorInputNode(target, this);
         }
         public string GetVariableName()
         {

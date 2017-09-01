@@ -36,7 +36,7 @@ namespace ShaderCreationTool
         List<Connector> GetAllConnectors();
         NodeType GetNodeType();
         string GetNodeID();
-        void Serialize(ISCTNode node, XmlWriter target);
+        void Serialize(XmlWriter target);
         
     }
 

@@ -628,7 +628,8 @@ namespace ShaderCreationTool
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SCTConsole.Instance.PrintLine("Name of the variable: " + anode.GetVariableName());
+            //  SCTConsole.Instance.PrintLine("Name of the variable: " + anode.GetVariableName());
+            XmlNodeSerializer.Save(@"c:\nodes\ser.txt", m_Nodes);
         }
 
       

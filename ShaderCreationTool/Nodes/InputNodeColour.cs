@@ -36,7 +36,9 @@ namespace ShaderCreationTool
         public NodeType GetNodeType() { return NodeType.Input_Colour; }
         public string GetNodeID() { return m_UniqueID; }
         public ShaderVariableType GetShaderVariableType() { return ShaderVariableType.Vector4; }
-       
+        public ShaderVectorVariable GetRawShaderVariable() { return m_ShaderVariable; } 
+        public Point GetPosition() { return m_SctElement.Location; }
+
 
         public InputNodeColour(Panel nodeTemplate, Point location)
         {
@@ -145,9 +147,9 @@ namespace ShaderCreationTool
             
         }
 
-        public void Serialize(ISCTNode node, XmlWriter target)
+        public void Serialize(XmlWriter target)
         {
-         
+            XmlNodeSerializer.SerializeColourInputNode(target,this);
         }
       
        
