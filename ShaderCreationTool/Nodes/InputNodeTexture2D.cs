@@ -40,8 +40,9 @@ namespace ShaderCreationTool
         public NodeType GetNodeType() { return NodeType.Input_Texture2D; }
         public string GetNodeID() { return m_UniqueID; }
         public ShaderVariableType GetShaderVariableType() { return ShaderVariableType.Texture2D; }
+        public ShaderTextureVariable GetRawShaderVariable() { return m_ShaderVariable; }
+        public Point GetPosition() { return m_SctElement.Location; }
 
-       
 
         public InputNodeTexture2D(Panel nodeTemplate, Point location)
         {
@@ -142,6 +143,7 @@ namespace ShaderCreationTool
 
         public void Serialize(XmlWriter target)
         {
+            XmlNodeSerializer.SerializeTextureInputNode(target, this);
         }
 
         public string GetVariableName()

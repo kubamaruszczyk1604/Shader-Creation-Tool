@@ -13,11 +13,12 @@ namespace ShaderCreationTool
     {
         public static XmlWriter SerializeColour(XmlWriter target, ShaderVectorVariable variable)
         {
-            target.WriteStartElement("COLOUR");
+            target.WriteStartElement("SHADER_COLOUR_VARIABLE");
             target.WriteAttributeString("R", variable.GetR().ToString());
             target.WriteAttributeString("G", variable.GetG().ToString());
             target.WriteAttributeString("B", variable.GetB().ToString());
             target.WriteAttributeString("A", variable.GetA().ToString());
+            target.WriteAttributeString("VARNAME", variable.GetName());
             target.WriteEndElement();
             return target;
         }
@@ -25,16 +26,17 @@ namespace ShaderCreationTool
         public static XmlWriter SerializeVector(XmlWriter target, ShaderVectorVariable variable)
         {
             string[] names = { "X", "Y", "Z", "W" };
-            target.WriteStartElement("VECTOR");
+            target.WriteStartElement("SHADER_VECTOR_VARIABLE");
             for (uint i = 0; i < variable.GetSize(); ++i)
             {
                 target.WriteAttributeString(names[i], variable.GetElement(i).ToString());
             }
+            target.WriteAttributeString("VARNAME", variable.GetName());
             target.WriteEndElement();
             return target;
         }
 
-        public static XmlWriter SerializeShaderTextureVariable(XmlWriter target, ShaderTextureVariable variable)
+        public static XmlWriter SerializeTextureVariable(XmlWriter target, ShaderTextureVariable variable)
         {
             target.WriteStartElement("SHADER_TEXTURE_VARIABLE");
             target.WriteAttributeString("PATH", variable.GetPath());
@@ -71,6 +73,18 @@ namespace ShaderCreationTool
             target.WriteAttributeString("ID", node.GetNodeID().ToString());
             SerializePosition(target, node.GetPosition());
             SerializeVector(target, node.GetRawShaderVariable());
+            target.WriteEndElement();//NODE
+
+            return target;
+        }
+
+        public static XmlWriter SerializeTextureInputNode(XmlWriter target, InputNodeTexture2D node)
+        {
+            target.WriteStartElement("UNIFORM_INPUT_NODE");
+            target.WriteAttributeString("TYPE", node.GetNodeType().ToString());
+            target.WriteAttributeString("ID", node.GetNodeID().ToString());
+            SerializePosition(target, node.GetPosition());
+            SerializeTextureVariable(target, node.GetRawShaderVariable());
             target.WriteEndElement();//NODE
 
             return target;
