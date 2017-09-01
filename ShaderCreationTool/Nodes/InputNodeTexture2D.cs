@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace ShaderCreationTool
 {
@@ -137,6 +139,11 @@ namespace ShaderCreationTool
             m_ShaderVariable = new ShaderTextureVariable(s_PlainTexturePath, m_Name);
             Bridge.SetVariable(m_ShaderVariable);
         }
+
+        public void Serialize(ISCTNode node, XmlWriter target)
+        {
+        }
+
         public string GetVariableName()
         {
             return m_Name;

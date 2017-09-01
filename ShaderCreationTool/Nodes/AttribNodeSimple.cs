@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace ShaderCreationTool
 {
     class AttribNodeSimple : IDisposable, IAttribNode
     {
       
-
         private Panel m_SctElement;
         private MovableObject m_Mover;
         private List<Connector> m_OutputConnectors;
@@ -121,7 +122,10 @@ namespace ShaderCreationTool
             ShowNode(1);
         }
 
+        public void Serialize(ISCTNode node, XmlWriter target)
+        {
 
+        }
         public void AddOnMovedCallback(ObjectMovedCallback onMovedCallback)
         {
             m_Mover.AddObjectMovedEventListener(onMovedCallback);

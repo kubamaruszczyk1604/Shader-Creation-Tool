@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace ShaderCreationTool
 {
@@ -140,6 +142,11 @@ namespace ShaderCreationTool
             SetShaderVariableFromNumeric();
             
         }
+
+        public void Serialize(ISCTNode node, XmlWriter target)
+        {
+        }
+
         public string GetVariableName()
         {
             return m_Name;

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace ShaderCreationTool
 {
@@ -130,6 +132,12 @@ namespace ShaderCreationTool
         {
             AddOnMovedCallback(onObjectMoved);
         }
+
+
+        public void Serialize(ISCTNode node, XmlWriter target)
+        {
+        }
+
 
 
         /// <summary>
