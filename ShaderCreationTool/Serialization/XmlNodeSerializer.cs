@@ -65,7 +65,7 @@ namespace ShaderCreationTool
             return target;
         }
 
-        public static XmlWriter SerializeFunctuionNodeDescription(XmlWriter target, FunctionNodeDescription desc)
+        public static XmlWriter SerializeFunctionNodeDescription(XmlWriter target, FunctionNodeDescription desc)
         {
             target.WriteStartElement("FUNCTION_NODE_DESC");
             target.WriteAttributeString("NAME", desc.Name);
@@ -87,8 +87,7 @@ namespace ShaderCreationTool
 
 
 
-            target.WriteEndElement();
-
+            target.WriteEndElement();//Function Node Desc
 
             return target;
         }
@@ -132,7 +131,12 @@ namespace ShaderCreationTool
 
         public static XmlWriter SerializeFunctionNode(XmlWriter target, SCTFunctionNode node)
         {
-
+            target.WriteStartElement("FUNCTION_NODE");
+           // target.WriteComment("Function name is: " + node.NodeDescription.Name);
+            target.WriteAttributeString("UNIQUE_ID", node.GetNodeID().ToString());
+            SerializePosition(target, node.GetPosition());
+            SerializeFunctionNodeDescription(target, node.NodeDescription);
+            target.WriteEndElement();
             return target;
         }
 
@@ -150,18 +154,23 @@ namespace ShaderCreationTool
             XmlWriter writer = XmlWriter.Create(path, settings);
             writer.WriteStartDocument();
             writer.WriteComment("SHADER CREATION TOOL NETWORK FILE");
-
+            writer.WriteStartElement("SCT_NETWORK");
 
             writer.WriteStartElement("INPUT_NODES");
-
             foreach (IInputNode inputNode in inputNodes)
             {
                 inputNode.Serialize(writer);
             }
-
             writer.WriteEndElement();//INPUT NODES
 
+            writer.WriteStartElement("FUNCTION_NODES");
+            foreach (SCTFunctionNode functionNode in functionNodes)
+            {
+                functionNode .Serialize(writer);
+            }
+            writer.WriteEndElement();//FUNCTION NODES
 
+            writer.WriteEndElement();
             writer.WriteEndDocument();
 
             writer.Flush();

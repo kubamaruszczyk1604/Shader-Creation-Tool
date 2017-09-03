@@ -34,6 +34,7 @@ namespace ShaderCreationTool
         public string GetNodeID() { return m_UniqueID; }
         public FunctionNodeDescription NodeDescription { get { return m_FunctionNodeDescription; } }
         public string FunctionCodeString { get { return m_FunctionNodeDescription.GetFunctionString(); } }
+        public Point GetPosition() { return m_SctElement.Location; }
 
         public SCTFunctionNode(Panel nodeTemplate, Point location, FunctionNodeDescription description)
         {
@@ -44,7 +45,6 @@ namespace ShaderCreationTool
             m_SctElement.Visible = true;
             m_SctElement.Location = location;
             m_SctElement.MouseDown += Panel_MouseDown;
-
 
             //Make object movable
             m_Mover = new MovableObject(m_SctElement);
@@ -112,7 +112,6 @@ namespace ShaderCreationTool
                 outConnectorCounter++;
             }
 
-
             // Set node title
             List<Label> labels = ControlExtensions.GetAllChildreenControls<Label>(m_SctElement).Cast<Label>().ToList();
             labels[0].Text = description.Name;
@@ -136,6 +135,7 @@ namespace ShaderCreationTool
 
         public void Serialize(XmlWriter target)
         {
+            XmlNodeSerializer.SerializeFunctionNode(target, this);
         }
 
 
