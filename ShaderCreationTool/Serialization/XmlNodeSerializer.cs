@@ -54,6 +54,46 @@ namespace ShaderCreationTool
             return target;
         }
 
+        public static XmlWriter SerializeShaderVariableDescription(XmlWriter target, ShaderVariableDescription desc)
+        {
+            target.WriteStartElement("SHADER_VAR_DESC");
+            target.WriteAttributeString("NAME", desc.Name);
+            target.WriteAttributeString("TYPE", desc.Type.ToString());
+            target.WriteAttributeString("CONNECTION_DIRECTION", desc.ConnectionDirection.ToString());
+            target.WriteElementString("ADDITIONAL_INFO",desc.AdditionalInfo);
+            target.WriteEndElement();//SHADER_VAR_DESC
+            return target;
+        }
+
+        public static XmlWriter SerializeFunctuionNodeDescription(XmlWriter target, FunctionNodeDescription desc)
+        {
+            target.WriteStartElement("FUNCTION_NODE_DESC");
+            target.WriteAttributeString("NAME", desc.Name);
+            target.WriteElementString("CODE", desc.GetFunctionString());
+
+            target.WriteStartElement("INPUT_VARIABLES");
+            for(int i = 0; i < desc.InputCount;++i)
+            {
+                SerializeShaderVariableDescription(target, desc.GetInVariableDescription(i));
+            }
+            target.WriteEndElement();// INPUT_VARIABLES
+
+            target.WriteStartElement("OUTPUT_VARIABLES");
+            for (int i = 0; i < desc.OutputCount; ++i)
+            {
+                SerializeShaderVariableDescription(target, desc.GetOutVariableDescription(i));
+            }
+            target.WriteEndElement();// OUTPUT_VARIABLES
+
+
+
+            target.WriteEndElement();
+
+
+            return target;
+        }
+           
+
         public static XmlWriter SerializeColourInputNode(XmlWriter target, InputNodeColour node)
         {
             target.WriteStartElement("UNIFORM_INPUT_NODE");
@@ -86,6 +126,12 @@ namespace ShaderCreationTool
             SerializePosition(target, node.GetPosition());
             SerializeTextureVariable(target, node.GetRawShaderVariable());
             target.WriteEndElement();//NODE
+
+            return target;
+        }
+
+        public static XmlWriter SerializeFunctionNode(XmlWriter target, SCTFunctionNode node)
+        {
 
             return target;
         }
