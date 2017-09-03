@@ -104,7 +104,7 @@ namespace ShaderCreationTool
 
             return target;
         }
-
+        // SERIALIZE NUMERIC VALUE NODE
         public static XmlWriter SerializeVectorInputNode(XmlWriter target, InputNodeVector node)
         {
             target.WriteStartElement("UNIFORM_INPUT_NODE");
@@ -117,6 +117,7 @@ namespace ShaderCreationTool
             return target;
         }
 
+        // SERIALIZE TEXTURE NODE
         public static XmlWriter SerializeTextureInputNode(XmlWriter target, InputNodeTexture2D node)
         {
             target.WriteStartElement("UNIFORM_INPUT_NODE");
@@ -129,6 +130,32 @@ namespace ShaderCreationTool
             return target;
         }
 
+        // SERIALIZE SIMPLE ATTRIB NODE
+        public static XmlWriter SerializeAttribNodeSimple(XmlWriter target, AttribNodeSimple node)
+        {
+            target.WriteStartElement("SIMPLE_ATTRIB_NODE");
+            target.WriteAttributeString("TYPE", node.GetNodeType().ToString());
+            target.WriteAttributeString("ID", node.GetNodeID().ToString());
+            SerializePosition(target, node.GetPosition());
+            target.WriteEndElement();//NODE
+
+            return target;
+        }
+
+        // SERIALIZE SELECTION ATTRIB NODE
+        public static XmlWriter SerializeAttribNodeWithSelection(XmlWriter target, AttribNodeWithSelection node)
+        {
+            target.WriteStartElement("SELECTION_ATTRIB_NODE");
+            target.WriteAttributeString("TYPE", node.GetNodeType().ToString());
+            target.WriteAttributeString("ID", node.GetNodeID().ToString());
+            target.WriteAttributeString("SELECTED_INDEX", node.GetSelectedIndex().ToString());
+            SerializePosition(target, node.GetPosition());
+            target.WriteEndElement();//NODE
+
+            return target;
+        }
+
+        // SERIALIZE FUNCTION NODE
         public static XmlWriter SerializeFunctionNode(XmlWriter target, SCTFunctionNode node)
         {
             target.WriteStartElement("FUNCTION_NODE");
@@ -140,10 +167,22 @@ namespace ShaderCreationTool
             return target;
         }
 
+        // SERIALIZE TARGET NODE
+        public static XmlWriter SerializeTargegNode(XmlWriter target, FrameBufferNode node)
+        {
+            target.WriteStartElement("TARGET_NODE");
+            target.WriteAttributeString("UNIQUE_ID", node.GetNodeID().ToString());
+            SerializePosition(target, node.GetPosition());
+            target.WriteEndElement();
+            return target;
+        }
+
         public static void Save(string path, List<ISCTNode> nodes)
         {
 
             List<IInputNode> inputNodes = nodes.FindAll(o => o is IInputNode).Cast<IInputNode>().ToList();
+            List<AttribNodeSimple> simpleAttribNodes = nodes.FindAll(o => o is AttribNodeSimple).Cast<AttribNodeSimple>().ToList();
+            List<AttribNodeWithSelection> selectionAttribNodes  = nodes.FindAll(o => o is AttribNodeWithSelection).Cast<AttribNodeWithSelection>().ToList();
             List<SCTFunctionNode> functionNodes = nodes.FindAll(o => o is SCTFunctionNode).Cast<SCTFunctionNode>().ToList();
             FrameBufferNode targetNode = (FrameBufferNode)nodes.Find(o => o is FrameBufferNode);
 
@@ -163,12 +202,29 @@ namespace ShaderCreationTool
             }
             writer.WriteEndElement();//INPUT NODES
 
+
+            writer.WriteStartElement("SIMPLE_ATTRIB_NODES");
+            foreach (AttribNodeSimple simpleAttribNode in simpleAttribNodes)
+            {
+                simpleAttribNode.Serialize(writer);
+            }
+            writer.WriteEndElement();//SIMPLE_ATTRIB_NODES
+
+            writer.WriteStartElement("SELECTION_ATTRIB_NODES");
+            foreach (AttribNodeWithSelection selectionAttribNode in selectionAttribNodes)
+            {
+                selectionAttribNode.Serialize(writer);
+            }
+            writer.WriteEndElement();//SIMPLE_ATTRIB_NODES
+
             writer.WriteStartElement("FUNCTION_NODES");
             foreach (SCTFunctionNode functionNode in functionNodes)
             {
                 functionNode .Serialize(writer);
             }
             writer.WriteEndElement();//FUNCTION NODES
+
+            SerializeTargegNode(writer, targetNode);
 
             writer.WriteEndElement();
             writer.WriteEndDocument();

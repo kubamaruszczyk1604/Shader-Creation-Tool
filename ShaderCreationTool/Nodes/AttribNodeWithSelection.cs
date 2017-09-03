@@ -22,6 +22,7 @@ namespace ShaderCreationTool
         private MovableObject m_Mover;
         private List<Connector> m_OutputConnectors;
         private NodeCloseButtonCallback p_CloseCallback;
+        private ComboBox m_ComboBox;
 
         public static string [] VariablesStrings
         {
@@ -45,8 +46,8 @@ namespace ShaderCreationTool
         public NodeType GetNodeType() { return m_NodeType; }
         public string GetNodeID() { return m_UniqueID; }
         public ShaderVariableType GetShaderVariableType() { return m_VarType; }
-
-
+        public Point GetPosition() { return m_SctElement.Location; }
+        public int GetSelectedIndex() { return m_ComboBox.SelectedIndex; }
 
         public AttribNodeWithSelection(Panel nodeTemplate, Point location)
         {  
@@ -127,6 +128,7 @@ namespace ShaderCreationTool
 
                     }
                     comb.SelectedIndex = 0;
+                    m_ComboBox = comb;
                 }
 
                 else if (control is Panel)
@@ -166,7 +168,7 @@ namespace ShaderCreationTool
 
         public void Serialize( XmlWriter target)
         {
-         
+            XmlNodeSerializer.SerializeAttribNodeWithSelection(target, this);
         }
 
 

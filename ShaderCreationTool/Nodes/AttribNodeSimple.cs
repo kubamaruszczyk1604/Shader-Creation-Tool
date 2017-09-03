@@ -32,7 +32,7 @@ namespace ShaderCreationTool
         public NodeType GetNodeType() { return m_NodeType; }
         public string GetNodeID() { return m_UniqueID; }
         public ShaderVariableType GetShaderVariableType() { return m_VarType; }
-
+        public Point GetPosition() { return m_SctElement.Location; }
 
         public AttribNodeSimple(Panel nodeTemplate, Point location)
         {
@@ -112,7 +112,6 @@ namespace ShaderCreationTool
                 }
             }
 
-
             if (connectorCounter < 1)
             {
                 SCTConsole.Instance.PrintDebugLine("ERROR: No output connectors in AttribNode1");
@@ -124,8 +123,9 @@ namespace ShaderCreationTool
 
         public void Serialize(XmlWriter target)
         {
-
+            XmlNodeSerializer.SerializeAttribNodeSimple(target, this);
         }
+
         public void AddOnMovedCallback(ObjectMovedCallback onMovedCallback)
         {
             m_Mover.AddObjectMovedEventListener(onMovedCallback);
