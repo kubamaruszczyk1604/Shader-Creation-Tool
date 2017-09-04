@@ -38,7 +38,7 @@ namespace ShaderCreationTool
         public ShaderVariableType GetShaderVariableType() { return ShaderVariableType.Vector4; }
         public ShaderVectorVariable GetRawShaderVariable() { return m_ShaderVariable; } 
         public Point GetPosition() { return m_SctElement.Location; }
-
+        public void ChangeUniqueID(string uniqueID) { m_UniqueID = uniqueID; }
 
         public InputNodeColour(Panel nodeTemplate, Point location)
         {
@@ -150,13 +150,12 @@ namespace ShaderCreationTool
         {
             XmlNodeSerializer.SerializeColourInputNode(target,this);
         }
-      
-       
-
+          
         public string GetVariableName()
         {
             return m_Name;
         }
+
         static public void LockButtons()
         {
             s_ButtonsLocked = true;
@@ -166,6 +165,7 @@ namespace ShaderCreationTool
         {
             s_ButtonsLocked = false;
         }
+        
         ////////////////////////  ADD CALLBACK METHODS ///////////////
 
         public void AddOnMovedCallback(ObjectMovedCallback onMovedCallback)

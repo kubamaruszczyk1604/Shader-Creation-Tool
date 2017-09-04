@@ -9,7 +9,7 @@ using System.Drawing;
 
 namespace ShaderCreationTool
 {
-    
+
     class XmlNodeSerializer
     {
 
@@ -65,7 +65,7 @@ namespace ShaderCreationTool
             target.WriteAttributeString("NAME", desc.Name);
             target.WriteAttributeString("TYPE", desc.Type.ToString());
             target.WriteAttributeString("CONNECTION_DIRECTION", desc.ConnectionDirection.ToString());
-            target.WriteElementString("ADDITIONAL_INFO",desc.AdditionalInfo);
+            target.WriteElementString("ADDITIONAL_INFO", desc.AdditionalInfo);
             target.WriteEndElement();//SHADER_VAR_DESC
             return target;
         }
@@ -77,7 +77,7 @@ namespace ShaderCreationTool
             target.WriteElementString("CODE", desc.GetFunctionString());
 
             target.WriteStartElement("INPUT_VARIABLES");
-            for(int i = 0; i < desc.InputCount;++i)
+            for (int i = 0; i < desc.InputCount; ++i)
             {
                 SerializeShaderVariableDescription(target, desc.GetInVariableDescription(i));
             }
@@ -96,7 +96,7 @@ namespace ShaderCreationTool
 
             return target;
         }
-           
+
 
         public static XmlWriter SerializeColourInputNode(XmlWriter target, InputNodeColour node)
         {
@@ -164,7 +164,7 @@ namespace ShaderCreationTool
         public static XmlWriter SerializeFunctionNode(XmlWriter target, SCTFunctionNode node)
         {
             target.WriteStartElement("FUNCTION_NODE");
-           // target.WriteComment("Function name is: " + node.NodeDescription.Name);
+            // target.WriteComment("Function name is: " + node.NodeDescription.Name);
             target.WriteAttributeString("UNIQUE_ID", node.GetNodeID().ToString());
             SerializePosition(target, node.GetPosition());
             SerializeFunctionNodeDescription(target, node.NodeDescription);
@@ -187,7 +187,7 @@ namespace ShaderCreationTool
 
             List<IInputNode> inputNodes = nodes.FindAll(o => o is IInputNode).Cast<IInputNode>().ToList();
             List<AttribNodeSimple> simpleAttribNodes = nodes.FindAll(o => o is AttribNodeSimple).Cast<AttribNodeSimple>().ToList();
-            List<AttribNodeWithSelection> selectionAttribNodes  = nodes.FindAll(o => o is AttribNodeWithSelection).Cast<AttribNodeWithSelection>().ToList();
+            List<AttribNodeWithSelection> selectionAttribNodes = nodes.FindAll(o => o is AttribNodeWithSelection).Cast<AttribNodeWithSelection>().ToList();
             List<SCTFunctionNode> functionNodes = nodes.FindAll(o => o is SCTFunctionNode).Cast<SCTFunctionNode>().ToList();
             FrameBufferNode targetNode = (FrameBufferNode)nodes.Find(o => o is FrameBufferNode);
 
@@ -225,7 +225,7 @@ namespace ShaderCreationTool
             writer.WriteStartElement("FUNCTION_NODES");
             foreach (SCTFunctionNode functionNode in functionNodes)
             {
-                functionNode .Serialize(writer);
+                functionNode.Serialize(writer);
             }
             writer.WriteEndElement();//FUNCTION NODES
 
@@ -241,14 +241,14 @@ namespace ShaderCreationTool
 
         ////////////////////////////// DESERIALIZATION ///////////////////////////////////////////
 
-       public static bool DeserializePosition(XmlNode node, out Point position)
+        public static bool DeserializePosition(XmlNode node, out Point position)
         {
 
             try
             {
                 int x = 0;
                 int y = 0;
-                foreach(XmlAttribute attrib in node.Attributes)
+                foreach (XmlAttribute attrib in node.Attributes)
                 {
                     if (attrib.Name == "X") x = int.Parse(attrib.Value);
                     if (attrib.Name == "Y") y = int.Parse(attrib.Value);
@@ -261,21 +261,21 @@ namespace ShaderCreationTool
                 position = new Point(0, 0);
                 return false;
             }
-            
+
         }
 
         public static bool DeserializeFrameBufferNode(XmlNode node, ref FrameBufferNode fbNode)
         {
-    
+
             foreach (XmlNode nd in node.ChildNodes)
             {
-                if(nd.Name == "POSITION")
+                if (nd.Name == "POSITION")
                 {
                     int x = int.Parse(nd.Attributes[0].Value);
                     int y = int.Parse(nd.Attributes[1].Value);
                     fbNode.SetPosition(new Point(x, y));
                 }
-            } 
+            }
             return true;
         }
 
@@ -286,9 +286,9 @@ namespace ShaderCreationTool
 
             NodeType type = NodeType.Target;
             string id = string.Empty;
-           foreach (XmlAttribute attrib in xmlNode.Attributes)
-           {
-                if(attrib.Name == "TYPE")
+            foreach (XmlAttribute attrib in xmlNode.Attributes)
+            {
+                if (attrib.Name == "TYPE")
                 {
                     type = (NodeType)Enum.Parse(typeof(NodeType), attrib.Value);
                 }
@@ -296,7 +296,7 @@ namespace ShaderCreationTool
                 {
                     id = attrib.Value;
                 }
-           }
+            }
             if (type == NodeType.Target) return false;
             if (id == string.Empty) return false;
 
@@ -305,7 +305,7 @@ namespace ShaderCreationTool
             SCTConsole.Instance.PrintDebugLine("TYPE: " + type.ToString());
 
             /// Positon
-            Point position = new Point(0,0);
+            Point position = new Point(0, 0);
             /// Variable name
             string varName = string.Empty;
 
@@ -322,8 +322,8 @@ namespace ShaderCreationTool
                         else if (attrib.Name == "VARNAME") varName = attrib.Value;
                     }
                 }
-               else if(child.Name == "SHADER_COLOUR_VARIABLE")
-               {
+                else if (child.Name == "SHADER_COLOUR_VARIABLE")
+                {
                     foreach (XmlAttribute attrib in child.Attributes)
                     {
                         if (attrib.Name == "R") data[0] = attrib.Value;
@@ -333,32 +333,46 @@ namespace ShaderCreationTool
                         else if (attrib.Name == "VARNAME") varName = attrib.Value;
                     }
                 }
+                else if (child.Name == "SHADER_VECTOR_VARIABLE")
+                {
+                    foreach (XmlAttribute attrib in child.Attributes)
+                    {
+                        if (attrib.Name == "X") data[0] = attrib.Value;
+                        else if (attrib.Name == "Y") data[1] = attrib.Value;
+                        else if (attrib.Name == "Z") data[2] = attrib.Value;
+                        else if (attrib.Name == "W") data[3] = attrib.Value;
+                        else if (attrib.Name == "VARNAME") varName = attrib.Value;
+                    }
+                }
             }
 
             if (PlaceNodeCalback != null)
             {
                 inNode = (IInputNode)PlaceNodeCalback(position, type);
-                if(type == NodeType.Input_Texture2D)
+                
+                if (type == NodeType.Input_Texture2D)
                 {
                     InputNodeTexture2D nd = (InputNodeTexture2D)inNode;
+                    nd.ChangeUniqueID(id);
                     nd.ChangeTexture(data[0]);
                     nd.ChangeVarName(varName);
                 }
                 else if (type == NodeType.Input_Colour)
                 {
                     InputNodeColour nd = (InputNodeColour)inNode;
+                    nd.ChangeUniqueID(id);
                     nd.ChangeVariableName(varName);
                     nd.ChangeColour(float.Parse(data[0]), float.Parse(data[1]), float.Parse(data[2]), float.Parse(data[3]));
-                   
                 }
-           } 
+
+            }
             return true;
         }
 
 
-        public static bool  ReadNodes(string path, ref List<ISCTNode> allNodes)
+        public static bool ReadNodes(string path, ref List<ISCTNode> allNodes)
         {
-            
+
             XmlNodeList nodes;
             try
             {
@@ -375,7 +389,7 @@ namespace ShaderCreationTool
             }
             catch
             {
-      
+
                 return false;
             }
 
@@ -386,38 +400,38 @@ namespace ShaderCreationTool
                 if (node.Name == "INPUT_NODES")
                 {
                     // process input nodes
-                    foreach(XmlNode inNode in node.ChildNodes)
+                    foreach (XmlNode inNode in node.ChildNodes)
                     {
                         if (inNode.Name != "UNIFORM_INPUT_NODE") continue;
                         IInputNode result;
                         DeserializeInputNode(inNode, out result);
-                        
+
                     }
-                  
+
                 }
-                else if(node.Name == "SIMPLE_ATTRIB_NODES")
+                else if (node.Name == "SIMPLE_ATTRIB_NODES")
                 {
                     // process simple attrib nodes
                     Console.Write("pruk");
                 }
-                else if(node.Name == "SELECTION_ATTRIB_NODES")
+                else if (node.Name == "SELECTION_ATTRIB_NODES")
                 {
                     // selection attrib nodes
                     Console.Write("pruk");
                 }
-                else if(node.Name == "FUNCTION_NODES")
+                else if (node.Name == "FUNCTION_NODES")
                 {
                     //proccess function nodes
                     Console.Write("pruk");
                 }
-                else if(node.Name == "TARGET_NODE")
+                else if (node.Name == "TARGET_NODE")
                 {
                     // process target node
                     FrameBufferNode fbn = (FrameBufferNode)allNodes.Find(o => o is FrameBufferNode);
                     DeserializeFrameBufferNode(node, ref fbn);
 
                 }
-                
+
 
             }
 

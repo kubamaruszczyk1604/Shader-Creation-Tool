@@ -42,7 +42,7 @@ namespace ShaderCreationTool
         public ShaderVariableType GetShaderVariableType() { return ShaderVariableType.Texture2D; }
         public ShaderTextureVariable GetRawShaderVariable() { return m_ShaderVariable; }
         public Point GetPosition() { return m_SctElement.Location; }
-
+        public void ChangeUniqueID(string uniqueID) {m_UniqueID = uniqueID;}
 
         public InputNodeTexture2D(Panel nodeTemplate, Point location)
         {
@@ -313,26 +313,18 @@ namespace ShaderCreationTool
             else
             {
                 ofd.InitialDirectory = s_LastTexturePath;
+                //dissalow relative paths
+                if(ofd.InitialDirectory.Contains("../"))
+                {
+                    ofd.InitialDirectory = @"C:\";
+                }
             }
+  
+
             DialogResult result = ofd.ShowDialog();
             if (result == DialogResult.OK)
             {
                 SCTConsole.Instance.PrintDebugLine("Opening Texture file: " + ofd.FileName);
-                //try
-                //{
-                //    m_ImagePanel.BackgroundImage = Image.FromFile(ofd.FileName);
-                //    m_FileTextbox.Text = ofd.FileName;
-                //    m_ImgPath = ofd.FileName;
-                //    s_LastTexturePath = ofd.FileName;
-                //    this.TextureChanged(m_ImgPath);
-                //    m_ShaderVariable.SetPath(m_ImgPath);
-                //}
-                //catch(Exception ex)
-                //{
-                //    SCTConsole.Instance.PrintDebugLine(ex.Message);
-                //    p_ErrorCallback("Texture: "+ ofd.FileName + " has incorrect format\n",this);
-                //}
-
                 ChangeTexture(ofd.FileName);
             }
             ofd.Dispose();
