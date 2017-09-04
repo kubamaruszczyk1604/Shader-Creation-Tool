@@ -318,10 +318,19 @@ namespace ShaderCreationTool
                 {
                     foreach (XmlAttribute attrib in child.Attributes)
                     {
-                        if (attrib.Name == "PATH")
-                            data[0] = attrib.Value;
-                        if (attrib.Name == "VARNAME")
-                            varName = attrib.Value;
+                        if (attrib.Name == "PATH") data[0] = attrib.Value;
+                        else if (attrib.Name == "VARNAME") varName = attrib.Value;
+                    }
+                }
+               else if(child.Name == "SHADER_COLOUR_VARIABLE")
+               {
+                    foreach (XmlAttribute attrib in child.Attributes)
+                    {
+                        if (attrib.Name == "R") data[0] = attrib.Value;
+                        else if (attrib.Name == "G") data[1] = attrib.Value;
+                        else if (attrib.Name == "B") data[2] = attrib.Value;
+                        else if (attrib.Name == "A") data[3] = attrib.Value;
+                        else if (attrib.Name == "VARNAME") varName = attrib.Value;
                     }
                 }
             }
@@ -334,6 +343,13 @@ namespace ShaderCreationTool
                     InputNodeTexture2D nd = (InputNodeTexture2D)inNode;
                     nd.ChangeTexture(data[0]);
                     nd.ChangeVarName(varName);
+                }
+                else if (type == NodeType.Input_Colour)
+                {
+                    InputNodeColour nd = (InputNodeColour)inNode;
+                    nd.ChangeVariableName(varName);
+                    nd.ChangeColour(float.Parse(data[0]), float.Parse(data[1]), float.Parse(data[2]), float.Parse(data[3]));
+                   
                 }
            } 
             return true;

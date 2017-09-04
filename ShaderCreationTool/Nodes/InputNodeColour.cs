@@ -47,8 +47,7 @@ namespace ShaderCreationTool
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
             m_SctElement.Location = location;
             m_SctElement.MouseDown += Panel_MouseDown;
-   
-
+  
             //Make object movable
             m_Mover = new MovableObject(m_SctElement);
 
@@ -206,7 +205,33 @@ namespace ShaderCreationTool
             else return null;
         }
 
+        public void ChangeColour(float r, float g, float b, float a)
+        {
+            m_Numeric[0].Value = (decimal)(r);
+            m_Numeric[1].Value = (decimal)(g);
+            m_Numeric[2].Value = (decimal)(b);
+            m_Numeric[3].Value = (decimal)(a);
+            SetShaderVariableFromNumeric();
+        }
 
+        public void ChangeVariableName(string varName)
+        {
+            ResetNumeric();
+            SetShaderVariableFromNumeric();
+            m_Name = varName;
+            m_NameTextbox.Text = varName;
+            m_NameTextbox.Invalidate();
+
+            foreach (Connector c in m_OutputConnectors)
+            {
+                if (!c.Connected) continue;
+                c.ParentConnection.RefreshoutVarName();
+            }
+
+            m_ShaderVariable.SetName(m_Name);
+            SCTConsole.Instance.PrintDebugLine("TEXT CHANGED to: " + varName);
+            SetShaderVariableFromNumeric();
+        }
 
         //////////////////// PUBLIC UTIL METHODS /////////////////////////
 
@@ -309,6 +334,9 @@ namespace ShaderCreationTool
             }
            
         }
+
+     
+
         //////////////////// VARIABLE NAME HANDLING  ////////////////////
         private void TextBox_LostFocus(object sender, EventArgs e)
         {
