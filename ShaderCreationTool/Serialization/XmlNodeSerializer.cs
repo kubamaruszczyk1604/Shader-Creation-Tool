@@ -234,6 +234,84 @@ namespace ShaderCreationTool
 
         }
 
+        ////////////////////////////// DESERIALIZATION ///////////////////////////////////////////
+
+        public static bool DeserializeFrameBufferNode(XmlNode node, ref FrameBufferNode fbNode)
+        {
+    
+            foreach (XmlNode nd in node.ChildNodes)
+            {
+                if(nd.Name == "POSITION")
+                {
+                    int x = int.Parse(nd.Attributes[0].Value);
+                    int y = int.Parse(nd.Attributes[1].Value);
+                    fbNode.SetPosition(new Point(x, y));
+                }
+            } 
+            return true;
+        }
+
+        public static bool  ReadNodes(string path, ref List<ISCTNode> allNodes)
+        {
+            
+            XmlNodeList nodes;
+            try
+            {
+                string xmlContent = File.ReadAllText(path);
+
+                XmlDocument XdOC = new XmlDocument();
+                XdOC.LoadXml(xmlContent);
+
+                XmlElement document = XdOC.DocumentElement;
+
+                //All Nodes - ~First one is a comment rest are entities
+
+                nodes = document.ChildNodes;
+            }
+            catch
+            {
+      
+                return false;
+            }
+
+
+            foreach (XmlNode node in nodes)
+            {
+                SCTConsole.Instance.PrintDebugLine("Category name: " + node.Name);
+                if (node.Name == "INPUT_NODES")
+                {
+                    // process input nodes
+                    Console.Write("pruk");
+                }
+                else if(node.Name == "SIMPLE_ATTRIB_NODES")
+                {
+                    // process simple attrib nodes
+                    Console.Write("pruk");
+                }
+                else if(node.Name == "SELECTION_ATTRIB_NODES")
+                {
+                    // selection attrib nodes
+                    Console.Write("pruk");
+                }
+                else if(node.Name == "FUNCTION_NODES")
+                {
+                    //proccess function nodes
+                    Console.Write("pruk");
+                }
+                else if(node.Name == "TARGET_NODE")
+                {
+                    // process target node
+                    FrameBufferNode fbn = (FrameBufferNode)allNodes.Find(o => o is FrameBufferNode);
+                    DeserializeFrameBufferNode(node, ref fbn);
+
+                }
+                
+
+            }
+
+            return true;
+        }
+
 
 
     }

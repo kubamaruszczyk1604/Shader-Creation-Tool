@@ -26,6 +26,8 @@ namespace ShaderCreationTool
         public string GetNodeID() { return m_UniqueID; }
         public Point GetPosition() { return m_SctElement.Location; }
 
+       
+
         public FrameBufferNode(Panel windowControl)
         {
             //Copy template (make local instance)
@@ -82,6 +84,11 @@ namespace ShaderCreationTool
 
         public void Serialize(XmlWriter target)
         { 
+        }
+
+        public void SetPosition(Point position)
+        {
+            m_SctElement.Location = position;
         }
 
         public void AddOnMovedCallback(ObjectMovedCallback onMovedCallback)

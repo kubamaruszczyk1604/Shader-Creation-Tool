@@ -259,6 +259,24 @@ namespace ShaderCreationTool
         }
 
 
+        private void RemoveAllNodes()
+        {
+            FrameBufferNode fbNode = null;
+            foreach (ISCTNode node in m_Nodes)
+            {
+                if (node is IDisposable)
+                {
+                    IDisposable tmp = (IDisposable)node;
+                    tmp.Dispose();
+                }
+                else if (node is FrameBufferNode)
+                {
+                    fbNode = (FrameBufferNode)node;
+                }
+            }
+            m_Nodes.Clear();
+            m_Nodes.Add(fbNode);
+        }
         ////////////////////////////  CALLBACKS   /////////////////////////////
 
         private void OnSceneReloaded()
@@ -630,6 +648,9 @@ namespace ShaderCreationTool
         {
             //  SCTConsole.Instance.PrintLine("Name of the variable: " + anode.GetVariableName());
             XmlNodeSerializer.Save(@"c:\nodes\ser.txt", m_Nodes);
+            RemoveAllNodes();
+            XmlNodeSerializer.ReadNodes(@"c:\nodes\ser.txt", ref m_Nodes);
+            
         }
 
       
