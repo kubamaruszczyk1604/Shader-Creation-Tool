@@ -318,28 +318,49 @@ namespace ShaderCreationTool
             if (result == DialogResult.OK)
             {
                 SCTConsole.Instance.PrintDebugLine("Opening Texture file: " + ofd.FileName);
-                try
-                {
-                    m_ImagePanel.BackgroundImage = Image.FromFile(ofd.FileName);
-                    m_FileTextbox.Text = ofd.FileName;
-                    m_ImgPath = ofd.FileName;
-                    s_LastTexturePath = ofd.FileName;
-                    this.TextureChanged(m_ImgPath);
-                    m_ShaderVariable.SetPath(m_ImgPath);
-                }
-                catch(Exception ex)
-                {
-                    SCTConsole.Instance.PrintDebugLine(ex.Message);
-                    p_ErrorCallback("Texture: "+ ofd.FileName + " has incorrect format\n",this);
-                }
+                //try
+                //{
+                //    m_ImagePanel.BackgroundImage = Image.FromFile(ofd.FileName);
+                //    m_FileTextbox.Text = ofd.FileName;
+                //    m_ImgPath = ofd.FileName;
+                //    s_LastTexturePath = ofd.FileName;
+                //    this.TextureChanged(m_ImgPath);
+                //    m_ShaderVariable.SetPath(m_ImgPath);
+                //}
+                //catch(Exception ex)
+                //{
+                //    SCTConsole.Instance.PrintDebugLine(ex.Message);
+                //    p_ErrorCallback("Texture: "+ ofd.FileName + " has incorrect format\n",this);
+                //}
+
+                ChangeTexture(ofd.FileName);
             }
             ofd.Dispose();
+        }
+
+        public void ChangeTexture(string path)
+        {
+            try
+            {
+                m_ImagePanel.BackgroundImage = Image.FromFile(path);
+                m_FileTextbox.Text = path;
+                m_ImgPath = path;
+                s_LastTexturePath = path;
+                this.TextureChanged(m_ImgPath);
+                m_ShaderVariable.SetPath(m_ImgPath);
+            }
+            catch (Exception ex)
+            {
+                SCTConsole.Instance.PrintDebugLine(ex.Message);
+                p_ErrorCallback("Texture: " + path + " has incorrect format\n", this);
+            }
         }
 
         ///////////////////   TEXTURE FILE CHANGED //////////////////////
 
         private void TextureChanged(string fileName)
         {
+
             SCTConsole.Instance.PrintDebugLine("Texture change detected!\n New file:" + fileName);
         } 
 
@@ -358,7 +379,7 @@ namespace ShaderCreationTool
             }
         }
 
-        private void TextChanged(string newText)
+        public void TextChanged(string newText)
         {
             if (m_Name == newText) return;
 
@@ -430,7 +451,21 @@ namespace ShaderCreationTool
    
         }
 
-        
+        public void ChangeVarName(string varName)
+        {
+            m_Name = varName;
+            m_NameTextbox.Text = varName;
+            m_NameTextbox.Invalidate();
+            foreach (Connector c in m_OutputConnectors)
+            {
+                if (!c.Connected) continue;
+                c.ParentConnection.RefreshoutVarName();
+            }
+
+
+            m_ShaderVariable.SetName(m_Name);
+            SCTConsole.Instance.PrintDebugLine("TEXT CHANGED to: " + varName);
+        }
 
     }
 }

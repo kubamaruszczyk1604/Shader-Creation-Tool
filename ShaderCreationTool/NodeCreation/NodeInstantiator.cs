@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace ShaderCreationTool
 {
-    delegate void OnPlaceNodeCallback(Point location, NodeType nodeType);
+    delegate ISCTNode OnPlaceNodeCallback(Point location, NodeType nodeType);
     delegate void OnPlaceNodeCanceledCallback(Point location);
     class NodeInstantiator
     {

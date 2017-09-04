@@ -59,6 +59,8 @@ namespace ShaderCreationTool
 
             m_CodeParser = new CodeParserGLSL();
 
+            XmlNodeSerializer.PlaceNodeCalback += OnPlaceNode;
+
         }
 
         //////////////////////////// WINAPI CALLBACKS ///////////////////
@@ -400,7 +402,7 @@ namespace ShaderCreationTool
         /// </summary>
         /// <param name="location">Where to place the node on EditAreaPanel.</param>
         /// <param name="type">Type of node to be created.</param>
-        private void OnPlaceNode(Point location, NodeType type)
+        private ISCTNode OnPlaceNode(Point location, NodeType type)
         {
             SCTConsole.Instance.PrintDebugLine("OnPlaceNode()");
             MovableObject.UnlockAllMovement();
@@ -421,7 +423,7 @@ namespace ShaderCreationTool
                 case NodeType.AttribUVs: { temp = new AttribNodeSimple(UVsWindow, location); break; }
                 case NodeType.AttribInput_Time: { temp = new AttribNodeSimple(TimeWindow, location); break; }
                 case NodeType.Funtion: { temp = new SCTFunctionNode(FunctionNodeWindow, location, NodeInstantiator.FunctionDescriptionStruct); break; }
-                default:{ MessageBox.Show(type.ToString() + " NOT IMPLEMENTED"); return; }
+                default:{ MessageBox.Show(type.ToString() + " NOT IMPLEMENTED"); return null; }
             }
 
             temp.AddOnMovedCallback(UpdateOnObjectMoved);
@@ -446,7 +448,8 @@ namespace ShaderCreationTool
                 anode = inpN;
             }
 
-            m_Nodes.Add(temp);   
+            m_Nodes.Add(temp);
+            return temp;
         }
 
 

@@ -9,8 +9,13 @@ using System.Drawing;
 
 namespace ShaderCreationTool
 {
+    
     class XmlNodeSerializer
     {
+
+        public static OnPlaceNodeCallback PlaceNodeCalback = null;
+
+
         public static XmlWriter SerializeColour(XmlWriter target, ShaderVectorVariable variable)
         {
             target.WriteStartElement("SHADER_COLOUR_VARIABLE");
@@ -236,6 +241,29 @@ namespace ShaderCreationTool
 
         ////////////////////////////// DESERIALIZATION ///////////////////////////////////////////
 
+       public static bool DeserializePosition(XmlNode node, out Point position)
+        {
+
+            try
+            {
+                int x = 0;
+                int y = 0;
+                foreach(XmlAttribute attrib in node.Attributes)
+                {
+                    if (attrib.Name == "X") x = int.Parse(attrib.Value);
+                    if (attrib.Name == "Y") y = int.Parse(attrib.Value);
+                }
+                position = new Point(x, y);
+                return true;
+            }
+            catch
+            {
+                position = new Point(0, 0);
+                return false;
+            }
+            
+        }
+
         public static bool DeserializeFrameBufferNode(XmlNode node, ref FrameBufferNode fbNode)
         {
     
@@ -250,6 +278,67 @@ namespace ShaderCreationTool
             } 
             return true;
         }
+
+        public static bool DeserializeInputNode(XmlNode xmlNode, out IInputNode inNode)
+        {
+            inNode = null;
+            if (xmlNode.Attributes.Count < 2) return false;
+
+            NodeType type = NodeType.Target;
+            string id = string.Empty;
+           foreach (XmlAttribute attrib in xmlNode.Attributes)
+           {
+                if(attrib.Name == "TYPE")
+                {
+                    type = (NodeType)Enum.Parse(typeof(NodeType), attrib.Value);
+                }
+                else if (attrib.Name == "ID")
+                {
+                    id = attrib.Value;
+                }
+           }
+            if (type == NodeType.Target) return false;
+            if (id == string.Empty) return false;
+
+            SCTConsole.Instance.PrintDebugLine("WE ARE HERE");
+            SCTConsole.Instance.PrintDebugLine("ID IS: " + id);
+            SCTConsole.Instance.PrintDebugLine("TYPE: " + type.ToString());
+
+            /// Positon
+            Point position = new Point(0,0);
+            /// Variable name
+            string varName = string.Empty;
+
+            string[] data = new string[4];
+
+            foreach (XmlNode child in xmlNode.ChildNodes)
+            {
+                if (child.Name == "POSITION") DeserializePosition(child, out position);
+                if (child.Name == "SHADER_TEXTURE_VARIABLE")// seserialize textire
+                {
+                    foreach (XmlAttribute attrib in child.Attributes)
+                    {
+                        if (attrib.Name == "PATH")
+                            data[0] = attrib.Value;
+                        if (attrib.Name == "VARNAME")
+                            varName = attrib.Value;
+                    }
+                }
+            }
+
+            if (PlaceNodeCalback != null)
+            {
+                inNode = (IInputNode)PlaceNodeCalback(position, type);
+                if(type == NodeType.Input_Texture2D)
+                {
+                    InputNodeTexture2D nd = (InputNodeTexture2D)inNode;
+                    nd.ChangeTexture(data[0]);
+                    nd.ChangeVarName(varName);
+                }
+           } 
+            return true;
+        }
+
 
         public static bool  ReadNodes(string path, ref List<ISCTNode> allNodes)
         {
@@ -281,7 +370,14 @@ namespace ShaderCreationTool
                 if (node.Name == "INPUT_NODES")
                 {
                     // process input nodes
-                    Console.Write("pruk");
+                    foreach(XmlNode inNode in node.ChildNodes)
+                    {
+                        if (inNode.Name != "UNIFORM_INPUT_NODE") continue;
+                        IInputNode result;
+                        DeserializeInputNode(inNode, out result);
+                        
+                    }
+                  
                 }
                 else if(node.Name == "SIMPLE_ATTRIB_NODES")
                 {
