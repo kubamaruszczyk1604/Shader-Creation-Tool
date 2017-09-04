@@ -29,6 +29,7 @@ namespace ShaderCreationTool
         private NumericUpDown[] m_Numeric = new NumericUpDown[4];
         private string m_Name;
         private int m_ConnectorCount;
+        private int m_ValueCount;
         private NodeType m_NodeType;
         private static bool s_ButtonsLocked = false;
         ShaderVectorVariable m_ShaderVariable;
@@ -41,11 +42,13 @@ namespace ShaderCreationTool
         public ShaderVariableType GetShaderVariableType() { return m_VarType; }
         public ShaderVectorVariable GetRawShaderVariable() { return m_ShaderVariable; }
         public Point GetPosition() { return m_SctElement.Location; }
+        public void ChangeUniqueID(string uniqueID) { m_UniqueID = uniqueID; }
 
         public InputNodeVector(Panel nodeTemplate, Point location)
         {
 
             m_ConnectorCount = 0;
+            m_ValueCount = 0;
             //Copy template (make local instance)
             m_SctElement = nodeTemplate.CopyAsSCTElement(true);
             m_SctElement.Location = location;
@@ -62,13 +65,13 @@ namespace ShaderCreationTool
             m_VarType = ShaderVariableType.Single;
 
             if (m_SctElement.Name.Contains("4"))
-            { m_VarType = ShaderVariableType.Vector4; m_NodeType = NodeType.Input_Float4; }
+            { m_VarType = ShaderVariableType.Vector4; m_NodeType = NodeType.Input_Float4; m_ValueCount = 4; }
             else if (m_SctElement.Name.Contains("3"))
-            { m_VarType = ShaderVariableType.Vector3; m_NodeType = NodeType.Input_Float3; }
+            { m_VarType = ShaderVariableType.Vector3; m_NodeType = NodeType.Input_Float3; m_ValueCount = 3; }
             else if (m_SctElement.Name.Contains("2"))
-            { m_VarType = ShaderVariableType.Vector2; m_NodeType = NodeType.Input_Float2; }
+            { m_VarType = ShaderVariableType.Vector2; m_NodeType = NodeType.Input_Float2; m_ValueCount = 2; }
             else
-            { m_VarType = ShaderVariableType.Single; m_NodeType = NodeType.Input_Float; }
+            { m_VarType = ShaderVariableType.Single; m_NodeType = NodeType.Input_Float; m_ValueCount = 1; }
 
             m_UniqueID = NodeIDCreator.CreateID(GetNodeType(), s_InstanceCounter);
 
@@ -255,6 +258,30 @@ namespace ShaderCreationTool
             }
         }
 
+
+        public void ChangeVariableName(string varName)
+        {
+            m_Name = varName;
+            m_NameTextbox.Text = varName;
+            foreach (Connector c in m_OutputConnectors)
+            {
+                if (!c.Connected) continue;
+                c.ParentConnection.RefreshoutVarName();
+            }
+            m_ShaderVariable.SetName(m_Name);
+            SCTConsole.Instance.PrintDebugLine("TEXT CHANGED to: " + varName);
+            RefreshShaderVariable();
+        }
+
+        public void SetNewData(float [] data)
+        {
+            for (int i = 0; i < m_ValueCount; ++i)
+            {
+                m_Numeric[i].Value = (decimal)data[i];
+            }
+            RefreshShaderVariable();
+        }
+
         ////// UTIL FOR ASYNC
         private async void ShowNode(int delay)
         {
@@ -377,16 +404,7 @@ namespace ShaderCreationTool
                 return;
             }
 
-            m_Name = newText;
-
-            foreach (Connector c in m_OutputConnectors)
-            {
-                if (!c.Connected) continue;
-                c.ParentConnection.RefreshoutVarName();
-            }
-            m_ShaderVariable.SetName(m_Name);
-            SCTConsole.Instance.PrintDebugLine("TEXT CHANGED to: " + newText);
-            RefreshShaderVariable();
+            ChangeVariableName(newText);
         }
 
         //////////////////// NUMERIC COMPONENTS HANDLING  ////////////////////

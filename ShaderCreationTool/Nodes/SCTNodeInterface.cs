@@ -37,7 +37,8 @@ namespace ShaderCreationTool
         NodeType GetNodeType();
         string GetNodeID();
         void Serialize(XmlWriter target);
-        
+        void ChangeUniqueID(string uniqueID);
+
     }
 
     interface IInputNode: ISCTNode
@@ -46,6 +47,7 @@ namespace ShaderCreationTool
        void AddInputErrorCallback(NodeInputError callback);
        string GetVariableName();
        ShaderVariableType GetShaderVariableType();
+       void ChangeVariableName(string varName);
 
     }
 

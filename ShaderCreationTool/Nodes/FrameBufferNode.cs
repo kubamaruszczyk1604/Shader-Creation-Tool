@@ -25,8 +25,8 @@ namespace ShaderCreationTool
         public NodeType GetNodeType() { return NodeType.Target; }
         public string GetNodeID() { return m_UniqueID; }
         public Point GetPosition() { return m_SctElement.Location; }
+        public void ChangeUniqueID(string uniqueID) { m_UniqueID = uniqueID; }
 
-       
 
         public FrameBufferNode(Panel windowControl)
         {

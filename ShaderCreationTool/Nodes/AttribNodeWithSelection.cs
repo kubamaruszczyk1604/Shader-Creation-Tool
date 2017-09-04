@@ -48,6 +48,7 @@ namespace ShaderCreationTool
         public ShaderVariableType GetShaderVariableType() { return m_VarType; }
         public Point GetPosition() { return m_SctElement.Location; }
         public int GetSelectedIndex() { return m_ComboBox.SelectedIndex; }
+        public void ChangeUniqueID(string uniqueID) { m_UniqueID = uniqueID; }
 
         public AttribNodeWithSelection(Panel nodeTemplate, Point location)
         {  

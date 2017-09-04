@@ -443,7 +443,7 @@ namespace ShaderCreationTool
    
         }
 
-        public void ChangeVarName(string varName)
+        public void ChangeVariableName(string varName)
         {
             m_Name = varName;
             m_NameTextbox.Text = varName;

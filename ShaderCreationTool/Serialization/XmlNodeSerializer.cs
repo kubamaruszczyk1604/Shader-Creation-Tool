@@ -348,21 +348,30 @@ namespace ShaderCreationTool
 
             if (PlaceNodeCalback != null)
             {
-                inNode = (IInputNode)PlaceNodeCalback(position, type);
-                
+                inNode = (IInputNode)PlaceNodeCalback(position, type);// new node created here
+                inNode.ChangeUniqueID(id);
+                inNode.ChangeVariableName(varName);
                 if (type == NodeType.Input_Texture2D)
                 {
                     InputNodeTexture2D nd = (InputNodeTexture2D)inNode;
-                    nd.ChangeUniqueID(id);
                     nd.ChangeTexture(data[0]);
-                    nd.ChangeVarName(varName);
                 }
                 else if (type == NodeType.Input_Colour)
                 {
                     InputNodeColour nd = (InputNodeColour)inNode;
-                    nd.ChangeUniqueID(id);
-                    nd.ChangeVariableName(varName);
                     nd.ChangeColour(float.Parse(data[0]), float.Parse(data[1]), float.Parse(data[2]), float.Parse(data[3]));
+                }
+                else 
+                {
+                    InputNodeVector nd = (InputNodeVector)inNode;
+                    List<float> fData = new List<float>();
+                    for (int i = 0; i < data.Length; ++i)
+                    {
+                        if (data[i] == null) break;
+                        fData.Add(float.Parse(data[i]));
+                    }
+                    nd.SetNewData(fData.ToArray());
+                    
                 }
 
             }
@@ -405,7 +414,6 @@ namespace ShaderCreationTool
                         if (inNode.Name != "UNIFORM_INPUT_NODE") continue;
                         IInputNode result;
                         DeserializeInputNode(inNode, out result);
-
                     }
 
                 }
@@ -431,7 +439,6 @@ namespace ShaderCreationTool
                     DeserializeFrameBufferNode(node, ref fbn);
 
                 }
-
 
             }
 

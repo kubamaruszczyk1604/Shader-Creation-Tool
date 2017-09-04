@@ -33,7 +33,7 @@ namespace ShaderCreationTool
         public string GetNodeID() { return m_UniqueID; }
         public ShaderVariableType GetShaderVariableType() { return m_VarType; }
         public Point GetPosition() { return m_SctElement.Location; }
-
+        public void ChangeUniqueID(string uniqueID) { m_UniqueID = uniqueID; }
         public AttribNodeSimple(Panel nodeTemplate, Point location)
         {
             //Copy template (make local instance)
