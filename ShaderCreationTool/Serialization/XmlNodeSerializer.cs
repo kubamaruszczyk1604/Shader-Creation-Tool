@@ -526,7 +526,6 @@ namespace ShaderCreationTool
 
         public static bool DeserializeFunctionNode(XmlNode xmlNode, out SCTFunctionNode functionNode)
         {
-
             functionNode = null;
             if (xmlNode.Attributes.Count < 1) return false;
             if (PlaceNodeCalback == null) return false;
@@ -550,8 +549,6 @@ namespace ShaderCreationTool
                     
                 }
             }
-
-
 
             functionNode = (SCTFunctionNode)PlaceNodeCalback(position, type);// new node created here
             functionNode.ChangeUniqueID(id);
