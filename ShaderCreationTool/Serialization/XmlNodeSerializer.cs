@@ -202,7 +202,20 @@ namespace ShaderCreationTool
             return target;
         }
 
-        public static void Save(string path, List<ISCTNode> nodes)
+        //SERIALIZE CONNETION
+        public static XmlWriter SerializeConnection(XmlWriter target, Connection connection)
+        {
+            target.WriteStartElement("CONNECTION");
+            target.WriteAttributeString("SOURCE_NODE_ID", connection.SourceConnector.ParentNode.GetNodeID());
+            target.WriteAttributeString("DESTINATION_NODE_ID", connection.DestinationConnector.ParentNode.GetNodeID());
+            target.WriteAttributeString("SOURCE_CON_LOCAL_ID", connection.SourceConnector.LocalID);
+            target.WriteAttributeString("DESTINATION_CON_LOCAL_ID", connection.DestinationConnector.LocalID);
+
+            target.WriteEndElement();
+            return target;
+        }
+
+        public static void Save(string path, List<ISCTNode> nodes, List<Connection> connections)
         {
 
             List<IInputNode> inputNodes = nodes.FindAll(o => o is IInputNode).Cast<IInputNode>().ToList();
@@ -215,6 +228,7 @@ namespace ShaderCreationTool
 
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
+            settings.NewLineOnAttributes = true;
             XmlWriter writer = XmlWriter.Create(path, settings);
             writer.WriteStartDocument();
             writer.WriteComment("SHADER CREATION TOOL NETWORK FILE");
@@ -227,6 +241,8 @@ namespace ShaderCreationTool
                 AttribNodeSimple.CounterState(),
                 AttribNodeWithSelection.CounterState(),
                 SCTFunctionNode.CounterState());
+
+           
 
             writer.WriteStartElement("INPUT_NODES");
             foreach (IInputNode inputNode in inputNodes)
@@ -258,6 +274,15 @@ namespace ShaderCreationTool
             writer.WriteEndElement();//FUNCTION NODES
 
             SerializeTargetNode(writer, targetNode);
+
+
+            writer.WriteStartElement("CONNECTIONS");
+       
+            foreach (Connection con in connections)
+            {
+                SerializeConnection(writer, con);
+            }
+            writer.WriteEndElement();//CONNECTIONS
 
             writer.WriteEndElement();
             writer.WriteEndDocument();

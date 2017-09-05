@@ -566,7 +566,6 @@ namespace ShaderCreationTool
             Start_AddFunctionNode();
         }
 
-
         private void AddAttribButton_Click(object sender, EventArgs e)
         {
             Start_AddVariableNode(false);
@@ -603,6 +602,7 @@ namespace ShaderCreationTool
         {
             BuildShaders();
         }
+
         private void RunMenuItem1_Click(object sender, EventArgs e)
         {
             Bridge.ReloadScene();
@@ -660,7 +660,7 @@ namespace ShaderCreationTool
         private void button2_Click(object sender, EventArgs e)
         {
             //  SCTConsole.Instance.PrintLine("Name of the variable: " + anode.GetVariableName());
-            XmlNodeSerializer.Save(@"c:\nodes\ser.txt", m_Nodes);
+            XmlNodeSerializer.Save(@"c:\nodes\ser.txt", m_Nodes,ConnectionManager.ConnectionList);
             RemoveAllNodes();
             ResetCounters();
             if(!XmlNodeSerializer.ReadNodes(@"c:\nodes\ser.txt", ref m_Nodes,OnPlaceNode))
