@@ -295,6 +295,42 @@ namespace ShaderCreationTool
 
         }
 
+        public static bool DeserializeShadevVarDesc(XmlNode node, out ShaderVariableDescription svdesc)
+        {
+            svdesc = null;
+            string varName = string.Empty;
+            ShaderVariableType type =ShaderVariableType.Single;
+            ConnectionDirection direction = ConnectionDirection.In;
+            int counter = 0;
+            foreach(XmlAttribute attrib in node.Attributes)
+            {
+                if(attrib.Name == "NAME")
+                { varName = attrib.Value; counter++; }
+                else if (attrib.Name == "TYPE")
+                {
+                    try { type = (ShaderVariableType)Enum.Parse(typeof(ShaderVariableType), attrib.Value); }
+                    catch { return false; }
+                    counter++;
+                }
+                else if (attrib.Name == "CONNECTION_DIRECTION")
+                {
+                    try { direction = (ConnectionDirection)Enum.Parse(typeof(ConnectionDirection), attrib.Value); }
+                    catch { return false; }
+                    counter++;
+                }
+            }
+          
+            if (counter < 3) return false;
+            svdesc = new ShaderVariableDescription(varName, type, direction);
+            foreach (XmlNode addInfoNode in node.ChildNodes)
+            {
+                if(addInfoNode.Name == "ADDITIONAL_INFO")
+                svdesc.AdditionalInfo = addInfoNode.InnerText;
+            }
+            return true;
+                
+        }
+
 
         public static bool DeserializeFunctionDesc(XmlNode node, out FunctionNodeDescription desc)
         {
@@ -306,7 +342,40 @@ namespace ShaderCreationTool
             }
             catch
             { return false; }
+            foreach(XmlNode child in node.ChildNodes)
+            {
+                if (child.Name == "CODE")
+                {
+                    desc.SetFucntionString(child.InnerText);
+                }
+                else if (child.Name == "INPUT_VARIABLES")
+                {
+                    foreach (XmlNode inVarNode in child.ChildNodes)
+                    {
+                        ShaderVariableDescription svd;
+                        if (DeserializeShadevVarDesc(inVarNode, out svd))
+                        {
+                            if (svd.ConnectionDirection == ConnectionDirection.In)
+                            { desc.AddInputVariable(svd); }
+                            else return false;
+                        }
+                    }
+                }
 
+                else if (child.Name == "OUTPUT_VARIABLES")
+                {
+                    foreach (XmlNode outVarNode in child.ChildNodes)
+                    {
+                        ShaderVariableDescription svd;
+                        if (DeserializeShadevVarDesc(outVarNode, out svd))
+                        {
+                            if (svd.ConnectionDirection == ConnectionDirection.Out)
+                            { desc.AddOutputVariable(svd); }
+                            else return false;
+                        }
+                    }
+                }
+            }
 
 
             return true;
