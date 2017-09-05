@@ -665,7 +665,7 @@ namespace ShaderCreationTool
             ResetCounters();
             if(!XmlNodeSerializer.ReadNodes(@"c:\nodes\ser.txt", ref m_Nodes,OnPlaceNode))
             {
-                MessageBox.Show("READING FAILED!");
+                 MessageBox.Show("READING FAILED!");
             }    
         }
 
