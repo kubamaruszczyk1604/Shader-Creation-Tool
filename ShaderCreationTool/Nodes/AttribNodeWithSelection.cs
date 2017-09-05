@@ -14,10 +14,10 @@ using System.Xml.Linq;
 
 namespace ShaderCreationTool
 {
+
     class AttribNodeWithSelection: IDisposable, IAttribNode
     {
         
-
         private Panel m_SctElement;
         private MovableObject m_Mover;
         private List<Connector> m_OutputConnectors;
@@ -139,7 +139,6 @@ namespace ShaderCreationTool
 
                 else if (control is Label)
                 {
-
                     Label l = (Label)control;
                     if (l.Name.Contains("Title"))
                     {
@@ -154,7 +153,6 @@ namespace ShaderCreationTool
 
                 }
             }
-
 
             if (connectorCounter < 1)
             {
@@ -240,6 +238,14 @@ namespace ShaderCreationTool
         {
             return m_Name;
         }
+
+        public void ChangeSelectionIndex(int newIndex)
+        {
+            m_ComboBox.SelectedIndex = newIndex;
+            m_ComboBox.Invalidate();
+            Combo_SelectedIndexChanged(m_ComboBox, null);
+        }
+
         ////// UTIL FOR ASYNC
         private async void ShowNode(int delay)
         {
@@ -247,6 +253,7 @@ namespace ShaderCreationTool
             m_SctElement.Visible = true;
             m_SctElement.Update();
         }
+
         ////////////////// UI EVENTS ////////////////
         private void CloseButton_Click(object sender, EventArgs e)
         {
@@ -255,7 +262,6 @@ namespace ShaderCreationTool
             {
                 p_CloseCallback(this);
             }
-
         }
 
         private void AnyElement_Click(object sender, EventArgs e)
@@ -292,7 +298,6 @@ namespace ShaderCreationTool
             { m_Name = AttribVariableStrings.O_NORMAL_VAR_NAMES[cb.SelectedIndex]; }
             else if (m_NodeType == NodeType.AttribInput_CameraPos)
             { m_Name = AttribVariableStrings.O_CAMERA_POS_VAR_NAMES[cb.SelectedIndex]; }
-
 
             foreach (Connector c in m_OutputConnectors)
             {

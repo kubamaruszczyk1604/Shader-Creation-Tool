@@ -276,7 +276,6 @@ namespace ShaderCreationTool
 
         public static bool DeserializePosition(XmlNode node, out Point position)
         {
-
             try
             {
                 int x = 0;
@@ -387,10 +386,8 @@ namespace ShaderCreationTool
                         if (data[i] == null) break;
                         fData.Add(float.Parse(data[i]));
                     }
-                    nd.SetNewData(fData.ToArray());
-                    
+                    nd.SetNewData(fData.ToArray());                    
                 }
-
             }
             return true;
         }
@@ -408,7 +405,6 @@ namespace ShaderCreationTool
             foreach (XmlNode child in xmlNode.ChildNodes)
             {
                 if (child.Name == "POSITION") DeserializePosition(child, out position);
-
             }
             if (PlaceNodeCalback != null)
             {
@@ -439,6 +435,8 @@ namespace ShaderCreationTool
             {
                 attribNode = (IAttribNode)PlaceNodeCalback(position, type);// new node created here
                 attribNode.ChangeUniqueID(id);
+                AttribNodeWithSelection selAttr = (AttribNodeWithSelection)attribNode;
+                selAttr.ChangeSelectionIndex(selectedIndex);
                 return true;
             }
             return false;
