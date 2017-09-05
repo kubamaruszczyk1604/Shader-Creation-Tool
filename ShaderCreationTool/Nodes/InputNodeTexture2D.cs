@@ -18,6 +18,11 @@ namespace ShaderCreationTool
     {
         private const string s_PlainTexturePath = "../Assets/Textures/bkg.bmp";
 
+        private static int s_InstanceCounter = 0;
+        public static int CounterState() { return s_InstanceCounter; }
+        public static void SetCounter(int counterVal) { s_InstanceCounter = counterVal; }
+
+
         private Panel m_SctElement;
         private MovableObject m_Mover;
         private List<Connector> m_OutputConnectors;
@@ -32,7 +37,6 @@ namespace ShaderCreationTool
         ShaderTextureVariable m_ShaderVariable;
         private string m_UniqueID;
         private static bool s_ButtonsLocked = false;
-        private static int s_InstanceCounter = 0;
 
         //Remember last choice of path for user convenience
         private static string s_LastTexturePath = string.Empty;

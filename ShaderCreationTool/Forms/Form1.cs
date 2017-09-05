@@ -279,6 +279,16 @@ namespace ShaderCreationTool
             m_Nodes.Clear();
             m_Nodes.Add(fbNode);
         }
+
+        private void ResetCounters()
+        {
+           InputNodeTexture2D.SetCounter(0);
+           InputNodeColour.SetCounter(0);
+           InputNodeVector.SetCounter(0);
+           AttribNodeSimple.SetCounter(0);
+           AttribNodeWithSelection.SetCounter(0);
+           SCTFunctionNode.SetCounter(0);
+        }
         ////////////////////////////  CALLBACKS   /////////////////////////////
 
         private void OnSceneReloaded()
@@ -652,8 +662,11 @@ namespace ShaderCreationTool
             //  SCTConsole.Instance.PrintLine("Name of the variable: " + anode.GetVariableName());
             XmlNodeSerializer.Save(@"c:\nodes\ser.txt", m_Nodes);
             RemoveAllNodes();
-            XmlNodeSerializer.ReadNodes(@"c:\nodes\ser.txt", ref m_Nodes);
-            
+            ResetCounters();
+            if(!XmlNodeSerializer.ReadNodes(@"c:\nodes\ser.txt", ref m_Nodes))
+            {
+                MessageBox.Show("READING FAILED!");
+            }    
         }
 
       

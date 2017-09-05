@@ -18,6 +18,10 @@ namespace ShaderCreationTool
 
     class InputNodeColour : IInputNode, IDisposable
     {
+        private static int s_InstanceCounter = 0;
+        public static int CounterState() { return s_InstanceCounter; }
+        public static void SetCounter(int counterVal) { s_InstanceCounter = counterVal; }
+
         private Panel m_SctElement;
         private MovableObject m_Mover;
         private List<Connector> m_OutputConnectors;
@@ -31,7 +35,6 @@ namespace ShaderCreationTool
         ShaderVectorVariable m_ShaderVariable;
         private string m_UniqueID;
         private static bool s_ButtonsLocked = false;
-        private static int s_InstanceCounter = 0;
 
         public NodeType GetNodeType() { return NodeType.Input_Colour; }
         public string GetNodeID() { return m_UniqueID; }

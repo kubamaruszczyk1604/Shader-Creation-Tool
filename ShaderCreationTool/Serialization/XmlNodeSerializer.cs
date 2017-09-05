@@ -15,6 +15,25 @@ namespace ShaderCreationTool
 
         public static OnPlaceNodeCallback PlaceNodeCalback = null;
 
+        public static XmlWriter SerializeStaticCounters(XmlWriter target, 
+            int inTextureCnt,
+            int inColourCnt,
+            int inNumCnt,
+            int attrSimpleCnt,
+            int attrSelCnt, 
+            int functionCnt)
+        {
+            target.WriteStartElement("STATIC_COUNTERS");
+            target.WriteAttributeString("IN_TEX", inTextureCnt.ToString());
+            target.WriteAttributeString("IN_COL", inColourCnt.ToString());
+            target.WriteAttributeString("IN_NUM", inNumCnt.ToString());
+            target.WriteAttributeString("ASIMPLE", attrSimpleCnt.ToString());
+            target.WriteAttributeString("ASELECT", attrSelCnt.ToString());
+            target.WriteAttributeString("FUNCTION", functionCnt.ToString());
+            target.WriteEndElement();
+
+            return target;
+        }
 
         public static XmlWriter SerializeColour(XmlWriter target, ShaderVectorVariable variable)
         {
@@ -109,6 +128,7 @@ namespace ShaderCreationTool
 
             return target;
         }
+
         // SERIALIZE NUMERIC VALUE NODE
         public static XmlWriter SerializeVectorInputNode(XmlWriter target, InputNodeVector node)
         {
@@ -199,6 +219,14 @@ namespace ShaderCreationTool
             writer.WriteStartDocument();
             writer.WriteComment("SHADER CREATION TOOL NETWORK FILE");
             writer.WriteStartElement("SCT_NETWORK");
+
+            SerializeStaticCounters(writer, 
+                InputNodeTexture2D.CounterState(), 
+                InputNodeColour.CounterState(),
+                InputNodeVector.CounterState(),
+                AttribNodeSimple.CounterState(),
+                AttribNodeWithSelection.CounterState(),
+                SCTFunctionNode.CounterState());
 
             writer.WriteStartElement("INPUT_NODES");
             foreach (IInputNode inputNode in inputNodes)
@@ -564,14 +592,9 @@ namespace ShaderCreationTool
             try
             {
                 string xmlContent = File.ReadAllText(path);
-
                 XmlDocument XdOC = new XmlDocument();
                 XdOC.LoadXml(xmlContent);
-
                 XmlElement document = XdOC.DocumentElement;
-
-                //All Nodes - ~First one is a comment rest are entities
-
                 nodes = document.ChildNodes;
             }
             catch
@@ -583,6 +606,7 @@ namespace ShaderCreationTool
             foreach (XmlNode node in nodes)
             {
                 SCTConsole.Instance.PrintDebugLine("Category name: " + node.Name);
+                
                 if (node.Name == "INPUT_NODES")
                 {
                     // process input nodes
@@ -590,9 +614,8 @@ namespace ShaderCreationTool
                     {
                         if (inNode.Name != "UNIFORM_INPUT_NODE") continue;
                         IInputNode result;
-                        DeserializeInputNode(inNode, out result);
+                       if(!DeserializeInputNode(inNode, out result)) return false;
                     }
-
                 }
                 else if (node.Name == "SIMPLE_ATTRIB_NODES")
                 {
@@ -601,7 +624,7 @@ namespace ShaderCreationTool
                     {
                         if (inNode.Name != "SIMPLE_ATTRIB_NODE") continue;
                         IAttribNode result;
-                        DeserializeAttribNodeSimple(inNode, out result);
+                        if (!DeserializeAttribNodeSimple(inNode, out result)) return false; 
                     }
                 }
                 else if (node.Name == "SELECTION_ATTRIB_NODES")
@@ -611,9 +634,8 @@ namespace ShaderCreationTool
                     {
                         if (inNode.Name != "SELECTION_ATTRIB_NODE") continue;
                         IAttribNode result;
-                        DeserializeAttribNodeWithSelection(inNode, out result);
+                        if(!DeserializeAttribNodeWithSelection(inNode, out result)) return false;
                     }
-
                 }
                 else if (node.Name == "FUNCTION_NODES")
                 {
@@ -622,17 +644,34 @@ namespace ShaderCreationTool
                     {
                         if (inNode.Name != "FUNCTION_NODE") continue;
                         SCTFunctionNode result;
-                        DeserializeFunctionNode(inNode, out result);
+                        if(!DeserializeFunctionNode(inNode, out result)) return false;
                     }
                 }
                 else if (node.Name == "TARGET_NODE")
                 {
                     // process target node
                     FrameBufferNode fbn = (FrameBufferNode)allNodes.Find(o => o is FrameBufferNode);
-                    DeserializeFrameBufferNode(node, ref fbn);
-
+                   if(!DeserializeFrameBufferNode(node, ref fbn)) return false;
                 }
-
+                else if (node.Name == "STATIC_COUNTERS")
+                {
+                    try
+                    {
+                        foreach (XmlAttribute attr in node.Attributes)
+                        {
+                            if (attr.Name == "IN_TEX") InputNodeTexture2D.SetCounter(int.Parse(attr.Value));
+                            else if (attr.Name == "IN_COL") InputNodeColour.SetCounter(int.Parse(attr.Value));
+                            else if (attr.Name == "IN_NUM") InputNodeVector.SetCounter(int.Parse(attr.Value));
+                            else if (attr.Name == "ASIMPLE") AttribNodeSimple.SetCounter(int.Parse(attr.Value));
+                            else if (attr.Name == "ASELECT") AttribNodeWithSelection.SetCounter(int.Parse(attr.Value));
+                            else if (attr.Name == "FUNCTION") SCTFunctionNode.SetCounter(int.Parse(attr.Value));
+                        }
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                }
             }
 
             return true;
