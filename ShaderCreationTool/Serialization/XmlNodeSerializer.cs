@@ -585,9 +585,9 @@ namespace ShaderCreationTool
 
         }
 
-        public static bool ReadNodes(string path, ref List<ISCTNode> allNodes)
+        public static bool ReadNodes(string path, ref List<ISCTNode> allNodes, OnPlaceNodeCallback callback)
         {
-
+            PlaceNodeCalback = callback;
             XmlNodeList nodes;
             try
             {
