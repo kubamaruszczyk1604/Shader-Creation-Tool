@@ -103,14 +103,10 @@ namespace ShaderCreationTool
 
                     // Slot sorting
                     int index = -1;
-                    if (num.Name.Contains("X"))
-                    { index = 0; m_ConnectorCount++; }
-                    else if (num.Name.Contains("Y"))
-                    { index = 1; m_ConnectorCount++; }
-                    else if (num.Name.Contains("Z"))
-                    { index = 2; m_ConnectorCount++; }
-                    else if (num.Name.Contains("W"))
-                    { index = 3; m_ConnectorCount++; }
+                    if (num.Name.Contains("X")) { index = 0; m_ConnectorCount++; }
+                    else if (num.Name.Contains("Y")) { index = 1; m_ConnectorCount++; }
+                    else if (num.Name.Contains("Z")) { index = 2; m_ConnectorCount++; }
+                    else if (num.Name.Contains("W")) { index = 3; m_ConnectorCount++; }
 
                     m_Numeric[index] = num;
                 }
@@ -129,8 +125,6 @@ namespace ShaderCreationTool
                 else if (control is Panel)
                 {
                     Panel p = (Panel)control;
-                   
-
                 }
                 else if (control is Label)
                 {

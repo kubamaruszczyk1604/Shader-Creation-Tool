@@ -243,7 +243,7 @@ namespace ShaderCreationTool
 
         public static bool DeserializeNodeInfo(XmlNode xmlNode, out NodeType nodeType, out string nodeID)
         {
-            nodeType = NodeType.Target;
+            nodeType = NodeType.Function;
             nodeID = string.Empty;
             foreach (XmlAttribute attrib in xmlNode.Attributes)
             {
@@ -251,12 +251,11 @@ namespace ShaderCreationTool
                 else if (attrib.Name == "ID") nodeID = attrib.Value;
 
             }
-            if (nodeType == NodeType.Target) return false;
             if (nodeID == string.Empty) return false;
             return true;
         }
 
-        public static bool DeserializeNodeInfo(XmlNode xmlNode, out NodeType nodeType, out string nodeID,out int selectedIndex)
+        public static bool DeserializeNodeInfo(XmlNode xmlNode, out NodeType nodeType, out string nodeID, out int selectedIndex)
         {
             nodeType = NodeType.Target;
             nodeID = string.Empty;
@@ -296,6 +295,23 @@ namespace ShaderCreationTool
 
         }
 
+
+        public static bool DeserializeFunctionDesc(XmlNode node, out FunctionNodeDescription desc)
+        {
+            desc = null;
+            try
+            {
+                string name = node.Attributes[0].Value;
+                desc = new FunctionNodeDescription(name);
+            }
+            catch
+            { return false; }
+
+
+
+            return true;
+        }
+
         public static bool DeserializeFrameBufferNode(XmlNode node, ref FrameBufferNode fbNode)
         {
 
@@ -315,6 +331,7 @@ namespace ShaderCreationTool
         {
             inNode = null;
             if (xmlNode.Attributes.Count < 2) return false;
+            if (PlaceNodeCalback == null) return false;
 
             NodeType type = NodeType.Target;
             string id = string.Empty;
@@ -362,33 +379,31 @@ namespace ShaderCreationTool
                 }
             }
 
-            if (PlaceNodeCalback != null)
+            inNode = (IInputNode)PlaceNodeCalback(position, type);// new node created here
+            inNode.ChangeUniqueID(id);
+            inNode.ChangeVariableName(varName);
+            if (type == NodeType.Input_Texture2D)
             {
-                inNode = (IInputNode)PlaceNodeCalback(position, type);// new node created here
-                inNode.ChangeUniqueID(id);
-                inNode.ChangeVariableName(varName);
-                if (type == NodeType.Input_Texture2D)
-                {
-                    InputNodeTexture2D nd = (InputNodeTexture2D)inNode;
-                    nd.ChangeTexture(data[0]);
-                }
-                else if (type == NodeType.Input_Colour)
-                {
-                    InputNodeColour nd = (InputNodeColour)inNode;
-                    nd.ChangeColour(float.Parse(data[0]), float.Parse(data[1]), float.Parse(data[2]), float.Parse(data[3]));
-                }
-                else 
-                {
-                    InputNodeVector nd = (InputNodeVector)inNode;
-                    List<float> fData = new List<float>();
-                    for (int i = 0; i < data.Length; ++i)
-                    {
-                        if (data[i] == null) break;
-                        fData.Add(float.Parse(data[i]));
-                    }
-                    nd.SetNewData(fData.ToArray());                    
-                }
+                InputNodeTexture2D nd = (InputNodeTexture2D)inNode;
+                nd.ChangeTexture(data[0]);
             }
+            else if (type == NodeType.Input_Colour)
+            {
+                InputNodeColour nd = (InputNodeColour)inNode;
+                nd.ChangeColour(float.Parse(data[0]), float.Parse(data[1]), float.Parse(data[2]), float.Parse(data[3]));
+            }
+            else
+            {
+                InputNodeVector nd = (InputNodeVector)inNode;
+                List<float> fData = new List<float>();
+                for (int i = 0; i < data.Length; ++i)
+                {
+                    if (data[i] == null) break;
+                    fData.Add(float.Parse(data[i]));
+                }
+                nd.SetNewData(fData.ToArray());
+            }
+
             return true;
         }
 
@@ -396,7 +411,7 @@ namespace ShaderCreationTool
         {
             attribNode = null;
             if (xmlNode.Attributes.Count < 2) return false;
-
+            if (PlaceNodeCalback == null) return false;
             NodeType type = NodeType.Target;
             string id = string.Empty;
             DeserializeNodeInfo(xmlNode, out type, out id);
@@ -406,19 +421,18 @@ namespace ShaderCreationTool
             {
                 if (child.Name == "POSITION") DeserializePosition(child, out position);
             }
-            if (PlaceNodeCalback != null)
-            {
-                attribNode = (IAttribNode)PlaceNodeCalback(position, type);// new node created here
-                attribNode.ChangeUniqueID(id);
-                return true;
-            }
-            return false;
+
+            attribNode = (IAttribNode)PlaceNodeCalback(position, type);// new node created here
+            attribNode.ChangeUniqueID(id);
+            return true;
+
         }
 
         public static bool DeserializeAttribNodeWithSelection(XmlNode xmlNode, out IAttribNode attribNode)
         {
             attribNode = null;
             if (xmlNode.Attributes.Count < 2) return false;
+
 
             NodeType type = NodeType.Target;
             string id = string.Empty;
@@ -431,15 +445,50 @@ namespace ShaderCreationTool
                 if (child.Name == "POSITION") DeserializePosition(child, out position);
 
             }
-            if (PlaceNodeCalback != null)
+
+            attribNode = (IAttribNode)PlaceNodeCalback(position, type);// new node created here
+            attribNode.ChangeUniqueID(id);
+            AttribNodeWithSelection selAttr = (AttribNodeWithSelection)attribNode;
+            selAttr.ChangeSelectionIndex(selectedIndex);
+
+            return true;
+        }
+
+
+        public static bool DeserializeFunctionNode(XmlNode xmlNode, out SCTFunctionNode functionNode)
+        {
+
+            functionNode = null;
+            if (xmlNode.Attributes.Count < 1) return false;
+            if (PlaceNodeCalback == null) return false;
+            NodeType type;
+            string id;
+            DeserializeNodeInfo(xmlNode, out type, out id);
+
+            /// Positon
+            Point position = new Point(0, 0);
+            foreach (XmlNode child in xmlNode.ChildNodes)
             {
-                attribNode = (IAttribNode)PlaceNodeCalback(position, type);// new node created here
-                attribNode.ChangeUniqueID(id);
-                AttribNodeWithSelection selAttr = (AttribNodeWithSelection)attribNode;
-                selAttr.ChangeSelectionIndex(selectedIndex);
-                return true;
+                if (child.Name == "POSITION") DeserializePosition(child, out position);
+                if (child.Name == "FUNCTION_NODE_DESC")
+                {
+                    FunctionNodeDescription desc;
+                    if (DeserializeFunctionDesc(child, out desc))
+                    {
+                        NodeInstantiator.StartPlacingXML(desc);
+                    }
+                    else return false;
+                    
+                }
             }
-            return false;
+
+
+
+            functionNode = (SCTFunctionNode)PlaceNodeCalback(position, type);// new node created here
+            functionNode.ChangeUniqueID(id);
+            return true;
+
+
         }
 
         public static bool ReadNodes(string path, ref List<ISCTNode> allNodes)
@@ -503,7 +552,12 @@ namespace ShaderCreationTool
                 else if (node.Name == "FUNCTION_NODES")
                 {
                     //proccess function nodes
-                    Console.Write("pruk");
+                    foreach (XmlNode inNode in node.ChildNodes)
+                    {
+                        if (inNode.Name != "FUNCTION_NODE") continue;
+                        SCTFunctionNode result;
+                        DeserializeFunctionNode(inNode, out result);
+                    }
                 }
                 else if (node.Name == "TARGET_NODE")
                 {

@@ -62,7 +62,13 @@ namespace ShaderCreationTool
         {
             s_Panel.Visible = true;
             s_PlacingFlag = true;
-            s_NodeType = NodeType.Funtion;
+            s_NodeType = NodeType.Function;
+            s_NodeDescription = desc;
+        }
+
+        static public void StartPlacingXML(FunctionNodeDescription desc)
+        {
+            s_NodeType = NodeType.Function;
             s_NodeDescription = desc;
         }
 

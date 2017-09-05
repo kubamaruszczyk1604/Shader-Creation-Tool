@@ -13,7 +13,7 @@ namespace ShaderCreationTool
         Input_Float4 = 3,
         Input_Colour = 4,
         Input_Texture2D = 5,
-        Funtion = 6,
+        Function = 6,
         Target = 7,
         AttribPosition = 8,
         AttribNormal = 9,

@@ -98,7 +98,7 @@ namespace ShaderCreationTool
             if (FunctionNodeConfigMgr.ReadNodesFromFile(listPath))
             {
                 m_Items = FunctionNodeConfigMgr.NodeList;
-                m_ReturnedNodeType = NodeType.Funtion;
+                m_ReturnedNodeType = NodeType.Function;
                 m_DisplayedType = DisplayedNodeType.Function;
                 listBox1.DataSource = m_Items;
                 m_ReadingOK = true;
