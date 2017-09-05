@@ -256,6 +256,23 @@ namespace ShaderCreationTool
             return true;
         }
 
+        public static bool DeserializeNodeInfo(XmlNode xmlNode, out NodeType nodeType, out string nodeID,out int selectedIndex)
+        {
+            nodeType = NodeType.Target;
+            nodeID = string.Empty;
+            selectedIndex = -1;
+            foreach (XmlAttribute attrib in xmlNode.Attributes)
+            {
+                if (attrib.Name == "TYPE") nodeType = (NodeType)Enum.Parse(typeof(NodeType), attrib.Value);
+                else if (attrib.Name == "ID") nodeID = attrib.Value;
+                else if (attrib.Name == "SELECTED_INDEX") selectedIndex = int.Parse(attrib.Value);
+
+            }
+            if (nodeType == NodeType.Target) return false;
+            if (nodeID == string.Empty) return false;
+            if (selectedIndex == -1) return false;
+            return true;
+        }
 
         public static bool DeserializePosition(XmlNode node, out Point position)
         {
@@ -402,6 +419,31 @@ namespace ShaderCreationTool
             return false;
         }
 
+        public static bool DeserializeAttribNodeWithSelection(XmlNode xmlNode, out IAttribNode attribNode)
+        {
+            attribNode = null;
+            if (xmlNode.Attributes.Count < 2) return false;
+
+            NodeType type = NodeType.Target;
+            string id = string.Empty;
+            int selectedIndex = 0;
+            DeserializeNodeInfo(xmlNode, out type, out id, out selectedIndex);
+            /// Positon
+            Point position = new Point(0, 0);
+            foreach (XmlNode child in xmlNode.ChildNodes)
+            {
+                if (child.Name == "POSITION") DeserializePosition(child, out position);
+
+            }
+            if (PlaceNodeCalback != null)
+            {
+                attribNode = (IAttribNode)PlaceNodeCalback(position, type);// new node created here
+                attribNode.ChangeUniqueID(id);
+                return true;
+            }
+            return false;
+        }
+
         public static bool ReadNodes(string path, ref List<ISCTNode> allNodes)
         {
 
@@ -452,7 +494,13 @@ namespace ShaderCreationTool
                 else if (node.Name == "SELECTION_ATTRIB_NODES")
                 {
                     // selection attrib nodes
-                    Console.Write("pruk");
+                    foreach (XmlNode inNode in node.ChildNodes)
+                    {
+                        if (inNode.Name != "SELECTION_ATTRIB_NODE") continue;
+                        IAttribNode result;
+                        DeserializeAttribNodeWithSelection(inNode, out result);
+                    }
+
                 }
                 else if (node.Name == "FUNCTION_NODES")
                 {
