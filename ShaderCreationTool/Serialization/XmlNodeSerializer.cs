@@ -241,6 +241,22 @@ namespace ShaderCreationTool
 
         ////////////////////////////// DESERIALIZATION ///////////////////////////////////////////
 
+        public static bool DeserializeNodeInfo(XmlNode xmlNode, out NodeType nodeType, out string nodeID)
+        {
+            nodeType = NodeType.Target;
+            nodeID = string.Empty;
+            foreach (XmlAttribute attrib in xmlNode.Attributes)
+            {
+                if (attrib.Name == "TYPE") nodeType = (NodeType)Enum.Parse(typeof(NodeType), attrib.Value);
+                else if (attrib.Name == "ID") nodeID = attrib.Value;
+
+            }
+            if (nodeType == NodeType.Target) return false;
+            if (nodeID == string.Empty) return false;
+            return true;
+        }
+
+
         public static bool DeserializePosition(XmlNode node, out Point position)
         {
 
@@ -286,23 +302,7 @@ namespace ShaderCreationTool
 
             NodeType type = NodeType.Target;
             string id = string.Empty;
-            foreach (XmlAttribute attrib in xmlNode.Attributes)
-            {
-                if (attrib.Name == "TYPE")
-                {
-                    type = (NodeType)Enum.Parse(typeof(NodeType), attrib.Value);
-                }
-                else if (attrib.Name == "ID")
-                {
-                    id = attrib.Value;
-                }
-            }
-            if (type == NodeType.Target) return false;
-            if (id == string.Empty) return false;
-
-            SCTConsole.Instance.PrintDebugLine("WE ARE HERE");
-            SCTConsole.Instance.PrintDebugLine("ID IS: " + id);
-            SCTConsole.Instance.PrintDebugLine("TYPE: " + type.ToString());
+            DeserializeNodeInfo(xmlNode, out type, out id);
 
             /// Positon
             Point position = new Point(0, 0);
@@ -378,6 +378,29 @@ namespace ShaderCreationTool
             return true;
         }
 
+        public static bool DeserializeAttribNodeSimple(XmlNode xmlNode, out IAttribNode attribNode)
+        {
+            attribNode = null;
+            if (xmlNode.Attributes.Count < 2) return false;
+
+            NodeType type = NodeType.Target;
+            string id = string.Empty;
+            DeserializeNodeInfo(xmlNode, out type, out id);
+            /// Positon
+            Point position = new Point(0, 0);
+            foreach (XmlNode child in xmlNode.ChildNodes)
+            {
+                if (child.Name == "POSITION") DeserializePosition(child, out position);
+
+            }
+            if (PlaceNodeCalback != null)
+            {
+                attribNode = (IAttribNode)PlaceNodeCalback(position, type);// new node created here
+                attribNode.ChangeUniqueID(id);
+                return true;
+            }
+            return false;
+        }
 
         public static bool ReadNodes(string path, ref List<ISCTNode> allNodes)
         {
@@ -398,7 +421,6 @@ namespace ShaderCreationTool
             }
             catch
             {
-
                 return false;
             }
 
@@ -420,7 +442,12 @@ namespace ShaderCreationTool
                 else if (node.Name == "SIMPLE_ATTRIB_NODES")
                 {
                     // process simple attrib nodes
-                    Console.Write("pruk");
+                    foreach (XmlNode inNode in node.ChildNodes)
+                    {
+                        if (inNode.Name != "SIMPLE_ATTRIB_NODE") continue;
+                        IAttribNode result;
+                        DeserializeAttribNodeSimple(inNode, out result);
+                    }
                 }
                 else if (node.Name == "SELECTION_ATTRIB_NODES")
                 {
