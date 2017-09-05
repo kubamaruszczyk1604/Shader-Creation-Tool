@@ -20,10 +20,10 @@ namespace ShaderCreationTool
         {
             m_Signatures = new List<string>();
             m_DefaultValuesTable = new Dictionary<ShaderVariableType, Regex>();
-            m_DefaultValuesTable.Add(ShaderVariableType.Single, new Regex(@"^\d+\.*\d*$"));
-            m_DefaultValuesTable.Add(ShaderVariableType.Vector2, new Regex(@"^\(\d+\.*\d*\,\d+\.*\d*\)$"));
-            m_DefaultValuesTable.Add(ShaderVariableType.Vector3, new Regex(@"^\(\d+\.*\d*\,\d+\.*\d*\,\d+\.*\d*\)$"));
-            m_DefaultValuesTable.Add(ShaderVariableType.Vector4, new Regex(@"^\(\d+\.*\d*\,\d+\.*\d*\,\d+\.*\d*\,\d+\.*\d*\)$"));
+            m_DefaultValuesTable.Add(ShaderVariableType.Single, new Regex(@"^-?\d+\.*\d*$"));
+            m_DefaultValuesTable.Add(ShaderVariableType.Vector2, new Regex(@"^\(-?\d+\.*\d*\,-?\d+\.*\d*\)$"));
+            m_DefaultValuesTable.Add(ShaderVariableType.Vector3, new Regex(@"^\(-?\d+\.*\d*\,-?\d+\.*\d*\,-?\d+\.*\d*\)$"));
+            m_DefaultValuesTable.Add(ShaderVariableType.Vector4, new Regex(@"^\(-?\d+\.*\d*\,-?\d+\.*\d*\,-?\d+\.*\d*\,-?\d+\.*\d*\)$"));
         }
 
     

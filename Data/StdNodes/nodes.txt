@@ -87,6 +87,109 @@
    </Code>
   </Node>
   
+  <Node Name="Blyynn_Phong">
+  
+    <Input_Variables>
+      <Variable Name="normal" Var_Type="Float3">
+	  </Variable>
+	   <Variable Name="cameraPos" Var_Type="Float3">
+	  </Variable>
+	  <Variable Name="objectPos" Var_Type="Float3">
+	  </Variable>
+	   <Variable Name="Ambient" Var_Type="Float4">
+	  DEFAULT = (0,0,0,1)
+	  </Variable>
+	  <Variable Name="Diffuse" Var_Type="Float4">
+	  DEFAULT = (0,0,0,1)
+	  </Variable>
+	   <Variable Name="Specular" Var_Type="Float4">
+	  DEFAULT = (0,0,0,1)
+	  </Variable>
+	  
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="FinalOut" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>
+	
+   <Code> 
+   VECTOR3 lightDir = normalize(cameraPos-objectPos);
+   FLOAT NdotL = max( dot(normalize(normal),normalize(lightDir)), 0.0);
+   FinalOut = Ambient + Diffuse*NdotL;
+   </Code>
+  </Node>
+  
+    <Node Name="Blyynn_Phong2">
+  
+    <Input_Variables>
+	  <Variable Name="lightDir" Var_Type="Float3">
+	  DEFAULT = (0,0,-1)
+	  </Variable>
+      <Variable Name="normal" Var_Type="Float3">
+	  </Variable>
+	   <Variable Name="cameraPos" Var_Type="Float3">
+	  </Variable>
+	  <Variable Name="objectPos" Var_Type="Float3">
+	  </Variable>
+	   <Variable Name="Ambient" Var_Type="Float4">
+	  DEFAULT = (0,0,0,1)
+	  </Variable>
+	  <Variable Name="Diffuse" Var_Type="Float4">
+	  DEFAULT = (0,0,0,1)
+	  </Variable>
+	   <Variable Name="Specular" Var_Type="Float4">
+	  DEFAULT = (0,0,0,1)
+	  </Variable>
+	   <Variable Name="SpecPow" Var_Type="Float">
+	   DEFAULT = 60
+	  </Variable>
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="FinalOut" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>
+	
+   <Code> 
+   VECTOR3 nViewDirection = normalize(objectPos-cameraPos);
+   FLOAT NdotL = max( dot(normalize(normal),normalize(lightDir)), 0.0);
+   
+   	
+   VECTOR3 reflection = ((2.0 * normal) * NdotL) - lightDir;
+   VECTOR3 nReflection = normalize(reflection);
+   FLOAT beta = max(0.0, dot(-nReflection, nViewDirection));
+   
+   
+   FinalOut = Ambient + Diffuse*NdotL + Specular * (pow(beta, SpecPow));
+   </Code>
+  </Node>
+  
+  
+  
+  <Node Name="ExpFog">
+  
+    <Input_Variables>
+      <Variable Name="CamPos" Var_Type="Float3">
+	  </Variable>
+	  <Variable Name="ObjPos" Var_Type="Float3">
+	  </Variable>
+	   <Variable Name="ColourIn" Var_Type="Float4">
+	  </Variable>
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="FinalOut" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>
+	
+   <Code>   
+     FLOAT distance = length(CamPos-ObjPos);
+     FLOAT fogAmount = 1.0 - exp(-distance * 0.02);
+     VECTOR4 fogColor =  VECTOR4(0.00, 0.001, 0.01, 1);
+     FinalOut =mix(ColourIn, fogColor, fogAmount);
+   </Code>
+  </Node>
   
   <Node Name="Vec_3TO4">
   
@@ -140,24 +243,7 @@
    <Code> FinalOut = VECTOR4(f1,f2,f3,f4); </Code>
   </Node>
   
-       <Node Name="duliegostara"> 
-    <Input_Variables>
-      <Variable Name="f1" Var_Type="Float">
-	  </Variable>
-	   <Variable Name="f2" Var_Type="Float">
-	  </Variable>
-	   <Variable Name="f3" Var_Type="Float">
-	  </Variable>
-	   <Variable Name="f4" Var_Type="Float">
-	  </Variable>
-    </Input_Variables>
-	
-    <Output_Variables>
-      <Variable Name="FinalOut" Var_Type="Float4">
-      </Variable>
-    </Output_Variables>	
-   <Code> FinalOut = VECTOR4(f1,f2,f3,f4); </Code>
-  </Node>
+     
   
   <Node Name="Sampler2D">
     <Input_Variables>
