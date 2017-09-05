@@ -610,6 +610,41 @@ namespace ShaderCreationTool
 
         }
 
+        static public bool DeserializeConnection(XmlNode connNode, List<ISCTNode> allNodes)
+        {
+            ISCTNode nodeSource = null;
+            ISCTNode nodeDestination = null;
+            string sourceLocalID = string.Empty;
+            string destinationLocalID = string.Empty;
+
+            foreach (XmlAttribute attrib in connNode.Attributes)
+            {
+                if (attrib.Name == "SOURCE_NODE_ID")
+                {
+                    nodeSource = allNodes.Find(o => o.GetNodeID() == attrib.Value);
+                    if (nodeSource == null) return false;
+                }
+                else if (attrib.Name == "DESTINATION_NODE_ID")
+                {
+                    nodeDestination = allNodes.Find(o => o.GetNodeID() == attrib.Value);
+                    if (nodeDestination == null) return false;
+                }
+                else if (attrib.Name == "SOURCE_CON_LOCAL_ID")
+                {
+                    sourceLocalID = attrib.Value;
+                }
+                else if(attrib.Name == "DESTINATION_CON_LOCAL_ID")
+                {
+                    destinationLocalID = attrib.Value;
+                }
+            }
+
+            SCTConsole.Instance.PrintLine("\r\nCONNECTION");
+            SCTConsole.Instance.PrintLine("Source node: " + nodeSource.GetNodeID() + ", DESTINATION NODE: " + nodeDestination.GetNodeID());
+            SCTConsole.Instance.PrintLine("Source connector: " + sourceLocalID + ",  Destination connector: " + destinationLocalID);
+            return true;
+        }
+
         public static bool ReadNodes(string path, ref List<ISCTNode> allNodes, OnPlaceNodeCallback callback)
         {
             PlaceNodeCalback = callback;
@@ -698,8 +733,21 @@ namespace ShaderCreationTool
                     }
                 }
             }
+            foreach (XmlNode node in nodes)
+            {
+                if (node.Name == "CONNECTIONS")
+                {
+                    // process input nodes
+                    foreach (XmlNode connNode in node.ChildNodes)
+                    {
+                        if (connNode.Name != "CONNECTION") continue;
+                        DeserializeConnection(connNode,allNodes);
+                      
+                    }
+                }
+            }
 
-            return true;
+                return true;
         }
 
 

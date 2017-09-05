@@ -14,11 +14,12 @@ in float oTime;
 out vec4 FragColour;
 
 //Uniform nodes translated as uniform variables.
+uniform vec4            SCT_UNIFORM_ColourIn_0;
 
 // SCT Nodes Translated as functions.
-void Vec_2TO4(vec2 Vec2in, inout vec4 FinalOut)
+void AddV4(vec4 VecA, vec4 VecB, vec4 VecC, inout vec4 FinalColour)
 {
- FinalOut = vec4(Vec2in.x,Vec2in.y,1,1); 
+ FinalColour = VecA+VecB+VecC; 
 }
 
 
@@ -26,10 +27,10 @@ void Vec_2TO4(vec2 Vec2in, inout vec4 FinalOut)
  void main()
 {
 
-//SCT CALL: Vec_2TO4
-   vec4  OUT_FinalOut0_NF_Vec_2TO4_0_57;
-   Vec_2TO4(oUVs, OUT_FinalOut0_NF_Vec_2TO4_0_57);
+//SCT CALL: AddV4
+   vec4  OUT_FinalColour0_NF_AddV4_0_1049;
+   AddV4(SCT_UNIFORM_ColourIn_0, vec4 (0,0,0,0), vec4 (0,0,0,0), OUT_FinalColour0_NF_AddV4_0_1049);
 
-FragColour = OUT_FinalOut0_NF_Vec_2TO4_0_57;
+FragColour = OUT_FinalColour0_NF_AddV4_0_1049;
 
 }

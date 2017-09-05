@@ -71,7 +71,7 @@ namespace ShaderCreationTool
         static public string CreateID(FunctionNodeDescription desc, int counter)
         {
             string str = "NF_" + desc.Name + "_"+ counter.ToString() +"_"
-                + DateTime.Now.ToString("ss");
+                + DateTime.Now.ToString("mmss");
             return str;
         }
     }

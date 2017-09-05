@@ -111,7 +111,6 @@ namespace ShaderCreationTool
                 {
                     Button button = (Button)control;
                     button.Click += CloseButton_Click;
-
                 }
             }
 
@@ -151,7 +150,6 @@ namespace ShaderCreationTool
         }
         public void AddOnCloseCallback(NodeCloseButtonCallback callback)
         {
-
             p_CloseCallback += callback;
         }
 
@@ -211,12 +209,10 @@ namespace ShaderCreationTool
             {
                 p_CloseCallback(this);
             }
-
         }
 
         private void AnyElement_Click(object sender, EventArgs e)
         {
-
             ((Control)sender).Focus();
             m_SctElement.BringToFront();
             m_SctElement.Update();
@@ -227,7 +223,6 @@ namespace ShaderCreationTool
             m_SctElement.BringToFront();
             m_SctElement.Focus();
         }
-
 
         private void TitleLabel_MouseDown(object sender, MouseEventArgs e)
         {
