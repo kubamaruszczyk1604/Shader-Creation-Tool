@@ -173,7 +173,7 @@ namespace ShaderCreationTool
         }
 
         // SERIALIZE TARGET NODE
-        public static XmlWriter SerializeTargegNode(XmlWriter target, FrameBufferNode node)
+        public static XmlWriter SerializeTargetNode(XmlWriter target, FrameBufferNode node)
         {
             target.WriteStartElement("TARGET_NODE");
             target.WriteAttributeString("UNIQUE_ID", node.GetNodeID().ToString());
@@ -229,7 +229,7 @@ namespace ShaderCreationTool
             }
             writer.WriteEndElement();//FUNCTION NODES
 
-            SerializeTargegNode(writer, targetNode);
+            SerializeTargetNode(writer, targetNode);
 
             writer.WriteEndElement();
             writer.WriteEndDocument();
@@ -249,7 +249,7 @@ namespace ShaderCreationTool
             {
                 if (attrib.Name == "TYPE") nodeType = (NodeType)Enum.Parse(typeof(NodeType), attrib.Value);
                 else if (attrib.Name == "ID") nodeID = attrib.Value;
-
+                else if (attrib.Name == "UNIQUE_ID") nodeID = attrib.Value;
             }
             if (nodeID == string.Empty) return false;
             return true;

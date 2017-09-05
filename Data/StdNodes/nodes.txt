@@ -140,6 +140,25 @@
    <Code> FinalOut = VECTOR4(f1,f2,f3,f4); </Code>
   </Node>
   
+       <Node Name="duliegostara"> 
+    <Input_Variables>
+      <Variable Name="f1" Var_Type="Float">
+	  </Variable>
+	   <Variable Name="f2" Var_Type="Float">
+	  </Variable>
+	   <Variable Name="f3" Var_Type="Float">
+	  </Variable>
+	   <Variable Name="f4" Var_Type="Float">
+	  </Variable>
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="FinalOut" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>	
+   <Code> FinalOut = VECTOR4(f1,f2,f3,f4); </Code>
+  </Node>
+  
   <Node Name="Sampler2D">
     <Input_Variables>
       <Variable Name="Texture" Var_Type="Texture2D">
