@@ -14,60 +14,14 @@ in float oTime;
 out vec4 FragColour;
 
 //Uniform nodes translated as uniform variables.
-uniform sampler2D       SCT_TEXTURE2D_0;
-uniform sampler2D       SCT_TEXTURE2D_1;
+uniform vec4            SCT_UNIFORM_ColourIn_0;
 
 // SCT Nodes Translated as functions.
-void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
-{
- FinalColour = texture2D(Texture,Texcoord); 
-}
-
-void UVScroll(float Time, vec2 UVIn, float Speed, inout vec2 UVOut)
-{
-  UVOut = vec2(UVIn.x+Time*Speed, UVIn.y);
-}
-
-
-void SPLIT_V2(vec2 In, inout vec2 Out1, inout vec2 Out2)
-{
-   
-    Out1 = In;
-    Out2 = In;
-   
-}
-
-void MultiplyV4(vec4 VecA, vec4 VecB, vec4 VecC, inout vec4 FinalColour)
-{
- FinalColour = VecA*VecB*VecC; 
-}
-
 
 
  void main()
 {
 
-//SCT CALL: SPLIT_V2
-   vec2  OUT_Out10_NF_SPLIT_V2_7_3548;
-   vec2  OUT_Out21_NF_SPLIT_V2_7_3548;
-   SPLIT_V2(oUVs, OUT_Out10_NF_SPLIT_V2_7_3548, OUT_Out21_NF_SPLIT_V2_7_3548);
-
-//SCT CALL: UVScroll
-   vec2  OUT_UVOut0_NF_UVScroll_5_3530;
-   UVScroll(oTime, OUT_Out10_NF_SPLIT_V2_7_3548, 1, OUT_UVOut0_NF_UVScroll_5_3530);
-
-//SCT CALL: Sampler2D
-   vec4  OUT_FinalColour0_NF_Sampler2D_6_3538;
-   Sampler2D(SCT_TEXTURE2D_1, OUT_Out21_NF_SPLIT_V2_7_3548, OUT_FinalColour0_NF_Sampler2D_6_3538);
-
-//SCT CALL: Sampler2D
-   vec4  OUT_FinalColour0_NF_Sampler2D_4_3516;
-   Sampler2D(SCT_TEXTURE2D_0, OUT_UVOut0_NF_UVScroll_5_3530, OUT_FinalColour0_NF_Sampler2D_4_3516);
-
-//SCT CALL: MultiplyV4
-   vec4  OUT_FinalColour0_NF_MultiplyV4_8_3635;
-   MultiplyV4(OUT_FinalColour0_NF_Sampler2D_4_3516, vec4 (1,1,1,1), OUT_FinalColour0_NF_Sampler2D_6_3538, OUT_FinalColour0_NF_MultiplyV4_8_3635);
-
-FragColour = OUT_FinalColour0_NF_MultiplyV4_8_3635;
+FragColour = SCT_UNIFORM_ColourIn_0;
 
 }

@@ -144,6 +144,17 @@ namespace ShaderCreationTool
             m_Line.Dispose();
         }
 
+        public void  GetLineConfig(out Point a, out Point b)
+        {
+           m_Line.GetConfig(out a, out b);
+        }
+
+        public void ApplyLineConfig(Point a, Point b)
+        {
+           // m_Line = new ConnectionLine(DrawOnControl);
+            m_Line.ApplyConfig(a, b);
+        }
+
         private Point x;
         private Point y;
 

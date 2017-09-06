@@ -211,7 +211,13 @@ namespace ShaderCreationTool
             target.WriteAttributeString("DESTINATION_NODE_ID", connection.DestinationConnector.ParentNode.GetNodeID());
             target.WriteAttributeString("SOURCE_CON_LOCAL_ID", connection.SourceConnector.LocalID);
             target.WriteAttributeString("DESTINATION_CON_LOCAL_ID", connection.DestinationConnector.LocalID);
-
+            Point a;
+            Point b;
+            connection.GetLineConfig(out a, out b);
+            target.WriteAttributeString("AX", a.X.ToString());
+            target.WriteAttributeString("AY", a.Y.ToString());
+            target.WriteAttributeString("BX", b.X.ToString());
+            target.WriteAttributeString("BY", b.Y.ToString());
             target.WriteEndElement();
             return target;
         }
@@ -740,6 +746,7 @@ namespace ShaderCreationTool
                     }
                 }
             }
+            EditAreaPanel.Invalidate();
             foreach (XmlNode node in nodes)
             {
                 if (node.Name == "CONNECTIONS")
