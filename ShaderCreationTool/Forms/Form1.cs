@@ -290,7 +290,7 @@ namespace ShaderCreationTool
            SCTFunctionNode.SetCounter(0);
         }
 
-        private void SaveAs()
+        private bool SaveAs()
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
 
@@ -303,7 +303,9 @@ namespace ShaderCreationTool
                 string path = saveDialog.FileName;
                 XmlNodeSerializer.Save(path, m_Nodes, ConnectionManager.ConnectionList);
                 m_CurrentFilePath = path;
+                return true;
             }
+            return false;
         }
 
         public void OpenFile()
@@ -511,7 +513,33 @@ namespace ShaderCreationTool
         //  MAIN FORM
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Bridge.Terminate();
+            if (m_Nodes.Count < 2)
+            {
+                Bridge.Terminate();
+                return;
+            }
+            DialogResult dialogResult = MessageBox.Show("Would you like to save your current work?", "Save", MessageBoxButtons.YesNoCancel);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (File.Exists(m_CurrentFilePath))
+                {
+                    XmlNodeSerializer.Save(m_CurrentFilePath, m_Nodes, ConnectionManager.ConnectionList);
+                }
+                else
+                {
+                    if (!SaveAs()) { e.Cancel = true; }
+                }
+                Bridge.Terminate();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                Bridge.Terminate();
+            }
+            else if(dialogResult == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+            
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
