@@ -15,7 +15,7 @@ out vec4 FragColour;
 
 //Uniform nodes translated as uniform variables.
 uniform vec4            SCT_UNIFORM_ColourIn_0;
-uniform vec4            SCT_UNIFORM_ColourIn_1;
+uniform sampler2D       SCT_TEXTURE2D_0;
 
 //SCT dummy values for output split nodes
 vec2 dummyOutVEC2;
@@ -24,11 +24,42 @@ vec4 dummyOutVEC4;
 
 
 // SCT Nodes Translated as functions.
+void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
+{
+ FinalColour = texture2D(Texture,Texcoord); 
+}
+
+void MultiplyV4(vec4 VecA, vec4 VecB, vec4 VecC, inout vec4 FinalColour)
+{
+ FinalColour = VecA*VecB*VecC; 
+}
+
+void Blyynn_Phong(vec3 normal, vec3 cameraPos, vec3 objectPos, vec4 Ambient, vec4 Diffuse, vec4 Specular, inout vec4 FinalOut)
+{
+ 
+   vec3 lightDir = normalize(cameraPos-objectPos);
+   float NdotL = max( dot(normalize(normal),normalize(lightDir)), 0.0);
+   FinalOut = Ambient + Diffuse*NdotL;
+   
+}
+
 
 
 void main()
 {
 
-FragColour = SCT_UNIFORM_ColourIn_0;
+//SCT CALL: Sampler2D
+   vec4  OUT_FinalColour0_NF_Sampler2D_0_4525;
+   Sampler2D(SCT_TEXTURE2D_0, oUVs, OUT_FinalColour0_NF_Sampler2D_0_4525);
+
+//SCT CALL: MultiplyV4
+   vec4  OUT_FinalColour0_NF_MultiplyV4_1_4549;
+   MultiplyV4(SCT_UNIFORM_ColourIn_0, vec4 (1,1,1,1), OUT_FinalColour0_NF_Sampler2D_0_4525, OUT_FinalColour0_NF_MultiplyV4_1_4549);
+
+//SCT CALL: Blyynn_Phong
+   vec4  OUT_FinalOut0_NF_Blyynn_Phong_4_4851;
+   Blyynn_Phong(oNormal_InvWorldSpace, oCamera_WorldSpace, oPosition_WorldSpace, vec4 (0,0,0,1), OUT_FinalColour0_NF_MultiplyV4_1_4549, vec4 (0,0,0,1), OUT_FinalOut0_NF_Blyynn_Phong_4_4851);
+
+FragColour = OUT_FinalOut0_NF_Blyynn_Phong_4_4851;
 
 }

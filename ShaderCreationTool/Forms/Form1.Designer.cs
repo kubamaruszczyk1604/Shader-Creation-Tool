@@ -2077,7 +2077,7 @@
             this.PreviewAreaPanel.Controls.Add(this.ZoomOutButton);
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
-            this.PreviewAreaPanel.Location = new System.Drawing.Point(880, 14);
+            this.PreviewAreaPanel.Location = new System.Drawing.Point(863, 14);
             this.PreviewAreaPanel.Name = "PreviewAreaPanel";
             this.PreviewAreaPanel.Size = new System.Drawing.Size(466, 423);
             this.PreviewAreaPanel.TabIndex = 26;
@@ -2310,6 +2310,7 @@
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenFileMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -2326,6 +2327,7 @@
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.saveAsToolStripMenuItem.Text = "Save As";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsMenuItem_Click);
             // 
             // exportToToolStripMenuItem
             // 
@@ -2370,7 +2372,7 @@
             this.attributeNodeToolStripMenuItem});
             this.addVariableToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.addVariableToolStripMenuItem.Name = "addVariableToolStripMenuItem";
-            this.addVariableToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.addVariableToolStripMenuItem.Size = new System.Drawing.Size(106, 24);
             this.addVariableToolStripMenuItem.Text = "Add";
             // 
             // uniformVariableNodeToolStripMenuItem

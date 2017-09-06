@@ -576,8 +576,46 @@ namespace ShaderCreationTool
             BuildShaders();
         }
 
-      
+
         ////////////////////////////////  MENU ITEMS ///////////////////
+
+        private void OpenFileMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.InitialDirectory = "c:\\";
+            openFileDialog.Filter = "SCT Network Files (*.net)|*.net|All files (*.*)|*.*";
+            openFileDialog.FilterIndex = 2;
+            openFileDialog.RestoreDirectory = true;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                RemoveAllNodes();
+                ResetCounters();
+                if (!XmlNodeSerializer.ReadNodes(openFileDialog.FileName, ref m_Nodes, OnPlaceNode, EditAreaPanel))
+                {
+                    MessageBox.Show("READING FAILED!");
+                }
+            }
+        }
+
+        private void SaveAsMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+
+            saveDialog.Filter = "SCT Network Files (*.net)|*.net|All files (*.*)|*.*";
+            saveDialog.FilterIndex = 2;
+            saveDialog.RestoreDirectory = true;
+
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = saveDialog.FileName;
+                XmlNodeSerializer.Save(path, m_Nodes, ConnectionManager.ConnectionList);
+            }
+
+            
+        }
+
         private void AddUniformVariable_MenuItem_Click(object sender, EventArgs e)
         {
             Start_AddVariableNode(true);
@@ -625,6 +663,8 @@ namespace ShaderCreationTool
         {
             SCTConsole.Instance.Hide();
         }
+
+
         /////////////////////////////// UTIL  ////////////////////////
 
         /// <summary>
@@ -669,7 +709,7 @@ namespace ShaderCreationTool
             }    
         }
 
-      
+       
     }
 
 
