@@ -15,23 +15,20 @@ out vec4 FragColour;
 
 //Uniform nodes translated as uniform variables.
 uniform vec4            SCT_UNIFORM_ColourIn_0;
-uniform vec4            SCT_UNIFORM_ColourIn_3;
+uniform vec4            SCT_UNIFORM_ColourIn_1;
+
+//SCT dummy values for output split nodes
+vec2 dummyOutVEC2;
+vec3 dummyOutVEC3;
+vec4 dummyOutVEC4;
+
 
 // SCT Nodes Translated as functions.
-void MultiplyV4(vec4 VecA, vec4 VecB, vec4 VecC, inout vec4 FinalColour)
-{
- FinalColour = VecA*VecB*VecC; 
-}
 
 
-
- void main()
+void main()
 {
 
-//SCT CALL: MultiplyV4
-   vec4  OUT_FinalColour0_NF_MultiplyV4_0_0148;
-   MultiplyV4(SCT_UNIFORM_ColourIn_0, SCT_UNIFORM_ColourIn_3, vec4 (1,1,1,1), OUT_FinalColour0_NF_MultiplyV4_0_0148);
-
-FragColour = OUT_FinalColour0_NF_MultiplyV4_0_0148;
+FragColour = SCT_UNIFORM_ColourIn_0;
 
 }

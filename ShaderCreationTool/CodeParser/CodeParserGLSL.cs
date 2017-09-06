@@ -139,7 +139,8 @@ namespace ShaderCreationTool
             TranslateInputVariables(inputNodes, out codeUniforms, out status);
             code += codeUniforms;
 
-
+            code += "\r\n//SCT dummy values for output split nodes\r\n";
+            code += "vec2 dummyOutVEC2;\r\nvec3 dummyOutVEC3;\r\nvec4 dummyOutVEC4;\r\n\r\n";
             string codeFunctions;
             string statusFunctions;
 
@@ -151,7 +152,7 @@ namespace ShaderCreationTool
             string codeNodes = ProcessNodes(ref nodesToProcess);
             string ss = "FragColour = " + con.ParentConnection.OutVariableName + ";\r\n";
 
-            code += "\r\n\r\n void main()\r\n{\r\n" + codeNodes + "\r\n" + ss + "\r\n}";         
+            code += "\r\n\r\nvoid main()\r\n{\r\n" + codeNodes + "\r\n" + ss + "\r\n}";         
 
             foreach(SCTFunctionNode node in tempRestoreStateNodeList)
             {
