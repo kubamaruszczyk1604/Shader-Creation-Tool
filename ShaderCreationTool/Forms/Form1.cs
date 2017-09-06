@@ -663,7 +663,7 @@ namespace ShaderCreationTool
             XmlNodeSerializer.Save(@"c:\nodes\ser.txt", m_Nodes,ConnectionManager.ConnectionList);
             RemoveAllNodes();
             ResetCounters();
-            if(!XmlNodeSerializer.ReadNodes(@"c:\nodes\ser.txt", ref m_Nodes,OnPlaceNode))
+            if(!XmlNodeSerializer.ReadNodes(@"c:\nodes\ser.txt", ref m_Nodes,OnPlaceNode,EditAreaPanel))
             {
                  MessageBox.Show("READING FAILED!");
             }    

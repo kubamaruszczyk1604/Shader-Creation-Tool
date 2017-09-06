@@ -15,6 +15,7 @@ out vec4 FragColour;
 
 //Uniform nodes translated as uniform variables.
 uniform sampler2D       SCT_TEXTURE2D_0;
+uniform sampler2D       SCT_TEXTURE2D_1;
 
 // SCT Nodes Translated as functions.
 void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
@@ -22,14 +23,23 @@ void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
  FinalColour = texture2D(Texture,Texcoord); 
 }
 
-void ExpFog(vec3 CamPos, vec3 ObjPos, vec4 ColourIn, inout vec4 FinalOut)
+void UVScroll(float Time, vec2 UVIn, float Speed, inout vec2 UVOut)
+{
+  UVOut = vec2(UVIn.x+Time*Speed, UVIn.y);
+}
+
+
+void SPLIT_V2(vec2 In, inout vec2 Out1, inout vec2 Out2)
 {
    
-     float distance = length(CamPos-ObjPos);
-     float fogAmount = 1.0 - exp(-distance * 0.02);
-     vec4 fogColor =  vec4(0.00, 0.001, 0.01, 1);
-     FinalOut =mix(ColourIn, fogColor, fogAmount);
+    Out1 = In;
+    Out2 = In;
    
+}
+
+void MultiplyV4(vec4 VecA, vec4 VecB, vec4 VecC, inout vec4 FinalColour)
+{
+ FinalColour = VecA*VecB*VecC; 
 }
 
 
@@ -37,14 +47,27 @@ void ExpFog(vec3 CamPos, vec3 ObjPos, vec4 ColourIn, inout vec4 FinalOut)
  void main()
 {
 
+//SCT CALL: SPLIT_V2
+   vec2  OUT_Out10_NF_SPLIT_V2_7_3548;
+   vec2  OUT_Out21_NF_SPLIT_V2_7_3548;
+   SPLIT_V2(oUVs, OUT_Out10_NF_SPLIT_V2_7_3548, OUT_Out21_NF_SPLIT_V2_7_3548);
+
+//SCT CALL: UVScroll
+   vec2  OUT_UVOut0_NF_UVScroll_5_3530;
+   UVScroll(oTime, OUT_Out10_NF_SPLIT_V2_7_3548, 1, OUT_UVOut0_NF_UVScroll_5_3530);
+
 //SCT CALL: Sampler2D
-   vec4  OUT_FinalColour0_NF_Sampler2D_0_2746;
-   Sampler2D(SCT_TEXTURE2D_0, oUVs, OUT_FinalColour0_NF_Sampler2D_0_2746);
+   vec4  OUT_FinalColour0_NF_Sampler2D_6_3538;
+   Sampler2D(SCT_TEXTURE2D_1, OUT_Out21_NF_SPLIT_V2_7_3548, OUT_FinalColour0_NF_Sampler2D_6_3538);
 
-//SCT CALL: ExpFog
-   vec4  OUT_FinalOut0_NF_ExpFog_1_2817;
-   ExpFog(oCamera_WorldSpace, oPosition_WorldSpace, OUT_FinalColour0_NF_Sampler2D_0_2746, OUT_FinalOut0_NF_ExpFog_1_2817);
+//SCT CALL: Sampler2D
+   vec4  OUT_FinalColour0_NF_Sampler2D_4_3516;
+   Sampler2D(SCT_TEXTURE2D_0, OUT_UVOut0_NF_UVScroll_5_3530, OUT_FinalColour0_NF_Sampler2D_4_3516);
 
-FragColour = OUT_FinalOut0_NF_ExpFog_1_2817;
+//SCT CALL: MultiplyV4
+   vec4  OUT_FinalColour0_NF_MultiplyV4_8_3635;
+   MultiplyV4(OUT_FinalColour0_NF_Sampler2D_4_3516, vec4 (1,1,1,1), OUT_FinalColour0_NF_Sampler2D_6_3538, OUT_FinalColour0_NF_MultiplyV4_8_3635);
+
+FragColour = OUT_FinalColour0_NF_MultiplyV4_8_3635;
 
 }

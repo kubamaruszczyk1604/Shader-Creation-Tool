@@ -14,6 +14,7 @@ namespace ShaderCreationTool
     {
 
         public static OnPlaceNodeCallback PlaceNodeCalback = null;
+        public static Control EditAreaPanel = null;
 
         public static XmlWriter SerializeStaticCounters(XmlWriter target, 
             int inTextureCnt,
@@ -639,15 +640,21 @@ namespace ShaderCreationTool
                 }
             }
 
+            Connection con = new Connection(nodeSource.GetConnector(sourceLocalID),
+                nodeDestination.GetConnector(destinationLocalID),
+                EditAreaPanel);
+            ConnectionManager.AddConnecion(con);
+            
             SCTConsole.Instance.PrintLine("\r\nCONNECTION");
             SCTConsole.Instance.PrintLine("Source node: " + nodeSource.GetNodeID() + ", DESTINATION NODE: " + nodeDestination.GetNodeID());
             SCTConsole.Instance.PrintLine("Source connector: " + sourceLocalID + ",  Destination connector: " + destinationLocalID);
             return true;
         }
 
-        public static bool ReadNodes(string path, ref List<ISCTNode> allNodes, OnPlaceNodeCallback callback)
+        public static bool ReadNodes(string path, ref List<ISCTNode> allNodes, OnPlaceNodeCallback callback, Control editAreaPanel)
         {
             PlaceNodeCalback = callback;
+            EditAreaPanel = editAreaPanel;
             XmlNodeList nodes;
             try
             {
@@ -744,6 +751,8 @@ namespace ShaderCreationTool
                         DeserializeConnection(connNode,allNodes);
                       
                     }
+                    EditAreaPanel.Invalidate();
+                    EditAreaPanel.Update();
                 }
             }
 
