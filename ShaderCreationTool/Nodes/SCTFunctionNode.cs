@@ -202,6 +202,14 @@ namespace ShaderCreationTool
             else return null;
         }
 
+        public Connector GetConnector(string localID)
+        {
+            Connector ci = m_InputConnectors.Find(o => o.LocalID == localID);
+            if (ci != null) return ci;
+            Connector co = m_OutputConnectors.Find(o => o.LocalID == localID);
+            return co;
+        }
+
         public List<Connector> GetAllConnectors(ConnectionDirection type)
         {
             if (type == ConnectionDirection.Out) return m_OutputConnectors;

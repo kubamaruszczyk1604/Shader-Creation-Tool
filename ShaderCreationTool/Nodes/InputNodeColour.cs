@@ -202,10 +202,18 @@ namespace ShaderCreationTool
             p_ErrorCallback += callback;
         }
 
+
+        //////////////////// PUBLIC UTIL METHODS /////////////////////////
+
         public Connector GetConnector(ConnectionDirection type, int index)
         {
             if (type == ConnectionDirection.Out) return m_OutputConnectors[index];
             else return null;
+        }
+
+        public Connector GetConnector(string localID)
+        {
+            return m_OutputConnectors.Find(o => o.LocalID == localID);
         }
 
         public void ChangeColour(float r, float g, float b, float a)
@@ -236,13 +244,13 @@ namespace ShaderCreationTool
             SetShaderVariableFromNumeric();
         }
 
-        //////////////////// PUBLIC UTIL METHODS /////////////////////////
-
         public List<Connector> GetAllConnectors(ConnectionDirection type)
         {
             if (type == ConnectionDirection.Out) return m_OutputConnectors;
             else return null;
         }
+
+
         public List<Connector> GetAllConnectors()
         {
             return m_OutputConnectors;

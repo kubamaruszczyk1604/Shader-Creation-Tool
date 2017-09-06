@@ -32,6 +32,7 @@ namespace ShaderCreationTool
         void AddOnBeginConnectionCallback(BeginConnectionCallback onBeginConnection);
         void AddOnBreakConnectionCallback(BreakConnectionCallback onBreakConnection);
         Connector GetConnector(ConnectionDirection type, int index);
+        Connector GetConnector(string localID);
         List<Connector> GetAllConnectors(ConnectionDirection type);
         List<Connector> GetAllConnectors();
         NodeType GetNodeType();

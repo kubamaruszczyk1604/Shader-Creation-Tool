@@ -219,15 +219,18 @@ namespace ShaderCreationTool
             p_ErrorCallback += callback;
         }
 
+        //////////////////// PUBLIC UTIL METHODS /////////////////////////
+
         public Connector GetConnector(ConnectionDirection type, int index)
         {
             if (type == ConnectionDirection.Out) return m_OutputConnectors[index];
             else return null;
         }
 
-
-
-        //////////////////// PUBLIC UTIL METHODS /////////////////////////
+        public Connector GetConnector(string localID)
+        {
+            return m_OutputConnectors.Find(o => o.LocalID == localID);
+        }
 
         public List<Connector> GetAllConnectors(ConnectionDirection type)
         {
