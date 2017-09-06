@@ -760,7 +760,7 @@ namespace ShaderCreationTool
                     }
                 }
             }
-            EditAreaPanel.Invalidate();
+           // EditAreaPanel.Invalidate();
             foreach (XmlNode node in nodes)
             {
                 if (node.Name == "CONNECTIONS")

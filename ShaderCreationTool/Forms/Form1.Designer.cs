@@ -68,7 +68,6 @@
             this.vertPos_inner_panel = new System.Windows.Forms.Panel();
             this.Out_Slot_vertPos = new System.Windows.Forms.CheckBox();
             this.label_Title_vertexPos = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.Texture2DInputWindow = new System.Windows.Forms.Panel();
             this.closeButton_Texture2D = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -291,7 +290,6 @@
             this.EditAreaPanel.Controls.Add(this.UVsWindow);
             this.EditAreaPanel.Controls.Add(this.NormalVectorWindow);
             this.EditAreaPanel.Controls.Add(this.VertexPositionWindow);
-            this.EditAreaPanel.Controls.Add(this.button2);
             this.EditAreaPanel.Controls.Add(this.Texture2DInputWindow);
             this.EditAreaPanel.Controls.Add(this.TransparentNodePanel);
             this.EditAreaPanel.Controls.Add(this.FloatInputWindow);
@@ -754,16 +752,6 @@
             this.label_Title_vertexPos.TabIndex = 0;
             this.label_Title_vertexPos.Text = "Vertex Position";
             this.label_Title_vertexPos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(628, 11);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 37;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Texture2DInputWindow
             // 
@@ -2319,6 +2307,7 @@
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
@@ -2732,7 +2721,6 @@
         private System.Windows.Forms.GroupBox StatsGroupBox;
         private System.Windows.Forms.Button ZoomInButton;
         private System.Windows.Forms.Button ZoomOutButton;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button AddAttribButton;
         private System.Windows.Forms.Panel VertexPositionWindow;
         private System.Windows.Forms.Button closeButton_VertPos;

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
+using System.IO;
 using System.Reflection;
 
 using System.Runtime.InteropServices;
@@ -34,8 +35,8 @@ namespace ShaderCreationTool
         private bool m_IsConnecting;
         private Point m_TempLineOrgin;
         private ZoomController m_ZoomController;
-
         private ICodeParser m_CodeParser;
+        string m_CurrentFilePath;
 
         public MainWindow()
         {
@@ -58,7 +59,7 @@ namespace ShaderCreationTool
             m_ZoomController = new ZoomController(ZoomInButton, ZoomOutButton);
 
             m_CodeParser = new CodeParserGLSL();
-
+            m_CurrentFilePath = string.Empty;
             XmlNodeSerializer.PlaceNodeCalback += OnPlaceNode;
 
         }
@@ -260,7 +261,6 @@ namespace ShaderCreationTool
             PreviewAreaPanel.BringToFront();
         }
 
-
         private void RemoveAllNodes()
         {
             FrameBufferNode fbNode = null;
@@ -288,6 +288,48 @@ namespace ShaderCreationTool
            AttribNodeSimple.SetCounter(0);
            AttribNodeWithSelection.SetCounter(0);
            SCTFunctionNode.SetCounter(0);
+        }
+
+        private void SaveAs()
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+
+            saveDialog.Filter = "SCT Network Files (*.net)|*.net|All files (*.*)|*.*";
+            saveDialog.FilterIndex = 1;
+            saveDialog.RestoreDirectory = true;
+
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = saveDialog.FileName;
+                XmlNodeSerializer.Save(path, m_Nodes, ConnectionManager.ConnectionList);
+                m_CurrentFilePath = path;
+            }
+        }
+
+        public void OpenFile()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.InitialDirectory = "c:\\";
+            openFileDialog.Filter = "SCT Network Files (*.net)|*.net|All files (*.*)|*.*";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                RemoveAllNodes();
+                ResetCounters();
+                if (!XmlNodeSerializer.ReadNodes(openFileDialog.FileName, ref m_Nodes, OnPlaceNode, EditAreaPanel))
+                {
+                    MessageBox.Show("READING FAILED!");
+                }
+                else
+                {
+                    m_CurrentFilePath = openFileDialog.FileName;
+                }
+
+            }
+            EditAreaPanel.Update();
         }
         ////////////////////////////  CALLBACKS   /////////////////////////////
 
@@ -552,8 +594,6 @@ namespace ShaderCreationTool
             lastMouseX = e.X;
             lastMouseY = e.Y;
         }
-      
-
 
         // BUTTONS 
         private void AddVariableButton_Click(object sender, EventArgs e)
@@ -576,46 +616,26 @@ namespace ShaderCreationTool
             BuildShaders();
         }
 
-
         ////////////////////////////////  MENU ITEMS ///////////////////
 
         private void OpenFileMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            openFileDialog.InitialDirectory = "c:\\";
-            openFileDialog.Filter = "SCT Network Files (*.net)|*.net|All files (*.*)|*.*";
-            openFileDialog.FilterIndex = 2;
-            openFileDialog.RestoreDirectory = true;
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                RemoveAllNodes();
-                ResetCounters();
-                if (!XmlNodeSerializer.ReadNodes(openFileDialog.FileName, ref m_Nodes, OnPlaceNode, EditAreaPanel))
-                {
-                    MessageBox.Show("READING FAILED!");
-                }
-            }
+            OpenFile();
         }
 
         private void SaveAsMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveDialog = new SaveFileDialog();
-
-            saveDialog.Filter = "SCT Network Files (*.net)|*.net|All files (*.*)|*.*";
-            saveDialog.FilterIndex = 2;
-            saveDialog.RestoreDirectory = true;
-
-            if (saveDialog.ShowDialog() == DialogResult.OK)
-            {
-                string path = saveDialog.FileName;
-                XmlNodeSerializer.Save(path, m_Nodes, ConnectionManager.ConnectionList);
-            }
-
-            
+            SaveAs();
         }
-
+        
+        private void SaveMenuItem_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(m_CurrentFilePath))
+            {
+                XmlNodeSerializer.Save(m_CurrentFilePath, m_Nodes, ConnectionManager.ConnectionList);
+            }
+            else SaveAs();
+        }
         private void AddUniformVariable_MenuItem_Click(object sender, EventArgs e)
         {
             Start_AddVariableNode(true);
@@ -629,7 +649,6 @@ namespace ShaderCreationTool
         {
             this.Close();
         }
-
 
         private void AttributeNodeMenuItem_Click(object sender, EventArgs e)
         {
@@ -697,19 +716,8 @@ namespace ShaderCreationTool
             return angle * (180.0 / Math.PI);
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //  SCTConsole.Instance.PrintLine("Name of the variable: " + anode.GetVariableName());
-            XmlNodeSerializer.Save(@"c:\nodes\ser.txt", m_Nodes,ConnectionManager.ConnectionList);
-            RemoveAllNodes();
-            ResetCounters();
-            if(!XmlNodeSerializer.ReadNodes(@"c:\nodes\ser.txt", ref m_Nodes,OnPlaceNode,EditAreaPanel))
-            {
-                 MessageBox.Show("READING FAILED!");
-            }    
-        }
-
-       
+ 
+        
     }
 
 
