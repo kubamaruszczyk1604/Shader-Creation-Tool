@@ -200,6 +200,7 @@
             this.showConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditAreaPanel.SuspendLayout();
             this.CameraPositionWindow.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -2280,6 +2281,7 @@
             this.fileToolStripMenuItem.AutoToolTip = true;
             this.fileToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
@@ -2469,6 +2471,15 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
+            this.newToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
+            this.newToolStripMenuItem.Text = "New Network";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.NewNetworkMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -2767,6 +2778,7 @@
         private System.Windows.Forms.ToolStripMenuItem consoleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showConsoleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideConsoleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
     }
 }
 

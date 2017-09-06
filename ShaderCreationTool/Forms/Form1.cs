@@ -604,8 +604,9 @@ namespace ShaderCreationTool
 
         private void EditAreaPanel_Scroll(object sender, ScrollEventArgs e)
         {
-            EditAreaPanel.Invalidate(false);
-            EditAreaPanel.Update();
+           EditAreaPanel.Invalidate(false);
+           EditAreaPanel.Update();
+           //UpdateOnObjectMoved();
         }
 
         int lastMouseX = 0;
@@ -645,6 +646,34 @@ namespace ShaderCreationTool
         }
 
         ////////////////////////////////  MENU ITEMS ///////////////////
+
+        private void NewNetworkMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Would you like to save your current work?", "Save", MessageBoxButtons.YesNoCancel);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (File.Exists(m_CurrentFilePath))
+                {
+                    XmlNodeSerializer.Save(m_CurrentFilePath, m_Nodes, ConnectionManager.ConnectionList);              
+                }
+                else
+                {
+                    if (!SaveAs()) return;          
+                }
+                m_CurrentFilePath = string.Empty;
+                RemoveAllNodes();
+                ResetCounters();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                RemoveAllNodes();
+                ResetCounters();
+            }
+            else if (dialogResult == DialogResult.Cancel)
+            {
+               
+            }
+        }
 
         private void OpenFileMenuItem_Click(object sender, EventArgs e)
         {
@@ -744,8 +773,7 @@ namespace ShaderCreationTool
             return angle * (180.0 / Math.PI);
         }
 
- 
-        
+
     }
 
 
