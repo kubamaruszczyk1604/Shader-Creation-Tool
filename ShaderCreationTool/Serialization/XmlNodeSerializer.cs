@@ -623,6 +623,7 @@ namespace ShaderCreationTool
             ISCTNode nodeDestination = null;
             string sourceLocalID = string.Empty;
             string destinationLocalID = string.Empty;
+            int ax = 0; int ay = 0; int bx = 0; int by = 0;
 
             foreach (XmlAttribute attrib in connNode.Attributes)
             {
@@ -644,11 +645,22 @@ namespace ShaderCreationTool
                 {
                     destinationLocalID = attrib.Value;
                 }
+                else if (attrib.Name == "AX")
+                { if (!int.TryParse(attrib.Value, out ax)) return false;}
+                else if (attrib.Name == "AY")
+                { if (!int.TryParse(attrib.Value, out ay)) return false; }
+                else if (attrib.Name == "BX")
+                { if (!int.TryParse(attrib.Value, out bx)) return false; }
+                else if (attrib.Name == "BY")
+                { if (!int.TryParse(attrib.Value, out by)) return false; }
+
+
             }
 
             Connection con = new Connection(nodeSource.GetConnector(sourceLocalID),
                 nodeDestination.GetConnector(destinationLocalID),
                 EditAreaPanel);
+            con.ApplyLineConfigAsync(new Point(ax, ay), new Point(bx, by),1000);
             ConnectionManager.AddConnecion(con);
             
             SCTConsole.Instance.PrintLine("\r\nCONNECTION");
@@ -656,6 +668,8 @@ namespace ShaderCreationTool
             SCTConsole.Instance.PrintLine("Source connector: " + sourceLocalID + ",  Destination connector: " + destinationLocalID);
             return true;
         }
+
+        
 
         public static bool ReadNodes(string path, ref List<ISCTNode> allNodes, OnPlaceNodeCallback callback, Control editAreaPanel)
         {

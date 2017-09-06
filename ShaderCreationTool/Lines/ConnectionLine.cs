@@ -115,10 +115,7 @@ namespace ShaderCreationTool
             m_Invalidate = true;
         }
 
-        public void Save(StreamWriter writer)
-        {
 
-        } 
 
         public void ApplyConfig(Point x, Point y)
         {
