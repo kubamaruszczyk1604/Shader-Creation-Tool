@@ -16,15 +16,12 @@ namespace KLM_FRAMEWORK
 	HGLRC GLRenderer::s_hGLRC{ nullptr };
 	HDC GLRenderer::s_hDevCtx{ nullptr };
 	Camera* GLRenderer::s_CurrentCamera{ nullptr };
-
 	int GLRenderer::s_ScreenWidth{ 800 };
 	int GLRenderer::s_ScreenHeight{ 600 };
-
 	bool GLRenderer::s_MakeCurrentCalled{ false };
-
-
 	Vec4 GLRenderer::VectorVariableTest{ Vec4(1.0f) };
 	float GLRenderer::dummyTime = 0;
+
 	bool GLRenderer::KLMSetPixelFormat(HDC hdc)
 	{
 		PIXELFORMATDESCRIPTOR pfd;
@@ -56,9 +53,6 @@ namespace KLM_FRAMEWORK
 
 	bool GLRenderer::Initialize(const int width, const int height, const HWND handle)
 	{
-	
-
-
 		s_ScreenWidth = width;
 		s_ScreenHeight = height;
 		s_hWnd = handle;
@@ -69,8 +63,7 @@ namespace KLM_FRAMEWORK
 		
 		// Create context 
 		if ((s_hGLRC = wglCreateContext(s_hDevCtx)) == NULL) return false;
-		
-        
+		    
 		wglMakeCurrent(s_hDevCtx, s_hGLRC);
 		
 		// set defaults
@@ -288,7 +281,6 @@ namespace KLM_FRAMEWORK
 			}
 		}
 
-
 		for (int i = 0; i < ShaderVariableContainer::GetSize_TextureVariables(); ++i)
 		{
 			const std::string name = marshal_as<std::string>(ShaderVariableContainer::GetShaderTextureVariable(i)->GetName());
@@ -333,10 +325,6 @@ namespace KLM_FRAMEWORK
 		}
 		Mat4 MVP = s_CurrentCamera->GetProjectionMatrix(s_ScreenWidth, s_ScreenHeight) * worldView;
 
-
-		//PrintVec(cameraPos);
-
-
 		//Matrices
 		
 		GLuint WORLD_ID = glGetUniformLocation(shaderProgID, AttribVariableStrings::U_WORLD_MAT_VAR_NAME);
@@ -361,11 +349,8 @@ namespace KLM_FRAMEWORK
 		GLuint TIME_ID = glGetUniformLocation(shaderProgID, AttribVariableStrings::U_TIME_VAR_NAME);
 		glUniform1f(TIME_ID,dummyTime);
 
-
-
 		mc->GetMesh()->GetVBO()->Draw(PrimitiveType::TRIANGLES);
 	}
-
 
 	void GLRenderer::Update(const float deltaTime, const float totalTime)
 	{
@@ -413,8 +398,5 @@ namespace KLM_FRAMEWORK
 		s_CurrentCamera = camera;
 	}
 	
-
-
-
 
 }

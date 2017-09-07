@@ -14,9 +14,9 @@ in float oTime;
 out vec4 FragColour;
 
 //Uniform nodes translated as uniform variables.
-uniform sampler2D       SCT_TEXTURE2D_0;
 uniform vec4            SCT_UNIFORM_ColourIn_0;
 uniform float           SCT_UNIFORM_FLOATIn_0;
+uniform sampler2D       SCT_TEXTURE2D_3;
 
 
 const float TAU = 6.28318530718;
@@ -99,7 +99,7 @@ void main()
 
 //SCT CALL: Sampler2D
    vec4  OUT_FinalColour0_NF_Sampler2D_1_4914;
-   Sampler2D(SCT_TEXTURE2D_0, oUVs, OUT_FinalColour0_NF_Sampler2D_1_4914);
+   Sampler2D(SCT_TEXTURE2D_3, oUVs, OUT_FinalColour0_NF_Sampler2D_1_4914);
 
 //SCT CALL: SCTGodRays
    vec4  OUT_FinalOut0_NF_SCTGodRays_0_4849;

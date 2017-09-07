@@ -49,18 +49,20 @@ namespace KLM_FRAMEWORK
 		m_VertexCount = numVertices;
 		return true;
 	}
+
 	void GLVBO::Draw(PrimitiveType primitiveType) const
 	{
 		glBindVertexArray(ptr_VAO);
 		if (m_IndexCount == 0)
 		{
-			glDrawArrays(GL_TRIANGLES, 0, m_VertexCount);
+			glDrawArrays(LookupTableTopologyType[static_cast<int>(primitiveType)], 0, m_VertexCount);
 		}
 		else
 		{
-			glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_INT, 0);
+			glDrawElements(LookupTableTopologyType[static_cast<int>(primitiveType)], m_IndexCount, GL_UNSIGNED_INT, 0);
 		}
 	}
+
 	bool GLVBO::CreateIndexBuffer(unsigned * const indices, const unsigned numInidices)
 	{
 		if (numInidices < 1) return false;
