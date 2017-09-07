@@ -2,10 +2,53 @@
 <Entities>
   <!--Shader Creation Tool - node config scripting file.-->
    <COMMON_CODE>
-void Test()
+const FLOAT TAU = 6.28318530718;
+const FLOAT MAX_ITER = 5;
+
+float softInterval(float a, float b, float c, float d, float x)
 {
+    return smoothstep(a, b, x) - smoothstep(c, d, x);
 }
+
+float CausticX(float x, float power, float gtime)
+{
+    float p = mod(x * TAU, TAU) - 250.0;
+    float time = gtime * .5 + 23.0;
+
+    float i = p;;
+    float c = 1.0;
+    float inten = 0.005;
+    for (int n = 0; n IS_SMALLER 3; n++)
+    {
+        float t = time * (1.0 - (3.5 / float(n + 1)));
+        i = p + cos(t - i) + sin(t + i);
+        c += 1.0 / length(p / (sin(i + t) / inten));
+    }
+    c /= float(MAX_ITER);
+    c = 1.17 - pow(c, power);
+    
+    
+    return c;
+}
+
+float GodRays(VECTOR2 uv, float time)
+{
+    float light = 0.0;
+
+    light += pow(CausticX((uv.x + 0.08 * uv.y) / 1.7 + 0.5, 1.8, time * 0.65), 10.0) * 0.05;
+    light -= pow((1.0 - uv.y) * 0.3, 2.0) * 0.2;
+    light += pow(CausticX(sin(uv.x), 0.3, time * 0.7), 9.0) * 0.4;
+    light += pow(CausticX(cos(uv.x * 2.3), 0.3, time * 1.3), 4.0) * 0.1;
+        
+    light -= pow((1.0 - uv.y) * 0.3, 3.0);
+    light = clamp(light, 0.0, 1.0);
+    
+    return light;
+}
+
   </COMMON_CODE>
+  
+  
   <Node Name="AddV4">
   
     <Input_Variables>
@@ -205,6 +248,34 @@ void Test()
      FLOAT fogAmount = 1.0 - exp(-distance * 0.02);
      VECTOR4 fogColor =  VECTOR4(0.00, 0.001, 0.01, 1);
      FinalOut =mix(ColourIn, fogColor, fogAmount);
+   </Code>
+  </Node>
+  
+   <Node Name="SCTGodRays">
+  
+    <Input_Variables>
+      <Variable Name="TextureUVs" Var_Type="Float2">
+	  </Variable>
+	  <Variable Name="Time" Var_Type="Float">
+	  </Variable>
+	   <Variable Name="RaysColour" Var_Type="Float4">
+	  </Variable>
+	  <Variable Name="Intensity" Var_Type="Float">
+	  </Variable>
+	   <Variable Name="ColourIn" Var_Type="Float4">
+	  </Variable>
+	  
+    </Input_Variables>
+	
+    <Output_Variables>
+      <Variable Name="FinalOut" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>
+	
+   <Code>   
+     FLOAT gr = GodRays(TextureUVs,Time)*Intensity;
+	 VECTOR4 grCol =  VECTOR4(gr, gr, gr, 1)*RaysColour;
+     FinalOut = ColourIn + grCol;
    </Code>
   </Node>
   
