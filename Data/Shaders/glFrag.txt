@@ -48,7 +48,7 @@ float CausticX(float x, float power, float gtime)
     return c;
 }
 
-float GodRays(vec2 uv, float time)
+float UVFX1(vec2 uv, float time)
 {
     float light = 0.0;
 
@@ -81,19 +81,9 @@ void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
 void SCTGodRays(vec2 TextureUVs, float Time, vec4 RaysColour, float Intensity, vec4 ColourIn, inout vec4 FinalOut)
 {
    
-     float gr = GodRays(TextureUVs,Time)*Intensity;
+     float gr = UVFX1(TextureUVs,Time)*Intensity;
 	 vec4 grCol =  vec4(gr, gr, gr, 1)*RaysColour;
      FinalOut = ColourIn + grCol;
-   
-}
-
-void ExpFog(vec3 CamPos, vec3 ObjPos, vec4 ColourIn, inout vec4 FinalOut)
-{
-   
-     float distance = length(CamPos-ObjPos);
-     float fogAmount = 1.0 - exp(-distance * 0.02);
-     vec4 fogColor =  vec4(0.00, 0.001, 0.01, 1);
-     FinalOut =mix(ColourIn, fogColor, fogAmount);
    
 }
 
@@ -106,14 +96,10 @@ void main()
    vec4  OUT_FinalColour0_NF_Sampler2D_2_2451;
    Sampler2D(SCT_TEXTURE2D_0, oUVs, OUT_FinalColour0_NF_Sampler2D_2_2451);
 
-//SCT CALL: ExpFog
-   vec4  OUT_FinalOut0_NF_ExpFog_9_3647;
-   ExpFog(oCamera_WorldSpace, oPosition_WorldSpace, OUT_FinalColour0_NF_Sampler2D_2_2451, OUT_FinalOut0_NF_ExpFog_9_3647);
-
 //SCT CALL: SCTGodRays
-   vec4  OUT_FinalOut0_NF_SCTGodRays_8_3203;
-   SCTGodRays(oUVs, oTime, SCT_UNIFORM_ColourIn_3, SCT_UNIFORM_FLOATIn_0, OUT_FinalOut0_NF_ExpFog_9_3647, OUT_FinalOut0_NF_SCTGodRays_8_3203);
+   vec4  OUT_FinalOut0_NF_SCTGodRays_15_0643;
+   SCTGodRays(oUVs, oTime, SCT_UNIFORM_ColourIn_3, SCT_UNIFORM_FLOATIn_0, OUT_FinalColour0_NF_Sampler2D_2_2451, OUT_FinalOut0_NF_SCTGodRays_15_0643);
 
-FragColour = OUT_FinalOut0_NF_SCTGodRays_8_3203;
+FragColour = OUT_FinalOut0_NF_SCTGodRays_15_0643;
 
 }

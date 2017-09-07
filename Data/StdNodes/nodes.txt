@@ -31,9 +31,9 @@ float CausticX(float x, float power, float gtime)
     return c;
 }
 
-float GodRays(VECTOR2 uv, float time)
+FLOAT UVFX1(VECTOR2 uv, FLOAT time)
 {
-    float light = 0.0;
+    FLOAT light = 0.0;
 
     light += pow(CausticX((uv.x + 0.08 * uv.y) / 1.7 + 0.5, 1.8, time * 0.65), 10.0) * 0.05;
     light -= pow((1.0 - uv.y) * 0.3, 2.0) * 0.2;
@@ -251,6 +251,8 @@ float GodRays(VECTOR2 uv, float time)
    </Code>
   </Node>
   
+
+  
    <Node Name="SCTGodRays">
   
     <Input_Variables>
@@ -273,7 +275,7 @@ float GodRays(VECTOR2 uv, float time)
     </Output_Variables>
 	
    <Code>   
-     FLOAT gr = GodRays(TextureUVs,Time)*Intensity;
+     FLOAT gr = UVFX1(TextureUVs,Time)*Intensity;
 	 VECTOR4 grCol =  VECTOR4(gr, gr, gr, 1)*RaysColour;
      FinalOut = ColourIn + grCol;
    </Code>
