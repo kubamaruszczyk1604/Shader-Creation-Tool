@@ -155,7 +155,7 @@ namespace ShaderCreationTool
                 }
                 else if (group.Name == UTIL_FUNCT)
                 {
-                    UtilFuntionDescription ufd;
+                    SubFuntionDescription ufd;
                     if (ReadUtilFunction(group, out ufd))
                     {
                         nodeDescription.AddUtilFunctDescription(ufd);
@@ -167,7 +167,7 @@ namespace ShaderCreationTool
 
         }
 
-        static private bool ReadUtilFunction(XmlNode group, out UtilFuntionDescription ufdesc)
+        static private bool ReadUtilFunction(XmlNode group, out SubFuntionDescription ufdesc)
         {
             ufdesc = null;
             string name = string.Empty;
@@ -180,7 +180,7 @@ namespace ShaderCreationTool
                     if (!GetType(attrib.Value, out type)) return false;
                 }
             }
-            ufdesc = new UtilFuntionDescription(name, type);
+            ufdesc = new SubFuntionDescription(name, type);
             string stat= string.Empty;
             ReadInputVariables(group, ref ufdesc, ref stat);
             foreach(XmlNode nd in group.ChildNodes)
@@ -215,7 +215,7 @@ namespace ShaderCreationTool
         }
 
 
-        static private void ReadInputVariables(XmlNode groupIn, ref UtilFuntionDescription desc, ref string status)
+        static private void ReadInputVariables(XmlNode groupIn, ref SubFuntionDescription desc, ref string status)
         {
             foreach (XmlNode variable in groupIn.ChildNodes)
             {

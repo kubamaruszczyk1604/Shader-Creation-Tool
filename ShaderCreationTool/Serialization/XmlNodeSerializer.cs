@@ -110,13 +110,30 @@ namespace ShaderCreationTool
             }
             target.WriteEndElement();// OUTPUT_VARIABLES
 
-
+            for(int i =0; i < desc.SubFunctCount; ++i)
+            {
+                SerializeSubFunctionDesc(target, desc.GetSubFunctDescription(i));
+            }
+           
 
             target.WriteEndElement();//Function Node Desc
 
             return target;
         }
 
+        private static XmlWriter SerializeSubFunctionDesc(XmlWriter target, SubFuntionDescription desc)
+        {
+            target.WriteStartElement("UTIL_FUNCTION");
+            target.WriteAttributeString("NAME", desc.Name);
+            target.WriteAttributeString("RETURNS", desc.GetReturnType().ToString());
+            for(int i = 0; i < desc.InputCount; ++i)
+            {
+                SerializeShaderVariableDescription(target, desc.GetInVariableDescription(i));
+            }
+            target.WriteElementString("CODE", desc.GetFunctionString());
+            target.WriteEndElement();//UTIL_FUNCTION
+            return target;
+        }
 
         public static XmlWriter SerializeColourInputNode(XmlWriter target, InputNodeColour node)
         {
@@ -435,9 +452,52 @@ namespace ShaderCreationTool
                         }
                     }
                 }
+                else if (child.Name == "UTIL_FUNCTION")
+                {
+                    SubFuntionDescription subfDesc;
+                    if(DeserializeSubFunction(child,out subfDesc))
+                    {
+                        desc.AddUtilFunctDescription(subfDesc);
+                    }
+                }
             }
 
 
+            return true;
+        }
+
+
+        public static bool DeserializeSubFunction(XmlNode node, out SubFuntionDescription desc)
+        {
+            string name = string.Empty;
+            ShaderVariableType returnType = ShaderVariableType.Single;
+            desc = null;
+            foreach(XmlAttribute attrib in node.Attributes)
+            {
+                if (attrib.Name == "NAME") name = attrib.Value;
+                else if (attrib.Name == "RETURNS")
+                {
+                    try { returnType = (ShaderVariableType)Enum.Parse(typeof(ShaderVariableType), attrib.Value); }
+                    catch { return false; }
+                }
+            }
+            desc = new SubFuntionDescription(name, returnType);
+
+            foreach (XmlNode subNode in node.ChildNodes)
+            {
+                if (subNode.Name == "SHADER_VAR_DESC")
+                {
+                    ShaderVariableDescription svd;
+                    if (DeserializeShadevVarDesc(subNode, out svd))
+                    {
+                        desc.AddInputVariable(svd);
+                    }
+                }
+                else if (subNode.Name == "CODE")
+                {
+                    desc.SetFucntionString(subNode.InnerText);
+                }
+            }
             return true;
         }
 

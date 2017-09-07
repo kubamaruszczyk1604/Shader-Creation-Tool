@@ -28,14 +28,14 @@ namespace ShaderCreationTool
 
 
     }
-    public class UtilFuntionDescription
+    public class SubFuntionDescription
     {
         private List<ShaderVariableDescription> m_InputVariables;
         private ShaderVariableType m_ReturnType;
         private string m_FunctionCode;
         private string m_Name;
 
-        public UtilFuntionDescription(string name, ShaderVariableType returnType)
+        public SubFuntionDescription(string name, ShaderVariableType returnType)
         {
             m_InputVariables = new List<ShaderVariableDescription>();
             m_FunctionCode = string.Empty;
@@ -43,7 +43,7 @@ namespace ShaderCreationTool
             m_ReturnType = returnType;
         }
 
-        public string GetFucntionString()
+        public string GetFunctionString()
         {
             return m_FunctionCode;
         }
@@ -74,7 +74,7 @@ namespace ShaderCreationTool
     {
         private List<ShaderVariableDescription> m_InputVariables;
         private List<ShaderVariableDescription> m_OutputVariables;
-        private List<UtilFuntionDescription> m_FunctionDescriptions;
+        private List<SubFuntionDescription> m_FunctionDescriptions;
         private string m_FunctionCode;
         private string m_Name;
 
@@ -82,7 +82,7 @@ namespace ShaderCreationTool
         {
             m_InputVariables = new List<ShaderVariableDescription>();
             m_OutputVariables = new List<ShaderVariableDescription>();
-            m_FunctionDescriptions = new List<UtilFuntionDescription>();
+            m_FunctionDescriptions = new List<SubFuntionDescription>();
             m_FunctionCode = string.Empty;
             m_Name = name;
         }
@@ -97,7 +97,7 @@ namespace ShaderCreationTool
             m_OutputVariables.Add(desc);
         }
 
-        public void AddUtilFunctDescription(UtilFuntionDescription desc)
+        public void AddUtilFunctDescription(SubFuntionDescription desc)
         {
             m_FunctionDescriptions.Add(desc);
         }
@@ -118,7 +118,7 @@ namespace ShaderCreationTool
             return m_OutputVariables[index];
         }
 
-        public UtilFuntionDescription GetUtilFunctDescription(int index)
+        public SubFuntionDescription GetSubFunctDescription(int index)
         {
             return m_FunctionDescriptions[index];
         }

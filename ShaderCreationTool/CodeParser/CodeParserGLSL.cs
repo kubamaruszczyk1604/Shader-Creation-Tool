@@ -178,13 +178,13 @@ namespace ShaderCreationTool
                 string subFunctCode = string.Empty;
                 for (int i = 0; i < desc.SubFunctCount; ++i)
                 {
-                    string utilSignature = CreateUtilFunctionSignature(desc.GetUtilFunctDescription(i));
+                    string utilSignature = CreateUtilFunctionSignature(desc.GetSubFunctDescription(i));
                     if (m_Signatures.Contains(utilSignature))
                     {
                         continue;
                     }
                     string subbody = "{\r\n";
-                    subbody += ParseCode(desc.GetUtilFunctDescription(i).GetFucntionString());
+                    subbody += ParseCode(desc.GetSubFunctDescription(i).GetFunctionString());
                     subbody += "\r\n}\r\n";
                     subFunctCode += "\r\n\r\n" + utilSignature + subbody +"\r\n";
                     m_Signatures.Add(utilSignature);
@@ -386,7 +386,7 @@ namespace ShaderCreationTool
             return signature;
         }
 
-        private string CreateUtilFunctionSignature(UtilFuntionDescription desc)
+        private string CreateUtilFunctionSignature(SubFuntionDescription desc)
         {
             string signature = TranslateVariableType(desc.GetReturnType()) + " " +
                 desc.Name + "(";
