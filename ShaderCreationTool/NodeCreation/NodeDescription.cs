@@ -28,11 +28,53 @@ namespace ShaderCreationTool
 
 
     }
+    public class UtilFuntionDescription
+    {
+        private List<ShaderVariableDescription> m_InputVariables;
+        private ShaderVariableType m_ReturnType;
+        private string m_FunctionCode;
+        private string m_Name;
 
-    public class FunctionNodeDescription
+        public UtilFuntionDescription(string name, ShaderVariableType returnType)
+        {
+            m_InputVariables = new List<ShaderVariableDescription>();
+            m_FunctionCode = string.Empty;
+            m_Name = name;
+            m_ReturnType = returnType;
+        }
+
+        public string GetFucntionString()
+        {
+            return m_FunctionCode;
+        }
+        public void SetFucntionString(string str)
+        {
+            m_FunctionCode = str;
+        }
+        public void AddInputVariable(ShaderVariableDescription desc)
+        {
+            m_InputVariables.Add(desc);
+        }
+        public ShaderVariableDescription GetInVariableDescription(int index)
+        {
+            return m_InputVariables[index];
+        }
+
+        public ShaderVariableType GetReturnType()
+        {
+           return m_ReturnType;
+        }
+
+        public int InputCount { get { return m_InputVariables.Count; } }
+        public string Name { get { return m_Name; } }
+    }
+
+
+     public class FunctionNodeDescription
     {
         private List<ShaderVariableDescription> m_InputVariables;
         private List<ShaderVariableDescription> m_OutputVariables;
+        private List<UtilFuntionDescription> m_FunctionDescriptions;
         private string m_FunctionCode;
         private string m_Name;
 
@@ -40,6 +82,7 @@ namespace ShaderCreationTool
         {
             m_InputVariables = new List<ShaderVariableDescription>();
             m_OutputVariables = new List<ShaderVariableDescription>();
+            m_FunctionDescriptions = new List<UtilFuntionDescription>();
             m_FunctionCode = string.Empty;
             m_Name = name;
         }
@@ -52,6 +95,11 @@ namespace ShaderCreationTool
         public void AddOutputVariable(ShaderVariableDescription desc)
         {
             m_OutputVariables.Add(desc);
+        }
+
+        public void AddUtilFunctDescription(UtilFuntionDescription desc)
+        {
+            m_FunctionDescriptions.Add(desc);
         }
 
         public void SetFucntionString(string str)
@@ -70,6 +118,11 @@ namespace ShaderCreationTool
             return m_OutputVariables[index];
         }
 
+        public UtilFuntionDescription GetUtilFunctDescription(int index)
+        {
+            return m_FunctionDescriptions[index];
+        }
+
         public string GetFunctionString()
         {
             return m_FunctionCode;
@@ -77,6 +130,7 @@ namespace ShaderCreationTool
 
         public int InputCount { get { return m_InputVariables.Count; } }
         public int OutputCount { get { return m_OutputVariables.Count; } }
+        public int SubFunctCount { get { return m_FunctionDescriptions.Count; } }
         public string Name { get { return m_Name; } }
 
     }

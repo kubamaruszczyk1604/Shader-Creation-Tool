@@ -12,6 +12,7 @@ namespace ShaderCreationTool
         private const string INPUT_VARIABLES = "Input_Variables";
         private const string OUTPUT_VARIABLES = "Output_Variables";
         private const string CODE = "Code";
+        private const string UTIL_FUNCT = "Util_Function";
         private static readonly Regex s_VariableCorrectnessCriteria = new Regex("^[a-zA-Z0-9_]*$");
 
 
@@ -152,11 +153,42 @@ namespace ShaderCreationTool
                 {
                     nodeDescription.SetFucntionString(ReadCode(group));
                 }
-
+                else if (group.Name == UTIL_FUNCT)
+                {
+                    UtilFuntionDescription ufd;
+                    if (ReadUtilFunction(group, out ufd))
+                    {
+                        nodeDescription.AddUtilFunctDescription(ufd);
+                    }
+                }
             }
             status += "Node: " + nodeName + " read Ok\n";
             return true;
 
+        }
+
+        static private bool ReadUtilFunction(XmlNode group, out UtilFuntionDescription ufdesc)
+        {
+            ufdesc = null;
+            string name = string.Empty;
+            ShaderVariableType type = ShaderVariableType.Single;
+            foreach (XmlAttribute attrib in group.Attributes)
+            {
+                if (attrib.Name == "Name") name = attrib.Value;
+                if(attrib.Name == "Returns")
+                {
+                    if (!GetType(attrib.Value, out type)) return false;
+                }
+            }
+            ufdesc = new UtilFuntionDescription(name, type);
+            string stat= string.Empty;
+            ReadInputVariables(group, ref ufdesc, ref stat);
+            foreach(XmlNode nd in group.ChildNodes)
+            {
+                if (nd.Name != CODE) continue;
+                ufdesc.SetFucntionString(ReadCode(nd));
+            }
+            return true;
         }
 
         static private string ReadCode(XmlNode codeNode)
@@ -166,6 +198,24 @@ namespace ShaderCreationTool
 
 
         static private void ReadInputVariables(XmlNode groupIn, ref FunctionNodeDescription desc, ref string status)
+        {
+            foreach (XmlNode variable in groupIn.ChildNodes)
+            {
+                ShaderVariableDescription varDesc;
+                if (ReadVariable(variable, ConnectionDirection.In, out varDesc, ref status))
+                {
+                    desc.AddInputVariable(varDesc);
+                }
+                else
+                {
+                    status += "ERROR: Failed to read input variable!\n";
+                }
+            }
+            status += "OK: Input Variables end.\n";
+        }
+
+
+        static private void ReadInputVariables(XmlNode groupIn, ref UtilFuntionDescription desc, ref string status)
         {
             foreach (XmlNode variable in groupIn.ChildNodes)
             {

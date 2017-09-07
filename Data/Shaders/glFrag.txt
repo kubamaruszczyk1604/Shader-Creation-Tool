@@ -14,9 +14,9 @@ in float oTime;
 out vec4 FragColour;
 
 //Uniform nodes translated as uniform variables.
-uniform sampler2D       SCT_TEXTURE2D_0;
-uniform vec4            SCT_UNIFORM_ColourIn_3;
 uniform float           SCT_UNIFORM_FLOATIn_0;
+uniform vec4            SCT_UNIFORM_ColourIn_0;
+uniform vec4            SCT_UNIFORM_ColourIn_1;
 
 
 const float TAU = 6.28318530718;
@@ -25,42 +25,6 @@ const float MAX_ITER = 5;
 float softInterval(float a, float b, float c, float d, float x)
 {
     return smoothstep(a, b, x) - smoothstep(c, d, x);
-}
-
-float CausticX(float x, float power, float gtime)
-{
-    float p = mod(x * TAU, TAU) - 250.0;
-    float time = gtime * .5 + 23.0;
-
-    float i = p;;
-    float c = 1.0;
-    float inten = 0.005;
-    for (int n = 0; n < 3; n++)
-    {
-        float t = time * (1.0 - (3.5 / float(n + 1)));
-        i = p + cos(t - i) + sin(t + i);
-        c += 1.0 / length(p / (sin(i + t) / inten));
-    }
-    c /= float(MAX_ITER);
-    c = 1.17 - pow(c, power);
-    
-    
-    return c;
-}
-
-float UVFX1(vec2 uv, float time)
-{
-    float light = 0.0;
-
-    light += pow(CausticX((uv.x + 0.08 * uv.y) / 1.7 + 0.5, 1.8, time * 0.65), 10.0) * 0.05;
-    light -= pow((1.0 - uv.y) * 0.3, 2.0) * 0.2;
-    light += pow(CausticX(sin(uv.x), 0.3, time * 0.7), 9.0) * 0.4;
-    light += pow(CausticX(cos(uv.x * 2.3), 0.3, time * 1.3), 4.0) * 0.1;
-        
-    light -= pow((1.0 - uv.y) * 0.3, 3.0);
-    light = clamp(light, 0.0, 1.0);
-    
-    return light;
 }
 
   
@@ -73,9 +37,45 @@ vec4 dummyOutVEC4;
 
 
 // SCT Nodes Translated as functions.
-void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
+
+
+float CausticX(float x, float power, float gtime)
 {
- FinalColour = texture2D(Texture,Texcoord); 
+
+    float p = mod(x * TAU, TAU) - 250.0;
+    float time = gtime * .5 + 23.0;
+    float i = p;;
+    float c = 1.0;
+    float inten = 0.005;
+    for (int n = 0; n < 3; n++)
+    {
+        float t = time * (1.0 - (3.5 / float(n + 1)));
+        i = p + cos(t - i) + sin(t + i);
+        c += 1.0 / length(p / (sin(i + t) / inten));
+    }
+    c /= float(MAX_ITER);
+    c = 1.17 - pow(c, power); 
+    return c;
+	  
+}
+
+
+
+float UVFX1(vec2 uv, float time)
+{
+
+    float light = 0.0;
+
+    light += pow(CausticX((uv.x + 0.08 * uv.y) / 1.7 + 0.5, 1.8, time * 0.65), 10.0) * 0.05;
+    light -= pow((1.0 - uv.y) * 0.3, 2.0) * 0.2;
+    light += pow(CausticX(sin(uv.x), 0.3, time * 0.7), 9.0) * 0.4;
+    light += pow(CausticX(cos(uv.x * 2.3), 0.3, time * 1.3), 4.0) * 0.1;
+        
+    light -= pow((1.0 - uv.y) * 0.3, 3.0);
+    light = clamp(light, 0.0, 1.0);
+    
+    return light;
+	  
 }
 
 void SCTGodRays(vec2 TextureUVs, float Time, vec4 RaysColour, float Intensity, vec4 ColourIn, inout vec4 FinalOut)
@@ -92,14 +92,10 @@ void SCTGodRays(vec2 TextureUVs, float Time, vec4 RaysColour, float Intensity, v
 void main()
 {
 
-//SCT CALL: Sampler2D
-   vec4  OUT_FinalColour0_NF_Sampler2D_2_2451;
-   Sampler2D(SCT_TEXTURE2D_0, oUVs, OUT_FinalColour0_NF_Sampler2D_2_2451);
-
 //SCT CALL: SCTGodRays
-   vec4  OUT_FinalOut0_NF_SCTGodRays_15_0643;
-   SCTGodRays(oUVs, oTime, SCT_UNIFORM_ColourIn_3, SCT_UNIFORM_FLOATIn_0, OUT_FinalColour0_NF_Sampler2D_2_2451, OUT_FinalOut0_NF_SCTGodRays_15_0643);
+   vec4  OUT_FinalOut0_NF_SCTGodRays_2_5245;
+   SCTGodRays(oUVs, oTime, SCT_UNIFORM_ColourIn_0, SCT_UNIFORM_FLOATIn_0, SCT_UNIFORM_ColourIn_1, OUT_FinalOut0_NF_SCTGodRays_2_5245);
 
-FragColour = OUT_FinalOut0_NF_SCTGodRays_15_0643;
+FragColour = OUT_FinalOut0_NF_SCTGodRays_2_5245;
 
 }

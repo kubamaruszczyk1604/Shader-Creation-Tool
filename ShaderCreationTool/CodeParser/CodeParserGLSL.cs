@@ -175,6 +175,23 @@ namespace ShaderCreationTool
             try
             {
                 FunctionNodeDescription desc = node.NodeDescription;
+                string subFunctCode = string.Empty;
+                for (int i = 0; i < desc.SubFunctCount; ++i)
+                {
+                    string utilSignature = CreateUtilFunctionSignature(desc.GetUtilFunctDescription(i));
+                    if (m_Signatures.Contains(utilSignature))
+                    {
+                        continue;
+                    }
+                    string subbody = "{\r\n";
+                    subbody += ParseCode(desc.GetUtilFunctDescription(i).GetFucntionString());
+                    subbody += "\r\n}\r\n";
+                    subFunctCode += "\r\n\r\n" + utilSignature + subbody +"\r\n";
+                    m_Signatures.Add(utilSignature);
+                }
+
+
+
                 string signature = CreateFunctionSignature(desc);
                 if (m_Signatures.Contains(signature))
                 {
@@ -185,7 +202,7 @@ namespace ShaderCreationTool
                 string body = "{\r\n";
                 body += ParseCode(desc.GetFunctionString());
                 body += "\r\n}\r\n";
-                functionCode = signature + body;
+                functionCode = subFunctCode + signature + body;
                 m_Signatures.Add(signature);
                 // SCTConsole.Instance.PrintDebugLine(functionCode);
             }
@@ -364,6 +381,27 @@ namespace ShaderCreationTool
                 signature += assembled;
                 if (i < desc.OutputCount - 1) signature += ", ";
             }
+
+            signature += ")\r\n";
+            return signature;
+        }
+
+        private string CreateUtilFunctionSignature(UtilFuntionDescription desc)
+        {
+            string signature = TranslateVariableType(desc.GetReturnType()) + " " +
+                desc.Name + "(";
+
+            for (int i = 0; i < desc.InputCount; ++i)
+            {
+                ShaderVariableDescription varDesc = desc.GetInVariableDescription(i);
+                string assembled = TranslateVariableType(varDesc.Type) + " " + varDesc.Name;
+
+                signature += assembled;
+                if (i < desc.InputCount - 1) signature += ", ";
+            }
+            //signature += ", ";
+
+      
 
             signature += ")\r\n";
             return signature;
