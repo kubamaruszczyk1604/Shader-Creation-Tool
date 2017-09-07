@@ -14,8 +14,14 @@ in float oTime;
 out vec4 FragColour;
 
 //Uniform nodes translated as uniform variables.
-uniform sampler2D       SCT_TEXTURE2D_1;
 uniform vec4            SCT_UNIFORM_ColourIn_0;
+
+
+void Test()
+{
+}
+  
+
 
 //SCT dummy values for output split nodes
 vec2 dummyOutVEC2;
@@ -24,32 +30,11 @@ vec4 dummyOutVEC4;
 
 
 // SCT Nodes Translated as functions.
-void PASS_FILTER(vec4 ColourIn, vec4 ColourPass, inout vec4 ColourOUT)
-{
-
-   float avg = ((ColourIn.x + ColourIn.y + ColourIn.z)/3.0) ;
-   ColourOUT = vec4(avg,avg,avg,ColourIn.a)* ColourPass;
-   
-}
-
-void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
-{
- FinalColour = texture2D(Texture,Texcoord); 
-}
-
 
 
 void main()
 {
 
-//SCT CALL: Sampler2D
-   vec4  OUT_FinalColour0_NF_Sampler2D_1_3237;
-   Sampler2D(SCT_TEXTURE2D_1, oUVs, OUT_FinalColour0_NF_Sampler2D_1_3237);
-
-//SCT CALL: PASS_FILTER
-   vec4  OUT_ColourOUT0_NF_PASS_FILTER_0_3156;
-   PASS_FILTER(OUT_FinalColour0_NF_Sampler2D_1_3237, SCT_UNIFORM_ColourIn_0, OUT_ColourOUT0_NF_PASS_FILTER_0_3156);
-
-FragColour = OUT_ColourOUT0_NF_PASS_FILTER_0_3156;
+FragColour = SCT_UNIFORM_ColourIn_0;
 
 }

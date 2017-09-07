@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entities>
   <!--Shader Creation Tool - node config scripting file.-->
+   <COMMON_CODE>
+void Test()
+{
+}
+  </COMMON_CODE>
   <Node Name="AddV4">
   
     <Input_Variables>
@@ -87,7 +92,7 @@
    </Code>
   </Node>
   
-  <Node Name="Blyynn_Phong">
+  <Node Name="Blyynn_PhongSCT">
   
     <Input_Variables>
       <Variable Name="normal" Var_Type="Float3">
@@ -105,7 +110,9 @@
 	   <Variable Name="Specular" Var_Type="Float4">
 	  DEFAULT = (0,0,0,1)
 	  </Variable>
-	  
+	   <Variable Name="SpecPow" Var_Type="Float">
+	   DEFAULT = 60
+	  </Variable>
     </Input_Variables>
 	
     <Output_Variables>
@@ -114,9 +121,19 @@
     </Output_Variables>
 	
    <Code> 
+   
    VECTOR3 lightDir = normalize(cameraPos-objectPos);
+   VECTOR3 nViewDirection = normalize(objectPos-cameraPos);
+   
    FLOAT NdotL = max( dot(normalize(normal),normalize(lightDir)), 0.0);
-   FinalOut = Ambient + Diffuse*NdotL;
+    
+   VECTOR3 reflection = ((2.0 * normal) * NdotL) - lightDir;
+   VECTOR3 nReflection = normalize(reflection);
+   FLOAT beta = max(0.0, dot(-nReflection, nViewDirection));
+   
+   
+   
+   FinalOut = Ambient + Diffuse*NdotL + Specular * (pow(beta, SpecPow));
    </Code>
   </Node>
   

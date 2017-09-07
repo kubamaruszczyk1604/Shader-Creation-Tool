@@ -55,6 +55,42 @@ namespace ShaderCreationTool
             return true;
         }
 
+
+
+        public static bool ReadInCommonCode(string path, out string code)
+        {
+
+            code = string.Empty;
+            XmlNodeList nodes;
+            try
+            {
+                string xmlContent = File.ReadAllText(path);
+
+                XmlDocument XdOC = new XmlDocument();
+                XdOC.LoadXml(xmlContent);
+
+                XmlElement document = XdOC.DocumentElement;
+
+                //All Nodes - ~First one is a comment rest are entities
+                nodes = document.ChildNodes;
+            }
+            catch
+            {
+                return false;
+            }
+
+
+            foreach (XmlNode node in nodes)
+            {
+                if (node.Name != "COMMON_CODE") continue; //skip all non  nodes
+                code += "\r\n" + node.InnerText;
+               
+            }
+
+            return true;
+        }
+
+
         public static string[] GetNamesList(List<FunctionNodeDescription> descriptions)
         {
             string[] names = new string[descriptions.Count];

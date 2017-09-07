@@ -10,6 +10,7 @@ namespace ShaderCreationTool
     class CodeParserGLSL: ICodeParser
     {
         private const string VERTEX_BASE_PATH = @"..\Data\ShaderBase\vertBase.txt";
+        private const string NODES_PATH = @"..\Data\StdNodes\nodes.txt";
         private const string NUM_EXPR = @"\d+\.*\d*";
         private List<string> m_Signatures;
         private Dictionary<ShaderVariableType, Regex> m_DefaultValuesTable;
@@ -138,6 +139,10 @@ namespace ShaderCreationTool
             string codeUniforms;
             TranslateInputVariables(inputNodes, out codeUniforms, out status);
             code += codeUniforms;
+
+            string extraCode;
+            ReaderXML.ReadInCommonCode(NODES_PATH, out extraCode);
+            code += extraCode + "\r\n\r\n";
 
             code += "\r\n//SCT dummy values for output split nodes\r\n";
             code += "vec2 dummyOutVEC2;\r\nvec3 dummyOutVEC3;\r\nvec4 dummyOutVEC4;\r\n\r\n";
