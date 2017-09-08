@@ -15,10 +15,10 @@ out vec4 FragColour;
 
 //Uniform nodes translated as uniform variables.
 uniform sampler2D       SCT_TEXTURE2D_0;
-uniform float           SCT_UNIFORM_FLOATIn_0;
-uniform sampler2D       SCT_TEXTURE2D_1;
-uniform float           SCT_UNIFORM_FLOATIn_1;
 uniform vec4            SCT_UNIFORM_ColourIn_1;
+uniform float           SCT_UNIFORM_FLOATIn_0;
+uniform vec4            SCT_UNIFORM_ColourIn_2;
+uniform float           SCT_UNIFORM_FLOATIn_1;
 
 
 const float TAU = 6.28318530718;
@@ -39,9 +39,23 @@ vec4 dummyOutVEC4;
 
 
 // SCT Nodes Translated as functions.
-void UVScroll(float Time, vec2 UVIn, float Speed, inout vec2 UVOut)
+void Blyynn_PhongSCT(vec3 normal, vec3 cameraPos, vec3 objectPos, vec4 Ambient, vec4 Diffuse, vec4 Specular, float SpecPow, inout vec4 FinalOut)
 {
-  UVOut = vec2(UVIn.x+Time*Speed, UVIn.y);
+ 
+   
+   vec3 lightDir = normalize(cameraPos-objectPos);
+   vec3 nViewDirection = normalize(objectPos-cameraPos);
+   
+   float NdotL = max( dot(normalize(normal),normalize(lightDir)), 0.0);
+    
+   vec3 reflection = ((2.0 * normal) * NdotL) - lightDir;
+   vec3 nReflection = normalize(reflection);
+   float beta = max(0.0, dot(-nReflection, nViewDirection));
+   
+   
+   
+   FinalOut = Ambient + Diffuse*NdotL + Specular * (pow(beta, SpecPow));
+   
 }
 
 void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
@@ -51,14 +65,52 @@ void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
 
 
 
-void MultiplyV4(vec4 VecA, vec4 VecB, vec4 VecC, inout vec4 FinalColour)
+float CausticX(float x, float power, float gtime)
 {
- FinalColour = VecA*VecB*VecC; 
+
+    float p = mod(x * TAU, TAU) - 250.0;
+    float time = gtime * .5 + 23.0;
+    float i = p;;
+    float c = 1.0;
+    float inten = 0.005;
+    for (int n = 0; n < 3; n++)
+    {
+        float t = time * (1.0 - (3.5 / float(n + 1)));
+        i = p + cos(t - i) + sin(t + i);
+        c += 1.0 / length(p / (sin(i + t) / inten));
+    }
+    c /= float(MAX_ITER);
+    c = 1.17 - pow(c, power); 
+    return c;
+	  
 }
 
-void AddV4(vec4 VecA, vec4 VecB, vec4 VecC, inout vec4 FinalColour)
+
+
+float UVFX1(vec2 uv, float time)
 {
- FinalColour = VecA+VecB+VecC; 
+
+    float light = 0.0;
+
+    light += pow(CausticX((uv.x + 0.08 * uv.y) / 1.7 + 0.5, 1.8, time * 0.65), 10.0) * 0.05;
+    light -= pow((1.0 - uv.y) * 0.3, 2.0) * 0.2;
+    light += pow(CausticX(sin(uv.x), 0.3, time * 0.7), 9.0) * 0.4;
+    light += pow(CausticX(cos(uv.x * 2.3), 0.3, time * 1.3), 4.0) * 0.1;
+        
+    light -= pow((1.0 - uv.y) * 0.3, 3.0);
+    light = clamp(light, 0.0, 1.0);
+    
+    return light;
+	  
+}
+
+void SCTGodRays(vec2 TextureUVs, float Time, vec4 RaysColour, float Intensity, vec4 ColourIn, inout vec4 FinalOut)
+{
+   
+     float gr = UVFX1(TextureUVs,Time)*Intensity;
+	 vec4 grCol =  vec4(gr, gr, gr, 1)*RaysColour;
+     FinalOut = ColourIn + grCol;
+   
 }
 
 
@@ -66,30 +118,18 @@ void AddV4(vec4 VecA, vec4 VecB, vec4 VecC, inout vec4 FinalColour)
 void main()
 {
 
-//SCT CALL: UVScroll
-   vec2  OUT_UVOut0_NF_UVScroll_0_5112;
-   UVScroll(oTime, oUVs, SCT_UNIFORM_FLOATIn_0, OUT_UVOut0_NF_UVScroll_0_5112);
-
 //SCT CALL: Sampler2D
-   vec4  OUT_FinalColour0_NF_Sampler2D_2_5237;
-   Sampler2D(SCT_TEXTURE2D_0, OUT_UVOut0_NF_UVScroll_0_5112, OUT_FinalColour0_NF_Sampler2D_2_5237);
+   vec4  OUT_FinalColour0_NF_Sampler2D_1_4324;
+   Sampler2D(SCT_TEXTURE2D_0, oUVs, OUT_FinalColour0_NF_Sampler2D_1_4324);
 
-//SCT CALL: UVScroll
-   vec2  OUT_UVOut0_NF_UVScroll_3_5453;
-   UVScroll(oTime, oUVs, SCT_UNIFORM_FLOATIn_1, OUT_UVOut0_NF_UVScroll_3_5453);
+//SCT CALL: Blyynn_PhongSCT
+   vec4  OUT_FinalOut0_NF_Blyynn_PhongSCT_0_4216;
+   Blyynn_PhongSCT(oNormal_InvWorldSpace, oCamera_WorldSpace, oPosition_WorldSpace, vec4 (0,0,0,1), SCT_UNIFORM_ColourIn_1, OUT_FinalColour0_NF_Sampler2D_1_4324, SCT_UNIFORM_FLOATIn_0, OUT_FinalOut0_NF_Blyynn_PhongSCT_0_4216);
 
-//SCT CALL: Sampler2D
-   vec4  OUT_FinalColour0_NF_Sampler2D_4_0218;
-   Sampler2D(SCT_TEXTURE2D_1, OUT_UVOut0_NF_UVScroll_3_5453, OUT_FinalColour0_NF_Sampler2D_4_0218);
+//SCT CALL: SCTGodRays
+   vec4  OUT_FinalOut0_NF_SCTGodRays_2_4716;
+   SCTGodRays(oUVs, oTime, SCT_UNIFORM_ColourIn_2, SCT_UNIFORM_FLOATIn_1, OUT_FinalOut0_NF_Blyynn_PhongSCT_0_4216, OUT_FinalOut0_NF_SCTGodRays_2_4716);
 
-//SCT CALL: MultiplyV4
-   vec4  OUT_FinalColour0_NF_MultiplyV4_6_0629;
-   MultiplyV4(OUT_FinalColour0_NF_Sampler2D_4_0218, SCT_UNIFORM_ColourIn_1, vec4 (1,1,1,1), OUT_FinalColour0_NF_MultiplyV4_6_0629);
-
-//SCT CALL: AddV4
-   vec4  OUT_FinalColour0_NF_AddV4_7_1133;
-   AddV4(OUT_FinalColour0_NF_MultiplyV4_6_0629, OUT_FinalColour0_NF_Sampler2D_2_5237, vec4 (0,0,0,0), OUT_FinalColour0_NF_AddV4_7_1133);
-
-FragColour = OUT_FinalColour0_NF_AddV4_7_1133;
+FragColour = OUT_FinalOut0_NF_SCTGodRays_2_4716;
 
 }

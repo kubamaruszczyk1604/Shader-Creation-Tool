@@ -133,9 +133,9 @@ namespace ShaderCreationTool
 
         public void GetConfig(out Point x, out Point y)
         {
-            x = new Point( m_XRegulationButton.Location.X- m_XRegulationButton.Size.Width/2,
+            x = new Point( m_XRegulationButton.Location.X,//- m_XRegulationButton.Size.Width/2,
                          m_XRegulationButton.Location.Y);
-            y = new Point (m_YRegulationButton.Location.X, m_YRegulationButton.Location.Y+
+            y = new Point(m_YRegulationButton.Location.X, m_YRegulationButton.Location.Y +
                 m_YRegulationButton.Size.Height/2);
         }
 

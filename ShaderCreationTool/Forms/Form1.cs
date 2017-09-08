@@ -278,6 +278,7 @@ namespace ShaderCreationTool
             }
             m_Nodes.Clear();
             m_Nodes.Add(fbNode);
+            EditAreaPanel.Update();
         }
 
         private void ResetCounters()
@@ -328,6 +329,8 @@ namespace ShaderCreationTool
                 else
                 {
                     m_CurrentFilePath = openFileDialog.FileName;
+                    TextFileReaderWriter.ClearTxtFile(FRAG_PATH);
+                    Bridge.ReloadScene();
                 }
 
             }
@@ -661,13 +664,21 @@ namespace ShaderCreationTool
                     if (!SaveAs()) return;          
                 }
                 m_CurrentFilePath = string.Empty;
+                EditAreaPanel.SuspendLayout();
                 RemoveAllNodes();
                 ResetCounters();
+                EditAreaPanel.ResumeLayout();
+                TextFileReaderWriter.ClearTxtFile(FRAG_PATH);
+                Bridge.ReloadScene();
             }
             else if (dialogResult == DialogResult.No)
             {
+                EditAreaPanel.SuspendLayout();
                 RemoveAllNodes();
                 ResetCounters();
+                EditAreaPanel.ResumeLayout();
+                TextFileReaderWriter.ClearTxtFile(FRAG_PATH);
+                Bridge.ReloadScene();
             }
             else if (dialogResult == DialogResult.Cancel)
             {
