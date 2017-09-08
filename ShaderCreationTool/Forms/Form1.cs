@@ -677,7 +677,9 @@ namespace ShaderCreationTool
 
         private void OpenFileMenuItem_Click(object sender, EventArgs e)
         {
+            EditAreaPanel.SuspendLayout();
             OpenFile();
+            EditAreaPanel.ResumeLayout();
         }
 
         private void SaveAsMenuItem_Click(object sender, EventArgs e)

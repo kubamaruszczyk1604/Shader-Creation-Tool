@@ -720,7 +720,7 @@ namespace ShaderCreationTool
             Connection con = new Connection(nodeSource.GetConnector(sourceLocalID),
                 nodeDestination.GetConnector(destinationLocalID),
                 EditAreaPanel);
-            con.ApplyLineConfigAsync(new Point(ax, ay), new Point(bx, by),1000);
+            con.ApplyLineConfigAsync(new Point(ax, ay), new Point(bx, by),100);
             ConnectionManager.AddConnecion(con);
             
             SCTConsole.Instance.PrintLine("\r\nCONNECTION");
@@ -832,8 +832,8 @@ namespace ShaderCreationTool
                         DeserializeConnection(connNode,allNodes);
                       
                     }
-                    EditAreaPanel.Invalidate();
-                    EditAreaPanel.Update();
+                  //  EditAreaPanel.Invalidate();
+                   // EditAreaPanel.Update();
                 }
             }
 

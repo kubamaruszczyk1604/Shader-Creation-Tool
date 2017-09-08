@@ -41,7 +41,9 @@ namespace ShaderCreationTool
             float rangeX = Math.Abs(m_EndX - m_StartX);
             float distanceX = m_XRegulationButton.Location.X + m_XRegulationButton.Width/2 - m_StartX;
 
+            if (rangeX == 0) rangeX = 1;// to fix nan error when there is no difference
             m_Pan = distanceX / rangeX;
+          
             //SCTConsole.Instance.PrintDebugLine("Pan range calculated: " + rangeX.ToString());
         }
 

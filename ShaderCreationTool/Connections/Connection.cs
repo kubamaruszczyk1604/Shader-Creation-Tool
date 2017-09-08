@@ -151,21 +151,21 @@ namespace ShaderCreationTool
 
         public void ApplyLineConfig(Point a, Point b)
         {
-            m_Line.Dispose();
-            m_Line = null;
-            m_Line = new ConnectionLine(DrawOnControl);
+           // m_Line.Dispose();
+           // m_Line = null;
+         //   m_Line = new ConnectionLine(DrawOnControl);
             m_Line.ApplyConfig(a, b);
-            m_Line.Invalidate();
+           // m_Line.Invalidate();
         }
 
         public async void ApplyLineConfigAsync(Point a, Point b, int delayMs)
         {
             await Task.Delay(delayMs);
-            m_Line.Dispose();
-            m_Line = null;
-            m_Line = new ConnectionLine(DrawOnControl);
+           // m_Line.Dispose();
+          //  m_Line = null;
+           // m_Line = new ConnectionLine(DrawOnControl);
             m_Line.ApplyConfig(a, b);
-            m_Line.Invalidate();
+            //m_Line.Invalidate();
         }
 
         private Point x;
