@@ -113,25 +113,25 @@ namespace ShaderCreationTool
                 else if (control is ComboBox)
                 {
                     ComboBox comb = (ComboBox)control;
-                    comb.SelectedIndexChanged += Combo_SelectedIndexChanged;
                     string[] arr;
-                    
-                    switch(m_NodeType)
+
+                    switch (m_NodeType)
                     {
                         case NodeType.AttribPosition: { arr = AttribVariableStrings.O_POSITION_VAR_NAMES; break; }
                         case NodeType.AttribNormal: { arr = AttribVariableStrings.O_NORMAL_VAR_NAMES; break; }
                         case NodeType.AttribInput_CameraPos: { arr = AttribVariableStrings.O_CAMERA_POS_VAR_NAMES; break; }
                         default: { arr = new string[0]; break; }
                     }
-                    foreach(string s in arr)
+                    foreach (string s in arr)
                     {
                         if (s.Contains("World")) comb.Items.Add("World Space");
                         else if (s.Contains("Object")) comb.Items.Add("Object Space");
                         else if (s.Contains("Eye")) comb.Items.Add("Eye Space");
 
                     }
-                    comb.SelectedIndex = 0;
                     m_ComboBox = comb;
+                    comb.SelectedIndexChanged += Combo_SelectedIndexChanged;
+                    comb.SelectedIndex = 0;
                 }
 
                 else if (control is Panel)

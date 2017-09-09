@@ -180,6 +180,7 @@
             this.AddNodeButton = new System.Windows.Forms.Button();
             this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -200,7 +201,6 @@
             this.showConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditAreaPanel.SuspendLayout();
             this.CameraPositionWindow.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -356,6 +356,10 @@
             this.comboBox_camPos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_camPos.ForeColor = System.Drawing.Color.Black;
             this.comboBox_camPos.FormattingEnabled = true;
+            this.comboBox_camPos.Items.AddRange(new object[] {
+            "a",
+            "u",
+            "o"});
             this.comboBox_camPos.Location = new System.Drawing.Point(5, 27);
             this.comboBox_camPos.Name = "comboBox_camPos";
             this.comboBox_camPos.Size = new System.Drawing.Size(169, 21);
@@ -602,6 +606,10 @@
             this.comboBox_VertNormal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_VertNormal.ForeColor = System.Drawing.Color.Black;
             this.comboBox_VertNormal.FormattingEnabled = true;
+            this.comboBox_VertNormal.Items.AddRange(new object[] {
+            "az",
+            "bc",
+            "c"});
             this.comboBox_VertNormal.Location = new System.Drawing.Point(5, 27);
             this.comboBox_VertNormal.Name = "comboBox_VertNormal";
             this.comboBox_VertNormal.Size = new System.Drawing.Size(169, 21);
@@ -700,6 +708,10 @@
             this.comboBox_VertPos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_VertPos.ForeColor = System.Drawing.Color.Black;
             this.comboBox_VertPos.FormattingEnabled = true;
+            this.comboBox_VertPos.Items.AddRange(new object[] {
+            "a",
+            "b",
+            "v"});
             this.comboBox_VertPos.Location = new System.Drawing.Point(5, 27);
             this.comboBox_VertPos.Name = "comboBox_VertPos";
             this.comboBox_VertPos.Size = new System.Drawing.Size(169, 21);
@@ -2066,7 +2078,7 @@
             this.PreviewAreaPanel.Controls.Add(this.ZoomOutButton);
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
-            this.PreviewAreaPanel.Location = new System.Drawing.Point(863, 14);
+            this.PreviewAreaPanel.Location = new System.Drawing.Point(846, 14);
             this.PreviewAreaPanel.Name = "PreviewAreaPanel";
             this.PreviewAreaPanel.Size = new System.Drawing.Size(466, 423);
             this.PreviewAreaPanel.TabIndex = 26;
@@ -2293,12 +2305,21 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
+            this.newToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
+            this.newToolStripMenuItem.Text = "New Network";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.NewNetworkMenuItem_Click);
+            // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.openToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenFileMenuItem_Click);
             // 
@@ -2307,7 +2328,7 @@
             this.saveToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
             // 
@@ -2316,7 +2337,7 @@
             this.saveAsToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.saveAsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsMenuItem_Click);
             // 
@@ -2327,7 +2348,7 @@
             this.gLSLToolStripMenuItem});
             this.exportToToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.exportToToolStripMenuItem.Name = "exportToToolStripMenuItem";
-            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exportToToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
             this.exportToToolStripMenuItem.Text = "Export to..";
             // 
             // gLSLToolStripMenuItem
@@ -2341,7 +2362,7 @@
             this.exitToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
             this.exitToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
@@ -2471,15 +2492,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.BackColor = System.Drawing.Color.DimGray;
-            this.newToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
-            this.newToolStripMenuItem.Text = "New Network";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.NewNetworkMenuItem_Click);
             // 
             // MainWindow
             // 

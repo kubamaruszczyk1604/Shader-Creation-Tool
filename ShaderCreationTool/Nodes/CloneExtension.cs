@@ -44,12 +44,21 @@ namespace ShaderCreationTool
 
             T targetInstance = Activator.CreateInstance<T>();
          
+            
             foreach (PropertyInfo propInfo in controlProperties)
             {
                 if (propInfo.CanWrite)
                 {
                     if (propInfo.Name != "WindowTarget")
-                        propInfo.SetValue(targetInstance, propInfo.GetValue(sourceInstance, null), null);
+                    {
+                        try {
+                            propInfo.SetValue(targetInstance, propInfo.GetValue(sourceInstance, null), null);
+                        }
+                        catch
+                        {
+                            //throw new Exception("I HUJ CI W DUPE");
+                        }
+                    }
                 }
             }
           
@@ -86,8 +95,10 @@ namespace ShaderCreationTool
                 else if (control is ComboBox)
                 {
                     ComboBox com = ((ComboBox)control).CopyAsSCTElement(enableAllChildreen);
+
                     com.Parent = targetInstance;
                     com.Enabled = enableAllChildreen;
+
                     targetInstance.Controls.Add(com);
                 }
                 else if (control is NumericUpDown)
