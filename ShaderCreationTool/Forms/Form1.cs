@@ -80,6 +80,7 @@ namespace ShaderCreationTool
             {
                 OnMouseLeftDown();
             }
+            
         }
 
         /// <summary>
@@ -785,8 +786,6 @@ namespace ShaderCreationTool
         {
             return angle * (180.0 / Math.PI);
         }
-
-
     }
 
 

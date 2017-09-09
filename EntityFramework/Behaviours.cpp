@@ -1,6 +1,7 @@
 #include "Behaviours.h"
 Entity* ExampleScene::s_pMainObjectEntity{ nullptr };
 Entity* ExampleScene::s_CameraEntity{ nullptr };
+float ExampleScene::s_DeltaTime{ 0.0f };
 
 void ExampleScene::OnStart()
 {
@@ -118,6 +119,7 @@ void ExampleScene::Update(float deltaTime, float totalTime)
 
 {
 	//PRINTL("Update(" + ToString(deltaTime) + ", " + ToString(totalTime) + ")");
+	s_DeltaTime = deltaTime;
 }
 
 void ExampleScene::OnExit()

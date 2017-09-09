@@ -45,6 +45,7 @@ private:
 	DirectionalLight* m_pDirectionalLight{ nullptr };
 	static Entity* s_pMainObjectEntity;
 	static Entity* s_CameraEntity;
+	static float s_DeltaTime;
 
 public:
 	~ExampleScene() {}

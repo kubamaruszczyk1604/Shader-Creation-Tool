@@ -21,6 +21,9 @@ namespace ShaderCreationTool
        
         private bool zoomInIn;
         private bool zoomOutIn;
+        private static float s_DeltaTime = 0;
+        public static void SetDelta(float delta) { s_DeltaTime = delta; }
+        
         public ZoomController(Button zoomIn, Button zoomOut)
         {
             zoomInIn = false;
