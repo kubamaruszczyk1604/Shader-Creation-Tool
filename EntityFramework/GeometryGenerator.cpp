@@ -3,11 +3,7 @@
 namespace KLM_FRAMEWORK
 {
 
-	GeometryGenerator::~GeometryGenerator()
-	{
-	}
-
-
+	GeometryGenerator::~GeometryGenerator() {}
 
 	const float GeometryGenerator::M_PI = 3.14159265358979323846f;
 	const float GeometryGenerator::M_HALF_PI = M_PI * 0.5f;
@@ -34,16 +30,9 @@ namespace KLM_FRAMEWORK
 
 			//normals calculation
 			glm::vec3 normal;
-			if (normalsIn)
-			{
-				normal = orgin - currentPos;
-			}
-			else
-			{
-				normal = currentPos - orgin;
-			}
+			if (normalsIn) {normal = orgin - currentPos;}
+			else {normal = currentPos - orgin;}
 			normal = glm::normalize(normal);
-
 
 			Vertex temp(currentPos);
 			temp.Normal = normal;

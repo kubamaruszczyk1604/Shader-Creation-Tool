@@ -1,4 +1,5 @@
 #include "Behaviours.h"
+#include "GeometryGenerator.h"
 Entity* ExampleScene::s_pMainObjectEntity{ nullptr };
 Entity* ExampleScene::s_CameraEntity{ nullptr };
 float ExampleScene::s_DeltaTime{ 0.0f };
@@ -43,26 +44,28 @@ void ExampleScene::OnStart()
 
 
 	//////////////////////////////////////////     MESH    ////////////////////////////
-	m_pQuadMesh = new Mesh();
+	//m_pQuadMesh = new Mesh();
 
-	float size{ 5.5f };
-	float fbDist = 0.01f;
+	//float size{ 5.5f };
+	//float fbDist = 0.01f;
 
-	//front
-	m_pQuadMesh->AddVertex(Vertex(-size, -size, -fbDist, 0, 0, -1, 0, 0));
-	m_pQuadMesh->AddVertex(Vertex(size, -size, -fbDist, 0, 0, -1, 1, 0));
-	m_pQuadMesh->AddVertex(Vertex(size, size, -fbDist, 0, 0, -1, 1, 1));
-	m_pQuadMesh->AddVertex(Vertex(-size, size, -fbDist, 0, 0, -1, 0, 1));
+	////front
+	//m_pQuadMesh->AddVertex(Vertex(-size, -size, -fbDist, 0, 0, -1, 0, 0));
+	//m_pQuadMesh->AddVertex(Vertex(size, -size, -fbDist, 0, 0, -1, 1, 0));
+	//m_pQuadMesh->AddVertex(Vertex(size, size, -fbDist, 0, 0, -1, 1, 1));
+	//m_pQuadMesh->AddVertex(Vertex(-size, size, -fbDist, 0, 0, -1, 0, 1));
 
-	std::vector<unsigned> indices;
-	indices.push_back(0);
-	indices.push_back(1);
-	indices.push_back(2);
-	indices.push_back(0);
-	indices.push_back(2);
-	indices.push_back(3);
+	//std::vector<unsigned> indices;
+	//indices.push_back(0);
+	//indices.push_back(1);
+	//indices.push_back(2);
+	//indices.push_back(0);
+	//indices.push_back(2);
+	//indices.push_back(3);
 
-	m_pQuadMesh->CreateVertexBuffer(indices);
+	//m_pQuadMesh->CreateVertexBuffer(indices);
+
+	GeometryGenerator::GenerateSphere(10.0f, 10, 10, m_pQuadMesh);
 
 	///////////////////////////////////////////////////////////   MODELS    ////////////////////////////////////////////
 
@@ -76,7 +79,7 @@ void ExampleScene::OnStart()
 	Entity* bkgQuad = new Entity("test3");
 	bkgQuad->AddComponent(std::unique_ptr<ModelComponent>(bkgQuadModel));
 	bkgQuad->GetTransform()->SetPosition(Vec3(0, 0, 0));
-	bkgQuad->GetTransform()->SetScale(Vec3(20, 20, 1));
+	bkgQuad->GetTransform()->SetScale(Vec3(20, 20, 20));
 	AddEntity(bkgQuad);
 	s_pMainObjectEntity = bkgQuad;
 
