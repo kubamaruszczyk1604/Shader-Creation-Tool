@@ -14,7 +14,7 @@ in float oTime;
 out vec4 FragColour;
 
 //Uniform nodes translated as uniform variables.
-uniform sampler2D       SCT_TEXTURE2D_0;
+uniform vec4            SCT_UNIFORM_ColourIn_0;
 
 
 const float TAU = 6.28318530718;
@@ -35,29 +35,11 @@ vec4 dummyOutVEC4;
 
 
 // SCT Nodes Translated as functions.
-void UVScroll(float Time, vec2 UVIn, float Speed, inout vec2 UVOut)
-{
-  UVOut = vec2(UVIn.x+Time*Speed, UVIn.y);
-}
-
-void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
-{
- FinalColour = texture2D(Texture,Texcoord); 
-}
-
 
 
 void main()
 {
 
-//SCT CALL: UVScroll
-   vec2  OUT_UVOut0_NF_UVScroll_0_3259;
-   UVScroll(oTime, oUVs, 1.0, OUT_UVOut0_NF_UVScroll_0_3259);
-
-//SCT CALL: Sampler2D
-   vec4  OUT_FinalColour0_NF_Sampler2D_1_3308;
-   Sampler2D(SCT_TEXTURE2D_0, OUT_UVOut0_NF_UVScroll_0_3259, OUT_FinalColour0_NF_Sampler2D_1_3308);
-
-FragColour = OUT_FinalColour0_NF_Sampler2D_1_3308;
+FragColour = SCT_UNIFORM_ColourIn_0;
 
 }
