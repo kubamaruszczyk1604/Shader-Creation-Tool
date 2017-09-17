@@ -72,6 +72,10 @@ public:
 	void OnMouseButtonUp(MouseButton const button);
 	void OnMouseButtonDown(MouseButton const button);
 
+	//static
+
+	static void SetModelType(const std::string& model) { s_ModelType = model; }
+
 };
 
 

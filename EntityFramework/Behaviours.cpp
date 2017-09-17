@@ -60,9 +60,16 @@ void SCTScene::OnStart()
 
 	//PropellerBehaviour* propBehA = new PropellerBehaviour(KLM_AXIS::Z_AXIS, -1);
 
-	Entity* quadEntity = new Entity("test3");
+	Entity* quadEntity = new Entity("MAIN_ENTITY");
 
-	quadEntity->AddComponent(std::unique_ptr<ModelComponent>(bkgQuadModel));
+	if (s_ModelType == TYPE_QUAD)
+	{
+		quadEntity->AddComponent(std::unique_ptr<ModelComponent>(bkgQuadModel));
+	}
+	else
+	{
+		quadEntity->AddComponent(std::unique_ptr<ModelComponent>(bkgSphereModel));
+	}
 	quadEntity->GetTransform()->SetPosition(Vec3(0, 0, 0));
 	quadEntity->GetTransform()->SetScale(Vec3(1, 1, 1));
 	AddEntity(quadEntity);
