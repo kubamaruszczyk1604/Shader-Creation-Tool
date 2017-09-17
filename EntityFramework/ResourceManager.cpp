@@ -17,6 +17,30 @@ namespace KLM_FRAMEWORK
 
 	Mesh * ResourceManager::LoadMesh(const std::string & path)
 	{
+		// Create an instance of the Importer class
+		Assimp::Importer importer;
+		// And have it read the given file with some example postprocessing
+		// Usually - if speed is not the most important aspect for you - you'll 
+		// propably to request more postprocessing than we do in this example.
+		const aiScene* scene = importer.ReadFile(path,
+			aiProcess_CalcTangentSpace |
+			aiProcess_Triangulate |
+			aiProcess_JoinIdenticalVertices |
+			aiProcess_SortByPType);
+
+		// If the import failed, report it
+		if (!scene)
+		{
+			//DoTheErrorLogging(importer.GetErrorString());
+			return nullptr;
+		}
+		Mesh* msh = new Mesh();
+		
+		//for (int i = 0; i < scene->mRootNode->mMeshes[0].)
+
+		//msh->AddVertex()
+
+
 		return nullptr;
 	}
 
@@ -43,7 +67,7 @@ namespace KLM_FRAMEWORK
 					std::cout << "CREATED NEW TEXTURE: " << path << std::endl;
 				}
 				m_TexturesMap.insert(std::pair<std::string, Texture*>(path, output));
-				
+
 			}
 			else
 			{
@@ -117,10 +141,10 @@ namespace KLM_FRAMEWORK
 			Texture* specTex = ResourceManager::LoadTexture(desc.SpecularMap, desc.SpecularWrapMode);
 			Texture* normTex = ResourceManager::LoadTexture(desc.NormalMap, desc.NormalWrapMode);
 
-			
-			Shader* m_VS_TempPtr = 
+
+			Shader* m_VS_TempPtr =
 				ResourceManager::CreateShader(ShaderType::VERTEX, desc.DXShaderFile, desc.VertexShader);
-			Shader* m_PS_TempPtr =  
+			Shader* m_PS_TempPtr =
 				ResourceManager::CreateShader(ShaderType::FRAGMENT, desc.DXShaderFile, desc.FragmentShader);
 
 			if (m_VS_TempPtr == nullptr) return nullptr;
@@ -145,12 +169,12 @@ namespace KLM_FRAMEWORK
 	}
 
 	Shader * ResourceManager::CreateShader(const ShaderType & type, const std::string & file, const std::string & functionName)
-	{   
+	{
 		Shader* output = nullptr;
 		if (!QueryMap<std::string, Shader*>(file + "|" + functionName, output, m_ShadersMap))
 		{
 			std::cout << "REQUESTER SHADER NOT FOUND -> CREATING NEW SHADER  file:" << file << " function name: " << functionName << std::endl;
-			
+
 			if (Renderer::GetAPI() == GfxAPI::D3D11)
 			{
 				if (type == ShaderType::VERTEX)
@@ -162,7 +186,7 @@ namespace KLM_FRAMEWORK
 						delete shader;
 						return nullptr;
 					}
-					output = shader;						
+					output = shader;
 				}
 
 				else if (type == ShaderType::FRAGMENT)
@@ -203,8 +227,8 @@ namespace KLM_FRAMEWORK
 
 					const std::string  message = "GL VERTEX SHADER LOADED: " + functionName;
 					PRINTL(message);
-					s_LastCompileLogMessage += "\r\n" + message +"\r\n";
-					
+					s_LastCompileLogMessage += "\r\n" + message + "\r\n";
+
 					if (!shader->Compile(log))
 					{
 						const std::string compMSG = "GL VERTEX SHADER COMPILATION FAILED: " + functionName + "\r\nERROR: " + log;
@@ -214,7 +238,7 @@ namespace KLM_FRAMEWORK
 						return nullptr;
 					}
 					const std::string successMsg = "GL VERTEX SHADER COMPILED: " + functionName + "\r\nSTATUS: " + log;
-					s_LastCompileLogMessage +=  successMsg +"\r\n";
+					s_LastCompileLogMessage += successMsg + "\r\n";
 					PRINTL(successMsg);
 					output = shader;
 				}

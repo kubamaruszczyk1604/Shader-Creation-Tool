@@ -22,7 +22,10 @@
 #include <array>
 #include <conio.h>
 
-
+//ASSIMP
+#include <assimp/Importer.hpp>      // C++ importer interface
+#include <assimp/scene.h>           // Output data structure
+#include <assimp/postprocess.h>     // Post processing flags
 
 #include "FreeImage.h"
 #pragma comment(lib, "FreeImage.lib")

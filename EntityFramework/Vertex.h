@@ -15,7 +15,10 @@ namespace KLM_FRAMEWORK
 		{
 			Position = Vec3(x, y, z);
 		}
-
+		Vertex(const Vec3& pos)
+		{
+			Position = pos;
+		}
 
 		Vertex(float x, float y, float z, float u, float v)
 		{

@@ -189,6 +189,7 @@
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</CompileAsManaged>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</CompileAsManaged>
     </ClCompile>
+    <ClCompile Include="GeometryGenerator.cpp" />
     <ClCompile Include="GLRenderer.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</CompileAsManaged>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</CompileAsManaged>
@@ -240,6 +241,7 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EntityTypes.h" />
     <ClInclude Include="ControlApp.h" />
+    <ClInclude Include="GeometryGenerator.h" />
     <ClInclude Include="GLRenderer.h" />
     <ClInclude Include="GLShader.h" />
     <ClInclude Include="GLShaderProgram.h" />
