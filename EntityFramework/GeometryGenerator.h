@@ -25,6 +25,7 @@ namespace KLM_FRAMEWORK
 
 		static void GenerateSphere(const float radius, const unsigned int rings, const unsigned int sectors, Mesh*& meshOut);
 		static void GenerateBox(const float size, Mesh*& meshOut);
+		static void GenerateQuad(const float a, Mesh*& meshOut);
 
 		static void GenerateIrregPipe(
 			const Vec3& front,

@@ -109,13 +109,13 @@ void ControlApp::SetSceneReloadedCallback(SceneReloadedCallback callback)
 
 void ControlApp::RotateObject(float x, float y, float z)
 {
-	ExampleScene* scene = static_cast<ExampleScene*>(s_CurrentScene);
+	SCTScene* scene = static_cast<SCTScene*>(s_CurrentScene);
 	scene->RotateObject(x, y, z);
 }
 
 void ControlApp::Zoom(float amount)
 {
-	ExampleScene* scene = static_cast<ExampleScene*>(s_CurrentScene);
+	SCTScene* scene = static_cast<SCTScene*>(s_CurrentScene);
 	scene->Zoom(amount);
 }
 

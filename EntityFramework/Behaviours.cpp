@@ -1,10 +1,17 @@
 #include "Behaviours.h"
 #include "GeometryGenerator.h"
-Entity* ExampleScene::s_pMainObjectEntity{ nullptr };
-Entity* ExampleScene::s_CameraEntity{ nullptr };
-float ExampleScene::s_DeltaTime{ 0.0f };
 
-void ExampleScene::OnStart()
+const std::string SCTScene::TYPE_QUAD = "QUAD";
+const std::string SCTScene::TYPE_SPHERE = "SPHERE";
+const std::string SCTScene::TYPE_BOX = "BOX";
+const std::string SCTScene::TYPE_PROPELLER = "PROPELLER";
+
+Entity* SCTScene::s_pMainObjectEntity{ nullptr };
+Entity* SCTScene::s_CameraEntity{ nullptr };
+float SCTScene::s_DeltaTime{ 0.0f };
+std::string SCTScene::s_ModelType = "";
+
+void SCTScene::OnStart()
 {
 	PRINTL("OnStart()");
 
@@ -31,59 +38,39 @@ void ExampleScene::OnStart()
 	}
 	desc.DiffuseWrapMode = TextureAddressMode::WRAP;
 
-	Material* testMat1 = ResourceManager::CreateMaterial(desc, "material1");
-	if (!testMat1)
+	Material* dummyMat = ResourceManager::CreateMaterial(desc, "material1");
+	if (!dummyMat)
 	{
 		PRINTL("SHADER FAILED TO COMPILE<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 	}
 
-	///desc.DiffuseMap = PathList::TEXTURE_DIR + "bkg.bmp";
-	//desc.AmbientCol = Colour(0.1, 0.1, 0.1, 1);
-	//desc.SpecularReflectivity = Colour(0, 0, 0, 1);
-	Material* testMat2 = ResourceManager::CreateMaterial(desc, "material2");
-
 
 	//////////////////////////////////////////     MESH    ////////////////////////////
-	//m_pQuadMesh = new Mesh();
 
-	//float size{ 5.5f };
-	//float fbDist = 0.01f;
-
-	////front
-	//m_pQuadMesh->AddVertex(Vertex(-size, -size, -fbDist, 0, 0, -1, 0, 0));
-	//m_pQuadMesh->AddVertex(Vertex(size, -size, -fbDist, 0, 0, -1, 1, 0));
-	//m_pQuadMesh->AddVertex(Vertex(size, size, -fbDist, 0, 0, -1, 1, 1));
-	//m_pQuadMesh->AddVertex(Vertex(-size, size, -fbDist, 0, 0, -1, 0, 1));
-
-	//std::vector<unsigned> indices;
-	//indices.push_back(0);
-	//indices.push_back(1);
-	//indices.push_back(2);
-	//indices.push_back(0);
-	//indices.push_back(2);
-	//indices.push_back(3);
-
-	//m_pQuadMesh->CreateVertexBuffer(indices);
-
-	GeometryGenerator::GenerateSphere(10.0f, 10, 10, m_pQuadMesh);
+	GeometryGenerator::GenerateQuad(40.0f, m_pQuadMesh);
+	GeometryGenerator::GenerateSphere(40.0f, 20, 20, m_pSphereMesh);
 
 	///////////////////////////////////////////////////////////   MODELS    ////////////////////////////////////////////
 
 	//Meshes and materials can be reused by many models 
-	ModelComponent* mc1 = new ModelComponent("testModel", m_pQuadMesh, testMat1);
-	ModelComponent* mc2 = new ModelComponent("testModel2", m_pQuadMesh, testMat1);
-	ModelComponent* bkgQuadModel = new ModelComponent("testModel3", m_pQuadMesh, testMat2);
+	/*ModelComponent* mc1 = new ModelComponent("testModel", m_pQuadMesh, testMat1);
+	ModelComponent* mc2 = new ModelComponent("testModel2", m_pQuadMesh, testMat1);*/
+	ModelComponent* bkgQuadModel = new ModelComponent("QUAD_MODEL", m_pQuadMesh, dummyMat);
+	ModelComponent* bkgSphereModel = new ModelComponent("SPHERE_MODEL", m_pSphereMesh, dummyMat);
 
-	PropellerBehaviour* propBehA = new PropellerBehaviour(KLM_AXIS::Z_AXIS, -1);
+	//PropellerBehaviour* propBehA = new PropellerBehaviour(KLM_AXIS::Z_AXIS, -1);
 
-	Entity* bkgQuad = new Entity("test3");
-	bkgQuad->AddComponent(std::unique_ptr<ModelComponent>(bkgQuadModel));
-	bkgQuad->GetTransform()->SetPosition(Vec3(0, 0, 0));
-	bkgQuad->GetTransform()->SetScale(Vec3(20, 20, 20));
-	AddEntity(bkgQuad);
-	s_pMainObjectEntity = bkgQuad;
+	Entity* quadEntity = new Entity("test3");
 
-	parentQuad = new Entity("test1");
+	quadEntity->AddComponent(std::unique_ptr<ModelComponent>(bkgQuadModel));
+	quadEntity->GetTransform()->SetPosition(Vec3(0, 0, 0));
+	quadEntity->GetTransform()->SetScale(Vec3(1, 1, 1));
+	AddEntity(quadEntity);
+	s_pMainObjectEntity = quadEntity;
+
+
+
+	/*parentQuad = new Entity("test1");
 	parentQuad->AddComponent(std::unique_ptr<ModelComponent>(mc1));
 	parentQuad->AddComponent(std::unique_ptr<BehaviourComponent>(propBehA));
 	parentQuad->GetTransform()->SetPosition(Vec3(-10, 0, 11));
@@ -99,7 +86,7 @@ void ExampleScene::OnStart()
 	childQuad->GetTransform()->SetRotation(Vec3(0, 0, 0));
 	childQuad->GetTransform()->SetScale(Vec3(0.5, 0.5, 0.5));
 	AddEntity(childQuad);
-	parentQuad->AddChild(childQuad);
+	parentQuad->AddChild(childQuad);*/
 
 
 
@@ -118,40 +105,41 @@ void ExampleScene::OnStart()
 
 }
 
-void ExampleScene::Update(float deltaTime, float totalTime)
+void SCTScene::Update(float deltaTime, float totalTime)
 
 {
 	//PRINTL("Update(" + ToString(deltaTime) + ", " + ToString(totalTime) + ")");
 	s_DeltaTime = deltaTime;
 }
 
-void ExampleScene::OnExit()
+void SCTScene::OnExit()
 
 {
 	PRINTL("OnExit()");
 	delete m_pQuadMesh;
+	delete m_pSphereMesh;
 	delete m_pSpotLight;
 	delete m_pDirectionalLight;
 
 }
 
-void ExampleScene::PostUpdate()
+void SCTScene::PostUpdate()
 {
 }
 
-void ExampleScene::RotateObject(float x, float y, float z)
+void SCTScene::RotateObject(float x, float y, float z)
 {
    s_pMainObjectEntity->GetTransform()->RotateXYZ(x, y, z);
 }
 
-void ExampleScene::Zoom(float amount)
+void SCTScene::Zoom(float amount)
 {
 	s_CameraEntity->GetTransform()->UpdatePosition(0, 0, amount);
 }
 
 
 
-void ExampleScene::OnKeyPressed(const int key, const KeyState state)
+void SCTScene::OnKeyPressed(const int key, const KeyState state)
 
 {
 	PRINTL("Key Pressed: " + ToString(key));
@@ -225,17 +213,17 @@ void ExampleScene::OnKeyPressed(const int key, const KeyState state)
 	//}
 }
 
-void ExampleScene::OnMouseMove(const int x, const int y)
+void SCTScene::OnMouseMove(const int x, const int y)
 {
 	//PRINTL("Mouse Move: " + ToString(x) + ", " + ToString(y));
 }
 
-void ExampleScene::OnMouseButtonUp(MouseButton const button)
+void SCTScene::OnMouseButtonUp(MouseButton const button)
 {
 	PRINTL("Mouse Button Up: " + ToString(static_cast<int>(button)));
 }
 
-void ExampleScene::OnMouseButtonDown(MouseButton const button)
+void SCTScene::OnMouseButtonDown(MouseButton const button)
 {
 	PRINTL("Mouse Button Down: " + ToString(static_cast<int>(button)));
 }

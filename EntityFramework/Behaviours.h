@@ -35,20 +35,28 @@ public:
 
 
 
-class ExampleScene :public Scene
+class SCTScene :public Scene
 {
 
 private:
+	static const std::string TYPE_QUAD;
+	static const std::string TYPE_SPHERE;
+	static const std::string TYPE_BOX;
+	static const std::string TYPE_PROPELLER;
+
+private:
 	Mesh* m_pQuadMesh{ nullptr };
+	Mesh* m_pSphereMesh{ nullptr };
 	Entity* parentQuad{ nullptr };
 	Spotlight* m_pSpotLight{ nullptr };
 	DirectionalLight* m_pDirectionalLight{ nullptr };
 	static Entity* s_pMainObjectEntity;
 	static Entity* s_CameraEntity;
 	static float s_DeltaTime;
+	static std::string s_ModelType;
 
 public:
-	~ExampleScene() {}
+	~SCTScene() {}
 
 
 	void OnStart();

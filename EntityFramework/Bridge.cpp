@@ -30,7 +30,7 @@ int Bridge::StartRenderer(int width, int height, System::IntPtr handle)
 	ControlApp::SetUpdateCallback(_UpdateCallbackMethod);
 	ControlApp::SetMessageCallback(_MessageCallbackMethod);
 	ControlApp::SetSceneReloadedCallback(_SceneReloadCallback);
-	SceneManager::Load(new ExampleScene());
+	SceneManager::Load(new SCTScene());
 	ControlApp::Run();
 
 	return 0;
@@ -46,7 +46,7 @@ int Bridge::Terminate()
 
 void Bridge::ReloadScene()
 {
-	ControlApp::ReloadScene(new ExampleScene());
+	ControlApp::ReloadScene(new SCTScene());
 }
 
 void Bridge::SetVariable(ShaderVectorVariable ^ variable)

@@ -14,11 +14,7 @@ in float oTime;
 out vec4 FragColour;
 
 //Uniform nodes translated as uniform variables.
-uniform sampler2D       SCT_TEXTURE2D_0;
-uniform float           SCT_UNIFORM_FLOATIn_0;
-uniform sampler2D       SCT_TEXTURE2D_1;
-uniform float           SCT_UNIFORM_FLOATIn_1;
-uniform vec4            SCT_UNIFORM_ColourIn_1;
+uniform vec4            SCT_UNIFORM_ColourIn_0;
 
 
 const float TAU = 6.28318530718;
@@ -39,57 +35,11 @@ vec4 dummyOutVEC4;
 
 
 // SCT Nodes Translated as functions.
-void UVScroll(float Time, vec2 UVIn, float Speed, inout vec2 UVOut)
-{
-  UVOut = vec2(UVIn.x+Time*Speed, UVIn.y);
-}
-
-void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
-{
- FinalColour = texture2D(Texture,Texcoord); 
-}
-
-
-
-void MultiplyV4(vec4 VecA, vec4 VecB, vec4 VecC, inout vec4 FinalColour)
-{
- FinalColour = VecA*VecB*VecC; 
-}
-
-void AddV4(vec4 VecA, vec4 VecB, vec4 VecC, inout vec4 FinalColour)
-{
- FinalColour = VecA+VecB+VecC; 
-}
-
 
 
 void main()
 {
 
-//SCT CALL: UVScroll
-   vec2  OUT_UVOut0_NF_UVScroll_0_5112;
-   UVScroll(oTime, oUVs, SCT_UNIFORM_FLOATIn_0, OUT_UVOut0_NF_UVScroll_0_5112);
-
-//SCT CALL: Sampler2D
-   vec4  OUT_FinalColour0_NF_Sampler2D_2_5237;
-   Sampler2D(SCT_TEXTURE2D_0, OUT_UVOut0_NF_UVScroll_0_5112, OUT_FinalColour0_NF_Sampler2D_2_5237);
-
-//SCT CALL: UVScroll
-   vec2  OUT_UVOut0_NF_UVScroll_3_5453;
-   UVScroll(oTime, oUVs, SCT_UNIFORM_FLOATIn_1, OUT_UVOut0_NF_UVScroll_3_5453);
-
-//SCT CALL: Sampler2D
-   vec4  OUT_FinalColour0_NF_Sampler2D_4_0218;
-   Sampler2D(SCT_TEXTURE2D_1, OUT_UVOut0_NF_UVScroll_3_5453, OUT_FinalColour0_NF_Sampler2D_4_0218);
-
-//SCT CALL: MultiplyV4
-   vec4  OUT_FinalColour0_NF_MultiplyV4_6_0629;
-   MultiplyV4(OUT_FinalColour0_NF_Sampler2D_4_0218, SCT_UNIFORM_ColourIn_1, vec4 (1,1,1,1), OUT_FinalColour0_NF_MultiplyV4_6_0629);
-
-//SCT CALL: AddV4
-   vec4  OUT_FinalColour0_NF_AddV4_7_1133;
-   AddV4(OUT_FinalColour0_NF_MultiplyV4_6_0629, OUT_FinalColour0_NF_Sampler2D_2_5237, vec4 (0,0,0,0), OUT_FinalColour0_NF_AddV4_7_1133);
-
-FragColour = OUT_FinalColour0_NF_AddV4_7_1133;
+FragColour = SCT_UNIFORM_ColourIn_0;
 
 }

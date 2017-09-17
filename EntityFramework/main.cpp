@@ -14,7 +14,7 @@ struct AtExit
 int main()
 {
 	WindowsApp::Create(1280, 720, "DX WINDOW ");
-	SceneManager::Load(new ExampleScene());
+	SceneManager::Load(new SCTScene());
 	const int appState = WindowsApp::Run();
 	WaitForKeypress();
 	return appState;

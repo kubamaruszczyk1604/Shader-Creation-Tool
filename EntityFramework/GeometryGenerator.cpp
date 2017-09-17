@@ -99,6 +99,32 @@ namespace KLM_FRAMEWORK
 
 	}
 
+	void GeometryGenerator::GenerateQuad(const float a, Mesh *& meshOut)
+	{
+		meshOut = new Mesh();
+
+		float size = a;
+		float fbDist = 0.01f;
+
+		//front
+		meshOut->AddVertex(Vertex(-size, -size, -fbDist, 0, 0, -1, 0, 0));
+		meshOut->AddVertex(Vertex(size, -size, -fbDist, 0, 0, -1, 1, 0));
+		meshOut->AddVertex(Vertex(size, size, -fbDist, 0, 0, -1, 1, 1));
+		meshOut->AddVertex(Vertex(-size, size, -fbDist, 0, 0, -1, 0, 1));
+
+		std::vector<unsigned> indices;
+		indices.push_back(0);
+		indices.push_back(1);
+		indices.push_back(2);
+		indices.push_back(0);
+		indices.push_back(2);
+		indices.push_back(3);
+
+		meshOut->CreateVertexBuffer(indices);
+	}
+
+	
+
 	void GeometryGenerator::GenerateIrregPipe(
 		const Vec3 & front,
 		const Vec3 & back,
