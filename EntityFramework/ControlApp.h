@@ -2,7 +2,7 @@
 #include "StdIncludes.h"
 #include "KLM_Framework.h"
 #include <Windows.h>
-
+#include <msclr\marshal_cppstd.h>
 #include "DataWrappers.h"
 
 using WndUpdateLoopCallback = void(*)();
@@ -39,5 +39,6 @@ public:
 
 	static void RotateObject(float x, float y, float z);
 	static void Zoom(float amount);
+	static void LoadModel(System::String^ modelName);
 };
 

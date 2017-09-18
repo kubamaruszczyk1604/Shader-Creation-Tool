@@ -102,44 +102,26 @@ void SCTScene::OnStart()
 		PRINTL("SHADER FAILED TO COMPILE<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 	}
 
-
-	//PropellerBehaviour* propBehA = new PropellerBehaviour(KLM_AXIS::Z_AXIS, -1);
-
 	if (s_ModelType == TYPE_QUAD)
-	{
-		
+	{	
 		CreateQuad(dummyMat);
+	}
+	else if (s_ModelType == TYPE_SPHERE)
+	{
+		CreateSphere(dummyMat);
+	}
+	else if (s_ModelType == TYPE_BOX)
+	{
+		CreateBox(dummyMat);
+	}
+	else if (s_ModelType == TYPE_PROPELLER)
+	{
+		CreatePropeller(dummyMat);
 	}
 	else
 	{
-		//CreateSphere(dummyMat);
-		CreatePropeller(dummyMat);
+		CreateQuad(dummyMat);
 	}
-
-
-
-
-	/*parentQuad = new Entity("test1");
-	parentQuad->AddComponent(std::unique_ptr<ModelComponent>(mc1));
-	parentQuad->AddComponent(std::unique_ptr<BehaviourComponent>(propBehA));
-	parentQuad->GetTransform()->SetPosition(Vec3(-10, 0, 11));
-	parentQuad->GetTransform()->SetRotation(Vec3(0, glm::radians(45.0f), 0));
-	AddEntity(parentQuad);
-
-
-	PropellerBehaviour* propBehB = new PropellerBehaviour(KLM_AXIS::Z_AXIS, 9);
-	Entity* childQuad = new Entity("test2");
-	childQuad->AddComponent(std::unique_ptr<ModelComponent>(mc2));
-	childQuad->AddComponent(std::unique_ptr<BehaviourComponent>(propBehB));
-	childQuad->GetTransform()->SetPosition(Vec3(0, 10, 0));
-	childQuad->GetTransform()->SetRotation(Vec3(0, 0, 0));
-	childQuad->GetTransform()->SetScale(Vec3(0.5, 0.5, 0.5));
-	AddEntity(childQuad);
-	parentQuad->AddChild(childQuad);*/
-
-
-
-
 	/////////////////////////////////////////////  CAMERA ENTITY  ////////////////////////////////////////////
 
 	Camera* cam = new Camera(ProjectionType::PERSPECTIVE, 60.0f, 0.1f, 1000.0f);
@@ -149,9 +131,6 @@ void SCTScene::OnStart()
 	s_CameraEntity->AddComponent(std::unique_ptr<Camera>(cam));
 	s_CameraEntity->GetTransform()->SetPosition(Vec3(0, 0, -85));
 	AddEntity(s_CameraEntity);
-
-
-
 }
 
 void SCTScene::Update(float deltaTime, float totalTime)

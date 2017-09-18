@@ -18,7 +18,7 @@ Stopwatch ControlApp::s_FrameTimer;
 WndUpdateLoopCallback ControlApp::s_UpdateLoopCallback{ nullptr };
 WndMessageLoopCallback ControlApp::s_MessageLoopCallback{ nullptr };
 SceneReloadedCallback ControlApp::s_SceneReloadedCallback{ nullptr };
-
+using namespace msclr::interop;
 
 void ControlApp::Create(int width, int height, System::IntPtr handle)
 {
@@ -117,5 +117,10 @@ void ControlApp::Zoom(float amount)
 {
 	SCTScene* scene = static_cast<SCTScene*>(s_CurrentScene);
 	scene->Zoom(amount);
+}
+
+void ControlApp::LoadModel(System::String^ modelName)
+{
+	SCTScene::SetModelType(marshal_as<std::string>(modelName));
 }
 

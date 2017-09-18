@@ -28,6 +28,12 @@ namespace ShaderCreationTool
         private const string VERT_PATH = @"..\Data\Shaders\glVert.txt";
         private const string FRAG_PATH = @"..\Data\Shaders\glFrag.txt";
 
+        private readonly string[] MODEL_ID_ARRAY =
+        {
+            "QUAD","BOX","SPHERE","PROPELLER"
+        };
+        private int m_CurrentModelIndex = 0;
+
         private SimpleZLine m_TempLine;
         private MovableObject m_MovablePreviewPanel;
         private List<ISCTNode> m_Nodes;
@@ -36,7 +42,7 @@ namespace ShaderCreationTool
         private Point m_TempLineOrgin;
         private ZoomController m_ZoomController;
         private ICodeParser m_CodeParser;
-        string m_CurrentFilePath;
+        private string m_CurrentFilePath;
 
         public MainWindow()
         {
@@ -789,7 +795,9 @@ namespace ShaderCreationTool
 
         private void ButtonNextModel_Click(object sender, EventArgs e)
         {
-
+            m_CurrentModelIndex++;
+            if (m_CurrentModelIndex >= 4) m_CurrentModelIndex = 0;
+            Bridge.LoadModel(MODEL_ID_ARRAY[m_CurrentModelIndex]);
         }
     }
 

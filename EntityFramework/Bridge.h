@@ -23,6 +23,7 @@ public:
 	static void ClearLastCompilerMessage();
 	static void RotateObject(float x, float y, float z);
 	static void Zoom(float amount);
+	static void LoadModel(System::String^ modelName);
 
 
 	// used only on C++ side

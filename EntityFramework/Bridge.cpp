@@ -94,6 +94,12 @@ void Bridge::Zoom(float amount)
 	ControlApp::Zoom(amount);
 }
 
+void Bridge::LoadModel(System::String ^ modelName)
+{
+	ControlApp::LoadModel(modelName);
+	ReloadScene();
+}
+
 void Bridge::CallUpdateDelegate()
 {
 	if(s_OnProcUpdateDelegate)
