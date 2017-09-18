@@ -47,13 +47,19 @@ private:
 private:
 	Mesh* m_pQuadMesh{ nullptr };
 	Mesh* m_pSphereMesh{ nullptr };
-	Entity* parentQuad{ nullptr };
+	//Entity* parentQuad{ nullptr };
 	Spotlight* m_pSpotLight{ nullptr };
 	DirectionalLight* m_pDirectionalLight{ nullptr };
 	static Entity* s_pMainObjectEntity;
 	static Entity* s_CameraEntity;
 	static float s_DeltaTime;
 	static std::string s_ModelType;
+
+private:
+	void CreateSphere(Material* dummyMat);
+	void CreateQuad(Material* dummyMat);
+	void CreatePropeller(Material* dummyMat);
+	void CreateBox(Material* dummyMat);
 
 public:
 	~SCTScene() {}

@@ -786,6 +786,11 @@ namespace ShaderCreationTool
         {
             return angle * (180.0 / Math.PI);
         }
+
+        private void ButtonNextModel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

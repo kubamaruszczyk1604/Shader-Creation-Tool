@@ -201,6 +201,7 @@
             this.showConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ButtonNextModel = new System.Windows.Forms.Button();
             this.EditAreaPanel.SuspendLayout();
             this.CameraPositionWindow.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -2074,11 +2075,12 @@
             // 
             this.PreviewAreaPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PreviewAreaPanel.BackColor = System.Drawing.Color.DimGray;
+            this.PreviewAreaPanel.Controls.Add(this.ButtonNextModel);
             this.PreviewAreaPanel.Controls.Add(this.ZoomInButton);
             this.PreviewAreaPanel.Controls.Add(this.ZoomOutButton);
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
-            this.PreviewAreaPanel.Location = new System.Drawing.Point(829, 14);
+            this.PreviewAreaPanel.Location = new System.Drawing.Point(812, 14);
             this.PreviewAreaPanel.Name = "PreviewAreaPanel";
             this.PreviewAreaPanel.Size = new System.Drawing.Size(466, 423);
             this.PreviewAreaPanel.TabIndex = 26;
@@ -2493,6 +2495,20 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // ButtonNextModel
+            // 
+            this.ButtonNextModel.BackColor = System.Drawing.Color.Maroon;
+            this.ButtonNextModel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonNextModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonNextModel.ForeColor = System.Drawing.Color.White;
+            this.ButtonNextModel.Location = new System.Drawing.Point(324, 384);
+            this.ButtonNextModel.Name = "ButtonNextModel";
+            this.ButtonNextModel.Size = new System.Drawing.Size(126, 26);
+            this.ButtonNextModel.TabIndex = 28;
+            this.ButtonNextModel.Text = "NEXT MODEL";
+            this.ButtonNextModel.UseVisualStyleBackColor = false;
+            this.ButtonNextModel.Click += new System.EventHandler(this.ButtonNextModel_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -2791,6 +2807,7 @@
         private System.Windows.Forms.ToolStripMenuItem showConsoleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideConsoleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.Button ButtonNextModel;
     }
 }
 

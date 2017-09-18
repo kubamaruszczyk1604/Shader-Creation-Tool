@@ -11,19 +11,77 @@ Entity* SCTScene::s_CameraEntity{ nullptr };
 float SCTScene::s_DeltaTime{ 0.0f };
 std::string SCTScene::s_ModelType = "";
 
+void SCTScene::CreateSphere(Material* dummyMat)
+{
+	GeometryGenerator::GenerateSphere(40.0f, 20, 20, m_pSphereMesh);
+	ModelComponent* bkgSphereModel = new ModelComponent("SPHERE_MODEL", m_pSphereMesh, dummyMat);
+	Entity* sphereEntity = new Entity("MAIN_ENTITY");
+    sphereEntity->AddComponent(std::unique_ptr<ModelComponent>(bkgSphereModel));
+	sphereEntity->GetTransform()->SetPosition(Vec3(0, 0, 0));
+	sphereEntity->GetTransform()->SetScale(Vec3(1, 1, 1));
+	AddEntity(sphereEntity);
+	s_pMainObjectEntity = sphereEntity;
+}
+
+void SCTScene::CreateQuad(Material* dummyMat)
+{
+	GeometryGenerator::GenerateQuad(40.0f, m_pQuadMesh);
+	ModelComponent* bkgQuadModel = new ModelComponent("QUAD_MODEL", m_pQuadMesh, dummyMat);
+	Entity* quadEntity = new Entity("MAIN_ENTITY");
+	quadEntity->AddComponent(std::unique_ptr<ModelComponent>(bkgQuadModel));
+	quadEntity->GetTransform()->SetPosition(Vec3(0, 0, 0));
+	quadEntity->GetTransform()->SetScale(Vec3(1, 1, 1));
+	AddEntity(quadEntity);
+	s_pMainObjectEntity = quadEntity;
+}
+
+void SCTScene::CreatePropeller(Material* dummyMat)
+{
+	GeometryGenerator::GenerateSphere(18.0f, 20, 20, m_pSphereMesh);
+	GeometryGenerator::GenerateIrregBlock(37, 0, 20,6, 5, 5, m_pQuadMesh);
+	ModelComponent* bkgSphereModel = new ModelComponent("SPHERE_MODEL", m_pSphereMesh, dummyMat);
+
+	PropellerBehaviour* propBehA = new PropellerBehaviour(KLM_AXIS::Z_AXIS, -1);
+
+	Entity* sphereMainEntity = new Entity("MAIN_ENTITY");
+	sphereMainEntity->AddComponent(std::unique_ptr<ModelComponent>(bkgSphereModel));
+	sphereMainEntity->AddComponent(std::unique_ptr<BehaviourComponent>(propBehA));
+	sphereMainEntity->GetTransform()->SetPosition(Vec3(0, 0, 0));
+	sphereMainEntity->GetTransform()->SetScale(Vec3(1, 1, 0.25f));
+	AddEntity(sphereMainEntity);
+	for (int i = 0; i < 4; ++i)
+	{
+		ModelComponent* bkgQuadModel = new ModelComponent("QUAD_MODEL"+ std::to_string(i), m_pQuadMesh, dummyMat);
+		Entity* blade = new Entity("test2");
+		blade->AddComponent(std::unique_ptr<ModelComponent>(bkgQuadModel));
+		blade->GetTransform()->SetPosition(Vec3(0, 0, 0));
+		blade->GetTransform()->SetRotation(Vec3(0, 0, ToRadians(i*90.0f)));
+		AddEntity(blade);
+		sphereMainEntity->AddChild(blade);
+	}
+
+
+	s_pMainObjectEntity = sphereMainEntity;
+}
+
+void SCTScene::CreateBox(Material * dummyMat)
+{
+	GeometryGenerator::GenerateIrregBlock(5, 5, 5, 5, 5, 5, m_pQuadMesh);
+	ModelComponent* bkgQuadModel = new ModelComponent("QUAD_MODEL", m_pQuadMesh, dummyMat);
+	Entity* quadEntity = new Entity("MAIN_ENTITY");
+	quadEntity->AddComponent(std::unique_ptr<ModelComponent>(bkgQuadModel));
+	quadEntity->GetTransform()->SetPosition(Vec3(0, 0, 0));
+	quadEntity->GetTransform()->SetScale(Vec3(5, 5, 5));
+	AddEntity(quadEntity);
+	s_pMainObjectEntity = quadEntity;
+}
+
 void SCTScene::OnStart()
 {
 	PRINTL("OnStart()");
 
 	////////////////////////////////////////////   MATERIALS //////////////////////////
 	MaterialDescription desc;
-	//desc.AmbientCol = Colour(0.1, 0.1, 0.1, 1);
-	//desc.DiffuseReflectivity = Colour(1, 1, 1, 1);
-	//desc.SpecularReflectivity = Colour(1, 1,1, 1);
-	//desc.DiffuseMap = PathList::TEXTURE_DIR + "logoP.png";
-	//	desc.SpecularMap = PathList::TEXTURE_DIR + "logo.bmp";
-	//desc.NormalMap = PathList::TEXTURE_DIR + "logo.bmp";
-
 	if (Renderer::GetAPI() == GfxAPI::D3D11)
 	{
 		desc.DXShaderFile = PathList::SHADER_DIR + "Shader.hlsl";
@@ -45,35 +103,19 @@ void SCTScene::OnStart()
 	}
 
 
-	//////////////////////////////////////////     MESH    ////////////////////////////
-
-	GeometryGenerator::GenerateQuad(40.0f, m_pQuadMesh);
-	GeometryGenerator::GenerateSphere(40.0f, 20, 20, m_pSphereMesh);
-
-	///////////////////////////////////////////////////////////   MODELS    ////////////////////////////////////////////
-
-	//Meshes and materials can be reused by many models 
-	/*ModelComponent* mc1 = new ModelComponent("testModel", m_pQuadMesh, testMat1);
-	ModelComponent* mc2 = new ModelComponent("testModel2", m_pQuadMesh, testMat1);*/
-	ModelComponent* bkgQuadModel = new ModelComponent("QUAD_MODEL", m_pQuadMesh, dummyMat);
-	ModelComponent* bkgSphereModel = new ModelComponent("SPHERE_MODEL", m_pSphereMesh, dummyMat);
-
 	//PropellerBehaviour* propBehA = new PropellerBehaviour(KLM_AXIS::Z_AXIS, -1);
-
-	Entity* quadEntity = new Entity("MAIN_ENTITY");
 
 	if (s_ModelType == TYPE_QUAD)
 	{
-		quadEntity->AddComponent(std::unique_ptr<ModelComponent>(bkgQuadModel));
+		
+		CreateQuad(dummyMat);
 	}
 	else
 	{
-		quadEntity->AddComponent(std::unique_ptr<ModelComponent>(bkgSphereModel));
+		//CreateSphere(dummyMat);
+		CreatePropeller(dummyMat);
 	}
-	quadEntity->GetTransform()->SetPosition(Vec3(0, 0, 0));
-	quadEntity->GetTransform()->SetScale(Vec3(1, 1, 1));
-	AddEntity(quadEntity);
-	s_pMainObjectEntity = quadEntity;
+
 
 
 

@@ -349,14 +349,14 @@ namespace KLM_FRAMEWORK
 		float uStart, float uEnd,
 		float vStart, float vEnd, Mesh *& outMesh)
 	{
-		const glm::vec3 const vertsBase[] = // parasoft-suppress  STL-37 "Array preffered as a local const lookup table of const values - no sorting intended ever"
+		const glm::vec3 const vertsBase[] = 
 		{
 			glm::vec3(-leftW,-leftH, leftL),
 			glm::vec3(-leftW, leftH, leftL),
 			glm::vec3(rightW, rightH, rightL),
 			glm::vec3(rightW, -rightH, rightL)
 		};
-		const glm::vec2 const uv[] = // parasoft-suppress  STL-37 "Array preffered as a local const lookup table of const values - no sorting intended ever"
+		const glm::vec2 const uv[] = 
 		{
 			glm::vec2(uStart,vEnd),
 			glm::vec2(uStart, vStart),
@@ -372,14 +372,14 @@ namespace KLM_FRAMEWORK
 		float leftH, float rightH,
 		float leftL, float rightL, Mesh*& outMesh)
 	{
-		const glm::vec3 const vertsBase[] = // parasoft-suppress  STL-37 "Array preffered as a local const lookup table of const values - no sorting intended ever"
+		const glm::vec3 const vertsBase[] = 
 		{
 			glm::vec3(-leftW,-leftH, leftL),
 			glm::vec3(-leftW, leftH, leftL),
 			glm::vec3(rightW, rightH, rightL),
 			glm::vec3(rightW, -rightH, rightL)
 		};
-		const glm::vec2 const uv[] = // parasoft-suppress  STL-37 "Array preffered as a local const lookup table of const values - no sorting intended ever"
+		const glm::vec2 const uv[] = 
 		{
 			glm::vec2(0,1),
 			glm::vec2(0, 0),
