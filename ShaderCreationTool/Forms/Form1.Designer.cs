@@ -164,6 +164,7 @@
             this.In_SlotX = new System.Windows.Forms.CheckBox();
             this.TitleLabel_FunctionNode = new System.Windows.Forms.Label();
             this.PreviewAreaPanel = new System.Windows.Forms.Panel();
+            this.ButtonNextModel = new System.Windows.Forms.Button();
             this.ZoomInButton = new System.Windows.Forms.Button();
             this.ZoomOutButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -201,7 +202,6 @@
             this.showConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ButtonNextModel = new System.Windows.Forms.Button();
             this.EditAreaPanel.SuspendLayout();
             this.CameraPositionWindow.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -393,12 +393,12 @@
             this.Out_Slot_cameraPosition.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_Slot_cameraPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Out_Slot_cameraPosition.ForeColor = System.Drawing.Color.BurlyWood;
-            this.Out_Slot_cameraPosition.Location = new System.Drawing.Point(92, 6);
+            this.Out_Slot_cameraPosition.Location = new System.Drawing.Point(55, 6);
             this.Out_Slot_cameraPosition.Name = "Out_Slot_cameraPosition";
             this.Out_Slot_cameraPosition.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Out_Slot_cameraPosition.Size = new System.Drawing.Size(77, 20);
+            this.Out_Slot_cameraPosition.Size = new System.Drawing.Size(114, 20);
             this.Out_Slot_cameraPosition.TabIndex = 8;
-            this.Out_Slot_cameraPosition.Text = "Normal";
+            this.Out_Slot_cameraPosition.Text = "CamPosition";
             this.Out_Slot_cameraPosition.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_Slot_cameraPosition.UseVisualStyleBackColor = true;
             // 
@@ -897,7 +897,7 @@
             this.Out_Slot_Texture2D.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Out_Slot_Texture2D.Size = new System.Drawing.Size(73, 20);
             this.Out_Slot_Texture2D.TabIndex = 8;
-            this.Out_Slot_Texture2D.Text = "OutCol";
+            this.Out_Slot_Texture2D.Text = "OutVal";
             this.Out_Slot_Texture2D.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_Slot_Texture2D.UseVisualStyleBackColor = true;
             // 
@@ -1040,7 +1040,7 @@
             this.Out_Slot_float.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Out_Slot_float.Size = new System.Drawing.Size(73, 20);
             this.Out_Slot_float.TabIndex = 8;
-            this.Out_Slot_float.Text = "OutCol";
+            this.Out_Slot_float.Text = "OutVal";
             this.Out_Slot_float.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_Slot_float.UseVisualStyleBackColor = true;
             // 
@@ -1209,7 +1209,7 @@
             this.Out_Slot_vec2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Out_Slot_vec2.Size = new System.Drawing.Size(73, 20);
             this.Out_Slot_vec2.TabIndex = 8;
-            this.Out_Slot_vec2.Text = "OutCol";
+            this.Out_Slot_vec2.Text = "OutVal";
             this.Out_Slot_vec2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_Slot_vec2.UseVisualStyleBackColor = true;
             // 
@@ -1415,7 +1415,7 @@
             this.Out_Slot_vec3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Out_Slot_vec3.Size = new System.Drawing.Size(73, 20);
             this.Out_Slot_vec3.TabIndex = 8;
-            this.Out_Slot_vec3.Text = "OutCol";
+            this.Out_Slot_vec3.Text = "OutVal";
             this.Out_Slot_vec3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_Slot_vec3.UseVisualStyleBackColor = true;
             // 
@@ -1658,7 +1658,7 @@
             this.Out_Slot_vec4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Out_Slot_vec4.Size = new System.Drawing.Size(73, 20);
             this.Out_Slot_vec4.TabIndex = 8;
-            this.Out_Slot_vec4.Text = "OutCol";
+            this.Out_Slot_vec4.Text = "OutVal";
             this.Out_Slot_vec4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Out_Slot_vec4.UseVisualStyleBackColor = true;
             // 
@@ -2080,10 +2080,24 @@
             this.PreviewAreaPanel.Controls.Add(this.ZoomOutButton);
             this.PreviewAreaPanel.Controls.Add(this.pictureBox1);
             this.PreviewAreaPanel.Controls.Add(this.PreviewTextLabel);
-            this.PreviewAreaPanel.Location = new System.Drawing.Point(812, 14);
+            this.PreviewAreaPanel.Location = new System.Drawing.Point(795, 14);
             this.PreviewAreaPanel.Name = "PreviewAreaPanel";
             this.PreviewAreaPanel.Size = new System.Drawing.Size(466, 423);
             this.PreviewAreaPanel.TabIndex = 26;
+            // 
+            // ButtonNextModel
+            // 
+            this.ButtonNextModel.BackColor = System.Drawing.Color.Maroon;
+            this.ButtonNextModel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonNextModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonNextModel.ForeColor = System.Drawing.Color.White;
+            this.ButtonNextModel.Location = new System.Drawing.Point(324, 384);
+            this.ButtonNextModel.Name = "ButtonNextModel";
+            this.ButtonNextModel.Size = new System.Drawing.Size(126, 26);
+            this.ButtonNextModel.TabIndex = 28;
+            this.ButtonNextModel.Text = "NEXT MODEL";
+            this.ButtonNextModel.UseVisualStyleBackColor = false;
+            this.ButtonNextModel.Click += new System.EventHandler(this.ButtonNextModel_Click);
             // 
             // ZoomInButton
             // 
@@ -2494,20 +2508,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // ButtonNextModel
-            // 
-            this.ButtonNextModel.BackColor = System.Drawing.Color.Maroon;
-            this.ButtonNextModel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ButtonNextModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonNextModel.ForeColor = System.Drawing.Color.White;
-            this.ButtonNextModel.Location = new System.Drawing.Point(324, 384);
-            this.ButtonNextModel.Name = "ButtonNextModel";
-            this.ButtonNextModel.Size = new System.Drawing.Size(126, 26);
-            this.ButtonNextModel.TabIndex = 28;
-            this.ButtonNextModel.Text = "NEXT MODEL";
-            this.ButtonNextModel.UseVisualStyleBackColor = false;
-            this.ButtonNextModel.Click += new System.EventHandler(this.ButtonNextModel_Click);
             // 
             // MainWindow
             // 
