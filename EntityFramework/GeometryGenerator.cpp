@@ -30,8 +30,8 @@ namespace KLM_FRAMEWORK
 
 			//normals calculation
 			glm::vec3 normal;
-			if (normalsIn) {normal = orgin - currentPos;}
-			else {normal = currentPos - orgin;}
+			if (normalsIn) { normal = orgin - currentPos; }
+			else { normal = currentPos - orgin; }
 			normal = glm::normalize(normal);
 
 			Vertex temp(currentPos);
@@ -49,6 +49,117 @@ namespace KLM_FRAMEWORK
 		}
 	}
 
+
+	void GeometryGenerator::CreateBlock(const Vec3 * const vertsBase, const Vec2 * const uv, Mesh *& outMesh)
+	{
+
+
+		const glm::vec3 frontNormal = glm::vec3(0, 0, 1);
+		const glm::vec3 backNormal = glm::vec3(0, 0, -1);
+		const glm::vec3 leftNormal = glm::vec3(-1, 0, 0);
+		const glm::vec3 rightNormal = glm::vec3(1, 0, 0);
+		const glm::vec3 bottomNormal = glm::vec3(0, -1, 0);
+		const glm::vec3 topNormal = glm::vec3(0, 1, 0);
+
+		outMesh = new Mesh();
+
+		//front face
+		for (int i = 0; i < 4; ++i)
+		{
+			Vertex v(vertsBase[i]);
+			v.Normal = frontNormal;
+			v.Texcoord0 = uv[i];
+			outMesh->AddVertex(v);
+		}
+
+		//back face
+		for (int i = 0; i < 4; ++i)
+		{
+			Vertex v(vertsBase[i]);
+			v.Position.z *= -1;
+			v.Normal = backNormal;
+			v.Texcoord0 = uv[i];
+			outMesh->AddVertex(v);
+		}
+
+		//Left face
+		outMesh->AddVertex(outMesh->GetVertexRef(4));
+		outMesh->AddVertex(outMesh->GetVertexRef(5));
+		outMesh->AddVertex(outMesh->GetVertexRef(1));
+		outMesh->AddVertex(outMesh->GetVertexRef(0));
+
+		for (int i = 8; i < 12; ++i)
+		{
+			Vertex v = outMesh->GetVertexRef(i);
+			v.Normal = leftNormal;
+			v.Texcoord0 = uv[i - 8];
+			outMesh->GetVertexRef(i) = v;
+		}
+
+		//Right face
+		outMesh->AddVertex(outMesh->GetVertexRef(3));
+		outMesh->AddVertex(outMesh->GetVertexRef(2));
+		outMesh->AddVertex(outMesh->GetVertexRef(6));
+		outMesh->AddVertex(outMesh->GetVertexRef(7));
+
+		for (int i = 12; i < 16; ++i)
+		{
+			Vertex v = outMesh->GetVertexRef(i);
+			v.Normal = rightNormal;
+			v.Texcoord0 = uv[i - 12];
+			outMesh->GetVertexRef(i) = v;
+		}
+
+		//bottom face
+		outMesh->AddVertex(outMesh->GetVertexRef(3));
+		outMesh->AddVertex(outMesh->GetVertexRef(7));
+		outMesh->AddVertex(outMesh->GetVertexRef(4));
+		outMesh->AddVertex(outMesh->GetVertexRef(0));
+
+		for (int i = 16; i < 20; ++i)
+		{
+			Vertex v = outMesh->GetVertexRef(i);
+			v.Normal = bottomNormal;
+			v.Texcoord0 = uv[i - 16];
+			outMesh->GetVertexRef(i) = v;
+		}
+
+		//top face
+		outMesh->AddVertex(outMesh->GetVertexRef(1));
+		outMesh->AddVertex(outMesh->GetVertexRef(5));
+		outMesh->AddVertex(outMesh->GetVertexRef(6));
+		outMesh->AddVertex(outMesh->GetVertexRef(2));
+
+		for (int i = 20; i < 24; ++i)
+		{
+			Vertex v = outMesh->GetVertexRef(i);
+			v.Normal = topNormal;
+			v.Texcoord0 = uv[i - 20];
+			outMesh->GetVertexRef(i) = v;
+		}
+		//front culling
+		//unsigned indices[] =
+		//{
+		//	0,1,2, 0,2,3,       // front face
+		//	7,6,5, 7,5,4,       // back face
+		//	8,9,10, 8,10,11,    // left face
+		//	12,13,14, 12,14,15, // right face
+		//	16,17,18, 16,18,19, // bottom face
+		//	20,21,22, 20,22,23 // top face
+		//};
+
+		////back culling
+		const unsigned const indices[] = // parasoft-suppress  STL-37 "Array preffered as a local const lookup table of const values - no sorting intended ever"
+		{
+			0,3,2, 0,2,1,       // front face
+			7,4,5, 7,5,6,       // back face
+			8,11,10, 8,10,9,    // left face
+			12,15,14, 12,14,13, // right face
+			16,19,18, 16,18,17, // bottom face
+			20,23,22, 20,22,21 // top face
+		};
+		outMesh->CreateVertexBuffer(std::vector<unsigned>(indices, indices + 36));
+	}
 
 	void GeometryGenerator::GenerateSphere(const float radius, const unsigned int rings, const unsigned int sectors, Mesh*& meshOut)
 	{
@@ -123,7 +234,7 @@ namespace KLM_FRAMEWORK
 		meshOut->CreateVertexBuffer(indices);
 	}
 
-	
+
 
 	void GeometryGenerator::GenerateIrregPipe(
 		const Vec3 & front,
@@ -231,5 +342,50 @@ namespace KLM_FRAMEWORK
 	}
 
 
+	void GeometryGenerator::GenerateIrregBlock(
+		float leftW, float rightW,
+		float leftH, float rightH,
+		float leftL, float rightL,
+		float uStart, float uEnd,
+		float vStart, float vEnd, Mesh *& outMesh)
+	{
+		const glm::vec3 const vertsBase[] = // parasoft-suppress  STL-37 "Array preffered as a local const lookup table of const values - no sorting intended ever"
+		{
+			glm::vec3(-leftW,-leftH, leftL),
+			glm::vec3(-leftW, leftH, leftL),
+			glm::vec3(rightW, rightH, rightL),
+			glm::vec3(rightW, -rightH, rightL)
+		};
+		const glm::vec2 const uv[] = // parasoft-suppress  STL-37 "Array preffered as a local const lookup table of const values - no sorting intended ever"
+		{
+			glm::vec2(uStart,vEnd),
+			glm::vec2(uStart, vStart),
+			glm::vec2(uEnd, vStart),
+			glm::vec2(uEnd,vEnd)
+		};
+		CreateBlock(vertsBase, uv, outMesh);
 
+	}
+
+	void GeometryGenerator::GenerateIrregBlock(
+		float leftW, float rightW,
+		float leftH, float rightH,
+		float leftL, float rightL, Mesh*& outMesh)
+	{
+		const glm::vec3 const vertsBase[] = // parasoft-suppress  STL-37 "Array preffered as a local const lookup table of const values - no sorting intended ever"
+		{
+			glm::vec3(-leftW,-leftH, leftL),
+			glm::vec3(-leftW, leftH, leftL),
+			glm::vec3(rightW, rightH, rightL),
+			glm::vec3(rightW, -rightH, rightL)
+		};
+		const glm::vec2 const uv[] = // parasoft-suppress  STL-37 "Array preffered as a local const lookup table of const values - no sorting intended ever"
+		{
+			glm::vec2(0,1),
+			glm::vec2(0, 0),
+			glm::vec2(1, 0),
+			glm::vec2(1,1)
+		};
+		CreateBlock(vertsBase, uv, outMesh);
+	}
 }

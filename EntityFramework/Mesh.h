@@ -21,7 +21,7 @@ namespace KLM_FRAMEWORK
 		const VBO* CreateVertexBuffer();
 		const VBO* CreateVertexBuffer(std::vector<unsigned>& indices);
 		VBO* GetVBO() { return m_pVBO; }
-
+		Vertex& GetVertexRef(unsigned i) { return m_Vertices[i]; }
 
 	};
 

@@ -21,6 +21,10 @@ namespace KLM_FRAMEWORK
 			float vValue,
 			std::vector<Vertex>& verts);
 
+
+		static void CreateBlock(const Vec3* const vertsBase, const Vec2* const uv, Mesh*& outMesh);
+		
+
 	public:
 
 		static void GenerateSphere(const float radius, const unsigned int rings, const unsigned int sectors, Mesh*& meshOut);
@@ -36,6 +40,21 @@ namespace KLM_FRAMEWORK
 			double radius2,
 			int numOfWalls,
 			const Vec2& UV,
+			Mesh*& outMesh);
+
+		static void GenerateIrregBlock(
+			float leftW, float rightW,
+			float leftH, float rightH,
+			float leftL, float rightL,
+			float uStart, float uEnd,
+			float vStart, float vEnd,
+			Mesh*& outMesh);
+
+
+		static void GenerateIrregBlock(
+			float leftW, float rightW,
+			float leftH, float rightH,
+			float leftL, float rightL,
 			Mesh*& outMesh);
 	};
 
