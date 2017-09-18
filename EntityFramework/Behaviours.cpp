@@ -66,12 +66,12 @@ void SCTScene::CreatePropeller(Material* dummyMat)
 
 void SCTScene::CreateBox(Material * dummyMat)
 {
-	GeometryGenerator::GenerateIrregBlock(5, 5, 5, 5, 5, 5, m_pQuadMesh);
+	GeometryGenerator::GenerateIrregBlock(25, 25, 25, 25, 25, 25, m_pQuadMesh);
 	ModelComponent* bkgQuadModel = new ModelComponent("QUAD_MODEL", m_pQuadMesh, dummyMat);
 	Entity* quadEntity = new Entity("MAIN_ENTITY");
 	quadEntity->AddComponent(std::unique_ptr<ModelComponent>(bkgQuadModel));
 	quadEntity->GetTransform()->SetPosition(Vec3(0, 0, 0));
-	quadEntity->GetTransform()->SetScale(Vec3(5, 5, 5));
+	//quadEntity->GetTransform()->SetScale(Vec3(5, 5, 5));
 	AddEntity(quadEntity);
 	s_pMainObjectEntity = quadEntity;
 }
