@@ -14,6 +14,8 @@ in float oTime;
 out vec4 FragColour;
 
 //Uniform nodes translated as uniform variables.
+uniform vec4            SCT_UNIFORM_ColourIn_0;
+uniform sampler2D       SCT_TEXTURE2D_0;
 
 
 const float TAU = 6.28318530718;
@@ -34,9 +36,14 @@ vec4 dummyOutVEC4;
 
 
 // SCT Nodes Translated as functions.
-void Vec_2TO4(vec2 Vec2in, inout vec4 FinalOut)
+void MultiplyV4(vec4 VecA, vec4 VecB, vec4 VecC, inout vec4 FinalColour)
 {
- FinalOut = vec4(Vec2in.x,Vec2in.y,1.0,1.0); 
+ FinalColour = VecA*VecB*VecC; 
+}
+
+void Sampler2D(sampler2D Texture, vec2 Texcoord, inout vec4 FinalColour)
+{
+ FinalColour = texture2D(Texture,Texcoord); 
 }
 
 
@@ -44,10 +51,14 @@ void Vec_2TO4(vec2 Vec2in, inout vec4 FinalOut)
 void main()
 {
 
-//SCT CALL: Vec_2TO4
-   vec4  OUT_FinalOut0_NF_Vec_2TO4_1_4026;
-   Vec_2TO4(oUVs, OUT_FinalOut0_NF_Vec_2TO4_1_4026);
+//SCT CALL: Sampler2D
+   vec4  OUT_FinalColour0_NF_Sampler2D_1_5944;
+   Sampler2D(SCT_TEXTURE2D_0, oUVs, OUT_FinalColour0_NF_Sampler2D_1_5944);
 
-FragColour = OUT_FinalOut0_NF_Vec_2TO4_1_4026;
+//SCT CALL: MultiplyV4
+   vec4  OUT_FinalColour0_NF_MultiplyV4_0_5933;
+   MultiplyV4(SCT_UNIFORM_ColourIn_0, OUT_FinalColour0_NF_Sampler2D_1_5944, vec4 (1.0,1.0,1.0,1.0), OUT_FinalColour0_NF_MultiplyV4_0_5933);
+
+FragColour = OUT_FinalColour0_NF_MultiplyV4_0_5933;
 
 }

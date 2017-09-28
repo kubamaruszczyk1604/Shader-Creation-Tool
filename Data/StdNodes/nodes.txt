@@ -14,7 +14,6 @@ float softInterval(float a, float b, float c, float d, float x)
   
   
   <Node Name="AddV4">
-  
     <Input_Variables>
       <Variable Name="VecA" Var_Type="Float4"> 
 	  DEFAULT = (0.0,0.0,0.0,0.0) 
@@ -25,22 +24,16 @@ float softInterval(float a, float b, float c, float d, float x)
 	   <Variable Name="VecC" Var_Type="Float4">
 	   DEFAULT = (0.0,0.0,0.0,0.0) 
       </Variable>
-    </Input_Variables>
-	
+    </Input_Variables>	
     <Output_Variables>
       <Variable Name="FinalColour" Var_Type="Float4">
       </Variable>
-    </Output_Variables>
-	
-	
+    </Output_Variables>	
    <Code> FinalColour = VecA+VecB+VecC; </Code>
   </Node>
  
-
- 
   
     <Node Name="MultiplyV4">
-  
     <Input_Variables>
       <Variable Name="VecA" Var_Type="Float4">
 	  DEFAULT = (1.0,1.0,1.0,1.0)
@@ -57,15 +50,39 @@ float softInterval(float a, float b, float c, float d, float x)
       <Variable Name="FinalColour" Var_Type="Float4">
       </Variable>
     </Output_Variables>
-	
    <Code> FinalColour = VecA*VecB*VecC; </Code> 
   </Node>
   
+
+   <Node Name="CrossAddV4_Test">
+    <Input_Variables>
+      <Variable Name="VecA" Var_Type="Float4"> 
+	  DEFAULT = (0.0,0.0,0.0,0.0) 
+	  </Variable>
+      <Variable Name="VecB" Var_Type="Float4">
+	   DEFAULT = (0.0,0.0,0.0,0.0) 
+      </Variable>
+	   <Variable Name="VecC" Var_Type="Float4">
+	   DEFAULT = (0.0,0.0,0.0,0.0) 
+      </Variable>
+    </Input_Variables>	
+    <Output_Variables>
+      <Variable Name="A_Plus_B" Var_Type="Float4">
+      </Variable>
+	  <Variable Name="A_Plus_C" Var_Type="Float4">
+      </Variable>
+	  <Variable Name="B_Plus_C" Var_Type="Float4">
+      </Variable>
+    </Output_Variables>	
+   <Code> 
+    A_Plus_B = VecA + VecB; 
+	A_Plus_C = VecA + VecC;
+	B_Plus_C = VecB + VecC;
+   </Code>
+  </Node>
   
-
-
+  
   <Node Name="VisualizeNormal">
-  
     <Input_Variables>
       <Variable Name="Norm" Var_Type="Float3">
 	  </Variable>
@@ -214,6 +231,7 @@ float softInterval(float a, float b, float c, float d, float x)
      FinalOut =mix(ColourIn, fogColor, fogAmount);
    </Code>
   </Node>
+  
   
 
   

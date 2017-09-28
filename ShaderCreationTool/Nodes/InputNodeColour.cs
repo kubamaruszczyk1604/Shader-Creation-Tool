@@ -22,7 +22,7 @@ namespace ShaderCreationTool
         public static int CounterState() { return s_InstanceCounter; }
         public static void SetCounter(int counterVal) { s_InstanceCounter = counterVal; }
 
-        private Panel m_SctElement;
+        private Panel m_SctElement; 
         private MovableObject m_Mover;
         private List<Connector> m_OutputConnectors;
         private string m_Label = string.Empty;

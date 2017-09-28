@@ -190,8 +190,6 @@ namespace ShaderCreationTool
                     m_Signatures.Add(utilSignature);
                 }
 
-
-
                 string signature = CreateFunctionSignature(desc);
                 if (m_Signatures.Contains(signature))
                 {

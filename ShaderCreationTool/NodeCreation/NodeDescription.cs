@@ -26,8 +26,8 @@ namespace ShaderCreationTool
 
         public string AdditionalInfo { get; set; }
 
-
     }
+
     public class SubFuntionDescription
     {
         private List<ShaderVariableDescription> m_InputVariables;
