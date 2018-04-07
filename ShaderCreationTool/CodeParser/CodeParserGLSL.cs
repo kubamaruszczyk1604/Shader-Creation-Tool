@@ -418,13 +418,16 @@ namespace ShaderCreationTool
              }
         }
 
+        //TODO:/Read in language specification from file
         private string ParseCode(string code)
         {
             string s = code;
             s = s.Replace("VECTOR4", "vec4").Replace("VECTOR3", "vec3").Replace("VECTOR2", "vec2").Replace("FLOAT", "float").Replace("COLOUR", "vec4");
             s = s.Replace("SampleTexture", "texture2D");
             s = s.Replace("IS_SMALLER","<");
-            s = s.Replace("Is_GREATER", ">");
+            s = s.Replace("IS_GREATER", ">");
+            s = s.Replace("AND", "&&");
+            s = s.Replace("OR", "||");
             return s;
         }
 
